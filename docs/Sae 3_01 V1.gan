@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2024-12-06" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3312" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="Planning Organisationnel - SAE 3.1" company="Groupe 7  -  IUT Le Havre Normandie" webLink="http://" view-date="2024-12-06" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3309" locale="fr_FR">
     <description/>
     <view zooming-state="default:1" id="gantt-chart">
         <field id="tpd3" name="Nom" width="200" order="0"/>
@@ -71,7 +71,13 @@
         </task>
         <task id="10" uid="dad805a6b2ae40f4ace7baadbff4821d" name="rendu" color="#333300" meeting="false" start="2025-01-08" duration="1" complete="0" expand="true"/>
     </tasks>
-    <resources/>
+    <resources>
+        <resource id="0" name="Aubin Montagne" function="Default:0" contacts="" phone=""/>
+        <resource id="1" name="Julien Oyer" function="Default:0" contacts="" phone=""/>
+        <resource id="2" name="Antoine Paunet" function="Default:0" contacts="" phone=""/>
+        <resource id="3" name="Thibault Padois" function="Default:0" contacts="" phone=""/>
+        <resource id="4" name="Thimothée Magne" function="Default:0" contacts="" phone=""/>
+    </resources>
     <allocations/>
     <vacations/>
     <previous/>
