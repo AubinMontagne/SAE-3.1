@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Planning Organisationnel - SAE 3.1" company="Groupe 7  -  IUT Le Havre Normandie" webLink="http://" view-date="2024-12-06" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3309" locale="fr_FR">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2024-12-06" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3312" locale="fr_FR">
     <description/>
     <view zooming-state="default:1" id="gantt-chart">
         <field id="tpd3" name="Nom" width="200" order="0"/>
@@ -60,24 +60,15 @@
             <depend id="8" type="2" difference="0" hardness="Strong"/>
             <depend id="9" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="7" uid="f650168b7e8642a3ab13e75018e74f9b" name="Correction de bugs si il y a" color="#33ff33" meeting="false" start="2025-01-03" duration="1" complete="0" expand="true">
-            <depend id="9" type="2" difference="0" hardness="Strong"/>
-        </task>
         <task id="8" uid="33362d1032454a059b789327d603e9ec" name="redaction de la documentation" color="#cccccc" meeting="false" start="2025-01-03" duration="3" complete="0" expand="true">
             <depend id="10" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="9" uid="9b3e0136bcaf400a9ef4cef18a89e335" name="Vérification et mise en forme du code" color="#ff0000" meeting="false" start="2025-01-06" duration="2" complete="0" expand="true">
+        <task id="9" uid="9b3e0136bcaf400a9ef4cef18a89e335" name="Mise en place de la demo et verif code" color="#ff0000" meeting="false" start="2025-01-03" duration="3" complete="0" expand="true">
             <depend id="10" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="10" uid="dad805a6b2ae40f4ace7baadbff4821d" name="rendu" color="#333300" meeting="false" start="2025-01-08" duration="1" complete="0" expand="true"/>
     </tasks>
-    <resources>
-        <resource id="0" name="Aubin Montagne" function="Default:0" contacts="" phone=""/>
-        <resource id="1" name="Julien Oyer" function="Default:0" contacts="" phone=""/>
-        <resource id="2" name="Antoine Paunet" function="Default:0" contacts="" phone=""/>
-        <resource id="3" name="Thibault Padois" function="Default:0" contacts="" phone=""/>
-        <resource id="4" name="Thimothée Magne" function="Default:0" contacts="" phone=""/>
-    </resources>
+    <resources/>
     <allocations/>
     <vacations/>
     <previous/>
