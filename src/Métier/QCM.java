@@ -1,4 +1,4 @@
-package Métier;
+package Metier;
 
 import java.util.HashMap;
 
@@ -6,9 +6,14 @@ import java.util.HashMap;
 public class QCM extends Question {
     private HashMap<String, Boolean> reponses;
 
-    public QCM(String intitule, String difficulté,Ressources ressource,Notions notion,int temps )
+    public QCM(String intitule, String difficulté,Ressource ressource,Notion notion,int temps,int points)
     {
-        super(intitule, difficulté, ressource, notion, temps);
+        super(intitule, difficulté, ressource, notion, temps, points);
+        this.reponses = new HashMap<String, Boolean>();
+    }
+    public QCM(String intitule, String difficulté,Ressource ressource,Notion notion,int temps,int points, String explication)
+    {
+        super(intitule, difficulté, ressource, notion, temps, points, explication);
         this.reponses = new HashMap<String, Boolean>();
     }
 
@@ -24,6 +29,8 @@ public class QCM extends Question {
     {
         this.reponses = reponses;
     }
+
+    // Méthode pour gérer les réponse ajouter/enlever
     public void ajouterReponse(String reponse, Boolean correct)
     {
         this.reponses.put(reponse, correct);
@@ -31,6 +38,10 @@ public class QCM extends Question {
     public void enleverReponse(String reponse)
     {
         this.reponses.remove(reponse);
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
     }
 
 }
