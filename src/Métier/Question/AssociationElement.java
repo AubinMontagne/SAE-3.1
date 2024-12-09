@@ -10,15 +10,15 @@ public class AssociationElement extends Question
     private HashMap<String, String> associations;
 
     // Constructeur
-    public AssociationElement(String intitule, String difficulté,Ressource ressource,Notion notion,int temps,int points, String explication, HashMap<String,String> associations)
+    public AssociationElement(String intitule, String difficulté,Notion notion,int temps,int points,Metier metier, String explication, HashMap<String,String> associations)
     {
-        super(intitule, difficulté, ressource, notion, temps, points, explication);
+        super(intitule, difficulté, notion, temps, points,metier, explication);
         this.associations = associations;
     }
 
-    public AssociationElement(String intitule, String difficulté, Ressource ressource, Notion notion, int temps,int points, HashMap<String,String> associations)
+    public AssociationElement(String intitule, String difficulté, Notion notion, int temps,int points,Metier metier, HashMap<String,String> associations)
     {
-        super(intitule, difficulté, ressource, notion, temps, points);
+        super(intitule, difficulté, notion, temps, points,metier);
         this.associations = associations;
     }
 

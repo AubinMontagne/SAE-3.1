@@ -8,14 +8,14 @@ import Metier.Ressource;
 public class QCM extends Question {
     private HashMap<String, Boolean> reponses;
 
-    public QCM(String intitule, String difficulté,Ressource ressource,Notion notion,int temps,int points)
+    public QCM(String intitule, String difficulté,Notion notion,int temps,int points, Metier metier)
     {
-        super(intitule, difficulté, ressource, notion, temps, points);
+        super(intitule, difficulté, notion, temps, points);
         this.reponses = new HashMap<String, Boolean>();
     }
-    public QCM(String intitule, String difficulté,Ressource ressource,Notion notion,int temps,int points, String explication)
+    public QCM(String intitule, String difficulté,Notion notion,int temps,int points, Metier metier, String explication)
     {
-        super(intitule, difficulté, ressource, notion, temps, points, explication);
+        super(intitule, difficulté, notion, temps, points, metier, explication);
         this.reponses = new HashMap<String, Boolean>();
     }
 
@@ -25,6 +25,7 @@ public class QCM extends Question {
     {
         return this.reponses;
     }
+
     // Set
 
     public void setReponses( HashMap<String, Boolean> reponses)

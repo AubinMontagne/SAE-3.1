@@ -24,6 +24,9 @@ public class Ressource
     public int getId()          {return this.id;}
     public String getNom()      {return this.nom;}
     public String getAccronym() {return this.accronym;}
+    public String     getAsData(){
+        return this.id + ";" + this.nom + ";" + this.accronym;
+    }
 
     // Set
     public void setId(int id)                {this.id       = id;}

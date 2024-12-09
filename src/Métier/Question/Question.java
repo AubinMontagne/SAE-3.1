@@ -6,22 +6,22 @@ import Metier.Difficulte;
 
 public abstract class Question
 {
+    private Metier     metier;
     private String     intitule;
     private Difficulte difficulte;
-    private Ressource ressource;
     private Notion     notion;
     private int        temps;
     private int        point;
     private String     explication;
 
-    public Question(String intitule, Difficulte difficulte,Ressource ressource,Notion notion,int temps, int point)
+    public Question(String intitule, Difficulte difficulte,Notion notion,int temps, int point, Metier metier)
     {
         this.intitule   = intitule;
         this.difficulte = difficulte;
-        this.ressource  = ressource;
         this.notion     = notion;
         this.temps      = temps;
         this.point      = point;
+        this.metier     = metier;
     }
 
     /**
@@ -36,13 +36,13 @@ public abstract class Question
      * @param explication   Les explications fournies avec la réponse à la question.
      */
 
-    public Question(String intitule, Difficulte difficulte,Ressource ressource,Notion notion,int temps, int point ,String explication)
+    public Question(String intitule, Difficulte difficulte,Ressource ressource,Notion notion,int temps, int point , Metier metier,String explication)
     {
         this.intitule    = intitule;
         this.difficulte  = difficulte;
-        this.ressource   = ressource;
         this.notion      = notion;
         this.temps       = temps;
+        this.metier      = metier;
         this.explication = explication;
         this.point       = point;
     }
@@ -50,7 +50,6 @@ public abstract class Question
     // Get
     public String     getIntitule()    {return intitule;}
     public Difficulte getDifficulte()  {return this.difficulte;}
-    public Ressource  getRessource()   {return this.ressource;}
     public Notion     getNotion()      {return this.notion;}
     public int        getTemps()       {return this.temps;}
     public int        getPoint()       {return this.point;}
@@ -61,13 +60,12 @@ public abstract class Question
     }
     public static Question getAsInstance(String ligne){
         String[] data = ligne.substring(ligne.firstIndexOf(";")+1,ligne.lenght()+1).split(";");
-        Notion n;
+        Notion n = Metier.getNotionById(Integer.parseInt(data[1]));
     }
 
     // Set
     public void setIntitule(String intitule)          {this.intitule = intitule;}
     private void setDifficulte(Difficulte difficulte) {this.difficulte = difficulte;}
-    private void setRessource(Ressource ressource)    {this.ressource  = ressource;}
     private void setNotion(Notion notion)             {this.notion = notion;}
     private void setTemps(int temps)                  {this.temps = temps;}
     private void setPoint(int point)                  {this.point = point;}
