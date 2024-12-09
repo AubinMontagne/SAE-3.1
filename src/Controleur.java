@@ -5,6 +5,7 @@ public class Controleur
 
     public Controleur()
     {
-
+        this.frameBanque = new FrameBanque(this);
+        this.frameParam = new FrameParam(this);
     }
 }

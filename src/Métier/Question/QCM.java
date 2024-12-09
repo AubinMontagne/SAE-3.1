@@ -1,6 +1,8 @@
-package Metier;
+package Question;
 
 import java.util.HashMap;
+import Metier.Notion;
+import Metier.Ressource;
 
 
 public class QCM extends Question {

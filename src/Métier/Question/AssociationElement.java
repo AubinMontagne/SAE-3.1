@@ -1,7 +1,9 @@
- package Metier;
+package Question;
 
 import java.util.HashMap;
 import java.util.Map;
+import Metier.Notion;
+import Metier.Ressource;
 
 public class AssociationElement extends Question
 {
