@@ -9,7 +9,7 @@ public class Questionnaire {
     private int            temps;
     private int            point;
     private int            pointMax;
-    //private tab[] difficulte;
+    //private Difficultetab[] difficulte;
     private List<Question> listQuestion;
 
     public Questionnaire(String titre,Ressource ressource, Notion notion, int temps) {
