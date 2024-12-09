@@ -1,18 +1,52 @@
 package Vue;
 
 import src.Controleur;
-
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import javax.swing;
 
-public class PanelAccueil extends JPanel
+public class PanelAccueil extends JPanel implements  ActionListener
 {
     private Controleur ctrl;
     private JPanel panelAccueil;
+    private JButton btBanque;
+    private JButton btQuestionnaire;
+    private JButton btRessources;
 
     public PanelAccueil( Controleur ctrl){
-        this.ctrl = ctrl;
+        this.ctrl         = ctrl;
         this.panelAccueil = new JPanel();
+
         this.setVisible(true);
+
+        this.btBanque        = new JButton("Banque de question"    );
+        this.btQuestionnaire = new JButton("Création Questionnaire");
+        this.btRessources    = new JButton("Ressources"            );
+
+        this.panelAccueil.add(this.btBanque        );
+        this.panelAccueil.add(this.btQuestionnaire );
+        this.panelAccueil.add(this.btRessources    );
+
+        this.btBanque.addActionListener(this)        ;
+        this.btQuestionnaire.addActionListener(this) ;
+        this.btRessources.addActionListener(this)    ;
     }
+
+    public void actionPerformed(ActionEvent e){
+        if ( btBanque == e.getSource()){
+            new FrameBanque(ctrl);
+            dispose();
+        }
+        if( btQuestionnaire == e.getSource()){
+            new FrameQuestionnaire(ctrl);
+            dispose();
+        }
+        if(btRessources == e.getSource()){
+            new FrameParam(ctrl);
+            dispose();
+        }
+    }
+
+    
 
 }

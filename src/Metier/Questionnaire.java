@@ -3,6 +3,9 @@ package Metier;
 import Question.*;
 import java.util.HashMap;
 import java.util.Map;
+
+import Metier.Question.Question;
+
 import java.util.List;
 import java.util.ArrayList;
 

@@ -16,4 +16,12 @@ public enum Difficulte {
 
     public String getNom()    {return nom;}
     public int    getIndice() {return indice;}
+    public static Difficulte getDifficulteByIndice(int indice){
+        for (Difficulte difficulte : Difficulte.values()){
+            if (difficulte.getIndice() == indice){
+                return difficulte;
+            }
+        }
+        return null;
+    }
 }

@@ -2,6 +2,9 @@ package Metier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import Metier.Question.Question;
+
 import java.io.*;
 
 import Question.*;

@@ -1,6 +1,9 @@
-package Question;
+package Metier.Question;
 
 import java.util.HashMap;
+
+import Metier.Difficulte;
+import Metier.Metier;
 import Metier.Notion;
 import Metier.Ressource;
 
@@ -8,12 +11,12 @@ import Metier.Ressource;
 public class QCM extends Question {
     private HashMap<String, Boolean> reponses;
 
-    public QCM(String intitule, String difficulté,Notion notion,int temps,int points, Metier metier)
+    public QCM(String intitule, Difficulte difficulté,Notion notion,int temps,int points, Metier metier)
     {
-        super(intitule, difficulté, notion, temps, points);
+        super(intitule, difficulté, notion, temps, points,metier);
         this.reponses = new HashMap<String, Boolean>();
     }
-    public QCM(String intitule, String difficulté,Notion notion,int temps,int points, Metier metier, String explication)
+    public QCM(String intitule, Difficulte difficulté,Notion notion,int temps,int points, Metier metier, String explication)
     {
         super(intitule, difficulté, notion, temps, points, metier, explication);
         this.reponses = new HashMap<String, Boolean>();

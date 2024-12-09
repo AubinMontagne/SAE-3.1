@@ -14,7 +14,7 @@ public class Notion
      * @param nom               Le nom de la notion.
      * @param ressourceAssociee La ressource associée à la notion.
      */
-    public Notion(int id, String nom, Ressource ressourceAssociee,metier metier)
+    public Notion(int id, String nom, Ressource ressourceAssociee,Metier metier)
     {
         this.metier = metier;
         this.id                = id;
@@ -33,7 +33,7 @@ public class Notion
     }
     public static Notion getFromData(String data, Metier metier){
         String[] parts = data.split(";");
-        return new Notion(Integer.parseInt(parts[0]), parts[1], metier.getRessourceById(Integer.parseInt(parts[2])));
+        return new Notion(Integer.parseInt(parts[0]), parts[1], metier.getRessourceById(Integer.parseInt(parts[2])), metier);
     }
     // Set
 

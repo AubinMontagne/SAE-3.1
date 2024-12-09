@@ -1,8 +1,7 @@
-package Question;
+package Metier.Question;
 
 import Metier.Metier;
 import Metier.Notion;
-import Metier.Ressource;
 import Metier.Difficulte;
 
 public abstract class Question
@@ -37,7 +36,7 @@ public abstract class Question
      * @param explication   Les explications fournies avec la réponse à la question.
      */
 
-    public Question(String intitule, Difficulte difficulte,Ressource ressource,Notion notion,int temps, int point , Metier metier,String explication)
+    public Question(String intitule, Difficulte difficulte,Notion notion,int temps, int point , Metier metier,String explication)
     {
         this.intitule    = intitule;
         this.difficulte  = difficulte;
@@ -57,12 +56,15 @@ public abstract class Question
     public String     getExplication() {return this.explication;}
 
     public String     getAsData(){
-        return (this.getClass().getName() + ";" + this.ressource.getId() + ";" + this.notion.getId() + ";" + this.intitule + ";" + this.difficulte.getIndice() + ";" + this.temps + ";" + this.point);
+        return (this.getClass().getName() + ";" + this.notion.getId() + ";" + this.intitule + ";" + this.difficulte.getIndice() + ";" + this.temps + ";" + this.point);
     }
-    public static Question getAsInstance(String ligne, Metier metier){
-        String[] data = ligne.substring(ligne.indexOf​(";")+1,ligne.length()+1).split(";");
+    /*public abstract static Question getAsInstance(String ligne, Metier metier){;}
+    {
+        String[] data = ligne.substring(ligne.indexOf(";")+1,ligne.length()+1).split(";");
         Notion n = metier.getNotionById(Integer.parseInt(data[1]));
-    }
+        Difficulte d = Difficulte.getDifficulteByIndice(Integer.parseInt(data[3]));
+        return new Question(data[2],d,n,Integer.parseInt(data[4]),Integer.parseInt(data[5]),metier);
+    }*/
 
     // Set
     public void setIntitule(String intitule)          {this.intitule = intitule;}
