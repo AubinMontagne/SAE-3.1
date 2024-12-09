@@ -12,6 +12,7 @@ public class CreationEvaluation
 
     // Le concepteur choisit UNE ressource
     // Puis il choisit UNE ou PLUSIEURS notions
+    // Pour CHAQUE notion, il précise le nombre de questions selon la difficulté
     public CreationEvaluation()
     {
 
