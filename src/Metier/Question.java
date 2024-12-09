@@ -55,10 +55,35 @@ public abstract class Question
     }
     /*public abstract static Question getAsInstance(String ligne, Metier metier){;}
     {
-        String[] data = ligne.substring(ligne.indexOf(";")+1,ligne.length()+1).split(";");
-        Notion n = metier.getNotionById(Integer.parseInt(data[1]));
-        Difficulte d = Difficulte.getDifficulteByIndice(Integer.parseInt(data[3]));
-        return new Question(data[2],d,n,Integer.parseInt(data[4]),Integer.parseInt(data[5]),metier);
+        // Créer un document
+        DefaultStyledDocument doc = new DefaultStyledDocument();
+        StyleContext context = new StyleContext();
+        Style style = context.addStyle("Style", null);
+
+        // Ajouter du texte avec style
+        try {
+            style.addAttribute(StyleConstants.FontFamily, "Serif");
+            style.addAttribute(StyleConstants.Bold, true);
+            doc.insertString(doc.getLength(), "Texte en gras\n", style);
+
+            style = context.addStyle("Style", null);
+            style.addAttribute(StyleConstants.Italic, true);
+            doc.insertString(doc.getLength(), "Texte en italique\n", style);
+
+            style = context.addStyle("Style", null);
+            style.addAttribute(StyleConstants.Foreground, java.awt.Color.RED);
+            doc.insertString(doc.getLength(), "Texte en rouge\n", style);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+
+        // Écrire le document dans un fichier RTF
+        try (FileOutputStream fos = new FileOutputStream("output.rtf")) {
+            RTFEditorKit rtfKit = new RTFEditorKit();
+            rtfKit.write(fos, doc, 0, doc.getLength());
+        } catch (IOException | BadLocationException e) {
+            e.printStackTrace();
+        }
     }*/
 
     // Set
