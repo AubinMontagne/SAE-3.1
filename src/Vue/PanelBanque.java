@@ -4,39 +4,25 @@ import src.Controleur;
 import Metier.Question;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing;
+import javax.swing.*;
 
 
 public class PanelBanque extends JPanel
 {
     private Controleur ctrl;
-    private JPanel panelAccueil;
+    private JPanel panelBanque;
+    private JTable tbQuestion;
 
 
-    public PanelAccueil( Controleur ctrl){
+    public PanelBanque( Controleur ctrl){
         this.ctrl         = ctrl;
         this.panelAccueil = new JPanel();
+        this.setLayout ( new BorderLayout);
+
+        String[] tabEntetes
 
         this.setVisible(true);
 
 
     }
-
-    public void actionPerformed(ActionEvent e){
-        if ( btBanque == e.getSource()){
-            new FrameBanque(ctrl);
-            dispose();
-        }
-        if( btQuestionnaire == e.getSource()){
-            new FrameQuestionnaire(ctrl);
-            dispose();
-        }
-        if(btRessources == e.getSource()){
-            new FrameParam(ctrl);
-            dispose();
-        }
-    }
-
-
-
 }

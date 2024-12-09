@@ -11,4 +11,18 @@ public class Controleur
     {
         this.metier = new Metier();
     }
+
+    // Get
+
+    public Metier getMetier()
+    {
+        return this.metier;
+    }
+
+    // Set
+
+    public void setMetier(Metier metier)
+    {
+        this.metier = metier;
+    }
 }
