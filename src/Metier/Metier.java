@@ -2,12 +2,7 @@ package Metier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import Metier.Question.Question;
-
 import java.io.*;
-
-import Question.*;
 
 public class Metier{
     private ArrayList<Notion> notions;
@@ -68,4 +63,39 @@ public class Metier{
         }
         return null;
     }
+
+    public void saveNotions(String path){
+        try{
+            FileWriter writer = new FileWriter(path+"/notions.csv");
+            for (Notion notion : this.notions){
+                writer.write(notion.getAsData() + "\n");
+            }
+            writer.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    public void saveRessources(String path){
+        try{
+            FileWriter writer = new FileWriter(path+"/ressources.csv");
+            for (Ressource ressource : this.ressources){
+                writer.write(ressource.getAsData() + "\n");
+            }
+            writer.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    public void saveQuestions(String path){
+        try{
+            FileWriter writer = new FileWriter(path+"/questions.csv");
+            for (Question question : this.questions){
+                writer.write(question.getAsData() + "\n");
+            }
+            writer.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
 }

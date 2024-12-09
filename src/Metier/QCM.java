@@ -2,7 +2,6 @@ package Metier;
 
 import java.util.HashMap;
 
-
 public class QCM extends Question {
     private HashMap<String, Boolean> reponses;
 
