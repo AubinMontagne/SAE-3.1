@@ -6,6 +6,13 @@ public class Ressource
     private String nom;
     private String accronym;
 
+    /**
+     * Constructeur de la classe Ressource.
+     *
+     * @param id        L'identifiant de la ressource.
+     * @param nom       Le nom de la ressource.
+     * @param acronyme  L'acronyme de la ressource.
+     */
     public Ressource(int id, String nom, String accronym)
     {
         this.id       = id;

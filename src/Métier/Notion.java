@@ -6,6 +6,13 @@ public class Notion
     private String    nom;
     private Ressource ressourceAssociee;
 
+    /**
+     * Constructeur de la classe Notion.
+     *
+     * @param id                L'identifiant de la notion.
+     * @param nom               Le nom de la notion.
+     * @param ressourceAssociee La ressource associée à la notion.
+     */
     public Notion(int id, String nom, Ressource ressourceAssociee)
     {
         this.id                = id;

@@ -7,27 +7,39 @@ import Metier.Difficulte;
 public abstract class Question
 {
     private String     intitule;
-    private Difficulte difficulté;
+    private Difficulte difficulte;
     private Ressource ressource;
     private Notion     notion;
     private int        temps;
     private int        point;
     private String     explication;
 
-    public Question(String intitule, Difficulte difficulté,Ressource ressource,Notion notion,int temps, int point)
+    public Question(String intitule, Difficulte difficulte,Ressource ressource,Notion notion,int temps, int point)
     {
         this.intitule   = intitule;
-        this.difficulté = difficulté;
+        this.difficulte = difficulte;
         this.ressource  = ressource;
         this.notion     = notion;
         this.temps      = temps;
         this.point      = point;
     }
 
-    public Question(String intitule, String difficulté,Ressource ressource,Notion notion,int temps, int point ,String explication)
+    /**
+     * Constructeur de la classe Question.
+     *
+     * @param intitule      L'intitulé de la question.
+     * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
+     * @param ressource     La ressource concernée par la question.
+     * @param notion        La notion concernée par la question.
+     * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
+     * @param point         Le nombre de points que rapporte la question.
+     * @param explication   Les explications fournies avec la réponse à la question.
+     */
+
+    public Question(String intitule, Difficulte difficulte,Ressource ressource,Notion notion,int temps, int point ,String explication)
     {
         this.intitule    = intitule;
-        this.difficulté  = difficulté;
+        this.difficulte  = difficulte;
         this.ressource   = ressource;
         this.notion      = notion;
         this.temps       = temps;
@@ -37,7 +49,7 @@ public abstract class Question
 
     // Get
     public String     getIntitule()    {return intitule;}
-    public Difficulte getDifficulté()  {return this.difficulté;}
+    public Difficulte getDifficulte()  {return this.difficulte;}
     public Ressource  getRessource()   {return this.ressource;}
     public Notion     getNotion()      {return this.notion;}
     public int        getTemps()       {return this.temps;}
@@ -46,7 +58,7 @@ public abstract class Question
 
     // Set
     public void setIntitule(String intitule)        {this.intitule = intitule;}
-    private void setDifficulté(Difficulte difficulté)   {this.difficulté = difficulté;}
+    private void setDifficulte(Difficulte difficulte)   {this.difficulte = difficulte;}
     private void setRessource(Ressource ressource)  {this.ressource  = ressource;}
     private void setNotion(Notion notion)           {this.notion = notion;}
     private void setTemps(int temps)                {this.temps = temps;}
