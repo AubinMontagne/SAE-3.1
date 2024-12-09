@@ -56,12 +56,20 @@ public abstract class Question
     public int        getPoint()       {return this.point;}
     public String     getExplication() {return this.explication;}
 
+    public String     getAsData(){
+        return (this.getClass().getName() + ";" + this.ressource.getId() + ";" + this.notion.getId() + ";" + this.intitule + ";" + this.difficulte.getIndice() + ";" + this.temps + ";" + this.point);
+    }
+    public static Question getAsInstance(String ligne){
+        String[] data = ligne.substring(ligne.firstIndexOf(";")+1,ligne.lenght()+1).split(";");
+        Notion n;
+    }
+
     // Set
-    public void setIntitule(String intitule)        {this.intitule = intitule;}
-    private void setDifficulte(Difficulte difficulte)   {this.difficulte = difficulte;}
-    private void setRessource(Ressource ressource)  {this.ressource  = ressource;}
-    private void setNotion(Notion notion)           {this.notion = notion;}
-    private void setTemps(int temps)                {this.temps = temps;}
-    private void setPoint(int point)                {this.point = point;}
-    private void setExplication(String explication) {this.explication = explication;}
+    public void setIntitule(String intitule)          {this.intitule = intitule;}
+    private void setDifficulte(Difficulte difficulte) {this.difficulte = difficulte;}
+    private void setRessource(Ressource ressource)    {this.ressource  = ressource;}
+    private void setNotion(Notion notion)             {this.notion = notion;}
+    private void setTemps(int temps)                  {this.temps = temps;}
+    private void setPoint(int point)                  {this.point = point;}
+    private void setExplication(String explication)   {this.explication = explication;}
 }

@@ -1,20 +1,20 @@
 package Metier;
 
-import Question.Question;
+import Question.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Questionnaire {
     private String         nom;
     private Ressource      ressource;
     private Map<Notion, Map<String, Integer>> questionsParDifficulte; // Associe chaque notion à un nombre questions par difficulté de
-
     private int            tempsEstimée;
     private int            point;
     private int            pointMax;
     private boolean        chronoBool;
-    private List<Notion> notions;
-
-    //private Difficulte tab[] difficulte;
+    private List<Notion>   notions;
     private List<Question> listQuestion;
 
     /**
@@ -34,6 +34,7 @@ public class Questionnaire {
         this.point     = 0;
         this.pointMax  = 0;
     }
+    // à adapter avec enum
 
     public void ajouterNotion(Notion notion)
     {
@@ -54,15 +55,13 @@ public class Questionnaire {
     }
 
     // Get
-    public Ressource getRessource() {return this.ressource;}
-    public Notion getNotion()       {return this.notion;   }
-    public int getTemps()           {return this.temps;    }
-    public int getPoint()           {return this.point;    }
+    public Ressource getRessource()  {return this.ressource;     }
+    public Notion    getNotion(int i){return this.notions.get(i);}
+    public boolean   getChronoBool() {return this.chronoBool;    }
+    public int       getPoint()      {return this.point;         }
 
     // Set
     public void setRessource(Ressource ressource){this.ressource = ressource;}
-    public void setNotion(Notion notion)         {this.notion    = notion;   }
-    public void setTemps(int temps)              {this.temps     = temps;    }
     public void setPoint(int point)              {this.point     = point;    }
 
     // Méthode pour gérer les mofication des point
