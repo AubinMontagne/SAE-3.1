@@ -24,6 +24,12 @@ public class Notion
 
     // Get
 
+	public boolean equals(Notion notion){
+		return this.id == notion.getId() && 
+		this.nom.equals(notion.getNom()) && 
+		this.ressourceAssociee.equals(notion.getRessourceAssociee());
+	}
+
     public Metier getMetier() {return metier;}
     public int getId()                      {return this.id;}
     public String getNom()                  {return this.nom;}

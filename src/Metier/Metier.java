@@ -83,6 +83,19 @@ public class Metier{
         return null;
     }
 
+	public Question getQuestionAleatoire(Notion n, Difficulte d){
+		ArrayList<Question> qs = new ArrayList<>();
+		for (Question question : this.questions){
+			if (question.getNotion().equals(n) && question.getDifficulte().equals(d)){
+				qs.add(question);
+			}
+		}
+		if (!qs.isEmpty()){
+			return qs.get((int)(Math.random()*qs.size()));
+		}
+		return null;
+	}
+
 	// Sauvegardes
 
     public void saveNotions(String path){
@@ -107,5 +120,31 @@ public class Metier{
             e.printStackTrace();
         }
     }
+
+	public void getRessourcesFromData(String path){
+		try{
+			BufferedReader reader = new BufferedReader(new FileReader(path+"/ressources.csv"));
+			String line;
+			while ((line = reader.readLine()) != null){
+				this.ressources.add(Ressource.getFromData(line, this));
+			}
+			reader.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+
+	public void getNotionsFromData(String path){
+		try{
+			BufferedReader reader = new BufferedReader(new FileReader(path+"/notions.csv"));
+			String line;
+			while ((line = reader.readLine()) != null){
+				this.notions.add(Notion.getFromData(line, this));
+			}
+			reader.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
 
 }

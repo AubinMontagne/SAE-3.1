@@ -21,6 +21,13 @@ public class Ressource
     }
 
     // Get
+
+	public boolean equals(Ressource ressource){
+		return this.id == ressource.getId() &&
+		this.nom.equals(ressource.getNom()) &&
+		this.accronym.equals(ressource.getAccronym());
+	}
+
     public int getId()          {return this.id;}
     public String getNom()      {return this.nom;}
     public String getAccronym() {return this.accronym;}

@@ -5,32 +5,29 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class PanelCreationQst extends JPanel implements ActionListener, ItemListener {
-
+public class PanelCreationQst extends JPanel implements ActionListener, ItemListener
+{
 
     private JComboBox<String> ressourceComboBox;
     private JComboBox<String> notionComboBox;
     private JButton tresFacileButton, facileButton, moyenButton, difficileButton;
     private JLabel lblMessage, lblResultat;
 
-    private static final String[] RESSOURCES = {"Ressource 1", "Ressource 2"};
-    private static final String[][] NOTIONS = {
-            {"Notion A", "Notion B"}, // Pour Ressource 1
-            {"Notion X", "Notion Y"}  // Pour Ressource 2
+    // J'ai mis en Brut faut adapter
+    private static final String[] RESSOURCES = { "Sélectionner une ressource", "Ressource 1", "Ressource 2" };
+    private static final String[][] NOTIONS = { { "Notion A", "Notion B" }, // Pour
+            // Ressource
+            // 1
+            { "Notion X", "Notion Y" } // Pour Ressource 2
     };
 
-    private static final ImageIcon[][] DIFFICULTE_IMAGES = {
-            {
-                    new ImageIcon("vertA.png"), new ImageIcon("bleuA.png"),
-                    new ImageIcon("rougeA.png"), new ImageIcon("grisA.png")
-            },
-            {
-                    new ImageIcon("vertX.png"), new ImageIcon("bleuX.png"),
-                    new ImageIcon("rougeX.png"), new ImageIcon("grisX.png")
-            }
-    };
+    private static final ImageIcon[] DIFFICULTE_IMAGES =
 
-    public PanelCreationQst() {
+            { new ImageIcon("carrevertaveclettre.png"), new ImageIcon("carrebleuaveclettre.png"),
+                    new ImageIcon("carrerougeaveclettre.png"), new ImageIcon("carregrisaveclettre.png") };
+
+    public PanelCreationQst()
+    {
         setLayout(new BorderLayout());
 
         // Section supérieure
@@ -70,6 +67,11 @@ public class PanelCreationQst extends JPanel implements ActionListener, ItemList
         moyenButton = new JButton();
         difficileButton = new JButton();
 
+        tresFacileButton.setPreferredSize(new Dimension(100, 100));
+        facileButton.setPreferredSize(new Dimension(100, 100));
+        moyenButton.setPreferredSize(new Dimension(100, 100));
+        difficileButton.setPreferredSize(new Dimension(100, 100));
+
         tresFacileButton.setEnabled(false);
         facileButton.setEnabled(false);
         moyenButton.setEnabled(false);
@@ -99,7 +101,7 @@ public class PanelCreationQst extends JPanel implements ActionListener, ItemList
         typePanel.setBorder(BorderFactory.createTitledBorder("Type de Question"));
 
         JLabel typeLabel = new JLabel("Type :");
-        JComboBox<String> typeComboBox = new JComboBox<>(new String[]{"QCM", "Vrai/Faux"});
+        JComboBox<String> typeComboBox = new JComboBox<>(new String[] { "QCM", "Vrai/Faux" });
 
         typePanel.add(typeLabel);
         typePanel.add(typeComboBox);
@@ -108,23 +110,29 @@ public class PanelCreationQst extends JPanel implements ActionListener, ItemList
     }
 
     @Override
-    public void itemStateChanged(ItemEvent e) {
-        if (e.getSource() == ressourceComboBox && e.getStateChange() == ItemEvent.SELECTED) {
+    public void itemStateChanged(ItemEvent e)
+    {
+        if (e.getSource() == ressourceComboBox && e.getStateChange() == ItemEvent.SELECTED)
+        {
             int index = ressourceComboBox.getSelectedIndex();
             notionComboBox.removeAllItems();
-            for (String notion : NOTIONS[index]) {
+            for (String notion : NOTIONS[index])
+            {
                 notionComboBox.addItem(notion);
             }
             notionComboBox.setEnabled(true);
-        } else if (e.getSource() == notionComboBox && e.getStateChange() == ItemEvent.SELECTED) {
+        }
+        else if (e.getSource() == notionComboBox && e.getStateChange() == ItemEvent.SELECTED)
+        {
             int ressourceIndex = ressourceComboBox.getSelectedIndex();
             int notionIndex = notionComboBox.getSelectedIndex();
-            if (ressourceIndex >= 0 && notionIndex >= 0) {
-                ImageIcon[] icons = DIFFICULTE_IMAGES[ressourceIndex];
-                tresFacileButton.setIcon(icons[0]);
-                facileButton.setIcon(icons[1]);
-                moyenButton.setIcon(icons[2]);
-                difficileButton.setIcon(icons[3]);
+            if (ressourceIndex >= 0 && notionIndex >= 0)
+            {
+
+                tresFacileButton.setIcon(DIFFICULTE_IMAGES[0]);
+                facileButton.setIcon(DIFFICULTE_IMAGES[1]);
+                moyenButton.setIcon(DIFFICULTE_IMAGES[2]);
+                difficileButton.setIcon(DIFFICULTE_IMAGES[3]);
 
                 tresFacileButton.setEnabled(true);
                 facileButton.setEnabled(true);
@@ -135,23 +143,33 @@ public class PanelCreationQst extends JPanel implements ActionListener, ItemList
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == tresFacileButton) {
+    public void actionPerformed(ActionEvent e)
+    {
+        // test
+        if (e.getSource() == tresFacileButton)
+        {
             JOptionPane.showMessageDialog(this, "Difficulté : Très Facile");
-        } else if (e.getSource() == facileButton) {
+        }
+        else if (e.getSource() == facileButton)
+        {
             JOptionPane.showMessageDialog(this, "Difficulté : Facile");
-        } else if (e.getSource() == moyenButton) {
+        }
+        else if (e.getSource() == moyenButton)
+        {
             JOptionPane.showMessageDialog(this, "Difficulté : Moyen");
-        } else if (e.getSource() == difficileButton) {
+        }
+        else if (e.getSource() == difficileButton)
+        {
             JOptionPane.showMessageDialog(this, "Difficulté : Difficile");
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         JFrame frame = new JFrame("Création de Question");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 400);
-        frame.add(new QuestionCreationPanel());
+        frame.setSize(1000, 1000);
+        frame.add(new PanelCreationQst());
         frame.setVisible(true);
     }
 }
