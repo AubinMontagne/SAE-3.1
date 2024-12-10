@@ -47,4 +47,10 @@ public class Notion
     public void setId(int id)                                     {this.id = id;}
     public void setNom(String nom)                                {this.nom = nom;}
     public void setRessourceAssociee(Ressource ressourceAssociee) {this.ressourceAssociee = ressourceAssociee;}
+
+	public String toString(){
+		String res = "Notion : " + this.getNom() + " (id : " + this.getId() + ")\n";
+		res += "Ressource associée : " + this.getRessourceAssociee().getNom() + "\n";
+		return res;
+	}
 }

@@ -1,14 +1,5 @@
 package Metier;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultStyledDocument;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleContext;
-import javax.swing.text.rtf.RTFEditorKit;
-
 public abstract class Question
 {
     private Metier     metier;
@@ -37,6 +28,7 @@ public abstract class Question
         this.temps      = temps;
         this.point      = point;
         this.metier     = metier;
+		this.explication = "";
     }
 
     /**
@@ -61,69 +53,7 @@ public abstract class Question
         this.explication = explication;
         this.point       = point;
     }
-
-    public String getAsData() {
-        String fileName = this.intitule.replaceAll("\\s+", "_") + ".rtf";
-        try {
-            DefaultStyledDocument doc = new DefaultStyledDocument();
-            StyleContext context = new StyleContext();
-            Style style = context.addStyle("Style", null);
-
-            // Ajouter l'intitulé de la question
-            style.addAttribute(StyleConstants.FontFamily, "Serif");
-            style.addAttribute(StyleConstants.Bold, true);
-            doc.insertString(doc.getLength(), "Intitulé: " + this.intitule + "\n", style);
-
-            // Ajouter la difficulté
-            style = context.addStyle("Style", null);
-            style.addAttribute(StyleConstants.Italic, true);
-            doc.insertString(doc.getLength(), "Difficulté: " + this.difficulte + "\n", style);
-
-            // Ajouter la notion
-            doc.insertString(doc.getLength(), "Notion: " + this.notion + "\n", style);
-
-            // Ajouter le temps
-            doc.insertString(doc.getLength(), "Temps: " + this.temps + " secondes\n", style);
-
-            // Ajouter les points
-            doc.insertString(doc.getLength(), "Points: " + this.point + "\n", style);
-
-            // Ajouter l'explication
-            doc.insertString(doc.getLength(), "Explication: " + this.explication + "\n", style);
-
-            // Écrire le document dans un fichier RTF
-            try (FileOutputStream fos = new FileOutputStream(fileName)) {
-                RTFEditorKit rtfKit = new RTFEditorKit();
-                rtfKit.write(fos, doc, 0, doc.getLength());
-            }
-        } catch (IOException | BadLocationException e) {
-            e.printStackTrace();
-        }
-        return fileName;
-    }/*
-    public static Question getAsInstance(String fileName, Metier metier) {
-        try {
-            FileInputStream fis = new FileInputStream(fileName);
-            DefaultStyledDocument doc = new DefaultStyledDocument();
-            RTFEditorKit rtfKit = new RTFEditorKit();
-            rtfKit.read(fis, doc, 0);
-
-            String content = doc.getText(0, doc.getLength());
-            String[] lines = content.split("\n");
-
-            String intitule = lines[0].split(": ")[1];
-            Difficulte difficulte = Difficulte.valueOf(lines[1].split(": ")[1]);
-            Notion notion = metier.getNotionById(Integer.parseInt(lines[2].split(": ")[1]));
-            int temps = Integer.parseInt(lines[3].split(": ")[1].split(" ")[0]);
-            int point = Integer.parseInt(lines[4].split(": ")[1]);
-            String explication = lines[5].split(": ")[1];
-
-            return new Question(intitule, difficulte, notion, temps, point, metier, explication);
-        } catch (IOException | BadLocationException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }*/
+	public abstract void getAsData(String directoryPath);
 
 	// Get
     public String     getIntitule()    {return intitule;}
