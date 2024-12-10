@@ -2,127 +2,156 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
-public class PanelCreationQst
-{
-    public static void main(String[] args)
-    {
-        /*
-        JFrame frame = new JFrame("Création de Question");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 300);
+public class PanelCreationQst extends JPanel implements ActionListener, ItemListener {
 
-         */
 
-        // Créer le panel principal avec BorderLayout
-        JPanel PanelPrin = new JPanel(new BorderLayout());
+    private JComboBox<String> ressourceComboBox;
+    private JComboBox<String> notionComboBox;
+    private JButton tresFacileButton, facileButton, moyenButton, difficileButton;
+    private JLabel lblMessage, lblResultat;
 
-        JPanel PanelHaut = new JPanel(new GridLayout(2, 2, 5, 5));
-        PanelHaut.setBorder(BorderFactory.createTitledBorder("Configuration"));
+    private static final String[] RESSOURCES = {"Ressource 1", "Ressource 2"};
+    private static final String[][] NOTIONS = {
+            {"Notion A", "Notion B"}, // Pour Ressource 1
+            {"Notion X", "Notion Y"}  // Pour Ressource 2
+    };
+
+    private static final ImageIcon[][] DIFFICULTE_IMAGES = {
+            {
+                    new ImageIcon("vertA.png"), new ImageIcon("bleuA.png"),
+                    new ImageIcon("rougeA.png"), new ImageIcon("grisA.png")
+            },
+            {
+                    new ImageIcon("vertX.png"), new ImageIcon("bleuX.png"),
+                    new ImageIcon("rougeX.png"), new ImageIcon("grisX.png")
+            }
+    };
+
+    public PanelCreationQst() {
+        setLayout(new BorderLayout());
+
+        // Section supérieure
+        JPanel configPanel = new JPanel(new GridLayout(2, 2, 5, 5));
+        configPanel.setBorder(BorderFactory.createTitledBorder("Configuration"));
 
         JLabel lblPoints = new JLabel("Nombre de points :");
         JTextField txtPoints = new JTextField();
         JLabel lblTemps = new JLabel("Temps de réponse (min:sec) :");
         JTextField txtTemps = new JTextField("00:30");
 
-        PanelHaut.add(lblPoints);
-        PanelHaut.add(txtPoints);
-        PanelHaut.add(lblTemps);
-        PanelHaut.add(txtTemps);
+        configPanel.add(lblPoints);
+        configPanel.add(txtPoints);
+        configPanel.add(lblTemps);
+        configPanel.add(txtTemps);
 
-        PanelPrin.add(PanelHaut, BorderLayout.NORTH);
+        add(configPanel, BorderLayout.NORTH);
 
-        JPanel PanelCentre = new JPanel(new GridLayout(3, 2, 5, 5));
-        PanelCentre.setBorder(BorderFactory.createTitledBorder("Sélection"));
+        // Section centrale
+        JPanel selectionPanel = new JPanel(new GridLayout(3, 2, 5, 5));
+        selectionPanel.setBorder(BorderFactory.createTitledBorder("Sélection"));
 
         JLabel ressourceLabel = new JLabel("Ressource :");
-        JComboBox<String> ressourceComboBox = new JComboBox<>(
-                new String[] { /* Recup donnée */ });
-        JLabel notionLabel = new JLabel("Notion :");
+        ressourceComboBox = new JComboBox<>(RESSOURCES);
+        ressourceComboBox.addItemListener(this);
 
-        JComboBox<String> notionComboBox = new JComboBox<>();
-        notionComboBox.setEnabled(false); // Désactivé au début
+        JLabel notionLabel = new JLabel("Notion :");
+        notionComboBox = new JComboBox<>();
+        notionComboBox.setEnabled(false);
+        notionComboBox.addItemListener(this);
 
         JLabel niveauLabel = new JLabel("Difficulté :");
-        // IMAGE
         JPanel niveauPanel = new JPanel(new FlowLayout());
 
-        ImageIcon tresFacileIcon = new ImageIcon(
-                new ImageIcon("carrevertsanslettre.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+        tresFacileButton = new JButton();
+        facileButton = new JButton();
+        moyenButton = new JButton();
+        difficileButton = new JButton();
 
-        ImageIcon facileIcon = new ImageIcon(
-                new ImageIcon("carrebleusanslettre.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+        tresFacileButton.setEnabled(false);
+        facileButton.setEnabled(false);
+        moyenButton.setEnabled(false);
+        difficileButton.setEnabled(false);
 
-        ImageIcon moyenIcon = new ImageIcon(
-                new ImageIcon("carrerougesanslettre.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+        tresFacileButton.addActionListener(this);
+        facileButton.addActionListener(this);
+        moyenButton.addActionListener(this);
+        difficileButton.addActionListener(this);
 
-        ImageIcon difficileIcon = new ImageIcon(
-                new ImageIcon("carregrissanslettre.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
-
-        JButton tresFacileButton = new JButton(tresFacileIcon);
-        JButton facileButton = new JButton(facileIcon);
-        JButton moyenButton = new JButton(moyenIcon);
-        JButton difficileButton = new JButton(difficileIcon);
-
-        // Ajouter des actions pour les boutons
-        /*
-         * tresFacileButton.addActionListener();
-         * facileButton.addActionListener(); moyenButton.addActionListener();
-         * difficileButton.addActionListener();
-         */
-
-        // Ajouter les boutons au panneau
         niveauPanel.add(tresFacileButton);
         niveauPanel.add(facileButton);
         niveauPanel.add(moyenButton);
         niveauPanel.add(difficileButton);
 
-        PanelCentre.add(ressourceLabel);
-        PanelCentre.add(ressourceComboBox);
-        PanelCentre.add(notionLabel);
-        PanelCentre.add(notionComboBox);
-        PanelCentre.add(niveauLabel);
-        PanelCentre.add(niveauPanel);
+        selectionPanel.add(ressourceLabel);
+        selectionPanel.add(ressourceComboBox);
+        selectionPanel.add(notionLabel);
+        selectionPanel.add(notionComboBox);
+        selectionPanel.add(niveauLabel);
+        selectionPanel.add(niveauPanel);
 
-        PanelPrin.add(PanelCentre, BorderLayout.CENTER);
+        add(selectionPanel, BorderLayout.CENTER);
 
-        JPanel PanelBas = new JPanel(new GridLayout(1, 2, 5, 5));
-        PanelBas.setBorder(BorderFactory.createTitledBorder("Type de Question"));
+        // Section inférieure
+        JPanel typePanel = new JPanel(new GridLayout(1, 2, 5, 5));
+        typePanel.setBorder(BorderFactory.createTitledBorder("Type de Question"));
 
         JLabel typeLabel = new JLabel("Type :");
-        JComboBox<String> typeComboBox = new JComboBox<>(new String[] { /* */ });
+        JComboBox<String> typeComboBox = new JComboBox<>(new String[]{"QCM", "Vrai/Faux"});
 
-        PanelBas.add(typeLabel);
-        PanelBas.add(typeComboBox);
+        typePanel.add(typeLabel);
+        typePanel.add(typeComboBox);
 
-        PanelPrin.add(PanelBas, BorderLayout.SOUTH);
+        add(typePanel, BorderLayout.SOUTH);
+    }
 
-        ressourceComboBox.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                notionComboBox.setEnabled(true);
-                notionComboBox.removeAllItems();
-                // Charger des notions en fonction de la ressource sélectionnée
-                // Faut récup les données
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        if (e.getSource() == ressourceComboBox && e.getStateChange() == ItemEvent.SELECTED) {
+            int index = ressourceComboBox.getSelectedIndex();
+            notionComboBox.removeAllItems();
+            for (String notion : NOTIONS[index]) {
+                notionComboBox.addItem(notion);
             }
-        });
+            notionComboBox.setEnabled(true);
+        } else if (e.getSource() == notionComboBox && e.getStateChange() == ItemEvent.SELECTED) {
+            int ressourceIndex = ressourceComboBox.getSelectedIndex();
+            int notionIndex = notionComboBox.getSelectedIndex();
+            if (ressourceIndex >= 0 && notionIndex >= 0) {
+                ImageIcon[] icons = DIFFICULTE_IMAGES[ressourceIndex];
+                tresFacileButton.setIcon(icons[0]);
+                facileButton.setIcon(icons[1]);
+                moyenButton.setIcon(icons[2]);
+                difficileButton.setIcon(icons[3]);
 
-        notionComboBox.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                // Activer le choix de difficulté une fois une notion choisie
-                if (notionComboBox.getSelectedItem() != null)
-                {
-
-                }
+                tresFacileButton.setEnabled(true);
+                facileButton.setEnabled(true);
+                moyenButton.setEnabled(true);
+                difficileButton.setEnabled(true);
             }
-        });
-        frame.add(PanelPrin);
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == tresFacileButton) {
+            JOptionPane.showMessageDialog(this, "Difficulté : Très Facile");
+        } else if (e.getSource() == facileButton) {
+            JOptionPane.showMessageDialog(this, "Difficulté : Facile");
+        } else if (e.getSource() == moyenButton) {
+            JOptionPane.showMessageDialog(this, "Difficulté : Moyen");
+        } else if (e.getSource() == difficileButton) {
+            JOptionPane.showMessageDialog(this, "Difficulté : Difficile");
+        }
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Création de Question");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600, 400);
+        frame.add(new QuestionCreationPanel());
         frame.setVisible(true);
-
     }
 }

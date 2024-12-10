@@ -1,8 +1,7 @@
 package Metier;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.io.*;
+import java.util.ArrayList;
 
 public class Metier{
     private ArrayList<Notion> notions;
@@ -31,11 +30,31 @@ public class Metier{
     }
     public boolean ajouterQuestion(Question question){
         if (question != null){
-            this.questions.add(question);
-            return true;
+            return this.questions.add(question);
         }
         return false;
     }
+	
+	public boolean supprimerNotion(Notion notion){
+		if (notion != null){
+			return this.notions.remove(notion);
+		}
+		return false;
+	}
+	public boolean supprimerRessource(Ressource ressource){
+		if (ressource != null){
+			return this.ressources.remove(ressource);
+		}
+		return false;
+	}
+	public boolean supprimerQuestion(Question question){
+		if (question != null){
+			return this.questions.remove(question);
+		}
+		return false;
+	}
+
+	// Get 
 
     public ArrayList<Notion> getNotions(){
         return this.notions;
@@ -64,6 +83,8 @@ public class Metier{
         return null;
     }
 
+	// Sauvegardes
+
     public void saveNotions(String path){
         try{
             FileWriter writer = new FileWriter(path+"/notions.csv");
@@ -80,17 +101,6 @@ public class Metier{
             FileWriter writer = new FileWriter(path+"/ressources.csv");
             for (Ressource ressource : this.ressources){
                 writer.write(ressource.getAsData() + "\n");
-            }
-            writer.close();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-    public void saveQuestions(String path){
-        try{
-            FileWriter writer = new FileWriter(path+"/questions.csv");
-            for (Question question : this.questions){
-                writer.write(question.getAsData() + "\n");
             }
             writer.close();
         }catch(IOException e){

@@ -27,7 +27,10 @@ public class Ressource
     public String getAsData(){
         return this.id + ";" + this.nom + ";" + this.accronym;
     }
-
+	public static Ressource getFromData(String data, Metier metier){
+        String[] parts = data.split(";");
+        return new Ressource(Integer.parseInt(parts[0]), parts[1], parts[2]);
+    }
     // Set
     public void setId(int id)                {this.id       = id;}
     public void setNom(String nom)           {this.nom      = nom;}
