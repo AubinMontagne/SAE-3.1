@@ -13,7 +13,7 @@ public class PanelAccueil extends JPanel implements  ActionListener
     private JButton btQuestionnaire;
     private JButton btRessources;
 
-    public PanelAccueil( /*Controleur ctrl*/){
+    public PanelAccueil( ){
         //this.ctrl         = ctrl;
         this.panelAccueil = new JPanel();
 
@@ -34,19 +34,19 @@ public class PanelAccueil extends JPanel implements  ActionListener
 
     public void actionPerformed(ActionEvent e){
         if ( btBanque == e.getSource()){
-            new FrameBanque(/*ctrl*/);
-            dispose();
+            System.out.println("Hey la frame Banque s'ouvre");
+            //new FrameBanque(/*ctrl*/);
+            this.setVisible(false);
         }
         if( btQuestionnaire == e.getSource()){
-            new FrameQuestionnaire(/*ctrl*/);
-            dispose();
+            System.out.println("Hey la frame Questionaire s'ouvre");
+            //new FrameQuestionnaire(/*ctrl*/);
+            this.setVisible(false);
         }
         if(btRessources == e.getSource()){
-            new FrameParam(/*ctrl*/);
-            dispose();
+            System.out.println("Hey la frame Param s'ouvre");
+            //new FrameParam(/*ctrl*/);
+            this.setVisible(false);
         }
     }
-
-    
-
 }

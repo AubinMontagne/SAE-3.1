@@ -9,7 +9,17 @@ public abstract class Question
     private int        temps;
     private int        point;
     private String     explication;
-
+	
+	/**
+     * Constructeur de la classe Question.
+     *
+     * @param intitule      L'intitulé de la question.
+     * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
+     * @param notion        La notion concernée par la question.
+     * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
+     * @param point         Le nombre de points que rapporte la question.
+	 * @param metier        Le métier concerné par la question.
+     */
     public Question(String intitule, Difficulte difficulte,Notion notion,int temps, int point, Metier metier)
     {
         this.intitule   = intitule;
@@ -28,6 +38,7 @@ public abstract class Question
      * @param notion        La notion concernée par la question.
      * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
      * @param point         Le nombre de points que rapporte la question.
+	 * @param metier        Le métier concerné par la question.
      * @param explication   Les explications fournies avec la réponse à la question.
      */
 
@@ -53,7 +64,7 @@ public abstract class Question
     public String     getAsData(){
         return (this.getClass().getName() + ";" + this.notion.getId() + ";" + this.intitule + ";" + this.difficulte.getIndice() + ";" + this.temps + ";" + this.point);
     }
-    /*public abstract static Question getAsInstance(String ligne, Metier metier){;}
+    /*abstract Question getAsInstance(String ligne, Metier metier);
     {
         // Créer un document
         DefaultStyledDocument doc = new DefaultStyledDocument();

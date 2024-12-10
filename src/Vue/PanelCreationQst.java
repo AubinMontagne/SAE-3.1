@@ -3,13 +3,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class QuestionCreationPanel
+public class PanelCreationQst
 {
     public static void main(String[] args)
     {
+        /*
         JFrame frame = new JFrame("Création de Question");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 300);
+
+         */
 
         // Créer le panel principal avec BorderLayout
         JPanel PanelPrin = new JPanel(new BorderLayout());
@@ -36,6 +39,7 @@ public class QuestionCreationPanel
         JComboBox<String> ressourceComboBox = new JComboBox<>(
                 new String[] { /* Recup donnée */ });
         JLabel notionLabel = new JLabel("Notion :");
+
         JComboBox<String> notionComboBox = new JComboBox<>();
         notionComboBox.setEnabled(false); // Désactivé au début
 
@@ -44,13 +48,16 @@ public class QuestionCreationPanel
         JPanel niveauPanel = new JPanel(new FlowLayout());
 
         ImageIcon tresFacileIcon = new ImageIcon(
-                new ImageIcon("tresfacile.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+                new ImageIcon("carrevertsanslettre.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+
         ImageIcon facileIcon = new ImageIcon(
-                new ImageIcon("facile.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+                new ImageIcon("carrebleusanslettre.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+
         ImageIcon moyenIcon = new ImageIcon(
-                new ImageIcon("moyen.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+                new ImageIcon("carrerougesanslettre.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+
         ImageIcon difficileIcon = new ImageIcon(
-                new ImageIcon("difficile.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+                new ImageIcon("carregrissanslettre.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
 
         JButton tresFacileButton = new JButton(tresFacileIcon);
         JButton facileButton = new JButton(facileIcon);
@@ -58,12 +65,14 @@ public class QuestionCreationPanel
         JButton difficileButton = new JButton(difficileIcon);
 
         // Ajouter des actions pour les boutons
-        tresFacileButton.addActionListener();
-        facileButton.addActionListener();
-        moyenButton.addActionListener();
-        difficileButton.addActionListener();
+        /*
+         * tresFacileButton.addActionListener();
+         * facileButton.addActionListener(); moyenButton.addActionListener();
+         * difficileButton.addActionListener();
+         */
 
         // Ajouter les boutons au panneau
+        niveauPanel.add(tresFacileButton);
         niveauPanel.add(facileButton);
         niveauPanel.add(moyenButton);
         niveauPanel.add(difficileButton);
@@ -93,7 +102,7 @@ public class QuestionCreationPanel
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                // notionComboBox.setEnabled(true);
+                notionComboBox.setEnabled(true);
                 notionComboBox.removeAllItems();
                 // Charger des notions en fonction de la ressource sélectionnée
                 // Faut récup les données
@@ -108,7 +117,7 @@ public class QuestionCreationPanel
                 // Activer le choix de difficulté une fois une notion choisie
                 if (notionComboBox.getSelectedItem() != null)
                 {
-                    niveauComboBox.setEnabled(true);
+
                 }
             }
         });
