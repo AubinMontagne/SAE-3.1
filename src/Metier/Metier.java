@@ -83,6 +83,31 @@ public class Metier{
         return null;
     }
 
+	public Question getQuestion(Question question){
+		for (Question q : this.questions){
+			if (q.equals(question)){
+				return q;
+			}
+		}
+		return null;
+	}
+	public Notion getNotion(Notion notion){
+		for (Notion n : this.notions){
+			if (n.equals(notion)){
+				return n;
+			}
+		}
+		return null;
+	}
+	public Ressource getRessource(Ressource ressource){
+		for (Ressource r : this.ressources){
+			if (r.equals(ressource)){
+				return r;
+			}
+		}
+		return null;
+	}
+
 	public Question getQuestionAleatoire(Notion n, Difficulte d){
 		ArrayList<Question> qs = new ArrayList<>();
 		for (Question question : this.questions){

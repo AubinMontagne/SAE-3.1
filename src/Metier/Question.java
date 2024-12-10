@@ -36,7 +36,7 @@ public abstract class Question
      * @param intitule      L'intitulé de la question.
      * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
      * @param notion        La notion concernée par la question.
-     * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
+     * @param temps         Le temps nécessaire pour répondre à la question en secondes.
      * @param point         Le nombre de points que rapporte la question.
 	 * @param metier        Le métier concerné par la question.
      * @param explication   Les explications fournies avec la réponse à la question.
