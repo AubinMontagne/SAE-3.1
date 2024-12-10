@@ -1,7 +1,7 @@
 package Vue;
 
 import src.Controleur;
-import javax.swing;
+import javax.swing.*;
 
 public class FrameParam extends JFrame{
     //private Controleur ctrl;
@@ -11,11 +11,8 @@ public class FrameParam extends JFrame{
 
         System.out.printl("Création de la frame Paramètre");
 
-        int width = (int) (screenSize.getWidth() * 0.8);
-        int height = (int) (screenSize.getHeight() * 0.8);
-
         this.setTitle("Création des Ressources et Notions");
-        this.setSize(width,height);
+        this.setSize(200,200);
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,8 +21,4 @@ public class FrameParam extends JFrame{
 
         setVisible(true);
     }
-}
-public class FrameParam
-{
-
 }

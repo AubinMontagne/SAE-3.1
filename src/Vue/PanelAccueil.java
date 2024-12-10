@@ -1,6 +1,7 @@
 package Vue;
 
 //import src.Controleur;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -16,6 +17,7 @@ public class PanelAccueil extends JPanel implements  ActionListener
     public PanelAccueil( ){
         //this.ctrl         = ctrl;
         this.panelAccueil = new JPanel();
+        this.setLayout ( new BorderLayout() );
 
         this.setVisible(true);
 
@@ -23,9 +25,11 @@ public class PanelAccueil extends JPanel implements  ActionListener
         this.btQuestionnaire = new JButton("Création Questionnaire");
         this.btRessources    = new JButton("Ressources"            );
 
-        this.panelAccueil.add(this.btBanque        );
-        this.panelAccueil.add(this.btQuestionnaire );
-        this.panelAccueil.add(this.btRessources    );
+        this.panelAccueil.add(this.btBanque, BorderLayout.NORTH          );
+        this.panelAccueil.add(this.btQuestionnaire, BorderLayout.CENTER );
+        this.panelAccueil.add(this.btRessources, BorderLayout.SOUTH     );
+
+        this.add(panelAccueil);
 
         this.btBanque.addActionListener(this)        ;
         this.btQuestionnaire.addActionListener(this) ;
@@ -35,18 +39,15 @@ public class PanelAccueil extends JPanel implements  ActionListener
     public void actionPerformed(ActionEvent e){
         if ( btBanque == e.getSource()){
             System.out.println("Hey la frame Banque s'ouvre");
-            //new FrameBanque(/*ctrl*/);
-            this.setVisible(false);
+            //new FrameBanque(/ctrl/);
         }
         if( btQuestionnaire == e.getSource()){
             System.out.println("Hey la frame Questionaire s'ouvre");
-            //new FrameQuestionnaire(/*ctrl*/);
-            this.setVisible(false);
+            //new FrameQuestionnaire(/ctrl/);
         }
         if(btRessources == e.getSource()){
             System.out.println("Hey la frame Param s'ouvre");
-            //new FrameParam(/*ctrl*/);
-            this.setVisible(false);
+            //new FrameParam(/ctrl*/);
         }
     }
 }

@@ -1,7 +1,7 @@
 package Vue;
 
 import src.Controleur;
-import javax.swing;
+import javax.swing.*;
 
 // AUBIN , VOUS ME LAISSEZ FAIRE çA
 public class FrameQuestionnaire extends JFrame
@@ -14,11 +14,8 @@ public class FrameQuestionnaire extends JFrame
 
         System.out.printl("Création de la frame Questionnaire");
 
-        int width = (int) (screenSize.getWidth() * 0.8);
-        int height = (int) (screenSize.getHeight() * 0.8);
-
         this.setTitle("Création du questionnaire");
-        this.setSize(width,height);
+        this.setSize(200,200);
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,20 +1,18 @@
 package Metier;
 
-import Metier.Question.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Questionnaire {
     private String         nom;
     private Ressource      ressource;
-    private Map<Notion, Map<String, Integer>> questionsParDifficulte; // Associe chaque notion à un nombre questions par difficulté de
+    private HashMap<Notion, HashMap<String, Integer>> questionsParDifficulte; // Associe chaque notion à un nombre questions par difficulté de
     private int            tempsEstimée;
-    private int            point;
     private int            pointMax;
     private boolean        chronoBool;
-    private List<Notion>   notions;
+    private List<Notion>   listNotions;
     private List<Question> listQuestion;
 
     /**
@@ -22,19 +20,18 @@ public class Questionnaire {
      *
      * @param titre      Le titre du questionnaire.
      * @param ressource  La ressource concernée par le questionnaire.
-     * @param notion     La notion concernée par le questionnaire.
+	 * @param chronoBool Le booléen pour activer le chrono.
      */
-    public Questionnaire(String titre,Ressource ressource, Notion notions,int tempsEstimée,boolean chronoBool) {
+    public Questionnaire(String titre,Ressource ressource,boolean chronoBool) {
         this.nom       = titre;
         this.ressource = ressource;
-        this.tempsEstimée = tempsEstimée;
+        this.tempsEstimée = 0;
         this.chronoBool = chronoBool;
         this.notions = new ArrayList<>();
         this.questionsParDifficulte = new HashMap<>();
         this.point     = 0;
         this.pointMax  = 0;
     }
-    // à adapter avec enum ET A REFAIRE ?
 
     public void ajouterNotion(Notion notion)
     {
@@ -55,32 +52,32 @@ public class Questionnaire {
     }
 
     // Get
-    public Ressource getRessource()  {return this.ressource;     }
-    public Notion    getNotion(int i){return this.notions.get(i);}
-    public boolean   getChronoBool() {return this.chronoBool;    }
-    public int       getPoint()      {return this.point;         }
+	public String    getNom()         {return this.nom;}
+    public Ressource getRessource()   {return this.ressource;}
+	public List<Notion> getNotions()  {return this.notions;}
+    public Notion    getNotion(int i) {return this.notions.get(i);}
+    public boolean   getChronoBool()  {return this.chronoBool;}
+	public int       getTempsEstimée(){return this.tempsEstimée;}
+	public int       getPointMax()    {return this.pointMax;}
 
     // Set
-    public void setRessource(Ressource ressource){this.ressource = ressource;}
-    public void setPoint(int point)              {this.point     = point;    }
+    public void setRessource(Ressource ressource){this.ressource  = ressource;}
+	public void setChronoBool(boolean chronoBool){this.chronoBool = chronoBool;}
 
-    // Méthode pour gérer les mofication des point
-    /**
-     * Méthode ajouterPoint.
-     *
-     * @param i Le nombre de points à ajouter à la note globale du questionnaire.
-     */
-    public void ajouterPoint(int i) {this.point += i;}
+    public void majValeurs()
+	{
+		this.pointMax = 0;
+		this.tempsEstimée = 0;
 
-    /**
-     * Methode ajouterPoint
-     *
-     * @param i Le nombre de points enlever a la note globale du questionnaire
-     */
-    public void enleverPoint(int i) {this.point -= i;}
+		for (Question qs : this.listQuestion)
+		{
+			this.pointMax += qs.getPoint();
+			this.tempsEstimée += qs.getTemps();
+		}
+	}
 
     public void initListQuestions()
     {
-        // A faire quand on aura le data des questions
+        for()
     }
 }
