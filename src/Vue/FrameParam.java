@@ -4,10 +4,10 @@ import src.Controleur;
 import javax.swing;
 
 public class FrameParam extends JFrame{
-    private Controleur ctrl;
+    //private Controleur ctrl;
 
-    public FrameParam( Controleur ctrl){
-        this.ctrl = ctrl;
+    public FrameParam(/* Controleur ctrl*/){
+        //this.ctrl = ctrl;
 
         System.out.printl("Création de la frame Paramètre");
 
@@ -20,7 +20,7 @@ public class FrameParam extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.add(new PanelParam(this.ctrl) );
+        this.add(new PanelParam(/*this.ctrl*/) );
 
         setVisible(true);
     }

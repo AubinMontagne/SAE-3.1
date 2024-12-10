@@ -1,20 +1,20 @@
 package Vue;
 
-import src.Controleur;
+//import src.Controleur;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing;
+import javax.swing.*;
 
 public class PanelAccueil extends JPanel implements  ActionListener
 {
-    private Controleur ctrl;
+    //private Controleur ctrl;
     private JPanel panelAccueil;
     private JButton btBanque;
     private JButton btQuestionnaire;
     private JButton btRessources;
 
-    public PanelAccueil( Controleur ctrl){
-        this.ctrl         = ctrl;
+    public PanelAccueil( /*Controleur ctrl*/){
+        //this.ctrl         = ctrl;
         this.panelAccueil = new JPanel();
 
         this.setVisible(true);
@@ -34,15 +34,15 @@ public class PanelAccueil extends JPanel implements  ActionListener
 
     public void actionPerformed(ActionEvent e){
         if ( btBanque == e.getSource()){
-            new FrameBanque(ctrl);
+            new FrameBanque(/*ctrl*/);
             dispose();
         }
         if( btQuestionnaire == e.getSource()){
-            new FrameQuestionnaire(ctrl);
+            new FrameQuestionnaire(/*ctrl*/);
             dispose();
         }
         if(btRessources == e.getSource()){
-            new FrameParam(ctrl);
+            new FrameParam(/*ctrl*/);
             dispose();
         }
     }

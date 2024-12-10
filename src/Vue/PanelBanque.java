@@ -10,13 +10,13 @@ import javax.swing.*;
 
 public class PanelBanque extends JPanel
 {
-    private Controleur ctrl;
+    //private Controleur ctrl;
     private JPanel panelBanque;
     private JTable tbQuestion;
 
 
-    public PanelBanque( Controleur ctrl){
-        this.ctrl         = ctrl;
+    public PanelBanque( /*Controleur ctrl*/){
+        //this.ctrl         = ctrl;
         this.panelAccueil = new JPanel();
         this.setLayout ( new BorderLayout() );
 

@@ -1,26 +1,23 @@
 package Vue;
 
-import src.Controleur;
-import javax.swing;
+//import src.Controleur;
+import javax.swing.*;
 
 public class FrameAccueil extends JFrame{
-    private Controleur ctrl;
+    //private Controleur ctrl;
 
-    public FrameAccueil( Controleur ctrl){
-        this.ctrl = ctrl;
+    public FrameAccueil( /*Controleur ctrl*/){
+        //this.ctrl = ctrl;
 
-        System.out.printl("Création de la frame Accueil");
-
-        int width = (int) (screenSize.getWidth() * 0.8);
-        int height = (int) (screenSize.getHeight() * 0.8);
+        System.out.println("Création de la frame Accueil");
 
         this.setTitle("Page d'accueil");
-        this.setSize(width,height);
+        this.setSize(200,200);
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.add(new PanelAccueil(this.ctrl) );
+        this.add(new PanelAccueil() );
 
         setVisible(true);
     }

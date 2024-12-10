@@ -1,78 +1,119 @@
-package vue;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class PanelCreationQst extends JPanel
+public class QuestionCreationPanel
 {
-    private Controleur ctrl;
-
-
-    public PanelCreationQst(Controleur ctrl)
+    public static void main(String[] args)
     {
+        JFrame frame = new JFrame("Création de Question");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(500, 300);
 
-        this.ctrl = ctrl;
-        this.setLayout(null);
+        // Créer le panel principal avec BorderLayout
+        JPanel PanelPrin = new JPanel(new BorderLayout());
 
-        // Création des composants
-        JLabel lblTemps = new JLabel("Temps");
-        JTextField txtTemps = new JTextField(5);
-        JLabel lblPoint = new JLabel("Point");
-        JTextField txtPoint = new JTextField(5);
-        JLabel lblRessource = new JLabel("Ressource");
-        JLabel lblNotion = new JLabel("Temps");
-        // JComboBox<String> cbRessource = new JComboBox<>(new String[]);
-        // JComboBox<String> cbNotion = new JComboBox<>(new String[]);
-        String[] imageSansLettres = {
-                "../../Images/carrevertsanslettre.png",
-                "../../Images/carrebleusanslettre.png",
-                "../../Images/carrerougesanslettre.png",
-                "../../Images/carregrissanslettre.png"
-        };
+        JPanel PanelHaut = new JPanel(new GridLayout(2, 2, 5, 5));
+        PanelHaut.setBorder(BorderFactory.createTitledBorder("Configuration"));
 
-        String[] imageAvecLettres = {
-                "../../Images/carrevertaveclettre.png",
-                "../../Images/carrebleuaveclettre.png",
-                "../../Images/carrerougeaveclettre.png",
-                "../../Images/carregrisaveclettre.png",
-        };
+        JLabel lblPoints = new JLabel("Nombre de points :");
+        JTextField txtPoints = new JTextField();
+        JLabel lblTemps = new JLabel("Temps de réponse (min:sec) :");
+        JTextField txtTemps = new JTextField("00:30");
 
+        PanelHaut.add(lblPoints);
+        PanelHaut.add(txtPoints);
+        PanelHaut.add(lblTemps);
+        PanelHaut.add(txtTemps);
 
+        PanelPrin.add(PanelHaut, BorderLayout.NORTH);
 
-        // Placement des composants
+        JPanel PanelCentre = new JPanel(new GridLayout(3, 2, 5, 5));
+        PanelCentre.setBorder(BorderFactory.createTitledBorder("Sélection"));
 
-        // Faut un if , le 2e doit s'activer quand on prend une notion
-        for (String imgPath  : imageSansLettres)
+        JLabel ressourceLabel = new JLabel("Ressource :");
+        JComboBox<String> ressourceComboBox = new JComboBox<>(
+                new String[] { /* Recup donnée */ });
+        JLabel notionLabel = new JLabel("Notion :");
+        JComboBox<String> notionComboBox = new JComboBox<>();
+        notionComboBox.setEnabled(false); // Désactivé au début
+
+        JLabel niveauLabel = new JLabel("Difficulté :");
+        // IMAGE
+        JPanel niveauPanel = new JPanel(new FlowLayout());
+
+        ImageIcon tresFacileIcon = new ImageIcon(
+                new ImageIcon("tresfacile.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+        ImageIcon facileIcon = new ImageIcon(
+                new ImageIcon("facile.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+        ImageIcon moyenIcon = new ImageIcon(
+                new ImageIcon("moyen.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+        ImageIcon difficileIcon = new ImageIcon(
+                new ImageIcon("difficile.png").getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+
+        JButton tresFacileButton = new JButton(tresFacileIcon);
+        JButton facileButton = new JButton(facileIcon);
+        JButton moyenButton = new JButton(moyenIcon);
+        JButton difficileButton = new JButton(difficileIcon);
+
+        // Ajouter des actions pour les boutons
+        tresFacileButton.addActionListener();
+        facileButton.addActionListener();
+        moyenButton.addActionListener();
+        difficileButton.addActionListener();
+
+        // Ajouter les boutons au panneau
+        niveauPanel.add(facileButton);
+        niveauPanel.add(moyenButton);
+        niveauPanel.add(difficileButton);
+
+        PanelCentre.add(ressourceLabel);
+        PanelCentre.add(ressourceComboBox);
+        PanelCentre.add(notionLabel);
+        PanelCentre.add(notionComboBox);
+        PanelCentre.add(niveauLabel);
+        PanelCentre.add(niveauPanel);
+
+        PanelPrin.add(PanelCentre, BorderLayout.CENTER);
+
+        JPanel PanelBas = new JPanel(new GridLayout(1, 2, 5, 5));
+        PanelBas.setBorder(BorderFactory.createTitledBorder("Type de Question"));
+
+        JLabel typeLabel = new JLabel("Type :");
+        JComboBox<String> typeComboBox = new JComboBox<>(new String[] { /* */ });
+
+        PanelBas.add(typeLabel);
+        PanelBas.add(typeComboBox);
+
+        PanelPrin.add(PanelBas, BorderLayout.SOUTH);
+
+        ressourceComboBox.addActionListener(new ActionListener()
         {
-            try {
-                // Charger l'image
-                ImageIcon icon = new ImageIcon(imgPath);
-                JButton imageButton = new JButton(icon);
-                imageButton.setPreferredSize(new Dimension(40, 40));
-                imageButton.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                niveauPanel.add(imageButton);
-            } catch (Exception e) {
-                System.err.println("Erreur lors du chargement de l'image : " + imgPath);
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                // notionComboBox.setEnabled(true);
+                notionComboBox.removeAllItems();
+                // Charger des notions en fonction de la ressource sélectionnée
+                // Faut récup les données
             }
+        });
 
-        }
-
-        for (String imgPath : imageAvecLettres)
+        notionComboBox.addActionListener(new ActionListener()
         {
-            try {
-                // Charger l'image
-                ImageIcon icon = new ImageIcon(imgPath);
-                JButton imageButton = new JButton(icon);
-                imageButton.setPreferredSize(new Dimension(40, 40));
-                imageButton.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                niveauPanel.add(imageButton);
-            } catch (Exception e) {
-                System.err.println("Erreur lors du chargement de l'image : " + imgPath);
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                // Activer le choix de difficulté une fois une notion choisie
+                if (notionComboBox.getSelectedItem() != null)
+                {
+                    niveauComboBox.setEnabled(true);
+                }
             }
-        }
-        // Activation des composants
+        });
+        frame.add(PanelPrin);
+        frame.setVisible(true);
 
     }
-
 }

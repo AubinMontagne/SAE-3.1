@@ -4,10 +4,10 @@ import src.Controleur;
 import javax.swing;
 
 public class FrameBanque extends JFrame{
-    private Controleur ctrl;
+    //private Controleur ctrl;
 
-    public FrameBanque( Controleur ctrl){
-        this.ctrl = ctrl;
+    public FrameBanque( /*Controleur ctrl*/){
+        //this.ctrl = ctrl;
 
         System.out.printl("Création de la frame Banque");
 
@@ -20,7 +20,7 @@ public class FrameBanque extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.add(new PanelBanque(this.ctrl) );
+        this.add(new PanelBanque(/*this.ctrl*/) );
 
         setVisible(true);
     }

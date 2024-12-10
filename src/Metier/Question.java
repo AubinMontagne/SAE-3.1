@@ -87,7 +87,7 @@ public abstract class Question
     }*/
 
     // Set
-    public void setIntitule(String intitule)          {this.intitule = intitule;}
+    public  void setIntitule(String intitule)          {this.intitule = intitule;}
     private void setDifficulte(Difficulte difficulte) {this.difficulte = difficulte;}
     private void setNotion(Notion notion)             {this.notion = notion;}
     private void setTemps(int temps)                  {this.temps = temps;}
