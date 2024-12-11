@@ -24,4 +24,7 @@ public enum Difficulte {
         }
         return null;
     }
+	public String toString(){
+		return this.nom + " (" + this.indice + ")"; 
+	}
 }

@@ -73,7 +73,7 @@ public class QCM extends Question {
 			// Ajouter la difficulté
 			style = context.addStyle("Style", null);
 			style.addAttribute(StyleConstants.Italic, true);
-			doc.insertString(doc.getLength(), "Difficulté: " + this.getDifficulte() + "\n", style);
+			doc.insertString(doc.getLength(), "Difficulté: " + this.getDifficulte().toString() + "\n", style);
 
 			// Ajouter la notion
 			doc.insertString(doc.getLength(), this.getNotion().toString() + "\n", style);
@@ -134,7 +134,7 @@ public class QCM extends Question {
 			String intitule = lines[0].split(": ")[1];
 
 			// Récupérer la difficulté
-			Difficulte difficulte = Difficulte.valueOf(lines[1].split(": ")[1]);
+			Difficulte difficulte = Difficulte.getDifficulteByIndice(Integer.parseInt(lines[1].split("\\(")[1].split("\\)")[0]));
 
 			// Récupérer la notion
 			String id = lines[2].split(": ")[2];
@@ -182,14 +182,7 @@ public class QCM extends Question {
 	}
 
 	public String toString() {
-		String res = "QCM : " + this.getIntitule() + "\n";
-		res += "Difficulté : " + this.getDifficulte() + "\n";
-		res += "Notion : " + this.getNotion() + "\n";
-		res += "Temps : " + this.getTemps() + " secondes\n";
-		res += "Points : " + this.getPoint() + "\n";
-		if (this.getExplication() != null && !this.getExplication().isEmpty()) {
-			res += "Explication : " + this.getExplication() + "\n";
-		}
+		String res = super.toString();
 		res += "Réponses : \n";
 		for (HashMap.Entry<String, Boolean> entry : this.reponses.entrySet()) {
 			res += entry.getKey() + " -> " + entry.getValue() + "\n";

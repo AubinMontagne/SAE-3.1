@@ -70,4 +70,14 @@ public abstract class Question
     private void setTemps(int temps)                  {this.temps = temps;}
     private void setPoint(int point)                  {this.point = point;}
     private void setExplication(String explication)   {this.explication = explication;}
+
+	public String toString()
+	{
+		return "Intitulé: " + this.intitule + "\n" +
+			   "Difficulté: " + this.difficulte + "\n" +
+			   this.notion.toString() + "\n" +
+			   "Temps: " + this.temps + " secondes\n" +
+			   "Points: " + this.point + "\n" +
+			   "Explication: " + this.explication + "\n";
+	}
 }

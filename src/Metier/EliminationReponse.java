@@ -99,7 +99,7 @@ public class EliminationReponse extends Question {
 			// Ajouter la difficulté
 			style = context.addStyle("Style", null);
 			style.addAttribute(StyleConstants.Italic, true);
-			doc.insertString(doc.getLength(), "Difficulté: " + this.getDifficulte() + "\n", style);
+			doc.insertString(doc.getLength(), "Difficulté: " + this.getDifficulte().toString() + "\n", style);
 
 			// Ajouter la notion
 			doc.insertString(doc.getLength(), this.getNotion().toString() + "\n", style);
@@ -161,7 +161,7 @@ public class EliminationReponse extends Question {
 			String intitule = lines[0].split(": ")[1];
 
 			// Récupérer la difficulté
-			Difficulte difficulte = Difficulte.valueOf(lines[1].split(": ")[1]);
+			Difficulte difficulte = Difficulte.getDifficulteByIndice(Integer.parseInt(lines[1].split("\\(")[1].split("\\)")[0]));
 
 			// Récupérer la notion
 			String id = lines[2].split(": ")[2];
@@ -186,19 +186,25 @@ public class EliminationReponse extends Question {
 			// Récupérer les réponses
 			int lastReponse = 7;
 			for (int i = 7; i < lines.length; i++) {
-				if (lines[i].contains("Bonnes")) {
+				if (lines[i].contains("bonne")) {
 					lastReponse = i;
 					break;
 				}
-				//if (lines[i].contains("-")) {
-				//	eq.ajouterReponse(lines[i].
-				//}
+				if (lines[i].contains("-")) {
+					String ligne = lines[i].substring(2);
+					
+					String reponse = ligne.substring(0, ligne.indexOf("("));
+					int pointPerdus = Integer.parseInt(ligne.split("Point Perdus : ")[1].split(" ,Numero")[0]);
+					int numero = Integer.parseInt(ligne.split("Numero : ")[1].split("\\)")[0]);
+
+					eq.ajouterReponse(reponse, pointPerdus, numero);
+				}
 			}
 
 			// Récupérer les bonnes réponses
 			for (int i = lastReponse; i < lines.length; i++) {
 				if (lines[i].contains("-")) {
-					//eq.ajouterReponse(lines[i].substring(2), true);
+					eq.setReponseCorrecte(lines[i].substring(2));
 				}
 			}
 			return eq;
@@ -208,6 +214,16 @@ public class EliminationReponse extends Question {
 		return null;
 	}
 
+	public String toString(){
+		String res = super.toString();
+		res += "Reponse correcte : " + this.reponseCorrecte + "\n";
+		res += "Reponses : \n";
+		for (String reponse : this.reponses.keySet()) {
+			res += reponse + " : " + this.reponses.get(reponse)[0] + " , " + this.reponses.get(reponse)[1] + "\n";
+		}
+		return res;
+	}
+
 	public void echangerPlace(String reponse1, String reponse2) {
 		if (this.reponses.containsKey(reponse1) && this.reponses.containsKey(reponse2)) {
 			int index1 = this.reponses.get(reponse1)[1];
@@ -215,19 +231,5 @@ public class EliminationReponse extends Question {
 			this.reponses.get(reponse1)[1] = index2;
 			this.reponses.get(reponse2)[1] = index1;
 		}
-	}
-
-	public static void main(String[] args) {
-		Metier metier = new Metier();
-		Notion notion = new Notion(1, "Notion", new Ressource(1,"Ressource","R"),metier);
-		metier.ajouterNotion(notion);
-		EliminationReponse eq = new EliminationReponse("eq", Difficulte.FACILE, notion, 10, 10,metier);
-		eq.ajouterReponse("A", 1,1);
-		eq.ajouterReponse("B", 2,1);
-		eq.ajouterReponse("C", 3, 2);
-		eq.setReponseCorrecte("A");
-		eq.getAsData("data/EliminationQuestion");
-		//EliminationReponse eq2 = EliminationReponse.getAsInstance("data/EliminationQuestion/", metier);
-		//System.out.println(eq2);
 	}
 }

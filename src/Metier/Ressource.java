@@ -42,4 +42,10 @@ public class Ressource
     public void setId(int id)                {this.id       = id;}
     public void setNom(String nom)           {this.nom      = nom;}
     public void setAccronym(String accronym) {this.accronym = accronym;}
+
+	public String toString(){
+		String res = "Ressource : " + this.nom + "\n";
+		res += "Acronyme : " + this.accronym + "\n";
+		return res;
+	}
 }
