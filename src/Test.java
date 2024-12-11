@@ -48,7 +48,7 @@ public class Test {
 		
 		System.out.println("\nTest de la classe EliminationReponse\n");
 
-		EliminationReponse eq = new EliminationReponse("Question Éliminatoire", Difficulte.FACILE, notion, 10, 10,metier);
+		EliminationReponse eq = new EliminationReponse("Question Éliminatoire", Difficulte.MOYEN, notion, 10, 10,metier);
 		
 		eq.ajouterReponse("A", 1,1);
 		eq.ajouterReponse("B", 2,1);
@@ -67,7 +67,7 @@ public class Test {
 
 		System.out.println("\nTest de la classe AssociationElement\n");
 
-		AssociationElement ae = new AssociationElement("Question Association", Difficulte.FACILE, notion, 10, 10,metier);
+		AssociationElement ae = new AssociationElement("Question Association", Difficulte.DIFFICILE, notion, 10, 10,metier);
 		ae.ajouterAssociation("A", "1");
 		ae.ajouterAssociation("B", "2");
 		ae.ajouterAssociation("C", "3");
@@ -84,9 +84,9 @@ public class Test {
 
 		Questionnaire questionnaire = new Questionnaire("Questionnaire", ressource, true, metier);
 		questionnaire.ajouterNotion(notion);
-		questionnaire.defNbQuestion(notion, Difficulte.FACILE, 10);
-		questionnaire.defNbQuestion(notion, Difficulte.MOYEN, 10);
-		questionnaire.defNbQuestion(notion, Difficulte.DIFFICILE, 10);
+		questionnaire.defNbQuestion(notion, Difficulte.FACILE, 2);
+		questionnaire.defNbQuestion(notion, Difficulte.MOYEN, 2);
+		questionnaire.defNbQuestion(notion, Difficulte.DIFFICILE, 2);
 		questionnaire.initListQuestions();
 
 		System.out.println(questionnaire.toString());
