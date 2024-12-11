@@ -35,12 +35,8 @@ public class AssociationElement extends Question
         this.associations.remove(gauche);
     }
 
-    public void afficherAssociations()
-    {
-        System.out.println("Associations :");
-        for (HashMap.Entry<String, String> entry : this.associations.entrySet())
-        {
-            System.out.println(entry.getKey() + " -> " + entry.getValue());
-        }
-    }
+	public void getAsData(String directoryPath)
+	{
+		// TODO
+	}
 }

@@ -1,5 +1,9 @@
 import Metier.*;
+import Metier.Notion;
+import Metier.Question;
+import Metier.Ressource;
 import Vue.*;
+import Vue.FrameBanque;
 import java.util.ArrayList;
 public class Controleur
 {
