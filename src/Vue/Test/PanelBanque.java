@@ -33,29 +33,37 @@ public class PanelBanque extends JPanel implements  ActionListener
 		Question quest3 = new Question( "Quels Question3 ? ", "IDE", "gedit", 55,5) ;
 		Question quest4 = new Question( "Quels Question4 ? ", "code", "java", 45, 9) ;
 		Question quest5 = new Question( "Quels Question5 ? ", "IDE", "sql", 5, 1) ;
+		Question quest6 = new Question("Quels Question6 ? ", "IDA", "JavaScript", 14, 1);
 
         String[] tabEntetes = {"Question", "Ressource", "Notion", "Point"};
 
-		
+        String[][] data = {
+            {quest1.getIntitule(), quest1.getRessource(), quest1.getNotion(), "" + quest1.getPoint()},
+            {quest2.getIntitule(), quest2.getRessource(), quest2.getNotion(), "" + quest2.getPoint()},
+            {quest3.getIntitule(), quest3.getRessource(), quest3.getNotion(), "" + quest3.getPoint()},
+            {quest4.getIntitule(), quest4.getRessource(), quest4.getNotion(), "" + quest4.getPoint()},
+            {quest5.getIntitule(), quest5.getRessource(), quest5.getNotion(), "" + quest5.getPoint()},
+            {quest1.getIntitule(), quest1.getRessource(), quest1.getNotion(), "" + quest1.getPoint()},
+            {quest2.getIntitule(), quest2.getRessource(), quest2.getNotion(), "" + quest2.getPoint()},
+            {quest3.getIntitule(), quest3.getRessource(), quest3.getNotion(), "" + quest3.getPoint()},
+            {quest4.getIntitule(), quest4.getRessource(), quest4.getNotion(), "" + quest4.getPoint()},
+            {quest5.getIntitule(), quest5.getRessource(), quest5.getNotion(), "" + quest5.getPoint()},
+            {quest6.getIntitule(), quest6.getRessource(), quest6.getNotion(), "" + quest6.getPoint()}
+        };
 
-		String[][] data ={
-			{quest1.getIntitule(), quest1.getRessource(), quest1.getNotion(), ""+quest1.getPoint()},
-			{quest2.getIntitule(), quest2.getRessource(), quest2.getNotion(), ""+quest2.getPoint()},
-			{quest3.getIntitule(), quest3.getRessource(), quest3.getNotion(), ""+quest3.getPoint()},
-			{quest4.getIntitule(), quest4.getRessource(), quest4.getNotion(), ""+quest4.getPoint()},
-			{quest5.getIntitule(), quest5.getRessource(), quest5.getNotion(), ""+quest5.getPoint()}
-		};
+        DefaultTableModel model = new DefaultTableModel(data, tabEntetes);
+        this.tbQuestion = new JTable(model);
 
-		DefaultTableModel model = new DefaultTableModel(data, tabEntetes);
-		this.tbQuestion = new JTable(model);
+        // Nombre maximal de lignes sans scroll
+        int maxVisibleRows = 5;
 
-		// Calcul dynamique de la hauteur
+        // Calcul dynamique de la hauteur
         int rowHeight = this.tbQuestion.getRowHeight();
-        int rowCount = this.tbQuestion.getRowCount();
-        int tableHeight = rowHeight * rowCount + this.tbQuestion.getTableHeader().getHeight();
+        int headerHeight = this.tbQuestion.getTableHeader().getHeight();
+        int visibleHeight = rowHeight * Math.min(this.tbQuestion.getRowCount(), maxVisibleRows) + headerHeight;
 
         // Ajuster la taille visible de la table
-        this.tbQuestion.setPreferredScrollableViewportSize(new Dimension(800, tableHeight));
+        this.tbQuestion.setPreferredScrollableViewportSize(new Dimension(800, visibleHeight));
 
 		JScrollPane scrollPane = new JScrollPane(this.tbQuestion);
 		this.btCreaQuest = new JButton("Nouvelle Question"    );
@@ -119,13 +127,16 @@ public class PanelBanque extends JPanel implements  ActionListener
 		DefaultTableModel model = new DefaultTableModel(data, tabEntetes);
 		this.tbQuestion = new JTable(model);
 
+		// Nombre maximal de lignes sans scroll
+        int maxVisibleRows = 5;
+		
 		// Calcul dynamique de la hauteur
         int rowHeight = this.tbQuestion.getRowHeight();
         int rowCount = this.tbQuestion.getRowCount();
-        int tableHeight = rowHeight * rowCount + this.tbQuestion.getTableHeader().getHeight();
+        int visibleHeight = rowHeight * Math.min(this.tbQuestion.getRowCount(), maxVisibleRows) + headerHeight;
 
         // Ajuster la taille visible de la table
-        this.tbQuestion.setPreferredScrollableViewportSize(new Dimension(800, tableHeight));
+        this.tbQuestion.setPreferredScrollableViewportSize(new Dimension(800, visibleHeight));
 
 		JScrollPane scrollPane = new JScrollPane(this.tbQuestion);
 		this.btCreaQuest = new JButton("Nouvelle Question"    );
