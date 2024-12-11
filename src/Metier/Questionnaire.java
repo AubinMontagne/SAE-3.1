@@ -105,4 +105,25 @@ public class Questionnaire {
             }
 		}
 	}
+
+	@Override
+	public String toString(){
+		String str = "Questionnaire : " + this.nom + "\n";
+		str += "Ressource : " + this.ressource.toString() + "\n";
+		str += "Chrono : " + this.chronoBool + "\n";
+		str += "Temps estimé : " + this.tempsEstimée + "\n";
+		str += "Point Max : " + this.pointMax + "\n";
+		str += "Liste des notions : \n";
+		for(Notion n : this.listNotions)
+		{
+			str += n.toString() + "\n";
+		}
+		str += "Liste des questions : \n";
+		for(Question qs : this.listQuestion)
+		{
+			str += qs.toString() + "\n";
+		}
+
+		return str;
+	}
 }

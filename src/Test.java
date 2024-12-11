@@ -14,9 +14,17 @@ public class Test {
 
 		System.out.println("Test des Ressources");
 
+		Ressource ressource = new Ressource(1, "Ressource", "R");
+		System.out.println(ressource);
+
 		// Test des Notions
 
-		// Test des Questions
+		System.out.println("Test des Notions");
+
+		Notion notion2 = new Notion(2, "Notion2", ressource,metier);
+		System.out.println(notion2);
+
+		// ----------- Test des Questions -------------
 
 		// Test de la classe QCM
 		
@@ -65,5 +73,19 @@ public class Test {
 		AssociationElement ae2 = AssociationElement.getAsInstance("data/AssociationElement/", metier);
 
 		System.out.println(ae2);
+
+		// Test Questionnaire
+
+		System.out.println("Test de la classe Questionnaire");
+
+		Questionnaire questionnaire = new Questionnaire("Questionnaire", ressource, true, metier);
+		questionnaire.ajouterNotion(notion);
+		questionnaire.defNbQuestion(notion, Difficulte.FACILE, 10);
+		questionnaire.defNbQuestion(notion, Difficulte.MOYEN, 10);
+		questionnaire.defNbQuestion(notion, Difficulte.DIFFICILE, 10);
+
+		System.out.println(questionnaire.getlistNotions());
+
+
 	}
 }
