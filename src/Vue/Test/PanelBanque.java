@@ -1,10 +1,8 @@
-import java.util.ArrayList;
-import java.awt.event.ActionListener;
-import java.net.http.HttpResponse.BodyHandler;
-import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -133,7 +131,7 @@ public class PanelBanque extends JPanel implements  ActionListener
 		// Calcul dynamique de la hauteur
         int rowHeight = this.tbQuestion.getRowHeight();
         int rowCount = this.tbQuestion.getRowCount();
-        int visibleHeight = rowHeight * Math.min(this.tbQuestion.getRowCount(), maxVisibleRows) + headerHeight;
+        int visibleHeight = rowHeight * Math.min(this.tbQuestion.getRowCount(), maxVisibleRows) + rowHeight;
 
         // Ajuster la taille visible de la table
         this.tbQuestion.setPreferredScrollableViewportSize(new Dimension(800, visibleHeight));

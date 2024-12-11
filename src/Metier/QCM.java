@@ -150,7 +150,7 @@ public class QCM extends Question {
 			// Récupérer l'explication
 			String explication = "";
 			if (lines.length > 6 && lines[6].contains("Explication")) {
-				explication = lines[5].split(": ")[1];
+				explication = lines[6].split(": ")[1];
 			}
 
 			// Créer une instance de QCM

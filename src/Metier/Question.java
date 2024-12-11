@@ -65,11 +65,11 @@ public abstract class Question
     
 	// Set
     public  void setIntitule(String intitule)          {this.intitule = intitule;}
-    private void setDifficulte(Difficulte difficulte) {this.difficulte = difficulte;}
-    private void setNotion(Notion notion)             {this.notion = notion;}
-    private void setTemps(int temps)                  {this.temps = temps;}
-    private void setPoint(int point)                  {this.point = point;}
-    private void setExplication(String explication)   {this.explication = explication;}
+    public void setDifficulte(Difficulte difficulte) {this.difficulte = difficulte;}
+    public void setNotion(Notion notion)             {this.notion = notion;}
+    public void setTemps(int temps)                  {this.temps = temps;}
+    public void setPoint(int point)                  {this.point = point;}
+    public void setExplication(String explication)   {this.explication = explication;}
 
 	public String toString()
 	{
