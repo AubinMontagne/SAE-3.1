@@ -149,7 +149,7 @@ public class PanelBanque extends JPanel implements  ActionListener
 	public void actionPerformed(ActionEvent e){
         if ( this.btCreaQuest == e.getSource()){
             System.out.println("Hey la frame Creer question s'ouvre");
-            new PanelCreationQuestion();
+            new FrameCreationQuestion();
             
         }
 	}

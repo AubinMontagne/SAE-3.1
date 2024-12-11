@@ -114,6 +114,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		panelType.add(boutonConfirmer);
 
 		add(panelType, BorderLayout.SOUTH);
+		setVisible(true);
 	}
 
 	@Override
