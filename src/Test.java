@@ -16,6 +16,7 @@ public class Test {
 
 		Ressource ressource = new Ressource(1, "Ressource", "R");
 		System.out.println(ressource);
+		metier.ajouterRessource(ressource);
 
 		// Test des Notions
 
@@ -38,7 +39,8 @@ public class Test {
 		
 		qcm.getAsData("data/QCM");
 		QCM qcm2 = QCM.getAsInstance("data/QCM/", metier);
-		
+		metier.ajouterQuestion(qcm2);
+
 		System.out.println(qcm2);
 
 
@@ -56,6 +58,7 @@ public class Test {
 
 		eq.getAsData("data/EliminationQuestion");
 		EliminationReponse eq2 = EliminationReponse.getAsInstance("data/EliminationQuestion/", metier);
+		metier.ajouterQuestion(eq2);
 
 		System.out.println(eq2);
 
@@ -71,6 +74,7 @@ public class Test {
 
 		ae.getAsData("data/AssociationElement");
 		AssociationElement ae2 = AssociationElement.getAsInstance("data/AssociationElement/", metier);
+		metier.ajouterQuestion(ae2);
 
 		System.out.println(ae2);
 
@@ -90,14 +94,25 @@ public class Test {
 
 		System.out.println("\nTest de la classe Metier\n");
 
+		System.out.println("\nAffichage des notions :\n");
 		System.out.println(metier.getNotions());
+
+		System.out.println("\nAffichage des ressources :\n");
 		System.out.println(metier.getRessources());
+
+		System.out.println("\nAffichage des questions :\n");
 		System.out.println(metier.getQuestions());
+
+
+		System.out.println("\nSauvegarde des données\n");
 
 		metier.saveNotions("data/Notions");
 		metier.saveRessources("data/Ressources");
 
+		System.out.println("\nAffichage d'une question sélectionné à l'aléatoire :\n");
 		System.out.println(metier.getQuestionAleatoire(notion, Difficulte.FACILE));	
+
+		System.out.println("\nAffichage de la notion avec l'id 1 :\n");
 		System.out.println(metier.getNotionById(1));
 	}
 }

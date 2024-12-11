@@ -125,6 +125,10 @@ public class Metier{
 
     public void saveNotions(String path){
         try{
+			File dir = new File(path);
+			if (!dir.exists()) {
+				dir.mkdirs();
+			}
             FileWriter writer = new FileWriter(path+"/notions.csv");
             for (Notion notion : this.notions){
                 writer.write(notion.getAsData() + "\n");
@@ -136,6 +140,10 @@ public class Metier{
     }
     public void saveRessources(String path){
         try{
+			File dir = new File(path);
+			if (!dir.exists()) {
+				dir.mkdirs();
+			}
             FileWriter writer = new FileWriter(path+"/ressources.csv");
             for (Ressource ressource : this.ressources){
                 writer.write(ressource.getAsData() + "\n");
@@ -148,6 +156,7 @@ public class Metier{
 
 	public void getRessourcesFromData(String path){
 		try{
+			
 			BufferedReader reader = new BufferedReader(new FileReader(path+"/ressources.csv"));
 			String line;
 			while ((line = reader.readLine()) != null){
