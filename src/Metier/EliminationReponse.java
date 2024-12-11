@@ -69,9 +69,9 @@ public class EliminationReponse extends Question {
 
 
 	// Methods to add and remove incorrect responses
-	public void ajouterReponse(String reponse, int points) {
-		if (!this.reponses.containsKey(reponse)) {
-			this.reponses.put(reponse, new Integer[]{points,this.getLastIndex()});
+	public void ajouterReponse(String reponse, int points, int ordre) {
+		if (!this.reponses.containsKey(reponse) && ordre <= this.getLastIndex()+1) {
+			this.reponses.put(reponse, new Integer[]{points, ordre});
 		}
 	}
 
@@ -222,9 +222,9 @@ public class EliminationReponse extends Question {
 		Notion notion = new Notion(1, "Notion", new Ressource(1,"Ressource","R"),metier);
 		metier.ajouterNotion(notion);
 		EliminationReponse eq = new EliminationReponse("eq", Difficulte.FACILE, notion, 10, 10,metier);
-		eq.ajouterReponse("A", 1);
-		eq.ajouterReponse("B", 2);
-		eq.ajouterReponse("C", 3);
+		eq.ajouterReponse("A", 1,1);
+		eq.ajouterReponse("B", 2,1);
+		eq.ajouterReponse("C", 3, 2);
 		eq.setReponseCorrecte("A");
 		eq.getAsData("data/EliminationQuestion");
 		//EliminationReponse eq2 = EliminationReponse.getAsInstance("data/EliminationQuestion/", metier);
