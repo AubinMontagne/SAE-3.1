@@ -1,6 +1,10 @@
 # Compiled class file
 *.class
 
+# Temporary files
+*.rtf
+*.csv
+
 # Log file
 *.log
 
