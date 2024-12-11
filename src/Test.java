@@ -9,8 +9,19 @@ public class Test {
 		Notion notion = new Notion(1, "Notion", new Ressource(1,"Ressource","R"),metier);
 		metier.ajouterNotion(notion);
 
+
+		// Test des Ressources
+
+		System.out.println("Test des Ressources");
+
+		// Test des Notions
+
+		// Test des Questions
+
 		// Test de la classe QCM
 		
+		System.out.println("Test de la classe QCM");
+
 		QCM qcm = new QCM("QCM", Difficulte.FACILE, notion, 10, 10,metier);
 		
 		qcm.ajouterReponse("A", true);
@@ -25,6 +36,8 @@ public class Test {
 
 		// Test de la classe EliminationReponse
 		
+		System.out.println("Test de la classe EliminationReponse");
+
 		EliminationReponse eq = new EliminationReponse("Question Éliminatoire", Difficulte.FACILE, notion, 10, 10,metier);
 		
 		eq.ajouterReponse("A", 1,1);
@@ -40,6 +53,8 @@ public class Test {
 
 		
 		// Test de la classe AssociationElement
+
+		System.out.println("Test de la classe AssociationElement");
 
 		AssociationElement ae = new AssociationElement("Question Association", Difficulte.FACILE, notion, 10, 10,metier);
 		ae.ajouterAssociation("A", "1");
