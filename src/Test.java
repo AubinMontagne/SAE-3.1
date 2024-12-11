@@ -12,14 +12,14 @@ public class Test {
 
 		// Test des Ressources
 
-		System.out.println("Test des Ressources");
+		System.out.println("\nTest des Ressources\n");
 
 		Ressource ressource = new Ressource(1, "Ressource", "R");
 		System.out.println(ressource);
 
 		// Test des Notions
 
-		System.out.println("Test des Notions");
+		System.out.println("Test des Notions\n");
 
 		Notion notion2 = new Notion(2, "Notion2", ressource,metier);
 		System.out.println(notion2);
@@ -28,7 +28,7 @@ public class Test {
 
 		// Test de la classe QCM
 		
-		System.out.println("Test de la classe QCM");
+		System.out.println("\nTest de la classe QCM\n");
 
 		QCM qcm = new QCM("QCM", Difficulte.FACILE, notion, 10, 10,metier);
 		
@@ -44,7 +44,7 @@ public class Test {
 
 		// Test de la classe EliminationReponse
 		
-		System.out.println("Test de la classe EliminationReponse");
+		System.out.println("\nTest de la classe EliminationReponse\n");
 
 		EliminationReponse eq = new EliminationReponse("Question Éliminatoire", Difficulte.FACILE, notion, 10, 10,metier);
 		
@@ -62,7 +62,7 @@ public class Test {
 		
 		// Test de la classe AssociationElement
 
-		System.out.println("Test de la classe AssociationElement");
+		System.out.println("\nTest de la classe AssociationElement\n");
 
 		AssociationElement ae = new AssociationElement("Question Association", Difficulte.FACILE, notion, 10, 10,metier);
 		ae.ajouterAssociation("A", "1");
@@ -76,7 +76,7 @@ public class Test {
 
 		// Test Questionnaire
 
-		System.out.println("Test de la classe Questionnaire");
+		System.out.println("\nTest de la classe Questionnaire\n");
 
 		Questionnaire questionnaire = new Questionnaire("Questionnaire", ressource, true, metier);
 		questionnaire.ajouterNotion(notion);
@@ -86,6 +86,18 @@ public class Test {
 
 		System.out.println(questionnaire.getlistNotions());
 
+		// Test de la classe Metier
 
+		System.out.println("\nTest de la classe Metier\n");
+
+		System.out.println(metier.getNotions());
+		System.out.println(metier.getRessources());
+		System.out.println(metier.getQuestions());
+
+		metier.saveNotions("data/Notions");
+		metier.saveRessources("data/Ressources");
+
+		System.out.println(metier.getQuestionAleatoire(notion, Difficulte.FACILE));	
+		System.out.println(metier.getNotionById(1));
 	}
 }
