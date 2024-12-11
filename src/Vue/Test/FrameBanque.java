@@ -28,7 +28,7 @@ public class FrameBanque extends JFrame{
         System.out.println("Création de la frame Banque");
 
 
-        this.setTitle("Banque de question");
+        this.setTitle(n.getNom());
         this.setSize(850,200);
         this.setLocationRelativeTo(null);
 
