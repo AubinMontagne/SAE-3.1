@@ -41,7 +41,12 @@ public class QCM extends Question {
 
 	// Méthode pour gérer les réponse ajouter/enlever
 	public void ajouterReponse(String reponse, Boolean correct) {
-		this.reponses.put(reponse, correct);
+		if (this.reponses.containsKey(reponse)) {
+			this.reponses.replace(reponse, correct);
+		}
+		else {
+			this.reponses.put(reponse, correct);
+		}
 	}
 
 	public void enleverReponse(String reponse) {
@@ -79,14 +84,15 @@ public class QCM extends Question {
 			// Ajouter les points
 			doc.insertString(doc.getLength(), "Points: " + this.getPoint() + "\n", style);
 
+			// Ajouter l'explication
 			if (this.getExplication() != null && !this.getExplication().isEmpty()) {
-				// Ajouter l'explication
 				doc.insertString(doc.getLength(), "Explication: " + this.getExplication() + "\n", style);
 			}
 			else {
 				doc.insertString(doc.getLength(), "\n", style);
 			}
 
+			// Ajouter les réponses possibles
 			style.addAttribute(StyleConstants.FontFamily, "Serif");
 			doc.insertString(doc.getLength(), "Réponses possibles:\n", style);
 
@@ -94,6 +100,7 @@ public class QCM extends Question {
 				doc.insertString(doc.getLength(), "- " + reponse + "\n", style);
 			}
 
+			// Ajouter les réponses correctes
 			style.addAttribute(StyleConstants.FontFamily, "Serif");
 			doc.insertString(doc.getLength(), "Bonnes réponses:\n", style);
 
@@ -102,7 +109,7 @@ public class QCM extends Question {
 					doc.insertString(doc.getLength(), "- " + entry.getKey() + "\n", style);
 				}
 			}
-
+			
 			FileOutputStream fos = new FileOutputStream(fileName);
 			RTFEditorKit rtfKit = new RTFEditorKit();
 			rtfKit.write(fos, doc, 0, doc.getLength());
@@ -111,7 +118,6 @@ public class QCM extends Question {
 			e.printStackTrace();
 		}
 	}
-// Corriger le getAsInstance ,car il faut qu'il prenne en compte que toutes ces informations sont dans un seul fichier
 	public static QCM getAsInstance(String pathDirectory, Metier metier) {
 		try {
 			FileInputStream fis = new FileInputStream(pathDirectory + "QCM.rtf");
@@ -157,12 +163,16 @@ public class QCM extends Question {
 					lastReponse = i;
 					break;
 				}
-				qcm.ajouterReponse(lines[i].substring(2), false);
+				if (lines[i].contains("-")) {
+					qcm.ajouterReponse(lines[i].substring(2), false);
+				}
 			}
 
 			// Récupérer les bonnes réponses
 			for (int i = lastReponse; i < lines.length; i++) {
-				qcm.ajouterReponse(lines[i].substring(2), true);
+				if (lines[i].contains("-")) {
+					qcm.ajouterReponse(lines[i].substring(2), true);
+				}
 			}
 			return qcm;
 		} catch (Exception e) {
@@ -197,7 +207,7 @@ public class QCM extends Question {
 		qcm.ajouterReponse("B", false);
 		qcm.ajouterReponse("C", true);
 		qcm.getAsData("data/QCM");
-		//QCM qcm2 = getAsInstance("data/QCM/", metier);
-		//System.out.println(qcm2);
+		QCM qcm2 = getAsInstance("data/QCM/", metier);
+		System.out.println(qcm2);
 	}
 }
