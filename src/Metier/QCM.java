@@ -83,6 +83,9 @@ public class QCM extends Question {
 				// Ajouter l'explication
 				doc.insertString(doc.getLength(), "Explication: " + this.getExplication() + "\n", style);
 			}
+			else {
+				doc.insertString(doc.getLength(), "\n", style);
+			}
 
 			style.addAttribute(StyleConstants.FontFamily, "Serif");
 			doc.insertString(doc.getLength(), "Réponses possibles:\n", style);
@@ -117,42 +120,49 @@ public class QCM extends Question {
 
 			rtfKit.read(fis, doc, 0);
 
+			// Récupérer le contenu du fichier
 			String content = doc.getText(0, doc.getLength());
 
+			// Récupérer les lignes du contenu
 			String[] lines = content.split("\n");
 			String intitule = lines[0].split(": ")[1];
 
+			// Récupérer la difficulté
 			Difficulte difficulte = Difficulte.valueOf(lines[1].split(": ")[1]);
 
-			Notion notion = metier.getNotionById(Integer.parseInt(lines[2].split(": ")[1]));
+			// Récupérer la notion
+			String id = lines[2].split(": ")[2];
+			id = id.substring(0, id.length()-1);
+			Notion notion = metier.getNotionById(Integer.parseInt(id));
 
-			int temps = Integer.parseInt(lines[3].split(": ")[1].split(" ")[0]);
+			// Récupérer le temps
+			int temps = Integer.parseInt(lines[4].split(": ")[1].split(" ")[0]);
 
-			int points = Integer.parseInt(lines[4].split(": ")[1]);
+			// Récupérer les points
+			int points = Integer.parseInt(lines[5].split(": ")[1]);
 
+			// Récupérer l'explication
 			String explication = "";
-			if (lines.length > 5) {
+			if (lines.length > 6 && lines[6].contains("Explication")) {
 				explication = lines[5].split(": ")[1];
 			}
 
+			// Créer une instance de QCM
 			QCM qcm = new QCM(intitule, difficulte, notion, temps, points, metier, explication);
-			FileInputStream fisReponses = new FileInputStream(pathDirectory + "reponses_QCM.rtf");
-			DefaultStyledDocument docReponses = new DefaultStyledDocument();
-			RTFEditorKit rtfKitReponses = new RTFEditorKit();
-			rtfKitReponses.read(fisReponses, docReponses, 0);
-			String contentReponses = docReponses.getText(0, docReponses.getLength());
-			String[] linesReponses = contentReponses.split("\n");
-			for (int i = 1; i < linesReponses.length; i++) {
-				qcm.ajouterReponse(linesReponses[i].substring(2), false);
+
+			// Récupérer les réponses
+			int lastReponse = 7;
+			for (int i = 7; i < lines.length; i++) {
+				if (lines[i].contains("Bonnes")) {
+					lastReponse = i;
+					break;
+				}
+				qcm.ajouterReponse(lines[i].substring(2), false);
 			}
-			FileInputStream fisBonnesReponses = new FileInputStream(pathDirectory + "bonnes_reponses_QCM.rtf");
-			DefaultStyledDocument docBonnesReponses = new DefaultStyledDocument();
-			RTFEditorKit rtfKitBonnesReponses = new RTFEditorKit();
-			rtfKitBonnesReponses.read(fisBonnesReponses, docBonnesReponses, 0);
-			String contentBonnesReponses = docBonnesReponses.getText(0, docBonnesReponses.getLength());
-			String[] linesBonnesReponses = contentBonnesReponses.split("\n");
-			for (int i = 1; i < linesBonnesReponses.length; i++) {
-				qcm.ajouterReponse(linesBonnesReponses[i].substring(2), true);
+
+			// Récupérer les bonnes réponses
+			for (int i = lastReponse; i < lines.length; i++) {
+				qcm.ajouterReponse(lines[i].substring(2), true);
 			}
 			return qcm;
 		} catch (Exception e) {
@@ -186,8 +196,8 @@ public class QCM extends Question {
 		qcm.ajouterReponse("A", true);
 		qcm.ajouterReponse("B", false);
 		qcm.ajouterReponse("C", true);
-		qcm.getAsData("QCM/");
-		//QCM qcm2 = getAsInstance("QCM/", metier);
+		qcm.getAsData("data/QCM");
+		//QCM qcm2 = getAsInstance("data/QCM/", metier);
 		//System.out.println(qcm2);
 	}
 }

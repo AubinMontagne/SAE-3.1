@@ -50,7 +50,7 @@ public class Notion
 
 	public String toString(){
 		String res = "Notion : " + this.getNom() + " (id : " + this.getId() + ")\n";
-		res += "Ressource associée : " + this.getRessourceAssociee().getNom() + "\n";
+		res += "Ressource associée : " + this.getRessourceAssociee().getNom();
 		return res;
 	}
 }
