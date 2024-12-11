@@ -4,52 +4,52 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class Metier{
-    private ArrayList<Notion> notions;
-    private ArrayList<Ressource> ressources;
-    private ArrayList<Question> questions;
+    private ArrayList<Notion> lstNotions;
+    private ArrayList<Ressource> lstRessources;
+    private ArrayList<Question> lstQuestions;
 
     public Metier(){
-        this.notions = new ArrayList<>();
-        this.ressources = new ArrayList<>();
-        this.questions = new ArrayList<>();
+        this.lstNotions = new ArrayList<>();
+        this.lstRessources = new ArrayList<>();
+        this.lstQuestions = new ArrayList<>();
     }
 
     public boolean ajouterNotion(Notion notion){
         if (notion != null){
-            this.notions.add(notion);
+            this.lstNotions.add(notion);
             return true;
         }
         return false;
     }
     public boolean ajouterRessource(Ressource ressource){
         if (ressource != null){
-            this.ressources.add(ressource);
+            this.lstRessources.add(ressource);
             return true;
         }
         return false;
     }
     public boolean ajouterQuestion(Question question){
         if (question != null){
-            return this.questions.add(question);
+            return this.lstQuestions.add(question);
         }
         return false;
     }
 	
 	public boolean supprimerNotion(Notion notion){
 		if (notion != null){
-			return this.notions.remove(notion);
+			return this.lstNotions.remove(notion);
 		}
 		return false;
 	}
 	public boolean supprimerRessource(Ressource ressource){
 		if (ressource != null){
-			return this.ressources.remove(ressource);
+			return this.lstRessources.remove(ressource);
 		}
 		return false;
 	}
 	public boolean supprimerQuestion(Question question){
 		if (question != null){
-			return this.questions.remove(question);
+			return this.lstQuestions.remove(question);
 		}
 		return false;
 	}
@@ -57,17 +57,17 @@ public class Metier{
 	// Get 
 
     public ArrayList<Notion> getNotions(){
-        return this.notions;
+        return this.lstNotions;
     }
     public ArrayList<Ressource> getRessources(){
-        return this.ressources;
+        return this.lstRessources;
     }
     public ArrayList<Question> getQuestions(){
-        return this.questions;
+        return this.lstQuestions;
     }
 
     public Notion getNotionById(int id){
-        for (Notion notion : this.notions){
+        for (Notion notion : this.lstNotions){
             if (notion.getId() == id){
                 return notion;
             }
@@ -75,7 +75,7 @@ public class Metier{
         return null;
     }
     public Ressource getRessourceById(int id){
-        for (Ressource ressource : this.ressources){
+        for (Ressource ressource : this.lstRessources){
             if (ressource.getId() == id){
                 return ressource;
             }
@@ -84,7 +84,7 @@ public class Metier{
     }
 
 	public Question getQuestion(Question question){
-		for (Question q : this.questions){
+		for (Question q : this.lstQuestions){
 			if (q.equals(question)){
 				return q;
 			}
@@ -92,7 +92,7 @@ public class Metier{
 		return null;
 	}
 	public Notion getNotion(Notion notion){
-		for (Notion n : this.notions){
+		for (Notion n : this.lstNotions){
 			if (n.equals(notion)){
 				return n;
 			}
@@ -100,7 +100,7 @@ public class Metier{
 		return null;
 	}
 	public Ressource getRessource(Ressource ressource){
-		for (Ressource r : this.ressources){
+		for (Ressource r : this.lstRessources){
 			if (r.equals(ressource)){
 				return r;
 			}
@@ -110,7 +110,7 @@ public class Metier{
 
 	public Question getQuestionAleatoire(Notion n, Difficulte d){
 		ArrayList<Question> qs = new ArrayList<>();
-		for (Question question : this.questions){
+		for (Question question : this.lstQuestions){
 			if (question.getNotion().equals(n) && question.getDifficulte().equals(d)){
 				qs.add(question);
 			}
@@ -130,7 +130,7 @@ public class Metier{
 				dir.mkdirs();
 			}
             FileWriter writer = new FileWriter(path+"/notions.csv");
-            for (Notion notion : this.notions){
+            for (Notion notion : this.lstNotions){
                 writer.write(notion.getAsData() + "\n");
             }
             writer.close();
@@ -145,7 +145,7 @@ public class Metier{
 				dir.mkdirs();
 			}
             FileWriter writer = new FileWriter(path+"/ressources.csv");
-            for (Ressource ressource : this.ressources){
+            for (Ressource ressource : this.lstRessources){
                 writer.write(ressource.getAsData() + "\n");
             }
             writer.close();
@@ -160,7 +160,7 @@ public class Metier{
 			BufferedReader reader = new BufferedReader(new FileReader(path+"/ressources.csv"));
 			String line;
 			while ((line = reader.readLine()) != null){
-				this.ressources.add(Ressource.getFromData(line, this));
+				this.lstRessources.add(Ressource.getFromData(line, this));
 			}
 			reader.close();
 		}catch(IOException e){
@@ -173,7 +173,7 @@ public class Metier{
 			BufferedReader reader = new BufferedReader(new FileReader(path+"/notions.csv"));
 			String line;
 			while ((line = reader.readLine()) != null){
-				this.notions.add(Notion.getFromData(line, this));
+				this.lstNotions.add(Notion.getFromData(line, this));
 			}
 			reader.close();
 		}catch(IOException e){

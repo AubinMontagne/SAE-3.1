@@ -15,24 +15,24 @@ import javax.swing.text.rtf.RTFEditorKit;
 
 public class EliminationReponse extends Question {
 	private String reponseCorrecte;
-	private HashMap<String,Integer[]> reponses;
+	private HashMap<String,Integer[]> hmReponses;
 
 	/**
 	 * Liste des réponses dans l'ordre d'élimination.
 	 * @param reponseCorrecte La réponse correcte.
-	 * @param reponses         Les réponses incorrectes et la réponses correcte dans l'ordre définit par le concepteur.
+	 * @param hmReponses         Les réponses incorrectes et la réponses correcte dans l'ordre définit par le concepteur.
 	 * @param pointsPerdusParElimination Les points perdus par élimination.
 	 */
 	public EliminationReponse(String intitule, Difficulte difficulté, Notion notion, int temps, int points, Metier metier) {
 		super(intitule, difficulté, notion, temps, points, metier);
 		this.reponseCorrecte = "";
-		this.reponses = new HashMap<>();
+		this.hmReponses = new HashMap<>();
 	}
 
 	public EliminationReponse(String intitule, Difficulte difficulté, Notion notion, int temps, int points, Metier metier, String explication) {
 		super(intitule, difficulté, notion, temps, points, metier, explication);
 		this.reponseCorrecte = "";
-		this.reponses = new HashMap<>();
+		this.hmReponses = new HashMap<>();
 	}
 
 	// Getters
@@ -40,13 +40,13 @@ public class EliminationReponse extends Question {
 		return this.reponseCorrecte;
 	}
 
-	public HashMap<String,Integer[]> getreponses() {
-		return this.reponses;
+	public HashMap<String,Integer[]> getHmReponses() {
+		return this.hmReponses;
 	}
 
 	public int getLastIndex() {
 		int indexMax = 0;
-		for (Integer[] index : this.reponses.values()) {
+		for (Integer[] index : this.hmReponses.values()) {
 			if (index[1] > indexMax) {
 				indexMax = index[1];
 			}
@@ -63,20 +63,20 @@ public class EliminationReponse extends Question {
 		this.reponseCorrecte = reponseCorrecte;
 	}
 
-	public void setreponses(HashMap<String,Integer[]>  reponses) {
-		this.reponses = reponses;
+	public void setHmReponses(HashMap<String,Integer[]>  hmReponses) {
+		this.hmReponses = hmReponses;
 	}
 
 
 	// Methods to add and remove incorrect responses
 	public void ajouterReponse(String reponse, int points, int ordre) {
-		if (!this.reponses.containsKey(reponse) && ordre <= this.getLastIndex()+1) {
-			this.reponses.put(reponse, new Integer[]{points, ordre});
+		if (!this.hmReponses.containsKey(reponse) && ordre <= this.getLastIndex()+1) {
+			this.hmReponses.put(reponse, new Integer[]{points, ordre});
 		}
 	}
 
 	public void removeReponse(String reponse) {
-		this.reponses.remove(reponse);
+		this.hmReponses.remove(reponse);
 	}
 
 	public void getAsData(String directoryPath) {
@@ -122,12 +122,12 @@ public class EliminationReponse extends Question {
 			style.addAttribute(StyleConstants.FontFamily, "Serif");
 			doc.insertString(doc.getLength(), "Réponses possibles:\n", style);
 
-			for (String reponse : this.reponses.keySet()) {
-				int pointPerdus = this.reponses.get(reponse)[0];
+			for (String reponse : this.hmReponses.keySet()) {
+				int pointPerdus = this.hmReponses.get(reponse)[0];
 				if (reponse.equals(this.reponseCorrecte)){
 					pointPerdus = 0;
 				}
-				doc.insertString(doc.getLength(), "- " + reponse + "( Point Perdus : " + pointPerdus + " ,Numero : " + this.reponses.get(reponse)[1] + ")\n", style);
+				doc.insertString(doc.getLength(), "- " + reponse + "( Point Perdus : " + pointPerdus + " ,Numero : " + this.hmReponses.get(reponse)[1] + ")\n", style);
 			}
 
 			// Ajouter les réponses correctes
@@ -218,18 +218,18 @@ public class EliminationReponse extends Question {
 		String res = super.toString();
 		res += "Reponse correcte : " + this.reponseCorrecte + "\n";
 		res += "Reponses : \n";
-		for (String reponse : this.reponses.keySet()) {
-			res += reponse + " : " + this.reponses.get(reponse)[0] + " , " + this.reponses.get(reponse)[1] + "\n";
+		for (String reponse : this.hmReponses.keySet()) {
+			res += reponse + " : " + this.hmReponses.get(reponse)[0] + " , " + this.hmReponses.get(reponse)[1] + "\n";
 		}
 		return res;
 	}
 
 	public void echangerPlace(String reponse1, String reponse2) {
-		if (this.reponses.containsKey(reponse1) && this.reponses.containsKey(reponse2)) {
-			int index1 = this.reponses.get(reponse1)[1];
-			int index2 = this.reponses.get(reponse2)[1];
-			this.reponses.get(reponse1)[1] = index2;
-			this.reponses.get(reponse2)[1] = index1;
+		if (this.hmReponses.containsKey(reponse1) && this.hmReponses.containsKey(reponse2)) {
+			int index1 = this.hmReponses.get(reponse1)[1];
+			int index2 = this.hmReponses.get(reponse2)[1];
+			this.hmReponses.get(reponse1)[1] = index2;
+			this.hmReponses.get(reponse2)[1] = index1;
 		}
 	}
 }

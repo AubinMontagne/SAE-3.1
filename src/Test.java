@@ -87,7 +87,7 @@ public class Test {
 		questionnaire.defNbQuestion(notion, Difficulte.FACILE, 2);
 		questionnaire.defNbQuestion(notion, Difficulte.MOYEN, 2);
 		questionnaire.defNbQuestion(notion, Difficulte.DIFFICILE, 2);
-		questionnaire.initListQuestions();
+		questionnaire.initLstQuestions();
 
 		System.out.println(questionnaire.toString());
 

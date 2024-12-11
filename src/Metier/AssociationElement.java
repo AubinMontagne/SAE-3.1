@@ -13,37 +13,37 @@ import javax.swing.text.rtf.RTFEditorKit;
 
 public class AssociationElement extends Question
 {
-    private HashMap<String, String> associations;
+    private HashMap<String, String> hmAssociations;
 
     // Constructeur
     public AssociationElement(String intitule, Difficulte difficulté,Notion notion,int temps,int points,Metier metier, String explication)
     {
         super(intitule, difficulté, notion, temps, points,metier, explication);
-        this.associations = new HashMap<>();
+        this.hmAssociations = new HashMap<>();
     }
 
     public AssociationElement(String intitule, Difficulte difficulté, Notion notion, int temps,int points,Metier metier)
     {
         super(intitule, difficulté, notion, temps, points,metier);
-        this.associations = new HashMap<>();
+        this.hmAssociations = new HashMap<>();
     }
 
     public HashMap<String, String> getAssociations()
     {
-        return this.associations;
+        return this.hmAssociations;
     }
 
 
     public void ajouterAssociation(String gauche, String droite)
     {
 		if (!(gauche == null || droite == null)) {
-        	this.associations.put(gauche, droite);
+        	this.hmAssociations.put(gauche, droite);
 		}
     }
 
     public void supprimerAssociation(String gauche)
     {
-        this.associations.remove(gauche);
+        this.hmAssociations.remove(gauche);
     }
 
 	public void getAsData(String directoryPath)
@@ -90,9 +90,9 @@ public class AssociationElement extends Question
 			style.addAttribute(StyleConstants.FontFamily, "Serif");
 			doc.insertString(doc.getLength(), "Réponses possibles:\n", style);
 
-			for (String gauche : this.associations.keySet()) {
+			for (String gauche : this.hmAssociations.keySet()) {
 				
-				doc.insertString(doc.getLength(), "- " + gauche + " -> " + this.associations.get(gauche) + "\n", style);
+				doc.insertString(doc.getLength(), "- " + gauche + " -> " + this.hmAssociations.get(gauche) + "\n", style);
 			}
 
 			FileOutputStream fos = new FileOutputStream(fileName);
@@ -168,8 +168,8 @@ public class AssociationElement extends Question
 	public String toString(){
 		String res = super.toString();
 		res += "Associations : \n";
-		for (String gauche : this.associations.keySet()) {
-			res += gauche + " -> " + this.associations.get(gauche) + "\n";
+		for (String gauche : this.hmAssociations.keySet()) {
+			res += gauche + " -> " + this.hmAssociations.get(gauche) + "\n";
 		}
 		return res;
 	}

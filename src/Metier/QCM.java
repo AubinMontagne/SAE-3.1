@@ -14,43 +14,43 @@ import javax.swing.text.StyleContext;
 import javax.swing.text.rtf.RTFEditorKit;
 
 public class QCM extends Question {
-	private HashMap<String, Boolean> reponses;
+	private HashMap<String, Boolean> hmReponses;
 
 	public QCM(String intitule, Difficulte difficulté, Notion notion, int temps, int points, Metier metier) {
 		super(intitule, difficulté, notion, temps, points, metier);
-		this.reponses = new HashMap<String, Boolean>();
+		this.hmReponses = new HashMap<String, Boolean>();
 	}
 
 	public QCM(String intitule, Difficulte difficulté, Notion notion, int temps, int points, Metier metier,
 			String explication) {
 		super(intitule, difficulté, notion, temps, points, metier, explication);
-		this.reponses = new HashMap<String, Boolean>();
+		this.hmReponses = new HashMap<String, Boolean>();
 	}
 
 	// Get
 
 	public HashMap<String, Boolean> getReponses() {
-		return this.reponses;
+		return this.hmReponses;
 	}
 
 	// Set
 
-	public void setReponses(HashMap<String, Boolean> reponses) {
-		this.reponses = reponses;
+	public void setHmReponses(HashMap<String, Boolean> hmReponses) {
+		this.hmReponses = hmReponses;
 	}
 
 	// Méthode pour gérer les réponse ajouter/enlever
 	public void ajouterReponse(String reponse, Boolean correct) {
-		if (this.reponses.containsKey(reponse)) {
-			this.reponses.replace(reponse, correct);
+		if (this.hmReponses.containsKey(reponse)) {
+			this.hmReponses.replace(reponse, correct);
 		}
 		else {
-			this.reponses.put(reponse, correct);
+			this.hmReponses.put(reponse, correct);
 		}
 	}
 
 	public void enleverReponse(String reponse) {
-		this.reponses.remove(reponse);
+		this.hmReponses.remove(reponse);
 	}
 
 	public void getAsData(String directoryPath) {
@@ -96,7 +96,7 @@ public class QCM extends Question {
 			style.addAttribute(StyleConstants.FontFamily, "Serif");
 			doc.insertString(doc.getLength(), "Réponses possibles:\n", style);
 
-			for (String reponse : this.reponses.keySet()) {
+			for (String reponse : this.hmReponses.keySet()) {
 				doc.insertString(doc.getLength(), "- " + reponse + "\n", style);
 			}
 
@@ -104,7 +104,7 @@ public class QCM extends Question {
 			style.addAttribute(StyleConstants.FontFamily, "Serif");
 			doc.insertString(doc.getLength(), "Bonnes réponses:\n", style);
 
-			for (HashMap.Entry<String, Boolean> entry : this.reponses.entrySet()) {
+			for (HashMap.Entry<String, Boolean> entry : this.hmReponses.entrySet()) {
 				if (entry.getValue()) {
 					doc.insertString(doc.getLength(), "- " + entry.getKey() + "\n", style);
 				}
@@ -184,7 +184,7 @@ public class QCM extends Question {
 	public String toString() {
 		String res = super.toString();
 		res += "Réponses : \n";
-		for (HashMap.Entry<String, Boolean> entry : this.reponses.entrySet()) {
+		for (HashMap.Entry<String, Boolean> entry : this.hmReponses.entrySet()) {
 			res += entry.getKey() + " -> " + entry.getValue() + "\n";
 		}
 		return res;
