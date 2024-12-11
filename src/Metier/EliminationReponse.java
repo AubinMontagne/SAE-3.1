@@ -4,8 +4,7 @@ import java.util.HashMap;
 
 public class EliminationReponse extends Question {
 	private String reponseCorrecte;
-	private HashMap<String,int> reponses;
-	private int pointsPerdusParElimination;
+	private HashMap<String,Integer[]> reponses;
 
 	/**
 	 * Liste des réponses dans l'ordre d'élimination.
@@ -22,8 +21,7 @@ public class EliminationReponse extends Question {
 	public EliminationReponse(String intitule, Difficulte difficulté, Notion notion, int temps, int points, Metier metier, String reponseCorrecte, String explication) {
 		super(intitule, difficulté, notion, temps, points, metier, explication);
 		this.reponseCorrecte = reponseCorrecte;
-		this.reponses = new ArrayList<>();
-		this.pointsPerdusParElimination = pointsPerdusParElimination;
+		this.reponses = new HashMap<>();
 	}
 
 	// Getters
@@ -31,12 +29,18 @@ public class EliminationReponse extends Question {
 		return this.reponseCorrecte;
 	}
 
-	public ArrayList<String> getreponses() {
+	public HashMap<String,Integer[]> getreponses() {
 		return this.reponses;
 	}
 
-	public int getPointsPerdusParElimination() {
-		return this.pointsPerdusParElimination;
+	public int getLastIndex() {
+		int indexMax = 0;
+		for (Integer[] index : this.reponses.values()) {
+			if (index[1] > indexMax) {
+				indexMax = index[1];
+			}
+		}
+		return indexMax + 1;
 	}
 
 	public boolean isReponseCorrecte(String reponse) {
@@ -48,71 +52,28 @@ public class EliminationReponse extends Question {
 		this.reponseCorrecte = reponseCorrecte;
 	}
 
-	public void setreponses(ArrayList<String> reponses) {
+	public void setreponses(HashMap<String,Integer[]>  reponses) {
 		this.reponses = reponses;
 	}
 
-	public void setPointsPerdusParElimination(int pointsPerdusParElimination) {
-		this.pointsPerdusParElimination = pointsPerdusParElimination;
-	}
 
 	// Methods to add and remove incorrect responses
-	public void addReponseIncorrecte(String reponseIncorrecte) {
-		this.reponses.add(reponseIncorrecte);
-	}
-
-	public void removeReponseIncorrecte(String reponseIncorrecte) {
-		this.reponses.remove(reponseIncorrecte);
-	}
-
-	public void echangerPlace(String reponse1, String reponse2) {
-		int index1 = this.reponses.indexOf(reponse1);
-		int index2 = this.reponses.indexOf(reponse2);
-		if (index1 != -1 && index2 != -1) {
-			this.reponses.set(index1, reponse2);
-			this.reponses.set(index2, reponse1);
+	public void addReponse(String reponse, int points) {
+		if (!this.reponses.containsKey(reponse)) {
+			this.reponses.put(reponse, new Integer[]{points,this.getLastIndex()});
 		}
 	}
 
-	@override
-	public void getAsData(String directoryPath) {
-		try {
-			File directory = new File(directoryPath);
-			if (!directory.exists()) {
-				directory.mkdirs();
-			}
+	public void removeReponse(String reponse) {
+		this.reponses.remove(reponse);
+	}
 
-			String fileName = Paths.get(directoryPath, "EliminationReponse.rtf").toString();
-			DefaultStyledDocument doc = new DefaultStyledDocument();
-			Style def = StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
-			Style s = doc.addStyle("bold", def);
-			StyleConstants.setBold(s, true);
-			doc.insertString(doc.getLength(), "Question : ", s);
-			doc.insertString(doc.getLength(), this.intitule + "\n", def);
-			doc.insertString(doc.getLength(), "Difficulté : ", s);
-			doc.insertString(doc.getLength(), this.difficulte + "\n", def);
-			doc.insertString(doc.getLength(), "Notion : ", s);
-			doc.insertString(doc.getLength(), this.notion + "\n", def);
-			doc.insertString(doc.getLength(), "Temps : ", s);
-			doc.insertString(doc.getLength(), this.temps + "\n", def);
-			doc.insertString(doc.getLength(), "Points : ", s);
-			doc.insertString(doc.getLength(), this.points + "\n", def);
-			doc.insertString(doc.getLength(), "Réponse correcte : ", s);
-			doc.insertString(doc.getLength(), this.reponseCorrecte + "\n", def);
-			doc.insertString(doc.getLength(), "Points perdus par élimination : ", s);
-			doc.insertString(doc.getLength(), this.pointsPerdusParElimination + "\n", def);
-			doc.insertString(doc.getLength(), "Réponses : ", s);
-			for (String reponse : this.reponses) {
-				doc.insertString(doc.getLength(), reponse + "\n", def);
-			}
-			doc.insertString(doc.getLength(), "Explication : ", s);
-			doc.insertString(doc.getLength(), this.explication + "\n", def);
-			RTFEditorKit kit = new RTFEditorKit();
-			FileOutputStream file = new FileOutputStream(fileName);
-			kit.write(file, doc, 0, doc.getLength());
-			file.close();
-		} catch (IOException | BadLocationException e) {
-			e.printStackTrace();
+	public void echangerPlace(String reponse1, String reponse2) {
+		if (this.reponses.containsKey(reponse1) && this.reponses.containsKey(reponse2)) {
+			int index1 = this.reponses.get(reponse1)[1];
+			int index2 = this.reponses.get(reponse2)[1];
+			this.reponses.get(reponse1)[1] = index2;
+			this.reponses.get(reponse2)[1] = index1;
 		}
 	}
 }
