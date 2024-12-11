@@ -119,7 +119,7 @@ public class Questionnaire {
 		{
 			str += n.toString() + "\n";
 		}
-		str += "Liste des questions : \n\n";
+		str += "\nListe des questions : \n\n";
 		for(Question qs : this.listQuestion)
 		{
 			str += qs.toString() + "\n";
