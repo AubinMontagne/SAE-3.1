@@ -29,6 +29,7 @@ public class Questionnaire {
         this.tempsEstimée = 0;
         this.chronoBool = chronoBool;
         this.listNotions = new ArrayList<>();
+		this.listQuestion = new ArrayList<>();
         this.questionsParDifficulte = new HashMap<>();
         this.pointMax  = 0;
 		this.metier    = metier;

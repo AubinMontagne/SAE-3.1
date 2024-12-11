@@ -88,7 +88,7 @@ public class Test {
 		questionnaire.defNbQuestion(notion, Difficulte.MOYEN, 10);
 		questionnaire.defNbQuestion(notion, Difficulte.DIFFICILE, 10);
 
-		System.out.println(questionnaire.getlistNotions());
+		System.out.println(questionnaire.toString());
 
 		// Test de la classe Metier
 
