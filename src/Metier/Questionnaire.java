@@ -1,4 +1,4 @@
-public package src.Metier;
+public src.Metier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
