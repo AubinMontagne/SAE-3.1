@@ -156,6 +156,4 @@ public class Questionnaire {
       return var1;
    }
 }
- {
-	
-}
+
