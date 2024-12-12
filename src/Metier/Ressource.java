@@ -2,7 +2,8 @@ package Metier;
 
 public class Ressource
 {
-    private int    id;
+    private static int    nid=0;
+    private int id;
     private String nom;
     private String accronym;
 
@@ -15,7 +16,7 @@ public class Ressource
      */
     public Ressource(int id, String nom, String accronym)
     {
-        this.id       = id;
+        this.id       = ++nid;
         this.nom      = nom;
         this.accronym = accronym;
     }
