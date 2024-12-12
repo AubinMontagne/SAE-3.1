@@ -14,7 +14,7 @@ public class Ressource
      * @param nom       Le nom de la ressource.
      * @param acronyme  L'acronyme de la ressource.
      */
-    public Ressource(int id, String nom, String accronym)
+    public Ressource(String nom, String accronym)
     {
         this.id       = ++nid;
         this.nom      = nom;
