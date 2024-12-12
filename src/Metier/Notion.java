@@ -3,6 +3,7 @@ package Metier;
 public class Notion
 {
     private Metier    metier;
+    private static int nid;
     private int       id;
     private String    nom;
     private Ressource ressourceAssociee;
@@ -14,10 +15,10 @@ public class Notion
      * @param nom               Le nom de la notion.
      * @param ressourceAssociee La ressource associée à la notion.
      */
-    public Notion(int id, String nom, Ressource ressourceAssociee,Metier metier)
+    public Notion(String nom, Ressource ressourceAssociee,Metier metier)
     {
         this.metier = metier;
-        this.id                = id;
+        this.id                = ++nid;
         this.nom               = nom;
         this.ressourceAssociee = ressourceAssociee;
     }
