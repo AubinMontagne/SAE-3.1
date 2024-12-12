@@ -17,40 +17,40 @@ public class Questionnaire {
    private List<Notion> lstNotions;
    private List<Question> lstQuestion;
 
-   public Questionnaire(String var1, Ressource var2, boolean var3, Metier var4) {
-      this.nom = var1;
-      this.ressource = var2;
+   public Questionnaire(String nom, Ressource ressource, boolean estChronom, Metier metier) {
+      this.nom = nom;
+      this.ressource = ressource;
       this.tempsEstimée = 0;
-      this.chronoBool = var3;
+      this.chronoBool = estChronom;
       this.lstNotions = new ArrayList();
       this.lstQuestion = new ArrayList();
       this.hmQuestionsParDifficulte = new HashMap();
       this.pointMax = 0;
-      this.metier = var4;
+      this.metier = metier;
    }
 
-   public void ajouterNotion(Notion var1) {
-      if (!this.lstNotions.contains(var1)) {
-         this.lstNotions.add(var1);
-         this.hmQuestionsParDifficulte.put(var1, new HashMap());
+   public void ajouterNotion(Notion notion) {
+      if (!this.lstNotions.contains(notion)) {
+         this.lstNotions.add(notion);
+         this.hmQuestionsParDifficulte.put(notion, new HashMap());
       }
 
    }
 
-   public void supprimerNotion(Notion var1) {
-      if (this.lstNotions.contains(var1)) {
-         this.lstNotions.remove(var1);
-         this.hmQuestionsParDifficulte.remove(var1);
+   public void supprimerNotion(Notion notion) {
+      if (this.lstNotions.contains(notion)) {
+         this.lstNotions.remove(notion);
+         this.hmQuestionsParDifficulte.remove(notion);
       }
 
    }
 
-   public void defNbQuestion(Notion var1, Difficulte var2, int var3) {
-      if (!this.hmQuestionsParDifficulte.containsKey(var1)) {
-         this.ajouterNotion(var1);
+   public void defNbQuestion(Notion notion, Difficulte difficulte, int nbQuestion) {
+      if (!this.hmQuestionsParDifficulte.containsKey(notion)) {
+         this.ajouterNotion(notion);
       }
 
-      ((HashMap)this.hmQuestionsParDifficulte.get(var1)).put(var2, var3);
+      ((HashMap)this.hmQuestionsParDifficulte.get(notion)).put(difficulte, nbQuestion);
    }
 
    public String getNom() {
@@ -156,4 +156,6 @@ public class Questionnaire {
       return var1;
    }
 }
-
+ {
+	
+}
