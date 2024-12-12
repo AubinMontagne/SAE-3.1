@@ -1,16 +1,14 @@
 package src.Vue;
 
-import src.Controleur;
-
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;  
 import java.util.List;
+import javax.swing.*;
+import src.Controleur;
 
-public class PanelEntiteAssociation extends JFrame implements ActionListener 
-{
+public class PanelEntiteAssociation extends JFrame implements ActionListener {
 	private Controleur ctrl;
 	private JPanel panelAssociations; // Panel pour les associations
 	private int nombreAssociations = 0; // Nombre d'associations
@@ -18,8 +16,7 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener
 	private JButton boutonAjoutAssociation;
 	private JButton boutonEnregistrer;
 
-	public PanelEntiteAssociation(Controleur ctrl)
-	{
+	public PanelEntiteAssociation(Controleur ctrl){
 		this.ctrl = ctrl;
 		setTitle("Créateur de Questions Entité-Association");
 		setSize(600,400);
@@ -61,8 +58,7 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener
 		boutonEnregistrer.addActionListener(this);
 	}
 
-	private void ajouterAssociation() 
-	{
+	private void ajouterAssociation(){
 		JPanel panelAjoutAssociation = new JPanel();
 		panelAjoutAssociation.setLayout(new BoxLayout(panelAjoutAssociation, BoxLayout.X_AXIS));
 
@@ -88,8 +84,7 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener
 		panelAssociations.repaint();
 	}
 
-	private void enregistrerAssociations() 
-	{
+	private void enregistrerAssociations(){
 		String question = champQuestion.getText();
 		if (question.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "Veuillez entrer une question.", "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -99,10 +94,8 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener
 		// Récupérer les entités et associations
 		List<String> associations = new ArrayList<>();
 		Component[] composants = panelAssociations.getComponents();
-		for (Component composant : composants) 
-		{
-			if (composant instanceof JPanel) 
-			{
+		for (Component composant : composants){
+			if (composant instanceof JPanel){
 				JPanel associationPanel = (JPanel) composant;
 				JTextField champEntite = (JTextField) associationPanel.getComponent(0);
 				JTextField champAssociation = (JTextField) associationPanel.getComponent(2);
@@ -112,8 +105,7 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener
 
 		// Résumé des données
 		StringBuilder resultats = new StringBuilder("Question : " + question + "\nAssociations :\n");
-		for (String association : associations) 
-		{
+		for (String association : associations){
 			resultats.append(association).append("\n");
 		}
 
@@ -121,11 +113,9 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) 
-	{
+	public void actionPerformed(ActionEvent e){
 		String commande = e.getActionCommand();
-		switch (commande) 
-		{
+		switch (commande){
 			case "ajouterAssociation":
 				ajouterAssociation();
 				break;
@@ -136,6 +126,4 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener
 				break;
 		}
 	}
-
-
 }

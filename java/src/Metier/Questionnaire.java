@@ -3,7 +3,7 @@ package src.Metier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Questionnaire {
+public class Questionnaire{
    private String nom;
    private Ressource ressource;
    private ArrayList<ArrayList<Integer>> lstNbQuestionsParDifficulte;
@@ -11,7 +11,7 @@ public class Questionnaire {
    private List<Notion> lstNotions;
    private List<Question> lstQuestion;
 
-   public Questionnaire(String nom, Ressource ressource, boolean estChronom) {
+   public Questionnaire(String nom, Ressource ressource, boolean estChronom){
       this.nom = nom;
       this.ressource = ressource;
       this.chronoBool = estChronom;
@@ -20,19 +20,19 @@ public class Questionnaire {
       this.lstNbQuestionsParDifficulte = new ArrayList<ArrayList<Integer>>();
    }
 
-   public void ajouterNotion(Notion notion) {
-      	if (!this.lstNotions.contains(notion)) {
+   public void ajouterNotion(Notion notion){
+      	if (!this.lstNotions.contains(notion)){
 		 	this.lstNotions.add(notion);
 	  	}
    	}
 
-   public void supprimerNotion(Notion notion) {
-	    if (this.lstNotions.contains(notion)) {
+   public void supprimerNotion(Notion notion){
+	    if (this.lstNotions.contains(notion)){
 		    this.lstNotions.remove(notion);
 	    }
    }
 
-   public void defNbQuestion(Notion notion, Difficulte difficulte, int nbQuestion) {
+   public void defNbQuestion(Notion notion, Difficulte difficulte, int nbQuestion){
       if (!this.lstNotions.contains(notion)){
 		this.ajouterNotion(notion);
 	  }
@@ -43,27 +43,27 @@ public class Questionnaire {
 	  this.lstNbQuestionsParDifficulte.add(lstIntegerNotion);
    }
 
-   public String getNom() {
+   public String getNom(){
       return this.nom;
    }
 
-   public Ressource getRessource() {
+   public Ressource getRessource(){
       return this.ressource;
    }
 
-   public List<Notion> getLstNotions() {
+   public List<Notion> getLstNotions(){
       return this.lstNotions;
    }
 
-   public List<Question> getLstQuestion() {
+   public List<Question> getLstQuestion(){
       return this.lstQuestion;
    }
 
-   public boolean getChronoBool() {
+   public boolean getChronoBool(){
       return this.chronoBool;
    }
 
-   public int getTempsEstimée() {
+   public int getTempsEstimée(){
       int sumTemps = 0;
 	  for (Question question : this.lstQuestion) {
 		 sumTemps += question.getTemps();
@@ -71,7 +71,7 @@ public class Questionnaire {
 	  return sumTemps;
    }
 
-   public int getPointMax() {
+   public int getPointMax(){
       int sumPoints = 0;
 	  for (Question question : this.lstQuestion) {
 		 sumPoints += question.getPoint();
@@ -79,24 +79,23 @@ public class Questionnaire {
 	  return sumPoints;
    }
 
-   public void setNom(String nom) {
+   public void setNom(String nom){
       this.nom = nom;
    }
 
-   public void setRessource(Ressource ressource) {
+   public void setRessource(Ressource ressource){
       this.ressource = ressource;
    }
 
-   public void setChronoBool(boolean chronoBool) {
+   public void setChronoBool(boolean chronoBool){
       this.chronoBool = chronoBool;
    }
 
-   public void addQuestion(Question question)
-   {
+   public void addQuestion(Question question){
       this.lstQuestion.add(question);
    }
 
-   	public void initLstQuestions(Metier metier) {
+   	public void initLstQuestions(Metier metier){
       	for (Notion n : this.lstNotions) {
 			for (ArrayList<Integer> lstIntegerNotion : this.lstNbQuestionsParDifficulte) {
 				if (lstIntegerNotion.get(0) == this.lstNotions.indexOf(n)) {

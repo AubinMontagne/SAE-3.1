@@ -1,26 +1,20 @@
 package src;
 
-import src.Metier.*;
-//import src.Vue.*;
-
 import java.util.ArrayList;
 import src.Metier.*;
 
-public class Controleur
-{
+public class Controleur{
     private Metier metier;
     //private FrameAccueil frameAccueil;
 
 
-    public Controleur()
-    {
+    public Controleur(){
         this.metier = new Metier();
     }
 
     // Get
 
-    public Metier getMetier()
-    {
+    public Metier getMetier(){
         return this.metier;
     }
 
@@ -55,36 +49,27 @@ public class Controleur
 
     // Set
 
-    public void setMetier(Metier metier)
-    {
+    public void setMetier(Metier metier){
         this.metier = metier;
     }
 
-	public void ajouterNotion(Notion notion)
-	{
+	public void ajouterNotion(Notion notion){
 		this.metier.ajouterNotion(notion);
 	}
-	public void ajouterQuestion(Question question)
-	{
+	public void ajouterQuestion(Question question){
 		this.metier.ajouterQuestion(question);
 	}
-	public void ajouterRessource(Ressource ressource)
-	{
+	public void ajouterRessource(Ressource ressource){
 		this.metier.ajouterRessource(ressource);
 	}
 
-
-	public void supprimerNotion(Notion notion)
-	{
+	public void supprimerNotion(Notion notion){
 		this.metier.supprimerNotion(notion);
 	}
-	public void supprimerQuestion(Question question)
-	{
+	public void supprimerQuestion(Question question){
 		this.metier.supprimerQuestion(question);
 	}
-	public void supprimerRessource(Ressource ressource)
-	{
+	public void supprimerRessource(Ressource ressource){
 		this.metier.supprimerRessource(ressource);
 	}
-
 }

@@ -56,21 +56,21 @@ public class EliminationReponse extends Question {
 
 
 	// Methods to add and remove incorrect responses
-	public void ajouterReponse(String reponse, int points, int ordre) {
+	public void ajouterReponse(String reponse, int points, int ordre){
 		if (!this.hmReponses.containsKey(reponse) && ordre <= this.getLastIndex()+1) {
 			this.hmReponses.put(reponse, new Integer[]{points, ordre});
 		}
 	}
 
-	public void removeReponse(String reponse) {
+	public void removeReponse(String reponse){
 		this.hmReponses.remove(reponse);
 	}
 
-	public void getAsData(String directoryPath) {
-		
+	public void getAsData(String directoryPath){
+
 	}
 
-	public static EliminationReponse getAsInstance(String pathDirectory, Metier metier) {
+	public static EliminationReponse getAsInstance(String pathDirectory, Metier metier){
 		return null;
 	}
 

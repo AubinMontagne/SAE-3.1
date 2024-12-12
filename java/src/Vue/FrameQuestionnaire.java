@@ -1,14 +1,12 @@
 package src.Vue;
 
-import src.Controleur;
 import javax.swing.*;
+import src.Controleur;
 
-public class FrameQuestionnaire extends JFrame
-{
+public class FrameQuestionnaire extends JFrame{
     private Controleur ctrl;
 
-    public FrameQuestionnaire( Controleur ctrl)
-    {
+    public FrameQuestionnaire( Controleur ctrl){
         this.ctrl = ctrl;
 
         System.out.println("Création de la frame Questionnaire");

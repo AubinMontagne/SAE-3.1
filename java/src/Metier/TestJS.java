@@ -1,9 +1,7 @@
 package src.Metier;
 
-public class TestJS
-{
-	public static void main(String[] args)
-	{
+public class TestJS{
+	public static void main(String[] args){
 
 		Ressource r1 = new Ressource("R3.01_Dev_WEB", "DevWEB");
 		Notion n1 = new Notion("Ecriture en PHP", r1);

@@ -14,13 +14,11 @@ public class QCMBuilder
     private FileWriter fileWriter;
     private String path;
 
-    public QCMBuilder(Questionnaire questionnaire, String path)
-    {
+    public QCMBuilder(Questionnaire questionnaire, String path){
         this.questionnaire = questionnaire;
         this.path = path;
 
-        if(!this.creerDossier(path))
-        {
+        if(!this.creerDossier(path)){
             System.out.println("Erreur, ce questionnaire existe déjà !");
             return;
         }
@@ -34,19 +32,16 @@ public class QCMBuilder
             ecrireImage();
             ecrireJS();
 
-        }catch (Exception e)
-        {
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
 
 
-    public boolean creerDossier(String path)
-    {
+    public boolean creerDossier(String path){
         File file = new File(path + this.questionnaire.getNom() );
 
-        if(file.exists())
-        {
+        if(file.exists()){
             return false;
         }else {
             file.mkdir();
@@ -57,8 +52,7 @@ public class QCMBuilder
 
     /*Cette méthode permet l'écriture du index.html commun à tous les questionnaires.*/
 
-    public boolean ecrireHTML()
-    {
+    public boolean ecrireHTML(){
         try{
             String listeNotions = "";
 
@@ -67,10 +61,8 @@ public class QCMBuilder
             int nbMoyen = 0;
             int nbDifficile = 0;
 
-            for(Question q : this.questionnaire.getLstQuestion())
-            {
-                switch (q.getDifficulte().getIndice())
-                {
+            for(Question q : this.questionnaire.getLstQuestion()){
+                switch (q.getDifficulte().getIndice()){
                     case 1:
                         nbTresFacile++;
                         break;
@@ -87,8 +79,7 @@ public class QCMBuilder
 
             }
 
-            for(Notion n : this.questionnaire.getLstNotions())
-            {
+            for(Notion n : this.questionnaire.getLstNotions()){
                 listeNotions = listeNotions + "<li> " + n.getNom() + " </li>\n";
             }
 
@@ -132,8 +123,7 @@ public class QCMBuilder
             writer.write(html);
 
             writer.close();
-        }catch (Exception e)
-        {
+        }catch (Exception e){
             e.printStackTrace();
             return false;
         }
@@ -142,15 +132,13 @@ public class QCMBuilder
 
 
 
-    public boolean ecrireStyle()
-    {
+    public boolean ecrireStyle(){
         try{
             String css = "";
 
             this.scanner = new Scanner(new FileReader(System.getProperty("user.dir") + "/out/production/SAE-3.1/docs/style.css"));
 
-            while(scanner.hasNextLine())
-            {
+            while(scanner.hasNextLine()){
                 css = css + scanner.nextLine()+"\n";
             }
 
@@ -158,15 +146,13 @@ public class QCMBuilder
             writer.write(css);
 
             writer.close();
-        }catch (Exception e)
-        {
+        }catch (Exception e){
             e.printStackTrace();
         }
         return true;
     }
 
-    public boolean ecrireImage()
-    {
+    public boolean ecrireImage(){
         String[] tabImg = {"TF.png", "F.png", "M.png", "D.png"};
 
 
@@ -174,8 +160,7 @@ public class QCMBuilder
             Path folderPath = Path.of(path + this.questionnaire.getNom() + "/data/imgDif/");
             Files.createDirectories(folderPath);
 
-            for(String img : tabImg)
-            {
+            for(String img : tabImg){
 
                 String newPath = System.getProperty("user.dir") + "/out/production/SAE-3.1/data/Images/imgDif/" + img;
                 String newPath2 = path + this.questionnaire.getNom() + "/data/imgDif/" + img;
@@ -183,8 +168,7 @@ public class QCMBuilder
                 Files.copy(Path.of(newPath), Path.of(newPath2), StandardCopyOption.REPLACE_EXISTING);
 
             }
-        }catch (Exception e)
-        {
+        }catch (Exception e){
             e.printStackTrace();
         }
 
@@ -192,8 +176,7 @@ public class QCMBuilder
     }
 
 
-    public void ecrireJS()
-    {
+    public void ecrireJS(){
         int noteMax = 0;
 
 
@@ -201,16 +184,14 @@ public class QCMBuilder
         String tabCompletion = "[";
         String lignes = ";;
 
-        for(int i = 0 ; i < this.questionnaire.getLstQuestion().size() ; i++)
-        {
+        for(int i = 0 ; i < this.questionnaire.getLstQuestion().size() ; i++){
             tabCompletion = tabCompletion + "false,";
         }
 
         tabCompletion = tabCompletion.substring(0, tabCompletion.length()-1);
         tabCompletion = tabCompletion + "];";
 
-        for(Question q : this.questionnaire.getLstQuestion())
-        {
+        for(Question q : this.questionnaire.getLstQuestion()){
             noteMax += q.getPoint();
         }
 
@@ -221,12 +202,9 @@ public class QCMBuilder
 
         String tabSelection = "\n[\n[],\n[";
 
-        for(Question q : this.questionnaire.getLstQuestion())
-        {
-            if(q instanceof QCM)
-            {
-                for(int i = 0 ; i < ((QCM) q).getNbReponses() ; i ++)
-                {
+        for(Question q : this.questionnaire.getLstQuestion()){
+            if(q instanceof QCM){
+                for(int i = 0 ; i < ((QCM) q).getNbReponses() ; i ++){
                     tabSelection = tabSelection + "false,";
                 }
             }
@@ -243,13 +221,10 @@ public class QCMBuilder
         //Debut lignes
 
 
-        for(Question q : this.questionnaire.getLstQuestion())
-        {
+        for(Question q : this.questionnaire.getLstQuestion()){
             lignes = lignes + "let lignes" + indice + " = [";
-            if(q instanceof AssociationElement)
-            {
-                for(int i = 0 ; i < ((AssociationElement) q).getAssociations().size() ; i ++)
-                {
+            if(q instanceof AssociationElement){
+                for(int i = 0 ; i < ((AssociationElement) q).getAssociations().size() ; i ++){
                     lignes = lignes + "[],\n";
                 }
             }

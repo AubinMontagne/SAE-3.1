@@ -1,7 +1,6 @@
 package src.Metier;
 
-public class Ressource
-{
+public class Ressource{
     private String id;
     private String nom;
 
@@ -11,8 +10,7 @@ public class Ressource
      * @param id        L'identifiant de la ressource.
      * @param nom       Le nom de la ressource.
      */
-    public Ressource(String nom, String id)
-    {
+    public Ressource(String nom, String id){
         this.id       = id;
         this.nom      = nom;
     }

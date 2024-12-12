@@ -16,12 +16,12 @@ import javax.swing.text.rtf.RTFEditorKit;
 public class QCM extends Question {
 	private HashMap<String, Boolean> hmReponses;
 
-	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points) {
+	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points){
 		super(intitule, difficulte, notion, temps, points);
 		this.hmReponses = new HashMap<String, Boolean>();
 	}
 
-	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points,String explication) {
+	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points,String explication){
 		super(intitule, difficulte, notion, temps, points, explication);
 		this.hmReponses = new HashMap<String, Boolean>();
 	}

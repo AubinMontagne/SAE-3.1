@@ -1,7 +1,6 @@
 package src.Metier;
 
-public abstract class Question
-{
+public abstract class Question{
     private String     enonceFich;// intitulé + corps de la question
     private Difficulte difficulte;
     private Notion     notion;
@@ -18,8 +17,7 @@ public abstract class Question
      * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
      * @param point         Le nombre de points que rapporte la question.
      */
-    public Question(String enonceFich, Difficulte difficulte,Notion notion,int temps, int point)
-    {
+    public Question(String enonceFich, Difficulte difficulte,Notion notion,int temps, int point){
         this.enonceFich   = enonceFich;
         this.difficulte = difficulte;
         this.notion     = notion;
@@ -39,8 +37,7 @@ public abstract class Question
      * @param explicationFich   Le nom du fichier rtf contenant l'explication de la question.
      */
 
-    public Question(String enonceFich, Difficulte difficulte, Notion notion, int temps, int point, String explicationFich)
-    {
+    public Question(String enonceFich, Difficulte difficulte, Notion notion, int temps, int point, String explicationFich){
         this.enonceFich    = enonceFich;
         this.difficulte  = difficulte;
         this.notion      = notion;
@@ -71,8 +68,7 @@ public abstract class Question
     public void setPoint(int point)                 {this.point = point;}
     public void setExplicationFich(String explicationFich)   {this.explicationFich = explicationFich;}
 
-	public String toString()
-	{
+	public String toString(){
 		return "Difficulté: " + this.difficulte + "\n" +
 			   this.notion.toString() + "\n" +
 			   "Temps: " + this.temps + " secondes\n" +

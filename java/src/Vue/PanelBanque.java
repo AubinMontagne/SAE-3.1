@@ -14,8 +14,7 @@ import src.Metier.Notion;
 import src.Controleur;
 
 
-public class PanelBanque extends JPanel implements  ActionListener
-{
+public class PanelBanque extends JPanel implements  ActionListener{
     private Controleur ctrl;
 	private Notion notion;
 	private JButton btCreaQuest;
