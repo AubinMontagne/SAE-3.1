@@ -1,13 +1,14 @@
 package src;
 
 import src.Metier.*;
-import src.Vue.*;
+//import src.Vue.*;
 
 import java.util.ArrayList;
+
 public class Controleur
 {
     private Metier metier;
-    private FrameAccueil frameAccueil;
+    //private FrameAccueil frameAccueil;
 
 
     public Controleur()

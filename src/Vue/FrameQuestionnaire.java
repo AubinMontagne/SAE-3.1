@@ -12,7 +12,7 @@ public class FrameQuestionnaire extends JFrame
     {
         //this.ctrl = ctrl;
 
-        System.out.printl("Création de la frame Questionnaire");
+        System.out.println("Création de la frame Questionnaire");
 
         this.setTitle("Création du questionnaire");
         this.setSize(200,200);

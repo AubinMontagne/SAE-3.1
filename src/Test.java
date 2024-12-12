@@ -1,6 +1,6 @@
-import Metier.*;
-import Metier.Notion;
-import Metier.Ressource;
+package src;
+
+import src.Metier.*;
 
 public class Test {
 	public static void main(String[] args) {
