@@ -181,4 +181,20 @@ public class Metier{
 		}
 	}
 
+	public ArrayList<Question> getQuestionsParIdNotion(int notionId) 
+	{
+		ArrayList<Question> questionsAssociees = new ArrayList<>();
+	
+		for (Question question : this.lstQuestions) 
+		{
+			if (question.getNotion().getId() == notionId) 
+			{
+				questionsAssociees.add(question);
+				System.out.println(question);
+			}
+		}
+	
+		return questionsAssociees;
+	}
+
 }
