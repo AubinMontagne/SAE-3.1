@@ -22,7 +22,14 @@ public class Notion
         this.nom               = nom;
         this.ressourceAssociee = ressourceAssociee;
     }
-
+	public Notion(int id,String nom, Ressource ressourceAssociee,Metier metier)
+    {
+        this.metier = metier;
+        this.id                = id;
+        this.nom               = nom;
+        this.ressourceAssociee = ressourceAssociee;
+		if (id > nid) nid = id;
+	}
     // Get
 
 	public boolean equals(Notion notion){
