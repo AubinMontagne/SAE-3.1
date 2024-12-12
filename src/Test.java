@@ -6,22 +6,20 @@ public class Test {
 	public static void main(String[] args) {
 
 		Metier metier = new Metier();
-		Notion notion = new Notion(1, "Notion", new Ressource(1,"Ressource","R"),metier);
-		metier.ajouterNotion(notion);
-
-
+		
 		// Test des Ressources
 
 		System.out.println("\nTest des Ressources\n");
 
-		Ressource ressource = new Ressource(1, "Ressource", "R");
+		Ressource ressource = new Ressource( "Ressource", "R");
 		System.out.println(ressource);
 		metier.ajouterRessource(ressource);
 
 		// Test des Notions
 
 		System.out.println("Test des Notions\n");
-
+		Notion notion = new Notion(1, "Notion", ressource,metier);
+		metier.ajouterNotion(notion);
 		Notion notion2 = new Notion(2, "Notion2", ressource,metier);
 		System.out.println(notion2);
 
