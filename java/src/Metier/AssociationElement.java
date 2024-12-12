@@ -1,15 +1,6 @@
 package src.Metier;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.nio.file.Paths;
 import java.util.HashMap;
-import javax.swing.text.DefaultStyledDocument;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleContext;
-import javax.swing.text.rtf.RTFEditorKit;
 
 public class AssociationElement extends Question
 {
@@ -46,9 +37,7 @@ public class AssociationElement extends Question
         this.hmAssociations.remove(gauche);
     }
 
-	public void getAsData(String directoryPath) {
-
-	}
+	public void getAsData(String directoryPath) {}
 	public static AssociationElement getAsInstance(String pathDirectory, Metier metier) {
 		return null;
 	}

@@ -146,6 +146,22 @@ public class Metier{
         }
     }
 
+	public void saveQuestions(String path){
+		try{
+			File dir = new File(path);
+			if (!dir.exists()) {
+				dir.mkdirs();
+			}
+			FileWriter writer = new FileWriter(path+"/questions.csv");
+			for (Question question : this.lstQuestions){
+				writer.write(question.getAsData() + "\n");
+			}
+			writer.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+
 	public void getRessourcesFromData(String path){
 		try{
 			
@@ -173,8 +189,20 @@ public class Metier{
 		}
 	}
 
-	public ArrayList<Question> getQuestionsParNotion(Notion notion)
-	{
+	public void getQuestionFromData(String path){
+		try{
+			BufferedReader reader = new BufferedReader(new FileReader(path+"/questions.csv"));
+			String line;
+			while ((line = reader.readLine()) != null){
+				this.lstQuestions.add(Metier.getFromDataQuestion(line, this));
+			}
+			reader.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+
+	public ArrayList<Question> getQuestionsParNotion(Notion notion){
 		ArrayList<Question> questionsAssociees = new ArrayList<>();
 	
 		for (Question question : this.lstQuestions) 

@@ -199,6 +199,7 @@ public class QCMBuilder
 
         //Début tab completion
         String tabCompletion = "[";
+        String lignes = ";;
 
         for(int i = 0 ; i < this.questionnaire.getLstQuestion().size() ; i++)
         {
@@ -238,6 +239,21 @@ public class QCMBuilder
 
 
         //Fin tabSelection
+
+        //Debut lignes
+
+
+        for(Question q : this.questionnaire.getLstQuestion())
+        {
+            lignes = lignes + "let lignes" + indice + " = [";
+            if(q instanceof AssociationElement)
+            {
+                for(int i = 0 ; i < ((AssociationElement) q).getAssociations().size() ; i ++)
+                {
+                    lignes = lignes + "[],\n";
+                }
+            }
+        }
 
 
         String commun =
