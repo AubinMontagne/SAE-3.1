@@ -1,3 +1,5 @@
+package src.Vue;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -10,43 +12,24 @@ import javax.swing.table.DefaultTableModel;
 
 public class PanelBanque extends JPanel implements  ActionListener
 {
-    //private Controleur ctrl;
-	private Notion notion;
-    private ArrayList<Question> questions;
+    private Controleur ctrl;
+	private int idNotion;
 	private JButton btCreaQuest;
     private JPanel panelBanque;
     private JTable tbQuestion;
 	
 
 
-    public PanelBanque( ){
+    public PanelBanque(int idNotion, Controleur ctrl){
         //this.ctrl         = ctrl;
         this.panelBanque = new JPanel();
 		this.setLayout ( new BorderLayout() );
 		this.setVisible(true);
 
-        // En attendant d'avoir la liste des questions
-		Question quest1 = new Question( "Quels Question1 ? ", "IDE", "VS Code", 145, 4) ;
-		Question quest2 = new Question( "Quels Question2 ? ", "IDE", "Intel", 125, 2) ;
-		Question quest3 = new Question( "Quels Question3 ? ", "IDE", "gedit", 55,5) ;
-		Question quest4 = new Question( "Quels Question4 ? ", "code", "java", 45, 9) ;
-		Question quest5 = new Question( "Quels Question5 ? ", "IDE", "sql", 5, 1) ;
-		Question quest6 = new Question("Quels Question6 ? ", "IDA", "JavaScript", 14, 1);
-
         String[] tabEntetes = {"Question", "Ressource", "Notion", "Point"};
 
         String[][] data = {
             {quest1.getIntitule(), quest1.getRessource(), quest1.getNotion(), "" + quest1.getPoint()},
-            {quest2.getIntitule(), quest2.getRessource(), quest2.getNotion(), "" + quest2.getPoint()},
-            {quest3.getIntitule(), quest3.getRessource(), quest3.getNotion(), "" + quest3.getPoint()},
-            {quest4.getIntitule(), quest4.getRessource(), quest4.getNotion(), "" + quest4.getPoint()},
-            {quest5.getIntitule(), quest5.getRessource(), quest5.getNotion(), "" + quest5.getPoint()},
-            {quest1.getIntitule(), quest1.getRessource(), quest1.getNotion(), "" + quest1.getPoint()},
-            {quest2.getIntitule(), quest2.getRessource(), quest2.getNotion(), "" + quest2.getPoint()},
-            {quest3.getIntitule(), quest3.getRessource(), quest3.getNotion(), "" + quest3.getPoint()},
-            {quest4.getIntitule(), quest4.getRessource(), quest4.getNotion(), "" + quest4.getPoint()},
-            {quest5.getIntitule(), quest5.getRessource(), quest5.getNotion(), "" + quest5.getPoint()},
-            {quest6.getIntitule(), quest6.getRessource(), quest6.getNotion(), "" + quest6.getPoint()}
         };
 
         DefaultTableModel model = new DefaultTableModel(data, tabEntetes);

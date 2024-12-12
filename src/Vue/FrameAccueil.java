@@ -1,7 +1,7 @@
-package Vue;
+package src.Vue;
 
 
-//import src.Controleur;
+import src.Controleur;
 import javax.swing.*;
 
 public class FrameAccueil extends JFrame{

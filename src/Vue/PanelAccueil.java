@@ -1,6 +1,6 @@
-package Vue;
+package src.Vue;
 
-//import src.Controleur;
+import src.Controleur;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,15 +39,15 @@ public class PanelAccueil extends JPanel implements  ActionListener
     public void actionPerformed(ActionEvent e){
         if ( btBanque == e.getSource()){
             System.out.println("Hey la frame Banque s'ouvre");
-            //new FrameBanque(/ctrl/);
+            new FrameBanque();
         }
         if( btQuestionnaire == e.getSource()){
             System.out.println("Hey la frame Questionaire s'ouvre");
-            //new FrameQuestionnaire(/ctrl/);
+            //new FrameQuestionnaire(/*ctrl*/);
         }
         if(btRessources == e.getSource()){
             System.out.println("Hey la frame Param s'ouvre");
-            //new FrameParam(/ctrl*/);
+            new FrameRessource();
         }
     }
 }

@@ -1,15 +1,13 @@
-import Metier.*;
-import Metier.Notion;
-import Metier.Question;
-import Metier.Ressource;
-import Vue.*;
-import Vue.FrameBanque;
+package src;
+
+import src.Metier.*;
+import src.Vue.*;
+
 import java.util.ArrayList;
 public class Controleur
 {
     private Metier metier;
-    private FrameBanque frameBanque;
-    private FrameParam frameParam;
+    private FrameAccueil frameAccueil;
 
 
     public Controleur()

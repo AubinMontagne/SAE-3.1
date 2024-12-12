@@ -1,4 +1,5 @@
-import javax.swing.*;
+package src.Vue;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.*;
 
 public class PanelEntiteAssociation extends JFrame implements ActionListener {
 

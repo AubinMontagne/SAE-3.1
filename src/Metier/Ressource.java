@@ -21,6 +21,13 @@ public class Ressource
         this.accronym = accronym;
     }
 
+	public Ressource(int id, String nom, String accronym)
+    {
+        this.id       = id;
+        this.nom      = nom;
+        this.accronym = accronym;
+		if (id > nid) nid = id;
+    }
     // Get
 
 	public boolean equals(Ressource ressource){

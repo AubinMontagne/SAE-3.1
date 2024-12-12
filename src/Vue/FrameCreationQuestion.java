@@ -1,4 +1,6 @@
-//import src.Controleur;
+package src.Vue;
+
+import src.Controleur;
 import javax.swing.*;
 
 public class FrameCreationQuestion extends JFrame{ 
