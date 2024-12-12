@@ -1,4 +1,4 @@
-package Metier;
+package src.Metier;
 
 public enum Difficulte {
     TRES_FACILE("Tres facile", 1),

@@ -1,4 +1,4 @@
-package Metier;
+package src.Metier;
 
 public abstract class Question
 {
