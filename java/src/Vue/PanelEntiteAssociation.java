@@ -1,169 +1,136 @@
-package src.Vue;
-
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.ArrayList;  
 import java.util.List;
-import java.util.Map;
-import javax.swing.*;
 
-public class PanelEntiteAssociation extends JFrame implements ActionListener {
+public class PanelEntiteAssociation extends JFrame implements ActionListener 
+{
 
-    private JPanel panelEntites; // Panel pour les entités et leurs associations
-    private int nombreEntites = 0; // Nombre d'entités créées
-    private JTextField champQuestion;
-    private JButton boutonAjoutEntite;
-    private JButton boutonEnregistrer;
+	private JPanel panelAssociations; // Panel pour les associations
+	private int nombreAssociations = 0; // Nombre d'associations
+	private JTextField champQuestion;
+	private JButton boutonAjoutAssociation;
+	private JButton boutonEnregistrer;
 
-    // Stockage des entités et de leurs associations
-    private Map<String, List<String>> entitesAssociations;
+	public PanelEntiteAssociation() 
+	{
+		setTitle("Créateur de Questions Entité-Association");
+		setSize(600,400);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(new BorderLayout());
 
-    public PanelEntiteAssociation() {
-        setTitle("Créateur de Questions Entité-Association");
-        setSize(600, 400);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLayout(new BorderLayout());
+		// Panel pour la question
+		JPanel panelQuestion = new JPanel(new BorderLayout());
+		JLabel etiquetteQuestion = new JLabel("Question :");
+		champQuestion = new JTextField();
+		panelQuestion.add(etiquetteQuestion, BorderLayout.NORTH);
+		panelQuestion.add(champQuestion, BorderLayout.CENTER);
 
-        entitesAssociations = new HashMap<>();
+		// Panel pour les associations
+		panelAssociations = new JPanel();
+		panelAssociations.setLayout(new BoxLayout(panelAssociations, BoxLayout.Y_AXIS));
+		JScrollPane defilement = new JScrollPane(panelAssociations);
 
-        // Panel pour la question
-        JPanel panelQuestion = new JPanel(new BorderLayout());
-        JLabel etiquetteQuestion = new JLabel("Question :");
-        champQuestion = new JTextField();
-        panelQuestion.add(etiquetteQuestion, BorderLayout.NORTH);
-        panelQuestion.add(champQuestion, BorderLayout.CENTER);
+		// Bouton pour ajouter une association
+		boutonAjoutAssociation = new JButton("Ajouter une association");
+		boutonAjoutAssociation.setActionCommand("ajouterAssociation");
 
-        // Panel pour les entités et leurs associations
-        panelEntites = new JPanel();
-        panelEntites.setLayout(new BoxLayout(panelEntites, BoxLayout.Y_AXIS));
-        JScrollPane defilement = new JScrollPane(panelEntites);
+		// Bouton pour enregistrer
+		boutonEnregistrer = new JButton("Enregistrer");
+		boutonEnregistrer.setActionCommand("enregistrer");
 
-        // Bouton pour ajouter une entité
-        boutonAjoutEntite = new JButton("Ajouter une entité");
-        boutonAjoutEntite.setActionCommand("ajouterEntite");
+		// Panel des boutons
+		JPanel panelBoutons = new JPanel();
+		panelBoutons.add(boutonAjoutAssociation);
+		panelBoutons.add(boutonEnregistrer);
 
-        // Bouton pour enregistrer
-        boutonEnregistrer = new JButton("Enregistrer");
-        boutonEnregistrer.setActionCommand("enregistrer");
+		// Ajout des composants à la fenêtre
+		add(panelQuestion, BorderLayout.NORTH);
+		add(defilement, BorderLayout.CENTER);
+		add(panelBoutons, BorderLayout.SOUTH);
 
-        // Panel des boutons
-        JPanel panelBoutons = new JPanel();
-        panelBoutons.add(boutonAjoutEntite);
-        panelBoutons.add(boutonEnregistrer);
+		// Activation des listeners
+		boutonAjoutAssociation.addActionListener(this);
+		boutonEnregistrer.addActionListener(this);
+	}
 
-        // Ajout des composants à la fenêtre
-        add(panelQuestion, BorderLayout.NORTH);
-        add(defilement, BorderLayout.CENTER);
-        add(panelBoutons, BorderLayout.SOUTH);
+	private void ajouterAssociation() 
+	{
+		JPanel panelAjoutAssociation = new JPanel();
+		panelAjoutAssociation.setLayout(new BoxLayout(panelAjoutAssociation, BoxLayout.X_AXIS));
 
-        // Activation des listeners
-        boutonAjoutEntite.addActionListener(this);
-        boutonEnregistrer.addActionListener(this);
-    }
+		// Champs pour les entités et les associations
+		JTextField champEntite = new JTextField("Entité " + (++nombreAssociations), 10);
+		JTextField champAssociation = new JTextField("Association " + nombreAssociations, 10);
+		JButton boutonSupprimer = new JButton("Supprimer");
 
-    private void ajouterEntite() {
-        JPanel panelEntite = new JPanel();
-        panelEntite.setLayout(new BoxLayout(panelEntite, BoxLayout.Y_AXIS));
+		// Listener pour supprimer une association
+		boutonSupprimer.addActionListener(e -> {
+			panelAssociations.remove(panelAjoutAssociation);
+			panelAssociations.revalidate();
+			panelAssociations.repaint();
+		});
 
-        // Champ pour l'entité
-        JTextField champEntite = new JTextField("Entité " + (++nombreEntites), 15);
-        JButton boutonAjouterAssociation = new JButton("Ajouter une association");
-        JPanel panelHautEntite = new JPanel(new BorderLayout());
-        panelHautEntite.add(champEntite, BorderLayout.CENTER);
-        panelHautEntite.add(boutonAjouterAssociation, BorderLayout.EAST);
+		panelAjoutAssociation.add(champEntite);
+		panelAjoutAssociation.add(new JLabel(" -> "));
+		panelAjoutAssociation.add(champAssociation);
+		panelAjoutAssociation.add(boutonSupprimer);
 
-        // Panel pour les associations de cette entité
-        JPanel panelAssociations = new JPanel();
-        panelAssociations.setLayout(new BoxLayout(panelAssociations, BoxLayout.Y_AXIS));
+		panelAssociations.add(panelAjoutAssociation);
+		panelAssociations.revalidate();
+		panelAssociations.repaint();
+	}
 
-        boutonAjouterAssociation.addActionListener(e -> ajouterAssociation(champEntite.getText(), panelAssociations));
+	private void enregistrerAssociations() 
+	{
+		String question = champQuestion.getText();
+		if (question.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "Veuillez entrer une question.", "Erreur", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 
-        panelEntite.add(panelHautEntite);
-        panelEntite.add(panelAssociations);
+		// Récupérer les entités et associations
+		List<String> associations = new ArrayList<>();
+		Component[] composants = panelAssociations.getComponents();
+		for (Component composant : composants) 
+		{
+			if (composant instanceof JPanel) 
+			{
+				JPanel associationPanel = (JPanel) composant;
+				JTextField champEntite = (JTextField) associationPanel.getComponent(0);
+				JTextField champAssociation = (JTextField) associationPanel.getComponent(2);
+				associations.add(champEntite.getText() + " -> " + champAssociation.getText());
+			}
+		}
 
-        panelEntites.add(panelEntite);
-        panelEntites.revalidate();
-        panelEntites.repaint();
-    }
+		// Résumé des données
+		StringBuilder resultats = new StringBuilder("Question : " + question + "\nAssociations :\n");
+		for (String association : associations) 
+		{
+			resultats.append(association).append("\n");
+		}
 
-    private void ajouterAssociation(String entite, JPanel panelAssociations) {
-        JPanel panelAssociation = new JPanel();
-        panelAssociation.setLayout(new BoxLayout(panelAssociation, BoxLayout.X_AXIS));
+		JOptionPane.showMessageDialog(this, resultats.toString(), "Résumé", JOptionPane.INFORMATION_MESSAGE);
+	}
 
-        JTextField champAssociation = new JTextField("Association", 15);
-        JButton boutonSupprimer = new JButton("Supprimer");
+	@Override
+	public void actionPerformed(ActionEvent e) 
+	{
+		String commande = e.getActionCommand();
+		switch (commande) 
+		{
+			case "ajouterAssociation":
+				ajouterAssociation();
+				break;
+			case "enregistrer":
+				enregistrerAssociations();
+				break;
+			default:
+				break;
+		}
+	}
 
-        boutonSupprimer.addActionListener(e -> {
-            panelAssociations.remove(panelAssociation);
-            panelAssociations.revalidate();
-            panelAssociations.repaint();
-        });
 
-        panelAssociation.add(champAssociation);
-        panelAssociation.add(boutonSupprimer);
-
-        panelAssociations.add(panelAssociation);
-        panelAssociations.revalidate();
-        panelAssociations.repaint();
-
-        // Ajouter au stockage
-        entitesAssociations.computeIfAbsent(entite, k -> new ArrayList<>()).add(champAssociation.getText());
-    }
-
-    private void enregistrerAssociations() {
-        String question = champQuestion.getText();
-        if (question.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Veuillez entrer une question.", "Erreur", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Récupérer les données des entités et associations
-        entitesAssociations.clear();
-        for (Component entiteComponent : panelEntites.getComponents()) {
-            if (entiteComponent instanceof JPanel) {
-                JPanel entitePanel = (JPanel) entiteComponent;
-                JPanel panelHautEntite = (JPanel) entitePanel.getComponent(0);
-                JTextField champEntite = (JTextField) panelHautEntite.getComponent(0);
-
-                String entite = champEntite.getText();
-                List<String> associations = new ArrayList<>();
-
-                JPanel panelAssociations = (JPanel) entitePanel.getComponent(1);
-                for (Component associationComponent : panelAssociations.getComponents()) {
-                    if (associationComponent instanceof JPanel) {
-                        JPanel associationPanel = (JPanel) associationComponent;
-                        JTextField champAssociation = (JTextField) associationPanel.getComponent(0);
-                        associations.add(champAssociation.getText());
-                    }
-                }
-
-                entitesAssociations.put(entite, associations);
-            }
-        }
-
-        // Résumé des données
-        StringBuilder resultats = new StringBuilder("Question : " + question + "\nEntités et Associations :\n");
-        for (Map.Entry<String, List<String>> entry : entitesAssociations.entrySet()) {
-            resultats.append(entry.getKey()).append(" : ").append(String.join(", ", entry.getValue())).append("\n");
-        }
-
-        JOptionPane.showMessageDialog(this, resultats.toString(), "Résumé", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String commande = e.getActionCommand();
-        switch (commande) {
-            case "ajouterEntite":
-                ajouterEntite();
-                break;
-            case "enregistrer":
-                enregistrerAssociations();
-                break;
-            default:
-                break;
-        }
-    }
 }
