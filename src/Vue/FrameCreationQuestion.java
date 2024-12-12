@@ -4,10 +4,10 @@ import src.Controleur;
 import javax.swing.*;
 
 public class FrameCreationQuestion extends JFrame{ 
-    //private Controleur ctrl;
+    private Controleur ctrl;
 
-    public FrameCreationQuestion( /*Controleur ctrl*/){
-        //this.ctrl = ctrl;
+    public FrameCreationQuestion( Controleur ctrl){
+        this.ctrl = ctrl;
 
         System.out.println("Création de la frame CreaQuestion");
 
@@ -17,7 +17,7 @@ public class FrameCreationQuestion extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelCreationQuestion() );
+        this.add(new PanelCreationQuestion(ctrl) );
 
         setVisible(true);
     }

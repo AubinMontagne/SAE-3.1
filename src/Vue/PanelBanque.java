@@ -4,10 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import src.Metier.Question;
+import src.Controleur;
 
 
 public class PanelBanque extends JPanel implements  ActionListener
@@ -20,18 +23,23 @@ public class PanelBanque extends JPanel implements  ActionListener
 	
 
 
-    public PanelBanque(int idNotion, Controleur ctrl){
-        //this.ctrl         = ctrl;
-        this.panelBanque = new JPanel();
+    public PanelBanque(Controleur ctrl){
+        this.ctrl         = ctrl;
+        this.panelBanque  = new JPanel();
 		this.setLayout ( new BorderLayout() );
 		this.setVisible(true);
 
         String[] tabEntetes = {"Question", "Ressource", "Notion", "Point"};
 
-        String[][] data = {
-            {quest1.getIntitule(), quest1.getRessource(), quest1.getNotion(), "" + quest1.getPoint()},
-        };
+		ArrayList<Question> questList = this.ctrl.getQuestions();
+        String[][] data = new String[questList.size()][4];
 
+		for(int i = 0; i < questList.size();i++){
+			data[i][0] = questList.get(i).getIntitule();
+			data[i][1] = questList.get(i).getNotion().getRessourceAssociee().getNom();
+			data[i][2] = questList.get(i).getNotion().getNom();
+			data[i][3] = "" + questList.get(i).getPoint();
+		}
         DefaultTableModel model = new DefaultTableModel(data, tabEntetes);
         this.tbQuestion = new JTable(model);
 
@@ -57,52 +65,23 @@ public class PanelBanque extends JPanel implements  ActionListener
 		this.btCreaQuest.addActionListener(this)        ;
     }
 
-	public PanelBanque(Notion n ){
-        //this.ctrl         = ctrl;
-		this.notion = n;
+	public PanelBanque(int idNotion, Controleur ctrl){
+        this.ctrl        = ctrl;
+		this.idNotion    = idNotion;
         this.panelBanque = new JPanel();
 		this.setLayout ( new BorderLayout() );
 		this.setVisible(true);
 
-		Ressource ress1 = new Ressource(1, "QualitéDev"  , "R4.11");
-        Ressource ress2 = new Ressource(2, "DevEfficace" , "R8.01");
-        Ressource ress3 = new Ressource(3, "Cryptomonaie", "R1.06");
-
-        Notion not1 = new Notion(1,"Truk"         , ress1 );
-        Notion not2 = new Notion(2,"Machin"       , ress1 );
-        Notion not3 = new Notion(3,"Miche"        , ress2 );
-
-        // En attendant d'avoir la liste des questions
-        this.questions = new ArrayList<Question>();
-		Question quest1 = new Question( "Quels Question1 ? ", this.notion.getRessourceAssociee(), this.notion, 145, 4) ;
-		Question quest2 = new Question( "Quels Question2 ? ", ress1, not1, 125, 2) ;
-		Question quest3 = new Question( "Quels Question3 ? ", ress2, not2, 55,5) ;
-		Question quest4 = new Question( "Quels Question4 ? ", ress3, not3, 45, 9) ;
-		Question quest5 = new Question( "Quels Question5 ? ", this.notion.getRessourceAssociee(), this.notion, 5, 1) ;
-
         String[] tabEntetes = {"Question", "Ressource", "Notion", "Point"};
 
-		this.questions.add(quest1);
-        this.questions.add(quest2);
-        this.questions.add(quest3);
-        this.questions.add(quest4);
-        this.questions.add(quest5);
+		ArrayList<Question> questList = this.ctrl.getQuestionsParIdNotion(idNotion);
+        String[][] data = new String[questList.size()][4];
 
-		String[][] data = new String[this.questions.size()][4];
-		int i = -1;
-		for (int cpt = 0; cpt < this.questions.size(); cpt++) 
-		{
-			Question quest = this.questions.get(cpt);
-			if(quest.geTNotion() == this.notion )
-			{
-				i++;
-				data[i][0] = quest.getIntitule();
-    			data[i][1] = quest.getTRessource().getNom(); // Supposons que Ressource a une méthode getNom()
-    			data[i][2] = quest.geTNotion().getNom();           // Supposons que Notion a une méthode getNom()
-    			data[i][3] = String.valueOf(quest.getPoint());
-			}
-    		
-   			
+		for(int i = 0; i < questList.size();i++){
+			data[i][0] = questList.get(i).getIntitule();
+			data[i][1] = questList.get(i).getNotion().getRessourceAssociee().getNom();
+			data[i][2] = questList.get(i).getNotion().getNom();
+			data[i][3] = "" + questList.get(i).getPoint();
 		}
 
 		DefaultTableModel model = new DefaultTableModel(data, tabEntetes);
@@ -127,13 +106,12 @@ public class PanelBanque extends JPanel implements  ActionListener
 
         this.add(panelBanque);
 
-		this.btCreaQuest.addActionListener(this)        ;
+		this.btCreaQuest.addActionListener(this);
     }
 	public void actionPerformed(ActionEvent e){
         if ( this.btCreaQuest == e.getSource()){
             System.out.println("Hey la frame Creer question s'ouvre");
-            new FrameCreationQuestion();
-            
+            new FrameCreationQuestion(this.ctrl);
         }
 	}
 }
