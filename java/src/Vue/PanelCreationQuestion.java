@@ -7,8 +7,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import javax.swing.*;
 
-public class PanelCreationQuestion extends JPanel implements ActionListener, ItemListener {
+import src.Controleur;
 
+public class PanelCreationQuestion extends JPanel implements ActionListener, ItemListener {
+	private Controleur ctrl;
 	private JComboBox<String> listeRessources;
 	private JComboBox<String> listeNotions;
 	private JButton boutonTresFacile, boutonFacile, boutonMoyen, boutonDifficile;
@@ -30,7 +32,8 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			new ImageIcon("carregrisaveclettre.png")
 	};
 
-	public PanelCreationQuestion() {
+	public PanelCreationQuestion(Controleur ctrl) {
+		this.ctrl = ctrl;
 		setLayout(new BorderLayout());
 
 		UIManager.put("Label.font", new Font("Arial", Font.BOLD, 25));
@@ -164,7 +167,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 			if ("QCM".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);
-				PanelQCM panelQCM = new PanelQCM();
+				PanelQCM panelQCM = new PanelQCM(this.ctrl);
 				panelQCM.setVisible(true);
 			} else if ("EntiteAssociation".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);

@@ -8,14 +8,14 @@ import javax.swing.*;
 
 public class PanelAccueil extends JPanel implements  ActionListener
 {
-    //private Controleur ctrl;
+    private Controleur ctrl;
     private JPanel panelAccueil;
     private JButton btBanque;
     private JButton btQuestionnaire;
     private JButton btRessources;
 
-    public PanelAccueil( ){
-        //this.ctrl         = ctrl;
+    public PanelAccueil( Controleur ctrl ){
+        this.ctrl         = ctrl;
         this.panelAccueil = new JPanel();
         this.setLayout ( new BorderLayout() );
 
@@ -39,7 +39,7 @@ public class PanelAccueil extends JPanel implements  ActionListener
     public void actionPerformed(ActionEvent e){
         if ( btBanque == e.getSource()){
             System.out.println("Hey la frame Banque s'ouvre");
-            new FrameBanque();
+            new FrameBanque(this.ctrl);
         }
         if( btQuestionnaire == e.getSource()){
             System.out.println("Hey la frame Questionaire s'ouvre");
@@ -47,7 +47,7 @@ public class PanelAccueil extends JPanel implements  ActionListener
         }
         if(btRessources == e.getSource()){
             System.out.println("Hey la frame Param s'ouvre");
-            new FrameRessource();
+            new FrameRessource(this.ctrl);
         }
     }
 }

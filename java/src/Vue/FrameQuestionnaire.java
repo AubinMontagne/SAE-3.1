@@ -6,9 +6,9 @@ import javax.swing.*;
 // AUBIN , VOUS ME LAISSEZ FAIRE çA
 public class FrameQuestionnaire extends JFrame
 {
-    //private Controleur ctrl;
+    private Controleur ctrl;
 
-    public FrameQuestionnaire( /*Controleur ctrl*/)
+    public FrameQuestionnaire( Controleur ctrl)
     {
         //this.ctrl = ctrl;
 

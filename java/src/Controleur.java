@@ -1,7 +1,10 @@
 package src;
+
 import src.Metier.*;
 //import src.Vue.*;
+
 import java.util.ArrayList;
+import src.Metier.*;
 
 public class Controleur
 {
@@ -44,6 +47,14 @@ public class Controleur
     public ArrayList<Question> getQuestions(){
         return this.metier.getQuestions();
     }
+
+	public Notion getNotionById(int idNotion){
+		return this.metier.getNotionById(idNotion);
+	}
+
+	public ArrayList<Question> getQuestionsParIdNotion(int idNotion){
+		return this.metier.getQuestionsParIdNotion(idNotion);
+	}
 
     // Set
 
