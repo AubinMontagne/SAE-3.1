@@ -9,7 +9,6 @@ public class FrameBanque extends JFrame{
 
 	public FrameBanque(Controleur ctrl ){
         this.ctrl = ctrl;
-        this.idNotion = idNotion;
 
         System.out.println("Création de la frame Banque");
 

@@ -2,6 +2,7 @@ package src.Vue;
 
 import src.Metier.Notion;
 import src.Metier.Ressource;
+import src.Controleur;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -21,7 +22,7 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
     private ArrayList<Notion> notions;
   
     
-    public PanelNotion( Ressource r){
+    public PanelNotion( Controleur ctrl,Ressource r){
         //this.ctrl         = ctrl;
         this.ressource = r;
         this.panelNotion = new JPanel();
