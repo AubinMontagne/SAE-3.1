@@ -12,7 +12,7 @@ public class FrameAccueil extends JFrame{
         System.out.println("Création de la frame Accueil");
 
         this.setTitle("Page d'accueil");
-        this.setSize(200,200);
+        this.setSize(225,200);
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -81,13 +81,13 @@ public class PanelBanque extends JPanel implements  ActionListener
 		this.setLayout ( new BorderLayout() );
 		this.setVisible(true);
 
-		Ressource ress1 = new Ressource(1, "QualitéDev"  , "R4.11");
-        Ressource ress2 = new Ressource(2, "DevEfficace" , "R8.01");
-        Ressource ress3 = new Ressource(3, "Cryptomonaie", "R1.06");
+		Ressource ress1 = new Ressource( "QualitéDev"  , "R4.11");
+        Ressource ress2 = new Ressource( "DevEfficace" , "R8.01");
+        Ressource ress3 = new Ressource( "Cryptomonaie", "R1.06");
 
-        Notion not1 = new Notion(1,"Truk"         , ress1 );
-        Notion not2 = new Notion(2,"Machin"       , ress1 );
-        Notion not3 = new Notion(3,"Miche"        , ress2 );
+        Notion not1 = new Notion("Truk"         , ress1 );
+        Notion not2 = new Notion("Machin"       , ress1 );
+        Notion not3 = new Notion("Miche"        , ress2 );
 
         // En attendant d'avoir la liste des questions
         this.questions = new ArrayList<Question>();

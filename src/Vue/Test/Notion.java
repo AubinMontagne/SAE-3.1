@@ -11,7 +11,7 @@ public class Notion
      * @param nom               Le nom de la notion.
      * @param ressourceAssociee La ressource associée à la notion.
      */
-    public Notion(int id, String nom, Ressource ressourceAssociee)
+    public Notion( String nom, Ressource ressourceAssociee)
     {
         this.id                = id;
         this.nom               = nom;

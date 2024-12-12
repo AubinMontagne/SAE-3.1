@@ -10,7 +10,7 @@ public class FrameCreationQuestion extends JFrame{
         System.out.println("Création de la frame CreaQuestion");
 
         this.setTitle("Création de la question");
-        this.setSize(750,500);
+        this.setSize(875,600);
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

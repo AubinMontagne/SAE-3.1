@@ -19,11 +19,11 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
 
         // Liste des objets Ressource
         this.ressources = new ArrayList<>();
-        Ressource ress1 = new Ressource(1, "QualitéDev", "R3.19");
-        Ressource ress2 = new Ressource(2, "DevEfficace", "R8.01");
-        Ressource ress3 = new Ressource(3, "Cryptomonaie", "R1.06");
-        Ressource ress4 = new Ressource(4, "MathDiscrète", "R2.02");
-        Ressource ress5 = new Ressource(5, "BaseDeDonnée", "R4.07");
+        Ressource ress1 = new Ressource( "QualitéDev", "R3.19");
+        Ressource ress2 = new Ressource( "DevEfficace", "R8.01");
+        Ressource ress3 = new Ressource( "Cryptomonaie", "R1.06");
+        Ressource ress4 = new Ressource( "MathDiscrète", "R2.02");
+        Ressource ress5 = new Ressource( "BaseDeDonnée", "R4.07");
 
         this.ressources.add(ress1);
         this.ressources.add(ress2);
@@ -67,7 +67,7 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
     public void actionPerformed(ActionEvent e) {
         if (btNouvRess == e.getSource()) {
             System.out.println("Hey la frame CreaRessource s'ouvre");
-            // new FrameRessource();
+            new FrameCreaRess();
         }
     }
 }
