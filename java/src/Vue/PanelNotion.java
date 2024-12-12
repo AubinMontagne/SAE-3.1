@@ -1,5 +1,8 @@
 package src.Vue;
 
+import src.Metier.Notion;
+import src.Metier.Ressource;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;

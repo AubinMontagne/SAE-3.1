@@ -1,8 +1,6 @@
 package src;
-
 import src.Metier.*;
 //import src.Vue.*;
-
 import java.util.ArrayList;
 
 public class Controleur

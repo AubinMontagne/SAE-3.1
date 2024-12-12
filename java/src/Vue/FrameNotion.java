@@ -1,5 +1,7 @@
 package src.Vue;
 
+import src.Metier.Ressource;
+
 import javax.swing.*;
 
 public class FrameNotion extends JFrame{

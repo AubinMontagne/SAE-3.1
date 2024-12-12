@@ -9,7 +9,7 @@ public class FrameParam extends JFrame{
     public FrameParam(/* Controleur ctrl*/){
         //this.ctrl = ctrl;
 
-        System.out.printl("Création de la frame Paramètre");
+        System.out.println("Création de la frame Paramètre");
 
         this.setTitle("Création des Ressources et Notions");
         this.setSize(200,200);
