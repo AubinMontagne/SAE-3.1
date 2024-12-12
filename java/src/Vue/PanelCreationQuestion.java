@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 import javax.swing.*;
 
 import src.Controleur;
@@ -18,12 +19,17 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	private JComboBox<String> listeTypes;
 	private JLabel labelMessage, labelResultat;
 
-	// Données statiques
+	// Données statiques brut pour test
 	private static final String[] RESSOURCES = { "Ressource 1", "Ressource 2" };
 	private static final String[][] NOTIONS = {
 			{ "Notion A", "Notion B" }, // Pour Ressource 1
 			{ "Notion X", "Notion Y" } // Pour Ressource 2
 	};
+	/*
+	ArrayList<Ressource> ressources;
+	ArrayList<Notion> notions;
+
+	 */
 
 	private static final ImageIcon[] IMAGES_DIFFICULTE = {
 			new ImageIcon("carrevertaveclettre.png"),
@@ -34,6 +40,12 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 	public PanelCreationQuestion(Controleur ctrl) {
 		this.ctrl = ctrl;
+		/*
+
+		this.ressources = this.ctrl.getRessources();
+		this.notions = this.ctrl.getNotions();
+
+		*/
 		setLayout(new BorderLayout());
 
 		UIManager.put("Label.font", new Font("Arial", Font.BOLD, 25));
@@ -109,7 +121,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		panelType.setBorder(BorderFactory.createTitledBorder("Type de Question"));
 
 		JLabel labelType = new JLabel("Type :");
-		listeTypes = new JComboBox<>(new String[] { "QCM", "EntiteAssociation" });
+		listeTypes = new JComboBox<>(new String[] { "QCM", "EntiteAssociation","Elimination" });
 
 		boutonConfirmer = new JButton("Confirmer");
 		boutonConfirmer.addActionListener(this);
@@ -172,8 +184,13 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			} else if ("EntiteAssociation".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);
 
-				PanelEntiteAssociation panelEntiteAssociation = new PanelEntiteAssociation();
+				PanelEntiteAssociation panelEntiteAssociation = new PanelEntiteAssociation(this.ctrl);
 				panelEntiteAssociation.setVisible(true);
+			} else if ("Elimination".equals(typeSelectionne)){
+				System.out.println(typeSelectionne);
+
+				PanelElimination panelElimination = new PanelElimination(this.ctrl);
+				panelElimination.setVisible(true);
 			}
 
 		}

@@ -18,9 +18,9 @@ public class Test {
 		// Test des Notions
 
 		System.out.println("Test des Notions\n");
-		Notion notion = new Notion(1, "Notion", ressource,metier);
+		Notion notion = new Notion( "Notion", ressource);
 		metier.ajouterNotion(notion);
-		Notion notion2 = new Notion(2, "Notion2", ressource,metier);
+		Notion notion2 = new Notion( "Notion2", ressource);
 		System.out.println(notion2);
 
 		// ----------- Test des Questions -------------
@@ -29,7 +29,7 @@ public class Test {
 		
 		System.out.println("\nTest de la classe QCM\n");
 
-		QCM qcm = new QCM("QCM", Difficulte.FACILE, notion, 10, 10,metier);
+		QCM qcm = new QCM("QCM", Difficulte.FACILE, notion, 10, 10);
 		
 		qcm.ajouterReponse("A", true);
 		qcm.ajouterReponse("B", false);
@@ -46,46 +46,37 @@ public class Test {
 		
 		System.out.println("\nTest de la classe EliminationReponse\n");
 
-		EliminationReponse eq = new EliminationReponse("Question Éliminatoire", Difficulte.MOYEN, notion, 10, 10,metier);
+		EliminationReponse eq = new EliminationReponse("Question Éliminatoire", Difficulte.MOYEN, notion, 10, 10);
 		
 		eq.ajouterReponse("A", 1,1);
 		eq.ajouterReponse("B", 2,1);
 		eq.ajouterReponse("C", 3, 2);
 		eq.setReponseCorrecte("A");
-		eq.setExplication("Ceci est incorrect, car la courbe de demande est une droite décroissante.");
+		//eq.setExplicationFich("Ceci est incorrect, car la courbe de demande est une droite décroissante."); Should be file path
 
 		eq.getAsData("data/EliminationQuestion");
-		EliminationReponse eq2 = EliminationReponse.getAsInstance("data/EliminationQuestion/", metier);
-		metier.ajouterQuestion(eq2);
-
-		System.out.println(eq2);
-
 		
 		// Test de la classe AssociationElement
 
 		System.out.println("\nTest de la classe AssociationElement\n");
 
-		AssociationElement ae = new AssociationElement("Question Association", Difficulte.DIFFICILE, notion, 10, 10,metier);
+		AssociationElement ae = new AssociationElement("Question Association", Difficulte.DIFFICILE, notion, 10, 10);
 		ae.ajouterAssociation("A", "1");
 		ae.ajouterAssociation("B", "2");
 		ae.ajouterAssociation("C", "3");
 
 		ae.getAsData("data/AssociationElement");
-		AssociationElement ae2 = AssociationElement.getAsInstance("data/AssociationElement/", metier);
-		metier.ajouterQuestion(ae2);
-
-		System.out.println(ae2);
 
 		// Test Questionnaire
 
 		System.out.println("\nTest de la classe Questionnaire\n");
 
-		Questionnaire questionnaire = new Questionnaire("Questionnaire", ressource, true, metier);
+		Questionnaire questionnaire = new Questionnaire("Questionnaire", ressource, true);
 		questionnaire.ajouterNotion(notion);
 		questionnaire.defNbQuestion(notion, Difficulte.FACILE, 2);
 		questionnaire.defNbQuestion(notion, Difficulte.MOYEN, 2);
 		questionnaire.defNbQuestion(notion, Difficulte.DIFFICILE, 2);
-		questionnaire.initLstQuestions();
+		questionnaire.initLstQuestions(metier);
 
 		System.out.println(questionnaire.toString());
 
@@ -112,6 +103,5 @@ public class Test {
 		System.out.println(metier.getQuestionAleatoire(notion, Difficulte.FACILE));	
 
 		System.out.println("\nAffichage de la notion avec l'id 1 :\n");
-		System.out.println(metier.getNotionById(1));
 	}
 }

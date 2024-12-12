@@ -66,17 +66,9 @@ public class Metier{
         return this.lstQuestions;
     }
 
-    public Notion getNotionById(int id){
-        for (Notion notion : this.lstNotions){
-            if (notion.getId() == id){
-                return notion;
-            }
-        }
-        return null;
-    }
-    public Ressource getRessourceById(int id){
+    public Ressource getRessourceById(String id){
         for (Ressource ressource : this.lstRessources){
-            if (ressource.getId() == id){
+            if (ressource.getId().equals(id)){
                 return ressource;
             }
         }
@@ -160,7 +152,7 @@ public class Metier{
 			BufferedReader reader = new BufferedReader(new FileReader(path+"/ressources.csv"));
 			String line;
 			while ((line = reader.readLine()) != null){
-				this.lstRessources.add(Ressource.getFromData(line, this));
+				this.lstRessources.add(Ressource.getFromData(line));
 			}
 			reader.close();
 		}catch(IOException e){
@@ -181,13 +173,13 @@ public class Metier{
 		}
 	}
 
-	public ArrayList<Question> getQuestionsParIdNotion(int notionId) 
+	public ArrayList<Question> getQuestionsParNotion(Notion notion)
 	{
 		ArrayList<Question> questionsAssociees = new ArrayList<>();
 	
 		for (Question question : this.lstQuestions) 
 		{
-			if (question.getNotion().getId() == notionId) 
+			if (question.getNotion().equals(notion))
 			{
 				questionsAssociees.add(question);
 				System.out.println(question);

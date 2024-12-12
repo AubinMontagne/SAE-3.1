@@ -1,5 +1,6 @@
 package src.Vue;
 
+import src.Controleur;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,12 +16,14 @@ public class PanelElimination extends JFrame implements ActionListener
 	private JTextField champQuestion;
 	private JButton boutonAjoutReponse;
 	private JButton boutonEnregistrer;
+	private Controleur ctrl;
 
-	public PanelElimination() 
+	public PanelElimination(Controleur ctrl)
 	{
+		this.ctrl = ctrl;
 		setTitle("Créateur de Question élimination");
 		setSize(600, 400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new BorderLayout());
 
 		JPanel panelQuestion = new JPanel(new BorderLayout());
@@ -130,14 +133,6 @@ public class PanelElimination extends JFrame implements ActionListener
 				break;
 		}
 	}
-
-		public static void main(String[] args) {
-			SwingUtilities.invokeLater(() -> {
-				PanelElimination fenetre = new PanelElimination();
-				fenetre.setVisible(true);
-			});
-		}
-	
 	
 	
 }

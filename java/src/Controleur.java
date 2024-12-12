@@ -24,6 +24,7 @@ public class Controleur
         return this.metier;
     }
 
+
 	// Getters Individuels
 
 	public Question getQuestion(Question question){
@@ -48,12 +49,8 @@ public class Controleur
         return this.metier.getQuestions();
     }
 
-	public Notion getNotionById(int idNotion){
-		return this.metier.getNotionById(idNotion);
-	}
-
-	public ArrayList<Question> getQuestionsParIdNotion(int idNotion){
-		return this.metier.getQuestionsParIdNotion(idNotion);
+	public ArrayList<Question> getQuestionsParNotion(Notion notion){
+		return this.metier.getQuestionsParNotion(notion);
 	}
 
     // Set

@@ -3,14 +3,13 @@ package src.Vue;
 import src.Controleur;
 import javax.swing.*;
 
-// AUBIN , VOUS ME LAISSEZ FAIRE çA
 public class FrameQuestionnaire extends JFrame
 {
     private Controleur ctrl;
 
     public FrameQuestionnaire( Controleur ctrl)
     {
-        //this.ctrl = ctrl;
+        this.ctrl = ctrl;
 
         System.out.println("Création de la frame Questionnaire");
 
@@ -20,7 +19,7 @@ public class FrameQuestionnaire extends JFrame
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.add(new PanelQuestionnaire(/*this.ctrl*/) );
+        // this.add(new PanelQuestionnaire(this.ctrl) );
 
         setVisible(true);
     }

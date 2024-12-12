@@ -5,22 +5,26 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import src.Controleur;
+
 public class PanelQCM extends JFrame implements ActionListener 
 {
 
 	// FONCTION EXPLICATION A RAJOUTER
 
+	private Controleur ctrl;
 	private JPanel panelReponses; // Panel pour les réponses
 	private int nombreReponses = 0; // Nombre de réponses
 	private JTextField champQuestion;
 	private JButton boutonAjoutReponse;
 	private JButton boutonEnregistrer;
 
-	public PanelQCM() 
+	public PanelQCM(Controleur ctrl) 
 	{
+		this.ctrl = ctrl;
 		setTitle("Créateur de QCM");
 		setSize(600, 400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new BorderLayout());
 
 		JPanel panelQuestion = new JPanel(new BorderLayout());

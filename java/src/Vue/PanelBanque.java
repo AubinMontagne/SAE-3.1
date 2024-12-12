@@ -10,13 +10,14 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import src.Metier.Question;
+import src.Metier.Notion;
 import src.Controleur;
 
 
 public class PanelBanque extends JPanel implements  ActionListener
 {
     private Controleur ctrl;
-	private int idNotion;
+	private Notion notion;
 	private JButton btCreaQuest;
     private JPanel panelBanque;
     private JTable tbQuestion;
@@ -65,16 +66,16 @@ public class PanelBanque extends JPanel implements  ActionListener
 		this.btCreaQuest.addActionListener(this)        ;
     }
 
-	public PanelBanque(int idNotion, Controleur ctrl){
+	public PanelBanque(Notion notion, Controleur ctrl){
         this.ctrl        = ctrl;
-		this.idNotion    = idNotion;
+		this.notion    = notion;
         this.panelBanque = new JPanel();
 		this.setLayout ( new BorderLayout() );
 		this.setVisible(true);
 
         String[] tabEntetes = {"Question", "Ressource", "Notion", "Point"};
 
-		ArrayList<Question> questList = this.ctrl.getQuestionsParIdNotion(idNotion);
+		ArrayList<Question> questList = this.ctrl.getQuestionsParNotion(notion);
         String[][] data = new String[questList.size()][4];
 
 		for(int i = 0; i < questList.size();i++){

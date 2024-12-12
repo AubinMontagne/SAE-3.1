@@ -1,3 +1,7 @@
+package src.Vue;
+
+import src.Controleur;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,18 +11,19 @@ import java.util.List;
 
 public class PanelEntiteAssociation extends JFrame implements ActionListener 
 {
-
+	private Controleur ctrl;
 	private JPanel panelAssociations; // Panel pour les associations
 	private int nombreAssociations = 0; // Nombre d'associations
 	private JTextField champQuestion;
 	private JButton boutonAjoutAssociation;
 	private JButton boutonEnregistrer;
 
-	public PanelEntiteAssociation() 
+	public PanelEntiteAssociation(Controleur ctrl)
 	{
+		this.ctrl = ctrl;
 		setTitle("Créateur de Questions Entité-Association");
 		setSize(600,400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new BorderLayout());
 
 		// Panel pour la question

@@ -1,39 +1,30 @@
+package src.Vue;
+
+import src.Controleur;
+import src.Metier.Ressource;
+
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class PanelRessource extends JPanel implements ActionListener, ListSelectionListener {
-    private ArrayList<Ressource> ressources;
+    private Controleur ctrl;
     private JPanel panelRessource;
     private JButton btNouvRess;
     private JList<Ressource> list;
 
-    public PanelRessource() {
+    public PanelRessource(Controleur ctrl) {
+        this.ctrl = ctrl;
         // Initialisation du panel principal
         this.panelRessource = new JPanel();
         this.panelRessource.setLayout(new BorderLayout());
 
-        // Liste des objets Ressource
-        this.ressources = new ArrayList<>();
-        Ressource ress1 = new Ressource(1, "QualitéDev", "R3.19");
-        Ressource ress2 = new Ressource(2, "DevEfficace", "R8.01");
-        Ressource ress3 = new Ressource(3, "Cryptomonaie", "R1.06");
-        Ressource ress4 = new Ressource(4, "MathDiscrète", "R2.02");
-        Ressource ress5 = new Ressource(5, "BaseDeDonnée", "R4.07");
-
-        this.ressources.add(ress1);
-        this.ressources.add(ress2);
-        this.ressources.add(ress3);
-        this.ressources.add(ress4);
-        this.ressources.add(ress5);
-
         // Création d'un modèle de liste
         DefaultListModel<Ressource> listModel = new DefaultListModel<>();
-        for (Ressource ressource : this.ressources) {
+        for (Ressource ressource : this.ctrl.getRessources()){
             listModel.addElement(ressource);
         }
 
@@ -59,15 +50,15 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
         if (!e.getValueIsAdjusting()) {
             Ressource selectedRessource = this.list.getSelectedValue();
             if (selectedRessource != null) {
-                new FrameNotion(selectedRessource);
+                new FrameNotion(this.ctrl, selectedRessource);
             }
         }
     }
 
     public void actionPerformed(ActionEvent e) {
         if (btNouvRess == e.getSource()) {
-            System.out.println("Hey la frame CreaRessource s'ouvre");
-            // new FrameRessource();
+            System.out.println("La frame CreaRessource s'ouvre");
+            new FrameRessource(this.ctrl);
         }
     }
 }

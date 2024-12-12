@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Questionnaire {
-   private final Metier metier;
    private String nom;
    private Ressource ressource;
    private HashMap<Notion, HashMap<Difficulte, Integer>> hmQuestionsParDifficulte;
@@ -17,7 +16,7 @@ public class Questionnaire {
    private List<Notion> lstNotions;
    private List<Question> lstQuestion;
 
-   public Questionnaire(String nom, Ressource ressource, boolean estChronom, Metier metier) {
+   public Questionnaire(String nom, Ressource ressource, boolean estChronom) {
       this.nom = nom;
       this.ressource = ressource;
       this.tempsEstimée = 0;
@@ -26,7 +25,6 @@ public class Questionnaire {
       this.lstQuestion = new ArrayList();
       this.hmQuestionsParDifficulte = new HashMap();
       this.pointMax = 0;
-      this.metier = metier;
    }
 
    public void ajouterNotion(Notion notion) {
@@ -109,7 +107,12 @@ public class Questionnaire {
 
    }
 
-   public void initLstQuestions() {
+   public void addQuestion(Question question)
+   {
+      this.lstQuestion.add(question);
+   }
+
+   public void initLstQuestions(Metier metier) {
       Iterator var1 = this.hmQuestionsParDifficulte.keySet().iterator();
 
       while(var1.hasNext()) {
@@ -122,7 +125,7 @@ public class Questionnaire {
             int var6 = (Integer)var4.getValue();
 
             for(int var7 = 0; var7 < var6; ++var7) {
-               Question var8 = this.metier.getQuestionAleatoire(var2, var5);
+               Question var8 = metier.getQuestionAleatoire(var2, var5);
                if (var8 != null) {
                   this.lstQuestion.add(var8);
                }
@@ -155,7 +158,4 @@ public class Questionnaire {
 
       return var1;
    }
-}
- {
-	
 }

@@ -5,10 +5,10 @@ import src.Controleur;
 import javax.swing.*;
 
 public class FrameAccueil extends JFrame{
-    //private Controleur ctrl;
+    private Controleur ctrl;
 
-    public FrameAccueil( /*Controleur ctrl*/){
-        //this.ctrl = ctrl;
+    public FrameAccueil( Controleur ctrl){
+        this.ctrl = ctrl;
 
         System.out.println("Création de la frame Accueil");
 
@@ -18,7 +18,7 @@ public class FrameAccueil extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelAccueil() );
+        this.add(new PanelAccueil(ctrl) );
 
         setVisible(true);
     }

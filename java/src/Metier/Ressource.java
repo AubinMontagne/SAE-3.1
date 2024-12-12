@@ -2,58 +2,42 @@ package src.Metier;
 
 public class Ressource
 {
-    private static int    nid=0;
-    private int id;
+    private String id;
     private String nom;
-    private String accronym;
 
     /**
      * Constructeur de la classe Ressource.
      *
      * @param id        L'identifiant de la ressource.
      * @param nom       Le nom de la ressource.
-     * @param acronyme  L'acronyme de la ressource.
      */
-    public Ressource(String nom, String accronym)
-    {
-        this.id       = ++nid;
-        this.nom      = nom;
-        this.accronym = accronym;
-    }
-
-	public Ressource(int id, String nom, String accronym)
+    public Ressource(String nom, String id)
     {
         this.id       = id;
         this.nom      = nom;
-        this.accronym = accronym;
-		if (id > nid) nid = id;
     }
+
     // Get
 
 	public boolean equals(Ressource ressource){
-		return this.id == ressource.getId() &&
-		this.nom.equals(ressource.getNom()) &&
-		this.accronym.equals(ressource.getAccronym());
+		return this.id.equals(ressource.getId()) &&
+		this.nom.equals(ressource.getNom());
 	}
 
-    public int getId()          {return this.id;}
-    public String getNom()      {return this.nom;}
-    public String getAccronym() {return this.accronym;}
-    public String getAsData(){
-        return this.id + ";" + this.nom + ";" + this.accronym;
-    }
-	public static Ressource getFromData(String data, Metier metier){
+    public String getId()     {return this.id;}
+    public String getNom()    {return this.nom;}
+
+    public String getAsData(){return this.id + ";" + this.nom;}
+	public static Ressource getFromData(String data){
         String[] parts = data.split(";");
-        return new Ressource(Integer.parseInt(parts[0]), parts[1], parts[2]);
+        return new Ressource(parts[0], parts[1]);
     }
     // Set
-    public void setId(int id)                {this.id       = id;}
-    public void setNom(String nom)           {this.nom      = nom;}
-    public void setAccronym(String accronym) {this.accronym = accronym;}
+    public void setId (String id) {this.id       = id;}
+    public void setNom(String nom){this.nom      = nom;}
 
+    @Override
 	public String toString(){
-		String res = "Ressource : " + this.nom + "\n";
-		res += "Acronyme : " + this.accronym + "\n";
-		return res;
+		return this.id + " : " + this.nom + "\n";
 	}
 }

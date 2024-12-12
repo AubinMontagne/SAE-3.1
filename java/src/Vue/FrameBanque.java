@@ -2,6 +2,7 @@ package src.Vue;
 
 import javax.swing.*;
 import src.Controleur;
+import src.Metier.Notion;
 
 public class FrameBanque extends JFrame{
     private Controleur ctrl;
@@ -9,7 +10,6 @@ public class FrameBanque extends JFrame{
 
 	public FrameBanque(Controleur ctrl ){
         this.ctrl = ctrl;
-        this.idNotion = idNotion;
 
         System.out.println("Création de la frame Banque");
 
@@ -25,9 +25,9 @@ public class FrameBanque extends JFrame{
         setVisible(true);
     }
 
-    public FrameBanque( int idNotion, Controleur ctrl ){
+    public FrameBanque( Notion notion, Controleur ctrl ){
         this.ctrl = ctrl;
-        this.idNotion = idNotion;
+        this.notion = notion;
 
         System.out.println("Création de la frame Banque");
 

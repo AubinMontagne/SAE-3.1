@@ -2,6 +2,7 @@ package src.Vue;
 
 import src.Metier.Notion;
 import src.Metier.Ressource;
+import src.Controleur;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -13,42 +14,23 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class PanelNotion extends JPanel implements ActionListener , ListSelectionListener
-{	
+{
+    private Controleur ctrl;
     private JPanel panelNotion;
     private JButton btNouvNotion;
     private JList<Notion> list;
     private Ressource ressource;
-    private ArrayList<Notion> notions;
   
     
-    public PanelNotion( Ressource r){
-        //this.ctrl         = ctrl;
+    public PanelNotion( Controleur ctrl,Ressource r){
+        this.ctrl         = ctrl;
         this.ressource = r;
         this.panelNotion = new JPanel();
         this.panelNotion.setLayout(new BorderLayout());
-    
-        // Liste des éléments
-        Ressource ress1 = this.ressource;
-        Ressource ress2 = new Ressource(2, "DevEfficace", "R8.01");
-        Ressource ress3 = new Ressource(3, "Cryptomonaie", "R1.06");
-
-        this.notions = new ArrayList<>();
-        Notion not1 = new Notion(1,"Truk"         , ress1 );
-        Notion not2 = new Notion(2,"Machin"       , ress1 );
-        Notion not3 = new Notion(3,"Miche"        , ress2 );
-        Notion not4 = new Notion(4,"Bidule"       , ress2 );
-        Notion not5 = new Notion(5,"JeSaIsPaS"    , ress3 );
-        Notion not6 = new Notion(5,"PlUsAcUnEiDeE", ress3 );
-
-        this.notions.add(not1);
-        this.notions.add(not2);
-        this.notions.add(not3);
-        this.notions.add(not4);
-        this.notions.add(not5);
 
         // Création d'un modèle de liste
         DefaultListModel<Notion> listModel = new DefaultListModel<>();
-        for (Notion notion : this.notions) {
+        for (Notion notion : this.ctrl.getNotions()) {
             if( notion.getRessourceAssociee() == this.ressource)
                 listModel.addElement(notion);
         }
@@ -77,14 +59,14 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
         if (!e.getValueIsAdjusting()) {
             Notion selectedNotion = this.list.getSelectedValue();
             if (selectedNotion != null) {
-                new FrameBanque(selectedNotion);
+                new FrameBanque(selectedNotion,this.ctrl);
             }
         }
     }
     public void actionPerformed(ActionEvent e) {
         if (btNouvNotion == e.getSource()) {
-            System.out.println("Hey la frame CreaNotion s'ouvre");
-            // new FrameRessource();
+            System.out.println("La frame CreaNotion s'ouvre");
+            new FrameRessource(this.ctrl);
         }
     }
         

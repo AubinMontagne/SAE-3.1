@@ -3,13 +3,15 @@ package src.Vue;
 import src.Metier.Ressource;
 
 import javax.swing.*;
+import src.Controleur;
 
 public class FrameNotion extends JFrame{
+	private Controleur ctrl;
     private Ressource ressource;
 
-	public FrameNotion(Ressource r ){
+	public FrameNotion(Controleur ctrl, Ressource r ){
         this.ressource = r;
-        //this.ctrl = ctrl;
+        this.ctrl = ctrl;
 
         System.out.println("Création de la frame Notion");
 
@@ -20,7 +22,7 @@ public class FrameNotion extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelNotion(this.ressource) );
+        this.add(new PanelNotion(this.ctrl, this.ressource) );
 
         setVisible(true);
     }
