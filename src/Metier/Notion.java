@@ -3,7 +3,7 @@ package Metier;
 public class Notion
 {
     private Metier    metier;
-    private static int nid;
+    private static int nid=0;
     private int       id;
     private String    nom;
     private Ressource ressourceAssociee;
