@@ -56,7 +56,7 @@ public class QCM extends Question {
 		this.hmReponses.remove(reponse);
 	}
 
-	public void getAsData(String directoryPath) {
+	public void getAsData(String line) {
 
 	}
 	public static QCM getAsInstance(String pathDirectory, Metier metier) {

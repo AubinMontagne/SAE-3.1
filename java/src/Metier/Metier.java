@@ -113,6 +113,16 @@ public class Metier{
 		return null;
 	}
 
+	public Question getFromDataQuestion(String line){
+		String type = line.substring(0, line.indexOf(";"));	
+		switch (type){
+			case "QCM"-> {return QCM.getAsInstance(line,this);}
+			case "ER" -> {return EliminationReponse.getAsInstance(line,this);}
+			case "AE" -> {return AssociationElement.getAsInstance(line,this);}
+		}
+		return null;
+	}
+
 	// Sauvegardes
 
     public void saveNotions(String path){
@@ -194,7 +204,7 @@ public class Metier{
 			BufferedReader reader = new BufferedReader(new FileReader(path+"/questions.csv"));
 			String line;
 			while ((line = reader.readLine()) != null){
-				this.lstQuestions.add(Metier.getFromDataQuestion(line, this));
+				this.lstQuestions.add(getFromDataQuestion(line));
 			}
 			reader.close();
 		}catch(IOException e){

@@ -1,18 +1,6 @@
 package src.Metier;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.HashMap;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultStyledDocument;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleContext;
-import javax.swing.text.rtf.RTFEditorKit;
-
 public class EliminationReponse extends Question {
 	private String reponseCorrecte;
 	private HashMap<String,Integer[]> hmReponses;
@@ -79,7 +67,7 @@ public class EliminationReponse extends Question {
 	}
 
 	public void getAsData(String directoryPath) {
-
+		
 	}
 
 	public static EliminationReponse getAsInstance(String pathDirectory, Metier metier) {

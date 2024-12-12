@@ -7,7 +7,6 @@ public class Notion
 
     /**
      * Constructeur de la classe Notion.
-     *
      * @param nom               Le nom de la notion.
      * @param ressourceAssociee La ressource associée à la notion.
      */
@@ -31,7 +30,7 @@ public class Notion
         return (this.nom + ";" + this.ressourceAssociee.getId());
     }
     public static Notion getFromData(String data, Metier metier){
-        String[] parts = data.split(";");
+        String[] parts = data.split(";");-jiji// Faire un scanner à la place de tous les split
         return new Notion(parts[0], metier.getRessourceById(parts[2]));
     }
     // Set
