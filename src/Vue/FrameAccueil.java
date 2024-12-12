@@ -1,5 +1,6 @@
 package Vue;
 
+
 //import src.Controleur;
 import javax.swing.*;
 
@@ -15,7 +16,7 @@ public class FrameAccueil extends JFrame{
         this.setSize(200,200);
         this.setLocationRelativeTo(null);
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         this.add(new PanelAccueil() );
 
