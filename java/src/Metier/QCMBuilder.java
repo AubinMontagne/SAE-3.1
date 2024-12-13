@@ -774,8 +774,9 @@ public class QCMBuilder
         {
             if(q instanceof QCM)
             {
-                String[] textes = new String[((QCM) q).getNbReponses()];
+                String reponses = "";
                 String bonnesRep = "[";
+                int i = -1;
 
                 for (String reponse : ((QCM) q).getReponses().keySet())
                 {
@@ -785,6 +786,7 @@ public class QCMBuilder
                     }else{
                         bonnesRep = bonnesRep + "false,";
                     }
+                    reponses = reponses + "<div class=\"reponseBox\" id=\"rep" + i++ + "\" >'"+ reponse +"'</div>\n";
                 }
 
                 bonnesRep = bonnesRep + "];";
@@ -794,10 +796,10 @@ public class QCMBuilder
                         "{\n" +
                         "    //Variables\n" +
                         "    let bonnesRep = "+ bonnesRep +"\n" +
-                        "    const difficulte = "+ q.getDifficulte().getNom() +";\n" +
+                        "    const difficulte = '"+ q.getDifficulte().getNom() +"';\n" +
                         "    const tempsDeReponse = "+ q.getTemps() +";\n" +
                         "    let points = " + q.getPoint() +";\n" +
-                        "    let texteExplications = "+ q.getExplicationFich() +";\n" +
+                        "    let texteExplications = '"+ q.getExplicationFich() +"';\n" +
                         "\n" +
                         "\n" +
                         "\n" +
@@ -837,12 +839,9 @@ public class QCMBuilder
                         "                        <br>\n" +
                         "                        <!-- Pour un QCM -->\n" +
                         "\n" +
-                        "                        <h3> [Texte de la question] </h3>\n" +
+                        "                        <h3> " + q.getExplicationFich() + " </h3>\n" +
                         "                        <div id=\"zoneRep\">\n" +
-                        "                            <div class=\"reponseBox\" id=\"rep1\" >"+ q. +"</div>\n" +
-                        "                            <div class=\"reponseBox\" id=\"rep2\" >[TextRep 2]</div>\n" +
-                        "                            <div class=\"reponseBox\" id=\"rep3\" >[TextRep 3]</div>\n" +
-                        "                            <div class=\"reponseBox\" id=\"rep4\" >[TextRep 4]</div>\n" +
+                        "                             " + reponses + "\n" +
                         "                        </div>\n" +
                         "                        <footer>\n" +
                         "                            <nav>\n" +
