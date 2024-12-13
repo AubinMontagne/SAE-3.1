@@ -24,12 +24,10 @@ public class Questionnaire{
       	if (!this.lstNotions.contains(notion)){
 		 	this.lstNotions.add(notion);
 	  	}
-   	}
+   }
 
    public void supprimerNotion(Notion notion){
-	    if (this.lstNotions.contains(notion)){
-		    this.lstNotions.remove(notion);
-	    }
+       this.lstNotions.remove(notion);
    }
 
    public void defNbQuestion(Notion notion, Difficulte difficulte, int nbQuestion){
@@ -71,27 +69,27 @@ public class Questionnaire{
 	  return sumTemps;
    }
 
-   public int getPointMax(){
+    public int getPointMax(){
       int sumPoints = 0;
 	  for (Question question : this.lstQuestion) {
 		 sumPoints += question.getPoint();
 	  }
 	  return sumPoints;
-   }
+    }
 
-   public void setNom(String nom){
+    public void setNom(String nom){
       this.nom = nom;
    }
 
-   public void setRessource(Ressource ressource){
+    public void setRessource(Ressource ressource){
       this.ressource = ressource;
    }
 
-   public void setChronoBool(boolean chronoBool){
+    public void setChronoBool(boolean chronoBool){
       this.chronoBool = chronoBool;
    }
 
-   public void addQuestion(Question question){
+    public void addQuestion(Question question){
       this.lstQuestion.add(question);
    }
 

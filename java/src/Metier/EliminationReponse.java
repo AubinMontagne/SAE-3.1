@@ -97,7 +97,7 @@ public class EliminationReponse extends Question {
 				reponseParts[i] = eliminationScanner.next();
 			}
 
-			er.ajouterReponse(reponseParts[0], Integer.parseInt(reponseParts[1]), Integer.parseInt(reponseParts[2]));
+			er.ajouterReponse(reponseParts[0], Double.parseDouble(reponseParts[1]), Double.parseDouble(reponseParts[2]));
 			eliminationScanner.close();
 		}
 

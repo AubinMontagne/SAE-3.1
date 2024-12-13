@@ -48,9 +48,9 @@ public class Test {
 
 		EliminationReponse eq = new EliminationReponse("Question Éliminatoire", Difficulte.MOYEN, notion, 10, 10);
 		
-		eq.ajouterReponse("A", 1,1);
-		eq.ajouterReponse("B", 2,1);
-		eq.ajouterReponse("C", 3, 2);
+		eq.ajouterReponse("A", 1.0,1.0);
+		eq.ajouterReponse("B", 2.0,1.0);
+		eq.ajouterReponse("C", 3.0, 2.0);
 		eq.setReponseCorrecte("A");
 		//eq.setExplicationFich("Ceci est incorrect, car la courbe de demande est une droite décroissante."); Should be file path
 
@@ -78,7 +78,7 @@ public class Test {
 		questionnaire.defNbQuestion(notion, Difficulte.DIFFICILE, 2);
 		questionnaire.initLstQuestions(metier);
 
-		System.out.println(questionnaire.toString());
+		System.out.println(questionnaire);
 
 		// Test de la classe Metier
 

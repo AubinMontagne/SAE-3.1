@@ -185,7 +185,7 @@ public class QCMBuilder
             String delimiteur = "\n";
 
             // Initialiser le Scanner avec la chaîne de caractères
-            scanner = new Scanner(communJS());
+            scanner = new Scanner((communJS() + "\n" + questionsJS()));
             // Définir le délimiteur
             scanner.useDelimiter(delimiteur);
 
@@ -764,4 +764,201 @@ public class QCMBuilder
 
         return commun;
     }
+
+
+    public String questionsJS()
+    {
+        String res = "";
+
+        for(Question q : questionnaire.getLstQuestion())
+        {
+            if(q instanceof QCM)
+            {
+                String bonnesRep = "[";
+                for (String reponse : ((QCM) q).getReponses().keySet())
+                {
+                    if(((QCM) q).getReponses().get(reponse))
+                    {
+                        bonnesRep = bonnesRep + "true,";
+                    }else{
+                        bonnesRep = bonnesRep + "false,";
+                    }
+                }
+
+                bonnesRep = bonnesRep + "];";
+
+
+                res += "\n\nfunction question" + (questionnaire.getLstQuestion().indexOf(q)+1) + "()\n" +
+                        "{\n" +
+                        "    //Variables\n" +
+                        "    let bonnesRep = "+ bonnesRep +"\n" +
+                        "    const difficulte = "+ q.getDifficulte().getNom() +";\n" +
+                        "    const tempsDeReponse = "+ q.getTemps() +";\n" +
+                        "    let points = " + q.getPoint() +";\n" +
+                        "    let texteExplications = "+ q.getExplicationFich() +";\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+                        "    let contenuPage =`<!DOCTYPE html>\n" +
+                        "                    <html lang=\"en\">\n" +
+                        "                    <head>\n" +
+                        "                        <meta charset=\"UTF-8\">\n" +
+                        "                        <title>QCMBuilder</title>\n" +
+                        "                        <link href=\"style.css\" rel=\"stylesheet\">\n" +
+                        "                    </head>\n" +
+                        "                    <body>\n" +
+                        "                        <div id=\"popup\" class=\"hiddenP\">\n" +
+                        "                            <div id=\"popupI\" class=\"hidden\">\n" +
+                        "                                <span id=\"closePopupBtn\" class=\"close\">&times;</span>\n" +
+                        "                                <h2 id=\"estReponseBonne\"></h2>\n" +
+                        "                                <p id=\"textFeedBack\"></p>\n" +
+                        "                            </div>\n" +
+                        "                        </div>\n" +
+                        "\n" +
+                        "\n" +
+                        "                        <div class=\"compteurs\">\n" +
+                        "                            <div class=\"timer, compteurs-div\" id=\"chrono\">00:00</div>\n" +
+                        "                            <div class=\"compteurs-div\">Questions traitées : <span id=\"questionsDone\">0</span>/`+ nbQuestion +`</div>\n" +
+                        "                            <div class=\"compteurs-div\">Question sur `+points+` points</div>\n" +
+                        "                            <div class=\"compteurs-div\" id=\"note\">Total des points : `+ totalPoints+` / `+ noteMax +`</div>\n" +
+                        "                        </div>\n" +
+                        "                        <div class=\"progress-container\">\n" +
+                        "                            <div class=\"progress-bar\" id=\"progressBar\">0%</div>\n" +
+                        "                        </div>\n" +
+                        "\n" +
+                        "                        <script src=\"./script.js\"></script>\n" +
+                        "\n" +
+                        "                        <h1> Question `+ questionActuelle +` : </h1>\n" +
+                        "                        <h2> Notion : `+ notion +` <!-- Avoir la notion de la question avec JS--> </h2>\n" +
+                        "                        <h2> Difficulté : `+ difficulte +` <!-- Avoir la difficulté de la question avec JS--> </h2>\n" +
+                        "\n" +
+                        "                        <br>\n" +
+                        "                        <!-- Pour un QCM -->\n" +
+                        "\n" +
+                        "                        <h3> [Texte de la question] </h3>\n" +
+                        "                        <div id=\"zoneRep\">\n" +
+                        "                            <div class=\"reponseBox\" id=\"rep1\" >[TextRep 1]</div>\n" +
+                        "                            <div class=\"reponseBox\" id=\"rep2\" >[TextRep 2]</div>\n" +
+                        "                            <div class=\"reponseBox\" id=\"rep3\" >[TextRep 3]</div>\n" +
+                        "                            <div class=\"reponseBox\" id=\"rep4\" >[TextRep 4]</div>\n" +
+                        "                        </div>\n" +
+                        "                        <footer>\n" +
+                        "                            <nav>\n" +
+                        "                                <div class=\"styleBut\" id=\"btnPreced\">Précédent</div>\n" +
+                        "                                <div class=\"styleBut\" id=\"valider\">Valider</div>\n" +
+                        "                                <div class=\"styleBut\" id=\"feedBack\">Feedback</div>\n" +
+                        "                                <div class=\"styleBut\" id=\"btnSuiv\">Suivant</div>\n" +
+                        "                            </nav>\n" +
+                        "                        </footer>\n" +
+                        "                    </body>\n" +
+                        "                    </html>`;\n" +
+                        "\n" +
+                        "    creerHtml(contenuPage);\n" +
+                        "\n" +
+                        "    updateProgress();\n" +
+                        "\n" +
+                        "    changerSelections();\n" +
+                        "\n" +
+                        "    //Génération du popup\n" +
+                        "    const popup = document.getElementById('popup');\n" +
+                        "    const closePopupBtn = document.getElementById('closePopupBtn');\n" +
+                        "    const popupI = document.getElementById('popupI');\n" +
+                        "    const feedBackBtn = document.getElementById('feedBack');\n" +
+                        "\n" +
+                        "\n" +
+                        "    feedBackBtn.addEventListener('click', () => {\n" +
+                        "        showFeedBack(questionActuelleEstBon,points,texteExplications);\n" +
+                        "    });\n" +
+                        "    \n" +
+                        "    // Cacher le popup\n" +
+                        "    closePopupBtn.addEventListener('click', () => {\n" +
+                        "        cacheFeedBack();\n" +
+                        "    });\n" +
+                        "    \n" +
+                        "    // Optionnel : Fermer le popup en cliquant en dehors\n" +
+                        "    popup.addEventListener('click', (event) => \n" +
+                        "    {\n" +
+                        "        if (event.target === popup) {\n" +
+                        "            cacheFeedBack();\n" +
+                        "        }\n" +
+                        "    });\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+                        "    //Gestion du timer\n" +
+                        "    if(estChronometrer)\n" +
+                        "    {\n" +
+                        "        startTimerQuestion(tempsDeReponse);\n" +
+                        "    }else{\n" +
+                        "        document.getElementById('chrono').textContent = \"Temps estimé : \" + tempsDeReponse;\n" +
+                        "    }\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+                        "    //Timer pour les questions\n" +
+                        "    function startTimerQuestion(tempsDeReponse) \n" +
+                        "    {\n" +
+                        "        if(estChronometrer)\n" +
+                        "        {\n" +
+                        "            isRunning = true;\n" +
+                        "            let tps = tempsDeReponse;\n" +
+                        "            timer = setInterval(() => {\n" +
+                        "                tps--;\n" +
+                        "                if(document.getElementById('chrono') != null)\n" +
+                        "                    document.getElementById('chrono').textContent = \"Compte à rebours : \" + formatTime(tps) + \" secondes\";\n" +
+                        "                if(tps <= 0)\n" +
+                        "                {\n" +
+                        "                    stopTimerQuestion();\n" +
+                        "                    verifierReponses(bonnesRep, points)\n" +
+                        "                    validerQuestion(bonnesRep, 'QCM');\n" +
+                        "                    showFeedBack(questionActuelleEstBon, points, texteExplications);\n" +
+                        "                }\n" +
+                        "            }, 1000);\n" +
+                        "        }\n" +
+                        "    }\n" +
+                        "\n" +
+                        "\n" +
+                        "    // Fonction pour arrêter le chronomètre\n" +
+                        "    function stopTimerQuestion() \n" +
+                        "    {\n" +
+                        "        if(estChronometrer)\n" +
+                        "        {\n" +
+                        "            isRunning = false;\n" +
+                        "            clearInterval(timer);\n" +
+                        "        }\n" +
+                        "    }\n" +
+                        "\n" +
+                        "\n" +
+                        "    if(tabCompletion[questionActuelle])\n" +
+                        "    {\n" +
+                        "        afficherReponse(bonnesRep, 'QCM');\n" +
+                        "    }\n" +
+                        "\n" +
+                        "    // Mettre à jour les événements de clic\n" +
+                        "\n" +
+                        "    document.getElementById(\"rep1\").onclick = function() { clicRep(0, \"QCM\") };\n" +
+                        "    document.getElementById(\"rep2\").onclick = function() { clicRep(1, \"QCM\") };\n" +
+                        "    document.getElementById(\"rep3\").onclick = function() { clicRep(2, \"QCM\") };\n" +
+                        "    document.getElementById(\"rep4\").onclick = function() { clicRep(3, \"QCM\") };\n" +
+                        "    \n" +
+                        "    document.getElementById(\"btnPreced\").onclick = function() {if(!estChronometrer){questionPrecedante(), question1()}};\n" +
+                        "    document.getElementById(\"btnSuiv\").onclick = function() {if(estChronometrer){if(tabCompletion[questionActuelle]){questionSuivante(), question2()}}else{questionSuivante(), question2()}};\n" +
+                        "\n" +
+                        "    document.getElementById(\"valider\").onclick = function() \n" +
+                        "    {\n" +
+                        "        if(!tabCompletion[questionActuelle])\n" +
+                        "        {\n" +
+                        "            verifierReponses(bonnesRep, points)\n" +
+                        "            validerQuestion(bonnesRep, 'QCM');\n" +
+                        "            showFeedBack(questionActuelleEstBon ,points, texteExplications);\n" +
+                        "            stopTimerQuestion();\n" +
+                        "        }\n" +
+                        "    };\n" +
+                        "}";
+            }
+        }
+
+        return res;
+    }
+
 }
