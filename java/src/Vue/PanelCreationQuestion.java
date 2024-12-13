@@ -9,46 +9,34 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 import src.Controleur;
+import src.Metier.Notion;
+import src.Metier.Ressource;
 
 public class PanelCreationQuestion extends JPanel implements ActionListener, ItemListener {
 	private Controleur ctrl;
-	private JComboBox<String> listeRessources;
-	private JComboBox<String> listeNotions;
+	private JComboBox<Ressource> listeRessources;
+	private JComboBox<Notion> listeNotions;
 	private JButton boutonTresFacile, boutonFacile, boutonMoyen, boutonDifficile;
 	private JButton boutonConfirmer;
 	private JComboBox<String> listeTypes;
 	private JLabel labelMessage, labelResultat;
-
-	// Données statiques brut pour test
-	private static final String[] RESSOURCES = { "Ressource 1", "Ressource 2" };
-	private static final String[][] NOTIONS = {
-			{ "Notion A", "Notion B" }, // Pour Ressource 1
-			{ "Notion X", "Notion Y" } // Pour Ressource 2
-	};
-	/*
-	ArrayList<Ressource> ressources;
-	ArrayList<Notion> notions;
-
-	 */
+	private ArrayList<Ressource> ressources;
+	private ArrayList<Notion> notions;
 
 	private static final ImageIcon[] IMAGES_DIFFICULTE = {
-			new ImageIcon("carrevertaveclettre.png"),
-			new ImageIcon("carrebleuaveclettre.png"),
-			new ImageIcon("carrerougeaveclettre.png"),
-			new ImageIcon("carregrisaveclettre.png")
+			new ImageIcon("../../data.Image/carrevertaveclettre.png"),
+			new ImageIcon("../../data.Image/carrebleuaveclettre.png"),
+			new ImageIcon("../../data.Image/carrerougeaveclettre.png"),
+			new ImageIcon("../../data.Image/carregrisaveclettre.png")
 	};
 
 	public PanelCreationQuestion(Controleur ctrl) {
 		this.ctrl = ctrl;
-		/*
-
-		this.ressources = this.ctrl.getRessources();
 		this.notions = this.ctrl.getNotions();
 
-		*/
 		setLayout(new BorderLayout());
 
-		UIManager.put("Label.font", new Font("Arial", Font.BOLD, 25));
+		UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
 
 		// Section supérieure
 		JPanel panelConfiguration = new JPanel(new GridLayout(2, 2, 5, 5));
@@ -71,7 +59,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		panelSelection.setBorder(BorderFactory.createTitledBorder("Sélection"));
 
 		JLabel labelRessource = new JLabel("Ressource :");
-		listeRessources = new JComboBox<>(RESSOURCES);
+		listeRessources = new JComboBox<Ressource>();
 		listeRessources.addItemListener(this);
 
 		JLabel labelNotion = new JLabel("Notion :");
@@ -139,7 +127,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		if (e.getSource() == listeRessources && e.getStateChange() == ItemEvent.SELECTED) {
 			int index = listeRessources.getSelectedIndex();
 			listeNotions.removeAllItems();
-			for (String notion : NOTIONS[index]) {
+			for (Notion notion : this.ctrl.getNotions()) {
 				listeNotions.addItem(notion);
 			}
 			listeNotions.setEnabled(true);

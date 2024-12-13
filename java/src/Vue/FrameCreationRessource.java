@@ -7,7 +7,7 @@ import javax.swing.*;
 public class FrameCreationRessource extends JFrame{
     private Controleur ctrl;
 
-    public FrameCreationRessource(Controleur ctrl){
+    public FrameCreationRessource(Controleur ctrl, PanelRessource panelRessource){
         this.ctrl = ctrl;
 
         System.out.println("Création de la frame CreaRessource");
@@ -18,7 +18,7 @@ public class FrameCreationRessource extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelCreationRessource(ctrl) );
+        this.add(new PanelCreationRessource(ctrl, panelRessource) );
 
         setVisible(true);
     }

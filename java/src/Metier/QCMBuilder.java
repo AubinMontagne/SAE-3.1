@@ -14,6 +14,8 @@ public class QCMBuilder
     private FileWriter fileWriter;
     private String path;
 
+    private int nbAssociations = 0;
+
     public QCMBuilder(Questionnaire questionnaire, String path){
         this.questionnaire = questionnaire;
         this.path = path;
@@ -258,30 +260,21 @@ public class QCMBuilder
 
         //Debut lignes
 
-        for (Question q : this.questionnaire.getLstQuestion()) {
-            if (q instanceof AssociationElement) {
-                lignes = lignes + "let lignes" + (indice + 1) + " = [\n";
+        for(Question q : this.questionnaire.getLstQuestion())
+        {
+            if(q instanceof AssociationElement)
+            {
+                AssociationElement ae = (AssociationElement)(q);
+                String bonnesRep = "[";
 
-                for (int i = 0; i < ((AssociationElement) q).getAssociations().size(); i++) {
-                    lignes = lignes + "[],\n";
+                String ligne = "";
+
+                for ( String gauche : ae.getAssociations().keySet()) {
+                    ligne += "[" + gauche + "," + ae.getAssociations().get(gauche) + "],";
                 }
 
-                lignes = lignes + "];\n";
-                indice++;
+                ligne = ligne + "];";
             }
-        }
-
-        indice = 0;
-
-        String delimiteur = "let ";
-
-        Scanner scanner = new Scanner(lignes);
-        // Définir le délimiteur
-        scanner.useDelimiter(delimiteur);
-
-        // Lire les parties une par une
-        while (scanner.hasNext()) {
-            lignesInit = lignesInit + scanner.next();
         }
 
         //fin lignes
@@ -981,350 +974,384 @@ public class QCMBuilder
                             "}";
                 } else if (q instanceof AssociationElement)
                 {
+                    AssociationElement ae = (AssociationElement)(q);
+                    String bonnesRep = "[";
+                    for ( String gauche : ae.getAssociations().keySet()) {
+                        res += "[" + gauche + "," + ae.getAssociations().get(gauche) + "],";
+                    }
 
-                    if(((AssociationElement)q).getAssociations())
+                    bonnesRep = bonnesRep + "];";
 
-                    res += "\n\nfunction question" + (questionnaire.getLstQuestion().indexOf(q) + 1) + "()\n" +
-                        "{\n" +
-                        "    //Variables\n" +
-                        "    let bonnesRep = [    \n" +
-                        "                        [1,5],\n" +
-                        "                        [7],\n" +
-                        "                        [1],\n" +
-                        "                        [3]\n" +
-                        "                    ];\n" +
-                        "                    \n" +
-                        "                \n" +
-                        "    const difficulte = \"[difficulté]\";\n" +
-                        "    const tempsDeReponse = 12;\n" +
-                        "    let points = 3;\n" +
-                        "    let texteExplications = \"[TextExplications Q4]\";\n" +
-                        "\n" +
-                        "    \n" +
-                        "\n" +
-                        "\n" +
-                        "    let contenuPage =`<!DOCTYPE html>\n" +
-                        "                    <html lang=\"en\">\n" +
-                        "                    <head>\n" +
-                        "                        <meta charset=\"UTF-8\">\n" +
-                        "                        <title>QCMBuilder</title>\n" +
-                        "                        <link href=\"style.css\" rel=\"stylesheet\">\n" +
-                        "                    </head>\n" +
-                        "                    <body>\n" +
-                        "                        <div id=\"popup\" class=\"hiddenP\">\n" +
-                        "                            <div id=\"popupI\" class=\"hidden\">\n" +
-                        "                                <span id=\"closePopupBtn\" class=\"close\">&times;</span>\n" +
-                        "                                <h2 id=\"estReponseBonne\"></h2>\n" +
-                        "                                <p id=\"textFeedBack\"></p>\n" +
-                        "                            </div>\n" +
-                        "                        </div>\n" +
-                        "\n" +
-                        "\n" +
-                        "                        <div class=\"compteurs\">\n" +
-                        "                            <div class=\"timer, compteurs-div\" id=\"chrono\">00:00</div>\n" +
-                        "                            <div class=\"compteurs-div\">Questions traitées : <span id=\"questionsDone\">0</span>/`+ nbQuestion +`</div>\n" +
-                        "                            <div class=\"compteurs-div\">Question sur `+points+` points</div>\n" +
-                        "                            <div class=\"compteurs-div\" id=\"note\">Total des points : `+ totalPoints+` / `+ noteMax +`</div>\n" +
-                        "                        </div>\n" +
-                        "                        <div class=\"progress-container\">\n" +
-                        "                            <div class=\"progress-bar\" id=\"progressBar\">0%</div>\n" +
-                        "                        </div>\n" +
-                        "                        <script src=\"./script.js\"></script>\n" +
-                        "\n" +
-                        "                        <h1> Question `+ questionActuelle +` : </h1>\n" +
-                        "                        <h2> Notion : `+ notion +` <!-- Avoir la notion de la question avec JS--> </h2>\n" +
-                        "                        <h2> Difficulté : `+ difficulte +` <!-- Avoir la difficulté de la question avec JS--> </h2>\n" +
-                        "\n" +
-                        "                        <br>\n" +
-                        "                        <!-- Pour un QCM -->\n" +
-                        "\n" +
-                        "                        <h3> [Texte de la question] </h3>\n" +
-                        "                        <img class=\"imgQuestion\" src=\"./src/14.jpg\" id=\"imgTxt\" draggable=\"false\">\n" +
-                        "\n" +
-                        "                        <div id=\"zoneRepAssos\">\n" +
-                        "                            <div class=\"casesInternes\" id=\"repGauche\">\n" +
-                        "                                <div class=\"reponseBoxAssos\" id=\"rep1\"><img class=\"imgRep\" src=\"./src/14.jpg\" draggable=\"false\"></div>\n" +
-                        "                                <div class=\"reponseBoxAssos\" id=\"rep3\">[TextRep 2]</div>\n" +
-                        "                                <div class=\"reponseBoxAssos\" id=\"rep5\"><img class=\"imgRep\" src=\"./src/65.jpeg\" draggable=\"false\"></div>\n" +
-                        "                                <div class=\"reponseBoxAssos\" id=\"rep7\">[TextRep 2]</div>\n" +
-                        "                            </div>\n" +
-                        "                            <div><canvas id=\"canvas\"></canvas></div>\n" +
-                        "                            <div class=\"casesInternes\" id=\"repDroite\">\n" +
-                        "                                <div class=\"reponseBoxAssos\" id=\"rep2\">[TextRep 3]</div>\n" +
-                        "                                <div class=\"reponseBoxAssos\" id=\"rep4\"><img class=\"imgRep\" src=\"./src/86.jpg\" draggable=\"false\"></div>\n" +
-                        "                                <div class=\"reponseBoxAssos\" id=\"rep6\">[TextRep 3]</div>\n" +
-                        "                                <div class=\"reponseBoxAssos\" id=\"rep8\"><img class=\"imgRep\" src=\"./src/14.jpg\" draggable=\"false\"></div>\n" +
-                        "                            </div>\n" +
-                        "                        </div>\n" +
-                        "\n" +
-                        "\n" +
-                        "                        </div>\n" +
-                        "                        <footer>\n" +
-                        "                            <nav>\n" +
-                        "                                <div class=\"styleBut\" id=\"btnPreced\">Précédent</div>\n" +
-                        "                                <div class=\"styleBut\" id=\"valider\">Valider</div>\n" +
-                        "                                <div class=\"styleBut\" id=\"feedBack\">Feedback</div>\n" +
-                        "                                <div class=\"styleBut\" id=\"btnSuiv\">Suivant</div>\n" +
-                        "                            </nav>\n" +
-                        "                        </footer>\n" +
-                        "                    </body>\n" +
-                        "                    </html>`;\n" +
-                        "\n" +
-                        "    creerHtml(contenuPage);\n" +
-                        "\n" +
-                        "                    \n" +
-                        "    //Génération du popup\n" +
-                        "    const popup = document.getElementById('popup');\n" +
-                        "    const closePopupBtn = document.getElementById('closePopupBtn');\n" +
-                        "    const popupI = document.getElementById('popupI');\n" +
-                        "    const feedBackBtn = document.getElementById('feedBack');\n" +
-                        "\n" +
-                        "\n" +
-                        "    feedBackBtn.addEventListener('click', () => {\n" +
-                        "        showFeedBack(questionActuelleEstBon,points,texteExplications);\n" +
-                        "    });\n" +
-                        "    \n" +
-                        "    // Cacher le popup\n" +
-                        "    closePopupBtn.addEventListener('click', () => {\n" +
-                        "        cacheFeedBack();\n" +
-                        "    });\n" +
-                        "    \n" +
-                        "    // Optionnel : Fermer le popup en cliquant en dehors\n" +
-                        "    popup.addEventListener('click', (event) => \n" +
-                        "    {\n" +
-                        "        if (event.target === popup) {\n" +
-                        "            cacheFeedBack();\n" +
-                        "        }\n" +
-                        "    });\n" +
-                        "\n" +
-                        "\n" +
-                        "\n" +
-                        "    const canvas = document.getElementById('canvas');\n" +
-                        "    const ctx = canvas.getContext('2d');\n" +
-                        "\n" +
-                        "    // Définir les dimensions du canvas\n" +
-                        "\n" +
-                        "    let tmp = document.getElementById(\"repDroite\");\n" +
-                        "    let tmp2 = document.getElementById(\"repGauche\");\n" +
-                        "\n" +
-                        "\n" +
-                        "    if(tmp.clientHeight > tmp2.clientHeight)\n" +
-                        "    {\n" +
-                        "        canvas.height = tmp.clientHeight;\n" +
-                        "    }else{\n" +
-                        "        canvas.height = tmp2.clientHeight;\n" +
-                        "    }\n" +
-                        "    \n" +
-                        "    canvas.width = canvas.offsetWidth;\n" +
-                        "\n" +
-                        "\n" +
-                        "\n" +
-                        "    if(tabCompletion[questionActuelle])\n" +
-                        "    {\n" +
-                        "        afficherReponse(bonnesRep, 'EA');\n" +
-                        "    }\n" +
-                        "\n" +
-                        "\n" +
-                        "    //Gestion du timer\n" +
-                        "    if(estChronometrer)\n" +
-                        "    {\n" +
-                        "        startTimerQuestion(tempsDeReponse);\n" +
-                        "    }else{\n" +
-                        "        document.getElementById('chrono').textContent = \"Temps estimé : \" + tempsDeReponse;\n" +
-                        "    }\n" +
-                        "\n" +
-                        "\n" +
-                        "\n" +
-                        "    //Timer pour les questions\n" +
-                        "    function startTimerQuestion(tempsDeReponse) {\n" +
-                        "        isRunning = true;\n" +
-                        "        let tps = tempsDeReponse;\n" +
-                        "        timer = setInterval(() => {\n" +
-                        "            tps--;\n" +
-                        "            if(document.getElementById('chrono') != null)\n" +
-                        "                document.getElementById('chrono').textContent = \"Compte à rebours : \" + formatTime(tps) + \" secondes\";\n" +
-                        "            if(tps <= 0)\n" +
-                        "            {\n" +
-                        "                stopTimerQuestion();\n" +
-                        "                drawLines(lignes, 'erreurs');\n" +
-                        "                validerQuestion(bonnesRep,\"EA\");\n" +
-                        "                clearInterval(this);\n" +
-                        "                showFeedBack(checkErrors(points),points,texteExplications);\n" +
-                        "            }\n" +
-                        "        }, 1000);\n" +
-                        "    }\n" +
-                        "\n" +
-                        "    // Fonction pour arrêter le chronomètre\n" +
-                        "    function stopTimerQuestion() {\n" +
-                        "        isRunning = false;\n" +
-                        "        tps = 0;\n" +
-                        "        clearInterval(timer);\n" +
-                        "    }\n" +
-                        "\n" +
-                        "\n" +
-                        "\n" +
-                        "    \n" +
-                        "    // Recalcule et redessine si la fenêtre est redimensionnée\n" +
-                        "    window.onresize = drawLines;\n" +
-                        "\n" +
-                        "\n" +
-                        "    // Récupérer les éléments à connecter\n" +
-                        "    const leftElementsDiv = document.querySelectorAll(\"#repGauche .reponseBoxAssos\");\n" +
-                        "    const rightElementsDiv = document.querySelectorAll(\"#repDroite .reponseBoxAssos\");\n" +
-                        "\n" +
-                        "    let leftElements = [];\n" +
-                        "    let rightElements = [];\n" +
-                        "\n" +
-                        "    let selectGauche = -1;\n" +
-                        "    let selectDroite = -1;\n" +
-                        "    let indexGauche = -1;\n" +
-                        "\n" +
-                        "\n" +
-                        "    leftElementsDiv.forEach(function(element, index, leftElement) {\n" +
-                        "        leftElements[index] = index;\n" +
-                        "    });\n" +
-                        "\n" +
-                        "    rightElementsDiv.forEach(function(element, index, rightElementsDiv) {\n" +
-                        "        rightElements[index] = index;\n" +
-                        "    });\n" +
-                        "\n" +
-                        "\n" +
-                        "    function checkErrors(nbPoints)\n" +
-                        "    {\n" +
-                        "        let estbon = true;\n" +
-                        "\n" +
-                        "        for(let i = 0 ; i < bonnesRep.length ; i++)\n" +
-                        "        {\n" +
-                        "            tmpBonnesRep = bonnesRep[i].sort();\n" +
-                        "            tmpLignes = lignes[i].sort();\n" +
-                        "\n" +
-                        "            if(bonnesRep[i].length != lignes[i].length)\n" +
-                        "            {\n" +
-                        "                estbon = false;\n" +
-                        "            }\n" +
-                        "\n" +
-                        "            for(let j = 0; j < bonnesRep[i].length ; j++)\n" +
-                        "            {\n" +
-                        "                if(tmpBonnesRep[j] != tmpLignes[j])\n" +
-                        "                {\n" +
-                        "                    estBon = false;\n" +
-                        "                }\n" +
-                        "            }\n" +
-                        "        }\n" +
-                        "\n" +
-                        "        if(!tabCompletion[questionActuelle])\n" +
-                        "        {        \n" +
-                        "            totalPoints += nbPoints;\n" +
-                        "            document.getElementById(\"note\").innerHTML = (\"Total des points : \" + totalPoints + \" / \" + noteMax)\n" +
-                        "        }\n" +
-                        "\n" +
-                        "        questionActuelleEstBon = estbon;\n" +
-                        "\n" +
-                        "        return estBon;\n" +
-                        "    }\n" +
-                        "\n" +
-                        "\n" +
-                        "    function selection(element, index)\n" +
-                        "    {\n" +
-                        "        if(tabCompletion[questionActuelle])\n" +
-                        "        {\n" +
-                        "            return;\n" +
-                        "        }\n" +
-                        "\n" +
-                        "\n" +
-                        "        if(index % 2 == 0)\n" +
-                        "        {\n" +
-                        "            document.getElementById(\"rep\" + (index+1)).classList.toggle('selected');\n" +
-                        "            indexGauche = index+1;\n" +
-                        "            selectGauche = index/2;\n" +
-                        "        }else{\n" +
-                        "            document.getElementById(\"rep\" + (index+1)).classList.toggle('selected');\n" +
-                        "            selectDroite = index;\n" +
-                        "        }\n" +
-                        "\n" +
-                        "        if(selectDroite != -1 && selectGauche != -1)\n" +
-                        "        {\n" +
-                        "            if(lignes[selectGauche].indexOf(selectDroite) != -1)\n" +
-                        "            {\n" +
-                        "                lignes[selectGauche].pop(selectDroite);\n" +
-                        "            }else{\n" +
-                        "                lignes[selectGauche].push(selectDroite);\n" +
-                        "            }\n" +
-                        "\n" +
-                        "            ctx.clearRect(0, 0, canvas.width, canvas.height);\n" +
-                        "\n" +
-                        "\n" +
-                        "            if(document.getElementById(\"rep\" + (selectDroite+1)).classList.contains('selected'))\n" +
-                        "            {\n" +
-                        "                document.getElementById(\"rep\" + (selectDroite+1)).classList.toggle('selected');\n" +
-                        "            }\n" +
-                        "\n" +
-                        "            if(document.getElementById(\"rep\" + indexGauche).classList.contains('selected'))\n" +
-                        "            {\n" +
-                        "                document.getElementById(\"rep\" + (indexGauche)).classList.toggle('selected');\n" +
-                        "            }\n" +
-                        "\n" +
-                        "            selectGauche = -1;\n" +
-                        "            selectDroite = -1;\n" +
-                        "            indexGauche = -1;\n" +
-                        "        }\n" +
-                        "\n" +
-                        "\n" +
-                        "        drawLines(lignes);\n" +
-                        "    }\n" +
-                        "\n" +
-                        "\n" +
-                        "    drawLines(lignes);\n" +
-                        "\n" +
-                        "\n" +
-                        "    if(tabCompletion[questionActuelle])\n" +
-                        "    {\n" +
-                        "        drawLines(lignes, 'erreurs');\n" +
-                        "        drawLines(bonnesRep, 'correction');\n" +
-                        "    }\n" +
-                        "    \n" +
-                        "    updateProgress();\n" +
-                        "\n" +
-                        "    changerSelections();\n" +
-                        "\n" +
-                        "\n" +
-                        "\n" +
-                        "    // Mettre à jour les événements de clic\n" +
-                        "\n" +
-                        "    if(!tabCompletion[questionActuelle])\n" +
-                        "    {\n" +
-                        "        document.getElementById(\"rep1\").onclick = function() { selection(leftElements, 0) };\n" +
-                        "        document.getElementById(\"rep2\").onclick = function() { selection(rightElements, 1) };\n" +
-                        "        document.getElementById(\"rep3\").onclick = function() { selection(leftElements, 2)};\n" +
-                        "        document.getElementById(\"rep4\").onclick = function() { selection(rightElements, 3)};\n" +
-                        "        document.getElementById(\"rep5\").onclick = function() { selection(leftElements, 4)};\n" +
-                        "        document.getElementById(\"rep6\").onclick = function() { selection(rightElements, 5)};\n" +
-                        "        document.getElementById(\"rep7\").onclick = function() { selection(leftElements, 6)};\n" +
-                        "        document.getElementById(\"rep8\").onclick = function() { selection(rightElements, 7)};\n" +
-                        "\n" +
-                        "        document.getElementById(\"valider\").onclick = function() \n" +
-                        "        {\n" +
-                        "            if(!tabCompletion[questionActuelle])\n" +
-                        "            {\n" +
-                        "                drawLines(lignes, 'erreurs');\n" +
-                        "            }\n" +
-                        "\n" +
-                        "            validerQuestion(bonnesRep,\"EA\");\n" +
-                        "            stopTimerQuestion();\n" +
-                        "\n" +
-                        "            if(!tabCompletion[questionActuelle])\n" +
-                        "            {\n" +
-                        "                showFeedBack(questionActuelleEstBon ,points,texteExplications);\n" +
-                        "            }\n" +
-                        "        };\n" +
-                        "    }\n" +
-                        "\n" +
-                        "    \n" +
-                        "\n" +
-                        "    \n" +
-                        "    document.getElementById(\"btnPreced\").onclick = function() {if(!estChronometrer){questionPrecedante(), question3()}}\n" +
-                        "    document.getElementById(\"btnSuiv\").onclick = function() {if(estChronometrer){if(tabCompletion[questionActuelle]){questionSuivante(), question5()}}else{questionSuivante(), question5()}};\n" +
-                        "}";
+                    res += "\n\nasync function" + (questionnaire.getLstQuestion().indexOf(q) + 1) + "()\n" +
+                            "{\n" +
+                            "    //Variables\n" +
+                            "    let reponses = " + bonnesRep + "\n" +
+                            "                    \n" +
+                            "                \n" +
+                            "    const difficulte = "+ q.getDifficulte().getNom() +";\n" +
+                            "    const tempsDeReponse = "+ q.getTemps() +";\n" +
+                            "    let points = " + q.getPoint() +";\n" +
+                            "    let texteExplications = " + "Explications" + ";\n" +
+                            "\n" +
+                            "    \n" +
+                            "\n" +
+                            "\n" +
+                            "    let contenuPage =`<!DOCTYPE html>\n" +
+                            "                    <html lang=\"en\">\n" +
+                            "                    <head>\n" +
+                            "                        <meta charset=\"UTF-8\">\n" +
+                            "                        <title>QCMBuilder</title>\n" +
+                            "                        <link href=\"style.css\" rel=\"stylesheet\">\n" +
+                            "                    </head>\n" +
+                            "                    <body>\n" +
+                            "                        <div id=\"popup\" class=\"hiddenP\">\n" +
+                            "                            <div id=\"popupI\" class=\"hidden\">\n" +
+                            "                                <span id=\"closePopupBtn\" class=\"close\">&times;</span>\n" +
+                            "                                <h2 id=\"estReponseBonne\"></h2>\n" +
+                            "                                <p id=\"textFeedBack\"></p>\n" +
+                            "                            </div>\n" +
+                            "                        </div>\n" +
+                            "\n" +
+                            "\n" +
+                            "                        <div class=\"compteurs\">\n" +
+                            "                            <div class=\"timer, compteurs-div\" id=\"chrono\">00:00</div>\n" +
+                            "                            <div class=\"compteurs-div\">Questions traitées : <span id=\"questionsDone\">0</span>/`+ nbQuestion +`</div>\n" +
+                            "                            <div class=\"compteurs-div\">Question sur `+points+` points</div>\n" +
+                            "                            <div class=\"compteurs-div\" id=\"note\">Total des points : `+ totalPoints+` / `+ noteMax +`</div>\n" +
+                            "                        </div>\n" +
+                            "                        <div class=\"progress-container\">\n" +
+                            "                            <div class=\"progress-bar\" id=\"progressBar\">0%</div>\n" +
+                            "                        </div>\n" +
+                            "                        <script src=\"./script.js\"></script>\n" +
+                            "\n" +
+                            "                        <h1> Question `+ questionActuelle +` : </h1>\n" +
+                            "                        <h2> Notion : `+ notion +` <!-- Avoir la notion de la question avec JS--> </h2>\n" +
+                            "                        <h2> Difficulté : `+ difficulte +` <!-- Avoir la difficulté de la question avec JS--> </h2>\n" +
+                            "\n" +
+                            "                        <br>\n" +
+                            "                        <!-- Pour un QCM -->\n" +
+                            "\n" +
+                            "                        <h3> "+ "explications" +" </h3>\n" +
+                            "                        <img class=\"imgQuestion\" src=\"./src/14.jpg\" id=\"imgTxt\" draggable=\"false\">\n" +
+                            "\n" +
+                            "                        <div id=\"zoneRepAssos\">\n" +
+                            "                            <div class=\"casesInternes\" id=\"repGauche\">\n";
+
+                            int i = 1;
+                            for (String gauche : ae.getAssociations().keySet()){
+                                res +="<div class=\"reponseBoxAssos\" id=\"rep"+i+"\">"+gauche+"</div>\n";
+                                i += 2;
+                            }
+
+                            res += "                            </div>\n" +
+                            "                            <div><canvas id=\"canvas\"></canvas></div>\n" +
+                            "                            <div class=\"casesInternes\" id=\"repDroite\">\n";
+
+                            i = 2;
+                            for (String gauche : ae.getAssociations().keySet()){
+                                res +="<div class=\"reponseBoxAssos\" id=\"rep"+i+"\">"+ae.getAssociations().get(gauche)+"</div>\n";
+                                i += 2;
+                            }
+
+                            res +="                            </div>\n" +
+                            "                        </div>\n" +
+                            "\n" +
+                            "\n" +
+                            "                        </div>\n" +
+                            "                        <footer>\n" +
+                            "                            <nav>\n" +
+                            "                                <div class=\"styleBut\" id=\"btnPreced\">Précédent</div>\n" +
+                            "                                <div class=\"styleBut\" id=\"valider\">Valider</div>\n" +
+                            "                                <div class=\"styleBut\" id=\"feedBack\">Feedback</div>\n" +
+                            "                                <div class=\"styleBut\" id=\"btnSuiv\">Suivant</div>\n" +
+                            "                            </nav>\n" +
+                            "                        </footer>\n" +
+                            "                    </body>\n" +
+                            "                    </html>`;\n" +
+                            "\n" +
+                            "    await creerHtml(contenuPage);\n" +
+                            "                    \n" +
+                            "    //Génération du popup\n" +
+                            "    const popup = document.getElementById('popup');\n" +
+                            "    const closePopupBtn = document.getElementById('closePopupBtn');\n" +
+                            "    const popupI = document.getElementById('popupI');\n" +
+                            "    const feedBackBtn = document.getElementById('feedBack');\n" +
+                            "\n" +
+                            "\n" +
+                            "    feedBackBtn.addEventListener('click', () => {\n" +
+                            "        showFeedBack(questionActuelleEstBon,points,texteExplications);\n" +
+                            "    });\n" +
+                            "    \n" +
+                            "    // Cacher le popup\n" +
+                            "    closePopupBtn.addEventListener('click', () => {\n" +
+                            "        cacheFeedBack();\n" +
+                            "    });\n" +
+                            "    \n" +
+                            "    // Optionnel : Fermer le popup en cliquant en dehors\n" +
+                            "    popup.addEventListener('click', (event) => \n" +
+                            "    {\n" +
+                            "        if (event.target === popup) {\n" +
+                            "            cacheFeedBack();\n" +
+                            "        }\n" +
+                            "    });\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "    if(tabCompletion[questionActuelle])\n" +
+                            "    {\n" +
+                            "        afficherReponse(reponses, 'EA');\n" +
+                            "    }\n" +
+                            "\n" +
+                            "\n" +
+                            "    //Gestion du timer\n" +
+                            "    if(estChronometrer)\n" +
+                            "    {\n" +
+                            "        startTimerQuestion(tempsDeReponse);\n" +
+                            "    }else{\n" +
+                            "        document.getElementById('chrono').textContent = \"Temps estimé : \" + tempsDeReponse;\n" +
+                            "    }\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "    //Timer pour les questions\n" +
+                            "    function startTimerQuestion(tempsDeReponse) {\n" +
+                            "        isRunning = true;\n" +
+                            "        let tps = tempsDeReponse;\n" +
+                            "        timer = setInterval(() => {\n" +
+                            "            tps--;\n" +
+                            "            if(document.getElementById('chrono') != null)\n" +
+                            "                document.getElementById('chrono').textContent = \"Compte à rebours : \" + formatTime(tps) + \" secondes\";\n" +
+                            "            if(tps <= 0)\n" +
+                            "            {\n" +
+                            "                stopTimerQuestion();\n" +
+                            "                drawLines(lignes, 'erreurs');\n" +
+                            "                validerQuestion(bonnesRep,\"EA\");\n" +
+                            "                clearInterval(this);\n" +
+                            "                showFeedBack(checkErrors(),points,texteExplications);\n" +
+                            "            }\n" +
+                            "        }, 1000);\n" +
+                            "    }\n" +
+                            "\n" +
+                            "    // Fonction pour arrêter le chronomètre\n" +
+                            "    function stopTimerQuestion() {\n" +
+                            "        isRunning = false;\n" +
+                            "        tps = 0;\n" +
+                            "        clearInterval(timer);\n" +
+                            "    }\n" +
+                            "\n" +
+                            "    const canvas = document.getElementById('canvas');\n" +
+                            "    const ctx = canvas.getContext('2d');\n" +
+                            "\n" +
+                            "    canvas.height = 250 * reponses.length;\n" +
+                            "\n" +
+                            "    \n" +
+                            "    canvas.width = canvas.offsetWidth;\n" +
+                            "    \n" +
+                            "    // Recalcule et redessine si la fenêtre est redimensionnée\n" +
+                            "    window.onresize = drawLines;\n" +
+                            "\n" +
+                            "    // Récupérer les éléments à connecter\n" +
+                            "    const leftElementsDiv = document.querySelectorAll(\"#repGauche .reponseBoxAssos\");\n" +
+                            "    const rightElementsDiv = document.querySelectorAll(\"#repDroite .reponseBoxAssos\");\n" +
+                            "\n" +
+                            "    let leftElements = [];\n" +
+                            "    let rightElements = [];\n" +
+                            "\n" +
+                            "    let selectGauche = -1;\n" +
+                            "    let selectDroite = -1;\n" +
+                            "\n" +
+                            "\n" +
+                            "    leftElementsDiv.forEach(function(element, index, leftElement) {\n" +
+                            "        leftElements[index] = index;\n" +
+                            "    });\n" +
+                            "\n" +
+                            "    rightElementsDiv.forEach(function(element, index, rightElementsDiv) {\n" +
+                            "        rightElements[index] = index;\n" +
+                            "    });\n" +
+                            "\n" +
+                            "\n" +
+                            "    function checkErrors()\n" +
+                            "    {\n" +
+                            "        let estBon = true;\n" +
+                            "\n" +
+                            "        console.log(lignes);\n" +
+                            "        console.log(reponses);\n" +
+                            "\n" +
+                            "        for(let i = 0 ; i < reponses.length ; i++)\n" +
+                            "        {\n" +
+                            "            for(let j = 0 ; j < reponses[i].length ; j++)\n" +
+                            "            {\n" +
+                            "                for(let v = 0 ; v < reponses[i][j].length ; v++)\n" +
+                            "                {\n" +
+                            "                    console.log(reponses[i][j][v] + \" \" + lignes[i][j][v])\n" +
+                            "\n" +
+                            "                    if(reponses[i][j][v] !== lignes[i][j][v])\n" +
+                            "                    {\n" +
+                            "                        estBon = false;\n" +
+                            "                    }\n" +
+                            "                }\n" +
+                            "            }\n" +
+                            "        }\n" +
+                            "\n" +
+                            "\n" +
+                            "        if(!tabCompletion[questionActuelle] && estBon)\n" +
+                            "        {        \n" +
+                            "            totalPoints += points;\n" +
+                            "            document.getElementById(\"note\").innerHTML = (\"Total des points : \" + totalPoints + \" / \" + noteMax)\n" +
+                            "        }\n" +
+                            "\n" +
+                            "        questionActuelleEstBon = estBon;\n" +
+                            "\n" +
+                            "        return estBon;\n" +
+                            "    }\n" +
+                            "\n" +
+                            "\n" +
+                            "    function selection(element, index)\n" +
+                            "    {\n" +
+                            "        if(tabCompletion[questionActuelle])\n" +
+                            "        {\n" +
+                            "            return;\n" +
+                            "        }\n" +
+                            "\n" +
+                            "        for(let i = 0 ; i < reponses.length*2 ; i++)\n" +
+                            "        {\n" +
+                            "            document.getElementById(\"rep\" + (i + 1)).classList.remove('selected');\n" +
+                            "        }\n" +
+                            "\n" +
+                            "\n" +
+                            "        if(index%2 == 0)\n" +
+                            "        {\n" +
+                            "\n" +
+                            "            if(selectGauche == index)\n" +
+                            "            {\n" +
+                            "                selectGauche = -1;\n" +
+                            "            }else{\n" +
+                            "                selectGauche = index;\n" +
+                            "            }\n" +
+                            "        }else{\n" +
+                            "            if(selectDroite == index)\n" +
+                            "            {\n" +
+                            "                selectDroite = -1;\n" +
+                            "            }else{\n" +
+                            "                if(selectGauche > -1)\n" +
+                            "                    selectDroite = index;\n" +
+                            "            }\n" +
+                            "        }\n" +
+                            "\n" +
+                            "        if(selectGauche >= 0 && selectDroite >= 0)\n" +
+                            "        {\n" +
+                            "            for(let i = 0 ; i < lignes.length ; i++)\n" +
+                            "            {\n" +
+                            "                if((lignes[i][selectGauche%2][0] == selectGauche && lignes[i][selectGauche%2][1] == selectDroite) || (lignes[i][selectDroite%2][0] == selectGauche && lignes[i][selectDroite%2][1] == selectDroite))\n" +
+                            "                {\n" +
+                            "                    lignes[i][selectGauche%2] = [];\n" +
+                            "                    lignes[i][selectDroite%2] = [];\n" +
+                            "                    document.getElementById(\"rep\" + (selectGauche+1)).classList.remove('selected');\n" +
+                            "                    document.getElementById(\"rep\" + (selectDroite+1)).classList.remove('selected');\n" +
+                            "\n" +
+                            "                    selectGauche = -1;\n" +
+                            "                    selectDroite = -1;\n" +
+                            "\n" +
+                            "\n" +
+                            "                    ctx.clearRect(0, 0, canvas.width, canvas.height);\n" +
+                            "\n" +
+                            "                    drawLines(lignes);\n" +
+                            "\n" +
+                            "                    return;\n" +
+                            "                }\n" +
+                            "\n" +
+                            "                if(lignes[i][0][0] == selectGauche)\n" +
+                            "                {\n" +
+                            "                    document.getElementById(\"rep\" + (selectGauche+1)).classList.remove('selected');\n" +
+                            "                    selectGauche = -1;\n" +
+                            "                    selectDroite = -1;\n" +
+                            "                    return;\n" +
+                            "                }\n" +
+                            "\n" +
+                            "                if(lignes[i][1][1] == selectDroite)\n" +
+                            "                {\n" +
+                            "                    document.getElementById(\"rep\" + (selectDroite+1)).classList.remove('selected');\n" +
+                            "                    selectGauche = -1;\n" +
+                            "                    selectDroite = -1;\n" +
+                            "                    return;\n" +
+                            "                }\n" +
+                            "            }\n" +
+                            "\n" +
+                            "            lignes[Math.floor(index/2)][selectGauche%2][0] = selectGauche;\n" +
+                            "            lignes[Math.floor(index/2)][selectGauche%2][1] = selectDroite;\n" +
+                            "\n" +
+                            "            lignes[Math.floor(index/2)][selectDroite%2][0] = selectGauche;\n" +
+                            "            lignes[Math.floor(index/2)][selectDroite%2][1] = selectDroite;\n" +
+                            "            \n" +
+                            "            selectDroite = -1;\n" +
+                            "            selectGauche = -1;\n" +
+                            "        }\n" +
+                            "\n" +
+                            "        if(selectGauche > -1)\n" +
+                            "            document.getElementById(\"rep\" + (selectGauche+1)).classList.toggle('selected');\n" +
+                            "        if(selectDroite > -1 && selectGauche > -1)\n" +
+                            "            document.getElementById(\"rep\" + (selectDroite+1)).classList.toggle('selected');\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "        drawLines(lignes);\n" +
+                            "    }\n" +
+                            "\n" +
+                            "    window.onload = function() {\n" +
+                            "        drawLines(lignes);\n" +
+                            "    }\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "    if(tabCompletion[questionActuelle])\n" +
+                            "    {\n" +
+                            "        drawLines(lignes, 'erreurs');\n" +
+                            "        drawLines(reponses, 'correction');\n" +
+                            "    }\n" +
+                            "    \n" +
+                            "    updateProgress();\n" +
+                            "\n" +
+                            "    changerSelections();\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "    // Mettre à jour les événements de clic\n" +
+                            "\n" +
+                            "    if(!tabCompletion[questionActuelle])\n" +
+                            "    {\n" +
+                            "        document.getElementById(\"rep1\").onclick = function() { selection(leftElements, 0) };\n" +
+                            "        document.getElementById(\"rep2\").onclick = function() { selection(rightElements, 1) };\n" +
+                            "        document.getElementById(\"rep3\").onclick = function() { selection(leftElements, 2)};\n" +
+                            "        document.getElementById(\"rep4\").onclick = function() { selection(rightElements, 3)};\n" +
+                            "        document.getElementById(\"rep5\").onclick = function() { selection(leftElements, 4) };\n" +
+                            "        document.getElementById(\"rep6\").onclick = function() { selection(rightElements, 5) };\n" +
+                            "\n" +
+                            "        document.getElementById(\"valider\").onclick = function() \n" +
+                            "        {\n" +
+                            "            if(!tabCompletion[questionActuelle])\n" +
+                            "            {\n" +
+                            "                drawLines(lignes, 'erreurs');\n" +
+                            "            }\n" +
+                            "\n" +
+                            "            checkErrors();\n" +
+                            "            validerQuestion(reponses,\"EA\");\n" +
+                            "            stopTimerQuestion();\n" +
+                            "\n" +
+                            "            if(tabCompletion[questionActuelle])\n" +
+                            "            {\n" +
+                            "                showFeedBack(questionActuelleEstBon, points, texteExplications);\n" +
+                            "            }\n" +
+                            "        };\n" +
+                            "    }\n" +
+                            "\n" +
+                            "    \n" +
+                            "\n" +
+                            "    \n" +
+                            "    document.getElementById(\"btnPreced\").onclick = function() {if(!estChronometrer){questionPrecedante(), question3()}}\n" +
+                            "    document.getElementById(\"btnSuiv\").onclick = function() {if(estChronometrer){if(tabCompletion[questionActuelle]){questionSuivante(), question5()}}else{questionSuivante(), question5()}};\n" +
+                            "\n" +
+                            "}";
 
                 }
             }

@@ -1,3 +1,5 @@
+package src.Vue;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -5,6 +7,9 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import src.Metier.*;
+import src.*;
 
 public class PanelQuestionnaire extends JPanel implements ActionListener, ItemListener {
 	private boolean videTitre = true;
@@ -20,15 +25,15 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 
 	private Ressource r;
 	private Notion n;
+	private Controleur ctrl;
 
-    public PanelQuestionnaire() {
+    public PanelQuestionnaire(Controleur ctrl) {
     	this.panelQuestionnaire = new JPanel(new BorderLayout());
     	this.panelQuestionnaire.setVisible(true);
 
-    	UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
+		this.ctrl = ctrl;
 
-   		// ------ Données brutes ------
-    	initRessourcesAndNotions();
+    	UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
 
     	// ------ Section supérieure ------
     	JPanel panelInfo = new JPanel(new GridLayout(2, 2, 5, 5));
@@ -42,7 +47,7 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
     	this.btChrono.addActionListener(this);
 
     	JLabel labelRessource = new JLabel("Ressource :");
-    	mdRessources = new JComboBox<>(listRessources.toArray(new Ressource[0]));
+    	mdRessources = new JComboBox<>(ctrl.getRessources().toArray(new Ressource[0]));
     	mdRessources.addItemListener(this);
 
     	panelInfo.add(labelTitre);
@@ -90,26 +95,6 @@ private void verifierChamps(String texteTitre) {
         btConfirmer.setEnabled(false);
     }
 }
-
-    private void initRessourcesAndNotions() {
-        this.listRessources = new ArrayList<>();
-        Ressource ress1 = new Ressource("Probabilitée", "R3.08");
-        Ressource ress2 = new Ressource("DevEfficace", "R3.02");
-        Ressource ress3 = new Ressource("Cryptomonaie", "R3.09");
-
-        listRessources.add(ress1);
-        listRessources.add(ress2);
-        listRessources.add(ress3);
-
-        this.listNotions = new ArrayList<>();
-        listNotions.add(new Notion("Truk", ress1));
-        listNotions.add(new Notion("Machin", ress1));
-        listNotions.add(new Notion("Miche", ress2));
-        listNotions.add(new Notion("Bidule", ress2));
-        listNotions.add(new Notion("JeSaIsPaS", ress3));
-        listNotions.add(new Notion("PlUsAcUnEiDeE", ress3));
-    }
-
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getSource() == mdRessources && e.getStateChange() == ItemEvent.SELECTED) {
@@ -131,7 +116,7 @@ private void verifierChamps(String texteTitre) {
         if (e.getSource() == btConfirmer) {
             Ressource selectedRessource = (Ressource) mdRessources.getSelectedItem();
             if (selectedRessource != null) {
-				new FrameQuestionnaireTab(selectedRessource);
+				new FrameQuestionnaireTab(ctrl,selectedRessource);
             }
         }
 

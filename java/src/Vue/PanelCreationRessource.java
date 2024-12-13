@@ -1,6 +1,7 @@
 package src.Vue;
 
 import src.Controleur;
+import src.Metier.Ressource;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,42 +10,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class PanelCreationRessource extends JPanel implements ActionListener, ItemListener {
+public class PanelCreationRessource extends JPanel implements ActionListener {
 	private Controleur ctrl;
-	private JComboBox<String> listeRessources;
-	private JComboBox<String> listeNotions;
-	private JButton boutonTresFacile, boutonFacile, boutonMoyen, boutonDifficile;
 	private JButton boutonConfirmer;
-	private JComboBox<String> listeTypes;
-	private JLabel labelMessage, labelResultat;
+	private JTextField champID;
+	private JTextField champNom;
+	private PanelRessource panelRessource;
 
-	// Données statiques brut pour test
-	private static final String[] RESSOURCES = { "Ressource 1", "Ressource 2" };
-	private static final String[][] NOTIONS = {
-			{ "Notion A", "Notion B" }, // Pour Ressource 1
-			{ "Notion X", "Notion Y" } // Pour Ressource 2
-	};
-	/*
-	ArrayList<Ressource> ressources;
-	ArrayList<Notion> notions;
-
-	 */
-
-	private static final ImageIcon[] IMAGES_DIFFICULTE = {
-			new ImageIcon("carrevertaveclettre.png"),
-			new ImageIcon("carrebleuaveclettre.png"),
-			new ImageIcon("carrerougeaveclettre.png"),
-			new ImageIcon("carregrisaveclettre.png")
-	};
-
-	public PanelCreationRessource(Controleur ctrl) {
+	public PanelCreationRessource(Controleur ctrl, PanelRessource panelRessource){
 		this.ctrl = ctrl;
-		/*
-
-		this.ressources = this.ctrl.getRessources();
-		this.notions = this.ctrl.getNotions();
-
-		*/
+		this.panelRessource = panelRessource;
 		setLayout(new BorderLayout());
 
 		UIManager.put("Label.font", new Font("Arial", Font.BOLD, 25));
@@ -53,80 +28,28 @@ public class PanelCreationRessource extends JPanel implements ActionListener, It
 		JPanel panelConfiguration = new JPanel(new GridLayout(2, 2, 5, 5));
 		panelConfiguration.setBorder(BorderFactory.createTitledBorder("Configuration"));
 
-		JLabel labelPoints = new JLabel("Nombre de points :");
-		JTextField champPoints = new JTextField();
-		JLabel labelTemps = new JLabel("Temps de réponse (min:sec) :");
-		JTextField champTemps = new JTextField("00:30");
+		JLabel labelID = new JLabel("Identifiant de la ressource :");
+		this.champID = new JTextField();
+		JLabel labalNom = new JLabel("Nom de la ressource :");
+		this.champNom = new JTextField();
 
-		panelConfiguration.add(labelPoints);
-		panelConfiguration.add(champPoints);
-		panelConfiguration.add(labelTemps);
-		panelConfiguration.add(champTemps);
+		panelConfiguration.add(labelID);
+		panelConfiguration.add(champID);
+		panelConfiguration.add(labalNom);
+		panelConfiguration.add(champNom);
 
-		add(panelConfiguration, BorderLayout.NORTH);
+		add(panelConfiguration, BorderLayout.CENTER);
 
 		// Section centrale
 		JPanel panelSelection = new JPanel(new GridLayout(3, 2, 5, 5));
 		panelSelection.setBorder(BorderFactory.createTitledBorder("Sélection"));
 
-		JLabel labelRessource = new JLabel("Ressource :");
-		listeRessources = new JComboBox<>(RESSOURCES);
-		listeRessources.addItemListener(this);
-
-		JLabel labelNotion = new JLabel("Notion :");
-		listeNotions = new JComboBox<>();
-		listeNotions.setEnabled(false);
-		listeNotions.addItemListener(this);
-
-		JLabel labelNiveau = new JLabel("Difficulté :");
-		JPanel panelNiveau = new JPanel(new FlowLayout());
-
-		boutonTresFacile = new JButton();
-		boutonFacile = new JButton();
-		boutonMoyen = new JButton();
-		boutonDifficile = new JButton();
-
-		boutonTresFacile.setPreferredSize(new Dimension(100, 100));
-		boutonFacile.setPreferredSize(new Dimension(100, 100));
-		boutonMoyen.setPreferredSize(new Dimension(100, 100));
-		boutonDifficile.setPreferredSize(new Dimension(100, 100));
-
-		boutonTresFacile.setEnabled(false);
-		boutonFacile.setEnabled(false);
-		boutonMoyen.setEnabled(false);
-		boutonDifficile.setEnabled(false);
-
-		boutonTresFacile.addActionListener(this);
-		boutonFacile.addActionListener(this);
-		boutonMoyen.addActionListener(this);
-		boutonDifficile.addActionListener(this);
-
-		panelNiveau.add(boutonTresFacile);
-		panelNiveau.add(boutonFacile);
-		panelNiveau.add(boutonMoyen);
-		panelNiveau.add(boutonDifficile);
-
-		panelSelection.add(labelRessource);
-		panelSelection.add(listeRessources);
-		panelSelection.add(labelNotion);
-		panelSelection.add(listeNotions);
-		panelSelection.add(labelNiveau);
-		panelSelection.add(panelNiveau);
-
-		add(panelSelection, BorderLayout.CENTER);
-
 		// Section inférieure
-		JPanel panelType = new JPanel(new GridLayout(1, 3, 5, 5));
-		panelType.setBorder(BorderFactory.createTitledBorder("Type de Question"));
-
-		JLabel labelType = new JLabel("Type :");
-		listeTypes = new JComboBox<>(new String[] { "QCM", "EntiteAssociation","Elimination" });
+		JPanel panelType = new JPanel(new GridLayout(1, 1, 5, 5));
 
 		boutonConfirmer = new JButton("Confirmer");
 		boutonConfirmer.addActionListener(this);
 
-		panelType.add(labelType);
-		panelType.add(listeTypes);
 		panelType.add(boutonConfirmer);
 
 		add(panelType, BorderLayout.SOUTH);
@@ -134,66 +57,19 @@ public class PanelCreationRessource extends JPanel implements ActionListener, It
 	}
 
 	@Override
-	public void itemStateChanged(ItemEvent e) {
-		if (e.getSource() == listeRessources && e.getStateChange() == ItemEvent.SELECTED) {
-			int index = listeRessources.getSelectedIndex();
-			listeNotions.removeAllItems();
-			for (String notion : NOTIONS[index]) {
-				listeNotions.addItem(notion);
-			}
-			listeNotions.setEnabled(true);
-		} else if (e.getSource() == listeNotions && e.getStateChange() == ItemEvent.SELECTED) {
-			int indexRessource = listeRessources.getSelectedIndex();
-			int indexNotion = listeNotions.getSelectedIndex();
-			if (indexRessource >= 0 && indexNotion >= 0) {
-
-				boutonTresFacile.setIcon(IMAGES_DIFFICULTE[0]);
-				boutonFacile.setIcon(IMAGES_DIFFICULTE[1]);
-				boutonMoyen.setIcon(IMAGES_DIFFICULTE[2]);
-				boutonDifficile.setIcon(IMAGES_DIFFICULTE[3]);
-
-				boutonTresFacile.setEnabled(true);
-				boutonFacile.setEnabled(true);
-				boutonMoyen.setEnabled(true);
-				boutonDifficile.setEnabled(true);
-			}
-		}
-	}
-
-	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == boutonTresFacile) {
-			JOptionPane.showMessageDialog(this, "Difficulté : Très Facile");
-		} else if (e.getSource() == boutonFacile) {
-			JOptionPane.showMessageDialog(this, "Difficulté : Facile");
-		} else if (e.getSource() == boutonMoyen) {
-			JOptionPane.showMessageDialog(this, "Difficulté : Moyen");
-		} else if (e.getSource() == boutonDifficile) {
-			JOptionPane.showMessageDialog(this, "Difficulté : Difficile");
-		}
-
 		if (e.getSource() == boutonConfirmer) {
+			String id = champID.getText().trim();
+			String nom = champNom.getText().trim();
 
-			String typeSelectionne = (String) listeTypes.getSelectedItem();
-
-			if ("QCM".equals(typeSelectionne)) {
-				System.out.println(typeSelectionne);
-				PanelQCM panelQCM = new PanelQCM(this.ctrl);
-				panelQCM.setVisible(true);
-			} else if ("EntiteAssociation".equals(typeSelectionne)) {
-				System.out.println(typeSelectionne);
-
-				PanelEntiteAssociation panelEntiteAssociation = new PanelEntiteAssociation(this.ctrl);
-				panelEntiteAssociation.setVisible(true);
-			} else if ("Elimination".equals(typeSelectionne)){
-				System.out.println(typeSelectionne);
-
-				PanelElimination panelElimination = new PanelElimination(this.ctrl);
-				panelElimination.setVisible(true);
+			if (id.isEmpty() || nom.isEmpty()) {
+				JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
+				return;
 			}
 
+			Ressource r = new Ressource(id, nom);
+			ctrl.ajouterRessource(r);
+			this.panelRessource.maj();
 		}
-
 	}
-
 }

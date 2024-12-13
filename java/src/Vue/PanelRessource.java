@@ -58,7 +58,15 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
     public void actionPerformed(ActionEvent e) {
         if (btNouvRess == e.getSource()) {
             System.out.println("La frame CreaRessource s'ouvre");
-            new FrameRessource(this.ctrl);
+            new FrameCreationRessource(this.ctrl, this);
         }
+    }
+
+    public void maj(){
+        DefaultListModel<Ressource> listModel = new DefaultListModel<>();
+        for (Ressource ressource : this.ctrl.getRessources()){
+            listModel.addElement(ressource);
+        }
+        this.list.setModel(listModel);
     }
 }

@@ -1,4 +1,7 @@
+package src.Vue;
+
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.AttributeSet;
@@ -7,56 +10,36 @@ import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.util.ArrayList;
 
+import src.*;
+import src.Metier.*;
+
 public class PanelQuestionnaireTab extends JPanel {
     private JTable tbQuestion;
+    private JTable tbResult;
     private JPanel panelQuestionnaireTab;
     private ArrayList<Notion> notions;
+    private Controleur ctrl;
 
-    public PanelQuestionnaireTab(Ressource r) {
+    public PanelQuestionnaireTab(Controleur ctrl, Ressource r) {
         this.panelQuestionnaireTab = new JPanel(new BorderLayout());
         this.panelQuestionnaireTab.setVisible(true);
+        this.ctrl = ctrl;
 
-        // Example resources and notions
-        Ressource ress1 = new Ressource("BD", "R3.08");
-        Ressource ress2 = new Ressource("DevEfficace", "R8.01");
-        Ressource ress3 = new Ressource("Cryptomonaie", "R1.06");
-
-        this.notions = new ArrayList<>();
-        Notion not1 = new Notion("Projection", r);
-        Notion not2 = new Notion("Restriction", r);
-        Notion not3 = new Notion("Tri", ress2);
-        Notion not4 = new Notion("Jointure", ress2);
-        Notion not5 = new Notion("Auto-Jointure", ress3);
-        Notion not6 = new Notion("Record", r);
-        Notion not7 = new Notion("Enum", r);
-        Notion not8 = new Notion("Class", r);
-        Notion not9 = new Notion("Pseudo code", r);
-        Notion not10 = new Notion("UML", r);
-        Notion not11 = new Notion("Scacnner", r);
-
-        this.notions.add(not1);
-        this.notions.add(not2);
-        this.notions.add(not3);
-        this.notions.add(not4);
-        this.notions.add(not5);
-        this.notions.add(not6);
-        this.notions.add(not7);
-        this.notions.add(not8);
-        this.notions.add(not9);
-        this.notions.add(not10);
-        this.notions.add(not11);
-
+        this.notions = ctrl.getNotions();
 
         // Prepare table data
         String[] columnNames = {"Notion", "", "TF", "F", "M", "D", ""};
         Object[][] data = new Object[notions.size()][7];
 
+        String[] columnResult = {"", "", "", "", "", ""};
+        Object[] dataResult = { "Nb Questions / Catégorie", 0, 0, 0, 0, "Σ =" };
+
         int alInd = 0;
-        for (int i = 0; i < notions.size(); i++) {
+        for (int i = 0; i < this.notions.size(); i++) {
             boolean verif = false;
-            while (!verif && alInd < notions.size()) {
-                if (notions.get(alInd).getRessourceAssociee() == r) {
-                    data[i][0] = notions.get(alInd).getNom();
+            while (!verif && alInd < this.notions.size()) {
+                if (this.notions.get(alInd).getRessourceAssociee() == r) {
+                    data[i][0] = this.notions.get(alInd).getNom();
                     data[i][1] = false;
                     verif = true;
                 }
@@ -101,6 +84,8 @@ public class PanelQuestionnaireTab extends JPanel {
                 tbQuestion.getRowHeight() * 6
         ));
 
+        tbResult = new JTable(model);
+
         for (int col = 2; col <= 5; col++) {
             tbQuestion.getColumnModel().getColumn(col).setCellRenderer(new CustomCellRenderer(model));
             tbQuestion.getColumnModel().getColumn(col).setCellEditor(new CustomCellEditor(model));
@@ -108,6 +93,7 @@ public class PanelQuestionnaireTab extends JPanel {
 
         JScrollPane scrollPane = new JScrollPane(tbQuestion);
         this.panelQuestionnaireTab.add(scrollPane, BorderLayout.CENTER);
+        this.panelQuestionnaireTab.add(tbResult, BorderLayout.CENTER);
 
         this.add(this.panelQuestionnaireTab);
     }

@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;  
 import java.util.List;
 
+import src.Controleur;
+import src.Metier.*;
+
 public class PanelEntiteAssociation extends JFrame implements ActionListener 
 {
 
@@ -16,8 +19,13 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener
 	private JButton boutonAjoutAssociation;
 	private JButton boutonEnregistrer;
 
-	public PanelEntiteAssociation() 
+	private Controleur ctrl;
+
+
+	public PanelEntiteAssociation(Controleur ctrl)
 	{
+		this.ctrl = ctrl;
+
 		setTitle("Créateur de Questions Entité-Association");
 		setSize(600,400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -133,6 +141,4 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener
 				break;
 		}
 	}
-
-
 }

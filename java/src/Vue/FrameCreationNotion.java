@@ -19,7 +19,7 @@ public class FrameCreationNotion extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelCreaNotion(ctrl, r) );
+        this.add(new PanelCreationNotion(ctrl, r) );
 
         setVisible(true);
     }

@@ -37,12 +37,13 @@ public class QCM extends Question {
 
 	// Méthode pour gérer les réponse ajouter/enlever
 	public boolean ajouterReponse(String reponse, Boolean correct) {
-		if (this.vraiOuFaux && correct){
+		if (this.vraiOuFaux && correct) {
 			for (Boolean value : this.hmReponses.values()) {
 				if (value) {
 					return false;
 				}
 			}
+		}
 		if (this.hmReponses.containsKey(reponse)) {
 			this.hmReponses.replace(reponse, correct);
 		}
@@ -58,7 +59,7 @@ public class QCM extends Question {
 
 	@Override
 	public String getAsData(){
-		String res = this.getClass().getName() + ";" + super.getAsData() + ";" ;
+		String res = this.getClass().getName() + ";" + super.getAsData() + ";" + this.vraiOuFaux + ";" ;
 		for (HashMap.Entry<String, Boolean> entry : this.hmReponses.entrySet()) {
 			res += entry.getKey() + "," + entry.getValue() + "|";
 		}
@@ -69,13 +70,13 @@ public class QCM extends Question {
 		scanner.useDelimiter(";");
 
 		String[] parts = new String[9];
-		for (int i = 0; i < 9; i++) {
+		for (int i = 0; i < 10; i++) {
 			parts[i] = scanner.next();
 		}
 
-		QCM qcm = new QCM(parts[1], Difficulte.getDifficulteByIndice(Integer.parseInt(parts[2])), metier.getNotionByNom(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]), parts[6]);
+		QCM qcm = new QCM(parts[1], Difficulte.getDifficulteByIndice(Integer.parseInt(parts[2])), metier.getNotionByNom(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]), parts[6], Boolean.parseBoolean(parts[7]));
 
-		Scanner reponseScanner = new Scanner(parts[7]);
+		Scanner reponseScanner = new Scanner(parts[8]);
 		reponseScanner.useDelimiter("\\|");
 		while (reponseScanner.hasNext()) {
 			String reponse = reponseScanner.next();

@@ -1,11 +1,12 @@
-
+package src.Vue;
 import javax.swing.*;
+import src.*;
 
 public class FrameQuestionnaire extends JFrame{ 
-    //private Controleur ctrl;
+    private Controleur ctrl;
 
-    public FrameQuestionnaire( /*Controleur ctrl*/ ){
-        //this.ctrl = ctrl;
+    public FrameQuestionnaire( Controleur ctrl ){
+        this.ctrl = ctrl;
 
         System.out.println("Création de la frame Questionnaire");
 
@@ -15,7 +16,7 @@ public class FrameQuestionnaire extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelQuestionnaire() );
+        this.add(new PanelQuestionnaire(ctrl) );
 
         setVisible(true);
     }
