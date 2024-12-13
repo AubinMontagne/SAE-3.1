@@ -1,17 +1,7 @@
 package src.Metier;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.HashMap;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultStyledDocument;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleContext;
-import javax.swing.text.rtf.RTFEditorKit;
+import java.util.Scanner;
 
 public class QCM extends Question {
 	private HashMap<String, Boolean> hmReponses;
@@ -56,11 +46,40 @@ public class QCM extends Question {
 		this.hmReponses.remove(reponse);
 	}
 
-	public void getAsData(String line) {
-
+	@Override
+	public String getAsData() {
+		String res = this.getClass().getName() + ";" + super.getAsData() + ";" ;
+		for (HashMap.Entry<String, Boolean> entry : this.hmReponses.entrySet()) {
+			res += entry.getKey() + "," + entry.getValue() + "|";
+		}
+		return res;
 	}
-	public static QCM getAsInstance(String pathDirectory, Metier metier) {
-		return null;
+	public static QCM getAsInstance(String ligne, Metier metier) {
+		Scanner scanner = new Scanner(ligne);
+		scanner.useDelimiter(";");
+
+		String[] parts = new String[9];
+		for (int i = 0; i < 9; i++) {
+			parts[i] = scanner.next();
+		}
+
+		QCM qcm = new QCM(parts[1], Difficulte.getDifficulteByIndice(Integer.parseInt(parts[2])), metier.getNotionByNom(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]), parts[6]);
+
+		Scanner reponseScanner = new Scanner(parts[7]);
+		reponseScanner.useDelimiter("\\|");
+		while (reponseScanner.hasNext()) {
+			String reponse = reponseScanner.next();
+			Scanner qcmScanner = new Scanner(reponse);
+			qcmScanner.useDelimiter(",");
+			String[] reponseParts = new String[2];
+			for (int i = 0; i < 2; i++) {
+				reponseParts[i] = qcmScanner.next();
+			}
+			qcm.ajouterReponse(reponseParts[0], Boolean.parseBoolean(reponseParts[1]));
+			qcmScanner.close();
+		}
+
+		return qcm;
 	}
 
 	public String toString() {

@@ -1,13 +1,5 @@
-src/Metier/QCM.java
-src/Metier/Ressources.java
-src/Metier/AssociationElement.java
-src/Metier/Question.java
-src/Metier/Notion.java
-src/Metier/EliminationReponse.java
-src/Metier/CreationEvaluation.java
-src/Metier/Questionnaire.java
-
-src/Vue/FrameBanque.java
-src/Vue/FrameParam.java
-
-src/Controleur.java
+# Java source files
+./java/src/Metier/*.java
+./java/src/Controleur.java
+./java/src/Vue/*.java
+./java/src/Test.java

@@ -1,15 +1,12 @@
 package src.Metier;
 
 import java.util.HashMap;
+import java.util.Scanner;
+// Au moins deux
 public class EliminationReponse extends Question {
 	private String reponseCorrecte;
-	private HashMap<String,Integer[]> hmReponses;
+	private HashMap<String,Double[]> hmReponses;
 
-	/**
-	 * Liste des réponses dans l'ordre d'élimination.
-	 * @param reponseCorrecte La réponse correcte.
-	 * @param hmReponses      Les réponses incorrectes et la réponses correcte dans l'ordre définit par le concepteur.
-	 */
 	public EliminationReponse(String intitule, Difficulte difficulte, Notion notion, int temps, int points) {
 		super(intitule, difficulte, notion, temps, points);
 		this.reponseCorrecte = "";
@@ -27,13 +24,13 @@ public class EliminationReponse extends Question {
 		return this.reponseCorrecte;
 	}
 
-	public HashMap<String,Integer[]> getHmReponses() {
+	public HashMap<String,Double[]> getHmReponses() {
 		return this.hmReponses;
 	}
 
-	public int getLastIndex() {
-		int indexMax = 0;
-		for (Integer[] index : this.hmReponses.values()) {
+	public Double getLastIndex() {
+		Double indexMax = 0.0;
+		for (Double[] index : this.hmReponses.values()) {
 			if (index[1] > indexMax) {
 				indexMax = index[1];
 			}
@@ -50,15 +47,15 @@ public class EliminationReponse extends Question {
 		this.reponseCorrecte = reponseCorrecte;
 	}
 
-	public void setHmReponses(HashMap<String,Integer[]>  hmReponses) {
+	public void setHmReponses(HashMap<String,Double[]>  hmReponses) {
 		this.hmReponses = hmReponses;
 	}
 
 
 	// Methods to add and remove incorrect responses
-	public void ajouterReponse(String reponse, int points, int ordre){
+	public void ajouterReponse(String reponse, Double points, Double ordre){
 		if (!this.hmReponses.containsKey(reponse) && ordre <= this.getLastIndex()+1) {
-			this.hmReponses.put(reponse, new Integer[]{points, ordre});
+			this.hmReponses.put(reponse, new Double[]{points, ordre});
 		}
 	}
 
@@ -66,12 +63,47 @@ public class EliminationReponse extends Question {
 		this.hmReponses.remove(reponse);
 	}
 
-	public void getAsData(String directoryPath){
-
+	public String getAsData(){
+		String res = this.getClass().getName() + ";" + super.getAsData() + ";" ;
+		res += this.reponseCorrecte + ";";
+		for(String reponse : this.hmReponses.keySet()) {
+			res += reponse + "," + this.hmReponses.get(reponse)[0] + "," + this.hmReponses.get(reponse)[1] + "|";
+		}
+		return res;
 	}
 
-	public static EliminationReponse getAsInstance(String pathDirectory, Metier metier){
-		return null;
+	public static EliminationReponse getAsInstance(String ligne, Metier metier){
+		Scanner scanner = new Scanner(ligne);
+		scanner.useDelimiter(";");
+
+		String[] parts = new String[9];
+		for (int i = 0; i < 9; i++) {
+			parts[i] = scanner.next();
+		}
+
+		EliminationReponse er = new EliminationReponse(parts[1], Difficulte.getDifficulteByIndice(Integer.parseInt(parts[2])), metier.getNotionByNom(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]), parts[6]);
+
+		er.setReponseCorrecte(parts[7]);
+
+		Scanner reponseScanner = new Scanner(parts[8]);
+		reponseScanner.useDelimiter("\\|");
+		while (scanner.hasNext()) {
+			String reponse = scanner.next();
+			Scanner eliminationScanner = new Scanner(reponse);
+			eliminationScanner.useDelimiter(",");
+
+			String[] reponseParts = new String[3];
+			for (int i = 0; i < 3; i++) {
+				reponseParts[i] = eliminationScanner.next();
+			}
+
+			er.ajouterReponse(reponseParts[0], Integer.parseInt(reponseParts[1]), Integer.parseInt(reponseParts[2]));
+			eliminationScanner.close();
+		}
+
+		reponseScanner.close();
+		scanner.close();
+		return er;
 	}
 
 	public String toString(){

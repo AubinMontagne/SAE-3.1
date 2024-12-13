@@ -74,6 +74,14 @@ public class Metier{
         }
         return null;
     }
+	public Notion getNotionByNom(String nom){
+		for (Notion notion : this.lstNotions){
+			if (notion.getNom().equals(nom)){
+				return notion;
+			}
+		}
+		return null;
+	}
 
 	public Question getQuestion(Question question){
 		for (Question q : this.lstQuestions){
@@ -164,7 +172,13 @@ public class Metier{
 			}
 			FileWriter writer = new FileWriter(path+"/questions.csv");
 			for (Question question : this.lstQuestions){
-				writer.write(question.getAsData() + "\n");
+				if (question instanceof QCM){
+					writer.write(((QCM)question).getAsData() + "\n");
+				}else if (question instanceof EliminationReponse){
+					writer.write(((EliminationReponse)question).getAsData() + "\n");
+				}else if (question instanceof AssociationElement){
+					writer.write(((AssociationElement)question).getAsData() + "\n");
+				}
 			}
 			writer.close();
 		}catch(IOException e){

@@ -23,7 +23,7 @@ public abstract class Question{
         this.notion     = notion;
         this.temps      = temps;
         this.point      = point;
-		this.explicationFich = "";
+		this.explicationFich = " ";
     }
 
     /**
@@ -45,7 +45,6 @@ public abstract class Question{
         this.explicationFich = explicationFich;
         this.point       = point;
     }
-	public abstract void getAsData(String directoryPath);
 
 	// Get
     public String     getEnonceFich(){return enonceFich;}
@@ -56,7 +55,7 @@ public abstract class Question{
     public String     getExplicationFich() {return this.explicationFich;}
 
     public String     getAsData(){
-        return this.enonceFich + ";" + this.difficulte + ";" + this.temps + ";" + this.point + ";" + this.explicationFich;
+        return this.enonceFich + ";" + this.difficulte.getIndice() + ";" + getNotion().getNom() + ";" + this.temps + ";" + this.point + ";" + this.explicationFich;
     }
 
 

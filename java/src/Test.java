@@ -34,8 +34,8 @@ public class Test {
 		qcm.ajouterReponse("A", true);
 		qcm.ajouterReponse("B", false);
 		qcm.ajouterReponse("C", true);
-		
-		qcm.getAsData("data/QCM");
+
+		System.out.println(qcm.getAsData());
 		QCM qcm2 = QCM.getAsInstance("data/QCM/", metier);
 		metier.ajouterQuestion(qcm2);
 
@@ -54,7 +54,7 @@ public class Test {
 		eq.setReponseCorrecte("A");
 		//eq.setExplicationFich("Ceci est incorrect, car la courbe de demande est une droite décroissante."); Should be file path
 
-		eq.getAsData("data/EliminationQuestion");
+		System.out.println(eq.getAsData());
 		
 		// Test de la classe AssociationElement
 
@@ -65,7 +65,7 @@ public class Test {
 		ae.ajouterAssociation("B", "2");
 		ae.ajouterAssociation("C", "3");
 
-		ae.getAsData("data/AssociationElement");
+		System.out.println(ae.getAsData());
 
 		// Test Questionnaire
 

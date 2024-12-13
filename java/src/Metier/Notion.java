@@ -29,9 +29,10 @@ public class Notion
         return (this.nom + ";" + this.ressourceAssociee.getId());
     }
     public static Notion getFromData(String data, Metier metier){
-        String[] parts = data.split(";");-jiji// Faire un scanner à la place de tous les split
-        return new Notion(parts[0], metier.getRessourceById(parts[2]));
+          String[] parts = new String[]{data.substring(0, data.indexOf(";")), data.substring(data.indexOf(";") + 1)};
+          return new Notion(parts[0], metier.getRessourceById(parts[1]));
     }
+
     // Set
 
     public void setNom(String nom)                               {this.nom = nom;}

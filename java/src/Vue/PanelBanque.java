@@ -35,7 +35,7 @@ public class PanelBanque extends JPanel implements  ActionListener{
         String[][] data = new String[questList.size()][4];
 
 		for(int i = 0; i < questList.size();i++){
-			data[i][0] = questList.get(i).getIntitule();
+			data[i][0] = questList.get(i).getEnonceFich();
 			data[i][1] = questList.get(i).getNotion().getRessourceAssociee().getNom();
 			data[i][2] = questList.get(i).getNotion().getNom();
 			data[i][3] = "" + questList.get(i).getPoint();
@@ -78,7 +78,7 @@ public class PanelBanque extends JPanel implements  ActionListener{
         String[][] data = new String[questList.size()][4];
 
 		for(int i = 0; i < questList.size();i++){
-			data[i][0] = questList.get(i).getIntitule();
+			data[i][0] = questList.get(i).getEnonceFich();
 			data[i][1] = questList.get(i).getNotion().getRessourceAssociee().getNom();
 			data[i][2] = questList.get(i).getNotion().getNom();
 			data[i][3] = "" + questList.get(i).getPoint();
