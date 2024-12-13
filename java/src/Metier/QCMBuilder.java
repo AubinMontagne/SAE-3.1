@@ -774,7 +774,9 @@ public class QCMBuilder
         {
             if(q instanceof QCM)
             {
+                String[] textes = new String[((QCM) q).getNbReponses()];
                 String bonnesRep = "[";
+
                 for (String reponse : ((QCM) q).getReponses().keySet())
                 {
                     if(((QCM) q).getReponses().get(reponse))
@@ -837,7 +839,7 @@ public class QCMBuilder
                         "\n" +
                         "                        <h3> [Texte de la question] </h3>\n" +
                         "                        <div id=\"zoneRep\">\n" +
-                        "                            <div class=\"reponseBox\" id=\"rep1\" >[TextRep 1]</div>\n" +
+                        "                            <div class=\"reponseBox\" id=\"rep1\" >"+ q. +"</div>\n" +
                         "                            <div class=\"reponseBox\" id=\"rep2\" >[TextRep 2]</div>\n" +
                         "                            <div class=\"reponseBox\" id=\"rep3\" >[TextRep 3]</div>\n" +
                         "                            <div class=\"reponseBox\" id=\"rep4\" >[TextRep 4]</div>\n" +
