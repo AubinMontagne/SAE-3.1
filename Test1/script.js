@@ -485,10 +485,10 @@ function question1()
 {
     //Variables
     let bonnesRep = [true,true,false,false,];
-    const difficulte = Moyen;
+    const difficulte = "Moyen";
     const tempsDeReponse = 20;
     let points = 2;
-    let texteExplications = Pour aller coder en PHP vous devez d'abord lancer un serveur;
+    let texteExplications = "Pour aller coder en PHP vous devez d'abord lancer un serveur";
 
 
 
@@ -528,12 +528,12 @@ function question1()
                         <br>
                         <!-- Pour un QCM -->
 
-                        <h3> Pour aller coder en PHP vous devez d'abord lancer un serveur </h3>
+                        <h3> "Pour aller coder en PHP vous devez d'abord lancer un serveur" </h3>
                         <div id="zoneRep">
-                             <div class="reponseBox" id="rep-1" >XAMPP</div>
-<div class="reponseBox" id="rep0" >Docker</div>
-<div class="reponseBox" id="rep1" >rien</div>
-<div class="reponseBox" id="rep2" >Test</div>
+                             <div class="reponseBox" id="rep-1" >'XAMPP'</div>
+<div class="reponseBox" id="rep0" >'Docker'</div>
+<div class="reponseBox" id="rep1" >'rien'</div>
+<div class="reponseBox" id="rep2" >'Test'</div>
 
                         </div>
                         <footer>
@@ -654,10 +654,10 @@ function question2()
 {
     //Variables
     let bonnesRep = [false,false,true,false,];
-    const difficulte = Facile;
+    const difficulte = "Facile";
     const tempsDeReponse = 15;
     let points = 1;
-    let texteExplications = Vous devez utilisr VSCODE;
+    let texteExplications = "Vous devez utilisr VSCODE";
 
 
 
@@ -697,12 +697,12 @@ function question2()
                         <br>
                         <!-- Pour un QCM -->
 
-                        <h3> Vous devez utilisr VSCODE </h3>
+                        <h3> "Vous devez utilisr VSCODE" </h3>
                         <div id="zoneRep">
-                             <div class="reponseBox" id="rep-1" >Intellij</div>
-<div class="reponseBox" id="rep0" >rien</div>
-<div class="reponseBox" id="rep1" >VS code</div>
-<div class="reponseBox" id="rep2" >Eclypse</div>
+                             <div class="reponseBox" id="rep-1" >'Intellij'</div>
+<div class="reponseBox" id="rep0" >'rien'</div>
+<div class="reponseBox" id="rep1" >'VS code'</div>
+<div class="reponseBox" id="rep2" >'Eclypse'</div>
 
                         </div>
                         <footer>
@@ -823,10 +823,10 @@ function question3()
 {
     //Variables
     let bonnesRep = [false,true,];
-    const difficulte = Tres facile;
+    const difficulte = "Tres facile";
     const tempsDeReponse = 18;
     let points = 1;
-    let texteExplications = avec $nomVar = Tests;
+    let texteExplications = "avec $nomVar = Tests";
 
 
 
@@ -866,10 +866,10 @@ function question3()
                         <br>
                         <!-- Pour un QCM -->
 
-                        <h3> avec $nomVar = Tests </h3>
+                        <h3> "avec $nomVar = Tests" </h3>
                         <div id="zoneRep">
-                             <div class="reponseBox" id="rep-1" >Machin</div>
-<div class="reponseBox" id="rep0" >Chouette</div>
+                             <div class="reponseBox" id="rep-1" >'Machin'</div>
+<div class="reponseBox" id="rep0" >'Chouette'</div>
 
                         </div>
                         <footer>
