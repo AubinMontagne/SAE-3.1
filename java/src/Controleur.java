@@ -1,28 +1,28 @@
 package src;
 
-import src.Metier.*;
-//import src.Vue.*;
-
 import java.util.ArrayList;
-import src.Metier.*;
+import src.Vue.FrameAccueil;
+import src.Metier.Metier;
+import src.Metier.Notion;
+import src.Metier.Question;
+import src.Metier.Ressource;
 
-public class Controleur
-{
+public class Controleur{
     private Metier metier;
-    //private FrameAccueil frameAccueil;
+    private FrameAccueil frameAccueil;
 
 
-    public Controleur()
-    {
+    public Controleur(){
         this.metier = new Metier();
+		this.frameAccueil = new FrameAccueil(this);
     }
 
     // Get
 
-    public Metier getMetier()
-    {
+    public Metier getMetier(){
         return this.metier;
     }
+
 
 	// Getters Individuels
 
@@ -48,46 +48,43 @@ public class Controleur
         return this.metier.getQuestions();
     }
 
-	public Notion getNotionById(int idNotion){
-		return this.metier.getNotionById(idNotion);
-	}
-
-	public ArrayList<Question> getQuestionsParIdNotion(int idNotion){
-		return this.metier.getQuestionsParIdNotion(idNotion);
+	public ArrayList<Question> getQuestionsParNotion(Notion notion){
+		return this.metier.getQuestionsParNotion(notion);
 	}
 
     // Set
 
-    public void setMetier(Metier metier)
-    {
+    public void setMetier(Metier metier){
         this.metier = metier;
     }
 
-	public void ajouterNotion(Notion notion)
-	{
+	public void ajouterNotion(Notion notion){
 		this.metier.ajouterNotion(notion);
 	}
-	public void ajouterQuestion(Question question)
-	{
+	public void ajouterQuestion(Question question){
 		this.metier.ajouterQuestion(question);
 	}
-	public void ajouterRessource(Ressource ressource)
-	{
+	public void ajouterRessource(Ressource ressource){
 		this.metier.ajouterRessource(ressource);
 	}
 
-
-	public void supprimerNotion(Notion notion)
-	{
+	public void supprimerNotion(Notion notion){
 		this.metier.supprimerNotion(notion);
 	}
-	public void supprimerQuestion(Question question)
-	{
+	public void supprimerQuestion(Question question){
 		this.metier.supprimerQuestion(question);
 	}
-	public void supprimerRessource(Ressource ressource)
-	{
+	public void supprimerRessource(Ressource ressource){
 		this.metier.supprimerRessource(ressource);
 	}
 
+	public void miseAJour(){
+		this.metier.getNotionsFromData("./production/SAE-31/docs");
+		this.metier.getRessourcesFromData("./production/SAE-31/docs");
+		//this.metier.getQuestionsFromData("./production/SAE-31/docs");
+	}
+
+	public static void main(String[] args){
+		Controleur controleur = new Controleur();
+	}
 }

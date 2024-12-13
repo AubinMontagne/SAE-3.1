@@ -1,13 +1,34 @@
-src/Metier/QCM.java
-src/Metier/Ressources.java
-src/Metier/AssociationElement.java
-src/Metier/Question.java
-src/Metier/Notion.java
-src/Metier/EliminationReponse.java
-src/Metier/CreationEvaluation.java
-src/Metier/Questionnaire.java
+# Java source files
+-d out/java/
+java/src/Controleur.java
+java/src/Test.java
 
-src/Vue/FrameBanque.java
-src/Vue/FrameParam.java
+java/src/Metier/AssociationElement.java
+java/src/Metier/Difficulte.java
+java/src/Metier/EliminationReponse.java
+java/src/Metier/Metier.java
+java/src/Metier/Notion.java
+java/src/Metier/QCM.java
+java/src/Metier/Question.java
+java/src/Metier/Questionnaire.java
+java/src/Metier/Ressource.java
+java/src/Metier/QCMBuilder.java
+java/src/Metier/TestJS.java
 
-src/Controleur.java
+
+# Java Vue files
+java/src/Vue/FrameAccueil.java
+java/src/Vue/FrameBanque.java
+java/src/Vue/FrameCreationQuestion.java
+java/src/Vue/FrameNotion.java
+java/src/Vue/FrameQuestionnaire.java
+java/src/Vue/FrameRessource.java
+java/src/Vue/PanelAccueil.java
+java/src/Vue/PanelBanque.java
+java/src/Vue/PanelCreationQuestion.java
+java/src/Vue/PanelElimination.java
+java/src/Vue/PanelEntiteAssociation.java
+java/src/Vue/PanelNotion.java
+java/src/Vue/PanelQCM.java
+java/src/Vue/PanelQuestionnaire.java
+java/src/Vue/PanelRessource.java

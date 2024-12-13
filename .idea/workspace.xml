@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" name="Changes" comment="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
+      <change afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/D.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/F.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/M.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/TF.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test1/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test1/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test1/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Controleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/Metier.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Metier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/RtfFileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/RtfFileReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carrebleuaveclettre.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carrebleusanslettre.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carregrisaveclettre.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carregrissanslettre.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carrerougeaveclettre.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carrerougesanslettre.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carrevertaveclettre.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carrevertsanslettre.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/imgDif/D.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/imgDif/F.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/imgDif/M.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/imgDif/TF.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/docs/Sae 3_01 V1.gan" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/docs/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/Index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/14.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/65.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/86.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/imgDif/Dvide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/imgDif/Fvide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/imgDif/Mvide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/imgDif/TFvide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/secu.mp3" beforeDir="false" />
+    </list>
+    <list id="e0a5d575-1463-46f4-82d3-b2b4d97dd127" name="Changes by Aubin" comment="" />
+    <list id="983b509a-0987-4a45-b6cf-6b41d3c16c2d" name="Changes by pt232770" comment="" />
+    <list id="35c96175-51ca-4ddc-8c99-f82a12019ecb" name="Changes by sandr" comment="">
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/TestJS.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/TestJS.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Jujedie&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Jujedie/SAE-3.1.git&quot;,
+    &quot;accountId&quot;: &quot;d1674c13-4ac7-41cf-87ad-6591ed28a5da&quot;
+  }
+}</component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java">
+      <ranges>
+        <range start1="99" end1="100" start2="99" end2="100" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="138" end1="139" start2="138" end2="139" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="164" end1="165" start2="164" end2="165" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="206" end1="208" start2="206" end2="207" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="218" end1="219" start2="217" end2="218" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="222" end1="223" start2="221" end2="222" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="225" end1="226" start2="224" end2="225" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="236" end1="243" start2="235" end2="239" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="245" end1="248" start2="241" end2="243" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="256" end1="257" start2="251" end2="252" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="265" end1="269" start2="260" end2="262" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="271" end1="273" start2="264" end2="265" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="298" end1="302" start2="290" end2="292" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="303" end1="305" start2="293" end2="294" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="312" end1="312" start2="301" end2="322" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="314" end1="763" start2="324" end2="771" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="764" end1="766" start2="772" end2="774" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="768" end1="771" start2="776" end2="779" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="772" end1="779" start2="780" end2="795" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="780" end1="790" start2="796" end2="814" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="791" end1="792" start2="815" end2="816" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="794" end1="960" start2="818" end2="981" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="961" end1="963" start2="982" end2="984" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+      </ranges>
+    </file>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2q179mX0mMF01StLpinAFFVhlDw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Controleur.executor": "Run",
+    "Application.PanelElimination.executor": "Run",
+    "Application.Test.executor": "Debug",
+    "Application.TestJS.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/etudiant/oj230564/Bureau/SAE-31",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/java" />
+      <recent name="$PROJECT_DIR$/docs" />
+      <recent name="$PROJECT_DIR$/data/Images/imgDif" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="src.Vue" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.TestJS">
+    <configuration name="Controleur" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.Controleur" />
+      <module name="SAE-31" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.Test" />
+      <module name="SAE-31" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestJS" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.Metier.TestJS" />
+      <module name="SAE-31" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.Metier.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="SAE-3.1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="SAE-3.1" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="SAE-3.1" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.FlaskServer">
+      <module name="SAE-3.1" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="SAE-3.1" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docs" factoryName="Docutils task">
+      <module name="SAE-3.1" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="" />
+      <option name="docutils_open_in_browser" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docs" factoryName="Sphinx task">
+      <module name="SAE-3.1" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="" />
+      <option name="docutils_open_in_browser" value="false" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TestJS" />
+        <item itemvalue="Application.Controleur" />
+        <item itemvalue="Application.Test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17890.1" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17890.1" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" name="Changes" comment="" />
+      <created>1733818079014</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1733818079014</updated>
+      <workItem from="1733818080060" duration="1998000" />
+      <workItem from="1733822335798" duration="2336000" />
+      <workItem from="1733902982903" duration="3039000" />
+      <workItem from="1733922271413" duration="1703000" />
+      <workItem from="1734002305708" duration="9422000" />
+      <workItem from="1734014490757" duration="3623000" />
+      <workItem from="1734075328383" duration="9480000" />
+      <workItem from="1734084822847" duration="35000" />
+      <workItem from="1734084865736" duration="36000" />
+      <workItem from="1734085005212" duration="19000" />
+      <workItem from="1734085032311" duration="136000" />
+      <workItem from="1734085274498" duration="5440000" />
+    </task>
+    <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
+      <option name="closed" value="true" />
+      <created>1734017200275</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1734017200275</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants." />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/java/src/Metier/QCM.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

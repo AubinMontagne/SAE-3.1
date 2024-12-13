@@ -1,12 +1,12 @@
 package src.Vue;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
+import src.Controleur;
 
-public class PanelElimination extends JFrame implements ActionListener 
-{
+public class PanelElimination extends JFrame implements ActionListener {
 
 	// FONCTION EXPLICATION A RAJOUTER
 
@@ -15,12 +15,13 @@ public class PanelElimination extends JFrame implements ActionListener
 	private JTextField champQuestion;
 	private JButton boutonAjoutReponse;
 	private JButton boutonEnregistrer;
+	private Controleur ctrl;
 
-	public PanelElimination() 
-	{
+	public PanelElimination(Controleur ctrl){
+		this.ctrl = ctrl;
 		setTitle("Créateur de Question élimination");
 		setSize(600, 400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new BorderLayout());
 
 		JPanel panelQuestion = new JPanel(new BorderLayout());
@@ -57,8 +58,7 @@ public class PanelElimination extends JFrame implements ActionListener
 		boutonEnregistrer.addActionListener(this);
 	}
 
-	private void ajouterReponse() 
-	{
+	private void ajouterReponse(){
 		JPanel panelAjoutReponse = new JPanel();
 		panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
 		JTextField champReponse = new JTextField("Réponse " + (++nombreReponses));
@@ -89,11 +89,9 @@ public class PanelElimination extends JFrame implements ActionListener
 		panelReponses.repaint();
 	}
 
-	private void enregistrerElimination() 
-	{
+	private void enregistrerElimination(){
 		String question = champQuestion.getText();
-		if (question.isEmpty()) 
-		{
+		if (question.isEmpty()){
 			JOptionPane.showMessageDialog(this, "Veuillez entrer une question.", "Erreur", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -101,10 +99,8 @@ public class PanelElimination extends JFrame implements ActionListener
 		// Résumé de la question faite (debug)
 		StringBuilder resultats = new StringBuilder("Question : " + question + "\nRéponses :\n");
 		Component[] composants = panelReponses.getComponents();
-		for (Component composant : composants) 
-		{
-			if (composant instanceof JPanel) 
-			{
+		for (Component composant : composants){
+			if (composant instanceof JPanel){
 				JPanel reponse = (JPanel) composant; 
 				JTextField champReponse = (JTextField) reponse.getComponent(0);
 				JCheckBox estCorrecte = (JCheckBox) reponse.getComponent(1);
@@ -116,8 +112,7 @@ public class PanelElimination extends JFrame implements ActionListener
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) 
-	{
+	public void actionPerformed(ActionEvent e){
 		String commande = e.getActionCommand();
 		switch (commande) {
 			case "ajouterReponse":
@@ -130,14 +125,4 @@ public class PanelElimination extends JFrame implements ActionListener
 				break;
 		}
 	}
-
-		public static void main(String[] args) {
-			SwingUtilities.invokeLater(() -> {
-				PanelElimination fenetre = new PanelElimination();
-				fenetre.setVisible(true);
-			});
-		}
-	
-	
-	
 }
