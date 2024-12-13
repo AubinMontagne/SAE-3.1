@@ -96,8 +96,8 @@ public class QCMBuilder
                             "<body>\n" +
                             "    <header></header>\n" +
                             "    <h1>Bienvenue dans un Questionnaire en " + this.questionnaire.getRessource().getNom() +"!</h1>\n" +
-                            "    <h2>"+ this.questionnaire.getNom() +"\n" +
-                            "    <h2>Temps pour finir : "+ questionnaire.getTempsEstimée() +"\n" +
+                            "    <h2>"+ this.questionnaire.getNom() +"</h2>\n" +
+                            "    <h2>Temps pour finir : "+ questionnaire.getTempsEstimée() +"</h2>\n" +
                             "    <h2>Sur la matière : "+ this.questionnaire.getRessource().getNom() +"</h2>\n" +
                             "    <h2>Sur les notions suivante :</h2>\n" +
                             "    <ul>\n" +
@@ -796,10 +796,10 @@ public class QCMBuilder
                         "{\n" +
                         "    //Variables\n" +
                         "    let bonnesRep = "+ bonnesRep +"\n" +
-                        "    const difficulte = '"+ q.getDifficulte().getNom() +"';\n" +
+                        "    const difficulte = \""+ q.getDifficulte().getNom() +"\";\n" +
                         "    const tempsDeReponse = "+ q.getTemps() +";\n" +
                         "    let points = " + q.getPoint() +";\n" +
-                        "    let texteExplications = '"+ q.getExplicationFich() +"';\n" +
+                        "    let texteExplications = \""+ q.getExplicationFich() +"\";\n" +
                         "\n" +
                         "\n" +
                         "\n" +
@@ -833,13 +833,13 @@ public class QCMBuilder
                         "                        <script src=\"./script.js\"></script>\n" +
                         "\n" +
                         "                        <h1> Question `+ questionActuelle +` : </h1>\n" +
-                        "                        <h2> Notion : `+ notion +` <!-- Avoir la notion de la question avec JS--> </h2>\n" +
+                        "                        <h2> Notion : `" + q.getNotion().getNom() + "` <!-- Avoir la notion de la question avec JS--> </h2>\n" +
                         "                        <h2> Difficulté : `+ difficulte +` <!-- Avoir la difficulté de la question avec JS--> </h2>\n" +
                         "\n" +
                         "                        <br>\n" +
                         "                        <!-- Pour un QCM -->\n" +
                         "\n" +
-                        "                        <h3> " + q.getExplicationFich() + " </h3>\n" +
+                        "                        <h3> \"" + q.getExplicationFich() + "\" </h3>\n" +
                         "                        <div id=\"zoneRep\">\n" +
                         "                             " + reponses + "\n" +
                         "                        </div>\n" +

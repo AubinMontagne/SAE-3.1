@@ -522,7 +522,7 @@ function question1()
                         <script src="./script.js"></script>
 
                         <h1> Question `+ questionActuelle +` : </h1>
-                        <h2> Notion : `+ notion +` <!-- Avoir la notion de la question avec JS--> </h2>
+                        <h2> Notion : `Ecriture en PHP` <!-- Avoir la notion de la question avec JS--> </h2>
                         <h2> Difficulté : `+ difficulte +` <!-- Avoir la difficulté de la question avec JS--> </h2>
 
                         <br>
@@ -691,7 +691,7 @@ function question2()
                         <script src="./script.js"></script>
 
                         <h1> Question `+ questionActuelle +` : </h1>
-                        <h2> Notion : `+ notion +` <!-- Avoir la notion de la question avec JS--> </h2>
+                        <h2> Notion : `Ecriture en PHP` <!-- Avoir la notion de la question avec JS--> </h2>
                         <h2> Difficulté : `+ difficulte +` <!-- Avoir la difficulté de la question avec JS--> </h2>
 
                         <br>
@@ -860,7 +860,7 @@ function question3()
                         <script src="./script.js"></script>
 
                         <h1> Question `+ questionActuelle +` : </h1>
-                        <h2> Notion : `+ notion +` <!-- Avoir la notion de la question avec JS--> </h2>
+                        <h2> Notion : `Ecriture en PHP` <!-- Avoir la notion de la question avec JS--> </h2>
                         <h2> Difficulté : `+ difficulte +` <!-- Avoir la difficulté de la question avec JS--> </h2>
 
                         <br>

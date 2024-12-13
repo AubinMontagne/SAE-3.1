@@ -15,8 +15,8 @@ public class Questionnaire{
       this.nom = nom;
       this.ressource = ressource;
       this.chronoBool = estChronom;
-      this.lstNotions = new ArrayList();
-      this.lstQuestion = new ArrayList();
+      this.lstNotions = new ArrayList<Notion>();
+      this.lstQuestion = new ArrayList<Question>();
       this.lstNbQuestionsParDifficulte = new ArrayList<ArrayList<Integer>>();
    }
 
@@ -35,9 +35,9 @@ public class Questionnaire{
 		this.ajouterNotion(notion);
 	  }
 	  ArrayList<Integer> lstIntegerNotion = new ArrayList<Integer>();
-	  lstIntegerNotion.add(this.lstNotions.indexOf(notion));
-	  lstIntegerNotion.add(difficulte.getIndice());
-	  lstIntegerNotion.add(nbQuestion);
+	  lstIntegerNotion.add((Integer) (lstNotions.indexOf(notion)));
+	  lstIntegerNotion.add((Integer) (difficulte.getIndice()));
+	  lstIntegerNotion.add((Integer) (nbQuestion));
 	  this.lstNbQuestionsParDifficulte.add(lstIntegerNotion);
    }
 
