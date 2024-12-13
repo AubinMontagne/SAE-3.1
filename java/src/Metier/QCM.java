@@ -5,15 +5,18 @@ import java.util.Scanner;
 
 public class QCM extends Question {
 	private HashMap<String, Boolean> hmReponses;
+	private Boolean vraiOuFaux;
 
-	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points){
+	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux){
 		super(intitule, difficulte, notion, temps, points);
 		this.hmReponses = new HashMap<String, Boolean>();
+		this.vraiOuFaux = vraiOuFaux;
 	}
 
-	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points,String explication){
+	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points,String explication, boolean vraiOuFaux){
 		super(intitule, difficulte, notion, temps, points, explication);
 		this.hmReponses = new HashMap<String, Boolean>();
+		this.vraiOuFaux = vraiOuFaux;
 	}
 
 	// Get
@@ -33,21 +36,28 @@ public class QCM extends Question {
 	}
 
 	// Méthode pour gérer les réponse ajouter/enlever
-	public void ajouterReponse(String reponse, Boolean correct) {
+	public boolean ajouterReponse(String reponse, Boolean correct) {
+		if (this.vraiOuFaux && correct){
+			for (Boolean value : this.hmReponses.values()) {
+				if (value) {
+					return false;
+				}
+			}
 		if (this.hmReponses.containsKey(reponse)) {
 			this.hmReponses.replace(reponse, correct);
 		}
 		else {
 			this.hmReponses.put(reponse, correct);
 		}
+		return true;
 	}
 
-	public void enleverReponse(String reponse) {
+	public void enleverReponse(String reponse){
 		this.hmReponses.remove(reponse);
 	}
 
 	@Override
-	public String getAsData() {
+	public String getAsData(){
 		String res = this.getClass().getName() + ";" + super.getAsData() + ";" ;
 		for (HashMap.Entry<String, Boolean> entry : this.hmReponses.entrySet()) {
 			res += entry.getKey() + "," + entry.getValue() + "|";

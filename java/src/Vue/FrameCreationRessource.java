@@ -10,7 +10,7 @@ public class FrameCreationRessource extends JFrame{
     public FrameCreationRessource(Controleur ctrl){
         this.ctrl = ctrl;
 
-        System.out.println("Création de la frame CreaQuestion");
+        System.out.println("Création de la frame CreaRessource");
 
         this.setTitle("Création de la question");
         this.setSize(750,500);
@@ -18,7 +18,7 @@ public class FrameCreationRessource extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelCreationQuestion(ctrl) );
+        this.add(new PanelCreationRessource(ctrl) );
 
         setVisible(true);
     }

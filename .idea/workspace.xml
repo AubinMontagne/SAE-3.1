@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" name="Changes" comment="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
-      <change afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationRessource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/D.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/F.png" beforeDir="false" />
@@ -14,43 +14,14 @@
       <change beforePath="$PROJECT_DIR$/Test1/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Test1/script.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Test1/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Controleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Metier.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Metier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/RtfFileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/RtfFileReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carrebleuaveclettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carrebleusanslettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carregrisaveclettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carregrissanslettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carrerougeaveclettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carrerougesanslettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carrevertaveclettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/carrevertsanslettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/imgDif/D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/imgDif/F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/imgDif/M.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/data/Images/imgDif/TF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/docs/Sae 3_01 V1.gan" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/docs/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/Index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/14.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/65.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/86.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/imgDif/Dvide.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/imgDif/Fvide.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/imgDif/Mvide.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/imgDif/TFvide.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-3.1/src/Web/partie JS-HTML/src/secu.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCM.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/TestJS.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/TestJS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Test.java" afterDir="false" />
     </list>
     <list id="e0a5d575-1463-46f4-82d3-b2b4d97dd127" name="Changes by Aubin" comment="" />
     <list id="983b509a-0987-4a45-b6cf-6b41d3c16c2d" name="Changes by pt232770" comment="" />
     <list id="35c96175-51ca-4ddc-8c99-f82a12019ecb" name="Changes by sandr" comment="">
       <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/TestJS.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/TestJS.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,35 +50,6 @@
     &quot;accountId&quot;: &quot;d1674c13-4ac7-41cf-87ad-6591ed28a5da&quot;
   }
 }</component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java">
-      <ranges>
-        <range start1="99" end1="100" start2="99" end2="100" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="138" end1="139" start2="138" end2="139" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="164" end1="165" start2="164" end2="165" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="206" end1="208" start2="206" end2="207" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="218" end1="219" start2="217" end2="218" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="222" end1="223" start2="221" end2="222" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="225" end1="226" start2="224" end2="225" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="236" end1="243" start2="235" end2="239" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="245" end1="248" start2="241" end2="243" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="256" end1="257" start2="251" end2="252" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="265" end1="269" start2="260" end2="262" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="271" end1="273" start2="264" end2="265" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="298" end1="302" start2="290" end2="292" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="303" end1="305" start2="293" end2="294" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="312" end1="312" start2="301" end2="322" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="314" end1="763" start2="324" end2="771" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="764" end1="766" start2="772" end2="774" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="768" end1="771" start2="776" end2="779" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="772" end1="779" start2="780" end2="795" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="780" end1="790" start2="796" end2="814" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="791" end1="792" start2="815" end2="816" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="794" end1="960" start2="818" end2="981" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="961" end1="963" start2="982" end2="984" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-      </ranges>
-    </file>
-  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -325,7 +267,7 @@
       <workItem from="1734084865736" duration="36000" />
       <workItem from="1734085005212" duration="19000" />
       <workItem from="1734085032311" duration="136000" />
-      <workItem from="1734085274498" duration="5440000" />
+      <workItem from="1734085274498" duration="10130000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <option name="closed" value="true" />
@@ -350,7 +292,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/java/src/Metier/QCM.java</url>
-          <line>62</line>
+          <line>72</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

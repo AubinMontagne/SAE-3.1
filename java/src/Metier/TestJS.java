@@ -10,9 +10,9 @@ public class TestJS{
 
 
 		//Questions
-		questionnaire.addQuestion(new QCM("Comment utiliser le PHP ?", Difficulte.MOYEN, n1, 20,2, "Pour aller coder en PHP vous devez d'abord lancer un serveur"));
-		questionnaire.addQuestion(new QCM("Quels outils ?", Difficulte.FACILE, n1, 15,1, "Vous devez utilisr VSCODE"));
-		questionnaire.addQuestion(new QCM("Comment definir une var ?", Difficulte.TRES_FACILE, n1, 18,1, "avec $nomVar = Tests"));
+		questionnaire.addQuestion(new QCM("Comment utiliser le PHP ?", Difficulte.MOYEN, n1, 20,2, "Pour aller coder en PHP vous devez d'abord lancer un serveur", false));
+		questionnaire.addQuestion(new QCM("Quels outils ?", Difficulte.FACILE, n1, 15,1, "Vous devez utilisr VSCODE", true));
+		questionnaire.addQuestion(new QCM("Comment definir une var ?", Difficulte.TRES_FACILE, n1, 18,1, "avec $nomVar = Tests", true));
 		//questionnaire.addQuestion(new AssociationElement("Reliez les éléments entre eux :", Difficulte.MOYEN, n1, 23, 3, "Il fallait faire le 1 avec le 3 et le 2 avec le 4"));
 		//questionnaire.addQuestion(new EliminationReponse("Choisissez la bonne réponse :", Difficulte.DIFFICILE, n1, 12,2, "La 6 car feur. "));
 		//questionnaire.addQuestion(new AssociationElement("Asso 2 :", Difficulte.MOYEN, n1, 23, 3, "Feur."));

@@ -29,7 +29,7 @@ public class Test {
 		
 		System.out.println("\nTest de la classe QCM\n");
 
-		QCM qcm = new QCM("QCM", Difficulte.FACILE, notion, 10, 10);
+		QCM qcm = new QCM("QCM", Difficulte.FACILE, notion, 10, 10, false);
 		
 		qcm.ajouterReponse("A", true);
 		qcm.ajouterReponse("B", false);
