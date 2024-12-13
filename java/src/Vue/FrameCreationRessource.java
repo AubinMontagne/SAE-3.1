@@ -18,7 +18,7 @@ public class FrameCreationRessource extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelCreationRessource(ctrl, panelRessource) );
+        this.add(new PanelCreationRessource(ctrl, panelRessource, this) );
 
         setVisible(true);
     }

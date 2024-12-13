@@ -19,9 +19,13 @@ public class PanelCreationNotion extends JPanel implements ActionListener
     private JButton boutonConfirmer;
     private Controleur ctrl;
     private Ressource r;
+    private FrameCreationNotion frameCreationNotion;
+    private PanelNotion panelNotion;
 
-    public PanelCreationNotion(Controleur crtl, Ressource r) {
+    public PanelCreationNotion(Controleur crtl, Ressource r,PanelNotion panelNotion, FrameCreationNotion frameCreationNotion) {
         this.r = r;
+        this.panelNotion = panelNotion;
+        this.frameCreationNotion = frameCreationNotion;
         this.panelCreaRess = new JPanel();
         this.panelCreaRess.setLayout(new BorderLayout());
         this.ctrl = crtl;
@@ -72,8 +76,8 @@ public class PanelCreationNotion extends JPanel implements ActionListener
             // Afficher une popup avec les informations de la ressource
             JOptionPane.showMessageDialog(this, "Notion créée:\nNom : " + nom + "\nRessource associée : " + this.r, "Confirmation", JOptionPane.INFORMATION_MESSAGE);
 
-            // Réinitialiser les champs si nécessaire
-            champNom.setText("");
+            this.panelNotion.maj();
+            this.frameCreationNotion.dispose();
         }
     }
 

@@ -24,7 +24,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	private ArrayList<Notion> notions;
 
 	private static final ImageIcon[] IMAGES_DIFFICULTE = {
-			new ImageIcon("../../data.Image/carrevertaveclettre.png"),
+			new ImageIcon("../../../../data/Images/imgDif/D.png"),
 			new ImageIcon("../../data.Image/carrebleuaveclettre.png"),
 			new ImageIcon("../../data.Image/carrerougeaveclettre.png"),
 			new ImageIcon("../../data.Image/carregrisaveclettre.png")

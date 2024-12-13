@@ -211,7 +211,7 @@ public class QCMBuilder
 
         //Début tab completion
         String tabCompletion = "[";
-        String lignes = "";
+        String lignes = "[";
         String lignesInit = "";
         String tabEliminations = "";
         int indice = 0;
@@ -267,13 +267,11 @@ public class QCMBuilder
                 AssociationElement ae = (AssociationElement)(q);
                 String bonnesRep = "[";
 
-                String ligne = "";
-
                 for ( String gauche : ae.getAssociations().keySet()) {
-                    ligne += "[" + gauche + "," + ae.getAssociations().get(gauche) + "],";
+                    lignes += "[\"" + gauche + "\",\"" + ae.getAssociations().get(gauche) + "\"],";
                 }
 
-                ligne = ligne + "];";
+                lignes = lignes + "];";
             }
         }
 
@@ -344,7 +342,7 @@ public class QCMBuilder
                             "let tabSelections = " + tabSelection +
                             "\n" +
                             "//Pour le qcm à relier\n" +
-                            lignes +
+                            "let lignes = " + lignes +
                             "\n" +
                             "\n" +
                             tabEliminations +
@@ -1031,7 +1029,7 @@ public class QCMBuilder
                             "                        <br>\n" +
                             "                        <!-- Pour un QCM -->\n" +
                             "\n" +
-                            "                        <h3> "+ "explications" +" </h3>\n" +
+                            "                        <h3> "+ "Explications" +" </h3>\n" +
                             "                        <img class=\"imgQuestion\" src=\"./src/14.jpg\" id=\"imgTxt\" draggable=\"false\">\n" +
                             "\n" +
                             "                        <div id=\"zoneRepAssos\">\n" +

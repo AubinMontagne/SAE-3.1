@@ -57,6 +57,15 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
         this.add(this.panelNotion);
     }
 
+    public void maj(){
+        DefaultListModel<Notion> listModel = new DefaultListModel<>();
+        for (Notion notion : this.notions) {
+            if( notion.getRessourceAssociee() == this.ressource)
+                listModel.addElement(notion);
+        }
+        this.list.setModel(listModel);
+    }
+
     public void valueChanged(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
             Notion selectedNotion = this.list.getSelectedValue();
@@ -67,7 +76,7 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
     }
     public void actionPerformed(ActionEvent e) {
         if (btNouvNotion == e.getSource()) {
-            new FrameCreationNotion(this.ctrl, this.ressource);
+            new FrameCreationNotion(this.ctrl, this.ressource, this);
         }
     }
         

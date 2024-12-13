@@ -16,9 +16,11 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 	private JTextField champID;
 	private JTextField champNom;
 	private PanelRessource panelRessource;
+	private FrameCreationRessource frameCreationRessource;
 
-	public PanelCreationRessource(Controleur ctrl, PanelRessource panelRessource){
+	public PanelCreationRessource(Controleur ctrl, PanelRessource panelRessource, FrameCreationRessource frameCreationRessource){
 		this.ctrl = ctrl;
+		this.frameCreationRessource = frameCreationRessource;
 		this.panelRessource = panelRessource;
 		setLayout(new BorderLayout());
 
@@ -69,7 +71,13 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 
 			Ressource r = new Ressource(id, nom);
 			ctrl.ajouterRessource(r);
+			champID.setText("");
+			champNom.setText("");
 			this.panelRessource.maj();
+
+			JOptionPane.showMessageDialog(this, "Ressource ajoutée", "Succès", JOptionPane.INFORMATION_MESSAGE);
+
+			this.frameCreationRessource.dispose();
 		}
 	}
 }

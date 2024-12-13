@@ -6,11 +6,8 @@ import src.Controleur;
 import src.Metier.Ressource;
 
 public class FrameCreationNotion extends JFrame{
-    private Controleur ctrl;
 
-    public FrameCreationNotion( Controleur ctrl, Ressource r){
-        this.ctrl = ctrl;
-
+    public FrameCreationNotion( Controleur ctrl, Ressource r, PanelNotion panelNotion){
         System.out.println("CrÃ©ation de la frame CreaNotion");
 
         this.setTitle("Nouvelle Notion");
@@ -19,7 +16,7 @@ public class FrameCreationNotion extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelCreationNotion(ctrl, r) );
+        this.add(new PanelCreationNotion(ctrl, r, panelNotion,this) );
 
         setVisible(true);
     }
