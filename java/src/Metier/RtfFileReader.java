@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class RtfFileReader {
 
-    public String getRtfFileAsText(String filePath) {
+    public static String getRtfFileAsText(String filePath) {
         RTFEditorKit rtfEditorKit = new RTFEditorKit();
         DefaultStyledDocument document = new DefaultStyledDocument();
 

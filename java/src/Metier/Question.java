@@ -48,11 +48,13 @@ public abstract class Question{
 
 	// Get
     public String     getEnonceFich(){return enonceFich;}
+    public String     getEnonceFichText(){return RtfFileReader.getRtfFileAsText(enonceFich);}
     public Difficulte getDifficulte(){return this.difficulte;}
     public Notion     getNotion()    {return this.notion;}
     public int        getTemps()     {return this.temps;}
     public int        getPoint()     {return this.point;}
     public String     getExplicationFich() {return this.explicationFich;}
+    public String     getExplicationFichText(){return RtfFileReader.getRtfFileAsText(explicationFich);}
 
     public String     getAsData(){
         return this.enonceFich + ";" + this.difficulte.getIndice() + ";" + getNotion().getNom() + ";" + this.temps + ";" + this.point + ";" + this.explicationFich;

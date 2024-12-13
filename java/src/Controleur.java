@@ -1,15 +1,20 @@
 package src;
 
 import java.util.ArrayList;
-import src.Metier.*;
+import src.Vue.FrameAccueil;
+import src.Metier.Metier;
+import src.Metier.Notion;
+import src.Metier.Question;
+import src.Metier.Ressource;
 
 public class Controleur{
     private Metier metier;
-    //private FrameAccueil frameAccueil;
+    private FrameAccueil frameAccueil;
 
 
     public Controleur(){
         this.metier = new Metier();
+		this.frameAccueil = new FrameAccueil(this);
     }
 
     // Get
@@ -71,5 +76,15 @@ public class Controleur{
 	}
 	public void supprimerRessource(Ressource ressource){
 		this.metier.supprimerRessource(ressource);
+	}
+
+	public void miseAJour(){
+		this.metier.getNotionsFromData("./production/SAE-31/docs");
+		this.metier.getRessourcesFromData("./production/SAE-31/docs");
+		//this.metier.getQuestionsFromData("./production/SAE-31/docs");
+	}
+
+	public static void main(String[] args){
+		Controleur controleur = new Controleur();
 	}
 }

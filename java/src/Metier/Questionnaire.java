@@ -35,9 +35,9 @@ public class Questionnaire{
 		this.ajouterNotion(notion);
 	  }
 	  ArrayList<Integer> lstIntegerNotion = new ArrayList<Integer>();
-	  lstIntegerNotion.add((Integer) (lstNotions.indexOf(notion)));
-	  lstIntegerNotion.add((Integer) (difficulte.getIndice()));
-	  lstIntegerNotion.add((Integer) (nbQuestion));
+	  lstIntegerNotion.add(lstNotions.indexOf(notion));
+	  lstIntegerNotion.add(difficulte.getIndice());
+	  lstIntegerNotion.add(nbQuestion);
 	  this.lstNbQuestionsParDifficulte.add(lstIntegerNotion);
    }
 
@@ -61,7 +61,7 @@ public class Questionnaire{
       return this.chronoBool;
    }
 
-   public int getTempsEstimée(){
+   public int getTempsEstimee(){
       int sumTemps = 0;
 	  for (Question question : this.lstQuestion) {
 		 sumTemps += question.getTemps();

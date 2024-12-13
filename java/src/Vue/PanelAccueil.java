@@ -1,6 +1,6 @@
 package src.Vue;
 
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -15,7 +15,7 @@ public class PanelAccueil extends JPanel implements  ActionListener{
 
     public PanelAccueil( Controleur ctrl ){
         this.ctrl         = ctrl;
-        this.panelAccueil = new JPanel();
+        this.panelAccueil = new JPanel(new GridLayout(3,1));
         this.setLayout ( new BorderLayout() );
 
         this.setVisible(true);

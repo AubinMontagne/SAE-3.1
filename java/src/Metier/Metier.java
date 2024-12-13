@@ -241,4 +241,18 @@ public class Metier{
 		return questionsAssociees;
 	}
 
+	public ArrayList<Notion> getNotionsParRessource(Ressource ressource){
+		ArrayList<Notion> notionsAssociees = new ArrayList<>();
+
+		for (Notion notion : this.lstNotions)
+		{
+			if (notion.getRessourceAssociee().equals(ressource))
+			{
+				notionsAssociees.add(notion);
+			}
+		}
+
+		return notionsAssociees;
+	}
+
 }
