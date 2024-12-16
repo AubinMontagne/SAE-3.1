@@ -24,7 +24,7 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 		this.panelRessource = panelRessource;
 		setLayout(new BorderLayout());
 
-		UIManager.put("Label.font", new Font("Arial", Font.BOLD, 25));
+		UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
 
 		// Section supérieure
 		JPanel panelConfiguration = new JPanel(new GridLayout(2, 2, 5, 5));

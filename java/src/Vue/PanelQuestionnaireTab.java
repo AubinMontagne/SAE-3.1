@@ -21,11 +21,17 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
     private Controleur ctrl;
     private JButton btGenerer;
     private JLabel lbTotal;
+    private String titreQuestionnaire;
+    private Ressource r;
+    private boolean estChrono;
 
-    public PanelQuestionnaireTab(Controleur ctrl, Ressource r) {
+    public PanelQuestionnaireTab(Controleur ctrl, Ressource r, String titre, Boolean estChrono) {
         this.panelQuestionnaireTab = new JPanel(new BorderLayout());
         this.panelQuestionnaireTab.setVisible(true);
         this.ctrl = ctrl;
+        this.titreQuestionnaire = titre;
+        this.r = r;
+        this.estChrono = estChrono;
 
         this.notions = ctrl.getNotions();
 
@@ -244,6 +250,8 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
         if(e.getSource() == this.btGenerer)
         {
             System.out.println("Génération du questionnaire.");
+            Questionnaire q1 = new Questionnaire(this.titreQuestionnaire, this.r, this.estChrono);
+            System.out.println(q1.toString());
         }
     }
 }

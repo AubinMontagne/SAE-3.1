@@ -19,6 +19,7 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 	private JButton btConfirmer;
 	private JButton btChrono;
 	private boolean chrono = true;
+	private JTextField champTitre;
 
     private List<Ressource> listRessources;
     private List<Notion> listNotions;
@@ -40,7 +41,7 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
     	panelInfo.setBorder(BorderFactory.createTitledBorder("Information"));
 
     	JLabel labelTitre = new JLabel("Titre du questionnaire :");
-    	JTextField champTitre = new JTextField();
+    	this.champTitre = new JTextField();
 
     	JLabel labelChrono = new JLabel("Chronomètre :");
     	this.btChrono = new JButton("NON");
@@ -91,6 +92,7 @@ private void verifierChamps(String texteTitre) {
     this.videTitre = texteTitre.trim().isEmpty();
     if (!this.videTitre && !this.videRessource) {
         btConfirmer.setEnabled(true);
+		//this.titre = texteTitre;
     } else {
         btConfirmer.setEnabled(false);
     }
@@ -115,9 +117,11 @@ private void verifierChamps(String texteTitre) {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btConfirmer) {
             Ressource selectedRessource = (Ressource) mdRessources.getSelectedItem();
+			String titre = champTitre.getText();
             if (selectedRessource != null) {
-				new FrameQuestionnaireTab(ctrl,selectedRessource);
+				new FrameQuestionnaireTab(ctrl,selectedRessource,titre, this.chrono);
             }
+
         }
 
 		if(e.getSource() == this.btChrono)

@@ -6,7 +6,7 @@ import src.Metier.*;
 public class FrameQuestionnaireTab extends JFrame{ 
     private Controleur ctrl;
 
-    public FrameQuestionnaireTab( Controleur ctrl, Ressource r){
+    public FrameQuestionnaireTab( Controleur ctrl, Ressource r, String titre, boolean chrono){
         this.ctrl = ctrl;
 
         System.out.println("Création de la frame QuestionnaireTab");
@@ -17,7 +17,7 @@ public class FrameQuestionnaireTab extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelQuestionnaireTab(ctrl, r) );
+        this.add(new PanelQuestionnaireTab(ctrl, r, titre, chrono) );
 
         setVisible(true);
     }

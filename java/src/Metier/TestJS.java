@@ -35,6 +35,8 @@ public class TestJS{
 
 		((AssociationElement)questionnaire.getLstQuestion().get(3)).ajouterAssociation("La une", "La trois");
 		((AssociationElement)questionnaire.getLstQuestion().get(3)).ajouterAssociation("La deux", "La 4");
+		((AssociationElement)questionnaire.getLstQuestion().get(3)).ajouterAssociation("La 5", "La 6");
+
 
 		//((EliminationReponse)questionnaire.getLstQuestion().get(4)).ajouterReponse("Salut !", 1.0, 1.0);
 		//((EliminationReponse)questionnaire.getLstQuestion().get(4)).ajouterReponse("Yop !", 2.0, 2.0);

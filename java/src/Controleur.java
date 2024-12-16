@@ -45,7 +45,9 @@ public class Controleur{
 	public ArrayList<Question> getQuestionsParNotion(Notion notion){
 		return this.metier.getQuestionsParNotion(notion);
 	}
-
+	public ArrayList<Notion>   getNotionsParRessource(Ressource ressource){
+		return this.metier.getNotionsParRessource(ressource);
+	}
     // Set
 
     public void setMetier(Metier metier){this.metier = metier;}

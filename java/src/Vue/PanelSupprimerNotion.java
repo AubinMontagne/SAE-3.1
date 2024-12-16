@@ -5,24 +5,25 @@ import src.Metier.Notion;
 import src.Metier.Ressource;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
-public class PanelSupprimerNotion extends JPanel implements ActionListener
-{
+public class PanelSupprimerNotion extends JPanel implements ActionListener, ItemListener {
     private JPanel  panelSupprRess;
     private JButton boutonConfirmer;
     private Controleur ctrl;
-    private Ressource r;
+    private Notion notionChoisie;
     private JComboBox<Notion> mdRessources;
     private FrameSuppressionNotion frameSuppressionNotion;
     private PanelNotion panelNotion;
 
     public PanelSupprimerNotion(Controleur crtl, Ressource r, PanelNotion panelNotion, FrameSuppressionNotion frameSuppressionNotion) {
-        this.r = r;
+        Ressource ressource = r;
+
+        this.notionChoisie = null;
         this.panelNotion = panelNotion;
         this.frameSuppressionNotion = frameSuppressionNotion;
         this.panelSupprRess = new JPanel();
@@ -36,21 +37,16 @@ public class PanelSupprimerNotion extends JPanel implements ActionListener
         panelConfiguration.setBorder(BorderFactory.createTitledBorder("Notion"));
 
         JLabel labelRessource = new JLabel("Notion :");
-        mdRessources = new JComboBox<>(ctrl.getNotions().toArray(new Notion[0]));
-        mdRessources.addItemListener(this);
+        mdRessources = new JComboBox<>(ctrl.getNotionsParRessource(r).toArray(new Notion[0]));
 
         boutonConfirmer = new JButton("Confirmer");
         boutonConfirmer.setEnabled(false);
-        panelConfiguration.add(labelTemps);
-        panelConfiguration.add(champNom);
-
 
         add(panelConfiguration, BorderLayout.CENTER);
         add(boutonConfirmer,    BorderLayout.SOUTH );
 
-        // Ajout des écouteurs sur les champs de texte
-        champNom.getDocument ().addDocumentListener (new InputListener());
-
+        // Ajouter les ItemsListener
+        mdRessources.addItemListener(this);
 
         // Ajouter un ActionListener au bouton Confirmer
         boutonConfirmer.addActionListener(this);
@@ -58,45 +54,24 @@ public class PanelSupprimerNotion extends JPanel implements ActionListener
         setVisible(true);
     }
 
-    // Méthode pour vérifier si les champs sont remplis
-    private void verifierChamps() {
-        String texteChampNom = champNom.getText().trim();
-        boutonConfirmer.setEnabled(!texteChampNom.isEmpty() );
-    }
-
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == boutonConfirmer) {
-            String nom = champNom.getText().trim();
 
-            // Créez l'objet Ressource (assurez-vous que la classe Ressource existe déjà)
-            Notion notion = new Notion(nom, this.r);
-
-            ctrl.ajouterNotion(notion);
+            // Suppression de la notion
+            this.ctrl.supprimerNotion(this.notionChoisie);
 
             // Afficher une pop-up avec les informations de la ressource
-            JOptionPane.showMessageDialog(this, "Notion créée:\nNom : " + nom + "\nRessource associée : " + this.r, "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Notion supprimer:\nNom : " + this.notionChoisie.getNom() + "\nRessource associée : " + this.notionChoisie.getRessourceAssociee(), "Confirmation", JOptionPane.INFORMATION_MESSAGE);
 
             this.panelNotion.maj();
             this.frameSuppressionNotion.dispose();
         }
     }
 
-    // Classe interne pour surveiller les changements dans les champs de texte
-    private class InputListener implements DocumentListener {
-        @Override
-        public void insertUpdate(DocumentEvent e) {
-            verifierChamps();
-        }
-
-        @Override
-        public void removeUpdate(DocumentEvent e) {
-            verifierChamps();
-        }
-
-        @Override
-        public void changedUpdate(DocumentEvent e) {
-            verifierChamps();
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        if (e.getStateChange() == ItemEvent.SELECTED) {
+            this.notionChoisie = (Notion) mdRessources.getSelectedItem();
         }
     }
-
 }

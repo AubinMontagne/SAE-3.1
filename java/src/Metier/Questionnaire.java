@@ -104,4 +104,8 @@ public class Questionnaire{
 			}
 		}
     }
+
+    public String toString (){
+       return " Le questionnaire nommée : "+ this.nom + "\nA pour ressource : " + this.ressource + "\nChrono : " + this.chronoBool;
+    }
 }

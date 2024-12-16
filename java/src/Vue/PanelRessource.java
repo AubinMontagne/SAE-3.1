@@ -14,6 +14,7 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
     private Controleur ctrl;
     private JPanel panelRessource;
     private JButton btNouvRess;
+    private JButton btSupprRess;
     private JList<Ressource> list;
 
     public PanelRessource(Controleur ctrl) {

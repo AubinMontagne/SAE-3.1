@@ -1027,21 +1027,20 @@ public class QCMBuilder
                         tabRep2[(i*2)+1] = tabRep[i][1][0];
                     }
 
+                    int droite = 1;
 
                     for(int i = 0 ; i < tabRep.length; i++)
                     {
                         bonnesRep += "[";
                         for(int j = 0; j < tabRep.length ; j++)
                         {
-
-                            System.out.println(tabRep[i][0][0] + "," + tabRep[i][0][1] + " AAAA " + tabRep[j][1][0] + "," + tabRep[j][1][1]);
-
-                            if (tabRep[i][0] == tabRep[j][1])
+                            if (tabRep[i][0][0].equals(tabRep[j][1][0]) && tabRep[i][0][1].equals(tabRep[j][1][1]))
                             {
-                                bonnesRep += "[" + i + "," + j + "],[" + i  + "," + j + "]";
+                                bonnesRep += "[" + (i+j) + "," + droite + "],[" + (i+j)  + "," + droite + "]";
                             }
                         }
                         bonnesRep += "],";
+                        droite+=2;
                     }
                     bonnesRep += "]";
 
