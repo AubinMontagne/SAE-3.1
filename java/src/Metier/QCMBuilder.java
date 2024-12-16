@@ -1027,8 +1027,9 @@ public class QCMBuilder
                         tabRep2[(i*2)+1] = tabRep[i][1][0];
                     }
 
+                    System.out.println(tabRep.length);
 
-                    for(int i = 0 ; i < tabRep.length; i++)
+                    for(int i = 0 ; i < tabRep.length ; i++)
                     {
                         if(i%2 == 1)
                         {

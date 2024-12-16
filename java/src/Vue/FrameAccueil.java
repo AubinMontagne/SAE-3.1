@@ -16,7 +16,7 @@ public class FrameAccueil extends JFrame{
         this.setSize(200,200);
         this.setLocationRelativeTo(null);
 
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.);
 
         this.add(new PanelAccueil(ctrl) );
 
