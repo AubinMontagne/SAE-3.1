@@ -26,9 +26,7 @@ public class Questionnaire{
 	  	}
    }
 
-   public void supprimerNotion(Notion notion){
-       this.lstNotions.remove(notion);
-   }
+   public void supprimerNotion(Notion notion){this.lstNotions.remove(notion); }
 
    public void defNbQuestion(Notion notion, Difficulte difficulte, int nbQuestion){
       if (!this.lstNotions.contains(notion)){
@@ -41,57 +39,32 @@ public class Questionnaire{
 	  this.lstNbQuestionsParDifficulte.add(lstIntegerNotion);
    }
 
-   public String getNom(){
-      return this.nom;
-   }
+   public String         getNom()           {return this.nom; }
+   public Ressource      getRessource()     {return this.ressource; }
+   public List<Notion>   getLstNotions()    {return this.lstNotions; }
+   public List<Question> getLstQuestion()   {return this.lstQuestion; }
+   public boolean        getChronoBool()    {return this.chronoBool; }
 
-   public Ressource getRessource(){
-      return this.ressource;
-   }
-
-   public List<Notion> getLstNotions(){
-      return this.lstNotions;
-   }
-
-   public List<Question> getLstQuestion(){
-      return this.lstQuestion;
-   }
-
-   public boolean getChronoBool(){
-      return this.chronoBool;
-   }
-
-   public int getTempsEstimee(){
+    public int getTempsEstimee(){
       int sumTemps = 0;
-	  for (Question question : this.lstQuestion) {
-		 sumTemps += question.getTemps();
-	  }
-	  return sumTemps;
-   }
+      for (Question question : this.lstQuestion) {
+         sumTemps += question.getTemps();
+      }
+      return sumTemps;
+    }
 
     public int getPointMax(){
       int sumPoints = 0;
-	  for (Question question : this.lstQuestion) {
-		 sumPoints += question.getPoint();
-	  }
-	  return sumPoints;
+      for (Question question : this.lstQuestion) {
+         sumPoints += question.getPoint();
+      }
+      return sumPoints;
     }
 
-    public void setNom(String nom){
-      this.nom = nom;
-   }
-
-    public void setRessource(Ressource ressource){
-      this.ressource = ressource;
-   }
-
-    public void setChronoBool(boolean chronoBool){
-      this.chronoBool = chronoBool;
-   }
-
-    public void addQuestion(Question question){
-      this.lstQuestion.add(question);
-   }
+    public void setNom(String nom)               {this.nom = nom; }
+    public void setRessource(Ressource ressource){this.ressource = ressource; }
+    public void setChronoBool(boolean chronoBool){this.chronoBool = chronoBool; }
+    public void addQuestion(Question question)   {this.lstQuestion.add(question); }
 
    	public void initLstQuestions(Metier metier){
       	for (Notion n : this.lstNotions) {

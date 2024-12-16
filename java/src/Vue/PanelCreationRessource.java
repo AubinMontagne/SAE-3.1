@@ -32,8 +32,11 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 
 		JLabel labelID = new JLabel("Identifiant de la ressource :");
 		this.champID = new JTextField();
+		this.champID.setPreferredSize(new Dimension(10, 10));
+
 		JLabel labalNom = new JLabel("Nom de la ressource :");
 		this.champNom = new JTextField();
+		this.champNom.setPreferredSize(new Dimension(10, 10));
 
 		panelConfiguration.add(labelID);
 		panelConfiguration.add(champID);
@@ -70,11 +73,10 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 			}
 
 			Ressource r = new Ressource(id, nom);
-			ctrl.ajouterRessource(r);
+			ctrl.ajouterRessource(r);/*
 			champID.setText("");
-			champNom.setText("");
+			champNom.setText("");*/
 			this.panelRessource.maj();
-
 			JOptionPane.showMessageDialog(this, "Ressource ajoutée", "Succès", JOptionPane.INFORMATION_MESSAGE);
 
 			this.frameCreationRessource.dispose();

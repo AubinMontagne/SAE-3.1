@@ -20,13 +20,9 @@ public class EliminationReponse extends Question {
 	}
 
 	// Getters
-	public String getReponseCorrecte() {
-		return this.reponseCorrecte;
-	}
+	public String getReponseCorrecte() {return this.reponseCorrecte; }
 
-	public HashMap<String,Double[]> getHmReponses() {
-		return this.hmReponses;
-	}
+	public HashMap<String,Double[]> getHmReponses() {return this.hmReponses; }
 
 	public Double getLastIndex() {
 		Double indexMax = 0.0;
@@ -38,19 +34,12 @@ public class EliminationReponse extends Question {
 		return indexMax + 1;
 	}
 
-	public boolean isReponseCorrecte(String reponse) {
-		return this.reponseCorrecte.equals(reponse);
-	}
+	public boolean isReponseCorrecte(String reponse) {return this.reponseCorrecte.equals(reponse); }
 
 	// Setters
-	public void setReponseCorrecte(String reponseCorrecte) {
-		this.reponseCorrecte = reponseCorrecte;
-	}
+	public void setReponseCorrecte(String reponseCorrecte) {this.reponseCorrecte = reponseCorrecte; }
 
-	public void setHmReponses(HashMap<String,Double[]>  hmReponses) {
-		this.hmReponses = hmReponses;
-	}
-
+	public void setHmReponses(HashMap<String,Double[]>  hmReponses) {this.hmReponses = hmReponses; }
 
 	// Methods to add and remove incorrect responses
 	public void ajouterReponse(String reponse, Double points, Double ordre){
@@ -59,9 +48,7 @@ public class EliminationReponse extends Question {
 		}
 	}
 
-	public void removeReponse(String reponse){
-		this.hmReponses.remove(reponse);
-	}
+	public void removeReponse(String reponse){this.hmReponses.remove(reponse); }
 
 	public String getAsData(){
 		String res = this.getClass().getName() + ";" + super.getAsData() + ";" ;

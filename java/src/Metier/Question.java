@@ -36,7 +36,6 @@ public abstract class Question{
      * @param point         Le nombre de points que rapporte la question.
      * @param explicationFich   Le nom du fichier rtf contenant l'explication de la question.
      */
-
     public Question(String enonceFich, Difficulte difficulte, Notion notion, int temps, int point, String explicationFich){
         this.enonceFich    = enonceFich;
         this.difficulte  = difficulte;
@@ -47,27 +46,26 @@ public abstract class Question{
     }
 
 	// Get
-    public String     getEnonceFich(){return enonceFich;}
-    public String     getEnonceFichText(){return RtfFileReader.getRtfFileAsText(enonceFich);}
-    public Difficulte getDifficulte(){return this.difficulte;}
-    public Notion     getNotion()    {return this.notion;}
-    public int        getTemps()     {return this.temps;}
-    public int        getPoint()     {return this.point;}
-    public String     getExplicationFich() {return this.explicationFich;}
+    public String     getEnonceFich()         {return enonceFich;}
+    public String     getEnonceFichText()     {return RtfFileReader.getRtfFileAsText(enonceFich);}
+    public Difficulte getDifficulte()         {return this.difficulte;}
+    public Notion     getNotion()             {return this.notion;}
+    public int        getTemps()              {return this.temps;}
+    public int        getPoint()              {return this.point;}
+    public String     getExplicationFich()    {return this.explicationFich;}
     public String     getExplicationFichText(){return RtfFileReader.getRtfFileAsText(explicationFich);}
 
     public String     getAsData(){
         return this.enonceFich + ";" + this.difficulte.getIndice() + ";" + getNotion().getNom() + ";" + this.temps + ";" + this.point + ";" + this.explicationFich;
     }
 
-
 	// Set
-    public void setEnonceFich(String intitule)      {this.enonceFich = enonceFich;}
-    public void setDifficulte(Difficulte difficulte){this.difficulte = difficulte;}
-    public void setNotion(Notion notion)            {this.notion = notion;}
-    public void setTemps(int temps)                 {this.temps = temps;}
-    public void setPoint(int point)                 {this.point = point;}
-    public void setExplicationFich(String explicationFich)   {this.explicationFich = explicationFich;}
+    public void setEnonceFich(String intitule)              {this.enonceFich = enonceFich;}
+    public void setDifficulte(Difficulte difficulte)        {this.difficulte = difficulte;}
+    public void setNotion(Notion notion)                    {this.notion = notion;}
+    public void setTemps(int temps)                         {this.temps = temps;}
+    public void setPoint(int point)                         {this.point = point;}
+    public void setExplicationFich(String explicationFich)  {this.explicationFich = explicationFich;}
 
 	public String toString(){
 		return "Difficulté: " + this.difficulte + "\n" +

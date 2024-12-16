@@ -13,7 +13,7 @@ public class FrameCreationRessource extends JFrame{
         System.out.println("Création de la frame CreaRessource");
 
         this.setTitle("Création de la question");
-        this.setSize(750,500);
+        this.setSize(250,200);
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

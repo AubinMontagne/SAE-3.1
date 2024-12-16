@@ -251,6 +251,7 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
         {
             System.out.println("Génération du questionnaire.");
             Questionnaire q1 = new Questionnaire(this.titreQuestionnaire, this.r, this.estChrono);
+            JOptionPane.showMessageDialog(this, q1.toString(), "Confirmation", JOptionPane.INFORMATION_MESSAGE);
             System.out.println(q1.toString());
         }
     }

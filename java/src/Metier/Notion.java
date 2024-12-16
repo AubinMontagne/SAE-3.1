@@ -22,25 +22,20 @@ public class Notion
 		this.ressourceAssociee.equals(notion.getRessourceAssociee());
 	}
 
-    public String    getNom()               {return this.nom;}
-    public Ressource getRessourceAssociee() {return this.ressourceAssociee;}
+    public String    getNom()               {return this.nom; }
+    public Ressource getRessourceAssociee() {return this.ressourceAssociee; }
+    public String    getAsData()            {return (this.nom + ";" + this.ressourceAssociee.getId()); }
 
-    public String     getAsData(){ 
-        return (this.nom + ";" + this.ressourceAssociee.getId());
-    }
     public static Notion getFromData(String data, Metier metier){
           String[] parts = new String[]{data.substring(0, data.indexOf(";")), data.substring(data.indexOf(";") + 1)};
           return new Notion(parts[0], metier.getRessourceById(parts[1]));
     }
 
     // Set
-
     public void setNom(String nom)                               {this.nom = nom;}
     public void setRessourceAssociee(Ressource ressourceAssociee){this.ressourceAssociee = ressourceAssociee;}
 
 	public String toString(){
-		String res = "Notion : " + this.getNom();
-		res += "Ressource associée : " + this.getRessourceAssociee().getNom();
-		return res;
+		return this.getNom();
 	}
 }

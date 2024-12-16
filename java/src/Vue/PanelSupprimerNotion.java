@@ -33,14 +33,14 @@ public class PanelSupprimerNotion extends JPanel implements ActionListener, Item
         UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
 
         // Section des données
-        JPanel panelConfiguration = new JPanel(new GridLayout(2, 2, 5, 5));
+        JPanel panelConfiguration = new JPanel(new GridLayout(2, 1, 5, 5));
         panelConfiguration.setBorder(BorderFactory.createTitledBorder("Notion"));
 
-        JLabel labelRessource = new JLabel("Notion :");
         mdRessources = new JComboBox<>(ctrl.getNotionsParRessource(r).toArray(new Notion[0]));
 
         boutonConfirmer = new JButton("Confirmer");
-        boutonConfirmer.setEnabled(false);
+        boutonConfirmer.setEnabled(true);
+        panelConfiguration.add(mdRessources);
 
         add(panelConfiguration, BorderLayout.CENTER);
         add(boutonConfirmer,    BorderLayout.SOUTH );

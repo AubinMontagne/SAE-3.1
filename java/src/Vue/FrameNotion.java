@@ -17,7 +17,7 @@ public class FrameNotion extends JFrame{
 
 
         this.setTitle("Les Notions");
-        this.setSize(300,215);
+        this.setSize(350,225);
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

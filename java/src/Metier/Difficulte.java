@@ -14,8 +14,8 @@ public enum Difficulte {
         this.indice = indice;
     }
 
-    public String getNom()    {return nom;}
-    public int    getIndice() {return indice;}
+    public String getNom()    {return nom; }
+    public int    getIndice() {return indice; }
 
     public static Difficulte getDifficulteByIndice(int indice){
         for (Difficulte difficulte : Difficulte.values()){
@@ -26,7 +26,5 @@ public enum Difficulte {
         return null;
     }
 
-    public String toString(){
-		return this.nom + " (" + this.indice + ")"; 
-	}
+    public String toString(){return this.nom + " (" + this.indice + ")"; }
 }

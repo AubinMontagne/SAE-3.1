@@ -21,6 +21,7 @@ public class Metier{
         }
         return false;
     }
+
     public boolean ajouterRessource(Ressource ressource){
         if (ressource != null){
             this.lstRessources.add(ressource);
@@ -28,6 +29,7 @@ public class Metier{
         }
         return false;
     }
+
     public boolean ajouterQuestion(Question question){
         if (question != null){
             return this.lstQuestions.add(question);
@@ -41,12 +43,14 @@ public class Metier{
 		}
 		return false;
 	}
+
 	public boolean supprimerRessource(Ressource ressource){
 		if (ressource != null){
 			return this.lstRessources.remove(ressource);
 		}
 		return false;
 	}
+
 	public boolean supprimerQuestion(Question question){
 		if (question != null){
 			return this.lstQuestions.remove(question);
@@ -56,9 +60,9 @@ public class Metier{
 
 	// Get 
 
-    public ArrayList<Notion>    getNotions()   {return this.lstNotions;}
-    public ArrayList<Ressource> getRessources(){return this.lstRessources;}
-    public ArrayList<Question>  getQuestions() {return this.lstQuestions;}
+    public ArrayList<Notion>    getNotions()   {return this.lstNotions; }
+    public ArrayList<Ressource> getRessources(){return this.lstRessources; }
+    public ArrayList<Question>  getQuestions() {return this.lstQuestions; }
 
     public Ressource getRessourceById(String id){
         for (Ressource ressource : this.lstRessources){
@@ -68,6 +72,7 @@ public class Metier{
         }
         return null;
     }
+
 	public Notion getNotionByNom(String nom){
 		for (Notion notion : this.lstNotions){
 			if (notion.getNom().equals(nom)){
@@ -85,6 +90,7 @@ public class Metier{
 		}
 		return null;
 	}
+
 	public Notion getNotion(Notion notion){
 		for (Notion n : this.lstNotions){
 			if (n.equals(notion)){
@@ -93,6 +99,7 @@ public class Metier{
 		}
 		return null;
 	}
+
 	public Ressource getRessource(Ressource ressource){
 		for (Ressource r : this.lstRessources){
 			if (r.equals(ressource)){
@@ -126,7 +133,6 @@ public class Metier{
 	}
 
 	// Sauvegardes
-
     public void saveNotions(String path){
         try{
 			File dir = new File(path);
@@ -142,6 +148,7 @@ public class Metier{
             e.printStackTrace();
         }
     }
+
     public void saveRessources(String path){
         try{
 			File dir = new File(path);
@@ -182,7 +189,6 @@ public class Metier{
 
 	public void getRessourcesFromData(String path){
 		try{
-			
 			BufferedReader reader = new BufferedReader(new FileReader(path+"/ressources.csv"));
 			String line;
 			while ((line = reader.readLine()) != null){

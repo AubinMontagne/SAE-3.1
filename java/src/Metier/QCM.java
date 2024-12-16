@@ -20,20 +20,11 @@ public class QCM extends Question {
 	}
 
 	// Get
-
-	public HashMap<String, Boolean> getReponses() {
-		return this.hmReponses;
-	}
-
-	public int getNbReponses(){
-		return this.hmReponses.size();
-	}
+	public HashMap<String, Boolean> getReponses() {return this.hmReponses; }
+	public int getNbReponses(){return this.hmReponses.size(); }
 
 	// Set
-
-	public void setHmReponses(HashMap<String, Boolean> hmReponses) {
-		this.hmReponses = hmReponses;
-	}
+	public void setHmReponses(HashMap<String, Boolean> hmReponses) {this.hmReponses = hmReponses; }
 
 	// Méthode pour gérer les réponse ajouter/enlever
 	public boolean ajouterReponse(String reponse, Boolean correct) {
@@ -53,9 +44,7 @@ public class QCM extends Question {
 		return true;
 	}
 
-	public void enleverReponse(String reponse){
-		this.hmReponses.remove(reponse);
-	}
+	public void enleverReponse(String reponse){this.hmReponses.remove(reponse); }
 
 	@Override
 	public String getAsData(){
@@ -65,6 +54,7 @@ public class QCM extends Question {
 		}
 		return res;
 	}
+
 	public static QCM getAsInstance(String ligne, Metier metier) {
 		Scanner scanner = new Scanner(ligne);
 		scanner.useDelimiter(";");

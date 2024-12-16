@@ -18,13 +18,9 @@ public class AssociationElement extends Question
         this.hmAssociations = new HashMap<>();
     }
 
-    public HashMap<String, String> getAssociations()
-    {
-        return this.hmAssociations;
-    }
+    public HashMap<String, String> getAssociations(){return this.hmAssociations; }
 
     public void ajouterAssociation(String gauche, String droite){
-
 		if (!(gauche == null || droite == null) &&
             (!this.hmAssociations.containsKey(gauche) || !this.hmAssociations.containsValue(droite)) &&
             (!this.hmAssociations.containsKey(droite) || !this.hmAssociations.containsValue(gauche))){
@@ -32,9 +28,7 @@ public class AssociationElement extends Question
 		}
     }
 
-    public void supprimerAssociation(String gauche){
-        this.hmAssociations.remove(gauche);
-    }
+    public void supprimerAssociation(String gauche){this.hmAssociations.remove(gauche); }
 
 	public String getAsData(){
         String res = this.getClass().getName() + ";" + super.getAsData() + ";" ;
@@ -67,7 +61,6 @@ public class AssociationElement extends Question
             associationElement.ajouterAssociation(associationParts[0], associationParts[1]);
             associationPartsScanner.close();
         }
-
         return associationElement;
     }
 

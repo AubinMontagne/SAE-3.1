@@ -22,8 +22,7 @@ public class Controleur{
     public Metier getMetier(){
         return this.metier;
     }
-
-
+	
 	// Getters Individuels
 
 	public Question  getQuestion (Question question)  {return this.metier.getQuestion(question);}

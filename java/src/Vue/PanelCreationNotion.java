@@ -72,9 +72,10 @@ public class PanelCreationNotion extends JPanel implements ActionListener
             Notion notion = new Notion(nom, this.r);
 
             ctrl.ajouterNotion(notion);
+            ctrl.getMetier().saveNotions("../../tru/jeSa");
 
             // Afficher une popup avec les informations de la ressource
-            JOptionPane.showMessageDialog(this, "Notion créée:\nNom : " + nom + "\nRessource associée : " + this.r, "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Notion ajoutée", "Succès", JOptionPane.INFORMATION_MESSAGE);
 
             this.panelNotion.maj();
             this.frameCreationNotion.dispose();
