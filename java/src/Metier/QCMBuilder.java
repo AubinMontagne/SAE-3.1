@@ -1027,7 +1027,36 @@ public class QCMBuilder
                         tabRep2[(i*2)+1] = tabRep[i][1][0];
                     }
 
-                    int droite = 1;
+
+                    for(int i = 0 ; i < tabRep.length; i++)
+                    {
+                        if(i%2 == 1)
+                        {
+                            i++;
+                        }
+
+                        bonnesRep += "[";
+                        if(!tabRep[i][0][0].equals(tabRep[i][1][0]) || !tabRep[i][0][1].equals(tabRep[i][1][1]))
+                        {
+                            for(int j = 0 ; j < ae.getAssociations().size()*2 ; j++)
+                            {
+                                System.out.println(i + " " + j);
+                               if(tabRep[i][0][0].equals(tabRep[j%ae.getAssociations().size()][1][0]) && tabRep[i][0][1].equals(tabRep[j%ae.getAssociations().size()][1][1]))
+                               {
+                                   bonnesRep += "[" + (i) + "," + j + "],[" + (i)  + "," + j + "]";
+                               }
+                            }
+                        }else{
+                            bonnesRep += "[" + (i) + "," + (i+1) + "],[" + (i)  + "," + (i+1) + "]";
+                        }
+                        bonnesRep += "],";
+
+                    }
+                    bonnesRep += "]";
+
+
+
+                    /*int droite = 1;
 
                     for(int i = 0 ; i < tabRep.length; i++)
                     {
@@ -1036,13 +1065,13 @@ public class QCMBuilder
                         {
                             if (tabRep[i][0][0].equals(tabRep[j][1][0]) && tabRep[i][0][1].equals(tabRep[j][1][1]))
                             {
-                                bonnesRep += "[" + (i+j) + "," + droite + "],[" + (i+j)  + "," + droite + "]";
+                                bonnesRep += "[" + (i) + "," + droite + "],[" + (i)  + "," + droite + "]";
                             }
                         }
                         bonnesRep += "],";
                         droite+=2;
                     }
-                    bonnesRep += "]";
+                    bonnesRep += "]";*/
 
                     System.out.println("[");
                     for(int i = 0 ; i < tabRep.length ; i++)

@@ -21,7 +21,7 @@ public class PanelAccueil extends JPanel implements  ActionListener{
         this.setVisible(true);
 
         this.btBanque        = new JButton("Banque de question"    );
-        this.btQuestionnaire = new JButton("Création Questionnaire");
+        this.btQuestionnaire = new JButton("Génération Questionnaire");
         this.btRessources    = new JButton("Ressources"            );
 
         this.panelAccueil.add(this.btBanque, BorderLayout.NORTH          );

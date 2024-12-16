@@ -13,21 +13,13 @@
       <change beforePath="$PROJECT_DIR$/Test1/index.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Test1/script.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Test1/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Controleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelRessource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelSupprimerNotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelSupprimerNotion.java" afterDir="false" />
     </list>
     <list id="e0a5d575-1463-46f4-82d3-b2b4d97dd127" name="Changes by Aubin" comment="" />
     <list id="35c96175-51ca-4ddc-8c99-f82a12019ecb" name="Changes by sandr" comment="">
       <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/TestJS.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/TestJS.java" afterDir="false" />
     </list>
     <list id="a134f2c3-a261-424a-a44e-ee20e8d20510" name="Changes by timot" comment="">
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameQuestionnaireTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameQuestionnaireTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaireTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaireTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,28 +63,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Controleur.executor&quot;: &quot;Run&quot;,
-    &quot;Application.PanelElimination.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Test.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.TestJS.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/etudiant/oj230564/Bureau/SAE-31&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Controleur.executor": "Run",
+    "Application.PanelElimination.executor": "Run",
+    "Application.Test.executor": "Debug",
+    "Application.TestJS.executor": "Debug",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/etudiant/oj230564/Bureau/SAE-31",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/docs" />
@@ -285,7 +277,7 @@
       <workItem from="1734338398667" duration="9767000" />
       <workItem from="1734352621069" duration="617000" />
       <workItem from="1734353446172" duration="2783000" />
-      <workItem from="1734356917547" duration="2156000" />
+      <workItem from="1734356917547" duration="2629000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <option name="closed" value="true" />
