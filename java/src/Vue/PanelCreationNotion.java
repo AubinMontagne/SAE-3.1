@@ -14,19 +14,19 @@ import src.Metier.Ressource;
 
 public class PanelCreationNotion extends JPanel implements ActionListener
 {
-    private JTextField champNom;
-    private JPanel  panelCreaRess;
-    private JButton boutonConfirmer;
-    private Controleur ctrl;
-    private Ressource r;
+    private JTextField          champNom;
+    private JPanel              panelCreaRess;
+    private JButton             boutonConfirmer;
+    private Controleur          ctrl;
+    private Ressource           r;
     private FrameCreationNotion frameCreationNotion;
-    private PanelNotion panelNotion;
+    private PanelNotion         panelNotion;
 
     public PanelCreationNotion(Controleur crtl, Ressource r,PanelNotion panelNotion, FrameCreationNotion frameCreationNotion) {
-        this.r = r;
-        this.panelNotion = panelNotion;
+        this.r                   = r;
+        this.panelNotion         = panelNotion;
         this.frameCreationNotion = frameCreationNotion;
-        this.panelCreaRess = new JPanel();
+        this.panelCreaRess       = new JPanel();
         this.panelCreaRess.setLayout(new BorderLayout());
         this.ctrl = crtl;
 
@@ -37,20 +37,18 @@ public class PanelCreationNotion extends JPanel implements ActionListener
         panelConfiguration.setBorder(BorderFactory.createTitledBorder("Notion"));
 
         JLabel labelTemps = new JLabel("Nom (Ex: Le Chiffrement):");
-        this.champNom = new JTextField();
+        this.champNom     = new JTextField();
 
         boutonConfirmer = new JButton("Confirmer");
         boutonConfirmer.setEnabled(false);
         panelConfiguration.add(labelTemps);
         panelConfiguration.add(champNom);
 
-
         add(panelConfiguration, BorderLayout.CENTER);
         add(boutonConfirmer,    BorderLayout.SOUTH );
 
         // Ajout des écouteurs sur les champs de texte
         champNom.getDocument ().addDocumentListener (new InputListener());
-
 
         // Ajouter un ActionListener au bouton Confirmer
         boutonConfirmer.addActionListener(this);

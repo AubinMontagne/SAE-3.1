@@ -1028,8 +1028,8 @@ public class QCMBuilder
                                 System.out.println(i + " " + j + " " + v);
                                 if(tabRep[i][0][0].equals(tabRep[j][1][0]) && tabRep[i][0][1].equals(tabRep[j][1][1]))
                                 {
-                                    System.out.println("Ecrire : " + i + " " + (i*2+1));
-                                    bonnesRep += "[" + (i*2) + "," + (i*2+1) + "],[" + (i*2)  + "," + (i*2+1) + "]";
+                                    System.out.println("Ecrire : " + i + " " + (j*2+1));
+                                    bonnesRep += "[" + (i*2) + "," + (j*2+1) + "],[" + (i*2)  + "," + (j*2+1) + "]";
 
                                 }
                                 v++;

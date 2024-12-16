@@ -13,13 +13,12 @@ import src.Metier.Question;
 import src.Metier.Notion;
 import src.Controleur;
 
-
 public class PanelBanque extends JPanel implements  ActionListener{
     private Controleur ctrl;
-	private Notion notion;
-	private JButton btCreaQuest;
-    private JPanel panelBanque;
-    private JTable tbQuestion;
+	private Notion     notion;
+	private JButton    btCreaQuest;
+    private JPanel     panelBanque;
+    private JTable     tbQuestion;
 	
 
 
@@ -47,15 +46,15 @@ public class PanelBanque extends JPanel implements  ActionListener{
         int maxVisibleRows = 5;
 
         // Calcul dynamique de la hauteur
-        int rowHeight = this.tbQuestion.getRowHeight();
-        int headerHeight = this.tbQuestion.getTableHeader().getHeight();
+        int rowHeight     = this.tbQuestion.getRowHeight();
+        int headerHeight  = this.tbQuestion.getTableHeader().getHeight();
         int visibleHeight = rowHeight * Math.min(this.tbQuestion.getRowCount(), maxVisibleRows) + headerHeight;
 
         // Ajuster la taille visible de la table
         this.tbQuestion.setPreferredScrollableViewportSize(new Dimension(800, visibleHeight));
 
 		JScrollPane scrollPane = new JScrollPane(this.tbQuestion);
-		this.btCreaQuest = new JButton("Nouvelle Question"    );
+		this.btCreaQuest       = new JButton("Nouvelle Question"    );
 
 		this.panelBanque.add(scrollPane, BorderLayout.CENTER);
 		this.panelBanque.add(this.btCreaQuest, BorderLayout.SOUTH  );
@@ -67,7 +66,7 @@ public class PanelBanque extends JPanel implements  ActionListener{
 
 	public PanelBanque(Notion notion, Controleur ctrl){
         this.ctrl        = ctrl;
-		this.notion    = notion;
+		this.notion      = notion;
         this.panelBanque = new JPanel();
 		this.setLayout ( new BorderLayout() );
 		this.setVisible(true);
@@ -75,7 +74,7 @@ public class PanelBanque extends JPanel implements  ActionListener{
         String[] tabEntetes = {"Question", "Ressource", "Notion", "Point"};
 
 		ArrayList<Question> questList = this.ctrl.getQuestionsParNotion(notion);
-        String[][] data = new String[questList.size()][4];
+        String[][] data               = new String[questList.size()][4];
 
 		for(int i = 0; i < questList.size();i++){
 			data[i][0] = questList.get(i).getEnonceFich();
@@ -91,15 +90,15 @@ public class PanelBanque extends JPanel implements  ActionListener{
         int maxVisibleRows = 5;
 		
 		// Calcul dynamique de la hauteur
-        int rowHeight = this.tbQuestion.getRowHeight();
-        int rowCount = this.tbQuestion.getRowCount();
+        int rowHeight     = this.tbQuestion.getRowHeight();
+        int rowCount      = this.tbQuestion.getRowCount();
         int visibleHeight = rowHeight * Math.min(this.tbQuestion.getRowCount(), maxVisibleRows) + rowHeight;
 
         // Ajuster la taille visible de la table
         this.tbQuestion.setPreferredScrollableViewportSize(new Dimension(800, visibleHeight));
 
 		JScrollPane scrollPane = new JScrollPane(this.tbQuestion);
-		this.btCreaQuest = new JButton("Nouvelle Question"    );
+		this.btCreaQuest       = new JButton("Nouvelle Question"    );
 
 		this.panelBanque.add(scrollPane, BorderLayout.CENTER);
 		this.panelBanque.add(this.btCreaQuest, BorderLayout.SOUTH  );
@@ -108,6 +107,7 @@ public class PanelBanque extends JPanel implements  ActionListener{
 
 		this.btCreaQuest.addActionListener(this);
     }
+
 	public void actionPerformed(ActionEvent e){
         if ( this.btCreaQuest == e.getSource()){
             System.out.println("Hey la frame Creer question s'ouvre");
