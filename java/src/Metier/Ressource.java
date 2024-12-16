@@ -22,10 +22,10 @@ public class Ressource{
 		this.nom.equals(ressource.getNom());
 	}
 
-    public String getId()     {return this.id;}
-    public String getNom()    {return this.nom;}
-
+    public String getId() {return this.id; }
+    public String getNom(){return this.nom; }
     public String getAsData(){return this.id + ";" + this.nom;}
+    
 	public static Ressource getFromData(String data){
         String[] parts = data.split(";");
         return new Ressource(parts[0], parts[1]);

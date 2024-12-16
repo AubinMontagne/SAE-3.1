@@ -73,7 +73,9 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 			}
 
 			Ressource r = new Ressource(id, nom);
-			ctrl.ajouterRessource(r);/*
+			ctrl.ajouterRessource(r);
+			ctrl.getMetier().saveRessources("../../truk/jeSaisPas");
+			/*
 			champID.setText("");
 			champNom.setText("");*/
 			this.panelRessource.maj();
