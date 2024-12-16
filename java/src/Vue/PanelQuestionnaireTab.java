@@ -1,24 +1,26 @@
 package src.Vue;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
-import java.awt.*;
-import java.util.ArrayList;
-
 import src.*;
 import src.Metier.*;
 
-public class PanelQuestionnaireTab extends JPanel {
+public class PanelQuestionnaireTab extends JPanel implements ActionListener {
     private JTable tbQuestion;
     private JTable tbResult;
     private JPanel panelQuestionnaireTab;
     private ArrayList<Notion> notions;
     private Controleur ctrl;
+    private JButton btGenerer;
+    private JLabel lbTotal;
 
     public PanelQuestionnaireTab(Controleur ctrl, Ressource r) {
         this.panelQuestionnaireTab = new JPanel(new BorderLayout());
@@ -77,6 +79,29 @@ public class PanelQuestionnaireTab extends JPanel {
             }
         });
 
+        model.addTableModelListener(e -> {
+            if (e.getColumn() >= 2 && e.getColumn() <= 5) {
+                // Update the total when any of these columns change
+                updateTotals(model);
+            }
+        });
+
+        model.addTableModelListener(e -> {
+            if (e.getColumn() == 1) { // Si la colonne modifiée est la colonne 1 (la case à cocher)
+                int row = e.getFirstRow();
+                Boolean isSelected = (Boolean) model.getValueAt(row, 1);
+                
+                // Si la case est désélectionnée (false), remettre les valeurs de la colonne 2 à 5 à 0
+                if (isSelected != null && !isSelected) {
+                    model.setValueAt(0, row, 2); // Remettre à 0 la colonne 2 (TF)
+                    model.setValueAt(0, row, 3); // Remettre à 0 la colonne 3 (F)
+                    model.setValueAt(0, row, 4); // Remettre à 0 la colonne 4 (M)
+                    model.setValueAt(0, row, 5); // Remettre à 0 la colonne 5 (D)
+                }
+            }
+        });
+
+
         // Configure table
         tbQuestion = new JTable(model);
         tbQuestion.setPreferredScrollableViewportSize(new Dimension(
@@ -84,19 +109,25 @@ public class PanelQuestionnaireTab extends JPanel {
                 tbQuestion.getRowHeight() * 6
         ));
 
-        tbResult = new JTable(model);
-
         for (int col = 2; col <= 5; col++) {
             tbQuestion.getColumnModel().getColumn(col).setCellRenderer(new CustomCellRenderer(model));
             tbQuestion.getColumnModel().getColumn(col).setCellEditor(new CustomCellEditor(model));
         }
 
+        this.lbTotal = new JLabel("Totaux : TF = 0, F = 0, M = 0, D = 0");
+
+        this.btGenerer = new JButton("Générer Questionnaire");
+		this.btGenerer.addActionListener(this);
+
         JScrollPane scrollPane = new JScrollPane(tbQuestion);
-        this.panelQuestionnaireTab.add(scrollPane, BorderLayout.CENTER);
-        this.panelQuestionnaireTab.add(tbResult, BorderLayout.CENTER);
+        this.panelQuestionnaireTab.add(scrollPane, BorderLayout.NORTH);
+        this.panelQuestionnaireTab.add(lbTotal, BorderLayout.CENTER);
+        this.panelQuestionnaireTab.add(btGenerer, BorderLayout.SOUTH);
 
         this.add(this.panelQuestionnaireTab);
+        updateTotals(model);
     }
+
 
     // Custom cell renderer
     private static class CustomCellRenderer extends DefaultTableCellRenderer {
@@ -164,6 +195,55 @@ public class PanelQuestionnaireTab extends JPanel {
             }
 
             return textField;
+        }
+    }
+
+    private void updateTotals(DefaultTableModel model) {
+        int totalTF = 0;
+        int totalF  = 0;
+        int totalM  = 0;
+        int totalD  = 0;
+        int total   = 0;
+
+        for (int i = 0; i < model.getRowCount(); i++) {
+            // S'assurer que la valeur récupérée est bien un entier
+            totalTF += getIntValue(model.getValueAt(i, 2));
+            totalF += getIntValue(model.getValueAt(i, 3));
+            totalM += getIntValue(model.getValueAt(i, 4));
+            totalD += getIntValue(model.getValueAt(i, 5));
+        }
+
+        total += totalD + totalF + totalM + totalTF;
+        // Mettre à jour l'affichage des totaux
+        this.lbTotal.setText(String.format("Totaux : TF = %d, F = %d, M = %d, D = %d     Σ = %d", totalTF, totalF, totalM, totalD, total));
+    }
+
+    // Fonction utilitaire pour obtenir un entier, ou 0 si la valeur est invalide
+    private int getIntValue(Object value) {
+        if (value == null) {
+            return 0; // Retourner 0 si la valeur est nulle
+        }
+
+        try {
+            if (value instanceof String) {
+                // Si la valeur est une chaîne, essayer de la convertir en entier
+                return Integer.parseInt((String) value);
+            } else if (value instanceof Integer) {
+                // Si la valeur est déjà un entier, la retourner directement
+                return (Integer) value;
+            }
+        } catch (NumberFormatException e) {
+            // Si la conversion échoue, retourner 0
+            return 0;
+        }
+        return 0; // Retourner 0 par défaut si aucune condition n'est remplie
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == this.btGenerer)
+        {
+            System.out.println("Génération du questionnaire.");
         }
     }
 }
