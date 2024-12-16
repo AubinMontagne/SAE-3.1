@@ -4,14 +4,14 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class Metier{
-    private ArrayList<Notion> lstNotions;
+    private ArrayList<Notion>    lstNotions;
     private ArrayList<Ressource> lstRessources;
-    private ArrayList<Question> lstQuestions;
+    private ArrayList<Question>  lstQuestions;
 
     public Metier(){
-        this.lstNotions = new ArrayList<>();
+        this.lstNotions    = new ArrayList<>();
         this.lstRessources = new ArrayList<>();
-        this.lstQuestions = new ArrayList<>();
+        this.lstQuestions  = new ArrayList<>();
     }
 
     public boolean ajouterNotion(Notion notion){
@@ -56,15 +56,9 @@ public class Metier{
 
 	// Get 
 
-    public ArrayList<Notion> getNotions(){
-        return this.lstNotions;
-    }
-    public ArrayList<Ressource> getRessources(){
-        return this.lstRessources;
-    }
-    public ArrayList<Question> getQuestions(){
-        return this.lstQuestions;
-    }
+    public ArrayList<Notion>    getNotions()   {return this.lstNotions;}
+    public ArrayList<Ressource> getRessources(){return this.lstRessources;}
+    public ArrayList<Question>  getQuestions() {return this.lstQuestions;}
 
     public Ressource getRessourceById(String id){
         for (Ressource ressource : this.lstRessources){

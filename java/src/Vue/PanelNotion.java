@@ -5,7 +5,6 @@ import src.Metier.Ressource;
 import src.Controleur;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
@@ -16,7 +15,8 @@ import java.util.ArrayList;
 public class PanelNotion extends JPanel implements ActionListener , ListSelectionListener
 {	
     private JPanel panelNotion;
-    private JButton btNouvNotion;
+    private JButton btnNouvNotion;
+    private JButton btnSupprNotion;
     private JList<Notion> list;
     private Ressource ressource;
     private ArrayList<Notion> notions;
@@ -39,21 +39,31 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
 
         // Création des composants
         JLabel labTitre = new JLabel (this.ressource.toString());
-        this.btNouvNotion = new JButton("Nouvelle Notion");
+
+        this.btnNouvNotion = new JButton("Nouvelle Notion");
+        this.btnSupprNotion= new JButton("Supprimer Notion");
+
         this.list = new JList<>(listModel);
         this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         // Ajout des écouteurs
-        this.list.addListSelectionListener(this);
-        this.btNouvNotion.addActionListener(this);
+        this.list.addListSelectionListener   (this);
+        this.btnNouvNotion.addActionListener (this);
+        this.btnSupprNotion.addActionListener(this);
 
         // Ajout de la liste dans un JScrollPane
         JScrollPane scrollPane = new JScrollPane(this.list);
         this.panelNotion.add(scrollPane, BorderLayout.CENTER);
-        this.panelNotion.add(btNouvNotion, BorderLayout.SOUTH);
+
+        JPanel panelBouton = new JPanel();
+        panelNotion.add(panelBouton, BorderLayout.SOUTH);
+        panelBouton.add(this.btnNouvNotion );
+        panelBouton.add(this.btnSupprNotion);
+
         this.panelNotion.add(labTitre, BorderLayout.NORTH);
 
         // Ajout du panel à la fenêtre
+        this.setVisible(true);
         this.add(this.panelNotion);
     }
 
@@ -75,8 +85,11 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
         }
     }
     public void actionPerformed(ActionEvent e) {
-        if (btNouvNotion == e.getSource()) {
+        if (btnNouvNotion == e.getSource()) {
             new FrameCreationNotion(this.ctrl, this.ressource, this);
+        }
+        if (btnSupprNotion == e.getSource()) {
+            new FrameSuppressionNotion(this.ctrl, this.ressource, this);
         }
     }
         

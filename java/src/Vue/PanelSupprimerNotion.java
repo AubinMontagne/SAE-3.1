@@ -13,20 +13,20 @@ import java.awt.event.ActionListener;
 
 public class PanelSupprimerNotion extends JPanel implements ActionListener
 {
-    private JTextField champNom;
-    private JPanel  panelCreaRess;
+    private JPanel  panelSupprRess;
     private JButton boutonConfirmer;
     private Controleur ctrl;
     private Ressource r;
-    private FrameCreationNotion frameCreationNotion;
+    private JComboBox<Notion> mdRessources;
+    private FrameSuppressionNotion frameSuppressionNotion;
     private PanelNotion panelNotion;
 
-    public PanelSupprimerNotion(Controleur crtl, Ressource r, PanelNotion panelNotion, FrameCreationNotion frameCreationNotion) {
+    public PanelSupprimerNotion(Controleur crtl, Ressource r, PanelNotion panelNotion, FrameSuppressionNotion frameSuppressionNotion) {
         this.r = r;
         this.panelNotion = panelNotion;
-        this.frameCreationNotion = frameCreationNotion;
-        this.panelCreaRess = new JPanel();
-        this.panelCreaRess.setLayout(new BorderLayout());
+        this.frameSuppressionNotion = frameSuppressionNotion;
+        this.panelSupprRess = new JPanel();
+        this.panelSupprRess.setLayout(new BorderLayout());
         this.ctrl = crtl;
 
         UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
@@ -35,8 +35,9 @@ public class PanelSupprimerNotion extends JPanel implements ActionListener
         JPanel panelConfiguration = new JPanel(new GridLayout(2, 2, 5, 5));
         panelConfiguration.setBorder(BorderFactory.createTitledBorder("Notion"));
 
-        JLabel labelTemps = new JLabel("Nom (Ex: Le Chiffrement):");
-        this.champNom = new JTextField();
+        JLabel labelRessource = new JLabel("Notion :");
+        mdRessources = new JComboBox<>(ctrl.getNotions().toArray(new Notion[0]));
+        mdRessources.addItemListener(this);
 
         boutonConfirmer = new JButton("Confirmer");
         boutonConfirmer.setEnabled(false);
@@ -72,11 +73,11 @@ public class PanelSupprimerNotion extends JPanel implements ActionListener
 
             ctrl.ajouterNotion(notion);
 
-            // Afficher une popup avec les informations de la ressource
+            // Afficher une pop-up avec les informations de la ressource
             JOptionPane.showMessageDialog(this, "Notion créée:\nNom : " + nom + "\nRessource associée : " + this.r, "Confirmation", JOptionPane.INFORMATION_MESSAGE);
 
             this.panelNotion.maj();
-            this.frameCreationNotion.dispose();
+            this.frameSuppressionNotion.dispose();
         }
     }
 

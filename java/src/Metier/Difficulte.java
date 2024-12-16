@@ -10,7 +10,7 @@ public enum Difficulte {
     private final int    indice;
 
     Difficulte(String nom, int indice){
-        this.nom = nom;
+        this.nom    = nom;
         this.indice = indice;
     }
 

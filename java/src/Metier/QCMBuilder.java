@@ -1017,8 +1017,8 @@ public class QCMBuilder
 
                     for(int i = 0; i < random.size() ; i++)
                     {
-                        tabRep[i][1][0]= ae.getAssociations().get(random.get(i));
-                        tabRep[i][1][1]= random.get(i);
+                        tabRep[i][1][1]= ae.getAssociations().get(random.get(i));
+                        tabRep[i][1][0]= random.get(i);
                     }
 
                     for(int i = 0 ; i < tabRep.length; i++)
@@ -1027,51 +1027,38 @@ public class QCMBuilder
                         tabRep2[(i*2)+1] = tabRep[i][1][0];
                     }
 
-                    int j = 0;
 
-                    for(int i = 0 ; i < tabRep.length ; i++)
+                    for(int i = 0 ; i < tabRep.length; i++)
                     {
                         bonnesRep += "[";
-                        for(String s : ae.getAssociations().keySet())
+                        for(int j = 0; j < tabRep.length ; j++)
                         {
-                            System.out.println(tabRep[i][0][1] + " " + ae.getAssociations().get(s));
 
-                            if(tabRep[i][0][1].equals(ae.getAssociations().get(s)))
+                            System.out.println(tabRep[i][0][0] + "," + tabRep[i][0][1] + " AAAA " + tabRep[j][1][0] + "," + tabRep[j][1][1]);
+
+                            if (tabRep[i][0] == tabRep[j][1])
                             {
                                 bonnesRep += "[" + i + "," + j + "],[" + i  + "," + j + "]";
-
                             }
-                            j++;
                         }
                         bonnesRep += "],";
                     }
                     bonnesRep += "]";
 
-                    /*for(int i = 0 ; i < tabRep2.length; i++)
+                    System.out.println("[");
+                    for(int i = 0 ; i < tabRep.length ; i++)
                     {
-                        bonnesRep += "[";
-                        for(int j = 0; j < tabRep2.length ; j++)
-                        {
-                            if (tabRep2[i].equals(tabRep2[j]) && i != j)
-                            {
-                                bonnesRep += "[" + i + "," + j + "],[" + i  + "," + j + "]";
-                            }
-                        }
-                        bonnesRep += "],";
-                    }
-                    bonnesRep += "]";*/
-
-
-                    /*for(int i = 0 ; i < tabRep.length ; i++)
-                    {
+                        System.out.print("[");
                         for(int j = 0 ; j < tabRep[i].length ; j++)
                         {
                             for(int v = 0 ; v < tabRep[i][j].length ; v++)
                             {
-                                System.out.println(tabRep[i][j][v]);
+                                System.out.print("" + tabRep[i][j][v] + ",");
                             }
                         }
-                    }*/
+                        System.out.println("]");
+                    }
+                    System.out.println("]");
 
 
 
@@ -1150,7 +1137,7 @@ public class QCMBuilder
                             indice = 2;
                             for (int i = 0 ; i < tabRep.length ; i++)
                             {
-                                res +="<div class=\"reponseBoxAssos\" id=\"rep"+indice+"\">"+tabRep[i][1][0]+"</div>\n";
+                                res +="<div class=\"reponseBoxAssos\" id=\"rep"+indice+"\">"+tabRep[i][1][1]+"</div>\n";
                                 indice+=2;
                             }
 

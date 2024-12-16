@@ -11,7 +11,7 @@ public class FrameCreationNotion extends JFrame{
         System.out.println("CrÃ©ation de la frame CreaNotion");
 
         this.setTitle("Nouvelle Notion");
-        this.setSize(250,150);
+        this.setSize(250,200);
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

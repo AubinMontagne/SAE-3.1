@@ -32,7 +32,7 @@ public class PanelCreationNotion extends JPanel implements ActionListener
 
         UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
 
-        // Section des donnée
+        // Section des données
         JPanel panelConfiguration = new JPanel(new GridLayout(2, 2, 5, 5));
         panelConfiguration.setBorder(BorderFactory.createTitledBorder("Notion"));
 

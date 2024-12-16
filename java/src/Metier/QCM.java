@@ -81,11 +81,13 @@ public class QCM extends Question {
 		while (reponseScanner.hasNext()) {
 			String reponse = reponseScanner.next();
 			Scanner qcmScanner = new Scanner(reponse);
+
 			qcmScanner.useDelimiter(",");
 			String[] reponseParts = new String[2];
 			for (int i = 0; i < 2; i++) {
 				reponseParts[i] = qcmScanner.next();
 			}
+
 			qcm.ajouterReponse(reponseParts[0], Boolean.parseBoolean(reponseParts[1]));
 			qcmScanner.close();
 		}
@@ -96,6 +98,7 @@ public class QCM extends Question {
 	public String toString() {
 		String res = super.toString();
 		res += "Réponses : \n";
+
 		for (HashMap.Entry<String, Boolean> entry : this.hmReponses.entrySet()) {
 			res += entry.getKey() + " -> " + entry.getValue() + "\n";
 		}

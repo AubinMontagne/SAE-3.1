@@ -4,19 +4,19 @@ import java.util.HashMap;
 import java.util.Scanner;
 // Au moins deux
 public class EliminationReponse extends Question {
-	private String reponseCorrecte;
+	private String                   reponseCorrecte;
 	private HashMap<String,Double[]> hmReponses;
 
 	public EliminationReponse(String intitule, Difficulte difficulte, Notion notion, int temps, int points) {
 		super(intitule, difficulte, notion, temps, points);
 		this.reponseCorrecte = "";
-		this.hmReponses = new HashMap<>();
+		this.hmReponses      = new HashMap<>();
 	}
 
 	public EliminationReponse(String intitule, Difficulte difficulte, Notion notion, int temps, int points, String explication) {
 		super(intitule, difficulte, notion, temps, points, explication);
 		this.reponseCorrecte = "";
-		this.hmReponses = new HashMap<>();
+		this.hmReponses      = new HashMap<>();
 	}
 
 	// Getters

@@ -30,23 +30,20 @@ public class PanelAccueil extends JPanel implements  ActionListener{
 
         this.add(panelAccueil);
 
-        this.btBanque.addActionListener(this)        ;
+        this.btBanque       .addActionListener(this)        ;
         this.btQuestionnaire.addActionListener(this) ;
-        this.btRessources.addActionListener(this)    ;
+        this.btRessources   .addActionListener(this)    ;
     }
 
     public void actionPerformed(ActionEvent e){
-        if ( btBanque == e.getSource()){
-            System.out.println("Hey la frame Banque s'ouvre");
+        if ( btBanque == e.getSource())
             new FrameBanque(this.ctrl);
-        }
-        if( btQuestionnaire == e.getSource()){
-            System.out.println("Hey la frame Questionaire s'ouvre");
-            //new FrameQuestionnaire(/*ctrl*/);
-        }
-        if(btRessources == e.getSource()){
-            System.out.println("Hey la frame Param s'ouvre");
+
+        if( btQuestionnaire == e.getSource())
+            new FrameQuestionnaire(ctrl);
+
+        if(btRessources == e.getSource())
             new FrameRessource(this.ctrl);
-        }
+
     }
 }

@@ -18,11 +18,11 @@ public abstract class Question{
      * @param point         Le nombre de points que rapporte la question.
      */
     public Question(String enonceFich, Difficulte difficulte,Notion notion,int temps, int point){
-        this.enonceFich   = enonceFich;
-        this.difficulte = difficulte;
-        this.notion     = notion;
-        this.temps      = temps;
-        this.point      = point;
+        this.enonceFich      = enonceFich;
+        this.difficulte      = difficulte;
+        this.notion          = notion;
+        this.temps           = temps;
+        this.point           = point;
 		this.explicationFich = " ";
     }
 
