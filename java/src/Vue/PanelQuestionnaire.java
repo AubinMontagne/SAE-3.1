@@ -12,20 +12,20 @@ import src.Metier.*;
 import src.*;
 
 public class PanelQuestionnaire extends JPanel implements ActionListener, ItemListener {
-	private boolean videTitre = true;
-	private boolean videRessource = true;
-	private JPanel panelQuestionnaire;
+	private boolean 			 videTitre = true;
+	private boolean 			 videRessource = true;
+	private JPanel 				 panelQuestionnaire;
 	private JComboBox<Ressource> mdRessources;
-	private JButton btConfirmer;
-	private JButton btChrono;
-	private boolean chrono = true;
-	private JTextField champTitre;
+	private JButton 			 btConfirmer;
+	private JButton 			 btChrono;
+	private boolean 			 chrono = true;
+	private JTextField 			 champTitre;
 
     private List<Ressource> listRessources;
     private List<Notion> listNotions;
 
-	private Ressource r;
-	private Notion n;
+	private Ressource  r;
+	private Notion 	   n;
 	private Controleur ctrl;
 
     public PanelQuestionnaire(Controleur ctrl) {
@@ -41,14 +41,14 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
     	panelInfo.setBorder(BorderFactory.createTitledBorder("Information"));
 
     	JLabel labelTitre = new JLabel("Titre du questionnaire :");
-    	this.champTitre = new JTextField();
+    	this.champTitre   = new JTextField();
 
     	JLabel labelChrono = new JLabel("Chronomètre :");
-    	this.btChrono = new JButton("NON");
+    	this.btChrono 	   = new JButton("NON");
     	this.btChrono.addActionListener(this);
 
     	JLabel labelRessource = new JLabel("Ressource :");
-    	mdRessources = new JComboBox<>(ctrl.getRessources().toArray(new Ressource[0]));
+    	mdRessources 		  = new JComboBox<>(ctrl.getRessources().toArray(new Ressource[0]));
     	mdRessources.addItemListener(this);
 
     	panelInfo.add(labelTitre);
@@ -71,32 +71,27 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
     // ------ Ajouter le DocumentListener au champTitre ------
     	champTitre.getDocument().addDocumentListener(new DocumentListener() {
        	@Override
-        public void insertUpdate(DocumentEvent e) {
-            verifierChamps(champTitre.getText());
-        }
+        public void insertUpdate(DocumentEvent e) {verifierChamps(champTitre.getText()); }
 
         @Override
-        public void removeUpdate(DocumentEvent e) {
-            verifierChamps(champTitre.getText());
-        }
+        public void removeUpdate(DocumentEvent e) {verifierChamps(champTitre.getText()); }
 
         @Override
-        public void changedUpdate(DocumentEvent e) {
-            verifierChamps(champTitre.getText());
-        }
-    });
-}
+        public void changedUpdate(DocumentEvent e) {verifierChamps(champTitre.getText()); }
+		});
+	}
 
-// Méthode pour valider les champs et activer le bouton
-private void verifierChamps(String texteTitre) {
-    this.videTitre = texteTitre.trim().isEmpty();
-    if (!this.videTitre && !this.videRessource) {
-        btConfirmer.setEnabled(true);
-		//this.titre = texteTitre;
-    } else {
-        btConfirmer.setEnabled(false);
-    }
-}
+	// Méthode pour valider les champs et activer le bouton
+	private void verifierChamps(String texteTitre) {
+		this.videTitre = texteTitre.trim().isEmpty();
+		if (!this.videTitre && !this.videRessource) {
+			btConfirmer.setEnabled(true);
+			//this.titre = texteTitre;
+		} else {
+			btConfirmer.setEnabled(false);
+		}
+	}
+
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getSource() == mdRessources && e.getStateChange() == ItemEvent.SELECTED) {
@@ -121,7 +116,6 @@ private void verifierChamps(String texteTitre) {
             if (selectedRessource != null) {
 				new FrameQuestionnaireTab(ctrl,selectedRessource,titre, this.chrono);
             }
-
         }
 
 		if(e.getSource() == this.btChrono)
@@ -129,7 +123,6 @@ private void verifierChamps(String texteTitre) {
 			if(this.btChrono.getText() == "OUI"){
 				this.btChrono.setText("NON");
 				this.chrono = false;
-
 			}
 			else if(this.btChrono.getText() == "NON"){
 				this.btChrono.setText("OUI");	

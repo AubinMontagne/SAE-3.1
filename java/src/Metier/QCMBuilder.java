@@ -1011,35 +1011,23 @@ public class QCMBuilder
                         tabRep2[(i*2)+1] = tabRep[i][1][0];
                     }
 
-                    int v = 0;
-
                     for(int i = 0 ; i < tabRep.length ; i++)
                     {
                         bonnesRep += "[";
 
-                        //System.out.println((!tabRep[i][0][0].equals(tabRep[i][1][0]) || !tabRep[i][0][1].equals(tabRep[i][1][1])));
-
                         if(!tabRep[i][0][0].equals(tabRep[i][1][0]) || !tabRep[i][0][1].equals(tabRep[i][1][1]))
                         {
-                            System.out.println("BBBBBB");
-
-                            for(int j = 0 ; j < tabRep[i].length ; j++)
+                            for(int j = 0 ; j < tabRep.length ; j++)
                             {
-                                System.out.println(i + " " + j + " " + v);
                                 if(tabRep[i][0][0].equals(tabRep[j][1][0]) && tabRep[i][0][1].equals(tabRep[j][1][1]))
                                 {
-                                    System.out.println("Ecrire : " + i + " " + (j*2+1));
                                     bonnesRep += "[" + (i*2) + "," + (j*2+1) + "],[" + (i*2)  + "," + (j*2+1) + "]";
 
                                 }
-                                v++;
                             }
 
                         }else{
-                            System.out.println("AAAAA");
-                            System.out.println("Ecrire : " + i + " " + (i*2+1));
-                            bonnesRep += "[" + (i*2) + "," + (i*2+1) + "],[" + (i*2)  + "," + (i*2+1) + "]";
-                            v++;
+                            bonnesRep += "[" + (i*2+1) + "," + (i*2) + "],[" + (i*2+1)  + "," + (i*2) + "]";
                         }
                         bonnesRep += "],";
 

@@ -11,14 +11,14 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 
 public class PanelRessource extends JPanel implements ActionListener, ListSelectionListener {
-    private Controleur ctrl;
-    private JPanel panelRessource;
-    private JButton btNouvRess;
-    private JButton btSupprRess;
+    private Controleur       ctrl;
+    private JPanel           panelRessource;
+    private JButton          btNouvRess;
+    private JButton          btSupprRess;
     private JList<Ressource> list;
 
     public PanelRessource(Controleur ctrl) {
-        this.ctrl = ctrl;
+        this.ctrl           = ctrl;
         // Initialisation du panel principal
         this.panelRessource = new JPanel();
         this.panelRessource.setLayout(new BorderLayout());
@@ -31,7 +31,7 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
 
         // Création des composants
         this.btNouvRess = new JButton("Nouvelle Ressource");
-        this.list = new JList<>(listModel);
+        this.list       = new JList<>(listModel);
         this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         // Ajout des écouteurs

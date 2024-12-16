@@ -11,13 +11,12 @@ public class PanelQCM extends JFrame implements ActionListener
 {
 
 	// FONCTION EXPLICATION A RAJOUTER
-
 	private Controleur ctrl;
-	private JPanel panelReponses; // Panel pour les réponses
-	private int nombreReponses = 0; // Nombre de réponses
+	private JPanel 	   panelReponses; // Panel pour les réponses
+	private int 	   nombreReponses = 0; // Nombre de réponses
 	private JTextField champQuestion;
-	private JButton boutonAjoutReponse;
-	private JButton boutonEnregistrer;
+	private JButton    boutonAjoutReponse;
+	private JButton    boutonEnregistrer;
 
 	public PanelQCM(Controleur ctrl) 
 	{
@@ -27,14 +26,14 @@ public class PanelQCM extends JFrame implements ActionListener
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 
-		JPanel panelQuestion = new JPanel(new BorderLayout());
+		JPanel panelQuestion 	 = new JPanel(new BorderLayout());
 		JLabel etiquetteQuestion = new JLabel("Question :");
-		champQuestion = new JTextField();
+		champQuestion 			 = new JTextField();
 		panelQuestion.add(etiquetteQuestion, BorderLayout.NORTH);
 		panelQuestion.add(champQuestion, BorderLayout.CENTER);
 
 		// Panel pour ajouter les réponses
-		panelReponses = new JPanel();
+		panelReponses 		   = new JPanel();
 		panelReponses.setLayout(new BoxLayout(panelReponses, BoxLayout.Y_AXIS));
 		JScrollPane defilement = new JScrollPane(panelReponses);
 
@@ -52,9 +51,9 @@ public class PanelQCM extends JFrame implements ActionListener
 		panelBoutons.add(boutonEnregistrer);
 
 		// Ajout des composants à la fenêtre
-		add(panelQuestion, BorderLayout.NORTH);
-		add(defilement, BorderLayout.CENTER);
-		add(panelBoutons, BorderLayout.SOUTH);
+		add(panelQuestion, 	BorderLayout.NORTH);
+		add(defilement, 	BorderLayout.CENTER);
+		add(panelBoutons, 	BorderLayout.SOUTH);
 
 		// Activation des listeners
 		boutonAjoutReponse.addActionListener(this);
@@ -63,11 +62,11 @@ public class PanelQCM extends JFrame implements ActionListener
 
 	private void ajouterReponse() 
 	{
-		JPanel panelAjoutReponse = new JPanel();
+		JPanel panelAjoutReponse 	= new JPanel();
 		panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
-		JTextField champReponse = new JTextField("Réponse " + (++nombreReponses));
-		JCheckBox caseBonneReponse = new JCheckBox("Correcte");
-		JButton boutonSupprimer = new JButton("Supprimer");
+		JTextField champReponse 	= new JTextField("Réponse " + (++nombreReponses));
+		JCheckBox caseBonneReponse 	= new JCheckBox("Correcte");
+		JButton boutonSupprimer 	= new JButton("Supprimer");
 
 		boutonSupprimer.addActionListener(e -> {
 			panelReponses.remove(panelAjoutReponse);
@@ -87,8 +86,7 @@ public class PanelQCM extends JFrame implements ActionListener
 	private void enregistrerQCM() 
 	{
 		String question = champQuestion.getText();
-		if (question.isEmpty()) 
-		{
+		if (question.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "Veuillez entrer une question.", "Erreur", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -103,8 +101,7 @@ public class PanelQCM extends JFrame implements ActionListener
 				JPanel reponse = (JPanel) composant;
 				JTextField champReponse = (JTextField) reponse.getComponent(0);
 				JCheckBox estCorrecte = (JCheckBox) reponse.getComponent(1);
-				resultats.append("- ").append(champReponse.getText())
-						.append(estCorrecte.isSelected() ? " (correcte)\n" : " (incorrecte)\n");
+				resultats.append("- ").append(champReponse.getText()).append(estCorrecte.isSelected() ? " (correcte)\n" : " (incorrecte)\n");
 			}
 		}
 		JOptionPane.showMessageDialog(this, resultats.toString(), "Résumé", JOptionPane.INFORMATION_MESSAGE);

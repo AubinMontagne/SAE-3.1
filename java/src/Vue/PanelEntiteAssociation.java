@@ -10,8 +10,7 @@ import java.util.List;
 import src.Controleur;
 import src.Metier.*;
 
-public class PanelEntiteAssociation extends JFrame implements ActionListener 
-{
+public class PanelEntiteAssociation extends JFrame implements ActionListener {
 
 	private JPanel panelAssociations; // Panel pour les associations
 	private int nombreAssociations = 0; // Nombre d'associations

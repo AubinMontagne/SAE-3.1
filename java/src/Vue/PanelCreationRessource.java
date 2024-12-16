@@ -11,17 +11,17 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class PanelCreationRessource extends JPanel implements ActionListener {
-	private Controleur ctrl;
-	private JButton boutonConfirmer;
-	private JTextField champID;
-	private JTextField champNom;
-	private PanelRessource panelRessource;
+	private Controleur 			   ctrl;
+	private JButton 			   boutonConfirmer;
+	private JTextField 			   champID;
+	private JTextField 			   champNom;
+	private PanelRessource 		   panelRessource;
 	private FrameCreationRessource frameCreationRessource;
 
 	public PanelCreationRessource(Controleur ctrl, PanelRessource panelRessource, FrameCreationRessource frameCreationRessource){
-		this.ctrl = ctrl;
+		this.ctrl 					= ctrl;
 		this.frameCreationRessource = frameCreationRessource;
-		this.panelRessource = panelRessource;
+		this.panelRessource 		= panelRessource;
 		setLayout(new BorderLayout());
 
 		UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
@@ -31,11 +31,11 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 		panelConfiguration.setBorder(BorderFactory.createTitledBorder("Configuration"));
 
 		JLabel labelID = new JLabel("Identifiant de la ressource :");
-		this.champID = new JTextField();
+		this.champID   = new JTextField();
 		this.champID.setPreferredSize(new Dimension(10, 10));
 
 		JLabel labalNom = new JLabel("Nom de la ressource :");
-		this.champNom = new JTextField();
+		this.champNom   = new JTextField();
 		this.champNom.setPreferredSize(new Dimension(10, 10));
 
 		panelConfiguration.add(labelID);
@@ -74,7 +74,7 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 
 			Ressource r = new Ressource(id, nom);
 			ctrl.ajouterRessource(r);
-			ctrl.getMetier().saveRessources("../../truk/jeSaisPas");
+			ctrl.getMetier().saveRessources("../../../data");
 			/*
 			champID.setText("");
 			champNom.setText("");*/

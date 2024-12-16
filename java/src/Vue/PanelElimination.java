@@ -9,12 +9,11 @@ import src.Controleur;
 public class PanelElimination extends JFrame implements ActionListener {
 
 	// FONCTION EXPLICATION A RAJOUTER
-
-	private JPanel panelReponses; // Panel pour les réponses
-	private int nombreReponses = 0; // Nombre de réponses
+	private JPanel 	   panelReponses; // Panel pour les réponses
+	private int 	   nombreReponses = 0; // Nombre de réponses
 	private JTextField champQuestion;
-	private JButton boutonAjoutReponse;
-	private JButton boutonEnregistrer;
+	private JButton    boutonAjoutReponse;
+	private JButton    boutonEnregistrer;
 	private Controleur ctrl;
 
 	public PanelElimination(Controleur ctrl){
@@ -24,14 +23,14 @@ public class PanelElimination extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new BorderLayout());
 
-		JPanel panelQuestion = new JPanel(new BorderLayout());
+		JPanel panelQuestion     = new JPanel(new BorderLayout());
 		JLabel etiquetteQuestion = new JLabel("Question :");
-		champQuestion = new JTextField();
+		champQuestion            = new JTextField();
 		panelQuestion.add(etiquetteQuestion, BorderLayout.NORTH);
 		panelQuestion.add(champQuestion, BorderLayout.CENTER);
 
 		// Panel pour ajouter les réponses
-		panelReponses = new JPanel();
+		panelReponses 		   = new JPanel();
 		panelReponses.setLayout(new BoxLayout(panelReponses, BoxLayout.Y_AXIS));
 		JScrollPane defilement = new JScrollPane(panelReponses);
 
@@ -59,11 +58,11 @@ public class PanelElimination extends JFrame implements ActionListener {
 	}
 
 	private void ajouterReponse(){
-		JPanel panelAjoutReponse = new JPanel();
+		JPanel panelAjoutReponse   = new JPanel();
 		panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
-		JTextField champReponse = new JTextField("Réponse " + (++nombreReponses));
+		JTextField champReponse    = new JTextField("Réponse " + (++nombreReponses));
 		JCheckBox caseBonneReponse = new JCheckBox("Correcte");
-		JButton boutonSupprimer = new JButton("Supprimer");
+		JButton boutonSupprimer    = new JButton("Supprimer");
 
 		boutonSupprimer.addActionListener(e -> {
 			panelReponses.remove(panelAjoutReponse);
@@ -71,19 +70,16 @@ public class PanelElimination extends JFrame implements ActionListener {
 			panelReponses.repaint();
 		});
 
-
-		JTextField txtOrdreElim = new JTextField("ordre elim");
+		JTextField txtOrdreElim    = new JTextField("ordre elim");
 		JTextField txtPointNegatif = new JTextField("pnt-");
 
-		
 		panelAjoutReponse.add(champReponse);
 		panelAjoutReponse.add(txtOrdreElim);
 		panelAjoutReponse.add(txtPointNegatif);
 
 		panelAjoutReponse.add(caseBonneReponse);
 		panelAjoutReponse.add(boutonSupprimer);
-		
-		
+
 		panelReponses.add(panelAjoutReponse);
 		panelReponses.revalidate();
 		panelReponses.repaint();
@@ -98,7 +94,7 @@ public class PanelElimination extends JFrame implements ActionListener {
 		
 		// Résumé de la question faite (debug)
 		StringBuilder resultats = new StringBuilder("Question : " + question + "\nRéponses :\n");
-		Component[] composants = panelReponses.getComponents();
+		Component[] composants  = panelReponses.getComponents();
 		for (Component composant : composants){
 			if (composant instanceof JPanel){
 				JPanel reponse = (JPanel) composant; 

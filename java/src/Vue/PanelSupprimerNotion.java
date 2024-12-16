@@ -12,21 +12,21 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class PanelSupprimerNotion extends JPanel implements ActionListener, ItemListener {
-    private JPanel  panelSupprRess;
-    private JButton boutonConfirmer;
-    private Controleur ctrl;
-    private Notion notionChoisie;
-    private JComboBox<Notion> mdRessources;
+    private JPanel                 panelSupprRess;
+    private JButton                boutonConfirmer;
+    private Controleur             ctrl;
+    private Notion                 notionChoisie;
+    private JComboBox<Notion>      mdRessources;
     private FrameSuppressionNotion frameSuppressionNotion;
-    private PanelNotion panelNotion;
+    private PanelNotion            panelNotion;
 
     public PanelSupprimerNotion(Controleur crtl, Ressource r, PanelNotion panelNotion, FrameSuppressionNotion frameSuppressionNotion) {
         Ressource ressource = r;
 
-        this.notionChoisie = null;
-        this.panelNotion = panelNotion;
+        this.notionChoisie          = null;
+        this.panelNotion            = panelNotion;
         this.frameSuppressionNotion = frameSuppressionNotion;
-        this.panelSupprRess = new JPanel();
+        this.panelSupprRess         = new JPanel();
         this.panelSupprRess.setLayout(new BorderLayout());
         this.ctrl = crtl;
 
@@ -36,7 +36,7 @@ public class PanelSupprimerNotion extends JPanel implements ActionListener, Item
         JPanel panelConfiguration = new JPanel(new GridLayout(2, 1, 5, 5));
         panelConfiguration.setBorder(BorderFactory.createTitledBorder("Notion"));
 
-        mdRessources = new JComboBox<>(ctrl.getNotionsParRessource(r).toArray(new Notion[0]));
+        mdRessources    = new JComboBox<>(ctrl.getNotionsParRessource(r).toArray(new Notion[0]));
 
         boutonConfirmer = new JButton("Confirmer");
         boutonConfirmer.setEnabled(true);

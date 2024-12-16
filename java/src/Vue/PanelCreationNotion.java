@@ -12,8 +12,8 @@ import src.Metier.Metier;
 import src.Metier.Notion;
 import src.Metier.Ressource;
 
-public class PanelCreationNotion extends JPanel implements ActionListener
-{
+public class PanelCreationNotion extends JPanel implements ActionListener {
+
     private JTextField          champNom;
     private JPanel              panelCreaRess;
     private JButton             boutonConfirmer;
@@ -70,9 +70,9 @@ public class PanelCreationNotion extends JPanel implements ActionListener
             Notion notion = new Notion(nom, this.r);
 
             ctrl.ajouterNotion(notion);
-            ctrl.getMetier().saveNotions("../../tru/jeSaisPas");
+            ctrl.getMetier().saveNotions("/../../../../java/data/");
 
-            // Afficher une popup avec les informations de la ressource
+            // Afficher une po-pup avec les informations de la Notion
             JOptionPane.showMessageDialog(this, "Notion ajoutée", "Succès", JOptionPane.INFORMATION_MESSAGE);
 
             this.panelNotion.maj();
@@ -97,5 +97,4 @@ public class PanelCreationNotion extends JPanel implements ActionListener
             verifierChamps();
         }
     }
-
 }

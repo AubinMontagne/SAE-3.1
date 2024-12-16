@@ -139,7 +139,7 @@ public class Metier{
 			if (!dir.exists()) {
 				dir.mkdirs();
 			}
-            FileWriter writer = new FileWriter(path+"/notions.csv");
+            FileWriter writer = new FileWriter(path+"/notions.csv");// PROBLEME ICICICICICICICICICICICICICICCICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICCICIICICCICICICICIICICICICIICICICIICICIC
             for (Notion notion : this.lstNotions){
                 writer.write(notion.getAsData() + "\n");
             }

@@ -13,15 +13,15 @@ import src.Metier.Notion;
 import src.Metier.Ressource;
 
 public class PanelCreationQuestion extends JPanel implements ActionListener, ItemListener {
-	private Controleur ctrl;
+	private Controleur 			 ctrl;
 	private JComboBox<Ressource> listeRessources;
-	private JComboBox<Notion> listeNotions;
-	private JButton boutonTresFacile, boutonFacile, boutonMoyen, boutonDifficile;
-	private JButton boutonConfirmer;
-	private JComboBox<String> listeTypes;
-	private JLabel labelMessage, labelResultat;
+	private JComboBox<Notion> 	 listeNotions;
+	private JButton 			 boutonTresFacile, boutonFacile, boutonMoyen, boutonDifficile;
+	private JButton 			 boutonConfirmer;
+	private JComboBox<String> 	 listeTypes;
+	private JLabel 				 labelMessage, labelResultat;
 	private ArrayList<Ressource> ressources;
-	private ArrayList<Notion> notions;
+	private ArrayList<Notion> 	 notions;
 
 	private static final ImageIcon[] IMAGES_DIFFICULTE = {
 			new ImageIcon("../../../../data/Images/imgDif/D.png"),
@@ -60,7 +60,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		panelSelection.setBorder(BorderFactory.createTitledBorder("Sélection"));
 
 		JLabel labelRessource = new JLabel("Ressource :");
-		listeRessources = new JComboBox<Ressource>();
+		listeRessources       = new JComboBox<Ressource>();
 		for(Ressource ressource : ressources)
 		{
 			listeRessources.addItem(ressource);
@@ -68,7 +68,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		listeRessources.addItemListener(this);
 
 		JLabel labelNotion = new JLabel("Notion :");
-		listeNotions = new JComboBox<>();
+		listeNotions 	   = new JComboBox<>();
 		for(Notion notion : notions)
 		{
 			listeNotions.addItem(notion);
@@ -80,9 +80,9 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		JPanel panelNiveau = new JPanel(new FlowLayout());
 
 		boutonTresFacile = new JButton();
-		boutonFacile = new JButton();
-		boutonMoyen = new JButton();
-		boutonDifficile = new JButton();
+		boutonFacile     = new JButton();
+		boutonMoyen      = new JButton();
+		boutonDifficile  = new JButton();
 
 		boutonTresFacile.setPreferredSize(new Dimension(100, 100));
 		boutonFacile.setPreferredSize(new Dimension(100, 100));
@@ -118,7 +118,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		panelType.setBorder(BorderFactory.createTitledBorder("Type de Question"));
 
 		JLabel labelType = new JLabel("Type :");
-		listeTypes = new JComboBox<>(new String[] { "QCM", "EntiteAssociation","Elimination" });
+		listeTypes       = new JComboBox<>(new String[] { "QCM", "EntiteAssociation","Elimination" });
 
 		boutonConfirmer = new JButton("Confirmer");
 		boutonConfirmer.addActionListener(this);
@@ -171,7 +171,6 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		}
 
 		if (e.getSource() == boutonConfirmer) {
-
 			String typeSelectionne = (String) listeTypes.getSelectedItem();
 
 			if ("QCM".equals(typeSelectionne)) {
@@ -189,9 +188,6 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 				PanelElimination panelElimination = new PanelElimination(this.ctrl);
 				panelElimination.setVisible(true);
 			}
-
 		}
-
 	}
-
 }

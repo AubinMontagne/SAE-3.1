@@ -22,7 +22,7 @@ public class Controleur{
     public Metier getMetier(){
         return this.metier;
     }
-	
+
 	// Getters Individuels
 
 	public Question  getQuestion (Question question)  {return this.metier.getQuestion(question);}
@@ -41,14 +41,10 @@ public class Controleur{
         return this.metier.getQuestions();
     }
 
-	public ArrayList<Question> getQuestionsParNotion(Notion notion){
-		return this.metier.getQuestionsParNotion(notion);
-	}
-	public ArrayList<Notion>   getNotionsParRessource(Ressource ressource){
-		return this.metier.getNotionsParRessource(ressource);
-	}
-    // Set
+	public ArrayList<Question> getQuestionsParNotion (Notion notion)      {return this.metier.getQuestionsParNotion(notion);}
+	public ArrayList<Notion>   getNotionsParRessource(Ressource ressource){return this.metier.getNotionsParRessource(ressource);}
 
+    // Set
     public void setMetier(Metier metier){this.metier = metier;}
 
 	public void ajouterNotion   (Notion notion)       {this.metier.ajouterNotion(notion);}

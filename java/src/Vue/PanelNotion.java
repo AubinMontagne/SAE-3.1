@@ -14,19 +14,19 @@ import java.util.ArrayList;
 
 public class PanelNotion extends JPanel implements ActionListener , ListSelectionListener
 {	
-    private JPanel panelNotion;
-    private JButton btnNouvNotion;
-    private JButton btnSupprNotion;
-    private JList<Notion> list;
-    private Ressource ressource;
+    private JPanel            panelNotion;
+    private JButton           btnNouvNotion;
+    private JButton           btnSupprNotion;
+    private JList<Notion>     list;
+    private Ressource         ressource;
     private ArrayList<Notion> notions;
-    private Controleur ctrl;
+    private Controleur        ctrl;
   
     
     public PanelNotion( Controleur ctrl,Ressource r){
         this.ctrl        = ctrl;
-        this.ressource = r;
-        this.notions = ctrl.getNotions();
+        this.ressource   = r;
+        this.notions     = ctrl.getNotions();
         this.panelNotion = new JPanel();
         this.panelNotion.setLayout(new BorderLayout());
 
@@ -84,6 +84,7 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
             }
         }
     }
+
     public void actionPerformed(ActionEvent e) {
         if (btnNouvNotion == e.getSource()) {
             new FrameCreationNotion(this.ctrl, this.ressource, this);

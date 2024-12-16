@@ -14,26 +14,26 @@ import src.*;
 import src.Metier.*;
 
 public class PanelQuestionnaireTab extends JPanel implements ActionListener {
-    private JTable tbQuestion;
-    private JTable tbResult;
-    private JPanel panelQuestionnaireTab;
+    private JTable            tbQuestion;
+    private JTable            tbResult;
+    private JPanel            panelQuestionnaireTab;
     private ArrayList<Notion> notions;
-    private Controleur ctrl;
-    private JButton btGenerer;
-    private JLabel lbTotal;
-    private String titreQuestionnaire;
-    private Ressource r;
-    private boolean estChrono;
+    private Controleur        ctrl;
+    private JButton           btGenerer;
+    private JLabel            lbTotal;
+    private String            titreQuestionnaire;
+    private Ressource         r;
+    private boolean           estChrono;
 
     public PanelQuestionnaireTab(Controleur ctrl, Ressource r, String titre, Boolean estChrono) {
         this.panelQuestionnaireTab = new JPanel(new BorderLayout());
         this.panelQuestionnaireTab.setVisible(true);
-        this.ctrl = ctrl;
-        this.titreQuestionnaire = titre;
-        this.r = r;
-        this.estChrono = estChrono;
+        this.ctrl                  = ctrl;
+        this.titreQuestionnaire    = titre;
+        this.r                     = r;
+        this.estChrono             = estChrono;
 
-        this.notions = ctrl.getNotions();
+        this.notions               = ctrl.getNotions();
 
         // Prepare table data
         String[] columnNames = {"Notion", "", "TF", "F", "M", "D", ""};
@@ -107,13 +107,12 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
             }
         });
 
-
         // Configure table
         tbQuestion = new JTable(model);
         tbQuestion.setPreferredScrollableViewportSize(new Dimension(
                 tbQuestion.getPreferredScrollableViewportSize().width,
                 tbQuestion.getRowHeight() * 6
-        ));
+            ));
 
         for (int col = 2; col <= 5; col++) {
             tbQuestion.getColumnModel().getColumn(col).setCellRenderer(new CustomCellRenderer(model));
