@@ -13,10 +13,9 @@
     </list>
     <list id="35c96175-51ca-4ddc-8c99-f82a12019ecb" name="Changes by sandr" comment="">
       <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/Ressource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Ressource.java" afterDir="false" />
     </list>
-    <list id="a134f2c3-a261-424a-a44e-ee20e8d20510" name="Changes by timot" comment="">
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" afterDir="false" />
-    </list>
+    <list id="a134f2c3-a261-424a-a44e-ee20e8d20510" name="Changes by timot" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,6 +46,17 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.jdks/openjdk-23.0.1/lib/src.zip!/java.desktop/javax/swing/JPanel.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/java/src/Metier/Ressource.java">
+      <ranges>
+        <range start1="24" end1="26" start2="24" end2="26" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
+        <range start1="27" end1="28" start2="27" end2="28" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="32" end1="32" start2="32" end2="33" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
+        <range start1="33" end1="35" start2="34" end2="36" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
+        <range start1="37" end1="40" start2="38" end2="39" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
+      </ranges>
+    </file>
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -273,7 +283,7 @@
       <workItem from="1734338398667" duration="9767000" />
       <workItem from="1734352621069" duration="617000" />
       <workItem from="1734353446172" duration="2783000" />
-      <workItem from="1734356917547" duration="4921000" />
+      <workItem from="1734356917547" duration="4957000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <option name="closed" value="true" />

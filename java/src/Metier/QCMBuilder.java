@@ -1019,7 +1019,7 @@ public class QCMBuilder
 
                         //System.out.println((!tabRep[i][0][0].equals(tabRep[i][1][0]) || !tabRep[i][0][1].equals(tabRep[i][1][1])));
 
-                        if(!tabRep[i][0][0].equals(tabRep[i][1][0]) || !tabRep[i][0][1].equals(tabRep[i][1][1]))
+                        if(!tabRep[i][0][0].equals(tabRep[i][1][0]) && !tabRep[i][0][1].equals(tabRep[i][1][1]))
                         {
                             System.out.println("BBBBBB");
 
