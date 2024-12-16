@@ -32,6 +32,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 	public PanelCreationQuestion(Controleur ctrl) {
 		this.ctrl = ctrl;
+		this.ressources = this.ctrl.getRessources();
 		this.notions = this.ctrl.getNotions();
 
 		setLayout(new BorderLayout());
@@ -60,10 +61,18 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 		JLabel labelRessource = new JLabel("Ressource :");
 		listeRessources = new JComboBox<Ressource>();
+		for(Ressource ressource : ressources)
+		{
+			listeRessources.addItem(ressource);
+		}
 		listeRessources.addItemListener(this);
 
 		JLabel labelNotion = new JLabel("Notion :");
 		listeNotions = new JComboBox<>();
+		for(Notion notion : notions)
+		{
+			listeNotions.addItem(notion);
+		}
 		listeNotions.setEnabled(false);
 		listeNotions.addItemListener(this);
 

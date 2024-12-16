@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" name="Changes" comment="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
-      <change afterPath="$PROJECT_DIR$/java/docs/TestRtf.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/SAE-31/docs/TestRtf.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/docs/TestRtf.html" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/TestRtf.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Metier/AssociationElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/AssociationElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
     </list>
-    <list id="e0a5d575-1463-46f4-82d3-b2b4d97dd127" name="Changes by Aubin" comment="" />
-    <list id="983b509a-0987-4a45-b6cf-6b41d3c16c2d" name="Changes by pt232770" comment="" />
+    <list id="e0a5d575-1463-46f4-82d3-b2b4d97dd127" name="Changes by Aubin" comment="">
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" afterDir="false" />
+    </list>
     <list id="35c96175-51ca-4ddc-8c99-f82a12019ecb" name="Changes by sandr" comment="">
       <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
     </list>
@@ -43,6 +46,27 @@
     &quot;accountId&quot;: &quot;d1674c13-4ac7-41cf-87ad-6591ed28a5da&quot;
   }
 }</component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java">
+      <ranges>
+        <range start1="6" end1="6" start2="6" end2="9" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="270" end1="271" start2="273" end2="274" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="691" end1="738" start2="694" end2="745" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="785" end1="786" start2="792" end2="793" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="818" end1="818" start2="825" end2="826" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="851" end1="852" start2="859" end2="860" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="975" end1="976" start2="983" end2="984" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="977" end1="978" start2="985" end2="998" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="980" end1="981" start2="1000" end2="1004" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="982" end1="983" start2="1005" end2="1079" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="988" end1="989" start2="1084" end2="1085" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="991" end1="992" start2="1087" end2="1089" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="1037" end1="1041" start2="1134" end2="1143" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="1047" end1="1051" start2="1149" end2="1154" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="1320" end1="1326" start2="1423" end2="1424" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+      </ranges>
+    </file>
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -89,7 +113,7 @@
       <recent name="src.Vue" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Controleur">
+  <component name="RunManager" selected="Application.TestJS">
     <configuration name="Controleur" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="src.Controleur" />
       <module name="SAE-31" />
@@ -264,6 +288,8 @@
       <workItem from="1734085274498" duration="11169000" />
       <workItem from="1734098230502" duration="7489000" />
       <workItem from="1734334999069" duration="2446000" />
+      <workItem from="1734337507681" duration="305000" />
+      <workItem from="1734338398667" duration="9767000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <option name="closed" value="true" />

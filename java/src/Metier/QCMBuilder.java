@@ -4,6 +4,9 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class QCMBuilder
@@ -268,7 +271,7 @@ public class QCMBuilder
                 String bonnesRep = "[";
 
                 for ( String gauche : ae.getAssociations().keySet()) {
-                    lignes += "[\"" + gauche + "\",\"" + ae.getAssociations().get(gauche) + "\"],";
+                    lignes += "[[],[]],";
                 }
 
                 lignes = lignes + "];";
@@ -689,53 +692,57 @@ public class QCMBuilder
                             "\n" +
                             "function drawLines(lignes, affichage) \n" +
                             "{\n" +
-                            "    const canvas = document.getElementById('canvas');\n" +
-                            "    const ctx = canvas.getContext('2d');\n" +
+                            "\tconst canvas = document.getElementById('canvas');\n" +
+                            "\tconst ctx = canvas.getContext('2d');\n" +
                             "\n" +
                             "\n" +
-                            "    // Parcourir les éléments et tracer les lignes\n" +
+                            "\t// Parcourir les éléments et tracer les lignes\n" +
                             "\n" +
-                            "    for(let index = 0 ; index < lignes.length ; index++) \n" +
-                            "    {\n" +
-                            "        for(let j = 0; j < lignes[index].length ; j++)\n" +
-                            "        {\n" +
-                            "            if ( j < lignes.length && lignes[index][j] != null) \n" +
-                            "            {\n" +
-                            "                let leftElement = document.getElementById(\"rep\" + ((index*2)+1));\n" +
-                            "                let rightElement = document.getElementById(\"rep\" + (lignes[index][j] + 1));\n" +
+                            "\tfor(let index = 0 ; index < lignes.length ; index++) \n" +
+                            "\t{\n" +
+                            "\t\tfor(let j = 0; j < lignes[index].length ; j++)\n" +
+                            "\t\t{\n" +
+                            "\t\t\tfor(let v = 0 ; v < 2 ; v++)\n" +
+                            "\t\t\t{\n" +
+                            "\t\t\t\tif ( j < lignes.length && lignes[index][j][v] != null) \n" +
+                            "\t\t\t\t{\n" +
+                            "\t\t\t\t\tlet leftElement = document.getElementById(\"rep\" + ((lignes[index][j][0])+1));\n" +
+                            "\t\t\t\t\tlet rightElement = document.getElementById(\"rep\" + ((lignes[index][j][1])+1));\n" +
+                            "\t\n" +
                             "\n" +
-                            "                const leftRect = leftElement.getBoundingClientRect();\n" +
-                            "                const rightRect = rightElement.getBoundingClientRect();\n" +
-                            "    \n" +
-                            "                const canvasRect = canvas.getBoundingClientRect();\n" +
-                            "    \n" +
-                            "                const x1 = leftRect.right - canvasRect.left; // Coordonnée X de l'élément gauche (bord droit)\n" +
-                            "                const y1 = leftRect.top + leftRect.height / 2 - canvasRect.top; // Milieu vertical de l'élément gauche\n" +
-                            "    \n" +
-                            "                const x2 = rightRect.left - canvasRect.left; // Coordonnée X de l'élément droit (bord gauche)\n" +
-                            "                const y2 = rightRect.top + rightRect.height / 2 - canvasRect.top; // Milieu vertical de l'élément droit\n" +
-                            "    \n" +
-                            "                // Tracer une ligne entre les deux éléments\n" +
-                            "                ctx.beginPath();\n" +
-                            "                ctx.moveTo(x1, y1);\n" +
-                            "                ctx.lineTo(x2, y2);\n" +
-                            "\n" +
-                            "                if(affichage == 'correction')\n" +
-                            "                {\n" +
-                            "                    ctx.strokeStyle = \"green\";\n" +
-                            "                }else if(affichage == 'erreurs')\n" +
-                            "                {\n" +
-                            "                    ctx.strokeStyle = \"red\";\n" +
-                            "                }else{\n" +
-                            "                    ctx.strokeStyle = \"black\";\n" +
-                            "                }\n" +
-                            "\n" +
-                            "                ctx.lineWidth = 4;\n" +
-                            "                ctx.stroke();\n" +
-                            "            }\n" +
-                            "        }\n" +
-                            "    }\n" +
-                            "}\n" +
+                            "\t\t\t\t\tconst leftRect = leftElement.getBoundingClientRect();\n" +
+                            "\t\t\t\t\tconst rightRect = rightElement.getBoundingClientRect();\n" +
+                            "\t\t\n" +
+                            "\t\t\t\t\tconst canvasRect = canvas.getBoundingClientRect();\n" +
+                            "\t\t\n" +
+                            "\t\t\t\t\tconst x1 = leftRect.right - canvasRect.left; // Coordonnée X de l'élément gauche (bord droit)\n" +
+                            "\t\t\t\t\tconst y1 = leftRect.top + leftRect.height / 2 - canvasRect.top; // Milieu vertical de l'élément gauche\n" +
+                            "\t\t\n" +
+                            "\t\t\t\t\tconst x2 = rightRect.left - canvasRect.left; // Coordonnée X de l'élément droit (bord gauche)\n" +
+                            "\t\t\t\t\tconst y2 = rightRect.top + rightRect.height / 2 - canvasRect.top; // Milieu vertical de l'élément droit\n" +
+                            "\t\t\n" +
+                            "\t\t\t\t\t// Tracer une ligne entre les deux éléments\n" +
+                            "\t\t\t\t\tctx.beginPath();\n" +
+                            "\t\t\t\t\tctx.moveTo(x1, y1);\n" +
+                            "\t\t\t\t\tctx.lineTo(x2, y2);\n" +
+                            "\t\n" +
+                            "\t\t\t\t\tif(affichage == 'correction')\n" +
+                            "\t\t\t\t\t{\n" +
+                            "\t\t\t\t\t\tctx.strokeStyle = \"green\";\n" +
+                            "\t\t\t\t\t}else if(affichage == 'erreurs')\n" +
+                            "\t\t\t\t\t{\n" +
+                            "\t\t\t\t\t\tctx.strokeStyle = \"red\";\n" +
+                            "\t\t\t\t\t}else{\n" +
+                            "\t\t\t\t\t\tctx.strokeStyle = \"black\";\n" +
+                            "\t\t\t\t\t}\n" +
+                            "\t\n" +
+                            "\t\t\t\t\tctx.lineWidth = 4;\n" +
+                            "\t\t\t\t\tctx.stroke();\n" +
+                            "\t\t\t\t}\n" +
+                            "\t\t\t}\n" +
+                            "\t\t}\n" +
+                            "\t}\n" +
+                            "}"+
                             "\n" +
                             "\n" +
                             "function verifierReponses(tabBonnesRep, nbPoints)\n" +
@@ -816,7 +823,7 @@ public class QCMBuilder
                             "    const tempsDeReponse = " + q.getTemps() + ";\n" +
                             "    let points = " + q.getPoint() + ";\n" +
                             "    let texteExplications = \"" + q.getExplicationFich() + "\";\n" +
-                            "    let notion = " + q.getNotion() + ";\n" +
+                            "    let notion = '" + q.getNotion() + "';\n" +
                             "\n" +
                             "\n" +
                             "\n" +
@@ -850,7 +857,7 @@ public class QCMBuilder
                             "                        <script src=\"./script.js\"></script>\n" +
                             "\n" +
                             "                        <h1> Question `+ questionActuelle +` : </h1>\n" +
-                            "                        <h2> Notion : \"" + q.getNotion().getNom() + "\" <!-- Avoir la notion de la question avec JS--> </h2>\n" +
+                            "                        <h2> Notion : `+ notion +` <!-- Avoir la notion de la question avec JS--> </h2>\n" +
                             "                        <h2> Difficulté : `+ difficulte +` <!-- Avoir la difficulté de la question avec JS--> </h2>\n" +
                             "\n" +
                             "                        <br>\n" +
@@ -974,12 +981,100 @@ public class QCMBuilder
                 } else if (q instanceof AssociationElement)
                 {
                     AssociationElement ae = (AssociationElement)(q);
-                    String bonnesRep = "[";
+                    /*String bonnesRep = "[";
                     for ( String gauche : ae.getAssociations().keySet()) {
                         bonnesRep += "['" + gauche + "','" + ae.getAssociations().get(gauche) + "'],";
+                    }*/
+
+                    //bonnesRep = bonnesRep + "];";
+
+                    String clickDetection = "";
+
+                    for(int i = 0 ; i < ae.getAssociations().size()*2 ; i+=2)
+                    {
+                            clickDetection += "        document.getElementById(\"rep" + (i+1) + "\").onclick = function() { selection(leftElements, " + i + ") };\n";
+
+                            clickDetection += "        document.getElementById(\"rep" + (i+2) + "\").onclick = function() { selection(rightElements, " + (i+1) + ") };\n";
+
                     }
 
-                    bonnesRep = bonnesRep + "];";
+                    String bonnesRep = "[";
+
+                    String[][][] tabRep = new String[ae.getAssociations().size()][2][2];
+                    String[] tabRep2 = new String[ae.getAssociations().size()*2];
+
+                    ArrayList<String> random = new ArrayList<>(ae.getAssociations().keySet());
+
+                    Collections.shuffle(random);
+
+                    for(int i = 0; i < random.size() ; i++)
+                    {
+                        tabRep[i][0][0]= random.get(i);
+                        tabRep[i][0][1]= ae.getAssociations().get(random.get(i));
+                    }
+
+                    Collections.shuffle(random);
+
+                    for(int i = 0; i < random.size() ; i++)
+                    {
+                        tabRep[i][1][0]= ae.getAssociations().get(random.get(i));
+                        tabRep[i][1][1]= random.get(i);
+                    }
+
+                    for(int i = 0 ; i < tabRep.length; i++)
+                    {
+                        tabRep2[i*2]   = tabRep[i][0][0];
+                        tabRep2[(i*2)+1] = tabRep[i][1][0];
+                    }
+
+                    int j = 0;
+
+                    for(int i = 0 ; i < tabRep.length ; i++)
+                    {
+                        bonnesRep += "[";
+                        for(String s : ae.getAssociations().keySet())
+                        {
+                            System.out.println(tabRep[i][0][1] + " " + ae.getAssociations().get(s));
+
+                            if(tabRep[i][0][1].equals(ae.getAssociations().get(s)))
+                            {
+                                bonnesRep += "[" + i + "," + j + "],[" + i  + "," + j + "]";
+
+                            }
+                            j++;
+                        }
+                        bonnesRep += "],";
+                    }
+                    bonnesRep += "]";
+
+                    /*for(int i = 0 ; i < tabRep2.length; i++)
+                    {
+                        bonnesRep += "[";
+                        for(int j = 0; j < tabRep2.length ; j++)
+                        {
+                            if (tabRep2[i].equals(tabRep2[j]) && i != j)
+                            {
+                                bonnesRep += "[" + i + "," + j + "],[" + i  + "," + j + "]";
+                            }
+                        }
+                        bonnesRep += "],";
+                    }
+                    bonnesRep += "]";*/
+
+
+                    /*for(int i = 0 ; i < tabRep.length ; i++)
+                    {
+                        for(int j = 0 ; j < tabRep[i].length ; j++)
+                        {
+                            for(int v = 0 ; v < tabRep[i][j].length ; v++)
+                            {
+                                System.out.println(tabRep[i][j][v]);
+                            }
+                        }
+                    }*/
+
+
+
 
                     res += "\n\nasync function question" + (questionnaire.getLstQuestion().indexOf(q) + 1) + "()\n" +
                             "{\n" +
@@ -991,7 +1086,7 @@ public class QCMBuilder
                             "    const tempsDeReponse = "+ q.getTemps() +";\n" +
                             "    let points = " + q.getPoint() +";\n" +
                             "    let texteExplications = " + "'Explications'" + ";\n" +
-                            "    let notion = " + q.getNotion() + ";\n" +
+                            "    let notion = '" + q.getNotion().getNom() + "';\n" +
                             "\n" +
                             "    \n" +
                             "\n" +
@@ -1037,20 +1132,26 @@ public class QCMBuilder
                             "                        <div id=\"zoneRepAssos\">\n" +
                             "                            <div class=\"casesInternes\" id=\"repGauche\">\n";
 
-                            int i = 1;
-                            for (String gauche : ae.getAssociations().keySet()){
-                                res +="<div class=\"reponseBoxAssos\" id=\"rep"+i+"\">"+gauche+"</div>\n";
-                                i += 2;
+
+
+
+                            int indice = 1;
+                            for (int i = 0 ; i < tabRep.length ; i++)
+                            {
+
+                                res +="<div class=\"reponseBoxAssos\" id=\"rep"+indice+"\">"+ tabRep[i][0][0] +"</div>\n";
+                                indice+=2;
                             }
 
                             res += "                            </div>\n" +
                             "                            <div><canvas id=\"canvas\"></canvas></div>\n" +
                             "                            <div class=\"casesInternes\" id=\"repDroite\">\n";
 
-                            i = 2;
-                            for (String gauche : ae.getAssociations().keySet()){
-                                res +="<div class=\"reponseBoxAssos\" id=\"rep"+i+"\">"+ae.getAssociations().get(gauche)+"</div>\n";
-                                i += 2;
+                            indice = 2;
+                            for (int i = 0 ; i < tabRep.length ; i++)
+                            {
+                                res +="<div class=\"reponseBoxAssos\" id=\"rep"+indice+"\">"+tabRep[i][1][0]+"</div>\n";
+                                indice+=2;
                             }
 
                             res +="                            </div>\n" +
@@ -1320,12 +1421,7 @@ public class QCMBuilder
                             "\n" +
                             "    if(!tabCompletion[questionActuelle])\n" +
                             "    {\n" +
-                            "        document.getElementById(\"rep1\").onclick = function() { selection(leftElements, 0) };\n" +
-                            "        document.getElementById(\"rep2\").onclick = function() { selection(rightElements, 1) };\n" +
-                            "        document.getElementById(\"rep3\").onclick = function() { selection(leftElements, 2)};\n" +
-                            "        document.getElementById(\"rep4\").onclick = function() { selection(rightElements, 3)};\n" +
-                            "        document.getElementById(\"rep5\").onclick = function() { selection(leftElements, 4) };\n" +
-                            "        document.getElementById(\"rep6\").onclick = function() { selection(rightElements, 5) };\n" +
+                                    clickDetection +
                             "\n" +
                             "        document.getElementById(\"valider\").onclick = function() \n" +
                             "        {\n" +
