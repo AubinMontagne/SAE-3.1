@@ -5,31 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" name="Changes" comment="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
+      <change afterPath="$PROJECT_DIR$/java/docs/TestRtf.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/M.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/TF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test1/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test1/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test1/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationNotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationNotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationRessource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationNotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationNotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelNotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelNotion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/AssociationElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/AssociationElement.java" afterDir="false" />
     </list>
     <list id="e0a5d575-1463-46f4-82d3-b2b4d97dd127" name="Changes by Aubin" comment="" />
     <list id="983b509a-0987-4a45-b6cf-6b41d3c16c2d" name="Changes by pt232770" comment="" />
     <list id="35c96175-51ca-4ddc-8c99-f82a12019ecb" name="Changes by sandr" comment="">
       <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
     </list>
-    <list id="a134f2c3-a261-424a-a44e-ee20e8d20510" name="Changes by timot" comment="">
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationNotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationNotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" afterDir="false" />
-    </list>
+    <list id="a134f2c3-a261-424a-a44e-ee20e8d20510" name="Changes by timot" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +24,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -57,37 +43,6 @@
     &quot;accountId&quot;: &quot;d1674c13-4ac7-41cf-87ad-6591ed28a5da&quot;
   }
 }</component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/java/src/Vue/PanelCreationNotion.java">
-      <ranges>
-        <range start1="21" end1="21" start2="21" end2="23" changelist="a134f2c3-a261-424a-a44e-ee20e8d20510" />
-        <range start1="22" end1="23" start2="24" end2="25" changelist="a134f2c3-a261-424a-a44e-ee20e8d20510" />
-        <range start1="24" end1="24" start2="26" end2="28" changelist="a134f2c3-a261-424a-a44e-ee20e8d20510" />
-        <range start1="74" end1="76" start2="78" end2="80" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java">
-      <ranges>
-        <range start1="18" end1="18" start2="18" end2="19" changelist="a134f2c3-a261-424a-a44e-ee20e8d20510" />
-        <range start1="19" end1="20" start2="20" end2="21" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="21" end1="21" start2="22" end2="23" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="71" end1="71" start2="73" end2="75" changelist="a134f2c3-a261-424a-a44e-ee20e8d20510" />
-        <range start1="72" end1="72" start2="76" end2="80" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java">
-      <ranges>
-        <range start1="15" end1="15" start2="15" end2="17" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="16" end1="18" start2="18" end2="18" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="213" end1="214" start2="213" end2="214" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="268" end1="270" start2="268" end2="268" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="272" end1="273" start2="270" end2="271" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="275" end1="276" start2="273" end2="274" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="346" end1="347" start2="344" end2="345" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="1033" end1="1034" start2="1031" end2="1032" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-      </ranges>
-    </file>
-  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -99,27 +54,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Controleur.executor&quot;: &quot;Run&quot;,
-    &quot;Application.PanelElimination.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Test.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.TestJS.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/etudiant/oj230564/Bureau/SAE-31&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Controleur.executor": "Run",
+    "Application.PanelElimination.executor": "Run",
+    "Application.Test.executor": "Debug",
+    "Application.TestJS.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/etudiant/oj230564/Bureau/SAE-31",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/docs" />
@@ -272,8 +228,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Controleur" />
         <item itemvalue="Application.TestJS" />
+        <item itemvalue="Application.Controleur" />
         <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
@@ -307,6 +263,7 @@
       <workItem from="1734085032311" duration="136000" />
       <workItem from="1734085274498" duration="11169000" />
       <workItem from="1734098230502" duration="7489000" />
+      <workItem from="1734334999069" duration="2446000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <option name="closed" value="true" />

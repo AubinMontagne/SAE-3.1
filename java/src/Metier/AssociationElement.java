@@ -23,7 +23,6 @@ public class AssociationElement extends Question
         return this.hmAssociations;
     }
 
-
     public void ajouterAssociation(String gauche, String droite){
 
 		if (!(gauche == null || droite == null) &&

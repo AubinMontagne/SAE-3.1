@@ -783,7 +783,7 @@ public class QCMBuilder
                     if ((questionnaire.getLstQuestion().indexOf(q) == 0)) {
                         questionPrecedente = "question1()";
                     } else {
-                        questionPrecedente = "question" + ((questionnaire.getLstQuestion().indexOf(q)) - 1) + "()";
+                        questionPrecedente = "question" + ((questionnaire.getLstQuestion().indexOf(q))) + "()";
                     }
 
                     if ((questionnaire.getLstQuestion().indexOf(q) == questionnaire.getLstQuestion().size() - 1)) {
@@ -816,6 +816,7 @@ public class QCMBuilder
                             "    const tempsDeReponse = " + q.getTemps() + ";\n" +
                             "    let points = " + q.getPoint() + ";\n" +
                             "    let texteExplications = \"" + q.getExplicationFich() + "\";\n" +
+                            "    let notion = " + q.getNotion() + ";\n" +
                             "\n" +
                             "\n" +
                             "\n" +
@@ -975,21 +976,22 @@ public class QCMBuilder
                     AssociationElement ae = (AssociationElement)(q);
                     String bonnesRep = "[";
                     for ( String gauche : ae.getAssociations().keySet()) {
-                        res += "[" + gauche + "," + ae.getAssociations().get(gauche) + "],";
+                        bonnesRep += "['" + gauche + "','" + ae.getAssociations().get(gauche) + "'],";
                     }
 
                     bonnesRep = bonnesRep + "];";
 
-                    res += "\n\nasync function" + (questionnaire.getLstQuestion().indexOf(q) + 1) + "()\n" +
+                    res += "\n\nasync function question" + (questionnaire.getLstQuestion().indexOf(q) + 1) + "()\n" +
                             "{\n" +
                             "    //Variables\n" +
                             "    let reponses = " + bonnesRep + "\n" +
                             "                    \n" +
                             "                \n" +
-                            "    const difficulte = "+ q.getDifficulte().getNom() +";\n" +
+                            "    const difficulte = '"+ q.getDifficulte().getNom() +"';\n" +
                             "    const tempsDeReponse = "+ q.getTemps() +";\n" +
                             "    let points = " + q.getPoint() +";\n" +
-                            "    let texteExplications = " + "Explications" + ";\n" +
+                            "    let texteExplications = " + "'Explications'" + ";\n" +
+                            "    let notion = " + q.getNotion() + ";\n" +
                             "\n" +
                             "    \n" +
                             "\n" +
