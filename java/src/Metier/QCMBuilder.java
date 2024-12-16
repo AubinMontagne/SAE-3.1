@@ -1019,7 +1019,7 @@ public class QCMBuilder
 
                         //System.out.println((!tabRep[i][0][0].equals(tabRep[i][1][0]) || !tabRep[i][0][1].equals(tabRep[i][1][1])));
 
-                        if(!tabRep[i][0][0].equals(tabRep[i][1][0]) && !tabRep[i][0][1].equals(tabRep[i][1][1]))
+                        if(!tabRep[i][0][0].equals(tabRep[i][1][0]) || !tabRep[i][0][1].equals(tabRep[i][1][1]))
                         {
                             System.out.println("BBBBBB");
 
@@ -1028,8 +1028,8 @@ public class QCMBuilder
                                 System.out.println(i + " " + j + " " + v);
                                 if(tabRep[i][0][0].equals(tabRep[j][1][0]) && tabRep[i][0][1].equals(tabRep[j][1][1]))
                                 {
-                                    System.out.println("Ecrire : " + i + " " + v);
-                                    bonnesRep += "[" + (i*2) + "," + v + "],[" + (i*2)  + "," + v + "]";
+                                    System.out.println("Ecrire : " + i + " " + (i*2+1));
+                                    bonnesRep += "[" + (i*2) + "," + (i*2+1) + "],[" + (i*2)  + "," + (i*2+1) + "]";
 
                                 }
                                 v++;
@@ -1037,8 +1037,8 @@ public class QCMBuilder
 
                         }else{
                             System.out.println("AAAAA");
+                            System.out.println("Ecrire : " + i + " " + (i*2+1));
                             bonnesRep += "[" + (i*2) + "," + (i*2+1) + "],[" + (i*2)  + "," + (i*2+1) + "]";
-                            i++;
                             v++;
                         }
                         bonnesRep += "],";

@@ -17,7 +17,6 @@ public class TestJS{
 		//questionnaire.addQuestion(new EliminationReponse("Choisissez la bonne réponse :", Difficulte.DIFFICILE, n1, 12,2, "La 6 car feur. "));
 		//questionnaire.addQuestion(new AssociationElement("Asso 2 :", Difficulte.MOYEN, n1, 23, 3, "Feur."));
 
-
 		//Reponses
 		((QCM)questionnaire.getLstQuestion().get(0)).ajouterReponse("Docker", true);
 		((QCM)questionnaire.getLstQuestion().get(0)).ajouterReponse("XAMPP", true);

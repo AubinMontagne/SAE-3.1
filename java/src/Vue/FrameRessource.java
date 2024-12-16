@@ -11,7 +11,6 @@ public class FrameRessource extends JFrame{
 
         System.out.println("Création de la frame Ressource");
 
-
         this.setTitle("Les Ressources");
         this.setSize(300,215);
         this.setLocationRelativeTo(null);

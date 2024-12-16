@@ -8,10 +8,10 @@ import src.Controleur;
 
 public class PanelAccueil extends JPanel implements  ActionListener{
     private Controleur ctrl;
-    private JPanel panelAccueil;
-    private JButton btBanque;
-    private JButton btQuestionnaire;
-    private JButton btRessources;
+    private JPanel     panelAccueil;
+    private JButton    btBanque;
+    private JButton    btQuestionnaire;
+    private JButton    btRessources;
 
     public PanelAccueil( Controleur ctrl ){
         this.ctrl         = ctrl;
@@ -30,9 +30,9 @@ public class PanelAccueil extends JPanel implements  ActionListener{
 
         this.add(panelAccueil);
 
-        this.btBanque       .addActionListener(this)        ;
+        this.btBanque       .addActionListener(this) ;
         this.btQuestionnaire.addActionListener(this) ;
-        this.btRessources   .addActionListener(this)    ;
+        this.btRessources   .addActionListener(this) ;
     }
 
     public void actionPerformed(ActionEvent e){

@@ -6,14 +6,28 @@
   <component name="ChangeListManager">
     <list default="true" id="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" name="Changes" comment="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/D.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/F.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/M.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/TF.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test1/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test1/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test1/style.css" beforeDir="false" />
     </list>
     <list id="e0a5d575-1463-46f4-82d3-b2b4d97dd127" name="Changes by Aubin" comment="" />
     <list id="8584fc9c-1884-4915-ade3-f554f1383668" name="Changes by pt232770" comment="">
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Ressource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Ressource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameAccueil.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameAccueil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameNotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameNotion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameQuestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameQuestionnaire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameQuestionnaireTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameQuestionnaireTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" afterDir="false" />
     </list>
     <list id="35c96175-51ca-4ddc-8c99-f82a12019ecb" name="Changes by sandr" comment="">
       <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Ressource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Ressource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/TestJS.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/TestJS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" afterDir="false" />
     </list>
     <list id="a134f2c3-a261-424a-a44e-ee20e8d20510" name="Changes by timot" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,13 +62,12 @@
     <setting file="jar://$USER_HOME$/.jdks/openjdk-23.0.1/lib/src.zip!/java.desktop/javax/swing/JPanel.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/java/src/Metier/Ressource.java">
+    <file path="$PROJECT_DIR$/java/src/Vue/FrameBanque.java">
       <ranges>
-        <range start1="24" end1="26" start2="24" end2="26" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
-        <range start1="27" end1="28" start2="27" end2="28" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="32" end1="32" start2="32" end2="33" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
-        <range start1="33" end1="35" start2="34" end2="36" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
-        <range start1="37" end1="40" start2="38" end2="39" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
+        <range start1="8" end1="9" start2="8" end2="9" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
+        <range start1="15" end1="16" start2="15" end2="15" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
+        <range start1="28" end1="29" start2="27" end2="28" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
+        <range start1="33" end1="34" start2="32" end2="32" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
       </ranges>
     </file>
   </component>
@@ -243,8 +256,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Controleur" />
         <item itemvalue="Application.TestJS" />
+        <item itemvalue="Application.Controleur" />
         <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
@@ -283,7 +296,7 @@
       <workItem from="1734338398667" duration="9767000" />
       <workItem from="1734352621069" duration="617000" />
       <workItem from="1734353446172" duration="2783000" />
-      <workItem from="1734356917547" duration="4957000" />
+      <workItem from="1734356917547" duration="5222000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <option name="closed" value="true" />

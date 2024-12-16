@@ -1,6 +1,5 @@
 package src.Vue;
 
-
 import src.Controleur;
 import javax.swing.*;
 
