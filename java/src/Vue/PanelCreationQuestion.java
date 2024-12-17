@@ -55,9 +55,9 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		this.ctrl = ctrl;
 		this.ressources = this.ctrl.getRessources();
 		Ressource placeHolder = new Ressource("PlaceHolder","PlaceHolder");
-		this.ressources.addFirst(placeHolder);
+		this.ressources.add(0,placeHolder);
 		this.notions = this.ctrl.getNotions();
-		this.notions.addFirst(new Notion("PlaceHolder",placeHolder));
+		this.notions.add(0,new Notion("PlaceHolder",placeHolder));
 
 		setLayout(new BorderLayout());
 
@@ -269,8 +269,9 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 			if ("QCM".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);
-				this.notion =  this.ctrl.getNomNotion( (Notion) this.listeNotions.getSelectedItem());// appelez la methode
-				this.temps = Integer.parseInt(this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60 + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1));
+				Notion n = (Notion)(this.listeNotions.getSelectedItem());
+				this.notion = n.getNom();
+				this.temps  = Integer.parseInt(this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60 + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1));
 				this.points = Integer.parseInt(this.champPoints.getText());
 
 				PanelQCM panelQCM = new PanelQCM(this.ctrl,this.difficulté,this.notion,this.points,this.temps);

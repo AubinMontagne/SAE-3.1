@@ -260,6 +260,74 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
         return 0; // Retourner 0 par défaut si aucune condition n'est remplie
     }
 
+
+
+    /**
+     * Méthode pour récupérer les données des notions sélectionnées.
+     *
+     * @return Liste des données pour les notions sélectionnées.
+     */
+    private ArrayList<QuestionnaireData> getSelectedData() {
+        ArrayList<QuestionnaireData> selectedData = new ArrayList<>();
+
+        DefaultTableModel model = (DefaultTableModel) tbQuestion.getModel();
+
+        for (int i = 0; i < model.getRowCount(); i++) {
+            Boolean isSelected = (Boolean) model.getValueAt(i, 1);
+
+            if (isSelected != null && isSelected) {
+                String notion = (String) model.getValueAt(i, 0);
+                int tf = getIntValue(model.getValueAt(i, 2));
+                int f = getIntValue(model.getValueAt(i, 3));
+                int m = getIntValue(model.getValueAt(i, 4));
+                int d = getIntValue(model.getValueAt(i, 5));
+
+                selectedData.add(new QuestionnaireData(notion, tf, f, m, d));
+            }
+        }
+
+        return selectedData;
+    }
+
+    /**
+     * Classe interne pour stocker les données d'une ligne sélectionnée.
+     */
+    private static class QuestionnaireData {
+        private final String notion;
+        private final int tf;
+        private final int f;
+        private final int m;
+        private final int d;
+
+        public QuestionnaireData(String notion, int tf, int f, int m, int d) {
+            this.notion = notion;
+            this.tf = tf;
+            this.f = f;
+            this.m = m;
+            this.d = d;
+        }
+
+        public String getNotion() {
+            return notion;
+        }
+
+        public int getTf() {
+            return tf;
+        }
+
+        public int getF() {
+            return f;
+        }
+
+        public int getM() {
+            return m;
+        }
+
+        public int getD() {
+            return d;
+        }
+    }
+
     /**
      * Methode actionPerformed
      * @param e L'évènement à traiter
@@ -325,72 +393,6 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
             JOptionPane.showMessageDialog(this, sb.toString(), "Résumé du questionnaire", JOptionPane.INFORMATION_MESSAGE);
 
             this.ctrl.getMetier().initQuestionnaire(questionnaire);
-        }
-    }
-
-    /**
-     * Méthode pour récupérer les données des notions sélectionnées.
-     *
-     * @return Liste des données pour les notions sélectionnées.
-     */
-    private ArrayList<QuestionnaireData> getSelectedData() {
-        ArrayList<QuestionnaireData> selectedData = new ArrayList<>();
-
-        DefaultTableModel model = (DefaultTableModel) tbQuestion.getModel();
-
-        for (int i = 0; i < model.getRowCount(); i++) {
-            Boolean isSelected = (Boolean) model.getValueAt(i, 1);
-
-            if (isSelected != null && isSelected) {
-                String notion = (String) model.getValueAt(i, 0);
-                int tf = getIntValue(model.getValueAt(i, 2));
-                int f = getIntValue(model.getValueAt(i, 3));
-                int m = getIntValue(model.getValueAt(i, 4));
-                int d = getIntValue(model.getValueAt(i, 5));
-
-                selectedData.add(new QuestionnaireData(notion, tf, f, m, d));
-            }
-        }
-
-        return selectedData;
-    }
-
-    /**
-     * Classe interne pour stocker les données d'une ligne sélectionnée.
-     */
-    private static class QuestionnaireData {
-        private final String notion;
-        private final int tf;
-        private final int f;
-        private final int m;
-        private final int d;
-
-        public QuestionnaireData(String notion, int tf, int f, int m, int d) {
-            this.notion = notion;
-            this.tf = tf;
-            this.f = f;
-            this.m = m;
-            this.d = d;
-        }
-
-        public String getNotion() {
-            return notion;
-        }
-
-        public int getTf() {
-            return tf;
-        }
-
-        public int getF() {
-            return f;
-        }
-
-        public int getM() {
-            return m;
-        }
-
-        public int getD() {
-            return d;
         }
     }
 }
