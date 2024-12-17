@@ -59,11 +59,11 @@ public class TestJS{
 		((AssociationElement)questionnaire.getLstQuestion().get(5)).ajouterAssociation("Feur", "Coubeh");
 		((AssociationElement)questionnaire.getLstQuestion().get(5)).ajouterAssociation("La deuxE", "La 4");
 
-		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Julien", true);
-		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Antoine", false);
-		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Thibault", false);
-		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Timothé", false);
-		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Aubin", false);
+		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Jullian", true);
+		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Entoinne", false);
+		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Tybolt", false);
+		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Tymauter", false);
+		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Obein", false);
 
 		new QCMBuilder(questionnaire, "./");
 	}
