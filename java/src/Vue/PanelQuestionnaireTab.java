@@ -276,6 +276,8 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
             Questionnaire questionnaire = new Questionnaire(this.titreQuestionnaire, this.r, this.estChrono);
 
             // Préparation de l'affichage des données
+            Difficulte tf = Difficulte.TRES_FACILE;
+            
             StringBuilder sb = new StringBuilder("Données du questionnaire:\n");
             int totalTF = 0, totalF = 0, totalM = 0, totalD = 0;
 
@@ -290,23 +292,22 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
                 totalF += data.getF();
                 totalM += data.getM();
                 totalD += data.getD();
+/*
+                questionnaire.defNbQuestion(
+                        ctrl.getMetier().getNotionByNom(data.getNotion(), tf, data.getTf()  )
+                );
 
                 questionnaire.defNbQuestion(
-                        ctrl.getMetier().getNotionByNom(data.getNotion(),
-                        Difficulte.TRES_FACILE,
-                        data.getTf()  ));
+                        ctrl.getMetier().getNotionByNom(data.getNotion(), new Difficulte(f, 0),  data.getTf()  )
+                );
+
                 questionnaire.defNbQuestion(
-                        ctrl.getMetier().getNotionByNom(data.getNotion(),
-                        new Difficulte(f, 0),
-                        data.getTf()  ));
+                        ctrl.getMetier().getNotionByNom(data.getNotion(), new Difficulte(tf, 0), data.getTf()  )
+                );
+
                 questionnaire.defNbQuestion(
-                        ctrl.getMetier().getNotionByNom(data.getNotion(),
-                        new Difficulte(tf, 0),
-                        data.getTf()  ));
-                questionnaire.defNbQuestion(
-                        ctrl.getMetier().getNotionByNom(data.getNotion(),
-                        new Difficulte(tf, 0),
-                        data.getTf()  ));
+                        ctrl.getMetier().getNotionByNom(data.getNotion(), new Difficulte(tf, 0), data.getTf()  )
+                );*/
             }
 
             // Ajout du total
