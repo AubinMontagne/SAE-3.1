@@ -8,6 +8,7 @@ public class Metier{
     private ArrayList<Notion>    lstNotions;
     private ArrayList<Ressource> lstRessources;
     private ArrayList<Question>  lstQuestions;
+	private Questionnaire        questionnaire;
 
 	// Constructeur
 	/**
@@ -163,13 +164,35 @@ public class Metier{
 		}
 	}
 
+	public void saveQuestionnaire(String path){
+		try{
+			File dir = new File(path);
+			if (!dir.exists()) {
+				dir.mkdirs();
+			}
+			FileWriter writer = new FileWriter(path+"questions.csv");
+			for (Question question : this.lstQuestions){
+				if (question instanceof QCM){
+					writer.write(((QCM)question).getAsData() + "\n");
+				}else if (question instanceof EliminationReponse){
+					writer.write(((EliminationReponse)question).getAsData() + "\n");
+				}else if (question instanceof AssociationElement){
+					writer.write(((AssociationElement)question).getAsData() + "\n");
+				}
+			}
+			writer.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+
 	// Getter
 	public ArrayList<Notion>    getNotions()   {return this.lstNotions; }
 	public ArrayList<Ressource> getRessources(){return this.lstRessources; }
 	public ArrayList<Question>  getQuestions() {return this.lstQuestions; }
 
 	// Bazar aubin
-
+	public Questionnaire getQuestionnaire()   { return this.questionnaire; }
 	public String getNomNotion(Notion notion)
 	{
 		return notion.getNom();
@@ -327,5 +350,8 @@ public class Metier{
 		}
 
 		return notionsAssociees;
+	}
+	public void initQuestionnaire( Questionnaire q){
+		this.questionnaire = q;
 	}
 }

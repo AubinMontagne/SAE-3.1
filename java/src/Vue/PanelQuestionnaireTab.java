@@ -277,7 +277,10 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
 
             // Préparation de l'affichage des données
             Difficulte tf = Difficulte.TRES_FACILE;
-            
+            Difficulte f = Difficulte.FACILE;
+            Difficulte m = Difficulte.MOYEN;
+            Difficulte d = Difficulte.DIFFICILE;
+
             StringBuilder sb = new StringBuilder("Données du questionnaire:\n");
             int totalTF = 0, totalF = 0, totalM = 0, totalD = 0;
 
@@ -292,22 +295,22 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
                 totalF += data.getF();
                 totalM += data.getM();
                 totalD += data.getD();
-/*
+
                 questionnaire.defNbQuestion(
-                        ctrl.getMetier().getNotionByNom(data.getNotion(), tf, data.getTf()  )
+                        ctrl.getMetier().getNotionByNom(data.getNotion()), tf, data.getTf()
                 );
 
                 questionnaire.defNbQuestion(
-                        ctrl.getMetier().getNotionByNom(data.getNotion(), new Difficulte(f, 0),  data.getTf()  )
+                        ctrl.getMetier().getNotionByNom(data.getNotion()), f, data.getF()
                 );
 
                 questionnaire.defNbQuestion(
-                        ctrl.getMetier().getNotionByNom(data.getNotion(), new Difficulte(tf, 0), data.getTf()  )
+                        ctrl.getMetier().getNotionByNom(data.getNotion()), m, data.getM()
                 );
 
                 questionnaire.defNbQuestion(
-                        ctrl.getMetier().getNotionByNom(data.getNotion(), new Difficulte(tf, 0), data.getTf()  )
-                );*/
+                        ctrl.getMetier().getNotionByNom(data.getNotion()), d, data.getD()
+                );
             }
 
             // Ajout du total
@@ -321,8 +324,7 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
             // Affichage des données dans le JOptionPane
             JOptionPane.showMessageDialog(this, sb.toString(), "Résumé du questionnaire", JOptionPane.INFORMATION_MESSAGE);
 
-            // Exemple de génération du questionnaire
-            System.out.println(questionnaire.toString());
+            this.ctrl.getMetier().initQuestionnaire(questionnaire);
         }
     }
 

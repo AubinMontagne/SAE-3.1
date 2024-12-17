@@ -1,6 +1,14 @@
 package src.Metier;
 
+import src.Controleur;
+
 public class TestJS{
+	/*private Controleur ctrl ;
+
+	public TestJS(){
+		this.crtl;
+	}*/
+
 	public static void main(String[] args){
 
 		Ressource r1 = new Ressource("R3.01_Dev_WEB", "DevWEB");
@@ -54,9 +62,13 @@ public class TestJS{
 		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Julien", true);
 		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Antoine", false);
 		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Thibault", false);
-		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Timoté", false);
+		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Timothé", false);
 		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Aubin", false);
 
 		new QCMBuilder(questionnaire, "./");
 	}
+
+	/*public void initQuestionnaire(Questionnaire q){
+		this.ctrl.q;
+	}*/
 }

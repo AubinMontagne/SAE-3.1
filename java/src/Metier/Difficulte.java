@@ -9,6 +9,7 @@ public enum Difficulte {
     private final String nom;
     private final int    indice;
 
+    // Constructeur
     /**
      * Contructeur de Difficulte
      * @param nom     Le nom de la difficulté
