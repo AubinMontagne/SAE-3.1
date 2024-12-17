@@ -12,6 +12,6 @@ le score du questionnaire.
 {download repository}/SAE3.01 : javac @compile.list
 
 // Comment l'executer 
-cd out/java
 
-{download repository}/SAE3.01 : java src/Controleur
+cd out/java
+{download repository}/SAE3.01/out/java: java src/Controleur
