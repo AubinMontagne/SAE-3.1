@@ -13,4 +13,5 @@ le score du questionnaire.
 
 // Comment l'executer 
 
-{download repository}/SAE3.01 : java out/java/src/Controleur
+cd out/java
+{download repository}/SAE3.01/out/java: java src/Controleur
