@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" name="Changes" comment="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/M.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test1/data/imgDif/TF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test1/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test1/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test1/style.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Controleur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Metier/Metier.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Metier.java" afterDir="false" />
     </list>
@@ -37,6 +30,8 @@
       <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameAccueil.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameAccueil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationNotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationNotion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationRessource.java" afterDir="false" />
     </list>
     <list id="35c96175-51ca-4ddc-8c99-f82a12019ecb" name="Changes by sandr" comment="">
       <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
@@ -117,22 +112,24 @@
         <range start1="132" end1="132" start2="148" end2="152" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
         <range start1="152" end1="152" start2="172" end2="176" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
         <range start1="174" end1="174" start2="198" end2="202" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
-        <range start1="205" end1="206" start2="233" end2="234" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="205" end1="207" start2="233" end2="235" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
         <range start1="251" end1="251" start2="279" end2="280" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
         <range start1="254" end1="254" start2="283" end2="284" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
         <range start1="256" end1="256" start2="286" end2="287" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
         <range start1="257" end1="258" start2="288" end2="288" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
         <range start1="263" end1="264" start2="293" end2="295" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
         <range start1="265" end1="265" start2="296" end2="297" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="332" end1="333" start2="364" end2="365" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="761" end1="762" start2="793" end2="798" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
-        <range start1="967" end1="974" start2="1003" end2="1003" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="975" end1="975" start2="1004" end2="1020" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="1036" end1="1067" start2="1081" end2="1081" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="1119" end1="1120" start2="1133" end2="1134" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="1262" end1="1285" start2="1276" end2="1313" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="1286" end1="1296" start2="1314" end2="1314" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
-        <range start1="1434" end1="1436" start2="1452" end2="1454" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="266" end1="266" start2="298" end2="318" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="332" end1="333" start2="384" end2="385" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="351" end1="352" start2="403" end2="404" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="761" end1="762" start2="813" end2="818" changelist="8584fc9c-1884-4915-ade3-f554f1383668" />
+        <range start1="967" end1="974" start2="1023" end2="1023" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="975" end1="975" start2="1024" end2="1040" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="1036" end1="1067" start2="1101" end2="1101" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="1119" end1="1120" start2="1153" end2="1154" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="1262" end1="1285" start2="1296" end2="1333" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="1286" end1="1296" start2="1334" end2="1334" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
+        <range start1="1434" end1="1436" start2="1472" end2="1474" changelist="35c96175-51ca-4ddc-8c99-f82a12019ecb" />
       </ranges>
     </file>
     <file path="$PROJECT_DIR$/java/src/Controleur.java">
@@ -374,7 +371,7 @@
       <workItem from="1734353446172" duration="2783000" />
       <workItem from="1734356917547" duration="6860000" />
       <workItem from="1734421094900" duration="2909000" />
-      <workItem from="1734425116881" duration="3019000" />
+      <workItem from="1734425116881" duration="3171000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <option name="closed" value="true" />

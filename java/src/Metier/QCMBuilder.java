@@ -232,7 +232,7 @@ public class QCMBuilder
         //Début tab completion
         String tabCompletion = "[";
         String lignes = "";
-        String lignesInit = "";
+        String lignesReInit = "";
         String tabEliminations = "";
         int indice = 0;
 
@@ -292,6 +292,26 @@ public class QCMBuilder
                 }
 
                 lignes = lignes + "];\n";
+
+            }
+            indiceLigne++;
+        }
+
+        indiceLigne = 0;
+
+        for(Question q : this.questionnaire.getLstQuestion())
+        {
+
+            if(q instanceof AssociationElement)
+            {
+                lignesReInit += "lignesQ" + indiceLigne + " = [";
+                AssociationElement ae = (AssociationElement)(q);
+
+                for ( String gauche : ae.getAssociations().keySet()) {
+                    lignesReInit += "[[],[]],";
+                }
+
+                lignesReInit = lignesReInit + "];\n";
 
             }
             indiceLigne++;
@@ -381,7 +401,7 @@ public class QCMBuilder
                         "\n" +
                         "\ttabSelections = " + tabSelection +
                         "\n" +
-                        "\t" + lignesInit + "\n" +
+                        "\t" + lignesReInit + "\n" +
                         "}\n" +
                         "\n" +
                         "function formatTime(s) {\n" +

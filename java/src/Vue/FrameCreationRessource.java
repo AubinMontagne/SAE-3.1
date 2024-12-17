@@ -7,6 +7,12 @@ import javax.swing.*;
 public class FrameCreationRessource extends JFrame{
     private Controleur ctrl;
 
+    // Constructeur
+    /**
+     * Constructeur de la class FrameCreationQuestion
+     * @param ctrl              Le contrôler
+     * @param panelRessource    Le panel Ressource o
+     */
     public FrameCreationRessource(Controleur ctrl, PanelRessource panelRessource){
         this.ctrl = ctrl;
 

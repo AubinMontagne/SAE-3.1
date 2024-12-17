@@ -7,11 +7,12 @@ import src.Metier.Ressource;
 
 public class FrameCreationNotion extends JFrame{
 
+    // Contructeur
     /**
      * Constructeur de la class FrameCreationNotion
      * @param ctrl          Le contrôler
      * @param r             La ressource
-     * @param panelNotion   Le panel notion 
+     * @param panelNotion   Le panel notion
      */
     public FrameCreationNotion( Controleur ctrl, Ressource r, PanelNotion panelNotion){
         System.out.println("CrÃ©ation de la frame CreaNotion");

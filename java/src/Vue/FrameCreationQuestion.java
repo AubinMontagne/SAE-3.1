@@ -6,6 +6,11 @@ import javax.swing.*;
 public class FrameCreationQuestion extends JFrame{ 
     private Controleur ctrl;
 
+    // Constructeur
+    /**
+     * Constructeur de la class FrameCreationQuestion
+     * @param ctrl          Le contrôler
+     */
     public FrameCreationQuestion( Controleur ctrl){
         this.ctrl = ctrl;
 
