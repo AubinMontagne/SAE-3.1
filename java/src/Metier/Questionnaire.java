@@ -11,7 +11,15 @@ public class Questionnaire{
    private List<Notion> lstNotions;
    private List<Question> lstQuestion;
 
-   public Questionnaire(String nom, Ressource ressource, boolean estChronom){
+   // Constructeur
+
+	/**
+	 * Constructeur de la class Questionnaire
+	 * @param nom			Le nom du questionnaire
+	 * @param ressource		La ressource sur laquelle est le questionnaire
+	 * @param estChronom	Si le questionnaire est chronométré
+	 */
+	public Questionnaire(String nom, Ressource ressource, boolean estChronom){
       this.nom = nom;
       this.ressource = ressource;
       this.chronoBool = estChronom;
@@ -20,14 +28,30 @@ public class Questionnaire{
       this.lstNbQuestionsParDifficulte = new ArrayList<ArrayList<Integer>>();
    }
 
+   // Methode
+
+	/**
+	 * Methode ajouterNotion
+	 * @param notion La notion à ajouter
+	 */
    public void ajouterNotion(Notion notion){
       	if (!this.lstNotions.contains(notion)){
 		 	this.lstNotions.add(notion);
 	  	}
    }
 
+	/**
+	 * Methode supprimerNotion
+	 * @param notion La notion à supprimer
+	 */
    public void supprimerNotion(Notion notion){this.lstNotions.remove(notion); }
 
+	/**
+	 * Methode defNbQuestion
+	 * @param notion		La notion des questions
+	 * @param difficulte	La difficulté des questions
+	 * @param nbQuestion	Le nombre de questions
+	 */
    public void defNbQuestion(Notion notion, Difficulte difficulte, int nbQuestion){
       if (!this.lstNotions.contains(notion)){
 		this.ajouterNotion(notion);
@@ -39,6 +63,7 @@ public class Questionnaire{
 	  this.lstNbQuestionsParDifficulte.add(lstIntegerNotion);
    }
 
+   // Getter
    public String         getNom()           {return this.nom; }
    public Ressource      getRessource()     {return this.ressource; }
    public List<Notion>   getLstNotions()    {return this.lstNotions; }
@@ -61,6 +86,7 @@ public class Questionnaire{
       return sumPoints;
     }
 
+	// Setter
     public void setNom(String nom)               {this.nom = nom; }
     public void setRessource(Ressource ressource){this.ressource = ressource; }
     public void setChronoBool(boolean chronoBool){this.chronoBool = chronoBool; }

@@ -4,6 +4,7 @@ public class Ressource{
     private String id;
     private String nom;
 
+    // Constructeur
     /**
      * Constructeur de la classe Ressource.
      *
@@ -15,8 +16,7 @@ public class Ressource{
         this.nom      = nom;
     }
 
-    // Get
-
+    // Getter
 	public boolean equals(Ressource ressource){
 		return this.id.equals(ressource.getId()) &&
 		this.nom.equals(ressource.getNom());
@@ -31,7 +31,7 @@ public class Ressource{
         return new Ressource(parts[0], parts[1]);
     }
 
-    // Set
+    // Setter
     public void setId (String id) {this.id  = id; }
     public void setNom(String nom){this.nom = nom; }
 

@@ -74,10 +74,8 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 
 			Ressource r = new Ressource(id, nom);
 			ctrl.ajouterRessource(r);
-			ctrl.getMetier().saveRessources("../../../data");
-			/*
-			champID.setText("");
-			champNom.setText("");*/
+			ctrl.getMetier().saveRessources("java/data/");
+
 			this.panelRessource.maj();
 			JOptionPane.showMessageDialog(this, "Ressource ajoutée", "Succès", JOptionPane.INFORMATION_MESSAGE);
 

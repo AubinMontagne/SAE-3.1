@@ -70,7 +70,7 @@ public class PanelCreationNotion extends JPanel implements ActionListener {
             Notion notion = new Notion(nom, this.r);
 
             ctrl.ajouterNotion(notion);
-            ctrl.getMetier().saveNotions("/../../../../java/data/");
+            ctrl.getMetier().saveNotions("java/data/");
 
             // Afficher une po-pup avec les informations de la Notion
             JOptionPane.showMessageDialog(this, "Notion ajoutée", "Succès", JOptionPane.INFORMATION_MESSAGE);

@@ -8,6 +8,11 @@ import java.io.IOException;
 
 public class RtfFileReader {
 
+    /**
+     * Methode filePath
+     * @param filePath Le chemin du fichier RTF
+     * @return         Un text pas en RTF
+     */
     public static String getRtfFileAsText(String filePath) {
         RTFEditorKit rtfEditorKit = new RTFEditorKit();
         DefaultStyledDocument document = new DefaultStyledDocument();

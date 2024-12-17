@@ -18,6 +18,12 @@ public class QCMBuilder
 
     private int nbAssociations = 0;
 
+    // Constructeur
+    /**
+     * Constructeur de la cass QCMBuilder
+     * @param questionnaire Le questionnaire contenant des questions
+     * @param path          Le chemin ou créér le dossier contenant les fichier du questionnaire en HTML/CSS/JS
+     */
     public QCMBuilder(Questionnaire questionnaire, String path){
         this.questionnaire = questionnaire;
         this.path = path;
@@ -41,6 +47,13 @@ public class QCMBuilder
         }
     }
 
+    //Methode
+
+    /**
+     * Methode creerDossier
+     * @param path  Le chemin ou créer le dossier
+     * @return      Vrai si le fichier a pu être créé, sinon faux
+     */
     public boolean creerDossier(String path){
         File file = new File(path + this.questionnaire.getNom() );
 
@@ -52,7 +65,10 @@ public class QCMBuilder
         return true;
     }
 
-
+    /**
+     * Metode ecrireHTML
+     * @return  Vrai si le fichier a pu être écrit, sinon faux
+     */
     /*Cette méthode permet l'écriture du index.html commun à tous les questionnaires.*/
     public boolean ecrireHTML(){
         try{
@@ -130,6 +146,10 @@ public class QCMBuilder
         return true;
     }
 
+    /**
+     * Metode ecrireStyle
+     * @return  Vrai si le fichier a pu être écrit, sinon faux
+     */
     public boolean ecrireStyle(){
         try{
             String css = "";
@@ -150,6 +170,10 @@ public class QCMBuilder
         return true;
     }
 
+    /**
+     * Metode ecrireImage
+     * @return  Vrai si les fichiers ont pu être écrits, sinon faux
+     */
     public boolean ecrireImage(){
         String[] tabImg = {"TF.png", "F.png", "M.png", "D.png"};
 
@@ -172,6 +196,10 @@ public class QCMBuilder
         return true;
     }
 
+    /**
+     * Metode ecrireJS
+     * @return  Vrai si le fichier a pu être écrit, sinon faux
+     */
     public void ecrireJS()
     {
         try{
@@ -203,7 +231,7 @@ public class QCMBuilder
 
         //Début tab completion
         String tabCompletion = "[";
-        String lignes = "[";
+        String lignes = "";
         String lignesInit = "";
         String tabEliminations = "";
         int indice = 0;
@@ -249,20 +277,24 @@ public class QCMBuilder
         //Fin tabSelection
 
         //Debut lignes
+        int indiceLigne = 1;
 
         for(Question q : this.questionnaire.getLstQuestion())
         {
+
             if(q instanceof AssociationElement)
             {
+                lignes += "let lignesQ" + indiceLigne + " = [";
                 AssociationElement ae = (AssociationElement)(q);
-                String bonnesRep = "[";
 
                 for ( String gauche : ae.getAssociations().keySet()) {
                     lignes += "[[],[]],";
                 }
 
-                lignes = lignes + "];";
+                lignes = lignes + "];\n";
+
             }
+            indiceLigne++;
         }
 
         //fin lignes
@@ -330,7 +362,7 @@ public class QCMBuilder
                         "let tabSelections = " + tabSelection +
                         "\n" +
                         "//Pour le qcm à relier\n" +
-                        "let lignes = " + lignes +
+                        lignes +
                         "\n" +
                         "\n" +
                         tabEliminations +
@@ -759,7 +791,11 @@ public class QCMBuilder
             return commun;
         }
 
-        public String questionsJS()
+    /**
+     * Methode questionsJS
+     * @return  Vrai si le fichier a pu être écrit, sinon faux
+     */
+    public String questionsJS()
         {
             String res = "";
 
@@ -965,14 +1001,23 @@ public class QCMBuilder
                 } else if (q instanceof AssociationElement)
                 {
                     AssociationElement ae = (AssociationElement)(q);
-                    /*String bonnesRep = "[";
-                    for ( String gauche : ae.getAssociations().keySet()) {
-                        bonnesRep += "['" + gauche + "','" + ae.getAssociations().get(gauche) + "'],";
-                    }*/
-
-                    //bonnesRep = bonnesRep + "];";
-
                     String clickDetection = "";
+
+                    String questionSuivante = "";
+                    String questionPrecedente = "";
+
+                    if ((questionnaire.getLstQuestion().indexOf(q) == 0)) {
+                        questionPrecedente = "question1()";
+                    } else {
+                        questionPrecedente = "question" + ((questionnaire.getLstQuestion().indexOf(q))) + "()";
+                    }
+
+                    if ((questionnaire.getLstQuestion().indexOf(q) == questionnaire.getLstQuestion().size() - 1)) {
+                        questionSuivante = "finQuestionnaire()";
+                    } else {
+                        questionSuivante = "question" + ((questionnaire.getLstQuestion().indexOf(q)) + 2) + "()";
+                    }
+
 
                     for(int i = 0 ; i < ae.getAssociations().size()*2 ; i+=2)
                     {
@@ -1034,37 +1079,6 @@ public class QCMBuilder
                     }
                     bonnesRep += "]";
 
-                    /*int droite = 1;
-
-                    for(int i = 0 ; i < tabRep.length; i++)
-                    {
-                        bonnesRep += "[";
-                        for(int j = 0; j < tabRep.length ; j++)
-                        {
-                            if (tabRep[i][0][0].equals(tabRep[j][1][0]) && tabRep[i][0][1].equals(tabRep[j][1][1]))
-                            {
-                                bonnesRep += "[" + (i) + "," + droite + "],[" + (i)  + "," + droite + "]";
-                            }
-                        }
-                        bonnesRep += "],";
-                        droite+=2;
-                    }
-                    bonnesRep += "]";*/
-
-                    System.out.println("[");
-                    for(int i = 0 ; i < tabRep.length ; i++)
-                    {
-                        System.out.print("[");
-                        for(int j = 0 ; j < tabRep[i].length ; j++)
-                        {
-                            for(int w = 0 ; w < tabRep[i][j].length ; w++)
-                            {
-                                System.out.print("" + tabRep[i][j][w] + ",");
-                            }
-                        }
-                        System.out.println("]");
-                    }
-                    System.out.println("]");
 
                     res += "\n\nasync function question" + (questionnaire.getLstQuestion().indexOf(q) + 1) + "()\n" +
                             "{\n" +
@@ -1117,7 +1131,7 @@ public class QCMBuilder
                             "                        <!-- Pour un QCM -->\n" +
                             "\n" +
                             "                        <h3> "+ "Explications" +" </h3>\n" +
-                            "                        <img class=\"imgQuestion\" src=\"./src/14.jpg\" id=\"imgTxt\" draggable=\"false\">\n" +
+                            "                        <!--<img class=\"imgQuestion\" src=\"./src/14.jpg\" id=\"imgTxt\" draggable=\"false\">!-->\n" +
                             "\n" +
                             "                        <div id=\"zoneRepAssos\">\n" +
                             "                            <div class=\"casesInternes\" id=\"repGauche\">\n";
@@ -1260,40 +1274,44 @@ public class QCMBuilder
                             "    });\n" +
                             "\n" +
                             "\n" +
-                            "    function checkErrors()\n" +
-                            "    {\n" +
-                            "        let estBon = true;\n" +
+                                    "    function checkErrors()\n" +
+                                    "    {\n" +
+                                    "        let estBon = true;\n" +
+                                    "\n" +
+                                    "        let cptBon = 0;\n" +
+                                    "\n" +
+                                    "        let tR = reponses.sort();\n" +
+                                    "        let tL = lignes.sort();\n" +
+                                    "\n" +
+                                    "\n" +
+                                    "        for(let i = 0 ; i < reponses.length ; i++)\n" +
+                                    "        {\n" +
+                                    "\n" +
+                                    "            if((tR[i][0][0] === tL[i][0][0] && tR[i][0][1] === tL[i][0][1]) || (tR[i][0][1] === tL[i][0][0] && tR[i][0][0] === tL[i][0][1]))\n" +
+                                    "            {\n" +
+                                    "                cptBon++;\n" +
+                                    "            }\n" +
+                                    "\n" +
+                                    "            console.log(cptBon)\n" +
+                                    "        }\n" +
+                                    "\n" +
+                                    "        if(cptBon < reponses.length)\n" +
+                                    "        {\n" +
+                                    "            estBon = false;\n" +
+                                    "        }\n" +
+                                    "\n" +
+                                    "\n" +
+                                    "        if(!tabCompletion[questionActuelle] && estBon)\n" +
+                                    "        {        \n" +
+                                    "            totalPoints += points;\n" +
+                                    "            document.getElementById(\"note\").innerHTML = (\"Total des points : \" + totalPoints + \" / \" + noteMax)\n" +
+                                    "        }\n" +
+                                    "\n" +
+                                    "        questionActuelleEstBon = estBon;\n" +
+                                    "\n" +
+                                    "        return estBon;\n" +
+                                    "    }" +
                             "\n" +
-                            "        console.log(lignes);\n" +
-                            "        console.log(reponses);\n" +
-                            "\n" +
-                            "        for(let i = 0 ; i < reponses.length ; i++)\n" +
-                            "        {\n" +
-                            "            for(let j = 0 ; j < reponses[i].length ; j++)\n" +
-                            "            {\n" +
-                            "                for(let v = 0 ; v < reponses[i][j].length ; v++)\n" +
-                            "                {\n" +
-                            "                    console.log(reponses[i][j][v] + \" \" + lignes[i][j][v])\n" +
-                            "\n" +
-                            "                    if(reponses[i][j][v] !== lignes[i][j][v])\n" +
-                            "                    {\n" +
-                            "                        estBon = false;\n" +
-                            "                    }\n" +
-                            "                }\n" +
-                            "            }\n" +
-                            "        }\n" +
-                            "\n" +
-                            "\n" +
-                            "        if(!tabCompletion[questionActuelle] && estBon)\n" +
-                            "        {        \n" +
-                            "            totalPoints += points;\n" +
-                            "            document.getElementById(\"note\").innerHTML = (\"Total des points : \" + totalPoints + \" / \" + noteMax)\n" +
-                            "        }\n" +
-                            "\n" +
-                            "        questionActuelleEstBon = estBon;\n" +
-                            "\n" +
-                            "        return estBon;\n" +
-                            "    }\n" +
                             "\n" +
                             "\n" +
                             "    function selection(element, index)\n" +
@@ -1432,8 +1450,8 @@ public class QCMBuilder
                             "    \n" +
                             "\n" +
                             "    \n" +
-                            "    document.getElementById(\"btnPreced\").onclick = function() {if(!estChronometrer){questionPrecedante(), question3()}}\n" +
-                            "    document.getElementById(\"btnSuiv\").onclick = function() {if(estChronometrer){if(tabCompletion[questionActuelle]){questionSuivante(), question5()}}else{questionSuivante(), question5()}};\n" +
+                            "    document.getElementById(\"btnPreced\").onclick = function() {if(!estChronometrer){questionPrecedante(), " + questionPrecedente + "}}\n" +
+                            "    document.getElementById(\"btnSuiv\").onclick = function() {if(estChronometrer){if(tabCompletion[questionActuelle]){questionSuivante(), " + questionSuivante + "}}else{questionSuivante(), " + questionSuivante + "}};\n" +
                             "\n" +
                             "}";
                 }

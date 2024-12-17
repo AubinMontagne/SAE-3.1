@@ -7,21 +7,64 @@ public class EliminationReponse extends Question {
 	private String                   reponseCorrecte;
 	private HashMap<String,Double[]> hmReponses;
 
-	public EliminationReponse(String intitule, Difficulte difficulte, Notion notion, int temps, int points) {
-		super(intitule, difficulte, notion, temps, points);
-		this.reponseCorrecte = "";
-		this.hmReponses      = new HashMap<>();
-	}
-
+	// Constructeur
+	/**
+	 * Constructeur de la class EliminationReponse
+	 * @param intitule		L'intituler de la question type Entité-Association
+	 * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
+	 * @param notion        La notion concernée par la question.
+	 * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
+	 * @param points        Le nombre de points que rapporte la question.
+	 * @param explication   Les explications de la réponse à la question
+	 */
 	public EliminationReponse(String intitule, Difficulte difficulte, Notion notion, int temps, int points, String explication) {
 		super(intitule, difficulte, notion, temps, points, explication);
 		this.reponseCorrecte = "";
 		this.hmReponses      = new HashMap<>();
 	}
 
+	/**
+	 * Constructeur de la class EliminationReponse
+	 * @param intitule		L'intituler de la question type Entité-Association
+	 * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
+	 * @param notion        La notion concernée par la question.
+	 * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
+	 * @param points        Le nombre de points que rapporte la question.
+	 */
+	public EliminationReponse(String intitule, Difficulte difficulte, Notion notion, int temps, int points) {
+		super(intitule, difficulte, notion, temps, points);
+		this.reponseCorrecte = "";
+		this.hmReponses      = new HashMap<>();
+	}
+
+	// Methode
+	/**
+	 * Méthode ajouterReponse
+	 * @param reponse	Le text de la réponse
+	 * @param points	Le nombre de points
+	 * @param ordre		L'ordre dans le quelle éliminé la réponse, si elle peut l'ètre
+	 */
+	public void ajouterReponse(String reponse, Double points, Double ordre){
+		if (!this.hmReponses.containsKey(reponse) && ordre <= this.getLastIndex()+1) {
+			this.hmReponses.put(reponse, new Double[]{points, ordre});
+		}
+	}
+
+	/**
+	 * Method supprimerReponse
+	 * @param reponse La réponse a supprimer
+	 */
+	public void supprimerReponse(String reponse){this.hmReponses.remove(reponse); }
+
+	/**
+	 * Méthode estReponseCorrecte
+	 * @param reponse	La réponse qu'on vérifie
+	 * @return			Vrai ou faux selon si la réponse est bonne ou pas
+	 */
+	public boolean estReponseCorrecte(String reponse) {return this.reponseCorrecte.equals(reponse); }
+
 	// Getters
 	public String getReponseCorrecte() {return this.reponseCorrecte; }
-
 	public HashMap<String,Double[]> getHmReponses() {return this.hmReponses; }
 
 	public Double getLastIndex() {
@@ -33,22 +76,6 @@ public class EliminationReponse extends Question {
 		}
 		return indexMax + 1;
 	}
-
-	public boolean isReponseCorrecte(String reponse) {return this.reponseCorrecte.equals(reponse); }
-
-	// Setters
-	public void setReponseCorrecte(String reponseCorrecte) {this.reponseCorrecte = reponseCorrecte; }
-
-	public void setHmReponses(HashMap<String,Double[]>  hmReponses) {this.hmReponses = hmReponses; }
-
-	// Methods to add and remove incorrect responses
-	public void ajouterReponse(String reponse, Double points, Double ordre){
-		if (!this.hmReponses.containsKey(reponse) && ordre <= this.getLastIndex()+1) {
-			this.hmReponses.put(reponse, new Double[]{points, ordre});
-		}
-	}
-
-	public void removeReponse(String reponse){this.hmReponses.remove(reponse); }
 
 	public String getAsData(){
 		String res = this.getClass().getName() + ";" + super.getAsData() + ";" ;
@@ -93,6 +120,11 @@ public class EliminationReponse extends Question {
 		return er;
 	}
 
+	// Setters
+	public void setReponseCorrecte(String reponseCorrecte) {this.reponseCorrecte = reponseCorrecte; }
+	public void setHmReponses(HashMap<String,Double[]>  hmReponses) {this.hmReponses = hmReponses; }
+
+	// toString
 	public String toString(){
 		String res = super.toString();
 		res += "Reponse correcte : " + this.reponseCorrecte + "\n";

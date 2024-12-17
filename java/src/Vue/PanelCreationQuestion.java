@@ -13,15 +13,25 @@ import src.Metier.Notion;
 import src.Metier.Ressource;
 
 public class PanelCreationQuestion extends JPanel implements ActionListener, ItemListener {
-	private Controleur 			 ctrl;
+	private Controleur ctrl;
 	private JComboBox<Ressource> listeRessources;
-	private JComboBox<Notion> 	 listeNotions;
-	private JButton 			 boutonTresFacile, boutonFacile, boutonMoyen, boutonDifficile;
-	private JButton 			 boutonConfirmer;
-	private JComboBox<String> 	 listeTypes;
-	private JLabel 				 labelMessage, labelResultat;
+	private JComboBox<Notion> listeNotions;
+	private JButton boutonTresFacile, boutonFacile, boutonMoyen, boutonDifficile;
+	private JButton boutonConfirmer;
+	private JComboBox<String> listeTypes;
+	private JLabel labelMessage, labelResultat;
 	private ArrayList<Ressource> ressources;
-	private ArrayList<Notion> 	 notions;
+	private ArrayList<Notion> notions;
+	//
+	private JTextField champPoints;
+	private JTextField champTemps;
+	// A envoyer aux 3 autres panels
+
+	private int difficulté;
+	private String notion;
+	private int temps;
+	private int points;
+
 
 	private static final ImageIcon[] IMAGES_DIFFICULTE = {
 			new ImageIcon("../../../../data/Images/imgDif/D.png"),
@@ -44,9 +54,9 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		panelConfiguration.setBorder(BorderFactory.createTitledBorder("Configuration"));
 
 		JLabel labelPoints = new JLabel("Nombre de points :");
-		JTextField champPoints = new JTextField();
+		this.champPoints = new JTextField();
 		JLabel labelTemps = new JLabel("Temps de réponse (min:sec) :");
-		JTextField champTemps = new JTextField("00:30");
+		this.champTemps = new JTextField("00:30");
 
 		panelConfiguration.add(labelPoints);
 		panelConfiguration.add(champPoints);
@@ -60,19 +70,21 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		panelSelection.setBorder(BorderFactory.createTitledBorder("Sélection"));
 
 		JLabel labelRessource = new JLabel("Ressource :");
-		listeRessources       = new JComboBox<Ressource>();
+		listeRessources = new JComboBox<Ressource>();
 		for(Ressource ressource : ressources)
 		{
 			listeRessources.addItem(ressource);
 		}
+
 		listeRessources.addItemListener(this);
 
 		JLabel labelNotion = new JLabel("Notion :");
-		listeNotions 	   = new JComboBox<>();
+		listeNotions = new JComboBox<>();
 		for(Notion notion : notions)
 		{
 			listeNotions.addItem(notion);
 		}
+
 		listeNotions.setEnabled(false);
 		listeNotions.addItemListener(this);
 
@@ -80,9 +92,9 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		JPanel panelNiveau = new JPanel(new FlowLayout());
 
 		boutonTresFacile = new JButton();
-		boutonFacile     = new JButton();
-		boutonMoyen      = new JButton();
-		boutonDifficile  = new JButton();
+		boutonFacile = new JButton();
+		boutonMoyen = new JButton();
+		boutonDifficile = new JButton();
 
 		boutonTresFacile.setPreferredSize(new Dimension(100, 100));
 		boutonFacile.setPreferredSize(new Dimension(100, 100));
@@ -118,7 +130,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		panelType.setBorder(BorderFactory.createTitledBorder("Type de Question"));
 
 		JLabel labelType = new JLabel("Type :");
-		listeTypes       = new JComboBox<>(new String[] { "QCM", "EntiteAssociation","Elimination" });
+		listeTypes = new JComboBox<>(new String[] { "QCM", "EntiteAssociation","Elimination" });
 
 		boutonConfirmer = new JButton("Confirmer");
 		boutonConfirmer.addActionListener(this);
@@ -162,20 +174,29 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == boutonTresFacile) {
 			JOptionPane.showMessageDialog(this, "Difficulté : Très Facile");
+			this.difficulté = 1;
 		} else if (e.getSource() == boutonFacile) {
 			JOptionPane.showMessageDialog(this, "Difficulté : Facile");
+			this.difficulté = 2;
 		} else if (e.getSource() == boutonMoyen) {
 			JOptionPane.showMessageDialog(this, "Difficulté : Moyen");
+			this.difficulté = 3;
 		} else if (e.getSource() == boutonDifficile) {
 			JOptionPane.showMessageDialog(this, "Difficulté : Difficile");
+			this.difficulté = 4;
 		}
 
 		if (e.getSource() == boutonConfirmer) {
+
 			String typeSelectionne = (String) listeTypes.getSelectedItem();
 
 			if ("QCM".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);
-				PanelQCM panelQCM = new PanelQCM(this.ctrl);
+				this.notion =  this.ctrl.getNomNotion( (Notion) this.listeNotions.getSelectedItem());// appelez la methode
+				this.temps = Integer.parseInt(this.champTemps.getText());
+				this.points = Integer.parseInt(this.champPoints.getText());
+
+				PanelQCM panelQCM = new PanelQCM(this.ctrl,this.difficulté,this.notion,this.points,this.temps);
 				panelQCM.setVisible(true);
 			} else if ("EntiteAssociation".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);
@@ -188,6 +209,9 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 				PanelElimination panelElimination = new PanelElimination(this.ctrl);
 				panelElimination.setVisible(true);
 			}
+
 		}
+
 	}
+
 }

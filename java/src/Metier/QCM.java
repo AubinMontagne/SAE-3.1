@@ -7,26 +7,46 @@ public class QCM extends Question {
 	private HashMap<String, Boolean> hmReponses;
 	private Boolean vraiOuFaux;
 
+	// Constructeur
+	/**
+	 * Constructeur de la class QCM
+	 * @param intitule		L'intituler de la question type QCM
+	 * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
+	 * @param notion        La notion concernée par la question.
+	 * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
+	 * @param points        Le nombre de points que rapporte la question.
+	 * @param vraiOuFaux   	Si le QCM est un vrai ou faux
+	 */
 	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux){
 		super(intitule, difficulte, notion, temps, points);
 		this.hmReponses = new HashMap<String, Boolean>();
 		this.vraiOuFaux = vraiOuFaux;
 	}
 
+	/**
+	 * Constructeur de la class QCM
+	 * @param intitule		L'intituler de la question type QCM
+	 * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
+	 * @param notion        La notion concernée par la question.
+	 * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
+	 * @param points        Le nombre de points que rapporte la question.
+	 * @param vraiOuFaux   	Si le QCM est un vrai ou faux
+	 * @param explication   Les explications de la réponse à la question
+	 */
 	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points,String explication, boolean vraiOuFaux){
 		super(intitule, difficulte, notion, temps, points, explication);
 		this.hmReponses = new HashMap<String, Boolean>();
 		this.vraiOuFaux = vraiOuFaux;
 	}
 
-	// Get
-	public HashMap<String, Boolean> getReponses() {return this.hmReponses; }
-	public int getNbReponses(){return this.hmReponses.size(); }
+	// Méthode
 
-	// Set
-	public void setHmReponses(HashMap<String, Boolean> hmReponses) {this.hmReponses = hmReponses; }
-
-	// Méthode pour gérer les réponse ajouter/enlever
+	/**
+	 * Methode ajouterReponse
+	 * @param reponse	Le text de la réponse
+	 * @param correct	Si la reponse est corecte
+	 * @return			Vrai si l'ajout a réussi, sinon faux
+	 */
 	public boolean ajouterReponse(String reponse, Boolean correct) {
 		if (this.vraiOuFaux && correct) {
 			for (Boolean value : this.hmReponses.values()) {
@@ -44,7 +64,15 @@ public class QCM extends Question {
 		return true;
 	}
 
-	public void enleverReponse(String reponse){this.hmReponses.remove(reponse); }
+	/**
+	 * Methode supprimerReponse
+	 * @param reponse	La réponse à supprimer
+	 */
+	public void supprimerReponse(String reponse){this.hmReponses.remove(reponse); }
+
+	// Get
+	public HashMap<String, Boolean> getReponses() {return this.hmReponses; }
+	public int getNbReponses(){return this.hmReponses.size(); }
 
 	@Override
 	public String getAsData(){
@@ -84,6 +112,9 @@ public class QCM extends Question {
 
 		return qcm;
 	}
+
+	// Set
+	public void setHmReponses(HashMap<String, Boolean> hmReponses) {this.hmReponses = hmReponses; }
 
 	public String toString() {
 		String res = super.toString();

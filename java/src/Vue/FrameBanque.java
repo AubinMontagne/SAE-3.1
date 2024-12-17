@@ -8,6 +8,11 @@ public class FrameBanque extends JFrame{
     private Controleur ctrl;
     private Notion     notion;
 
+    // Constructeur
+    /**
+     * Constructeur de la class FrameBanque
+     * @param ctrl  Le contrôleur
+     */
 	public FrameBanque(Controleur ctrl ){
         this.ctrl = ctrl;
 
@@ -24,6 +29,11 @@ public class FrameBanque extends JFrame{
         setVisible(true);
     }
 
+    /**
+     * Constructeur de la class FrameBanque
+     * @param notion La notion
+     * @param ctrl   Le contrôleur
+     */
     public FrameBanque( Notion notion, Controleur ctrl ){
         this.ctrl   = ctrl;
         this.notion = notion;

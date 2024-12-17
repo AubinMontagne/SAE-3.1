@@ -5,6 +5,7 @@ public class Notion
     private String    nom;
     private Ressource ressourceAssociee;
 
+    // Constructeur
     /**
      * Constructeur de la classe Notion.
      * @param nom               Le nom de la notion.
@@ -15,8 +16,7 @@ public class Notion
         this.ressourceAssociee = ressourceAssociee;
     }
 
-    // Get
-
+    // Getter
 	public boolean equals(Notion notion){
 		return this.nom.equals(notion.getNom()) &&
 		this.ressourceAssociee.equals(notion.getRessourceAssociee());
@@ -31,7 +31,7 @@ public class Notion
           return new Notion(parts[0], metier.getRessourceById(parts[1]));
     }
 
-    // Set
+    // Setter
     public void setNom(String nom)                               {this.nom = nom;}
     public void setRessourceAssociee(Ressource ressourceAssociee){this.ressourceAssociee = ressourceAssociee;}
 

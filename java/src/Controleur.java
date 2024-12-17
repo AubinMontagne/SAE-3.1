@@ -11,40 +11,38 @@ public class Controleur{
     private Metier metier;
     private FrameAccueil frameAccueil;
 
-
+	// Constructeur
+	/**
+	 * Constructeur de la class Controleur
+	 */
     public Controleur(){
         this.metier = new Metier();
+		this.metier.getRessourcesFromData("java/data/");
+		this.metier.getNotionsFromData("java/data/");
 		this.frameAccueil = new FrameAccueil(this);
     }
 
-    // Get
-
-    public Metier getMetier(){
-        return this.metier;
-    }
-
-	// Getters Individuels
+    // Getter
+    public Metier getMetier(){return this.metier; }
 
 	public Question  getQuestion (Question question)  {return this.metier.getQuestion(question);}
 	public Notion    getNotion   (Notion notion)      {return this.metier.getNotion(notion);}
 	public Ressource getRessource(Ressource ressource){return this.metier.getRessource(ressource);}
 
-	// Getters Listes
+	public ArrayList<Notion>    getNotions(){return this.metier.getNotions(); }
+    public ArrayList<Ressource> getRessources(){return this.metier.getRessources(); }
+    public ArrayList<Question>  getQuestions(){return this.metier.getQuestions(); }
 
-	public ArrayList<Notion>    getNotions(){
-        return this.metier.getNotions();
-    }
-    public ArrayList<Ressource> getRessources(){
-        return this.metier.getRessources();
-    }
-    public ArrayList<Question>  getQuestions(){
-        return this.metier.getQuestions();
-    }
+	// Bazar Aubin
+	public String getNomNotion(Notion notion)
+	{
+		return this.metier.getNomNotion(notion);
+	}
 
 	public ArrayList<Question> getQuestionsParNotion (Notion notion)      {return this.metier.getQuestionsParNotion(notion);}
 	public ArrayList<Notion>   getNotionsParRessource(Ressource ressource){return this.metier.getNotionsParRessource(ressource);}
 
-    // Set
+    // Setter
     public void setMetier(Metier metier){this.metier = metier;}
 
 	public void ajouterNotion   (Notion notion)       {this.metier.ajouterNotion(notion);}
@@ -61,6 +59,12 @@ public class Controleur{
 		//this.metier.getQuestionsFromData("./production/SAE-31/docs");
 	}
 
+	public void creerQuestionQCM(String intitule,int difficulte,String notion,int temps,int points,boolean vraiOuFaux)
+	{
+		this.metier.ajouterQuestionQCM(intitule,metier.getDifficulteByIndice(difficulte), metier.getNotionByNom(notion),temps,points,vraiOuFaux);
+	}
+
+	// Main
 	public static void main(String[] args){
 		Controleur controleur = new Controleur();
 	}
