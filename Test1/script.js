@@ -991,7 +991,7 @@ document.getElementById("rep2").onclick = function() { clicRep(1, "vrai-faux") }
 async function question4()
 {
     //Variables
-    let reponses = [[[0,3],[0,3]],[[2,1],[2,1]],[[5,4],[5,4]],[[7,6],[7,6]],]
+    let reponses = [[[0,3],[0,3]],[[2,7],[2,7]],[[5,4],[5,4]],[[6,1],[6,1]],]
                     
                 
     const difficulte = 'Moyen';
@@ -1046,15 +1046,15 @@ async function question4()
                         <div id="zoneRepAssos">
                             <div class="casesInternes" id="repGauche">
 <div class="reponseBoxAssos" id="rep1">La deux</div>
-<div class="reponseBoxAssos" id="rep3">La 5</div>
-<div class="reponseBoxAssos" id="rep5">La une</div>
-<div class="reponseBoxAssos" id="rep7">quoi</div>
+<div class="reponseBoxAssos" id="rep3">quoi</div>
+<div class="reponseBoxAssos" id="rep5">La 5</div>
+<div class="reponseBoxAssos" id="rep7">La une</div>
                             </div>
                             <div><canvas id="canvas"></canvas></div>
                             <div class="casesInternes" id="repDroite">
-<div class="reponseBoxAssos" id="rep2">La 6</div>
+<div class="reponseBoxAssos" id="rep2">La trois</div>
 <div class="reponseBoxAssos" id="rep4">La 4</div>
-<div class="reponseBoxAssos" id="rep6">La trois</div>
+<div class="reponseBoxAssos" id="rep6">La 6</div>
 <div class="reponseBoxAssos" id="rep8">feur</div>
                             </div>
                         </div>
@@ -1572,7 +1572,7 @@ document.getElementById("rep4").onclick = function() { clicRep(3, "elimination")
 async function question6()
 {
     //Variables
-    let reponses = [[[0,7],[0,7]],[[3,2],[3,2]],[[4,1],[4,1]],[[6,5],[6,5]],]
+    let reponses = [[[0,7],[0,7]],[[2,1],[2,1]],[[4,3],[4,3]],[[6,5],[6,5]],]
                     
                 
     const difficulte = 'Moyen';
@@ -1626,17 +1626,17 @@ async function question6()
 
                         <div id="zoneRepAssos">
                             <div class="casesInternes" id="repGauche">
-<div class="reponseBoxAssos" id="rep1">La une</div>
+<div class="reponseBoxAssos" id="rep1">Feur</div>
 <div class="reponseBoxAssos" id="rep3">La deux</div>
-<div class="reponseBoxAssos" id="rep5">Feur</div>
+<div class="reponseBoxAssos" id="rep5">La une</div>
 <div class="reponseBoxAssos" id="rep7">La deuxE</div>
                             </div>
                             <div><canvas id="canvas"></canvas></div>
                             <div class="casesInternes" id="repDroite">
-<div class="reponseBoxAssos" id="rep2">Coubeh</div>
-<div class="reponseBoxAssos" id="rep4">La 4</div>
+<div class="reponseBoxAssos" id="rep2">La 4</div>
+<div class="reponseBoxAssos" id="rep4">La trois</div>
 <div class="reponseBoxAssos" id="rep6">La 4</div>
-<div class="reponseBoxAssos" id="rep8">La trois</div>
+<div class="reponseBoxAssos" id="rep8">Coubeh</div>
                             </div>
                         </div>
 
@@ -1953,7 +1953,7 @@ async function question6()
 function question7()
 {
     //Variables
-    let bonnesRep = [false,false,false,true,false,];
+    let bonnesRep = [false,true,false,false,false,];
     const difficulte = "Moyen";
     const tempsDeReponse = 20;
     let points = 2;
@@ -2002,11 +2002,11 @@ function question7()
 
                         <h2> Type : QCM à choix unique ( Il n'y a qu'une seule bonne réponse )</h2>                        <h3> "Le vrai ou faux qui est le goat ? " </h3>
                         <div id="zoneRep">
-                             <div class="reponseBox" id="rep1" >'Thibault'</div>
-<div class="reponseBox" id="rep2" >'Antoine'</div>
-<div class="reponseBox" id="rep3" >'Aubin'</div>
-<div class="reponseBox" id="rep4" >'Julien'</div>
-<div class="reponseBox" id="rep5" >'Timoté'</div>
+                             <div class="reponseBox" id="rep1" >'Obein'</div>
+<div class="reponseBox" id="rep2" >'Jullian'</div>
+<div class="reponseBox" id="rep3" >'Tybolt'</div>
+<div class="reponseBox" id="rep4" >'Tymauter'</div>
+<div class="reponseBox" id="rep5" >'Entoinne'</div>
 
                         </div>
                         <footer>

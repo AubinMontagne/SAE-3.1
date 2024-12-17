@@ -1,13 +1,6 @@
 package src.Metier;
 
-import src.Controleur;
-
 public class TestJS{
-	/*private Controleur ctrl ;
-
-	public TestJS(){
-		this.crtl;
-	}*/
 
 	public static void main(String[] args){
 
@@ -67,8 +60,4 @@ public class TestJS{
 
 		new QCMBuilder(questionnaire, "./");
 	}
-
-	/*public void initQuestionnaire(Questionnaire q){
-		this.ctrl.q;
-	}*/
 }

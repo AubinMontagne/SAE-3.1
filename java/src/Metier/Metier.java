@@ -8,7 +8,6 @@ public class Metier{
     private ArrayList<Notion>    lstNotions;
     private ArrayList<Ressource> lstRessources;
     private ArrayList<Question>  lstQuestions;
-	private Questionnaire        questionnaire;
 
 	// Constructeur
 	/**
@@ -191,13 +190,6 @@ public class Metier{
 	public ArrayList<Ressource> getRessources(){return this.lstRessources; }
 	public ArrayList<Question>  getQuestions() {return this.lstQuestions; }
 
-	// Bazar aubin
-	public Questionnaire getQuestionnaire()   { return this.questionnaire; }
-	public String getNomNotion(Notion notion)
-	{
-		return notion.getNom();
-	}
-
 	public boolean ajouterQuestionQCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses) {
 		QCM questionQCM = new QCM(intitule, difficulte, notion, temps, points, vraiOuFaux);
 
@@ -352,6 +344,6 @@ public class Metier{
 		return notionsAssociees;
 	}
 	public void initQuestionnaire( Questionnaire q){
-		this.questionnaire = q;
+		new QCMBuilder(q, "./");
 	}
 }

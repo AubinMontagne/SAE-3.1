@@ -33,12 +33,6 @@ public class Controleur{
     public ArrayList<Ressource> getRessources(){return this.metier.getRessources(); }
     public ArrayList<Question>  getQuestions(){return this.metier.getQuestions(); }
 
-	// Bazar Aubin
-	public String getNomNotion(Notion notion)
-	{
-		return this.metier.getNomNotion(notion);
-	}
-
 	public ArrayList<Question> getQuestionsParNotion (Notion notion)      {return this.metier.getQuestionsParNotion(notion);}
 	public ArrayList<Notion>   getNotionsParRessource(Ressource ressource){return this.metier.getNotionsParRessource(ressource);}
 
