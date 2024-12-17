@@ -6,6 +6,12 @@ import src.Controleur;
 public class FrameRessource extends JFrame{
 	private Controleur ctrl;
 
+    // Constructeur
+
+    /**
+     * Contructeur de la class FrameRessource
+     * @param ctrl  Le contrôleur
+     */
 	public FrameRessource(Controleur ctrl){
         this.ctrl = ctrl;
 

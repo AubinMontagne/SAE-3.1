@@ -17,6 +17,11 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
     private JButton          btSupprRess;
     private JList<Ressource> list;
 
+    // Constructeur
+    /**
+     * Constructeur de la class PanelRessource
+     * @param ctrl Le contrôleur
+     */
     public PanelRessource(Controleur ctrl) {
         this.ctrl           = ctrl;
         // Initialisation du panel principal
@@ -47,6 +52,11 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
         this.add(this.panelRessource);
     }
 
+    // Methode
+    /**
+     * Methode valueChanged
+     * @param e L'évènement qui caractérise le changement
+     */
     public void valueChanged(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
             Ressource selectedRessource = this.list.getSelectedValue();
@@ -56,6 +66,10 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
         }
     }
 
+    /**
+     * Methode actionPerformed
+     * @param e L'évènement à traiter
+     */
     public void actionPerformed(ActionEvent e) {
         if (btNouvRess == e.getSource()) {
             System.out.println("La frame CreaRessource s'ouvre");
@@ -63,6 +77,9 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
         }
     }
 
+    /**
+     * Methode maj
+     */
     public void maj(){
         DefaultListModel<Ressource> listModel = new DefaultListModel<>();
         for (Ressource ressource : this.ctrl.getRessources()){

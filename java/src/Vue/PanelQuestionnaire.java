@@ -28,6 +28,12 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 	private Notion 	   n;
 	private Controleur ctrl;
 
+	// Constructeur
+
+	/**
+	 * Constructeur de la class PanelQuestionnaire
+	 * @param ctrl	Le contrôleur
+	 */
     public PanelQuestionnaire(Controleur ctrl) {
     	this.panelQuestionnaire = new JPanel(new BorderLayout());
     	this.panelQuestionnaire.setVisible(true);
@@ -81,7 +87,12 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 		});
 	}
 
-	// Méthode pour valider les champs et activer le bouton
+	// Methode
+
+	/**
+	 * Methode verifierChamps
+	 * @param texteTitre Champs à verifier
+	 */
 	private void verifierChamps(String texteTitre) {
 		this.videTitre = texteTitre.trim().isEmpty();
 		if (!this.videTitre && !this.videRessource) {
@@ -92,6 +103,10 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 		}
 	}
 
+	/**
+	 * Methode itemStateChanged
+	 * @param e L'évènement à traiter
+	 */
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getSource() == mdRessources && e.getStateChange() == ItemEvent.SELECTED) {
@@ -108,6 +123,10 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
         }
     }
 
+	/**
+	 * Methode actionPerformed
+	 * @param e L'évènement à traiter
+	 */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btConfirmer) {

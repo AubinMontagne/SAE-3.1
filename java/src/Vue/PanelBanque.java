@@ -20,8 +20,12 @@ public class PanelBanque extends JPanel implements  ActionListener{
     private JPanel     panelBanque;
     private JTable     tbQuestion;
 	
+	// Constructeur
 
-
+	/**
+	 * Constructeur de la class PanelBanque
+	 * @param ctrl	Le contrôleur
+	 */
     public PanelBanque(Controleur ctrl){
         this.ctrl         = ctrl;
         this.panelBanque  = new JPanel();
@@ -64,6 +68,11 @@ public class PanelBanque extends JPanel implements  ActionListener{
 		this.btCreaQuest.addActionListener(this)        ;
     }
 
+	/**
+	 * Contructeur de la class PanelBanque
+	 * @param notion	La notion
+	 * @param ctrl		Le contrôleur
+	 */
 	public PanelBanque(Notion notion, Controleur ctrl){
         this.ctrl        = ctrl;
 		this.notion      = notion;
@@ -108,6 +117,11 @@ public class PanelBanque extends JPanel implements  ActionListener{
 		this.btCreaQuest.addActionListener(this);
     }
 
+	// Methode
+	/**
+	 * Methode actionPerformed
+	 * @param e L'évènement à traiter
+	 */
 	public void actionPerformed(ActionEvent e){
         if ( this.btCreaQuest == e.getSource()){
             System.out.println("Hey la frame Creer question s'ouvre");

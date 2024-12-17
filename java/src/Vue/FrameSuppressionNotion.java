@@ -7,6 +7,14 @@ import src.Metier.Ressource;
 
 public class FrameSuppressionNotion extends JFrame{
 
+    // Controleur
+
+    /**
+     * Controleur de la class FrameSuppressionNotion
+     * @param ctrl          Le contrôleur
+     * @param r             La ressource
+     * @param panelNotion   Le panel notion ou mettre la frame
+     */
     public FrameSuppressionNotion( Controleur ctrl, Ressource r, PanelNotion panelNotion){
         System.out.println("Création de la frame SuppressionNotion");
 

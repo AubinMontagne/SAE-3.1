@@ -27,7 +27,7 @@ public class Ressource{
     public String getAsData(){return this.id + ";" + this.nom;}
 
 	public static Ressource getFromData(String data){
-        String[] parts = data.split(";");
+        String[] parts = new String[]{data.substring(0, data.indexOf(";")), data.substring(data.indexOf(";") + 1)};
         return new Ressource(parts[0], parts[1]);
     }
 

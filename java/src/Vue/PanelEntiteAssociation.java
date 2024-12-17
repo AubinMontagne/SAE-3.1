@@ -20,7 +20,12 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 
 	private Controleur ctrl;
 
+	// Constructeur
 
+	/**
+	 * Constructeur de la class PanelEntiteAssociation
+	 * @param ctrl	Le contrôleur
+	 */
 	public PanelEntiteAssociation(Controleur ctrl)
 	{
 		this.ctrl = ctrl;
@@ -65,6 +70,10 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 		boutonEnregistrer.addActionListener(this);
 	}
 
+	// Methode
+	/**
+	 * Methode ajouterAssociation
+	 */
 	private void ajouterAssociation() 
 	{
 		JPanel panelAjoutAssociation = new JPanel();
@@ -92,6 +101,9 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 		panelAssociations.repaint();
 	}
 
+	/**
+	 * Methode enregistrerAssociations
+	 */
 	private void enregistrerAssociations() 
 	{
 		String question = champQuestion.getText();
@@ -124,6 +136,10 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 		JOptionPane.showMessageDialog(this, resultats.toString(), "Résumé", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	/**
+	 * Methode actionPerformed
+	 * @param e L'évènement à traiter
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{

@@ -13,6 +13,12 @@ public class PanelAccueil extends JPanel implements  ActionListener{
     private JButton    btQuestionnaire;
     private JButton    btRessources;
 
+    // Constructeur
+
+    /**
+     * Constructeur de la class PanelAccueil
+     * @param ctrl  Le contrôleur
+     */
     public PanelAccueil( Controleur ctrl ){
         this.ctrl         = ctrl;
         this.panelAccueil = new JPanel(new GridLayout(3,1));
@@ -35,6 +41,11 @@ public class PanelAccueil extends JPanel implements  ActionListener{
         this.btRessources   .addActionListener(this) ;
     }
 
+    // Methode
+    /**
+     * Methode actionPerformed
+     * @param e L'évènement à traiter
+     */
     public void actionPerformed(ActionEvent e){
         if ( btBanque == e.getSource())
             new FrameBanque(this.ctrl);

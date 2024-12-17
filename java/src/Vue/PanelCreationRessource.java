@@ -18,6 +18,14 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 	private PanelRessource 		   panelRessource;
 	private FrameCreationRessource frameCreationRessource;
 
+	// Constructeur
+
+	/**
+	 * Constructeur de la class PanelCreationRessource
+	 * @param ctrl					 Le contôleur
+	 * @param panelRessource		 Le panel ressource
+	 * @param frameCreationRessource La frame de création de ressource
+	 */
 	public PanelCreationRessource(Controleur ctrl, PanelRessource panelRessource, FrameCreationRessource frameCreationRessource){
 		this.ctrl 					= ctrl;
 		this.frameCreationRessource = frameCreationRessource;
@@ -61,6 +69,11 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 		setVisible(true);
 	}
 
+	// Methode
+	/**
+	 * Methode actionPerformed
+	 * @param e L'évènement à traiter
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == boutonConfirmer) {

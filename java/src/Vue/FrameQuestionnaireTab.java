@@ -11,6 +11,9 @@ public class FrameQuestionnaireTab extends JFrame{
     /**
      * Constructeur de la class FrameQuestionnaireTab
      * @param ctrl          Le contrôleur
+     * @param r             La ressource
+     * @param titre         Le titre du questionnaire
+     * @param chrono        Si le questionnaire est chronométré
      */
     public FrameQuestionnaireTab( Controleur ctrl, Ressource r, String titre, boolean chrono){
         this.ctrl = ctrl;

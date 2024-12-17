@@ -64,6 +64,11 @@ public class QCM extends Question {
 		return true;
 	}
 
+	public boolean estVraiouFaux()
+	{
+		return this.vraiOuFaux;
+	}
+
 	/**
 	 * Methode supprimerReponse
 	 * @param reponse	La réponse à supprimer

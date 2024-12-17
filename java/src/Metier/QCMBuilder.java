@@ -110,7 +110,6 @@ public class QCMBuilder
                             "    <script src=\"./script.js\"></script>\n" +
                             "</head>\n" +
                             "<body>\n" +
-                            "    <header></header>\n" +
                             "    <h1>Bienvenue dans un Questionnaire en " + this.questionnaire.getRessource().getNom() +"!</h1>\n" +
                             "    <h2>"+ this.questionnaire.getNom() +"</h2>\n" +
                             "    <h2>Temps pour finir : "+ questionnaire.getTempsEstimee() +" Secondes</h2>\n" +
@@ -297,7 +296,7 @@ public class QCMBuilder
             indiceLigne++;
         }
 
-        indiceLigne = 0;
+        indiceLigne = 1;
 
         for(Question q : this.questionnaire.getLstQuestion())
         {
@@ -321,16 +320,22 @@ public class QCMBuilder
 
         //Debut elimination
 
-        for (Question q : this.questionnaire.getLstQuestion()) {
+        indice = 1;
+
+        for (Question q : this.questionnaire.getLstQuestion())
+        {
             if (q instanceof EliminationReponse) {
-                tabEliminations = tabEliminations + "nbEliminationQ" + (indice + 1) + " = [";
+                tabEliminations = tabEliminations + "nbEliminationQ" + (indice) + " = [";
                 for (int i = 0; i < ((EliminationReponse) q).getHmReponses().size(); i++) {
                     tabEliminations = tabEliminations + "false,";
-                    indice++;
+
                 }
                 tabEliminations = tabEliminations + "];\n";
             }
+            indice++;
         }
+
+
 
         int nbTresFacile = 0;
         int nbFacile = 0;
@@ -385,7 +390,7 @@ public class QCMBuilder
                         lignes +
                         "\n" +
                         "\n" +
-                        tabEliminations +
+                        "let " + tabEliminations +
                         "\n" +
                         "function resetVariables()\n" +
                         "{\n" +
@@ -432,6 +437,7 @@ public class QCMBuilder
                         "\n" +
                         "function validerQuestion(bonnesRep, typeQuestion)\n" +
                         "{\n" +
+                        "\tdocument.getElementById(\"valider\").classList.add(\"griser\");\n" +
                         "    if(!tabCompletion[questionActuelle])\n" +
                         "    {\n" +
                         "        afficherReponse(bonnesRep, typeQuestion);\n" +
@@ -577,27 +583,32 @@ public class QCMBuilder
                         "            break;\n" +
                         "        }\n" +
                         "\n" +
-                        "        case \"vrai-faux\" : \n" +
+                        "        case \"vrai-faux\" :\n" +
                         "        {\n" +
                         "            if(!tabCompletion[questionActuelle])\n" +
                         "            {\n" +
-                        "                if(document.getElementById(\"rep1\").classList.contains('selected'))\n" +
+                        "                for(let i = 1 ; document.getElementById(\"rep\" + i) != null ; i++)\n" +
                         "                {\n" +
-                        "                    document.getElementById(\"rep1\").classList.toggle('selected');\n" +
-                        "                }\n" +
-                        "                if(document.getElementById(\"rep2\").classList.contains('selected'))\n" +
-                        "                {\n" +
-                        "                    document.getElementById(\"rep2\").classList.toggle('selected');\n" +
+                        "                    if(document.getElementById(\"rep\" + i).classList.contains('selected'))\n" +
+                        "                    {\n" +
+                        "                        document.getElementById(\"rep\" + i).classList.remove('selected');\n" +
+                        "                    }\n" +
                         "                }\n" +
                         "\n" +
-                        "                let tmp = tabSelections[questionActuelle][index];\n" +
-                        "                tabSelections[questionActuelle] = [false,false];\n" +
-                        "                tabSelections[questionActuelle][index] = !tmp;\n" +
+"                       \t\t\t\tfor(let i = 0 ; i < tabSelections[questionActuelle].length ; i++)\n" +
+                        "\t\t\t\t{\n" +
+                        "\t\t\t\t\tif(i != index)\n" +
+                        "\t\t\t\t\t{\n" +
+                        "\t\t\t\t\t\ttabSelections[questionActuelle][i] = false;\n" +
+                        "\t\t\t\t\t}else{\n" +
+                        "\t\t\t\t\t\ttabSelections[questionActuelle][i] = true;\n" +
+                        "\t\t\t\t\t}\n" +
+                        "\t\t\t\t}" +
                         "\n" +
-                        "                document.getElementById(\"rep\" + (index+1)).classList.toggle('selected');\n" +
+                        "                document.getElementById(\"rep\" + (index+1)).classList.add('selected');\n" +
                         "            }\n" +
                         "            break;\n" +
-                        "        }\n" +
+                        "        }" +
                         "\n" +
                         "        case \"elimination\" :\n" +
                         "        {\n" +
@@ -659,7 +670,6 @@ public class QCMBuilder
                         "                            <script src=\"./script.js\"></script>\n" +
                         "                        </head>\n" +
                         "                        <body>\n" +
-                        "                            <header></header>\n" +
                         "                            <h1>Bienvenue dans un Questionnaire !</h1>\n" +
                         "                            <h2>"+ questionnaire.getNom() +"<!-- Avoir la matiere avec JS --></h2>\n" +
                         "                            <h2>Temps pour finir : " + questionnaire.getTempsEstimee() + " Secondes<!-- Avoir la durér avec JS --></h2>\n" +
@@ -826,6 +836,7 @@ public class QCMBuilder
                     String onClicFonctions = "";
                     String questionSuivante = "";
                     String questionPrecedente = "";
+                    String txtChoixRep = "";
 
                     if ((questionnaire.getLstQuestion().indexOf(q) == 0)) {
                         questionPrecedente = "question1()";
@@ -839,20 +850,34 @@ public class QCMBuilder
                         questionSuivante = "question" + ((questionnaire.getLstQuestion().indexOf(q)) + 2) + "()";
                     }
 
+
                     int i = 1;
 
-                    for (String reponse : ((QCM) q).getReponses().keySet()) {
+                    for (String reponse : ((QCM) q).getReponses().keySet())
+                    {
+
                         if (((QCM) q).getReponses().get(reponse)) {
                             bonnesRep = bonnesRep + "true,";
                         } else {
                             bonnesRep = bonnesRep + "false,";
                         }
                         reponses = reponses + "<div class=\"reponseBox\" id=\"rep" + i + "\" >'" + reponse + "'</div>\n";
-                        onClicFonctions = onClicFonctions + "document.getElementById(\"rep" + i + "\").onclick = function() { clicRep(" + (i - 1) + ", \"QCM\") };\n";
+                        if(!((QCM)q).estVraiouFaux())
+                            onClicFonctions = onClicFonctions + "document.getElementById(\"rep" + i + "\").onclick = function() { clicRep(" + (i - 1) + ", \"QCM\") };\n";
+                        else
+                            onClicFonctions = onClicFonctions + "document.getElementById(\"rep" + i + "\").onclick = function() { clicRep(" + (i - 1) + ", \"vrai-faux\") };\n";
+
                         i++;
                     }
 
                     bonnesRep = bonnesRep + "];";
+
+                    if (!((QCM)q).estVraiouFaux())
+                    {
+                        txtChoixRep = "QCM ( Il y a plusieurs réponses possibles )";
+                    }else{
+                        txtChoixRep = "QCM à choix unique ( Il n'y a qu'une seule bonne réponse )";
+                    }
 
 
                     res += "\n\nfunction question" + (questionnaire.getLstQuestion().indexOf(q) + 1) + "()\n" +
@@ -884,6 +909,7 @@ public class QCMBuilder
                             "                        </div>\n" +
                             "\n" +
                             "\n" +
+                            "                   <header>\n"+
                             "                        <div class=\"compteurs\">\n" +
                             "                            <div class=\"timer, compteurs-div\" id=\"chrono\">00:00</div>\n" +
                             "                            <div class=\"compteurs-div\">Questions traitées : <span id=\"questionsDone\">0</span>/`+ nbQuestion +`</div>\n" +
@@ -893,6 +919,7 @@ public class QCMBuilder
                             "                        <div class=\"progress-container\">\n" +
                             "                            <div class=\"progress-bar\" id=\"progressBar\">0%</div>\n" +
                             "                        </div>\n" +
+                            "                   </header>\n"+
                             "\n" +
                             "                        <script src=\"./script.js\"></script>\n" +
                             "\n" +
@@ -903,8 +930,8 @@ public class QCMBuilder
                             "                        <br>\n" +
                             "                        <!-- Pour un QCM -->\n" +
                             "\n" +
-                            "                        <h2> Type : QCM (Il y a plusieurs réponses possibles)</h2>" +
-                            "                        <h3> \"" + q.getExplicationFich() + "\" </h3>\n" +
+                            "                        <h2> Type : " + txtChoixRep + "</h2>" +
+                            "                        <h3> \"" + q.getEnonceFich() + "\" </h3>\n" +
                             "                        <div id=\"zoneRep\">\n" +
                             "                             " + reponses + "\n" +
                             "                        </div>\n" +
@@ -997,6 +1024,7 @@ public class QCMBuilder
                             "\n" +
                             "    if(tabCompletion[questionActuelle])\n" +
                             "    {\n" +
+                            "        \t\tdocument.getElementById(\"valider\").classList.add(\"griser\");\n" +
                             "        afficherReponse(bonnesRep, 'QCM');\n" +
                             "    }\n" +
                             "\n" +
@@ -1132,6 +1160,7 @@ public class QCMBuilder
                             "                        </div>\n" +
                             "\n" +
                             "\n" +
+                            "                    <header>\n"+
                             "                        <div class=\"compteurs\">\n" +
                             "                            <div class=\"timer, compteurs-div\" id=\"chrono\">00:00</div>\n" +
                             "                            <div class=\"compteurs-div\">Questions traitées : <span id=\"questionsDone\">0</span>/`+ nbQuestion +`</div>\n" +
@@ -1141,6 +1170,7 @@ public class QCMBuilder
                             "                        <div class=\"progress-container\">\n" +
                             "                            <div class=\"progress-bar\" id=\"progressBar\">0%</div>\n" +
                             "                        </div>\n" +
+                            "                   </header>\n"+
                             "                        <script src=\"./script.js\"></script>\n" +
                             "\n" +
                             "                        <h1> Question `+ questionActuelle +` : </h1>\n" +
@@ -1149,9 +1179,10 @@ public class QCMBuilder
                             "\n" +
                             "                        <br>\n" +
                             "                        <!-- Pour un QCM -->\n" +
+                            "                        <h2> Type : Association d'éléments ( Un seul élément à gauche pour un seul à droite ) </h2>" +
                             "\n" +
-                            "                        <h3> "+ "Explications" +" </h3>\n" +
-                            "                        <!--<img class=\"imgQuestion\" src=\"./src/14.jpg\" id=\"imgTxt\" draggable=\"false\">!-->\n" +
+                            "                        <h3> \"" + q.getEnonceFich() + "\" </h3>\n" +
+                            "                        <!--<img class=\"imgQuestion\" src=\"./src/14.jpg\" id=\"imgTxt\" draggable=\"false\">!-->\n" + //Si on veut mettre une image c'est ici
                             "\n" +
                             "                        <div id=\"zoneRepAssos\">\n" +
                             "                            <div class=\"casesInternes\" id=\"repGauche\">\n";
@@ -1223,6 +1254,7 @@ public class QCMBuilder
                             "\n" +
                             "    if(tabCompletion[questionActuelle])\n" +
                             "    {\n" +
+                                    "\t\tdocument.getElementById(\"valider\").classList.add(\"griser\");\n" +
                             "        afficherReponse(reponses, 'EA');\n" +
                             "    }\n" +
                             "\n" +
@@ -1248,10 +1280,18 @@ public class QCMBuilder
                             "            if(tps <= 0)\n" +
                             "            {\n" +
                             "                stopTimerQuestion();\n" +
-                            "                drawLines(lignes"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +", 'erreurs');\n" +
-                            "                validerQuestion(bonnesRep,\"EA\");\n" +
-                            "                clearInterval(this);\n" +
-                            "                showFeedBack(checkErrors(),points,texteExplications);\n" +
+                            "                if(!tabCompletion[questionActuelle])\n" +
+                            "                {\n" +
+                            "                    drawLines(lignesQ4, 'erreurs');\n" +
+                            "                }\n" +
+                            "\n" +
+                            "                checkErrors();\n" +
+                            "                validerQuestion(reponses,\"EA\");\n" +
+                            "\n" +
+                            "                if(tabCompletion[questionActuelle])\n" +
+                            "                {\n" +
+                            "                    showFeedBack(questionActuelleEstBon, points, texteExplications);\n" +
+                            "                }" +
                             "            }\n" +
                             "        }, 1000);\n" +
                             "    }\n" +
@@ -1301,7 +1341,7 @@ public class QCMBuilder
                                     "        let cptBon = 0;\n" +
                                     "\n" +
                                     "        let tR = reponses.sort();\n" +
-                                    "        let tL = lignes.sort();\n" +
+                                    "        let tL = lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +".sort();\n" +
                                     "\n" +
                                     "\n" +
                                     "        for(let i = 0 ; i < reponses.length ; i++)\n" +
@@ -1368,12 +1408,12 @@ public class QCMBuilder
                             "\n" +
                             "        if(selectGauche >= 0 && selectDroite >= 0)\n" +
                             "        {\n" +
-                            "            for(let i = 0 ; i < lignes.length ; i++)\n" +
+                            "            for(let i = 0 ; i < lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +".length ; i++)\n" +
                             "            {\n" +
-                            "                if((lignes[i][selectGauche%2][0] == selectGauche && lignes[i][selectGauche%2][1] == selectDroite) || (lignes[i][selectDroite%2][0] == selectGauche && lignes[i][selectDroite%2][1] == selectDroite))\n" +
+                            "                if((lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +"[i][selectGauche%2][0] == selectGauche && lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +"[i][selectGauche%2][1] == selectDroite) || (lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +"[i][selectDroite%2][0] == selectGauche && lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +"[i][selectDroite%2][1] == selectDroite))\n" +
                             "                {\n" +
-                            "                    lignes[i][selectGauche%2] = [];\n" +
-                            "                    lignes[i][selectDroite%2] = [];\n" +
+                            "                    lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +"[i][selectGauche%2] = [];\n" +
+                            "                    lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +"[i][selectDroite%2] = [];\n" +
                             "                    document.getElementById(\"rep\" + (selectGauche+1)).classList.remove('selected');\n" +
                             "                    document.getElementById(\"rep\" + (selectDroite+1)).classList.remove('selected');\n" +
                             "\n" +
@@ -1383,12 +1423,12 @@ public class QCMBuilder
                             "\n" +
                             "                    ctx.clearRect(0, 0, canvas.width, canvas.height);\n" +
                             "\n" +
-                            "                    drawLines(lignes);\n" +
+                            "                    drawLines(lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +");\n" +
                             "\n" +
                             "                    return;\n" +
                             "                }\n" +
                             "\n" +
-                            "                if(lignes[i][0][0] == selectGauche)\n" +
+                            "                if(lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +"[i][0][0] == selectGauche)\n" +
                             "                {\n" +
                             "                    document.getElementById(\"rep\" + (selectGauche+1)).classList.remove('selected');\n" +
                             "                    selectGauche = -1;\n" +
@@ -1396,7 +1436,7 @@ public class QCMBuilder
                             "                    return;\n" +
                             "                }\n" +
                             "\n" +
-                            "                if(lignes[i][1][1] == selectDroite)\n" +
+                            "                if(lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +"[i][1][1] == selectDroite)\n" +
                             "                {\n" +
                             "                    document.getElementById(\"rep\" + (selectDroite+1)).classList.remove('selected');\n" +
                             "                    selectGauche = -1;\n" +
@@ -1405,11 +1445,11 @@ public class QCMBuilder
                             "                }\n" +
                             "            }\n" +
                             "\n" +
-                            "            lignes[Math.floor(index/2)][selectGauche%2][0] = selectGauche;\n" +
-                            "            lignes[Math.floor(index/2)][selectGauche%2][1] = selectDroite;\n" +
+                            "            lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +"[Math.floor(index/2)][selectGauche%2][0] = selectGauche;\n" +
+                            "            lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +"[Math.floor(index/2)][selectGauche%2][1] = selectDroite;\n" +
                             "\n" +
-                            "            lignes[Math.floor(index/2)][selectDroite%2][0] = selectGauche;\n" +
-                            "            lignes[Math.floor(index/2)][selectDroite%2][1] = selectDroite;\n" +
+                            "            lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +"[Math.floor(index/2)][selectDroite%2][0] = selectGauche;\n" +
+                            "            lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +"[Math.floor(index/2)][selectDroite%2][1] = selectDroite;\n" +
                             "            \n" +
                             "            selectDroite = -1;\n" +
                             "            selectGauche = -1;\n" +
@@ -1422,18 +1462,18 @@ public class QCMBuilder
                             "\n" +
                             "\n" +
                             "\n" +
-                            "        drawLines(lignes"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +");\n" +
+                            "        drawLines(lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +");\n" +
                             "    }\n" +
                             "\n" +
                             "    window.onload = function() {\n" +
-                            "        drawLines(lignes);\n" +
+                            "        drawLines(lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +");\n" +
                             "    }\n" +
                             "\n" +
                             "\n" +
                             "\n" +
                             "    if(tabCompletion[questionActuelle])\n" +
                             "    {\n" +
-                            "        drawLines(lignes" + (questionnaire.getLstQuestion().indexOf(q) + 1) + ", 'erreurs');\n" +
+                            "        drawLines(lignesQ" + (questionnaire.getLstQuestion().indexOf(q) + 1) + ", 'erreurs');\n" +
                             "        drawLines(reponses, 'correction');\n" +
                             "    }\n" +
                             "    \n" +
@@ -1453,7 +1493,7 @@ public class QCMBuilder
                             "        {\n" +
                             "            if(!tabCompletion[questionActuelle])\n" +
                             "            {\n" +
-                            "                drawLines(lignes "+ (questionnaire.getLstQuestion().indexOf(q) + 1) +", 'erreurs');\n" +
+                            "                drawLines(lignesQ"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +", 'erreurs');\n" +
                             "            }\n" +
                             "\n" +
                             "            checkErrors();\n" +
@@ -1473,6 +1513,265 @@ public class QCMBuilder
                             "    document.getElementById(\"btnPreced\").onclick = function() {if(!estChronometrer){questionPrecedante(), " + questionPrecedente + "}}\n" +
                             "    document.getElementById(\"btnSuiv\").onclick = function() {if(estChronometrer){if(tabCompletion[questionActuelle]){questionSuivante(), " + questionSuivante + "}}else{questionSuivante(), " + questionSuivante + "}};\n" +
                             "\n" +
+                            "}";
+                } else if ((q instanceof EliminationReponse))
+                {
+                    String reponses = "";
+                    String bonnesRep = "[";
+                    String onClicFonctions = "";
+                    String questionSuivante = "";
+                    String questionPrecedente = "";
+
+                    if ((questionnaire.getLstQuestion().indexOf(q) == 0)) {
+                        questionPrecedente = "question1()";
+                    } else {
+                        questionPrecedente = "question" + ((questionnaire.getLstQuestion().indexOf(q))) + "()";
+                    }
+
+                    if ((questionnaire.getLstQuestion().indexOf(q) == questionnaire.getLstQuestion().size() - 1)) {
+                        questionSuivante = "finQuestionnaire()";
+                    } else {
+                        questionSuivante = "question" + ((questionnaire.getLstQuestion().indexOf(q)) + 2) + "()";
+                    }
+
+                    int i = 1;
+
+                    for (String reponse : ((EliminationReponse) q).getHmReponses().keySet()) {
+                        if (((EliminationReponse) q).estReponseCorrecte(reponse)) {
+                            bonnesRep = bonnesRep + "true,";
+                        } else {
+                            bonnesRep = bonnesRep + "false,";
+                        }
+                        reponses = reponses + "<div class=\"reponseBox\" id=\"rep" + i + "\" >'" + reponse + "'</div>\n";
+                        onClicFonctions = onClicFonctions + "document.getElementById(\"rep" + i + "\").onclick = function() { clicRep(" + (i - 1) + ", \"elimination\") };\n";
+                        i++;
+                    }
+
+                    bonnesRep = bonnesRep + "];";
+
+                    String eliminations = "[";
+
+
+                    double coutElimination = 0.0;
+
+                    for(String reponse : ((EliminationReponse)q).getHmReponses().keySet())
+                    {
+                        if (((EliminationReponse) q).getHmReponses().get(reponse)[1] > 0)
+                        {
+                            eliminations += ((EliminationReponse) q).getHmReponses().get(reponse)[1].intValue() + ",";
+                        }else{
+                            eliminations += "-1,";
+                        }
+                        if(((EliminationReponse) q).getHmReponses().get(reponse)[0] > coutElimination)
+                        {
+                            coutElimination = ((EliminationReponse) q).getHmReponses().get(reponse)[0];
+                        }
+
+                    }
+
+                    eliminations += "];";
+
+
+
+                    res += "function question" + (questionnaire.getLstQuestion().indexOf(q) + 1) + "()\n" +
+                            "{\n" +
+                            "    //Variables\n" +
+                            "    let bonnesRep = " + bonnesRep + "\n" +
+                            "    let eliminations = " + eliminations + "\n" +
+                            "    let nbEliminations = 0;\n" +
+                            "    let points = " + q.getPoint() + ";\n" +
+                            "    let coutElimination = " + coutElimination + " ;\n" +
+                            "    let texteExplications = " + "'Temp A remplacer'" + ";\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "    const difficulte = '" + q.getDifficulte().getNom() + "';\n" +
+                            "    const tempsDeReponse = " + q.getTemps() +";\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "    let contenuPage =`<!DOCTYPE html>\n" +
+                            "                    <html lang=\"en\">\n" +
+                            "                    <head>\n" +
+                            "                        <meta charset=\"UTF-8\">\n" +
+                            "                        <title>QCMBuilder</title>\n" +
+                            "                        <link href=\"style.css\" rel=\"stylesheet\">\n" +
+                            "                    </head>\n" +
+                            "                    <body>\n" +
+                            "                        <div id=\"popup\" class=\"hiddenP\">\n" +
+                            "                            <div id=\"popupI\" class=\"hidden\">\n" +
+                            "                                <span id=\"closePopupBtn\" class=\"close\">&times;</span>\n" +
+                            "                                <h2 id=\"estReponseBonne\"></h2>\n" +
+                            "                                <p id=\"textFeedBack\"></p>\n" +
+                            "                            </div>\n" +
+                            "                        </div>\n" +
+                            "\n" +
+                            "\n" +
+                            "                   <header>\n"+
+                            "                        <div class=\"compteurs\">\n" +
+                            "                            <div class=\"timer, compteurs-div\" id=\"chrono\">00:00</div>\n" +
+                            "                            <div class=\"compteurs-div\">Questions traitées : <span id=\"questionsDone\">0</span>/`+ nbQuestion +`</div>\n" +
+                            "                            <div class=\"compteurs-div\">Question sur `+points+` points</div>\n" +
+                            "                            <div class=\"compteurs-div\" id=\"note\">Total des points : `+ totalPoints+` / `+ noteMax +`</div>\n" +
+                            "                        </div>\n" +
+                            "                        <div class=\"progress-container\">\n" +
+                            "                            <div class=\"progress-bar\" id=\"progressBar\">0%</div>\n" +
+                            "                        </div>\n" +
+                            "                   </header>\n"+
+                            "\n" +
+                            "                        <script src=\"./script.js\"></script>\n" +
+                            "\n" +
+                            "                        <h1> Question `+ questionActuelle +` : </h1>\n" +
+                            "                        <h2> Difficulté : `+ difficulte +` <!-- Avoir la difficulté de la question avec JS--> </h2>\n" +
+                            "\n" +
+                            "                        <br>\n" +
+                            "                        <!-- Pour un Elimination -->\n" +
+                            "                        <h2> Type : Elimination de réponses ( Cliquer sur supprimer enlèvera une mauvaise réponse mais vous enlèvera des points en contre partie ) </h2>" +
+                            "\n" +
+                            "                        <h3> \"" + q.getEnonceFich() + "\" </h3>\n" +
+                            "                        <div id=\"zoneRep\">\n" +
+                            "                        "  + reponses +
+                            "                        </div>\n" +
+                            "                        <div class=\"styleBut\" id=btnSup>Eliminer une réponse</div>\n" +
+                            "                        <footer>\n" +
+                            "                            <nav>\n" +
+                            "                                <div class=\"styleBut\" id=\"btnPreced\">Précédent</div>\n" +
+                            "                                <div class=\"styleBut\" id=\"valider\">Valider</div>\n" +
+                            "                                <div class=\"styleBut\" id=\"feedBack\">Feedback</div>\n" +
+                            "                                <div class=\"styleBut\" id=\"btnSuiv\">Suivant</div>\n" +
+                            "                            </nav>\n" +
+                            "                        </footer>\n" +
+                            "                    </body>\n" +
+                            "                    </html>`;\n" +
+                            "\n" +
+                            "    creerHtml(contenuPage);\n" +
+                            "\n" +
+                            "    updateProgress();\n" +
+                            "\n" +
+                            "    changerSelections();\n" +
+                            "\n" +
+                            "    \n" +
+                            "    //Génération du popup\n" +
+                            "    const popup = document.getElementById('popup');\n" +
+                            "    const closePopupBtn = document.getElementById('closePopupBtn');\n" +
+                            "    const popupI = document.getElementById('popupI');\n" +
+                            "    const feedBackBtn = document.getElementById('feedBack');\n" +
+                            "\n" +
+                            "\n" +
+                            "    feedBackBtn.addEventListener('click', () => {\n" +
+                            "        showFeedBack(questionActuelleEstBon, points, texteExplications);\n" +
+                            "    });\n" +
+                            "    \n" +
+                            "    // Cacher le popup\n" +
+                            "    closePopupBtn.addEventListener('click', () => {\n" +
+                            "        cacheFeedBack();\n" +
+                            "    });\n" +
+                            "    \n" +
+                            "    // Optionnel : Fermer le popup en cliquant en dehors\n" +
+                            "    popup.addEventListener('click', (event) => \n" +
+                            "    {\n" +
+                            "        if (event.target === popup) {\n" +
+                            "            cacheFeedBack();\n" +
+                            "        }\n" +
+                            "    });\n" +
+                            "\n" +
+                            "\n" +
+                            "    //Gestion du timer\n" +
+                            "    if(estChronometrer)\n" +
+                            "    {\n" +
+                            "        startTimerQuestion(tempsDeReponse);\n" +
+                            "    }else{\n" +
+                            "        document.getElementById('chrono').textContent = \"Temps estimé : \" + tempsDeReponse;\n" +
+                            "    }\n" +
+                            "\n" +
+                            "\n" +
+                            "    //Timer pour les questions\n" +
+                            "    function startTimerQuestion(tempsDeReponse) {\n" +
+                            "        isRunning = true;\n" +
+                            "        let tps = tempsDeReponse;\n" +
+                            "        timer = setInterval(() => {\n" +
+                            "            tps--;\n" +
+                            "            if(document.getElementById('chrono') != null)\n" +
+                            "                document.getElementById('chrono').textContent = \"Compte à rebours : \" + formatTime(tps) + \" secondes\";\n" +
+                            "            if(tps <= 0)\n" +
+                            "            {\n" +
+                            "                stopTimerQuestion();\n" +
+                            "                verifierReponses(bonnesRep, points)\n" +
+                            "                validerQuestion(bonnesRep,\"QCM\");\n" +
+                            "                showFeedBack(questionActuelleEstBon    ,points,texteExplications);\n" +
+                            "            }\n" +
+                            "        }, 1000);\n" +
+                            "    }\n" +
+                            "\n" +
+                            "    // Fonction pour arrêter le chronomètre\n" +
+                            "    function stopTimerQuestion() {\n" +
+                            "        isRunning = false;\n" +
+                            "        clearInterval(timer);\n" +
+                            "    }\n" +
+                            "\n" +
+                            "\n" +
+                            "    function suppQuestion(eliminations)\n" +
+                            "    {\n" +
+                            "        if(!tabCompletion[questionActuelle])\n" +
+                            "        {\n" +
+                            "            for(let i = 0 ;  i < eliminations.length ; i++)\n" +
+                            "            {\n" +
+                            "                if(nbEliminations+1 == eliminations[i])\n" +
+                            "                {\n" +
+                            "                    document.getElementById(\"rep\" + (i+1)).classList.remove('selected');\n" +
+                            "                    document.getElementById(\"rep\" + (i+1)).classList.add('eliminer');\n" +
+                            "                    nbEliminationQ" + (questionnaire.getLstQuestion().indexOf(q) + 1) + "[i] = true;\n" +
+                            "                    nbEliminations++;\n" +
+                            "                    points -= coutElimination;\n" +
+                            "                   if(points < 0) "+
+                            "                   {" +
+                            "                        points = 0; " +
+                            "                    }" +
+                            "                }\n" +
+                            "            }\n" +
+                            "        }\n" +
+                            "    }\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "    if(tabCompletion[questionActuelle])\n" +
+                            "    {\n" +
+                            "\t\tdocument.getElementById(\"valider\").classList.add(\"griser\");\n" +
+                            "        afficherReponse(bonnesRep, 'QCM');\n" +
+                            "    }\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "    // Mettre à jour les événements de clic\n" +
+                            "\n" +
+                            "    if(!tabCompletion[questionActuelle])\n" +
+                            "    {\n" +
+                            "    " + onClicFonctions +
+                            "\n" +
+                            "        document.getElementById(\"btnSup\").onclick = function() { suppQuestion(eliminations) };\n" +
+                            "        document.getElementById(\"valider\").onclick = function()\n" +
+                            "         {\n" +
+                            "            if(!tabCompletion[questionActuelle])\n" +
+                            "            {\n" +
+                            "                stopTimerQuestion();\n" +
+                            "                verifierReponses(bonnesRep, points)\n" +
+                            "                validerQuestion(bonnesRep, \"QCM\"); \n" +
+                            "                showFeedBack(questionActuelleEstBon    ,points,texteExplications);\n" +
+                            "            }\n" +
+                            "        };\n" +
+                            "    }else{\n" +
+                            "\n" +
+                            "        for(let i = 0 ; i < nbEliminationQ" + (questionnaire.getLstQuestion().indexOf(q) + 1) + ".length ; i++)\n" +
+                            "        {\n" +
+                            "            if(nbEliminationQ" + (questionnaire.getLstQuestion().indexOf(q) + 1) + "[i] == true)\n" +
+                            "            {\n" +
+                            "                document.getElementById(\"rep\" + (i+1)).classList.add('eliminer');\n" +
+                            "            }\n" +
+                            "        }\n" +
+                            "    }\n" +
+                            "\n" +
+                            "    document.getElementById(\"btnPreced\").onclick = function() {if(!estChronometrer){questionPrecedante(), " + questionPrecedente + "}}\n" +
+                            "    document.getElementById(\"btnSuiv\").onclick = function() {if(estChronometrer){if(tabCompletion[questionActuelle]){questionSuivante(), " + questionSuivante + "}}else{questionSuivante(), " + questionSuivante + "}};\n" +
                             "}";
                 }
             }

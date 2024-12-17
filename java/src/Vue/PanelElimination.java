@@ -16,6 +16,11 @@ public class PanelElimination extends JFrame implements ActionListener {
 	private JButton    boutonEnregistrer;
 	private Controleur ctrl;
 
+	// Constructeur
+	/**
+	 * Constructeur de la class PanelElimination
+	 * @param ctrl	Le contrôleur
+	 */
 	public PanelElimination(Controleur ctrl){
 		this.ctrl = ctrl;
 		setTitle("Créateur de Question élimination");
@@ -57,6 +62,11 @@ public class PanelElimination extends JFrame implements ActionListener {
 		boutonEnregistrer.addActionListener(this);
 	}
 
+	// Methode
+
+	/**
+	 * Methode ajouterReponse
+	 */
 	private void ajouterReponse(){
 		JPanel panelAjoutReponse   = new JPanel();
 		panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
@@ -85,6 +95,9 @@ public class PanelElimination extends JFrame implements ActionListener {
 		panelReponses.repaint();
 	}
 
+	/**
+	 * Methode enregistrerElimination
+	 */
 	private void enregistrerElimination(){
 		String question = champQuestion.getText();
 		if (question.isEmpty()){
@@ -107,6 +120,10 @@ public class PanelElimination extends JFrame implements ActionListener {
 		JOptionPane.showMessageDialog(this, resultats.toString(), "Résumé", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	/**
+	 * Methode actionPerformed
+	 * @param e L'évènement à traiter
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e){
 		String commande = e.getActionCommand();

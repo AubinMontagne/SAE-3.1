@@ -22,6 +22,15 @@ public class PanelCreationNotion extends JPanel implements ActionListener {
     private FrameCreationNotion frameCreationNotion;
     private PanelNotion         panelNotion;
 
+    // Constructeur
+
+    /**
+     * Contructeur de la class PanelCreationNotion
+     * @param crtl                  Le contrôleur
+     * @param r                     La ressource
+     * @param panelNotion           Le panel notion
+     * @param frameCreationNotion   La frame de création de question
+     */
     public PanelCreationNotion(Controleur crtl, Ressource r,PanelNotion panelNotion, FrameCreationNotion frameCreationNotion) {
         this.r                   = r;
         this.panelNotion         = panelNotion;
@@ -56,12 +65,20 @@ public class PanelCreationNotion extends JPanel implements ActionListener {
         setVisible(true);
     }
 
-    // Méthode pour vérifier si les champs sont remplis
+    // Methode
+
+    /**
+     * Methode verifierChamps
+     */
     private void verifierChamps() {
         String texteChampNom = champNom.getText().trim();
         boutonConfirmer.setEnabled(!texteChampNom.isEmpty() );
     }
 
+    /**
+     * Methode actionPerformed
+     * @param e L'évènement à traiter
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == boutonConfirmer) {
             String nom = champNom.getText().trim();

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import src.Controleur;
 
@@ -96,35 +97,71 @@ public class PanelQCM extends JFrame implements ActionListener
 		panelReponses.repaint();
 	}
 
-	private void enregistrerQCM(int difficulte,String notion,int temps,int points)
-	{
-		String question = champQuestion.getText();
-		if (question.isEmpty())
-		{
+	private void enregistrerQCMAvecHashMap() {
+		String question = champQuestion.getText().trim();
+		if (question.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "Veuillez entrer une question.", "Erreur", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 
-		// Résumé de la question faite (debug)
-		StringBuilder resultats = new StringBuilder("Question : " + question + "\nRéponses :\n");
-		Component[] composants = panelReponses.getComponents();
-		for (Component composant : composants)
-		{
-			if (composant instanceof JPanel)
-			{
-				JPanel reponse = (JPanel) composant;
-				JTextField champReponse = (JTextField) reponse.getComponent(0);
-				JCheckBox estCorrecte = (JCheckBox) reponse.getComponent(1);
-				resultats.append("- ").append(champReponse.getText())
-						.append(estCorrecte.isSelected() ? " (correcte)\n" : " (incorrecte)\n");
+		if (panelReponses.getComponentCount() == 0) {
+			JOptionPane.showMessageDialog(this, "Veuillez ajouter au moins une réponse.", "Erreur", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		// Prépare une HashMap temporaire pour les réponses
+		HashMap<String, Boolean> reponses = new HashMap<>();
+		boolean auMoinsUneReponseCorrecte = false;
+
+		for (Component composant : panelReponses.getComponents()) {
+			if (composant instanceof JPanel) {
+				JPanel panelReponse = (JPanel) composant;
+				JTextField champReponse = (JTextField) panelReponse.getComponent(0);
+				JCheckBox caseCorrecte = (JCheckBox) panelReponse.getComponent(1);
+
+				String texteReponse = champReponse.getText().trim();
+				boolean estCorrecte = caseCorrecte.isSelected();
+
+				// Validation des réponses
+				if (texteReponse.isEmpty()) {
+					JOptionPane.showMessageDialog(this, "Une réponse ne peut pas être vide.", "Erreur", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
+				if (reponses.containsKey(texteReponse)) {
+					JOptionPane.showMessageDialog(this, "Une réponse dupliquée a été détectée : " + texteReponse, "Erreur", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
+				// Ajout à la HashMap temporaire
+				reponses.put(texteReponse, estCorrecte);
+				if (estCorrecte) {
+					auMoinsUneReponseCorrecte = true;
+				}
 			}
 		}
-		JOptionPane.showMessageDialog(this, resultats.toString(), "Résumé", JOptionPane.INFORMATION_MESSAGE);
 
-		// BOOLEAN A GERER
-		this.ctrl.creerQuestionQCM(champQuestion.getText(),difficulte,notion,temps,points,false);
-		//this.ctrl.ajouterQuestion(question);
+		// Vérifie qu'au moins une réponse correcte est présente
+		if (!auMoinsUneReponseCorrecte) {
+			JOptionPane.showMessageDialog(this, "Veuillez sélectionner au moins une réponse correcte.", "Erreur", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		// Appelle le contrôleur pour créer la question
+		this.ctrl.creerQuestionQCM(
+				question,
+				difficulte,
+				notion,
+				temps,
+				points,
+				false, // "vraiOuFaux" est fixé à false ici
+				reponses
+		);
+
+		JOptionPane.showMessageDialog(this, "Question enregistrée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+		dispose(); // Ferme la fenêtre après l'enregistrement
 	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -132,13 +169,17 @@ public class PanelQCM extends JFrame implements ActionListener
 		String commande = e.getActionCommand();
 		switch (commande) {
 			case "ajouterReponse":
+				// Ajoute une nouvelle réponse à l'interface
 				ajouterReponse();
 				break;
-			// Ca enregistre la question
+
 			case "enregistrer":
-				enregistrerQCM( difficulte, notion, temps,points );
+				// Gère l'enregistrement du QCM avec la validation des réponses
+				enregistrerQCMAvecHashMap();
 				break;
+
 			default:
+				System.out.println("Commande inconnue : " + commande);
 				break;
 		}
 	}

@@ -20,6 +20,14 @@ public class PanelSupprimerNotion extends JPanel implements ActionListener, Item
     private FrameSuppressionNotion frameSuppressionNotion;
     private PanelNotion            panelNotion;
 
+    // Constructeur
+    /**
+     * Constructeur de la class PanelSupprimerNotion
+     * @param crtl                   Le contrôleur
+     * @param r                      La ressource
+     * @param panelNotion            Le panel des notions
+     * @param frameSuppressionNotion La frame de suppression des notions
+     */
     public PanelSupprimerNotion(Controleur crtl, Ressource r, PanelNotion panelNotion, FrameSuppressionNotion frameSuppressionNotion) {
         Ressource ressource = r;
 
@@ -54,6 +62,11 @@ public class PanelSupprimerNotion extends JPanel implements ActionListener, Item
         setVisible(true);
     }
 
+    // Methode
+    /**
+     * Methode actionPerformed
+     * @param e L'évènement à traiter
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == boutonConfirmer) {
 
@@ -68,6 +81,10 @@ public class PanelSupprimerNotion extends JPanel implements ActionListener, Item
         }
     }
 
+    /**
+     * Methode itemStateChanged
+     * @param e L'évènement à traiter
+     */
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.SELECTED) {

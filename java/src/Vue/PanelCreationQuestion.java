@@ -34,12 +34,17 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 
 	private static final ImageIcon[] IMAGES_DIFFICULTE = {
-			new ImageIcon("../../../../data/Images/imgDif/D.png"),
-			new ImageIcon("../../data.Image/carrebleuaveclettre.png"),
-			new ImageIcon("../../data.Image/carrerougeaveclettre.png"),
-			new ImageIcon("../../data.Image/carregrisaveclettre.png")
+			new ImageIcon("java/data/Images/imgDif/TF.png"),
+			new ImageIcon("java/data/Image/imgDif/F.png"),
+			new ImageIcon("java/data/Image/imgDif/M.png"),
+			new ImageIcon("java/data/Image/imgDif/D.pngng")
 	};
 
+	// Constructeur
+	/**
+	 * Constructeur de la class PanelCreationQuestion
+	 * @param ctrl	Le contrôleur
+	 */
 	public PanelCreationQuestion(Controleur ctrl) {
 		this.ctrl = ctrl;
 		this.ressources = this.ctrl.getRessources();
@@ -91,10 +96,10 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		JLabel labelNiveau = new JLabel("Difficulté :");
 		JPanel panelNiveau = new JPanel(new FlowLayout());
 
-		boutonTresFacile = new JButton();
-		boutonFacile = new JButton();
-		boutonMoyen = new JButton();
-		boutonDifficile = new JButton();
+		boutonTresFacile = new JButton(IMAGES_DIFFICULTE[0]);
+		boutonFacile = new JButton(IMAGES_DIFFICULTE[1]);
+		boutonMoyen = new JButton(IMAGES_DIFFICULTE[2]);
+		boutonDifficile = new JButton(IMAGES_DIFFICULTE[3]);
 
 		boutonTresFacile.setPreferredSize(new Dimension(100, 100));
 		boutonFacile.setPreferredSize(new Dimension(100, 100));
@@ -143,6 +148,11 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		setVisible(true);
 	}
 
+	// Methode
+	/**
+	 * Methode itemStateChanged
+	 * @param e L'évènement à traiter
+	 */
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		if (e.getSource() == listeRessources && e.getStateChange() == ItemEvent.SELECTED) {
@@ -170,6 +180,10 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		}
 	}
 
+	/**
+	 * Methode actionPerformed
+	 * @param e L'évènement à traiter
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == boutonTresFacile) {
@@ -209,9 +223,6 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 				PanelElimination panelElimination = new PanelElimination(this.ctrl);
 				panelElimination.setVisible(true);
 			}
-
 		}
-
 	}
-
 }
