@@ -2,6 +2,7 @@ package src.Metier;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Metier{
     private ArrayList<Notion>    lstNotions;
@@ -174,17 +175,17 @@ public class Metier{
 		return notion.getNom();
 	}
 
-	public boolean ajouterQuestionQCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux)
-	{
-		Question questionQCM;
+	public boolean ajouterQuestionQCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses) {
+		QCM questionQCM = new QCM(intitule, difficulte, notion, temps, points, vraiOuFaux);
 
-		questionQCM = new QCM(intitule,difficulte, notion,temps,points,vraiOuFaux);
-
-		if (questionQCM != null )
-		{
-			return this.lstQuestions.add(questionQCM);
+		// Ajout des réponses avec leurs booléens
+		for (HashMap.Entry<String, Boolean> entry : reponses.entrySet()) {
+			questionQCM.ajouterReponse(entry.getKey(), entry.getValue());
 		}
-		return false;
+		this.lstQuestions.add(questionQCM);
+		System.out.println(this.lstQuestions);
+
+		return true;
 	}
 
 	public Difficulte getDifficulteByIndice(int indice)

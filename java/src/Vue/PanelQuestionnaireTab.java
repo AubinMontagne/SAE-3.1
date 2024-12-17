@@ -11,6 +11,7 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 import src.*;
+import src.Metier.Difficulte;
 import src.Metier.*;
 
 public class PanelQuestionnaireTab extends JPanel implements ActionListener {
@@ -272,6 +273,7 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Aucune notion sélectionnée.", "Avertissement", JOptionPane.WARNING_MESSAGE);
                 return;
             }
+            Questionnaire questionnaire = new Questionnaire(this.titreQuestionnaire, this.r, this.estChrono);
 
             // Préparation de l'affichage des données
             StringBuilder sb = new StringBuilder("Données du questionnaire:\n");
@@ -288,6 +290,23 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
                 totalF += data.getF();
                 totalM += data.getM();
                 totalD += data.getD();
+
+                questionnaire.defNbQuestion(
+                        ctrl.getMetier().getNotionByNom(data.getNotion(),
+                        Difficulte.TRES_FACILE,
+                        data.getTf()  ));
+                questionnaire.defNbQuestion(
+                        ctrl.getMetier().getNotionByNom(data.getNotion(),
+                        new Difficulte(f, 0),
+                        data.getTf()  ));
+                questionnaire.defNbQuestion(
+                        ctrl.getMetier().getNotionByNom(data.getNotion(),
+                        new Difficulte(tf, 0),
+                        data.getTf()  ));
+                questionnaire.defNbQuestion(
+                        ctrl.getMetier().getNotionByNom(data.getNotion(),
+                        new Difficulte(tf, 0),
+                        data.getTf()  ));
             }
 
             // Ajout du total
@@ -302,7 +321,6 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
             JOptionPane.showMessageDialog(this, sb.toString(), "Résumé du questionnaire", JOptionPane.INFORMATION_MESSAGE);
 
             // Exemple de génération du questionnaire
-            Questionnaire questionnaire = new Questionnaire(this.titreQuestionnaire, this.r, this.estChrono);
             System.out.println(questionnaire.toString());
         }
     }

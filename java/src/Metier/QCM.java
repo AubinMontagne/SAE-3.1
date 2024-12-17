@@ -48,6 +48,8 @@ public class QCM extends Question {
 	 * @return			Vrai si l'ajout a réussi, sinon faux
 	 */
 	public boolean ajouterReponse(String reponse, Boolean correct) {
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
 		if (this.vraiOuFaux && correct) {
 			for (Boolean value : this.hmReponses.values()) {
 				if (value) {
@@ -57,6 +59,7 @@ public class QCM extends Question {
 		}
 		if (this.hmReponses.containsKey(reponse)) {
 			this.hmReponses.replace(reponse, correct);
+
 		}
 		else {
 			this.hmReponses.put(reponse, correct);

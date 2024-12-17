@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import src.Vue.FrameAccueil;
 import src.Metier.Metier;
 import src.Metier.Notion;
@@ -8,10 +9,9 @@ import src.Metier.Question;
 import src.Metier.Ressource;
 
 public class Controleur{
-    private Metier metier;
+	private Metier metier;
     private FrameAccueil frameAccueil;
 
-	// Constructeur
 	/**
 	 * Constructeur de la class Controleur
 	 */
@@ -59,9 +59,17 @@ public class Controleur{
 		//this.metier.getQuestionsFromData("./production/SAE-31/docs");
 	}
 
-	public void creerQuestionQCM(String intitule,int difficulte,String notion,int temps,int points,boolean vraiOuFaux)
+	public void creerQuestionQCM(String intitule, int difficulte, String notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses)
 	{
-		this.metier.ajouterQuestionQCM(intitule,metier.getDifficulteByIndice(difficulte), metier.getNotionByNom(notion),temps,points,vraiOuFaux);
+		this.metier.ajouterQuestionQCM(
+				intitule,
+				metier.getDifficulteByIndice(difficulte),
+				metier.getNotionByNom(notion),
+				temps,
+				points,
+				vraiOuFaux,
+				reponses
+		);
 	}
 
 	// Main

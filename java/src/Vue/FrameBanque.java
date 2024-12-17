@@ -13,7 +13,8 @@ public class FrameBanque extends JFrame{
      * Constructeur de la class FrameBanque
      * @param ctrl  Le contrôleur
      */
-	public FrameBanque(Controleur ctrl ){
+	public FrameBanque(Controleur ctrl )
+    {
         this.ctrl = ctrl;
 
         System.out.println("Création de la frame Banque");

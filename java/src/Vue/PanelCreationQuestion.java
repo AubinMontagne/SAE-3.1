@@ -22,7 +22,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	private JLabel labelMessage, labelResultat;
 	private ArrayList<Ressource> ressources;
 	private ArrayList<Notion> notions;
-	//
+
 	private JTextField champPoints;
 	private JTextField champTemps;
 	// A envoyer aux 3 autres panels
@@ -37,7 +37,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			new ImageIcon("java/data/Images/imgDif/TF.png"),
 			new ImageIcon("java/data/Image/imgDif/F.png"),
 			new ImageIcon("java/data/Image/imgDif/M.png"),
-			new ImageIcon("java/data/Image/imgDif/D.pngng")
+			new ImageIcon("java/data/Image/imgDif/D.png")
 	};
 
 	// Constructeur
@@ -85,6 +85,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 		JLabel labelNotion = new JLabel("Notion :");
 		listeNotions = new JComboBox<>();
+		this.notions = this.ctrl.getNotionsParRessource(this.ressources.get(listeRessources.getSelectedIndex()));
 		for(Notion notion : notions)
 		{
 			listeNotions.addItem(notion);
