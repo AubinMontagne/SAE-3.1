@@ -37,6 +37,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	private String notion;
 	private int temps;
 	private int points;
+	private JFrame frameCreaQuestion;
 
 
 	private static final ImageIcon[] IMAGES_DIFFICULTE = {
@@ -51,7 +52,8 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	 * Constructeur de la class PanelCreationQuestion
 	 * @param ctrl	Le contrôleur
 	 */
-	public PanelCreationQuestion(Controleur ctrl) {
+	public PanelCreationQuestion(Controleur ctrl, JFrame frameCreaQuestion ) {
+		this.frameCreaQuestion = frameCreaQuestion;
 		this.ctrl = ctrl;
 		this.ressources = this.ctrl.getRessources();
 		Ressource placeHolder = new Ressource("PlaceHolder","PlaceHolder");
@@ -275,6 +277,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 				this.points = Integer.parseInt(this.champPoints.getText());
 
 				PanelQCM panelQCM = new PanelQCM(this.ctrl,this.difficulté,this.notion,this.points,this.temps);
+				this.frameCreaQuestion.dispose();
 				panelQCM.setVisible(true);
 			} else if ("EntiteAssociation".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);
@@ -285,6 +288,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 				System.out.println(typeSelectionne);
 
 				PanelElimination panelElimination = new PanelElimination(this.ctrl);
+				this.frameCreaQuestion.dispose();
 				panelElimination.setVisible(true);
 			}
 		}

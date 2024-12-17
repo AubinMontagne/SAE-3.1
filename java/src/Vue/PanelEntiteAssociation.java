@@ -18,6 +18,11 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 	private JButton boutonAjoutAssociation;
 	private JButton boutonEnregistrer;
 
+	int 	difficulte;
+	String 	notion;
+	int 	points;
+	int 	temps;
+
 	private Controleur ctrl;
 
 	// Constructeur
@@ -26,13 +31,19 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 	 * Constructeur de la class PanelEntiteAssociation
 	 * @param ctrl	Le contrôleur
 	 */
-	public PanelEntiteAssociation(Controleur ctrl)
+	public PanelEntiteAssociation(Controleur ctrl,int difficulte,String notion,int points,int temps)
 	{
 		this.ctrl = ctrl;
 
+		this.difficulte=difficulte;
+		this.notion=notion;
+		this.points=points;
+		this.temps=temps;
+
+
 		setTitle("Créateur de Questions Entité-Association");
 		setSize(600,400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new BorderLayout());
 
 		// Panel pour la question

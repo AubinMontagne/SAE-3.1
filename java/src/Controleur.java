@@ -19,6 +19,7 @@ public class Controleur{
         this.metier = new Metier();
 		this.metier.getRessourcesFromData("java/data/");
 		this.metier.getNotionsFromData("java/data/");
+		this.metier.getQuestionFromData("java/data/");
 		this.frameAccueil = new FrameAccueil(this);
     }
 

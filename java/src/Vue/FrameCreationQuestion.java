@@ -23,7 +23,7 @@ public class FrameCreationQuestion extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelCreationQuestion(ctrl) );
+        this.add(new PanelCreationQuestion(ctrl, this) );
 
         setVisible(true);
     }

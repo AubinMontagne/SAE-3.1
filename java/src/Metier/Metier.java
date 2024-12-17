@@ -344,6 +344,7 @@ public class Metier{
 		return notionsAssociees;
 	}
 	public void initQuestionnaire( Questionnaire q){
+		q.initLstQuestions(this);
 		new QCMBuilder(q, "./");
 	}
 }

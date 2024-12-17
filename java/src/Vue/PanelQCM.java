@@ -21,10 +21,10 @@ public class PanelQCM extends JFrame implements ActionListener
 	private JButton boutonAjoutReponse;
 	private JButton boutonEnregistrer;
 
-	int difficulte;
-	String notion;
-	int points;
-	int temps;
+	int 	difficulte;
+	String 	notion;
+	int 	points;
+	int 	temps;
 
 	public PanelQCM(Controleur ctrl,int difficulte,String notion,int points,int temps)
 	{
@@ -159,6 +159,7 @@ public class PanelQCM extends JFrame implements ActionListener
 		);
 
 		JOptionPane.showMessageDialog(this, "Question enregistrée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
+		ctrl.getMetier().saveQuestions("java/data/");
 		dispose(); // Ferme la fenêtre après l'enregistrement
 	}
 
