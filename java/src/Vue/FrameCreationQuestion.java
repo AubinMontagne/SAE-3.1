@@ -9,7 +9,7 @@ public class FrameCreationQuestion extends JFrame{
     // Constructeur
     /**
      * Constructeur de la class FrameCreationQuestion
-     * @param ctrl          Le contrôler
+     * @param ctrl          Le contrôleur
      */
     public FrameCreationQuestion( Controleur ctrl){
         this.ctrl = ctrl;

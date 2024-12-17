@@ -9,9 +9,9 @@ public class FrameCreationRessource extends JFrame{
 
     // Constructeur
     /**
-     * Constructeur de la class FrameCreationQuestion
-     * @param ctrl              Le contrôler
-     * @param panelRessource    Le panel Ressource o
+     * Constructeur de la class FrameCreationRessource
+     * @param ctrl              Le contrôleur
+     * @param panelRessource    Le panel Ressource ou mettre la frame
      */
     public FrameCreationRessource(Controleur ctrl, PanelRessource panelRessource){
         this.ctrl = ctrl;

@@ -7,6 +7,11 @@ import src.Metier.*;
 public class FrameQuestionnaireTab extends JFrame{ 
     private Controleur ctrl;
 
+    // Constructeur
+    /**
+     * Constructeur de la class FrameQuestionnaireTab
+     * @param ctrl          Le contrôleur
+     */
     public FrameQuestionnaireTab( Controleur ctrl, Ressource r, String titre, boolean chrono){
         this.ctrl = ctrl;
 

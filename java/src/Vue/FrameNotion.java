@@ -9,6 +9,12 @@ public class FrameNotion extends JFrame{
 	private Controleur ctrl;
     private Ressource  ressource;
 
+    // Constructeur
+    /**
+     * Constructeur de la class FrameNotion
+     * @param ctrl          Le contrôleur
+     * @param r             La ressource
+     */
 	public FrameNotion(Controleur ctrl, Ressource r ){
         this.ressource = r;
         this.ctrl = ctrl;

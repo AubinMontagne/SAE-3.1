@@ -1248,7 +1248,7 @@ public class QCMBuilder
                             "            if(tps <= 0)\n" +
                             "            {\n" +
                             "                stopTimerQuestion();\n" +
-                            "                drawLines(lignes, 'erreurs');\n" +
+                            "                drawLines(lignes"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +", 'erreurs');\n" +
                             "                validerQuestion(bonnesRep,\"EA\");\n" +
                             "                clearInterval(this);\n" +
                             "                showFeedBack(checkErrors(),points,texteExplications);\n" +
@@ -1422,7 +1422,7 @@ public class QCMBuilder
                             "\n" +
                             "\n" +
                             "\n" +
-                            "        drawLines(lignes);\n" +
+                            "        drawLines(lignes"+ (questionnaire.getLstQuestion().indexOf(q) + 1) +");\n" +
                             "    }\n" +
                             "\n" +
                             "    window.onload = function() {\n" +
@@ -1433,7 +1433,7 @@ public class QCMBuilder
                             "\n" +
                             "    if(tabCompletion[questionActuelle])\n" +
                             "    {\n" +
-                            "        drawLines(lignes, 'erreurs');\n" +
+                            "        drawLines(lignes" + (questionnaire.getLstQuestion().indexOf(q) + 1) + ", 'erreurs');\n" +
                             "        drawLines(reponses, 'correction');\n" +
                             "    }\n" +
                             "    \n" +
@@ -1453,7 +1453,7 @@ public class QCMBuilder
                             "        {\n" +
                             "            if(!tabCompletion[questionActuelle])\n" +
                             "            {\n" +
-                            "                drawLines(lignes, 'erreurs');\n" +
+                            "                drawLines(lignes "+ (questionnaire.getLstQuestion().indexOf(q) + 1) +", 'erreurs');\n" +
                             "            }\n" +
                             "\n" +
                             "            checkErrors();\n" +

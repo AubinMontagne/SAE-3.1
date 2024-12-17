@@ -6,6 +6,11 @@ import src.*;
 public class FrameQuestionnaire extends JFrame{ 
     private Controleur ctrl;
 
+    // Constructeur
+    /**
+     * Constructeur de la class FrameQuestionnaire
+     * @param ctrl          Le contrôleur
+     */
     public FrameQuestionnaire( Controleur ctrl ){
         this.ctrl = ctrl;
 

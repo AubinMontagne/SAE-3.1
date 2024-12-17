@@ -10,9 +10,9 @@ public class FrameCreationNotion extends JFrame{
     // Contructeur
     /**
      * Constructeur de la class FrameCreationNotion
-     * @param ctrl          Le contrôler
+     * @param ctrl          Le contrôleur
      * @param r             La ressource
-     * @param panelNotion   Le panel notion
+     * @param panelNotion   Le panel notion ou mettre la frame
      */
     public FrameCreationNotion( Controleur ctrl, Ressource r, PanelNotion panelNotion){
         System.out.println("CrÃ©ation de la frame CreaNotion");
