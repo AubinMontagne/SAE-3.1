@@ -10,7 +10,7 @@ public class AssociationElement extends Question
     // Constructeur
 	/**
 	 * Constructeur de la class AssociationElement
-	 * @param intitule		L'intituler de la question type Entité-Association
+	 * @param intitule		L'intituler de la question type Association-Element
 	 * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
      * @param notion        La notion concernée par la question.
      * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
@@ -68,7 +68,7 @@ public class AssociationElement extends Question
     public HashMap<String, String> getAssociations(){return this.hmAssociations; }
 
     public String getAsData(){
-        String res = this.getClass().getName() + ";" + super.getAsData() + ";" ;
+        String res = "AE;" + super.getAsData() + ";" ;
         for (String gauche : this.hmAssociations.keySet()) {
             res += gauche + "," + this.hmAssociations.get(gauche) + "|";
         }

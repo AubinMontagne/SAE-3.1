@@ -18,10 +18,9 @@ public class FrameQuestionnaireTab extends JFrame{
     public FrameQuestionnaireTab( Controleur ctrl, Ressource r, String titre, boolean chrono){
         this.ctrl = ctrl;
 
-        System.out.println("Création de la frame QuestionnaireTab");
-
         this.setTitle("Tableau des Notions");
         this.setSize(600,175);
+        this.setMinimumSize(this.getSize());
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

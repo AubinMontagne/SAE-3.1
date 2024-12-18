@@ -56,6 +56,7 @@ public class Metier{
         if (question != null){
             return this.lstQuestions.add(question);
         }
+		this.saveQuestions("java/data/");
         return false;
     }
 
@@ -107,7 +108,7 @@ public class Metier{
 			if (!dir.exists()) {
 				dir.mkdirs();
 			}
-            FileWriter writer = new FileWriter(path+"notions.csv");// PROBLEME ICICICICICICICICICICICICICICCICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICICCICIICICCICICICICIICICICICIICICICIICICIC
+            FileWriter writer = new FileWriter(path+"notions.csv");
             for (Notion notion : this.lstNotions){
                 writer.write(notion.getAsData() + "\n");
             }
@@ -198,6 +199,7 @@ public class Metier{
 			questionQCM.ajouterReponse(entry.getKey(), entry.getValue());
 		}
 		this.lstQuestions.add(questionQCM);
+		this.saveQuestions("java/data/");
 		System.out.println(this.lstQuestions);
 
 		return true;
@@ -269,7 +271,7 @@ public class Metier{
 	public Question getFromDataQuestion(String line){
 		String type = line.substring(0, line.indexOf(";"));
 		switch (type){
-			case "QCM"-> {return QCM.getAsInstance(line,this);}
+			case "QCM" -> {return QCM.getAsInstance(line,this);}
 			case "ER" -> {return EliminationReponse.getAsInstance(line,this);}
 			case "AE" -> {return AssociationElement.getAsInstance(line,this);}
 		}
@@ -340,11 +342,13 @@ public class Metier{
 				notionsAssociees.add(notion);
 			}
 		}
-
 		return notionsAssociees;
 	}
-	public void initQuestionnaire( Questionnaire q){
+	public void initQuestionnaire( Questionnaire q, String path){
+		if ( path == null || path.isEmpty() ){
+			path = "./";
+		}
 		q.initLstQuestions(this);
-		new QCMBuilder(q, "./");
+		new QCMBuilder(q, path);
 	}
 }

@@ -17,9 +17,10 @@ public class Controleur{
 	 */
     public Controleur(){
         this.metier = new Metier();
-		this.metier.getRessourcesFromData("java/data/");
-		this.metier.getNotionsFromData("java/data/");
-		this.metier.getQuestionFromData("java/data/");
+		this.miseAJour();
+		System.out.println(this.metier.getNotions());
+		System.out.println(this.metier.getRessources());
+		System.out.println(this.metier.getQuestions());
 		this.frameAccueil = new FrameAccueil(this);
     }
 
@@ -49,9 +50,15 @@ public class Controleur{
 	public void supprimerRessource(Ressource ressource){this.metier.supprimerRessource(ressource);}
 
 	public void miseAJour(){
-		this.metier.getNotionsFromData("./production/SAE-31/docs");
-		this.metier.getRessourcesFromData("./production/SAE-31/docs");
-		//this.metier.getQuestionsFromData("./production/SAE-31/docs");
+		this.metier.getRessourcesFromData("java/data/");
+		this.metier.getNotionsFromData   ("java/data/");
+		this.metier.getQuestionFromData  ("java/data/");
+	}
+
+	public void miseAJourFichiers(){
+		this.metier.saveRessources("java/data/");
+		this.metier.saveNotions("java/data/");
+		this.metier.saveQuestions("java/data/");
 	}
 
 	public void creerQuestionQCM(String intitule, int difficulte, String notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses)

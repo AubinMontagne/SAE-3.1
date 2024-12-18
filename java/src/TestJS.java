@@ -54,8 +54,8 @@ public class TestJS{
 		((AssociationElement)questionnaire.getLstQuestion().get(5)).ajouterAssociation("Feur", "Coubeh");
 		((AssociationElement)questionnaire.getLstQuestion().get(5)).ajouterAssociation("La deuxE", "La 4");
 
-		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Jullian", true);
-		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Entoinne", false);
+		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Jeullian", true);
+		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Entoi-nne", false);
 		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Tybolt", false);
 		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Tymauter", false);
 		((QCM)questionnaire.getLstQuestion().get(6)).ajouterReponse("Obein", false);

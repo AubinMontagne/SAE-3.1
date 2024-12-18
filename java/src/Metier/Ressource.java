@@ -11,7 +11,7 @@ public class Ressource{
      * @param id        L'identifiant de la ressource.
      * @param nom       Le nom de la ressource.
      */
-    public Ressource(String nom, String id){
+    public Ressource(String id,String nom){
         this.id       = id;
         this.nom      = nom;
     }

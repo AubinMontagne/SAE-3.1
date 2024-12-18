@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import src.Metier.Question;
 import src.Metier.Notion;
 import src.Controleur;
+import src.Metier.Ressource;
 
 public class PanelBanque extends JPanel implements  ActionListener{
     private Controleur ctrl;
@@ -124,8 +125,32 @@ public class PanelBanque extends JPanel implements  ActionListener{
 	 */
 	public void actionPerformed(ActionEvent e){
         if ( this.btCreaQuest == e.getSource()){
-            System.out.println("Hey la frame Creer question s'ouvre");
-            new FrameCreationQuestion(this.ctrl);
+            FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl,this);
         }
+	}
+
+	public void maj(){
+		String[] tabEntetes = {"Question", "Ressource", "Notion", "Point"};
+		ArrayList<Question> questList;
+
+		if (this.notion != null) {
+			questList = this.ctrl.getQuestionsParNotion(notion);
+		}else {
+			questList = this.ctrl.getQuestions();
+		}
+
+		String[][] data = new String[questList.size()][4];
+
+		for(int i = 0; i < questList.size();i++){
+			data[i][0] = questList.get(i).getEnonceFich();
+			data[i][1] = questList.get(i).getNotion().getRessourceAssociee().getNom();
+			data[i][2] = questList.get(i).getNotion().getNom();
+			data[i][3] = "" + questList.get(i).getPoint();
+		}
+
+		DefaultTableModel model = new DefaultTableModel(data, tabEntetes);
+		this.tbQuestion.setModel(model);
+
+		this.ctrl.miseAJourFichiers();
 	}
 }

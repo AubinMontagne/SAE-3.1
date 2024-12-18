@@ -4,15 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
 import java.util.HashMap;
 
 import src.Controleur;
 
-
-public class PanelQCM extends JFrame implements ActionListener
-{
-
-	// FONCTION EXPLICATION A RAJOUTER
+public class PanelQCM extends JFrame implements ActionListener {
 
 	private Controleur ctrl;
 	private JPanel panelReponses; // Panel pour les réponses
@@ -20,20 +17,26 @@ public class PanelQCM extends JFrame implements ActionListener
 	private JTextField champQuestion;
 	private JButton boutonAjoutReponse;
 	private JButton boutonEnregistrer;
+	private JCheckBox modeReponseUnique; // Checkbox pour activer/désactiver le mode réponse unique
 
-	int 	difficulte;
-	String 	notion;
-	int 	points;
-	int 	temps;
+	private boolean estModeUnique = false; // Par défaut, mode "plusieurs réponses correctes"
+	private ButtonGroup groupReponses; // Utilisé pour le mode "réponse unique"
 
-	public PanelQCM(Controleur ctrl,int difficulte,String notion,int points,int temps)
-	{
+	int difficulte;
+	String notion;
+	int points;
+	int temps;
+
+	PanelBanque panelBanque;
+
+	public PanelQCM(Controleur ctrl, int difficulte, String notion, int points, int temps, PanelBanque panelBanque) {
 		this.ctrl = ctrl;
+		this.panelBanque = panelBanque;
 
-		this.difficulte=difficulte;
-		this.notion=notion;
-		this.points=points;
-		this.temps=temps;
+		this.difficulte = difficulte;
+		this.notion = notion;
+		this.points = points;
+		this.temps = temps;
 
 		setTitle("Créateur de QCM");
 		setSize(600, 400);
@@ -51,6 +54,10 @@ public class PanelQCM extends JFrame implements ActionListener
 		panelReponses.setLayout(new BoxLayout(panelReponses, BoxLayout.Y_AXIS));
 		JScrollPane defilement = new JScrollPane(panelReponses);
 
+		// Checkbox pour activer le mode réponse unique
+		modeReponseUnique = new JCheckBox("Activer le mode 'réponse unique'");
+		modeReponseUnique.addActionListener(e -> setModeUnique(modeReponseUnique.isSelected()));
+
 		// Bouton pour ajouter une réponse
 		boutonAjoutReponse = new JButton("Ajouter une réponse");
 		boutonAjoutReponse.setActionCommand("ajouterReponse");
@@ -61,6 +68,7 @@ public class PanelQCM extends JFrame implements ActionListener
 
 		// Panel des boutons
 		JPanel panelBoutons = new JPanel();
+		panelBoutons.add(modeReponseUnique);
 		panelBoutons.add(boutonAjoutReponse);
 		panelBoutons.add(boutonEnregistrer);
 
@@ -74,27 +82,106 @@ public class PanelQCM extends JFrame implements ActionListener
 		boutonEnregistrer.addActionListener(this);
 	}
 
-	private void ajouterReponse()
-	{
+	private void ajouterReponse() {
 		JPanel panelAjoutReponse = new JPanel();
 		panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
 		JTextField champReponse = new JTextField("Réponse " + (++nombreReponses));
-		JCheckBox caseBonneReponse = new JCheckBox("Correcte");
-		JButton boutonSupprimer = new JButton("Supprimer");
 
+		JComponent caseCorrecte;
+		if (estModeUnique) {
+			JRadioButton boutonRadio = new JRadioButton();
+			if (groupReponses == null) {
+				groupReponses = new ButtonGroup();
+			}
+			groupReponses.add(boutonRadio);
+			caseCorrecte = boutonRadio;
+		} else {
+			caseCorrecte = new JCheckBox("Correcte");
+		}
+
+		JButton boutonSupprimer = new JButton("Supprimer");
 		boutonSupprimer.addActionListener(e -> {
+			if (caseCorrecte instanceof JRadioButton && groupReponses != null) {
+				groupReponses.remove((JRadioButton) caseCorrecte);
+			}
 			panelReponses.remove(panelAjoutReponse);
 			panelReponses.revalidate();
 			panelReponses.repaint();
 		});
 
 		panelAjoutReponse.add(champReponse);
-		panelAjoutReponse.add(caseBonneReponse);
+		panelAjoutReponse.add(caseCorrecte);
 		panelAjoutReponse.add(boutonSupprimer);
 
 		panelReponses.add(panelAjoutReponse);
 		panelReponses.revalidate();
 		panelReponses.repaint();
+	}
+
+	private void setModeUnique(boolean unique) {
+		estModeUnique = unique;
+
+		if (unique) {
+			// Activer le mode "réponse unique" avec des boutons radio
+			groupReponses = new ButtonGroup();
+		} else {
+			// Désactiver le groupe de boutons radio
+			groupReponses = null;
+		}
+
+		// Reconfigurer chaque réponse
+		for (Component composant : panelReponses.getComponents()) {
+			if (composant instanceof JPanel) {
+				JPanel panelReponse = (JPanel) composant;
+
+				// Récupérer les composants actuels
+				JTextField champReponse = (JTextField) panelReponse.getComponent(0);
+				JComponent ancienneCase = (JComponent) panelReponse.getComponent(1);
+
+				// Sauvegarder l'état de sélection
+				boolean estCorrecte = ancienneCase instanceof JCheckBox
+						? ((JCheckBox) ancienneCase).isSelected()
+						: ((JRadioButton) ancienneCase).isSelected();
+
+				// Supprimer l'ancienne case
+				panelReponse.remove(ancienneCase);
+
+				// Ajouter une nouvelle case selon le mode
+				JComponent nouvelleCase;
+				if (unique) {
+					JRadioButton boutonRadio = new JRadioButton();
+					boutonRadio.setSelected(estCorrecte);
+					groupReponses.add(boutonRadio);
+					nouvelleCase = boutonRadio;
+				} else {
+					JCheckBox caseCheckBox = new JCheckBox("Correcte");
+					caseCheckBox.setSelected(estCorrecte);
+					nouvelleCase = caseCheckBox;
+				}
+
+				panelReponse.add(nouvelleCase, 1); // Ajouter la nouvelle case
+				panelReponse.revalidate();
+				panelReponse.repaint();
+			}
+		}
+
+		// Si on revient au mode unique, garantir qu'une seule réponse est sélectionnée
+		if (unique && groupReponses != null) {
+			boolean uneReponseSelectionnee = false;
+			for (Enumeration<AbstractButton> boutons = groupReponses.getElements(); boutons.hasMoreElements();) {
+				AbstractButton bouton = boutons.nextElement();
+				if (bouton.isSelected()) {
+					uneReponseSelectionnee = true;
+					break;
+				}
+			}
+
+			if (!uneReponseSelectionnee && panelReponses.getComponentCount() > 0) {
+				JPanel panelReponse = (JPanel) panelReponses.getComponent(0);
+				JRadioButton boutonRadio = (JRadioButton) panelReponse.getComponent(1);
+				boutonRadio.setSelected(true);
+			}
+		}
 	}
 
 	private void enregistrerQCMAvecHashMap() {
@@ -109,7 +196,6 @@ public class PanelQCM extends JFrame implements ActionListener
 			return;
 		}
 
-		// Prépare une HashMap temporaire pour les réponses
 		HashMap<String, Boolean> reponses = new HashMap<>();
 		boolean auMoinsUneReponseCorrecte = false;
 
@@ -117,12 +203,13 @@ public class PanelQCM extends JFrame implements ActionListener
 			if (composant instanceof JPanel) {
 				JPanel panelReponse = (JPanel) composant;
 				JTextField champReponse = (JTextField) panelReponse.getComponent(0);
-				JCheckBox caseCorrecte = (JCheckBox) panelReponse.getComponent(1);
+				JComponent caseCorrecte = (JComponent) panelReponse.getComponent(1);
 
 				String texteReponse = champReponse.getText().trim();
-				boolean estCorrecte = caseCorrecte.isSelected();
+				boolean estCorrecte = caseCorrecte instanceof JCheckBox
+						? ((JCheckBox) caseCorrecte).isSelected()
+						: ((JRadioButton) caseCorrecte).isSelected();
 
-				// Validation des réponses
 				if (texteReponse.isEmpty()) {
 					JOptionPane.showMessageDialog(this, "Une réponse ne peut pas être vide.", "Erreur", JOptionPane.ERROR_MESSAGE);
 					return;
@@ -133,7 +220,6 @@ public class PanelQCM extends JFrame implements ActionListener
 					return;
 				}
 
-				// Ajout à la HashMap temporaire
 				reponses.put(texteReponse, estCorrecte);
 				if (estCorrecte) {
 					auMoinsUneReponseCorrecte = true;
@@ -141,41 +227,37 @@ public class PanelQCM extends JFrame implements ActionListener
 			}
 		}
 
-		// Vérifie qu'au moins une réponse correcte est présente
 		if (!auMoinsUneReponseCorrecte) {
 			JOptionPane.showMessageDialog(this, "Veuillez sélectionner au moins une réponse correcte.", "Erreur", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 
-		// Appelle le contrôleur pour créer la question
 		this.ctrl.creerQuestionQCM(
 				question,
 				difficulte,
 				notion,
 				temps,
 				points,
-				false, // "vraiOuFaux" est fixé à false ici
+				false,
 				reponses
 		);
 
+		this.panelBanque.maj();
+
 		JOptionPane.showMessageDialog(this, "Question enregistrée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
-		ctrl.getMetier().saveQuestions("java/data/");
-		dispose(); // Ferme la fenêtre après l'enregistrement
+
+		dispose();
 	}
 
-
 	@Override
-	public void actionPerformed(ActionEvent e)
-	{
+	public void actionPerformed(ActionEvent e) {
 		String commande = e.getActionCommand();
 		switch (commande) {
 			case "ajouterReponse":
-				// Ajoute une nouvelle réponse à l'interface
 				ajouterReponse();
 				break;
 
 			case "enregistrer":
-				// Gère l'enregistrement du QCM avec la validation des réponses
 				enregistrerQCMAvecHashMap();
 				break;
 
@@ -184,6 +266,4 @@ public class PanelQCM extends JFrame implements ActionListener
 				break;
 		}
 	}
-
-
 }

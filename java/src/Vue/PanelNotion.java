@@ -32,7 +32,7 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
     public PanelNotion( Controleur ctrl,Ressource r){
         this.ctrl        = ctrl;
         this.ressource   = r;
-        this.notions     = ctrl.getNotions();
+        this.notions     = ctrl.getNotionsParRessource(r);
         this.panelNotion = new JPanel();
         this.panelNotion.setLayout(new BorderLayout());
 
@@ -80,9 +80,9 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
      */
     public void maj(){
         DefaultListModel<Notion> listModel = new DefaultListModel<>();
+        this.notions = ctrl.getNotionsParRessource(this.ressource);
         for (Notion notion : this.notions) {
-            if( notion.getRessourceAssociee() == this.ressource)
-                listModel.addElement(notion);
+            listModel.addElement(notion);
         }
         this.list.setModel(listModel);
     }
@@ -95,7 +95,7 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
         if (!e.getValueIsAdjusting()) {
             Notion selectedNotion = this.list.getSelectedValue();
             if (selectedNotion != null) {
-                new FrameBanque(selectedNotion, ctrl);
+                FrameBanque.creerFrameBanque(ctrl, selectedNotion);
             }
         }
     }
@@ -106,7 +106,7 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
      */
     public void actionPerformed(ActionEvent e) {
         if (btnNouvNotion == e.getSource()) {
-            new FrameCreationNotion(this.ctrl, this.ressource, this);
+            FrameCreationNotion.creerFrameCreationNotion(this.ctrl, this.ressource, this);
         }
         if (btnSupprNotion == e.getSource()) {
             new FrameSuppressionNotion(this.ctrl, this.ressource, this);

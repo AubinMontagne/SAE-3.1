@@ -5,10 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 import javax.swing.*;
-
-import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
 import java.text.ParseException;
 import javax.swing.text.NumberFormatter;
@@ -33,12 +33,12 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	private JTextField champTemps;
 	// A envoyer aux 3 autres panels
 
-	private int difficulté;
+	private int difficulte;
 	private String notion;
 	private int temps;
 	private int points;
-	private JFrame frameCreaQuestion;
 
+	PanelBanque panelBanque;
 
 	private static final ImageIcon[] IMAGES_DIFFICULTE = {
 			new ImageIcon("java/data/Images/imgDif/TF.png"),
@@ -52,9 +52,9 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	 * Constructeur de la class PanelCreationQuestion
 	 * @param ctrl	Le contrôleur
 	 */
-	public PanelCreationQuestion(Controleur ctrl, JFrame frameCreaQuestion ) {
-		this.frameCreaQuestion = frameCreaQuestion;
+	public PanelCreationQuestion(Controleur ctrl, PanelBanque panelBanque){
 		this.ctrl = ctrl;
+		this.panelBanque = panelBanque;
 		this.ressources = this.ctrl.getRessources();
 		Ressource placeHolder = new Ressource("PlaceHolder","PlaceHolder");
 		this.ressources.add(0,placeHolder);
@@ -75,11 +75,12 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		format.setGroupingUsed(false);
 
 		NumberFormatter numberFormatter = new NumberFormatter(format);
-		numberFormatter.setAllowsInvalid(false); // Empêche la saisie de caractères invalides
-		numberFormatter.setMinimum(0); // Valeur minimale (si nécessaire)
+		numberFormatter.setAllowsInvalid(true);
+		numberFormatter.setMinimum(0);
+		numberFormatter.setOverwriteMode(true);
 
 		this.champPoints = new JFormattedTextField(numberFormatter);
-		this.champPoints.setColumns(10); // Largeur du champ
+		this.champPoints.setColumns(10);
 		JLabel labelTemps = new JLabel("Temps de réponse (min:sec) :");
 
 		try {
@@ -93,6 +94,13 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			e.printStackTrace();
 		}
 
+		this.champTemps.addFocusListener(new FocusAdapter()
+		{
+			@Override
+			public void focusLost(FocusEvent e) {
+				secondeValide();
+			}
+		});
 
 		panelConfiguration.add(labelPoints);
 		panelConfiguration.add(champPoints);
@@ -181,6 +189,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 		add(panelType, BorderLayout.SOUTH);
 		setVisible(true);
+
 	}
 
 	// Methode
@@ -194,17 +203,22 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			// Vérifie que les secondes ne dépassent pas 59
 			if (secondes >= 60) {
 				secondes = 59;
+				this.champTemps.setText(String.format("%02d:%02d", minutes, secondes));
 				JOptionPane.showMessageDialog(this, "Les secondes ne peuvent pas dépasser 59. Ajustement automatique effectué.");
+
 			}
 
 			// (Optionnel) Vérifie que les minutes ne dépassent pas une certaine limite
 			if (minutes > 99) {
 				minutes = 99;
+
+				this.champTemps.setText(String.format("%02d:%02d", minutes, secondes));
 				JOptionPane.showMessageDialog(this, "Les minutes ne peuvent pas dépasser 99. Ajustement automatique effectué.");
+
 			}
 
 
-			this.champTemps.setText(String.format("%02d:%02d", minutes, secondes));
+
 		}
 	}
 
@@ -253,20 +267,31 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == boutonTresFacile) {
 			JOptionPane.showMessageDialog(this, "Difficulté : Très Facile");
-			this.difficulté = 1;
+			this.difficulte = 1;
 		} else if (e.getSource() == boutonFacile) {
 			JOptionPane.showMessageDialog(this, "Difficulté : Facile");
-			this.difficulté = 2;
+			this.difficulte = 2;
 		} else if (e.getSource() == boutonMoyen) {
 			JOptionPane.showMessageDialog(this, "Difficulté : Moyen");
-			this.difficulté = 3;
+			this.difficulte = 3;
 		} else if (e.getSource() == boutonDifficile) {
 			JOptionPane.showMessageDialog(this, "Difficulté : Difficile");
-			this.difficulté = 4;
+			this.difficulte = 4;
 		}
 
 		if (e.getSource() == boutonConfirmer) {
 
+			if (this.champPoints.getText().equals(""))
+			{
+				JOptionPane.showMessageDialog(this, "Attribuez des points à la question");
+				return;
+			}
+			if (this.difficulte == 0)
+			{
+				JOptionPane.showMessageDialog(this, "Choisissez une difficulté");
+				return;
+
+			}
 			String typeSelectionne = (String) listeTypes.getSelectedItem();
 
 			if ("QCM".equals(typeSelectionne)) {
@@ -276,20 +301,18 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 				this.temps  = Integer.parseInt(this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60 + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1));
 				this.points = Integer.parseInt(this.champPoints.getText());
 
-				PanelQCM panelQCM = new PanelQCM(this.ctrl,this.difficulté,this.notion,this.points,this.temps);
-				this.frameCreaQuestion.dispose();
+				PanelQCM panelQCM = new PanelQCM(this.ctrl,this.difficulte,this.notion,this.points,this.temps,this.panelBanque);
 				panelQCM.setVisible(true);
 			} else if ("EntiteAssociation".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);
 
-				//PanelEntiteAssociation panelEntiteAssociation = new PanelEntiteAssociation(this.ctrl,this.difficulté,this.notion,this.points,this.temps);
+				//PanelEntiteAssociation panelEntiteAssociation = new PanelEntiteAssociation(this.ctrl,this.difficulté,this.notion,this.points,this.temps,this.panelBanque);
 				//panelEntiteAssociation.setVisible(true);
 			} else if ("Elimination".equals(typeSelectionne)){
 				System.out.println(typeSelectionne);
 
-				PanelElimination panelElimination = new PanelElimination(this.ctrl);
-				this.frameCreaQuestion.dispose();
-				panelElimination.setVisible(true);
+				//PanelElimination panelElimination = new PanelElimination(this.ctrl,this.difficulté,this.notion,this.points,this.temps,this.panelBanque);
+				//panelElimination.setVisible(true);
 			}
 		}
 	}

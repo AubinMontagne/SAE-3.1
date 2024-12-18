@@ -26,13 +26,13 @@ public class PanelAccueil extends JPanel implements  ActionListener{
 
         this.setVisible(true);
 
-        this.btBanque        = new JButton("Banque de question"    );
         this.btQuestionnaire = new JButton("Génération Questionnaire");
-        this.btRessources    = new JButton("Ressources"            );
+        this.btRessources    = new JButton("Ressources"              );
+        this.btBanque        = new JButton("Banque de question"      );
 
-        this.panelAccueil.add(this.btBanque, BorderLayout.NORTH          );
         this.panelAccueil.add(this.btQuestionnaire, BorderLayout.CENTER );
         this.panelAccueil.add(this.btRessources, BorderLayout.SOUTH     );
+        this.panelAccueil.add(this.btBanque, BorderLayout.NORTH         );
 
         this.add(panelAccueil);
 
@@ -48,13 +48,10 @@ public class PanelAccueil extends JPanel implements  ActionListener{
      */
     public void actionPerformed(ActionEvent e){
         if ( btBanque == e.getSource())
-            new FrameBanque(this.ctrl);
-
+            FrameBanque.creerFrameBanque(this.ctrl);
         if( btQuestionnaire == e.getSource())
             new FrameQuestionnaire(ctrl);
-
         if(btRessources == e.getSource())
             new FrameRessource(this.ctrl);
-
     }
 }

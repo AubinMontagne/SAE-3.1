@@ -43,6 +43,7 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 
 		setTitle("Créateur de Questions Entité-Association");
 		setSize(600,400);
+		setMinimumSize(this.getSize());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new BorderLayout());
 

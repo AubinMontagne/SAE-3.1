@@ -31,12 +31,13 @@ public class PanelSupprimerNotion extends JPanel implements ActionListener, Item
     public PanelSupprimerNotion(Controleur crtl, Ressource r, PanelNotion panelNotion, FrameSuppressionNotion frameSuppressionNotion) {
         Ressource ressource = r;
 
+        this.ctrl                   = crtl;
         this.notionChoisie          = null;
         this.panelNotion            = panelNotion;
         this.frameSuppressionNotion = frameSuppressionNotion;
         this.panelSupprRess         = new JPanel();
         this.panelSupprRess.setLayout(new BorderLayout());
-        this.ctrl = crtl;
+
 
         UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
 

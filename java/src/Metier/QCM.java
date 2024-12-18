@@ -48,7 +48,6 @@ public class QCM extends Question {
 	 * @return			Vrai si l'ajout a réussi, sinon faux
 	 */
 	public boolean ajouterReponse(String reponse, Boolean correct) {
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
 		if (this.vraiOuFaux && correct) {
 			for (Boolean value : this.hmReponses.values()) {
@@ -84,7 +83,7 @@ public class QCM extends Question {
 
 	@Override
 	public String getAsData(){
-		String res = this.getClass().getName() + ";" + super.getAsData() + ";" + this.vraiOuFaux + ";" ;
+		String res = "QCM;" + super.getAsData() + ";" + this.vraiOuFaux + ";" ;
 		for (HashMap.Entry<String, Boolean> entry : this.hmReponses.entrySet()) {
 			res += entry.getKey() + "," + entry.getValue() + "|";
 		}
@@ -96,7 +95,7 @@ public class QCM extends Question {
 		scanner.useDelimiter(";");
 
 		String[] parts = new String[9];
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 9; i++) {
 			parts[i] = scanner.next();
 		}
 

@@ -43,14 +43,11 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
         this.r                     = r;
         this.estChrono             = estChrono;
 
-        this.notions               = ctrl.getNotions();
+        this.notions               = ctrl.getNotionsParRessource(this.r);
 
         // Instanciation des data des table
         String[] columnNames = {"Notion", "", "TF", "F", "M", "D", ""};
         Object[][] data = new Object[notions.size()][7];
-
-        String[] columnResult = {"", "", "", "", "", ""};
-        Object[] dataResult = { "Nb Questions / Catégorie", 0, 0, 0, 0, "Σ =" };
 
         int alInd = 0;
         for (int i = 0; i < this.notions.size(); i++) {
@@ -293,39 +290,23 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
      * Classe interne pour stocker les données d'une ligne sélectionnée.
      */
     private static class QuestionnaireData {
-        private final String notion;
-        private final int tf;
-        private final int f;
-        private final int m;
-        private final int d;
-
+        private String notion;
+        private int    tf;
+        private int    f;
+        private int    m;
+        private int    d;
         public QuestionnaireData(String notion, int tf, int f, int m, int d) {
             this.notion = notion;
-            this.tf = tf;
-            this.f = f;
-            this.m = m;
-            this.d = d;
+            this.tf     = tf;
+            this.f      = f;
+            this.m      = m;
+            this.d      = d;
         }
-
-        public String getNotion() {
-            return notion;
-        }
-
-        public int getTf() {
-            return tf;
-        }
-
-        public int getF() {
-            return f;
-        }
-
-        public int getM() {
-            return m;
-        }
-
-        public int getD() {
-            return d;
-        }
+        public String getNotion() {return notion;}
+        public int getTf()        {return tf;    }
+        public int getF()         {return f;     }
+        public int getM()         {return m;     }
+        public int getD()         {return d;     }
     }
 
     /**
@@ -345,24 +326,24 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
 
             // Préparation de l'affichage des données
             Difficulte tf = Difficulte.TRES_FACILE;
-            Difficulte f = Difficulte.FACILE;
-            Difficulte m = Difficulte.MOYEN;
-            Difficulte d = Difficulte.DIFFICILE;
+            Difficulte f  = Difficulte.FACILE;
+            Difficulte m  = Difficulte.MOYEN;
+            Difficulte d  = Difficulte.DIFFICILE;
 
             StringBuilder sb = new StringBuilder("Données du questionnaire:\n");
             int totalTF = 0, totalF = 0, totalM = 0, totalD = 0;
 
             for (QuestionnaireData data : selectedData) {
-                sb.append(String.format("Notion: %s\n", data.getNotion()));
-                sb.append(String.format("  - Très facile (TF): %d\n", data.getTf()));
-                sb.append(String.format("  - Facile (F): %d\n", data.getF()));
-                sb.append(String.format("  - Moyen (M): %d\n", data.getM()));
-                sb.append(String.format("  - Difficile (D): %d\n", data.getD()));
+                sb.append(String.format("Notion: %s\n",               data.getNotion()));
+                sb.append(String.format("  - Très facile (TF): %d\n", data.getTf())    );
+                sb.append(String.format("  - Facile (F): %d\n",       data.getF() )    );
+                sb.append(String.format("  - Moyen (M): %d\n",        data.getM() )    );
+                sb.append(String.format("  - Difficile (D): %d\n",    data.getD() )    );
 
                 totalTF += data.getTf();
-                totalF += data.getF();
-                totalM += data.getM();
-                totalD += data.getD();
+                totalF  += data.getF();
+                totalM  += data.getM();
+                totalD  += data.getD();
 
                 questionnaire.defNbQuestion(
                         ctrl.getMetier().getNotionByNom(data.getNotion()), tf, data.getTf()
@@ -392,7 +373,7 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
             // Affichage des données dans le JOptionPane
             JOptionPane.showMessageDialog(this, sb.toString(), "Résumé du questionnaire", JOptionPane.INFORMATION_MESSAGE);
 
-            this.ctrl.getMetier().initQuestionnaire(questionnaire);
+            this.ctrl.getMetier().initQuestionnaire(questionnaire,null);
         }
     }
 }

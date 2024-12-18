@@ -78,7 +78,7 @@ public class EliminationReponse extends Question {
 	}
 
 	public String getAsData(){
-		String res = this.getClass().getName() + ";" + super.getAsData() + ";" ;
+		String res = "ER;" + super.getAsData() + ";" ;
 		res += this.reponseCorrecte + ";";
 		for(String reponse : this.hmReponses.keySet()) {
 			res += reponse + "," + this.hmReponses.get(reponse)[0] + "," + this.hmReponses.get(reponse)[1] + "|";

@@ -61,7 +61,7 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
         if (!e.getValueIsAdjusting()) {
             Ressource selectedRessource = this.list.getSelectedValue();
             if (selectedRessource != null) {
-                new FrameNotion(this.ctrl, selectedRessource);
+                FrameNotion.creerFrameNotion(this.ctrl, selectedRessource);
             }
         }
     }
@@ -72,8 +72,7 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
      */
     public void actionPerformed(ActionEvent e) {
         if (btNouvRess == e.getSource()) {
-            System.out.println("La frame CreaRessource s'ouvre");
-            new FrameCreationRessource(this.ctrl, this);
+            FrameCreationRessource.creerFrameCreationRessource(this.ctrl, this);
         }
     }
 
