@@ -3,17 +3,16 @@ package src.Vue;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
-import java.text.ParseException;
 import javax.swing.text.NumberFormatter;
-import java.text.NumberFormat;
-
 import src.Controleur;
 import src.Metier.Notion;
 import src.Metier.Ressource;
@@ -178,7 +177,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		panelType.setBorder(BorderFactory.createTitledBorder("Type de Question"));
 
 		JLabel labelType = new JLabel("Type :");
-		listeTypes = new JComboBox<>(new String[] { "QCM", "EntiteAssociation","Elimination" });
+		listeTypes = new JComboBox<>(new String[] { "QCM REP. UNIQUE","QCM REP. MULTIPLE", "EntiteAssociation","Elimination" });
 
 		boutonConfirmer = new JButton("Confirmer");
 		boutonConfirmer.addActionListener(this);
@@ -294,16 +293,25 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			}
 			String typeSelectionne = (String) listeTypes.getSelectedItem();
 
-			if ("QCM".equals(typeSelectionne)) {
+			if ("QCM REP. UNIQUE".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);
 				Notion n = (Notion)(this.listeNotions.getSelectedItem());
 				this.notion = n.getNom();
 				this.temps  = Integer.parseInt(this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60 + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1));
 				this.points = Integer.parseInt(this.champPoints.getText());
 
-				PanelQCM panelQCM = new PanelQCM(this.ctrl,this.difficulte,this.notion,this.points,this.temps,this.panelBanque);
+				PanelQCM panelQCM = new PanelQCM(this.ctrl,this.difficulte,this.notion,this.points,this.temps,this.panelBanque,true);
 				panelQCM.setVisible(true);
-			} else if ("EntiteAssociation".equals(typeSelectionne)) {
+			} else if ("QCM REP. MULTIPLE".equals(typeSelectionne)) {
+				System.out.println(typeSelectionne);
+				Notion n = (Notion)(this.listeNotions.getSelectedItem());
+				this.notion = n.getNom();
+				this.temps  = Integer.parseInt(this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60 + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1));
+				this.points = Integer.parseInt(this.champPoints.getText());
+
+				PanelQCM panelQCM = new PanelQCM(this.ctrl,this.difficulte,this.notion,this.points,this.temps,this.panelBanque,false);
+				panelQCM.setVisible(true);
+			} else if("EntiteAssociation".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);
 
 				//PanelEntiteAssociation panelEntiteAssociation = new PanelEntiteAssociation(this.ctrl,this.difficulté,this.notion,this.points,this.temps,this.panelBanque);

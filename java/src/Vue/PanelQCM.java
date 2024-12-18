@@ -1,12 +1,11 @@
 package src.Vue;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
 import java.util.HashMap;
-
+import javax.swing.*;
 import src.Controleur;
 
 public class PanelQCM extends JFrame implements ActionListener {
@@ -17,7 +16,7 @@ public class PanelQCM extends JFrame implements ActionListener {
 	private JTextField champQuestion;
 	private JButton boutonAjoutReponse;
 	private JButton boutonEnregistrer;
-	private JCheckBox modeReponseUnique; // Checkbox pour activer/désactiver le mode réponse unique
+	private boolean modeReponseUnique; // Checkbox pour activer/désactiver le mode réponse unique
 
 	private boolean estModeUnique = false; // Par défaut, mode "plusieurs réponses correctes"
 	private ButtonGroup groupReponses; // Utilisé pour le mode "réponse unique"
@@ -29,10 +28,10 @@ public class PanelQCM extends JFrame implements ActionListener {
 
 	PanelBanque panelBanque;
 
-	public PanelQCM(Controleur ctrl, int difficulte, String notion, int points, int temps, PanelBanque panelBanque) {
+	public PanelQCM(Controleur ctrl, int difficulte, String notion, int points, int temps, PanelBanque panelBanque, boolean estModeUnique) {
 		this.ctrl = ctrl;
 		this.panelBanque = panelBanque;
-
+		this.estModeUnique = estModeUnique;
 		this.difficulte = difficulte;
 		this.notion = notion;
 		this.points = points;
@@ -54,10 +53,6 @@ public class PanelQCM extends JFrame implements ActionListener {
 		panelReponses.setLayout(new BoxLayout(panelReponses, BoxLayout.Y_AXIS));
 		JScrollPane defilement = new JScrollPane(panelReponses);
 
-		// Checkbox pour activer le mode réponse unique
-		modeReponseUnique = new JCheckBox("Activer le mode 'réponse unique'");
-		modeReponseUnique.addActionListener(e -> setModeUnique(modeReponseUnique.isSelected()));
-
 		// Bouton pour ajouter une réponse
 		boutonAjoutReponse = new JButton("Ajouter une réponse");
 		boutonAjoutReponse.setActionCommand("ajouterReponse");
@@ -68,7 +63,6 @@ public class PanelQCM extends JFrame implements ActionListener {
 
 		// Panel des boutons
 		JPanel panelBoutons = new JPanel();
-		panelBoutons.add(modeReponseUnique);
 		panelBoutons.add(boutonAjoutReponse);
 		panelBoutons.add(boutonEnregistrer);
 
@@ -118,10 +112,9 @@ public class PanelQCM extends JFrame implements ActionListener {
 		panelReponses.repaint();
 	}
 
-	private void setModeUnique(boolean unique) {
-		estModeUnique = unique;
+	private void setModeUnique() {
 
-		if (unique) {
+		if (this.estModeUnique) {
 			// Activer le mode "réponse unique" avec des boutons radio
 			groupReponses = new ButtonGroup();
 		} else {
@@ -148,7 +141,7 @@ public class PanelQCM extends JFrame implements ActionListener {
 
 				// Ajouter une nouvelle case selon le mode
 				JComponent nouvelleCase;
-				if (unique) {
+				if (this.estModeUnique) {
 					JRadioButton boutonRadio = new JRadioButton();
 					boutonRadio.setSelected(estCorrecte);
 					groupReponses.add(boutonRadio);
@@ -166,7 +159,7 @@ public class PanelQCM extends JFrame implements ActionListener {
 		}
 
 		// Si on revient au mode unique, garantir qu'une seule réponse est sélectionnée
-		if (unique && groupReponses != null) {
+		if (this.estModeUnique && groupReponses != null) {
 			boolean uneReponseSelectionnee = false;
 			for (Enumeration<AbstractButton> boutons = groupReponses.getElements(); boutons.hasMoreElements();) {
 				AbstractButton bouton = boutons.nextElement();
