@@ -8,7 +8,7 @@ public class TestJS{
 
 		Ressource r1 = new Ressource("R3.01_Dev_WEB", "DevWEB");
 		Notion n1 = new Notion("Ecriture en PHP", r1);
-		Questionnaire questionnaire = new Questionnaire("Test1", r1 , true);
+		Questionnaire questionnaire = new Questionnaire("TestJSQuestionnaire", r1 , true);
 		questionnaire.ajouterNotion(n1);
 
 

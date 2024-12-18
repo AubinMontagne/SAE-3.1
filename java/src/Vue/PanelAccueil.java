@@ -1,6 +1,7 @@
 package src.Vue;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -26,7 +27,7 @@ public class PanelAccueil extends JPanel implements  ActionListener{
 
         this.setVisible(true);
 
-        this.btQuestionnaire = new JButton("Génération Questionnaire");
+        this.btQuestionnaire = new JButton("Génération d'un Questionnaire");
         this.btRessources    = new JButton("Ressources"              );
         this.btBanque        = new JButton("Banque de question"      );
 

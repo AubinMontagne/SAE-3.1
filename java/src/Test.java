@@ -6,22 +6,32 @@ public class Test {
 	public static void main(String[] args) {
 
 		Metier metier = new Metier();
+
+		metier.getRessourcesFromData("java/data/");
+		metier.getQuestionFromData("java/data/");
+		metier.getQuestionFromData("java/data/");
 		
 		// Test des Ressources
 
 		System.out.println("\nTest des Ressources\n");
 
-		Ressource ressource = new Ressource( "Ressource", "R");
+		System.out.println("\nRecherche d'une ressource par son id (r1.01) :\n");
+		Ressource ressource = metier.getRessourceById("R1.01");
 		System.out.println(ressource);
-		metier.ajouterRessource(ressource);
+
+		System.out.println("\nAffichage des ressources :\n");
+
+		for(Ressource r : metier.getRessources()) {
+			System.out.println(r);
+		}
 
 		// Test des Notions
 
 		System.out.println("Test des Notions\n");
-		Notion notion = new Notion( "Notion", ressource);
-		metier.ajouterNotion(notion);
-		Notion notion2 = new Notion( "Notion2", ressource);
-		System.out.println(notion2);
+
+		System.out.println("\nRecherche d'une notion par son id (n1.01) :\n");
+		Notion notion = metier.getNotionByNom("Les types de base");
+		System.out.println(notion);
 
 		// ----------- Test des Questions -------------
 
@@ -29,79 +39,33 @@ public class Test {
 		
 		System.out.println("\nTest de la classe QCM\n");
 
-		QCM qcm = new QCM("QCM", Difficulte.FACILE, notion, 10, 10, false);
-		
-		qcm.ajouterReponse("A", true);
-		qcm.ajouterReponse("B", false);
-		qcm.ajouterReponse("C", true);
-
-		System.out.println(qcm.getAsData());
-		QCM qcm2 = QCM.getAsInstance("data/QCM/", metier);
-		metier.ajouterQuestion(qcm2);
-
-		System.out.println(qcm2);
-
+		for(Question q : metier.getQuestions()){
+			if(q instanceof QCM){
+				QCM qcm = (QCM)(q);
+				System.out.println(qcm);
+			}
+		}
 
 		// Test de la classe EliminationReponse
 		
 		System.out.println("\nTest de la classe EliminationReponse\n");
 
-		EliminationReponse eq = new EliminationReponse("Question Éliminatoire", Difficulte.MOYEN, notion, 10, 10);
-		
-		eq.ajouterReponse("A", 1.0,1.0);
-		eq.ajouterReponse("B", 2.0,1.0);
-		eq.ajouterReponse("C", 3.0, 2.0);
-		eq.setReponseCorrecte("A");
-		//eq.setExplicationFich("Ceci est incorrect, car la courbe de demande est une droite décroissante."); Should be file path
+		for(Question q : metier.getQuestions()){
+			if(q instanceof EliminationReponse){
+				EliminationReponse ea = (EliminationReponse)(q);
+				System.out.println(ea);
+			}
+		}
 
-		System.out.println(eq.getAsData());
-		
 		// Test de la classe AssociationElement
 
 		System.out.println("\nTest de la classe AssociationElement\n");
 
-		AssociationElement ae = new AssociationElement("Question Association", Difficulte.DIFFICILE, notion, 10, 10);
-		ae.ajouterAssociation("A", "1");
-		ae.ajouterAssociation("B", "2");
-		ae.ajouterAssociation("C", "3");
-
-		System.out.println(ae.getAsData());
-
-		// Test Questionnaire
-
-		System.out.println("\nTest de la classe Questionnaire\n");
-
-		Questionnaire questionnaire = new Questionnaire("Questionnaire", ressource, true);
-		questionnaire.ajouterNotion(notion);
-		questionnaire.defNbQuestion(notion, Difficulte.FACILE, 2);
-		questionnaire.defNbQuestion(notion, Difficulte.MOYEN, 2);
-		questionnaire.defNbQuestion(notion, Difficulte.DIFFICILE, 2);
-		questionnaire.initLstQuestions(metier);
-
-		System.out.println(questionnaire);
-
-		// Test de la classe Metier
-
-		System.out.println("\nTest de la classe Metier\n");
-
-		System.out.println("\nAffichage des notions :\n");
-		System.out.println(metier.getNotions());
-
-		System.out.println("\nAffichage des ressources :\n");
-		System.out.println(metier.getRessources());
-
-		System.out.println("\nAffichage des questions :\n");
-		System.out.println(metier.getQuestions());
-
-
-		System.out.println("\nSauvegarde des données\n");
-
-		metier.saveNotions("data/Notions");
-		metier.saveRessources("data/Ressources");
-
-		System.out.println("\nAffichage d'une question sélectionné à l'aléatoire :\n");
-		System.out.println(metier.getQuestionAleatoire(notion, Difficulte.FACILE));	
-
-		System.out.println("\nAffichage de la notion avec l'id 1 :\n");
+		for(Question q : metier.getQuestions()){
+			if(q instanceof AssociationElement){
+				AssociationElement ae = (AssociationElement)(q);
+				System.out.println(ae);
+			}
+		}
 	}
 }
