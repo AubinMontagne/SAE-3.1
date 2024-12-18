@@ -24,7 +24,8 @@ public class FrameNotion extends JFrame implements WindowListener {
         this.ctrl = ctrl;
 
         this.setTitle("Les Notions");
-        this.setSize(350,225);
+
+        this.setSize(250,200);
         this.setMinimumSize(this.getSize());
         this.setLocationRelativeTo(null);
 

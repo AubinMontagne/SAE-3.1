@@ -18,9 +18,6 @@ public class               Controleur{
     public Controleur(){
         this.metier = new Metier();
 		this.miseAJour();
-		System.out.println(this.metier.getNotions());
-		System.out.println(this.metier.getRessources());
-		System.out.println(this.metier.getQuestions());
 		this.frameAccueil = new FrameAccueil(this);
     }
 

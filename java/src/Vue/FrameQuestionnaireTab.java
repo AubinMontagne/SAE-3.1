@@ -19,13 +19,12 @@ public class FrameQuestionnaireTab extends JFrame{
         this.ctrl = ctrl;
 
         this.setTitle("Tableau des Notions");
-        this.setSize(600,175);
+        this.add(new PanelQuestionnaireTab(ctrl, r, titre, chrono) );
+        this.setSize(this.getContentPane().getSize());
         this.setMinimumSize(this.getSize());
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        this.add(new PanelQuestionnaireTab(ctrl, r, titre, chrono) );
 
         setVisible(true);
     }

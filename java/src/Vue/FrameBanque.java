@@ -54,8 +54,7 @@ public class FrameBanque extends JFrame implements WindowListener {
         System.out.println("Création de la frame Banque");
 
         this.setTitle("Banque de question de la notion "+ notion.getNom());
-        this.setSize(850,200);
-        this.setMinimumSize(this.getSize());
+        this.pack();
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

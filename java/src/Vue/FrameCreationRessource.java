@@ -26,7 +26,7 @@ public class FrameCreationRessource extends JFrame implements WindowListener {
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelCreationRessource(ctrl, panelRessource, this) );
+this.add(new PanelCreationRessource(ctrl, panelRessource, this) );
         this.addWindowListener(this);
 
         setVisible(true);

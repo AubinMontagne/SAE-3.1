@@ -125,6 +125,7 @@ public class QCM extends Question {
 
 	public String toString() {
 		String res = super.toString();
+		res += "Une seule réponse : " + this.vraiOuFaux + "\n";
 		res += "Réponses : \n";
 
 		for (HashMap.Entry<String, Boolean> entry : this.hmReponses.entrySet()) {

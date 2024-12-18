@@ -100,18 +100,10 @@ public class PanelCreationNotion extends JPanel implements ActionListener {
     // Classe interne pour surveiller les changements dans les champs de texte
     private class InputListener implements DocumentListener {
         @Override
-        public void insertUpdate(DocumentEvent e) {
-            verifierChamps();
-        }
-
+        public void insertUpdate(DocumentEvent e) {verifierChamps();}
         @Override
-        public void removeUpdate(DocumentEvent e) {
-            verifierChamps();
-        }
-
+        public void removeUpdate(DocumentEvent e) {verifierChamps();}
         @Override
-        public void changedUpdate(DocumentEvent e) {
-            verifierChamps();
-        }
+        public void changedUpdate(DocumentEvent e) {verifierChamps();}
     }
 }

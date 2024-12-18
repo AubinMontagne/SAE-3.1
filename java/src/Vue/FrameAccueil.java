@@ -15,7 +15,7 @@ public class FrameAccueil extends JFrame{
         this.ctrl = ctrl;
 
         this.setTitle("Page d'accueil");
-        this.setSize(240,200);
+        this.setSize(190,215);
         this.setMinimumSize(this.getSize());
         this.setLocationRelativeTo(null);
 

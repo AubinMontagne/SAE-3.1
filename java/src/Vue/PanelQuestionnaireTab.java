@@ -348,15 +348,12 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
                 questionnaire.defNbQuestion(
                         ctrl.getMetier().getNotionByNom(data.getNotion()), tf, data.getTf()
                 );
-
                 questionnaire.defNbQuestion(
                         ctrl.getMetier().getNotionByNom(data.getNotion()), f, data.getF()
                 );
-
                 questionnaire.defNbQuestion(
                         ctrl.getMetier().getNotionByNom(data.getNotion()), m, data.getM()
                 );
-
                 questionnaire.defNbQuestion(
                         ctrl.getMetier().getNotionByNom(data.getNotion()), d, data.getD()
                 );
