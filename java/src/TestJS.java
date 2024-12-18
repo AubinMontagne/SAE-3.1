@@ -1,4 +1,6 @@
-package src.Metier;
+package src;
+
+import src.Metier.*;
 
 public class TestJS{
 
