@@ -22,7 +22,7 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
         this.setSize              (900,500);
         this.setMinimumSize       (this.getSize());
         this.setLocationRelativeTo(null);
-        this.setIconImage(new ImageIcon(getClass().getResource("java/data/Images/icon.png")).getImage());
+        this.setIconImage(new ImageIcon("java/data/Images/icon.png").getImage());
 
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
