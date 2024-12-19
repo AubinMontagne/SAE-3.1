@@ -43,7 +43,7 @@ public class QCM extends Question {
 
 	/**
 	 * Methode ajouterReponse
-	 * Cette méthode ajoute une rép
+	 * Cette méthode ajoute une réponse, corecte ou non, a un QCM 
 	 * @param reponse	Le text de la réponse
 	 * @param correct	Si la reponse est corecte
 	 * @return			Vrai si l'ajout a réussi, sinon faux
@@ -74,6 +74,7 @@ public class QCM extends Question {
 
 	/**
 	 * Methode supprimerReponse
+	 * Cette méthode supprime un réponse a un QCM
 	 * @param reponse	La réponse à supprimer
 	 */
 	public void supprimerReponse(String reponse){this.hmReponses.remove(reponse); }

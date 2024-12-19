@@ -103,9 +103,6 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
     public void valueChanged(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
             Notion selectedNotion = this.list.getSelectedValue();
-            if (selectedNotion != null) {
-                FrameBanque.creerFrameBanque(ctrl, selectedNotion);
-            }
         }
     }
 
@@ -122,6 +119,7 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
             if (notion != null) {
                 this.ctrl.supprimerNotion(notion);
                 this.maj();
+                this.ctrl.miseAJourFichiers();
             }
         }
     }

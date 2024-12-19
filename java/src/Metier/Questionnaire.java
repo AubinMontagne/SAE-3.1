@@ -32,6 +32,7 @@ public class Questionnaire{
 
 	/**
 	 * Methode ajouterNotion
+     * Cette méthode ajoute une notion a la list des notions questionnaire
 	 * @param notion La notion à ajouter
 	 */
    public void ajouterNotion(Notion notion){
@@ -42,12 +43,14 @@ public class Questionnaire{
 
 	/**
 	 * Methode supprimerNotion
+     * Cette méthode supprime une notion de la list des notions questionnaire
 	 * @param notion La notion à supprimer
 	 */
    public void supprimerNotion(Notion notion){this.lstNotions.remove(notion); }
 
 	/**
 	 * Methode defNbQuestion
+     * Cette métode définie dans la liste des question par dificulté, la questions et sa notion selon leur difficulté
 	 * @param notion		La notion des questions
 	 * @param difficulte	La difficulté des questions
 	 * @param nbQuestion	Le nombre de questions

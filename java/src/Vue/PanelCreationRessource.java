@@ -42,9 +42,9 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 		this.champNom.setPreferredSize(new Dimension(10, 10));
 
 		panelConfiguration.add(labelID);
-		panelConfiguration.add(champID);
+		panelConfiguration.add(this.champID);
 		panelConfiguration.add(labalNom);
-		panelConfiguration.add(champNom);
+		panelConfiguration.add(this.champNom);
 
 		add(panelConfiguration, BorderLayout.CENTER);
 
@@ -55,10 +55,10 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 		// Section inférieure
 		JPanel panelType = new JPanel(new GridLayout(1, 1, 5, 5));
 
-		boutonConfirmer = new JButton("Confirmer");
-		boutonConfirmer.addActionListener(this);
+		this.boutonConfirmer = new JButton("Confirmer");
+		this.boutonConfirmer.addActionListener(this);
 
-		panelType.add(boutonConfirmer);
+		panelType.add(this.boutonConfirmer);
 
 		add(panelType, BorderLayout.SOUTH);
 		setVisible(true);
@@ -71,9 +71,9 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == boutonConfirmer) {
-			String id = champID.getText().trim();
-			String nom = champNom.getText().trim();
+		if (e.getSource() == this.boutonConfirmer) {
+			String id = this.champID.getText().trim();
+			String nom = this.champNom.getText().trim();
 
 			if (id.isEmpty() || nom.isEmpty()) {
 				JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -81,8 +81,8 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 			}
 
 			Ressource r = new Ressource(id, nom);
-			ctrl.ajouterRessource(r);
-			ctrl.getMetier().saveRessources("java/data/");
+			this.ctrl.ajouterRessource(r);
+			this.ctrl.miseAJourFichiers();
 
 			JOptionPane.showMessageDialog(this, "Ressource ajoutée", "Succès", JOptionPane.INFORMATION_MESSAGE);
 

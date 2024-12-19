@@ -47,7 +47,7 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
 
         // Instanciation des data des table
         String[] columnNames = {"Notion", "", "TF", "F", "M", "D", ""};
-        Object[][] data = new Object[notions.size()][7];
+        Object[][] data = new Object[this.notions.size()][7];
 
         int alInd = 0;
         for (int i = 0; i < this.notions.size(); i++) {
@@ -115,15 +115,15 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
         });
 
         // Configuration de la table
-        tbQuestion = new JTable(model);
-        tbQuestion.setPreferredScrollableViewportSize(new Dimension(
-                tbQuestion.getPreferredScrollableViewportSize().width,
-                tbQuestion.getRowHeight() * 6
+        this.tbQuestion = new JTable(model);
+        this.tbQuestion.setPreferredScrollableViewportSize(new Dimension(
+                this.tbQuestion.getPreferredScrollableViewportSize().width,
+                this.tbQuestion.getRowHeight() * 6
             ));
 
         for (int col = 2; col <= 5; col++) {
-            tbQuestion.getColumnModel().getColumn(col).setCellRenderer(new CustomCellRenderer(model));
-            tbQuestion.getColumnModel().getColumn(col).setCellEditor(new CustomCellEditor(model));
+            this.tbQuestion.getColumnModel().getColumn(col).setCellRenderer(new CustomCellRenderer(model));
+            this.tbQuestion.getColumnModel().getColumn(col).setCellEditor(new CustomCellEditor(model));
         }
 
         this.lbTotal = new JLabel("Totaux : TF = 0, F = 0, M = 0, D = 0");
@@ -131,10 +131,10 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
         this.btGenerer = new JButton("Générer Questionnaire");
 		this.btGenerer.addActionListener(this);
 
-        JScrollPane scrollPane = new JScrollPane(tbQuestion);
+        JScrollPane scrollPane = new JScrollPane(this.tbQuestion);
         this.panelQuestionnaireTab.add(scrollPane, BorderLayout.NORTH);
-        this.panelQuestionnaireTab.add(lbTotal, BorderLayout.CENTER);
-        this.panelQuestionnaireTab.add(btGenerer, BorderLayout.SOUTH);
+        this.panelQuestionnaireTab.add(this.lbTotal, BorderLayout.CENTER);
+        this.panelQuestionnaireTab.add(this.btGenerer, BorderLayout.SOUTH);
 
         this.add(this.panelQuestionnaireTab);
         updateTotals(model);
@@ -267,7 +267,7 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
     private ArrayList<QuestionnaireData> getSelectedData() {
         ArrayList<QuestionnaireData> selectedData = new ArrayList<>();
 
-        DefaultTableModel model = (DefaultTableModel) tbQuestion.getModel();
+        DefaultTableModel model = (DefaultTableModel) this.tbQuestion.getModel();
 
         for (int i = 0; i < model.getRowCount(); i++) {
             Boolean isSelected = (Boolean) model.getValueAt(i, 1);
@@ -346,16 +346,16 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
                 totalD  += data.getD();
 
                 questionnaire.defNbQuestion(
-                        ctrl.getMetier().getNotionByNom(data.getNotion()), tf, data.getTf()
+                        this.ctrl.getMetier().getNotionByNom(data.getNotion()), tf, data.getTf()
                 );
                 questionnaire.defNbQuestion(
-                        ctrl.getMetier().getNotionByNom(data.getNotion()), f, data.getF()
+                        this.ctrl.getMetier().getNotionByNom(data.getNotion()), f, data.getF()
                 );
                 questionnaire.defNbQuestion(
-                        ctrl.getMetier().getNotionByNom(data.getNotion()), m, data.getM()
+                        this.ctrl.getMetier().getNotionByNom(data.getNotion()), m, data.getM()
                 );
                 questionnaire.defNbQuestion(
-                        ctrl.getMetier().getNotionByNom(data.getNotion()), d, data.getD()
+                        this.ctrl.getMetier().getNotionByNom(data.getNotion()), d, data.getD()
                 );
             }
 

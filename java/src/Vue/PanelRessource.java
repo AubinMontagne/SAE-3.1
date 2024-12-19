@@ -52,8 +52,8 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
 
         JPanel panelBouton = new JPanel(new GridLayout(1, 2));
 
-        panelBouton.add(btnNouvRess);
-        panelBouton.add(btnSupprRess);
+        panelBouton.add(this.btnNouvRess);
+        panelBouton.add(this.btnSupprRess);
 
         this.panelRessource.add(panelBouton, BorderLayout.SOUTH);
 
@@ -80,15 +80,16 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
      * @param e L'évènement à traiter
      */
     public void actionPerformed(ActionEvent e) {
-        if (btnNouvRess == e.getSource()) {
+        if (this.btnNouvRess == e.getSource()) {
             FrameCreationRessource.creerFrameCreationRessource(this.ctrl);
             this.maj();
         }
-        if (btnSupprRess == e.getSource()) {
+        if (this.btnSupprRess == e.getSource()) {
             Ressource ressource = this.list.getSelectedValue();
             if (ressource != null) {
                 this.ctrl.supprimerRessource(ressource);
                 this.maj();
+                this.ctrl.miseAJourFichiers();
             }
         }
     }

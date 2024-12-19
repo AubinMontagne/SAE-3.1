@@ -20,12 +20,11 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 	private JButton 			 btChrono;
 	private boolean 			 chrono;
 	private JTextField 			 champTitre;
-
-    private List<Ressource> listRessources;
-	private Ressource  r;
-	private Notion 	   n;
-	private Controleur ctrl;
-	private FrameQuestionnaire frame ;
+    private List<Ressource>      listRessources;
+	private Ressource            r;
+	private Notion 	             n;
+	private Controleur           ctrl;
+	private FrameQuestionnaire   frame ;
 
 	// Constructeur
 
@@ -34,14 +33,15 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 	 * @param ctrl	Le contrôleur
 	 */
     public PanelQuestionnaire(Controleur ctrl, FrameQuestionnaire frame) {
-		this.frame = frame;
+		this.frame              = frame;
     	this.panelQuestionnaire = new JPanel(new BorderLayout());
-    	this.panelQuestionnaire.setVisible(true);
-
 		this.ctrl = ctrl;
 		this.chrono = false;
 		this.videTitre = true;
-		this.videRessource = true;
+		this.videRessource = tr       
+    	this.panelQuestionnaire.setVisible(true);
+
+
 
     	UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
 
@@ -86,10 +86,8 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 		this.champTitre.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
 			public void insertUpdate(DocumentEvent e) {verifierChamps(champTitre.getText()); }
-
 			@Override
 			public void removeUpdate(DocumentEvent e) {verifierChamps(champTitre.getText()); }
-
 			@Override
 			public void changedUpdate(DocumentEvent e) {verifierChamps(champTitre.getText()); }
 		});

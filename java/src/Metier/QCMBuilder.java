@@ -51,6 +51,7 @@ public class QCMBuilder
 
     /**
      * Methode creerDossier
+     * Cette methode créé un fichier a l'endroit demander
      * @param path  Le chemin ou créer le dossier
      * @return      Vrai si le fichier a pu être créé, sinon faux
      */
@@ -67,9 +68,9 @@ public class QCMBuilder
 
     /**
      * Metode ecrireHTML
+     * Cette métode permet l'écriture de index.html commun a tous les questionnaires
      * @return  Vrai si le fichier a pu être écrit, sinon faux
      */
-    /*Cette méthode permet l'écriture du index.html commun à tous les questionnaires.*/
     public boolean ecrireHTML(){
         try{
             String listeNotions = "";
@@ -147,6 +148,7 @@ public class QCMBuilder
 
     /**
      * Metode ecrireStyle
+     * Cette métode permet l'écriture de style.css commun a tous les questionnaires
      * @return  Vrai si le fichier a pu être écrit, sinon faux
      */
     public boolean ecrireStyle(){
@@ -171,6 +173,7 @@ public class QCMBuilder
 
     /**
      * Metode ecrireImage
+     * Cette métode permet la création des images néssésaire au questionnaire
      * @return  Vrai si les fichiers ont pu être écrits, sinon faux
      */
     public boolean ecrireImage(){
@@ -197,6 +200,7 @@ public class QCMBuilder
 
     /**
      * Metode ecrireJS
+     * Cette métode permet l'écriture du script JS commun a tout les questionnaires
      * @return  Vrai si le fichier a pu être écrit, sinon faux
      */
     public void ecrireJS()
@@ -823,6 +827,7 @@ public class QCMBuilder
 
     /**
      * Methode questionsJS
+     * Cette métode permet l'écriture de script JS pour chaques questions
      * @return  Vrai si le fichier a pu être écrit, sinon faux
      */
     public String questionsJS()

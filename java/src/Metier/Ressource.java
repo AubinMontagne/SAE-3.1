@@ -6,8 +6,7 @@ public class Ressource{
 
     // Constructeur
     /**
-     * Constructeur de la classe Ressource.
-     *
+     * Constructeur de la classe Ressource
      * @param id        L'identifiant de la ressource.
      * @param nom       Le nom de la ressource.
      */

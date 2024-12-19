@@ -10,6 +10,7 @@ public class RtfFileReader {
 
     /**
      * Methode filePath
+     * Permet au java de lire les fichier type RTF
      * @param filePath Le chemin du fichier RTF
      * @return         Un text pas en RTF
      */

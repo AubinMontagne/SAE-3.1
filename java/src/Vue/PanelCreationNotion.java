@@ -48,19 +48,19 @@ public class PanelCreationNotion extends JPanel implements ActionListener {
         JLabel labelTemps = new JLabel("Nom (Ex: Le Chiffrement):");
         this.champNom     = new JTextField();
 
-        boutonConfirmer = new JButton("Confirmer");
-        boutonConfirmer.setEnabled(false);
+        this.boutonConfirmer = new JButton("Confirmer");
+        this.boutonConfirmer.setEnabled(false);
         panelConfiguration.add(labelTemps);
         panelConfiguration.add(champNom);
 
         add(panelConfiguration, BorderLayout.CENTER);
-        add(boutonConfirmer,    BorderLayout.SOUTH );
+        add(this.boutonConfirmer,    BorderLayout.SOUTH );
 
         // Ajout des écouteurs sur les champs de texte
-        champNom.getDocument ().addDocumentListener (new InputListener());
+        this.champNom.getDocument ().addDocumentListener (new InputListener());
 
         // Ajouter un ActionListener au bouton Confirmer
-        boutonConfirmer.addActionListener(this);
+        this.boutonConfirmer.addActionListener(this);
 
         setVisible(true);
     }
@@ -71,8 +71,8 @@ public class PanelCreationNotion extends JPanel implements ActionListener {
      * Methode verifierChamps
      */
     private void verifierChamps() {
-        String texteChampNom = champNom.getText().trim();
-        boutonConfirmer.setEnabled(!texteChampNom.isEmpty() );
+        String texteChampNom = this.champNom.getText().trim();
+        this.boutonConfirmer.setEnabled(!texteChampNom.isEmpty() );
     }
 
     /**
@@ -80,14 +80,14 @@ public class PanelCreationNotion extends JPanel implements ActionListener {
      * @param e L'évènement à traiter
      */
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == boutonConfirmer) {
-            String nom = champNom.getText().trim();
+        if (e.getSource() == this.boutonConfirmer) {
+            String nom = this.champNom.getText().trim();
 
             // Créez l'objet Ressource (assurez-vous que la classe Ressource existe déjà)
             Notion notion = new Notion(nom, this.r);
 
-            ctrl.ajouterNotion(notion);
-            ctrl.getMetier().saveNotions("java/data/");
+            this.ctrl.ajouterNotion(notion);
+            this.ctrl.miseAJourFichiers();
 
             // Afficher une po-pup avec les informations de la Notion
             JOptionPane.showMessageDialog(this, "Notion ajoutée", "Succès", JOptionPane.INFORMATION_MESSAGE);
