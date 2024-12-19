@@ -14,9 +14,9 @@ public class FrameAccueil extends JFrame{
     public FrameAccueil( Controleur ctrl){
         this.ctrl = ctrl;
 
-        this.setTitle("Page d'accueil");
-        this.setSize(190,215);
-        this.setMinimumSize(this.getSize());
+        this.setTitle             ("Page d'accueil");
+        this.setSize              (190,215);
+        this.setMinimumSize       (this.getSize());
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

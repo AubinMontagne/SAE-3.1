@@ -17,9 +17,9 @@ public class FrameQuestionnaire extends JFrame{
     public FrameQuestionnaire( Controleur ctrl ){
         this.ctrl = ctrl;
 
-        this.setTitle("Nouveaux Questionnaire");
-        this.setSize(590,400);
-        this.setMinimumSize(this.getSize());
+        this.setTitle             ("Nouveaux Questionnaire");
+        this.setSize              (590,400);
+        this.setMinimumSize       (this.getSize());
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

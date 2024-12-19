@@ -42,7 +42,6 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
         this.titreQuestionnaire    = titre;
         this.r                     = r;
         this.estChrono             = estChrono;
-
         this.notions               = ctrl.getNotionsParRessource(this.r);
 
         // Instanciation des data des table
@@ -56,7 +55,7 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
                 if (this.notions.get(alInd).getRessourceAssociee() == r) {
                     data[i][0] = this.notions.get(alInd).getNom();
                     data[i][1] = false;
-                    verif = true;
+                    verif      = true;
                 }
                 alInd++;
             }
@@ -66,7 +65,7 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
         DefaultTableModel model = new DefaultTableModel(data, columnNames) {
             @Override
             public Class<?> getColumnClass(int columnIndex) {
-                if (columnIndex == 1) return Boolean.class;
+                if (columnIndex == 1)                     return Boolean.class;
                 if (columnIndex >= 2 && columnIndex <= 5) return Integer.class;
                 return String.class;
             }
@@ -123,7 +122,7 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
 
         for (int col = 2; col <= 5; col++) {
             this.tbQuestion.getColumnModel().getColumn(col).setCellRenderer(new CustomCellRenderer(model));
-            this.tbQuestion.getColumnModel().getColumn(col).setCellEditor(new CustomCellEditor(model));
+            this.tbQuestion.getColumnModel().getColumn(col).setCellEditor  (new CustomCellEditor  (model));
         }
 
         this.lbTotal = new JLabel("Totaux : TF = 0, F = 0, M = 0, D = 0");
@@ -132,9 +131,9 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
 		this.btGenerer.addActionListener(this);
 
         JScrollPane scrollPane = new JScrollPane(this.tbQuestion);
-        this.panelQuestionnaireTab.add(scrollPane, BorderLayout.NORTH);
-        this.panelQuestionnaireTab.add(this.lbTotal, BorderLayout.CENTER);
-        this.panelQuestionnaireTab.add(this.btGenerer, BorderLayout.SOUTH);
+        this.panelQuestionnaireTab.add(scrollPane    , BorderLayout.NORTH );
+        this.panelQuestionnaireTab.add(this.lbTotal  , BorderLayout.CENTER);
+        this.panelQuestionnaireTab.add(this.btGenerer, BorderLayout.SOUTH );
 
         this.add(this.panelQuestionnaireTab);
         updateTotals(model);
@@ -150,7 +149,9 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
         }
 
         @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        public Component getTableCellRendererComponent(
+                JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column
+        ) {
             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
             Boolean isRowSelected = (Boolean) model.getValueAt(row, 1);
@@ -158,7 +159,7 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
                 switch (column) {
                     case 2 -> setBackground(new Color(133, 222, 146));
                     case 3 -> setBackground(new Color(181, 165, 196));
-                    case 4 -> setBackground(new Color(189, 40, 47));
+                    case 4 -> setBackground(new Color(189, 40 , 47) );
                     case 5 -> setBackground(new Color(126, 128, 126));
                 }
                 setForeground(Color.BLACK);
@@ -197,7 +198,7 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
                 switch (column) {
                     case 2 -> textField.setBackground(new Color(133, 222, 146));
                     case 3 -> textField.setBackground(new Color(181, 165, 196));
-                    case 4 -> textField.setBackground(new Color(189, 40, 47));
+                    case 4 -> textField.setBackground(new Color(189,  40, 47) );
                     case 5 -> textField.setBackground(new Color(126, 128, 126));
                 }
                 textField.setForeground(Color.BLACK);
@@ -226,14 +227,16 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
         for (int i = 0; i < model.getRowCount(); i++) {
             // S'assurer que la valeur récupérée est bien un entier
             totalTF += getIntValue(model.getValueAt(i, 2));
-            totalF += getIntValue(model.getValueAt(i, 3));
-            totalM += getIntValue(model.getValueAt(i, 4));
-            totalD += getIntValue(model.getValueAt(i, 5));
+            totalF  += getIntValue(model.getValueAt(i, 3));
+            totalM  += getIntValue(model.getValueAt(i, 4));
+            totalD  += getIntValue(model.getValueAt(i, 5));
         }
 
         total += totalD + totalF + totalM + totalTF;
         // Mettre à jour l'affichage des totaux
-        this.lbTotal.setText(String.format("Totaux : TF = %d, F = %d, M = %d, D = %d     Σ = %d", totalTF, totalF, totalM, totalD, total));
+        this.lbTotal.setText(String.format(
+                "Totaux : TF = %d, F = %d, M = %d, D = %d     Σ = %d", totalTF, totalF, totalM, totalD, total)
+        );
     }
 
     // Fonction utilitaire pour obtenir un entier, ou 0 si la valeur est invalide
@@ -275,9 +278,9 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
             if (isSelected != null && isSelected) {
                 String notion = (String) model.getValueAt(i, 0);
                 int tf = getIntValue(model.getValueAt(i, 2));
-                int f = getIntValue(model.getValueAt(i, 3));
-                int m = getIntValue(model.getValueAt(i, 4));
-                int d = getIntValue(model.getValueAt(i, 5));
+                int f  = getIntValue(model.getValueAt(i, 3));
+                int m  = getIntValue(model.getValueAt(i, 4));
+                int d  = getIntValue(model.getValueAt(i, 5));
 
                 selectedData.add(new QuestionnaireData(notion, tf, f, m, d));
             }
@@ -334,11 +337,11 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
             int totalTF = 0, totalF = 0, totalM = 0, totalD = 0;
 
             for (QuestionnaireData data : selectedData) {
-                sb.append(String.format("Notion: %s\n",               data.getNotion()));
+                sb.append(String.format("Notion: %s\n"              , data.getNotion()));
                 sb.append(String.format("  - Très facile (TF): %d\n", data.getTf())    );
-                sb.append(String.format("  - Facile (F): %d\n",       data.getF() )    );
-                sb.append(String.format("  - Moyen (M): %d\n",        data.getM() )    );
-                sb.append(String.format("  - Difficile (D): %d\n",    data.getD() )    );
+                sb.append(String.format("  - Facile (F): %d\n"      , data.getF() )    );
+                sb.append(String.format("  - Moyen (M): %d\n"       , data.getM() )    );
+                sb.append(String.format("  - Difficile (D): %d\n"   , data.getD() )    );
 
                 totalTF += data.getTf();
                 totalF  += data.getF();
@@ -362,10 +365,10 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
             // Ajout du total
             sb.append("\nRésumé des difficultés:\n");
             sb.append(String.format("  - Total Très Facile (TF): %d\n", totalTF));
-            sb.append(String.format("  - Total Facile (F): %d\n", totalF));
-            sb.append(String.format("  - Total Moyen (M): %d\n", totalM));
-            sb.append(String.format("  - Total Difficile (D): %d\n", totalD));
-            sb.append(String.format("  - Total Questions: %d\n", (totalTF + totalF + totalM + totalD)));
+            sb.append(String.format("  - Total Facile (F): %d\n"      , totalF));
+            sb.append(String.format("  - Total Moyen (M): %d\n"       , totalM));
+            sb.append(String.format("  - Total Difficile (D): %d\n"   , totalD));
+            sb.append(String.format("  - Total Questions: %d\n"       , (totalTF + totalF + totalM + totalD)));
 
             // Affichage des données dans le JOptionPane
             JOptionPane.showMessageDialog(this, sb.toString(), "Résumé du questionnaire", JOptionPane.INFORMATION_MESSAGE);

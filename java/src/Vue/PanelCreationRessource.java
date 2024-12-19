@@ -72,7 +72,7 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.boutonConfirmer) {
-			String id = this.champID.getText().trim();
+			String id  = this.champID.getText().trim();
 			String nom = this.champNom.getText().trim();
 
 			if (id.isEmpty() || nom.isEmpty()) {

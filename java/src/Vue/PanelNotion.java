@@ -36,7 +36,7 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
         if (r == null) {
             r = new Ressource("PlaceHolder", "PlaceHolder");
         }
-        this.ressource = r;
+        this.ressource   = r;
         this.notions     = ctrl.getNotionsParRessource(r);
         this.panelNotion = new JPanel();
         this.panelNotion.setLayout(new BorderLayout());
@@ -51,16 +51,16 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
         // Création des composants
         this.labTitre = new JLabel (this.ressource.toString());
 
-        this.btnNouvNotion = new JButton("Nouvelle Notion");
-        this.btnSupprNotion= new JButton("Supprimer Notion");
+        this.btnNouvNotion  = new JButton("Nouvelle Notion");
+        this.btnSupprNotion = new JButton("Supprimer Notion");
 
         this.list = new JList<>(listModel);
         this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         // Ajout des écouteurs
-        this.list.addListSelectionListener   (this);
-        this.btnNouvNotion.addActionListener (this);
-        this.btnSupprNotion.addActionListener(this);
+        this.list          .addListSelectionListener (this);
+        this.btnNouvNotion .addActionListener        (this);
+        this.btnSupprNotion.addActionListener        (this);
 
         // Ajout de la liste dans un JScrollPane
         JScrollPane scrollPane = new JScrollPane(this.list);

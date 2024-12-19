@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Questionnaire{
-   private String nom;
-   private Ressource ressource;
+   private String                        nom;
+   private Ressource                     ressource;
+   private boolean                       chronoBool;
    private ArrayList<ArrayList<Integer>> lstNbQuestionsParDifficulte;
-   private boolean chronoBool;
-   private List<Notion> lstNotions;
-   private List<Question> lstQuestion;
+   private List<Notion>                  lstNotions;
+   private List<Question>                lstQuestion;
 
    // Constructeur
 
@@ -20,11 +20,11 @@ public class Questionnaire{
 	 * @param estChronom	Si le questionnaire est chronométré
 	 */
 	public Questionnaire(String nom, Ressource ressource, boolean estChronom){
-      this.nom = nom;
-      this.ressource = ressource;
-      this.chronoBool = estChronom;
-      this.lstNotions = new ArrayList<Notion>();
-      this.lstQuestion = new ArrayList<Question>();
+      this.nom                         = nom;
+      this.ressource                   = ressource;
+      this.chronoBool                  = estChronom;
+      this.lstNotions                  = new ArrayList<Notion>();
+      this.lstQuestion                 = new ArrayList<Question>();
       this.lstNbQuestionsParDifficulte = new ArrayList<ArrayList<Integer>>();
    }
 
@@ -90,17 +90,19 @@ public class Questionnaire{
     }
 
 	// Setter
-    public void setNom(String nom)               {this.nom = nom; }
-    public void setRessource(Ressource ressource){this.ressource = ressource; }
-    public void setChronoBool(boolean chronoBool){this.chronoBool = chronoBool; }
-    public void addQuestion(Question question)   {this.lstQuestion.add(question); }
+    public void setNom       (String nom)         {this.nom = nom; }
+    public void setRessource (Ressource ressource){this.ressource = ressource; }
+    public void setChronoBool(boolean chronoBool) {this.chronoBool = chronoBool; }
+    public void addQuestion  (Question question)  {this.lstQuestion.add(question); }
 
    	public void initLstQuestions(Metier metier){
       	for (Notion n : this.lstNotions) {
 			for (ArrayList<Integer> lstIntegerNotion : this.lstNbQuestionsParDifficulte) {
 				if (lstIntegerNotion.get(0) == this.lstNotions.indexOf(n)) {
 					for (int i = 0; i < lstIntegerNotion.get(2); i++) {
-						this.addQuestion(metier.getQuestionAleatoire(n, Difficulte.getDifficulteByIndice(lstIntegerNotion.get(1))));
+						this.addQuestion(metier.getQuestionAleatoire(
+                                n, Difficulte.getDifficulteByIndice(lstIntegerNotion.get(1) ) )
+                        );
 					}
 				}
 			}

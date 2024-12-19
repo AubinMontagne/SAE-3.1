@@ -32,10 +32,8 @@ public class Notion
     }
 
     // Setter
-    public void setNom(String nom)                               {this.nom = nom;}
+    public void setNom              (String nom)                 {this.nom = nom;}
     public void setRessourceAssociee(Ressource ressourceAssociee){this.ressourceAssociee = ressourceAssociee;}
 
-	public String toString() {
-        return this.getNom();
-    }
+	public String toString() {return this.getNom();}
 }

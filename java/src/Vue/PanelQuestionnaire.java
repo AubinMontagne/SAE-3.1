@@ -33,19 +33,19 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 	 * @param ctrl	Le contrôleur
 	 */
     public PanelQuestionnaire(Controleur ctrl, FrameQuestionnaire frame) {
-		this.frame              = frame;
     	this.panelQuestionnaire = new JPanel(new BorderLayout());
-		this.ctrl = ctrl;
-		this.chrono = false;
-		this.videTitre = true;
-		this.videRessource = tr       
+		this.frame              = frame;
+		this.ctrl               = ctrl;
+		this.chrono             = false;
+		this.videTitre          = true;
+		this.videRessource      = true;                             
     	this.panelQuestionnaire.setVisible(true);
 
 
 
     	UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
 
-		this.listRessources = ctrl.getRessources();
+		this.listRessources   = ctrl.getRessources();
 		Ressource placeHolder = new Ressource("PlaceHolder","PlaceHolder");
 		this.listRessources.add(0,placeHolder);
 
@@ -61,7 +61,7 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
     	this.btChrono.addActionListener(this);
 
     	JLabel labelRessource = new JLabel("Ressource :");
-		this.mdRessources 		  = new JComboBox<>(this.listRessources.toArray(new Ressource[0]));
+		this.mdRessources 	  = new JComboBox<>(this.listRessources.toArray(new Ressource[0]));
 		this.mdRessources.addItemListener(this);
 		this.mdRessources.setSelectedIndex(0);
 
@@ -85,9 +85,9 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
     // ------ Ajouter le DocumentListener au champTitre ------
 		this.champTitre.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
-			public void insertUpdate(DocumentEvent e) {verifierChamps(champTitre.getText()); }
+			public void insertUpdate(DocumentEvent e)  {verifierChamps(champTitre.getText()); }
 			@Override
-			public void removeUpdate(DocumentEvent e) {verifierChamps(champTitre.getText()); }
+			public void removeUpdate(DocumentEvent e)  {verifierChamps(champTitre.getText()); }
 			@Override
 			public void changedUpdate(DocumentEvent e) {verifierChamps(champTitre.getText()); }
 		});

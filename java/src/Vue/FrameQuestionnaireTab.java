@@ -18,10 +18,10 @@ public class FrameQuestionnaireTab extends JFrame{
     public FrameQuestionnaireTab( Controleur ctrl, Ressource r, String titre, boolean chrono){
         this.ctrl = ctrl;
 
-        this.setTitle("Tableau des Notions");
-        this.add(new PanelQuestionnaireTab(ctrl, r, titre, chrono) );
-        this.setSize(this.getContentPane().getSize());
-        this.setMinimumSize(this.getSize());
+        this.setTitle             ("Tableau des Notions");
+        this.add                  (new PanelQuestionnaireTab(ctrl, r, titre, chrono) );
+        this.setSize              (this.getContentPane().getSize());
+        this.setMinimumSize       (this.getSize());
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

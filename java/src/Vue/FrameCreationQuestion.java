@@ -18,14 +18,29 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
     public FrameCreationQuestion( Controleur ctrl, PanelBanque panelBanque){
         this.ctrl = ctrl;
 
-        this.setTitle("Création de la question");
-        this.setSize(900,500);
-        this.setMinimumSize(this.getSize());
+        this.setTitle             ("Création de la question");
+        this.setSize              (900,500);
+        this.setMinimumSize       (this.getSize());
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         this.add(new PanelCreationQuestion(ctrl,panelBanque) );
+        this.addWindowListener(this);
+
+        setVisible(true);
+    }
+    public FrameCreationQuestion( Controleur ctrl){
+        this.ctrl = ctrl;
+
+        this.setTitle             ("Création de la question");
+        this.setSize              (900,500);
+        this.setMinimumSize       (this.getSize());
+        this.setLocationRelativeTo(null);
+
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        this.add(new PanelCreationQuestion(ctrl) );
         this.addWindowListener(this);
 
         setVisible(true);
@@ -39,19 +54,11 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
         return null;
     }
 
-    public void windowOpened(java.awt.event.WindowEvent e) {
-    }
-    public void windowClosing(java.awt.event.WindowEvent e) {
-        FrameCreationQuestion.nbFrame--;
-    }
-    public void windowClosed(java.awt.event.WindowEvent e) {
-    }
-    public void windowIconified(java.awt.event.WindowEvent e) {
-    }
-    public void windowDeiconified(java.awt.event.WindowEvent e) {
-    }
-    public void windowActivated(java.awt.event.WindowEvent e) {
-    }
-    public void windowDeactivated(java.awt.event.WindowEvent e) {
-    }
+    public void windowOpened     (java.awt.event.WindowEvent e) {}
+    public void windowClosing    (java.awt.event.WindowEvent e) {FrameCreationQuestion.nbFrame--;}
+    public void windowClosed     (java.awt.event.WindowEvent e) {}
+    public void windowIconified  (java.awt.event.WindowEvent e) {}
+    public void windowDeiconified(java.awt.event.WindowEvent e) {}
+    public void windowActivated  (java.awt.event.WindowEvent e) {}
+    public void windowDeactivated(java.awt.event.WindowEvent e) {}
 }

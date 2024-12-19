@@ -16,18 +16,17 @@ public class FrameBanque extends JFrame implements WindowListener {
      * Constructeur de la class FrameBanque
      * @param ctrl  Le contrôleur
      */
-	public FrameBanque(Controleur ctrl )
-    {
+	public FrameBanque(Controleur ctrl ) {
         this.ctrl = ctrl;
 
-        this.setTitle("Banque de question ");
-        this.setSize(850,200);
+        this.setTitle             ("Banque de question ");
+        this.setSize              (850,200);
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         this.add(new PanelBanque(this.ctrl) );
-        this.addWindowListener(this);
+        this.addWindowListener  (this);
 
         setVisible(true);
     }
@@ -40,11 +39,11 @@ public class FrameBanque extends JFrame implements WindowListener {
         return null;
     }
 
-    public void windowOpened(java.awt.event.WindowEvent e) {}
-    public void windowClosing(java.awt.event.WindowEvent e) {FrameBanque.nbFrame--;}
-    public void windowClosed(java.awt.event.WindowEvent e) {}
-    public void windowIconified(java.awt.event.WindowEvent e) {}
+    public void windowOpened     (java.awt.event.WindowEvent e) {}
+    public void windowClosing    (java.awt.event.WindowEvent e) {FrameBanque.nbFrame--;}
+    public void windowClosed     (java.awt.event.WindowEvent e) {}
+    public void windowIconified  (java.awt.event.WindowEvent e) {}
     public void windowDeiconified(java.awt.event.WindowEvent e) {}
-    public void windowActivated(java.awt.event.WindowEvent e) {}
+    public void windowActivated  (java.awt.event.WindowEvent e) {}
     public void windowDeactivated(java.awt.event.WindowEvent e) {}
 }

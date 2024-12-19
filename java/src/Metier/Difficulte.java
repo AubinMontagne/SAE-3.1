@@ -21,7 +21,7 @@ public enum Difficulte {
     }
 
     //Getter
-    public String getNom()    {return nom; }
+    public String getNom   () {return nom; }
     public int    getIndice() {return indice; }
 
     public static Difficulte getDifficulteByIndice(int indice){
@@ -32,6 +32,5 @@ public enum Difficulte {
         }
         return null;
     }
-
     public String toString(){return this.nom + " (" + this.indice + ")"; }
 }

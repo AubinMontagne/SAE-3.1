@@ -36,14 +36,14 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
         }
 
         // Création des composants
-        this.btnNouvRess = new JButton("Nouvelle Ressource");
-        this.btnSupprRess= new JButton("Supprimer Ressource");
-        this.list       = new JList<>(listModel);
+        this.btnNouvRess  = new JButton("Nouvelle Ressource");
+        this.btnSupprRess = new JButton("Supprimer Ressource");
+        this.list         = new JList<>(listModel);
         this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         // Ajout des écouteurs
-        this.list.addListSelectionListener(this);
-        this.btnNouvRess.addActionListener(this);
+        this.list        .addListSelectionListener(this);
+        this.btnNouvRess .addActionListener(this);
         this.btnSupprRess.addActionListener(this);
 
         // Ajout de la liste dans un JScrollPane

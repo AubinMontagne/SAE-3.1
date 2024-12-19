@@ -32,12 +32,13 @@ public class PanelCreationNotion extends JPanel implements ActionListener {
      * @param frameCreationNotion   La frame de création de question
      */
     public PanelCreationNotion(Controleur crtl, Ressource r,PanelNotion panelNotion, FrameCreationNotion frameCreationNotion) {
+        this.ctrl                = crtl;
         this.r                   = r;
         this.panelNotion         = panelNotion;
         this.frameCreationNotion = frameCreationNotion;
         this.panelCreaRess       = new JPanel();
         this.panelCreaRess.setLayout(new BorderLayout());
-        this.ctrl = crtl;
+
 
         UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
 
@@ -53,8 +54,8 @@ public class PanelCreationNotion extends JPanel implements ActionListener {
         panelConfiguration.add(labelTemps);
         panelConfiguration.add(champNom);
 
-        add(panelConfiguration, BorderLayout.CENTER);
-        add(this.boutonConfirmer,    BorderLayout.SOUTH );
+        add(panelConfiguration  , BorderLayout.CENTER );
+        add(this.boutonConfirmer, BorderLayout.SOUTH  );
 
         // Ajout des écouteurs sur les champs de texte
         this.champNom.getDocument ().addDocumentListener (new InputListener());

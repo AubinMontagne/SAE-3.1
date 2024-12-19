@@ -285,9 +285,9 @@ public class Metier{
 	public Question getFromDataQuestion(String line){
 		String type = line.substring(0, line.indexOf(";"));
 		switch (type){
-			case "QCM" -> {return QCM.getAsInstance(line,this);}
-			case "ER" -> {return EliminationReponse.getAsInstance(line,this);}
-			case "AE" -> {return AssociationElement.getAsInstance(line,this);}
+			case "QCM" -> {return QCM               .getAsInstance(line,this);}
+			case "ER"  -> {return EliminationReponse.getAsInstance(line,this);}
+			case "AE"  -> {return AssociationElement.getAsInstance(line,this);}
 		}
 		return null;
 	}
@@ -334,30 +334,26 @@ public class Metier{
 	public ArrayList<Question> getQuestionsParNotion(Notion notion){
 		ArrayList<Question> questionsAssociees = new ArrayList<>();
 	
-		for (Question question : this.lstQuestions) 
-		{
-			if (question.getNotion().equals(notion))
-			{
+		for (Question question : this.lstQuestions) {
+			if (question.getNotion().equals(notion)) {
 				questionsAssociees.add(question);
 				System.out.println(question);
 			}
 		}
-	
 		return questionsAssociees;
 	}
 
 	public ArrayList<Notion> getNotionsParRessource(Ressource ressource){
 		ArrayList<Notion> notionsAssociees = new ArrayList<>();
 
-		for (Notion notion : this.lstNotions)
-		{
-			if (notion.getRessourceAssociee().equals(ressource))
-			{
+		for (Notion notion : this.lstNotions) {
+			if (notion.getRessourceAssociee().equals(ressource)) {
 				notionsAssociees.add(notion);
 			}
 		}
 		return notionsAssociees;
 	}
+
 	public void initQuestionnaire( Questionnaire q, String path){
 		if ( path == null || path.isEmpty() ){
 			path = "./";

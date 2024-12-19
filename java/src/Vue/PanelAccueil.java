@@ -13,6 +13,7 @@ public class PanelAccueil extends JPanel implements  ActionListener{
     private JButton    btBanque;
     private JButton    btQuestionnaire;
     private JButton    btRessources;
+    private JButton    btnCreationQuestion;
 
     // Constructeur
 
@@ -30,16 +31,19 @@ public class PanelAccueil extends JPanel implements  ActionListener{
         this.btQuestionnaire = new JButton("Génération d'un Questionnaire");
         this.btRessources    = new JButton("Paramètre"              );
         this.btBanque        = new JButton("Banque de question"      );
+        this.btnCreationQuestion = new JButton("Création de Question");
+
 
         this.panelAccueil.add(this.btQuestionnaire, BorderLayout.CENTER );
-        this.panelAccueil.add(this.btRessources, BorderLayout.SOUTH     );
-        this.panelAccueil.add(this.btBanque, BorderLayout.NORTH         );
-
+        this.panelAccueil.add(this.btRessources   , BorderLayout.SOUTH  );
+        this.panelAccueil.add(this.btBanque       , BorderLayout.NORTH  );
+        this.panelAccueil.add(this.btnCreationQuestion, BorderLayout.AFTER_LAST_LINE);
         this.add(panelAccueil);
 
         this.btBanque       .addActionListener(this) ;
         this.btQuestionnaire.addActionListener(this) ;
         this.btRessources   .addActionListener(this) ;
+        this.btnCreationQuestion.addActionListener(this);
     }
 
     // Methode
@@ -51,8 +55,10 @@ public class PanelAccueil extends JPanel implements  ActionListener{
         if ( btBanque == e.getSource())
             FrameBanque.creerFrameBanque(this.ctrl);
         if( btQuestionnaire == e.getSource())
-            new FrameQuestionnaire(ctrl);
+            new FrameQuestionnaire(this.ctrl);
         if(btRessources == e.getSource())
             new FrameParametrage(this.ctrl);
+        if(btnCreationQuestion == e.getSource())
+            new FrameCreationQuestion(this.ctrl);
     }
 }

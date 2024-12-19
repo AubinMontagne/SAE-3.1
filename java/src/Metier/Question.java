@@ -37,12 +37,12 @@ public abstract class Question{
      * @param explicationFich   Le nom du fichier rtf contenant l'explication de la question.
      */
     public Question(String enonceFich, Difficulte difficulte, Notion notion, int temps, int point, String explicationFich){
-        this.enonceFich    = enonceFich;
-        this.difficulte  = difficulte;
-        this.notion      = notion;
-        this.temps       = temps;
+        this.enonceFich      = enonceFich;
+        this.difficulte      = difficulte;
+        this.notion          = notion;
+        this.temps           = temps;
         this.explicationFich = explicationFich;
-        this.point       = point;
+        this.point           = point;
     }
 
 	// Get
