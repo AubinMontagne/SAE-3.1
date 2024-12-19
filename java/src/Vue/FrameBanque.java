@@ -25,7 +25,7 @@ public class FrameBanque extends JFrame implements WindowListener {
         this.setTitle("QCM Builder - Banque de question ");
         this.setSize(850,200);
         this.setLocationRelativeTo(null);
-        this.setIconImage(new ImageIcon(getClass().getResource("java/data/Images/icon.png")).getImage());
+        this.setIconImage(new ImageIcon("java/data/Images/icon.png").getImage());
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -40,10 +40,11 @@ public class FrameBanque extends JFrame implements WindowListener {
             return new FrameBanque(ctrl);
         }
         return null;
-    }
+        }
 
+        //  
     public void windowOpened     (java.awt.event.WindowEvent e) {}
-    public void windowClosing    (java.awt.event.WindowEvent e) {FrameBanque.nbFrame--;}
+    public void windowClosing    (java.awt.event.WindowEvent.nbFrame--;}
     public void windowClosed     (java.awt.event.WindowEvent e) {}
     public void windowIconified  (java.awt.event.WindowEvent e) {}
     public void windowDeiconified(java.awt.event.WindowEvent e) {}

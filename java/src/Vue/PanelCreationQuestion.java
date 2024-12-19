@@ -47,7 +47,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			new ImageIcon("java/data/Images/imgDif/M.png"),
 			new ImageIcon("java/data/Images/imgDif/D.png")
 	};
-	
+
 	public PanelCreationQuestion(Controleur ctrl ){
 		this.ctrl             = ctrl;
 		this.ressources       = this.ctrl.getRessources();

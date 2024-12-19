@@ -12,9 +12,9 @@ public class PanelAccueil extends JPanel implements  ActionListener{
 
     private JLabel     txtTitreApp;
 
-    private JButton    btBanque;
-    private JButton    btQuestionnaire;
-    private JButton    btRessources;
+    private JButton    btnBanque;
+    private JButton    btnQuestionnaire;
+    private JButton    btnRessources;
     private JButton    btnCreationQuestion;
 
     // Constructeur
@@ -26,7 +26,7 @@ public class PanelAccueil extends JPanel implements  ActionListener{
     public PanelAccueil( Controleur ctrl )
     {
         this.ctrl         = ctrl;
-        this.panelAccueil = new JPanel(new GridLayout(4,1));
+        this.panelAccueil = new JPanel(new GridLayout(2,1));
         this.setLayout ( new BorderLayout() );
 
         this.setVisible(true);
@@ -40,33 +40,41 @@ public class PanelAccueil extends JPanel implements  ActionListener{
 
 
         //Début génération des boutons
-        this.btBanque        = new JButton("Banque de Questions");
-        this.btQuestionnaire = new JButton("Génération Questionnaire");
-        this.btRessources    = new JButton("Ressources"              );
+        this.btnBanque        = new JButton("Banque de Questions");
+        this.btnQuestionnaire = new JButton("Génération Questionnaire");
+        this.btnRessources    = new JButton("Ressources"              );
+        this.btnCreationQuestion= new JButton("Création de question");
 
-        this.btBanque.setBackground(new Color(163,206,250));
-        this.btQuestionnaire.setBackground(new Color(163,206,250));
-        this.btRessources.setBackground(new Color(163,206,250));
+        this.btnBanque.setBackground(new Color(163,206,250));
+        this.btnQuestionnaire.setBackground(new Color(163,206,250));
+        this.btnRessources.setBackground(new Color(163,206,250));
+        this.btnCreationQuestion.setBackground(new Color(163,206,250));
 
-        this.btBanque.setFont(new Font("Arial", Font.PLAIN, 22));
-        this.btQuestionnaire.setFont(new Font("Arial", Font.PLAIN, 22));
-        this.btRessources.setFont(new Font("Arial", Font.PLAIN, 22));
-
+        this.btnBanque.setFont(new Font("Arial", Font.PLAIN, 22));
+        this.btnQuestionnaire.setFont(new Font("Arial", Font.PLAIN, 22));
+        this.btnRessources.setFont(new Font("Arial", Font.PLAIN, 22));
+        this.btnCreationQuestion.setFont(new Font("Arial", Font.PLAIN, 22));
 
 
         //Début des ajouts dans la frame
-        this.panelAccueil.add(this.txtTitreApp, BorderLayout.NORTH      );
-        this.panelAccueil.add(this.btBanque, BorderLayout.CENTER        );
-        this.panelAccueil.add(this.btQuestionnaire, BorderLayout.CENTER );
-        this.panelAccueil.add(this.btRessources, BorderLayout.SOUTH     );
+        this.panelAccueil.add(this.txtTitreApp     );
+        JPanel panelConfiguration = new JPanel(new GridLayout(4,1));
+
+        panelConfiguration.add(this.btnBanque);
+        panelConfiguration.add(this.btnQuestionnaire);
+        panelConfiguration.add(this.btnRessources);
+        panelConfiguration.add(this.btnCreationQuestion);
+
+        this.panelAccueil.add(panelConfiguration);
+
 
         this.add(panelAccueil);
 
 
         //Ajout des listeners
-        this.btBanque       .addActionListener(this) ;
-        this.btQuestionnaire.addActionListener(this) ;
-        this.btRessources   .addActionListener(this) ;
+        this.btnBanque       .addActionListener(this) ;
+        this.btnQuestionnaire.addActionListener(this) ;
+        this.btnRessources   .addActionListener(this) ;
 
     }
 
@@ -76,11 +84,11 @@ public class PanelAccueil extends JPanel implements  ActionListener{
      * @param e L'évènement à traiter
      */
     public void actionPerformed(ActionEvent e){
-        if ( btBanque == e.getSource())
+        if ( btnBanque == e.getSource())
             FrameBanque.creerFrameBanque(this.ctrl);
-        if( btQuestionnaire == e.getSource())
+        if( btnQuestionnaire == e.getSource())
             FrameQuestionnaire.creerFrameQuestionnaire(this.ctrl);
-        if(btRessources == e.getSource())
+        if(btnRessources == e.getSource())
             FrameParametrage.creerFrameFrameParametrage(this.ctrl);
         if(btnCreationQuestion == e.getSource())
             new FrameCreationQuestion(this.ctrl);
