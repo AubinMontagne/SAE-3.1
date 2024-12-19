@@ -21,7 +21,7 @@ public class FrameAccueil extends JFrame{
         this.setTitle("QCM Builder - Page d'accueil");
         this.setSize(550,420);
         this.setLocationRelativeTo(null);
-        this.setIconImage(new ImageIcon("java/data/Images/imgDif/M.png").getImage());
+        this.setIconImage(new ImageIcon("java/data/Images/icon.png").getImage());
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

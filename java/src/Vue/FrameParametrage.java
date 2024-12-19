@@ -25,6 +25,7 @@ public class FrameParametrage extends JFrame implements WindowListener {
         this.setMinimumSize       (this.getSize());
         this.setLocationRelativeTo(null);
         this.setLayout            (new BorderLayout());
+        this.setIconImage(new ImageIcon("java/data/Images/icon.png").getImage());
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
