@@ -23,7 +23,7 @@ public class PanelAccueil extends JPanel implements  ActionListener{
      */
     public PanelAccueil( Controleur ctrl ){
         this.ctrl         = ctrl;
-        this.panelAccueil = new JPanel(new GridLayout(3,1));
+        this.panelAccueil = new JPanel(new GridLayout(4,1));
         this.setLayout ( new BorderLayout() );
 
         this.setVisible(true);
@@ -55,9 +55,9 @@ public class PanelAccueil extends JPanel implements  ActionListener{
         if ( btBanque == e.getSource())
             FrameBanque.creerFrameBanque(this.ctrl);
         if( btQuestionnaire == e.getSource())
-            new FrameQuestionnaire(this.ctrl);
+            FrameQuestionnaire.creerFrameQuestionnaire(this.ctrl);
         if(btRessources == e.getSource())
-            new FrameParametrage(this.ctrl);
+            FrameParametrage.creerFrameFrameParametrage(this.ctrl);
         if(btnCreationQuestion == e.getSource())
             new FrameCreationQuestion(this.ctrl);
     }

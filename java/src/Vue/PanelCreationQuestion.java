@@ -30,6 +30,8 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 	private JTextField champPoints;
 	private JTextField champTemps;
+
+	private JTextArea txtaQuestion;
 	// A envoyer aux 3 autres panels
 
 	private int    difficulte;
@@ -68,6 +70,16 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		// Section supérieure
 		JPanel panelConfiguration = new JPanel(new GridLayout(2, 2, 5, 5));
 		panelConfiguration.setBorder(BorderFactory.createTitledBorder("Configuration"));
+
+		// BAZAR Aubin
+		JLabel lblIntituleQuestion = new JLabel("Question : ");
+		this.txtaQuestion = new JTextArea();
+
+		panelConfiguration.add(lblIntituleQuestion);
+		panelConfiguration.add(txtaQuestion);
+		// Relier donnée
+
+
 
 		JLabel labelPoints = new JLabel("Nombre de points :");
 
@@ -211,6 +223,15 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		JPanel panelConfiguration = new JPanel(new GridLayout(2, 2, 5, 5));
 		panelConfiguration.setBorder(BorderFactory.createTitledBorder("Configuration"));
 
+
+		// BAZAR Aubin
+		JLabel lblIntituleQuestion = new JLabel("Question : ");
+		this.txtaQuestion = new JTextArea();
+
+		panelConfiguration.add(lblIntituleQuestion);
+		panelConfiguration.add(txtaQuestion);
+		// Relier donnée
+		
 		JLabel labelPoints = new JLabel("Nombre de points :");
 
 		NumberFormat format = NumberFormat.getIntegerInstance();

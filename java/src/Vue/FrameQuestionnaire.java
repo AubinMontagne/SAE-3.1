@@ -43,7 +43,7 @@ public class FrameQuestionnaire extends JFrame implements WindowListener{
         return null;
     }
     public void windowOpened     (java.awt.event.WindowEvent e) {}
-    public void windowClosing    (java.awt.event.WindowEvent e) {FrameBanque.nbFrame--;}
+    public void windowClosing    (java.awt.event.WindowEvent e) {FrameQuestionnaire.nbFrame--;}
     public void windowClosed     (java.awt.event.WindowEvent e) {}
     public void windowIconified  (java.awt.event.WindowEvent e) {}
     public void windowDeiconified(java.awt.event.WindowEvent e) {}

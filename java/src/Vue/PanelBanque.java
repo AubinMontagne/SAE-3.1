@@ -18,11 +18,11 @@ import src.Metier.Ressource;
 public class PanelBanque extends JPanel implements  ActionListener, ItemListener {
 	private boolean ignorerEvents = false;
 
-    private Controleur ctrl;
-	private Notion     notion;
-	private JButton    btnCreaQuest;
-    private JPanel     panelBanque;
-    private JTable     tbQuestion;
+    private Controleur           ctrl;
+	private Notion               notion;
+	private JButton              btnCreaQuest;
+    private JPanel               panelBanque;
+    private JTable               tbQuestion;
 	private JComboBox<Notion>    mdNotions;
 	private JComboBox<Ressource> mdRessources;
 	// Constructeur
@@ -85,71 +85,14 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 		this.mdNotions.addItemListener(this);
     }
 
-	/**
-	 * Contructeur de la class PanelBanque
-	 * @param notion	La notion
-	 * @param ctrl		Le contrôleur
-	 */
-	public PanelBanque(Notion notion, Controleur ctrl){
-        this.ctrl        = ctrl;
-		this.notion      = notion;
-        this.panelBanque = new JPanel();
-		this.setLayout ( new BorderLayout() );
-		this.setVisible(true);
-
-        String[] tabEntetes = {"Question", "Ressource", "Notion", "Point"};
-
-		ArrayList<Question> questList = this.ctrl.getQuestionsParNotion(notion);
-        String[][] data               = new String[questList.size()][4];
-
-		for(int i = 0; i < questList.size();i++){
-			data[i][0] = questList.get(i).getEnonceFich();
-			data[i][1] = questList.get(i).getNotion().getRessourceAssociee().getNom();
-			data[i][2] = questList.get(i).getNotion().getNom();
-			data[i][3] = "" + questList.get(i).getPoint();
-		}
-
-		DefaultTableModel model = new DefaultTableModel(data, tabEntetes);
-		this.tbQuestion = new JTable(model);
-
-		this.mdRessources   = new JComboBox<>(ctrl.getRessources().toArray(new Ressource[0]));
-		this.mdNotions		= new JComboBox<>(ctrl.getNotionsParRessource(notion.getRessourceAssociee()).toArray(new Notion[0]));
-		this.mdRessources.setSelectedItem(notion.getRessourceAssociee());
-
-		// Nombre maximal de lignes sans scroll
-        int maxVisibleRows = 5;
-		
-		// Calcul dynamique de la hauteur
-        int rowHeight     = this.tbQuestion.getRowHeight();
-        int rowCount      = this.tbQuestion.getRowCount();
-        int visibleHeight = rowHeight * Math.min(this.tbQuestion.getRowCount(), maxVisibleRows) + rowHeight;
-
-        // Ajuster la taille visible de la table
-        this.tbQuestion.setPreferredScrollableViewportSize(new Dimension(800, visibleHeight));
-
-		JScrollPane scrollPane = new JScrollPane(this.tbQuestion);
-		this.btnCreaQuest       = new JButton("Nouvelle Question"    );
-
-		this.panelBanque.add(scrollPane, BorderLayout.CENTER);
-		this.panelBanque.add(this.btnCreaQuest, BorderLayout.SOUTH  );
-
-        this.add(panelBanque);
-
-		this.btnCreaQuest.addActionListener(this);
-
-		this.mdRessources.addItemListener(this);
-		this.mdNotions.addItemListener(this);
-    }
-
 	// Methode
 	/**
 	 * Methode actionPerformed
 	 * @param e L'évènement à traiter
 	 */
 	public void actionPerformed(ActionEvent e){
-        if ( this.btnCreaQuest == e.getSource()){
-            FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl,this);
-        }
+        if ( this.btnCreaQuest == e.getSource())
+            FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl);
 	}
 
 	public void maj(){

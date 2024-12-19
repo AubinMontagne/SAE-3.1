@@ -15,21 +15,6 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
      * Constructeur de la class FrameCreationQuestion
      * @param ctrl          Le contrôleur
      */
-    public FrameCreationQuestion( Controleur ctrl, PanelBanque panelBanque){
-        this.ctrl = ctrl;
-
-        this.setTitle             ("Création de la question");
-        this.setSize              (900,500);
-        this.setMinimumSize       (this.getSize());
-        this.setLocationRelativeTo(null);
-
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        this.add(new PanelCreationQuestion(ctrl,panelBanque) );
-        this.addWindowListener(this);
-
-        setVisible(true);
-    }
     public FrameCreationQuestion( Controleur ctrl){
         this.ctrl = ctrl;
 
@@ -46,10 +31,10 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
         setVisible(true);
     }
 
-    public static FrameCreationQuestion creerFrameCreationQuestion(Controleur ctrl, PanelBanque panelBanque){
+    public static FrameCreationQuestion creerFrameCreationQuestion(Controleur ctrl){
         if(FrameCreationQuestion.nbFrame == 0){
             FrameCreationQuestion.nbFrame++;
-            return new FrameCreationQuestion(ctrl,panelBanque);
+            return new FrameCreationQuestion(ctrl);
         }
         return null;
     }
