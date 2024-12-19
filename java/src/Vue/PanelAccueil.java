@@ -1,7 +1,6 @@
 package src.Vue;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -10,6 +9,9 @@ import src.Controleur;
 public class PanelAccueil extends JPanel implements  ActionListener{
     private Controleur ctrl;
     private JPanel     panelAccueil;
+
+    private JLabel     txtTitreApp;
+
     private JButton    btBanque;
     private JButton    btQuestionnaire;
     private JButton    btRessources;
@@ -21,29 +23,51 @@ public class PanelAccueil extends JPanel implements  ActionListener{
      * Constructeur de la class PanelAccueil
      * @param ctrl  Le contrôleur
      */
-    public PanelAccueil( Controleur ctrl ){
+    public PanelAccueil( Controleur ctrl )
+    {
         this.ctrl         = ctrl;
         this.panelAccueil = new JPanel(new GridLayout(4,1));
         this.setLayout ( new BorderLayout() );
 
         this.setVisible(true);
 
-        this.btQuestionnaire = new JButton("Génération d'un Questionnaire");
-        this.btRessources    = new JButton("Paramètre"              );
-        this.btBanque        = new JButton("Banque de question"      );
-        this.btnCreationQuestion = new JButton("Création de Question");
+        //Génération du texte
+        this.txtTitreApp = new JLabel("QCM Builder");
+        this.txtTitreApp.setFont(new Font("Arial", Font.BOLD, 34));
+        this.txtTitreApp.setHorizontalAlignment(SwingConstants.CENTER);
+        this.txtTitreApp.setVerticalAlignment(SwingConstants.CENTER);
 
 
+
+        //Début génération des boutons
+        this.btBanque        = new JButton("Banque de Questions");
+        this.btQuestionnaire = new JButton("Génération Questionnaire");
+        this.btRessources    = new JButton("Ressources"              );
+
+        this.btBanque.setBackground(new Color(163,206,250));
+        this.btQuestionnaire.setBackground(new Color(163,206,250));
+        this.btRessources.setBackground(new Color(163,206,250));
+
+        this.btBanque.setFont(new Font("Arial", Font.PLAIN, 22));
+        this.btQuestionnaire.setFont(new Font("Arial", Font.PLAIN, 22));
+        this.btRessources.setFont(new Font("Arial", Font.PLAIN, 22));
+
+
+
+        //Début des ajouts dans la frame
+        this.panelAccueil.add(this.txtTitreApp, BorderLayout.NORTH      );
+        this.panelAccueil.add(this.btBanque, BorderLayout.CENTER        );
         this.panelAccueil.add(this.btQuestionnaire, BorderLayout.CENTER );
-        this.panelAccueil.add(this.btRessources   , BorderLayout.SOUTH  );
-        this.panelAccueil.add(this.btBanque       , BorderLayout.NORTH  );
-        this.panelAccueil.add(this.btnCreationQuestion, BorderLayout.AFTER_LAST_LINE);
+        this.panelAccueil.add(this.btRessources, BorderLayout.SOUTH     );
+
         this.add(panelAccueil);
 
+
+        //Ajout des listeners
         this.btBanque       .addActionListener(this) ;
         this.btQuestionnaire.addActionListener(this) ;
         this.btRessources   .addActionListener(this) ;
-        this.btnCreationQuestion.addActionListener(this);
+
     }
 
     // Methode

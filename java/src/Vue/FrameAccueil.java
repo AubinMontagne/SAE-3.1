@@ -11,13 +11,16 @@ public class FrameAccueil extends JFrame{
      * Constructeur de la class FrameAccueil
      * @param ctrl  Le contrôleur
      */
-    public FrameAccueil( Controleur ctrl){
+    public FrameAccueil( Controleur ctrl)
+    {
         this.ctrl = ctrl;
 
-        this.setTitle             ("Page d'accueil");
-        this.setSize              (190,215);
-        this.setMinimumSize       (this.getSize());
+        System.out.println("Création de la frame Accueil");
+
+        this.setTitle("QCM Builder - Page d'accueil");
+        this.setSize(550,420);
         this.setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon(getClass().getResource("java/data/Images/icon.png")).getImage());
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
