@@ -37,7 +37,7 @@ public class PanelQCM extends JFrame implements ActionListener {
 		this.points = points;
 		this.temps = temps;
 
-		setTitle("Créateur de QCM");
+		setTitle("QCM Builder - Créateur de QCM");
 		setSize(600, 400);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new BorderLayout());

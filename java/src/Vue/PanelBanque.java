@@ -86,7 +86,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 
         this.add(panelBanque);
 
-		this.btn
+		this.btnSupp     .addActionListener(this);
 		this.btnCreaQuest.addActionListener(this);
 
 		this.mdRessources.addItemListener(this);
