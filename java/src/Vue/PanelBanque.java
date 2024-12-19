@@ -16,6 +16,8 @@ import src.Controleur;
 import src.Metier.Ressource;
 
 public class PanelBanque extends JPanel implements  ActionListener, ItemListener {
+	private boolean ignorerEvents = false;
+
     private Controleur ctrl;
 	private Notion     notion;
 	private JButton    btnCreaQuest;
@@ -178,14 +180,22 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
+		if (this.ignorerEvents) {
+			return;
+		}
+
+		this.ignorerEvents = true;
+
 		if (e.getSource() == this.mdRessources){
 			System.out.println("Ressource");
 			Ressource ressource = (Ressource) this.mdRessources.getSelectedItem();
 			this.notion = (Notion) this.mdNotions.getSelectedItem();
 
-			this.mdRessources   = new JComboBox<>(ctrl.getRessources().toArray(new Ressource[0]));
-			this.mdNotions		= new JComboBox<>(ctrl.getNotionsParRessource(ressource).toArray(new Notion[0]));
+			this.mdRessources.setModel(new DefaultComboBoxModel<>(ctrl.getRessources().toArray(new Ressource[0])));
+			this.mdNotions.setModel(new DefaultComboBoxModel<>(ctrl.getNotionsParRessource(ressource).toArray(new Notion[0])));
+
 			System.out.println(ctrl.getNotionsParRessource(ressource));
+
 			this.mdRessources.setSelectedItem(ressource);
 			if(this.notion != null && ressource != null && this.notion.getRessourceAssociee().equals(ressource)){
 				this.mdNotions.setSelectedItem(this.notion);
@@ -198,6 +208,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 				this.notion = (Notion) this.mdNotions.getSelectedItem();
 		}
 
+		this.ignorerEvents = false;
 		this.maj();
 	}
 }

@@ -5,8 +5,10 @@ import src.*;
 import src.Metier.Ressource;
 
 import java.awt.*;
+import java.awt.event.WindowListener;
 
-public class FrameQuestionnaire extends JFrame{ 
+public class FrameQuestionnaire extends JFrame implements WindowListener{
+    private static int nbFrame = 0;
     private Controleur ctrl;
 
     // Constructeur
@@ -32,4 +34,19 @@ public class FrameQuestionnaire extends JFrame{
         this.setSize(590,450);
         this.add(new PanelQuestionnaireTab(ctrl,r,titre,estChrono), BorderLayout.SOUTH);
     }
+
+    public static FrameQuestionnaire creerFrameQuestionnaire(Controleur ctrl){
+        if(FrameQuestionnaire.nbFrame == 0){
+            FrameQuestionnaire.nbFrame++;
+            return new FrameQuestionnaire(ctrl);
+        }
+        return null;
+    }
+    public void windowOpened     (java.awt.event.WindowEvent e) {}
+    public void windowClosing    (java.awt.event.WindowEvent e) {FrameBanque.nbFrame--;}
+    public void windowClosed     (java.awt.event.WindowEvent e) {}
+    public void windowIconified  (java.awt.event.WindowEvent e) {}
+    public void windowDeiconified(java.awt.event.WindowEvent e) {}
+    public void windowActivated  (java.awt.event.WindowEvent e) {}
+    public void windowDeactivated(java.awt.event.WindowEvent e) {}
 }

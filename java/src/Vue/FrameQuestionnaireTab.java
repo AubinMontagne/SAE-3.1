@@ -3,8 +3,10 @@ package src.Vue;
 import javax.swing.*;
 import src.Controleur;
 import src.Metier.*;
+import java.awt.event.WindowListener;
 
-public class FrameQuestionnaireTab extends JFrame{ 
+public class FrameQuestionnaireTab extends JFrame implements WindowListener{
+    private static int nbFrame = 0;
     private Controleur ctrl;
 
     // Constructeur
@@ -28,4 +30,20 @@ public class FrameQuestionnaireTab extends JFrame{
 
         setVisible(true);
     }
+
+    public static FrameQuestionnaireTab creerFrameQuestionnaireTab(Controleur ctrl){
+        if(FrameQuestionnaireTab.nbFrame == 0){
+            FrameQuestionnaireTab.nbFrame++;
+            return new FrameQuestionnaireTab(ctrl);
+        }
+        return null;
+    }
+
+    public void windowOpened     (java.awt.event.WindowEvent e) {}
+    public void windowClosing    (java.awt.event.WindowEvent e) {FrameBanque.nbFrame--;}
+    public void windowClosed     (java.awt.event.WindowEvent e) {}
+    public void windowIconified  (java.awt.event.WindowEvent e) {}
+    public void windowDeiconified(java.awt.event.WindowEvent e) {}
+    public void windowActivated  (java.awt.event.WindowEvent e) {}
+    public void windowDeactivated(java.awt.event.WindowEvent e) {}
 }

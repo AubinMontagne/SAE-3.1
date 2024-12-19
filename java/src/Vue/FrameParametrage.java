@@ -4,8 +4,10 @@ import javax.swing.*;
 import src.Controleur;
 
 import java.awt.*;
+import java.awt.event.WindowListener;
 
-public class FrameParametrage extends JFrame {
+public class FrameParametrage extends JFrame implements WindowListener {
+    private static int nbFrame = 0;
 	private Controleur     ctrl;
     private PanelNotion    panelNotion;
     private PanelRessource panelRessource;
@@ -38,4 +40,20 @@ public class FrameParametrage extends JFrame {
         this.panelNotion.setRessourceSelectionnee(this.panelRessource.getRessourceSelectionnee());
         this.panelNotion.maj();
     }
+
+    public static FrameParametrage creerFrameFrameParametrage(Controleur ctrl){
+        if(FrameParametrage.nbFrame == 0){
+            FrameParametrage.nbFrame++;
+            return new FrameParametrage(ctrl);
+        }
+        return null;
+    }
+
+    public void windowOpened     (java.awt.event.WindowEvent e) {}
+    public void windowClosing    (java.awt.event.WindowEvent e) {FrameParametrage.nbFrame--;}
+    public void windowClosed     (java.awt.event.WindowEvent e) {}
+    public void windowIconified  (java.awt.event.WindowEvent e) {}
+    public void windowDeiconified(java.awt.event.WindowEvent e) {}
+    public void windowActivated  (java.awt.event.WindowEvent e) {}
+    public void windowDeactivated(java.awt.event.WindowEvent e) {}
 }
