@@ -103,6 +103,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
             FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl);
 		if (this.btnSupp == e.getSource()) {
 
+
 			/*
 			//Question q = this.list.getSelectedValue();
 			if (q != null) {
