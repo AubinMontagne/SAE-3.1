@@ -43,6 +43,7 @@ public class QCM extends Question {
 
 	/**
 	 * Methode ajouterReponse
+	 * Cette méthode ajoute une rép
 	 * @param reponse	Le text de la réponse
 	 * @param correct	Si la reponse est corecte
 	 * @return			Vrai si l'ajout a réussi, sinon faux

@@ -23,6 +23,7 @@ public class Metier{
 
 	/**
 	 * Méthode ajouterNotion
+	 * Cette méthode ajoute, si la notion est pas nul, une notion a la List de notions
 	 * @param notion La notion à ajouter
 	 * @return		 Vrai si l'ajout a réussi, sinon faux
 	 */
@@ -36,6 +37,7 @@ public class Metier{
 
 	/**
 	 * Méthode ajouterRessource
+	 * Cette méthode ajoute, si la ressource est pas nul, une ressource a la List de ressources
 	 * @param ressource La ressource à ajouter
 	 * @return		 	Vrai si l'ajout a réussi, sinon faux
 	 */
@@ -49,6 +51,7 @@ public class Metier{
 
 	/**
 	 * Méthode ajouterQuestion
+	 * Cette méthode ajoute, si la question est pas nul, une question a la List de questions
 	 * @param question La question à ajouter
 	 * @return		   Vrai si l'ajout a réussi, sinon faux
 	 */
@@ -62,6 +65,7 @@ public class Metier{
 
 	/**
 	 * Méthode supprimerNotion
+	 * Cette méthode supprime, si la notion est pas nul, une notion de la List de notions
 	 * @param notion La notion à supprimer
 	 * @return		 Vrai si la suppression a réussi, sinon faux
 	 */
@@ -74,6 +78,7 @@ public class Metier{
 
 	/**
 	 * Méthode supprimerRessource
+	 * Cette méthode supprime, si la ressource est pas nul, une ressouce de la List de ressources
 	 * @param ressource La ressource à supprimer
 	 * @return		 	Vrai si la suppression a réussi, sinon faux
 	 */
@@ -86,6 +91,7 @@ public class Metier{
 
 	/**
 	 * Méthode supprimerQuestion
+	 * Cette méthode supprime, si la question est pas nul, une question de la List de questions
 	 * @param question La question à supprimer
 	 * @return		   Vrai si la suppression a réussi, sinon faux
 	 */
@@ -100,6 +106,7 @@ public class Metier{
 
 	/**
 	 * Methode saveNotions
+	 * Cette méthode écrit dans un fichier csv toute les notions afin de les sauvers
 	 * @param path Le chemin du fichier texte à écrire
 	 */
     public void saveNotions(String path){
@@ -120,6 +127,7 @@ public class Metier{
 
 	/**
 	 * Methode saveRessources
+	 * Cette méthode écrit dans un fichier csv toute les ressources afin de les sauvers
 	 * @param path Le chemin du fichier texte à écrire
 	 */
     public void saveRessources(String path){
@@ -140,6 +148,7 @@ public class Metier{
 
 	/**
 	 * Methode saveQuestions
+	 * Cette méthode écrit dans un fichier csv toute les questions afin de les sauvers
 	 * @param path Le chemin du fichier texte à écrire
 	 */
 	public void saveQuestions(String path){
@@ -164,6 +173,11 @@ public class Metier{
 		}
 	}
 
+	/**
+	 * Methode saveQuestionnaire
+	 * Cette méthode écrit dans un fichier csv le  questionnaire afin de le sauver
+	 * @param path Le chemin du fichier texte à écrire
+	 */
 	public void saveQuestionnaire(String path){
 		try{
 			File dir = new File(path);

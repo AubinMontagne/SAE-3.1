@@ -15,21 +15,16 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 	private JButton 			   boutonConfirmer;
 	private JTextField 			   champID;
 	private JTextField 			   champNom;
-	private PanelRessource 		   panelRessource;
 	private FrameCreationRessource frameCreationRessource;
-
-	// Constructeur
 
 	/**
 	 * Constructeur de la class PanelCreationRessource
 	 * @param ctrl					 Le contôleur
-	 * @param panelRessource		 Le panel ressource
-	 * @param frameCreationRessource La frame de création de ressource
 	 */
-	public PanelCreationRessource(Controleur ctrl, PanelRessource panelRessource, FrameCreationRessource frameCreationRessource){
+	public PanelCreationRessource(Controleur ctrl ,FrameCreationRessource frameCreationRessource){
 		this.ctrl 					= ctrl;
 		this.frameCreationRessource = frameCreationRessource;
-		this.panelRessource 		= panelRessource;
+
 		setLayout(new BorderLayout());
 
 		UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
@@ -89,7 +84,6 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 			ctrl.ajouterRessource(r);
 			ctrl.getMetier().saveRessources("java/data/");
 
-			this.panelRessource.maj();
 			JOptionPane.showMessageDialog(this, "Ressource ajoutée", "Succès", JOptionPane.INFORMATION_MESSAGE);
 
 			this.frameCreationRessource.dispose();

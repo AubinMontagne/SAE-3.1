@@ -40,6 +40,7 @@ public class EliminationReponse extends Question {
 	// Methode
 	/**
 	 * Méthode ajouterReponse
+	 * Cette métode sert a ajouter une réponse a la HashMap des réponses
 	 * @param reponse	Le text de la réponse
 	 * @param points	Le nombre de points
 	 * @param ordre		L'ordre dans le quelle éliminé la réponse, si elle peut l'ètre

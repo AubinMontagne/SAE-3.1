@@ -14,9 +14,8 @@ public class FrameCreationRessource extends JFrame implements WindowListener {
     /**
      * Constructeur de la class FrameCreationRessource
      * @param ctrl              Le contrôleur
-     * @param panelRessource    Le panel Ressource ou mettre la frame
      */
-    public FrameCreationRessource(Controleur ctrl, PanelRessource panelRessource){
+    private FrameCreationRessource(Controleur ctrl){
         this.ctrl = ctrl;
 
         this.setTitle("Création de la question");
@@ -26,16 +25,16 @@ public class FrameCreationRessource extends JFrame implements WindowListener {
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-this.add(new PanelCreationRessource(ctrl, panelRessource, this) );
+        this.add(new PanelCreationRessource(ctrl, this) );
         this.addWindowListener(this);
 
         setVisible(true);
     }
 
-    public static FrameCreationRessource creerFrameCreationRessource(Controleur ctrl, PanelRessource panelRessource){
+    public static FrameCreationRessource creerFrameCreationRessource(Controleur ctrl){
         if(FrameCreationRessource.nbFrame == 0){
             FrameCreationRessource.nbFrame++;
-            return new FrameCreationRessource(ctrl,panelRessource);
+            return new FrameCreationRessource(ctrl);
         }
         return null;
     }

@@ -38,6 +38,8 @@ public class AssociationElement extends Question
     // Methode
     /**
      * Méthode ajouterAssociation
+     * Cette mèthode sert a ajouter une association entre une réponse de gauche
+     * et une réponse de droite dans la HashMap des associations
      * @param gauche La réponse à gauche
      * @param droite La réponse à droite
      */
@@ -51,6 +53,7 @@ public class AssociationElement extends Question
 
     /**
      * Méthode supprimerAssociation
+     * Cette métode sert a enlever une association d'une réponse de gauche
      * @param gauche La réponse à gauche
      */
     public void supprimerAssociation(String gauche){this.hmAssociations.remove(gauche); }

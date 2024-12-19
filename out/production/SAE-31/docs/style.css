@@ -15,17 +15,9 @@
 .styleBut:hover {
     background-color: #0056b3; /* Changer la couleur lors du survol */
 }
-
-header {
-    background-color: lightgray;
-    position: fixed;
-    left: 0;
-    top:0;
-    width: 100%;
-}
    
 footer {
-    background-color: lightgray;
+    background-color: #a8a8a8;
     color: white;
     text-align: center;
     padding: 10px 0;
@@ -40,7 +32,6 @@ body {
     font-family: Arial, sans-serif;
     margin: 20px;
     padding-bottom: 50px;
-    padding-top: 75px;
 }
 
 .compteurs {
@@ -252,21 +243,4 @@ body {
 
 .reponseFausse {
     color : red;
-}
-
-
-.griser {
-    display: inline-block; /* Permet d'afficher les divs côte à côte */
-    background-color: gray; /* Couleur de fond pour les boutons */
-    color: white; /* Couleur du texte */
-    padding: 10px 20px; /* Espacement interne pour donner une forme de bouton */
-    text-align: center; /* Centrer le texte à l'intérieur */
-    border-radius: 5px; /* Arrondir les coins */
-    cursor: pointer; /* Changer le curseur pour signaler que c'est cliquable */
-    transition: background-color 0.3s ease; /* Effet de transition pour la couleur */
-}
-
-/* Changer la couleur de fond au survol */
-.griser:hover {
-    background-color: black; /* Changer la couleur lors du survol */
 }

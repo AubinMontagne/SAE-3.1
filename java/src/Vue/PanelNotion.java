@@ -17,11 +17,12 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
     private JPanel            panelNotion;
     private JButton           btnNouvNotion;
     private JButton           btnSupprNotion;
+    private JLabel            labTitre;
     private JList<Notion>     list;
     private Ressource         ressource;
     private ArrayList<Notion> notions;
     private Controleur        ctrl;
-  
+
     // Constructeur
 
     /**
@@ -31,6 +32,7 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
      */
     public PanelNotion( Controleur ctrl,Ressource r){
         this.ctrl        = ctrl;
+
         if (r == null) {
             r = new Ressource("PlaceHolder", "PlaceHolder");
         }
@@ -47,7 +49,7 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
         }
 
         // Création des composants
-        JLabel labTitre = new JLabel (this.ressource.toString());
+        this.labTitre = new JLabel (this.ressource.toString());
 
         this.btnNouvNotion = new JButton("Nouvelle Notion");
         this.btnSupprNotion= new JButton("Supprimer Notion");
@@ -88,6 +90,10 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
             listModel.addElement(notion);
         }
         this.list.setModel(listModel);
+        this.labTitre.setText(this.ressource.toString());
+    }
+    public void setRessourceSelectionnee(Ressource r){
+        this.ressource = r;
     }
 
     /**
@@ -112,7 +118,11 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
             FrameCreationNotion.creerFrameCreationNotion(this.ctrl, this.ressource, this);
         }
         if (btnSupprNotion == e.getSource()) {
-            new FrameSuppressionNotion(this.ctrl, this.ressource, this);
+            Notion notion = this.list.getSelectedValue();
+            if (notion != null) {
+                this.ctrl.supprimerNotion(notion);
+                this.maj();
+            }
         }
     }
         

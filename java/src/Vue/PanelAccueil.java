@@ -51,7 +51,7 @@ public class PanelAccueil extends JPanel implements  ActionListener{
         if ( btBanque == e.getSource())
             FrameBanque.creerFrameBanque(this.ctrl);
         if( btQuestionnaire == e.getSource())
-            new FrameParametrage(ctrl);
+            new FrameQuestionnaire(ctrl);
         if(btRessources == e.getSource())
             new FrameParametrage(this.ctrl);
     }

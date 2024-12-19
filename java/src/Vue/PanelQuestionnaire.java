@@ -25,6 +25,7 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 	private Ressource  r;
 	private Notion 	   n;
 	private Controleur ctrl;
+	private FrameQuestionnaire frame ;
 
 	// Constructeur
 
@@ -32,7 +33,8 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 	 * Constructeur de la class PanelQuestionnaire
 	 * @param ctrl	Le contrôleur
 	 */
-    public PanelQuestionnaire(Controleur ctrl) {
+    public PanelQuestionnaire(Controleur ctrl, FrameQuestionnaire frame) {
+		this.frame = frame;
     	this.panelQuestionnaire = new JPanel(new BorderLayout());
     	this.panelQuestionnaire.setVisible(true);
 
@@ -129,7 +131,7 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 				System.out.println("Ressource sélectionnée : " + this.r);
 				this.videRessource = false;
 				if( !this.videTitre )
-					this.btConfirmer.setEnabled(true);
+					this.frame.majTab(this.ctrl, selectedRessource,this.champTitre.getText(),this.chrono);
             }
         }
     }
@@ -144,7 +146,7 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
             Ressource selectedRessource = (Ressource) this.mdRessources.getSelectedItem();
 			String titre = this.champTitre.getText();
             if (selectedRessource != null) {
-				new FrameQuestionnaireTab(this.ctrl,selectedRessource,titre, this.chrono);
+				this.frame.majTab(this.ctrl, selectedRessource,titre,this.chrono);
             }
         }
 
