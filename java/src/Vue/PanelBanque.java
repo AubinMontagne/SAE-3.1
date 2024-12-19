@@ -90,7 +90,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 		this.btnCreaQuest.addActionListener(this);
 
 		this.mdRessources.addItemListener(this);
-		this.mdNotions.addItemListener(this);
+		this.mdNotions   .addItemListener(this);
     }
 
 	// Methode
@@ -101,6 +101,16 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 	public void actionPerformed(ActionEvent e){
         if ( this.btnCreaQuest == e.getSource())
             FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl);
+		if (this.btnSupp == e.getSource()) {
+
+			/*
+			//Question q = this.list.getSelectedValue();
+			if (q != null) {
+				this.ctrl.supprimerRessource(ressource);
+				this.maj();
+				this.ctrl.miseAJourFichiers();
+			}*/
+		}
 	}
 
 	public void maj(){

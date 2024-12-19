@@ -3,6 +3,7 @@ package src.Vue;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import javax.swing.border.TitledBorder;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -50,15 +51,20 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 		this.listRessources.add(0,placeHolder);
 
     	// ------ Section supérieure ------
-    	JPanel panelInfo = new JPanel(new GridLayout(2, 2, 5, 5));
-    	panelInfo.setBorder(BorderFactory.createTitledBorder("Information"));
+		JPanel panelInfo = new JPanel(new GridLayout(2, 2, 5, 5));
+		TitledBorder titledBorder = BorderFactory.createTitledBorder("Information");
+		titledBorder.setTitleFont(new Font("Arial", Font.BOLD, 26));
+		panelInfo.setBorder(titledBorder);
+
 
     	JLabel labelTitre = new JLabel("Titre du questionnaire :");
     	this.champTitre   = new JTextField();
 
     	JLabel labelChrono = new JLabel("Chronomètre :");
     	this.btChrono 	   = new JButton("NON");
-    	this.btChrono.addActionListener(this);
+		this.btChrono.setBackground(new Color(163,206,250));
+		this.btChrono.setFont(new Font("Arial", Font.PLAIN, 22));
+		this.btChrono.addActionListener(this);
 
     	JLabel labelRessource = new JLabel("Ressource :");
 		this.mdRessources 	  = new JComboBox<>(this.listRessources.toArray(new Ressource[0]));
@@ -76,6 +82,8 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
     	this.add(panelInfo, BorderLayout.NORTH);
 
 		this.btConfirmer = new JButton("Confirmer");
+		btConfirmer.setBackground(new Color(163,206,250));
+		btConfirmer.setFont(new Font("Arial", Font.PLAIN, 22));
 		this.btConfirmer.setEnabled(false);
 		this.btConfirmer.addActionListener(this);
     	this.add(this.btConfirmer, BorderLayout.SOUTH);
