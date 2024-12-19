@@ -39,7 +39,7 @@ public class PanelQCM extends JFrame implements ActionListener {
 
 		setTitle("Créateur de QCM");
 		setSize(600, 400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new BorderLayout());
 
 		JPanel panelQuestion = new JPanel(new BorderLayout());

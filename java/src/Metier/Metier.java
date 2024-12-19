@@ -110,7 +110,7 @@ public class Metier{
 			}
             FileWriter writer = new FileWriter(path+"notions.csv");
             for (Notion notion : this.lstNotions){
-                writer.write(notion.getAsData() + "\n");
+				if(notion.getNom() != "PlaceHolder"){writer.write(notion.getAsData() + "\n");}
             }
             writer.close();
         }catch(IOException e){
@@ -130,7 +130,7 @@ public class Metier{
 			}
             FileWriter writer = new FileWriter(path+"ressources.csv");
             for (Ressource ressource : this.lstRessources){
-                writer.write(ressource.getAsData() + "\n");
+				if(ressource.getNom() != "PlaceHolder"){writer.write(ressource.getAsData() + "\n");}
             }
             writer.close();
         }catch(IOException e){

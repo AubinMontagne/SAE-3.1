@@ -8,7 +8,7 @@ import src.Metier.Notion;
 import src.Metier.Question;
 import src.Metier.Ressource;
 
-public class               Controleur{
+public class Controleur{
 	private Metier metier;
     private FrameAccueil frameAccueil;
 

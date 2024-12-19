@@ -31,7 +31,10 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
      */
     public PanelNotion( Controleur ctrl,Ressource r){
         this.ctrl        = ctrl;
-        this.ressource   = r;
+        if (r == null) {
+            r = new Ressource("PlaceHolder", "PlaceHolder");
+        }
+        this.ressource = r;
         this.notions     = ctrl.getNotionsParRessource(r);
         this.panelNotion = new JPanel();
         this.panelNotion.setLayout(new BorderLayout());
