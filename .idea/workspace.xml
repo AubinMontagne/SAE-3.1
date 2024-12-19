@@ -6,17 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" name="Changes" comment="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" afterDir="false" />
     </list>
     <list id="e0a5d575-1463-46f4-82d3-b2b4d97dd127" name="Changes by Aubin" comment="" />
     <list id="c9c7e525-4423-4eb1-ad99-4a8077baf755" name="Changes by ma231364" comment="" />
-    <list id="64e012bb-f699-4714-81a6-be40b3199a82" name="Changes by pt232770" comment="">
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" afterDir="false" />
-    </list>
+    <list id="64e012bb-f699-4714-81a6-be40b3199a82" name="Changes by pt232770" comment="" />
     <list id="83b64320-0bff-4c42-8e0c-a9562ead630c" name="Changes by timot" comment="">
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameAccueil.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameAccueil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,18 +46,14 @@
     <setting file="jar://$USER_HOME$/.jdks/openjdk-23.0.1/lib/src.zip!/java.desktop/javax/swing/JPanel.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java">
+    <file path="$PROJECT_DIR$/java/src/Vue/FrameBanque.java">
       <ranges>
-        <range start1="14" end1="17" start2="14" end2="17" changelist="83b64320-0bff-4c42-8e0c-a9562ead630c" />
-        <range start1="28" end1="29" start2="28" end2="29" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="42" end1="45" start2="42" end2="46" changelist="83b64320-0bff-4c42-8e0c-a9562ead630c" />
-        <range start1="46" end1="49" start2="47" end2="51" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="50" end1="54" start2="52" end2="56" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="57" end1="61" start2="59" end2="69" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="66" end1="69" start2="74" end2="77" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="78" end1="79" start2="86" end2="87" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="80" end1="81" start2="88" end2="89" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="82" end1="83" start2="90" end2="91" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="4" end1="5" start2="4" end2="4" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="10" end1="12" start2="9" end2="9" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="16" end1="17" start2="13" end2="13" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="20" end1="22" start2="16" end2="16" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="31" end1="32" start2="25" end2="26" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="46" end1="47" start2="40" end2="41" changelist="83b64320-0bff-4c42-8e0c-a9562ead630c" />
       </ranges>
     </file>
   </component>
@@ -303,7 +295,7 @@
       <workItem from="1734507391692" duration="10337000" />
       <workItem from="1734521238330" duration="9614000" />
       <workItem from="1734535046261" duration="2361000" />
-      <workItem from="1734594668898" duration="15935000" />
+      <workItem from="1734594668898" duration="16279000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <option name="closed" value="true" />
