@@ -3,6 +3,7 @@ package src.Vue;
 import javax.swing.*;
 import src.Controleur;
 
+import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 public class FrameBanque extends JFrame implements WindowListener {
@@ -34,16 +35,13 @@ public class FrameBanque extends JFrame implements WindowListener {
             return new FrameBanque(ctrl);
         }
         return null;
-        }
-
-
-
-
-    public void windowOpened     (WindowEvent e) {}
-    public void windowClosing    (WindowEvent e)  {FrameBanque.nbFrame--;}
-    public void windowClosed     (WindowEvent e) {}
-    public void windowIconified  (WindowEvent e) {}
-    public void windowDeiconified(WindowEvent e) {}
-    public void windowActivated  (WindowEvent e) {}
-    public void windowDeactivated(WindowEvent e) {}
+    }
+        
+    public void windowOpened     (java.awt.event.WindowEvent e) {}
+    public void windowClosing    (java.awt.event.WindowEvent e) {FrameBanque.nbFrame--;}
+    public void windowClosed     (java.awt.event.WindowEvent e) {}
+    public void windowIconified  (java.awt.event.WindowEvent e) {}
+    public void windowDeiconified(java.awt.event.WindowEvent e) {}
+    public void windowActivated  (java.awt.event.WindowEvent e) {}
+    public void windowDeactivated(java.awt.event.WindowEvent e) {}
 }

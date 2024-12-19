@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" name="Changes" comment="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" afterDir="false" />
     </list>
     <list id="e0a5d575-1463-46f4-82d3-b2b4d97dd127" name="Changes by Aubin" comment="" />
@@ -48,12 +47,8 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/java/src/Vue/FrameBanque.java">
       <ranges>
-        <range start1="4" end1="5" start2="4" end2="4" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="10" end1="12" start2="9" end2="9" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="16" end1="17" start2="13" end2="13" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="20" end1="22" start2="16" end2="16" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="31" end1="32" start2="25" end2="26" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="46" end1="47" start2="40" end2="41" changelist="83b64320-0bff-4c42-8e0c-a9562ead630c" />
+        <range start1="5" end1="5" start2="5" end2="6" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="36" end1="48" start2="37" end2="46" changelist="83b64320-0bff-4c42-8e0c-a9562ead630c" />
       </ranges>
     </file>
   </component>
@@ -296,6 +291,7 @@
       <workItem from="1734521238330" duration="9614000" />
       <workItem from="1734535046261" duration="2361000" />
       <workItem from="1734594668898" duration="16279000" />
+      <workItem from="1734616870312" duration="294000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <option name="closed" value="true" />

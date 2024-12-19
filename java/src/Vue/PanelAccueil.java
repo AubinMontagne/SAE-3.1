@@ -75,6 +75,7 @@ public class PanelAccueil extends JPanel implements  ActionListener{
         this.btnBanque       .addActionListener(this) ;
         this.btnQuestionnaire.addActionListener(this) ;
         this.btnRessources   .addActionListener(this) ;
+        this.btnCreationQuestion.addActionListener(this);
 
     }
 
