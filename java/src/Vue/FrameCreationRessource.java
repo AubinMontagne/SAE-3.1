@@ -18,10 +18,12 @@ public class FrameCreationRessource extends JFrame implements WindowListener {
     private FrameCreationRessource(Controleur ctrl){
         this.ctrl = ctrl;
 
-        this.setTitle             ("Création de la question");
+        this.setTitle             ("QCM Builder - Création de la question");
         this.setSize              (250,200);
         this.setMinimumSize       (this.getSize());
         this.setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon(getClass().getResource("Images/icon.png")).getImage());
+
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

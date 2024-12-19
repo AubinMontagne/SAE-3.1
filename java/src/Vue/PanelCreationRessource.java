@@ -7,9 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-
+import javax.swing.border.TitledBorder;
 public class PanelCreationRessource extends JPanel implements ActionListener {
 	private Controleur 			   ctrl;
 	private JButton 			   boutonConfirmer;
@@ -29,21 +27,26 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 
 		UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
 
+
 		// Section supérieure
 		JPanel panelConfiguration = new JPanel(new GridLayout(2, 2, 5, 5));
-		panelConfiguration.setBorder(BorderFactory.createTitledBorder("Configuration"));
+		TitledBorder titledBorder = BorderFactory.createTitledBorder("Configuration");
+		titledBorder.setTitleFont(new Font("Arial", Font.BOLD, 26));
+		panelConfiguration.setBorder(titledBorder);
 
 		JLabel labelID = new JLabel("Identifiant de la ressource :");
+		labelID.setFont(new Font("Arial", Font.PLAIN, 20));
 		this.champID   = new JTextField();
 		this.champID.setPreferredSize(new Dimension(10, 10));
 
-		JLabel labalNom = new JLabel("Nom de la ressource :");
+		JLabel labelNom = new JLabel("Nom de la ressource :");
+		labelNom.setFont(new Font("Arial", Font.PLAIN, 20));
 		this.champNom   = new JTextField();
 		this.champNom.setPreferredSize(new Dimension(10, 10));
 
 		panelConfiguration.add(labelID);
 		panelConfiguration.add(this.champID);
-		panelConfiguration.add(labalNom);
+		panelConfiguration.add(labelNom);
 		panelConfiguration.add(this.champNom);
 
 		add(panelConfiguration, BorderLayout.CENTER);
@@ -56,6 +59,8 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 		JPanel panelType = new JPanel(new GridLayout(1, 1, 5, 5));
 
 		this.boutonConfirmer = new JButton("Confirmer");
+		boutonConfirmer.setBackground(new Color(163,206,250));
+		boutonConfirmer.setFont(new Font("Arial", Font.PLAIN, 22));
 		this.boutonConfirmer.addActionListener(this);
 
 		panelType.add(this.boutonConfirmer);

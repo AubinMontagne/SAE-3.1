@@ -1,7 +1,6 @@
 package src.Vue;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -21,6 +20,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
     private Controleur           ctrl;
 	private Notion               notion;
 	private JButton              btnCreaQuest;
+	private JButton              btnSupp;
     private JPanel               panelBanque;
     private JTable               tbQuestion;
 	private JComboBox<Notion>    mdNotions;
@@ -68,17 +68,25 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
         this.tbQuestion.setPreferredScrollableViewportSize(new Dimension(800, visibleHeight));
 
 		JScrollPane scrollPane = new JScrollPane(this.tbQuestion);
+		this.btnSupp           = new JButton("Supprimer Question");
 		this.btnCreaQuest      = new JButton("Nouvelle Question");
+		this.btnSupp.setBackground		    (new Color(163,206,250));
+		this.btnSupp.setFont			    (new Font("Arial", Font.PLAIN, 22));
+		this.btnCreaQuest.setBackground		(new Color(163,206,250));
+		this.btnCreaQuest.setFont			(new Font("Arial", Font.PLAIN, 22));
+
 
 		panelParametre.add(this.mdRessources);
 		panelParametre.add(this.mdNotions);
 
 		this.panelBanque.add(panelParametre   , BorderLayout.NORTH );
 		this.panelBanque.add(scrollPane       , BorderLayout.CENTER);
+		this.panelBanque.add(this.btnSupp     , BorderLayout.SOUTH );
 		this.panelBanque.add(this.btnCreaQuest, BorderLayout.SOUTH );
 
         this.add(panelBanque);
 
+		this.btn
 		this.btnCreaQuest.addActionListener(this);
 
 		this.mdRessources.addItemListener(this);

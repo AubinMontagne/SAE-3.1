@@ -60,12 +60,12 @@ public abstract class Question{
     }
 
 	// Set
-    public void setEnonceFich(String intitule)              {this.enonceFich = enonceFich;}
-    public void setDifficulte(Difficulte difficulte)        {this.difficulte = difficulte;}
-    public void setNotion(Notion notion)                    {this.notion = notion;}
-    public void setTemps(int temps)                         {this.temps = temps;}
-    public void setPoint(int point)                         {this.point = point;}
-    public void setExplicationFich(String explicationFich)  {this.explicationFich = explicationFich;}
+    public void setEnonceFich     (String intitule)        {this.enonceFich      = enonceFich;}
+    public void setDifficulte     (Difficulte difficulte)  {this.difficulte      = difficulte;}
+    public void setNotion         (Notion notion)          {this.notion          = notion;}
+    public void setTemps          (int temps)              {this.temps           = temps;}
+    public void setPoint          (int point)              {this.point           =  point;}
+    public void setExplicationFich(String explicationFich) {this.explicationFich = explicationFich;}
 
 	public String toString(){
 		return "Difficulté: " + this.difficulte + "\n" +

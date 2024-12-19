@@ -16,17 +16,20 @@ public class FrameBanque extends JFrame implements WindowListener {
      * Constructeur de la class FrameBanque
      * @param ctrl  Le contrôleur
      */
-	public FrameBanque(Controleur ctrl ) {
+    public FrameBanque(Controleur ctrl )
+    {
         this.ctrl = ctrl;
 
-        this.setTitle             ("Banque de question ");
-        this.setSize              (850,200);
+        System.out.println("Création de la frame Banque");
+
+        this.setTitle("QCM Builder - Banque de question ");
+        this.setSize(850,200);
         this.setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon(getClass().getResource("java/data/Images/icon.png")).getImage());
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         this.add(new PanelBanque(this.ctrl) );
-        this.addWindowListener  (this);
 
         setVisible(true);
     }

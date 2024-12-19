@@ -20,10 +20,12 @@ public class FrameCreationNotion extends JFrame implements WindowListener {
      */
     public FrameCreationNotion( Controleur ctrl, Ressource r, PanelNotion panelNotion){
 
-        this.setTitle             ("Nouvelle Notion");
+        this.setTitle             ("QCM Buider - Nouvelle Notion");
         this.setSize              (250,200);
         this.setMinimumSize       (this.getSize());
         this.setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon(getClass().getResource("java/data/Images/icon.png")).getImage());
+
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

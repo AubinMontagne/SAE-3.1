@@ -9,7 +9,8 @@ import java.util.HashMap;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class QCMBuilder
+public class
+QCMBuilder
 {
     private Questionnaire questionnaire;
     private Scanner scanner;

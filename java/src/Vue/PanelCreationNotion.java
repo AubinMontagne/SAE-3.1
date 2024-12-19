@@ -51,6 +51,8 @@ public class PanelCreationNotion extends JPanel implements ActionListener {
 
         this.boutonConfirmer = new JButton("Confirmer");
         this.boutonConfirmer.setEnabled(false);
+        boutonConfirmer.setBackground(new Color(163,206,250));
+        boutonConfirmer.setFont(new Font("Arial", Font.PLAIN, 22));
         panelConfiguration.add(labelTemps);
         panelConfiguration.add(champNom);
 

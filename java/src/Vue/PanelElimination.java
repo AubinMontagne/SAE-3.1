@@ -23,7 +23,7 @@ public class PanelElimination extends JFrame implements ActionListener {
 	 */
 	public PanelElimination(Controleur ctrl){
 		this.ctrl = ctrl;
-		setTitle("Créateur de Question élimination");
+		setTitle("QCM Builder - Créateur de Question élimination");
 		setSize(600, 400);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new BorderLayout());

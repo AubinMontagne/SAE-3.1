@@ -6,15 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" name="Changes" comment="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/Sae 3_01 V1.gan" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/Sae 3_01 V1.gan" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/docs/Sae 3_01 V1.gan" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SAE-31/docs/Sae 3_01 V1.gan" afterDir="false" />
     </list>
     <list id="e0a5d575-1463-46f4-82d3-b2b4d97dd127" name="Changes by Aubin" comment="" />
     <list id="5624de29-189b-4d83-b670-61d558e4a1c5" name="Changes by ma231364" comment="" />
+    <list id="64e012bb-f699-4714-81a6-be40b3199a82" name="Changes by pt232770" comment="" />
     <list id="c26eb891-7ff5-4c64-959f-c9cbe2dc5601" name="Changes by sandr" comment="">
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameAccueil.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameAccueil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationNotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationNotion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationNotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationNotion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" afterDir="false" />
     </list>
-    <list id="83b64320-0bff-4c42-8e0c-a9562ead630c" name="Changes by timot" comment="" />
+    <list id="83b64320-0bff-4c42-8e0c-a9562ead630c" name="Changes by timot" comment="">
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Question.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,6 +54,14 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.jdks/openjdk-23.0.1/lib/src.zip!/java.desktop/javax/swing/JPanel.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/java/src/Vue/PanelBanque.java">
+      <ranges>
+        <range start1="2" end1="4" start2="2" end2="3" changelist="c26eb891-7ff5-4c64-959f-c9cbe2dc5601" />
+        <range start1="71" end1="71" start2="70" end2="73" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+      </ranges>
+    </file>
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -98,7 +115,7 @@
       <recent name="src.Vue" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Controleur">
+  <component name="RunManager" selected="Application.TestJS">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="SAE-3.1" />
       <option name="ENV_FILES" value="" />
@@ -237,8 +254,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Controleur" />
         <item itemvalue="Application.TestJS" />
+        <item itemvalue="Application.Controleur" />
         <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
@@ -284,7 +301,7 @@
       <workItem from="1734507391692" duration="10337000" />
       <workItem from="1734521238330" duration="9614000" />
       <workItem from="1734535046261" duration="2361000" />
-      <workItem from="1734594668898" duration="13144000" />
+      <workItem from="1734594668898" duration="13908000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <option name="closed" value="true" />

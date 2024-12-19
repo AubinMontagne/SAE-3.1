@@ -18,10 +18,12 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
     public FrameCreationQuestion( Controleur ctrl){
         this.ctrl = ctrl;
 
-        this.setTitle             ("Création de la question");
+        this.setTitle             ("QCM Builder - Création de la question");
         this.setSize              (900,500);
         this.setMinimumSize       (this.getSize());
         this.setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon(getClass().getResource("java/data/Images/icon.png")).getImage());
+
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
