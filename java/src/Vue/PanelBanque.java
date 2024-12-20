@@ -25,6 +25,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
     private JTable               tbQuestion;
 	private JComboBox<Notion>    mdNotions;
 	private JComboBox<Ressource> mdRessources;
+
 	// Constructeur
 
 	/**
@@ -102,8 +103,10 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
         if ( this.btnCreaQuest == e.getSource())
             FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl);
 		if (this.btnSupp == e.getSource()) {
-
-
+			int row = this.tbQuestion.getSelectedRow();
+			//this.tbQuestion.getValueAt();
+			this.maj();
+			this.ctrl.miseAJourFichiers();
 			/*
 			//Question q = this.list.getSelectedValue();
 			if (q != null) {
@@ -127,9 +130,9 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 		String[][] data = new String[questList.size()][4];
 
 		for(int i = 0; i < questList.size();i++){
-			data[i][0] = questList.get(i).getEnonceFich();
-			data[i][1] = questList.get(i).getNotion().getRessourceAssociee().getNom();
-			data[i][2] = questList.get(i).getNotion().getNom();
+			data[i][0] =      questList.get(i).getEnonceFich();
+			data[i][1] =      questList.get(i).getNotion().getRessourceAssociee().getNom();
+			data[i][2] =      questList.get(i).getNotion().getNom();
 			data[i][3] = "" + questList.get(i).getPoint();
 		}
 
@@ -154,9 +157,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 			this.notion = (Notion) this.mdNotions.getSelectedItem();
 
 			this.mdRessources.setModel(new DefaultComboBoxModel<>(ctrl.getRessources().toArray(new Ressource[0])));
-			this.mdNotions.setModel(new DefaultComboBoxModel<>(ctrl.getNotionsParRessource(ressource).toArray(new Notion[0])));
-
-			System.out.println(ctrl.getNotionsParRessource(ressource));
+			this.mdNotions   .setModel(new DefaultComboBoxModel<>(ctrl.getNotionsParRessource(ressource).toArray(new Notion[0])));
 
 			this.mdRessources.setSelectedItem(ressource);
 			if(this.notion != null && ressource != null && this.notion.getRessourceAssociee().equals(ressource)){

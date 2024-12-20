@@ -2,7 +2,6 @@ package src.Vue;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 import javax.swing.border.TitledBorder;
 import java.util.List;
 import javax.swing.*;
@@ -40,7 +39,7 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 		this.chrono             = false;
 		this.videTitre          = true;
 		this.videRessource      = true;                             
-    	this.panelQuestionnaire.setVisible(true);
+
 
 
 
@@ -64,12 +63,10 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
     	this.btChrono 	   = new JButton("NON");
 		this.btChrono.setBackground(new Color(163,206,250));
 		this.btChrono.setFont(new Font("Arial", Font.PLAIN, 22));
-		this.btChrono.addActionListener(this);
+
 
     	JLabel labelRessource = new JLabel("Ressource :");
 		this.mdRessources 	  = new JComboBox<>(this.listRessources.toArray(new Ressource[0]));
-		this.mdRessources.addItemListener(this);
-		this.mdRessources.setSelectedIndex(0);
 
     	panelInfo.add(labelTitre);
     	panelInfo.add(labelRessource);
@@ -86,7 +83,6 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 		btConfirmer.setFont(new Font("Arial", Font.PLAIN, 22));
 		this.btConfirmer.setEnabled(false);
 		this.btConfirmer.addActionListener(this);
-    	this.add(this.btConfirmer, BorderLayout.SOUTH);
 
     	this.add(this.panelQuestionnaire);
 
@@ -99,6 +95,13 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 			@Override
 			public void changedUpdate(DocumentEvent e) {verifierChamps(champTitre.getText()); }
 		});
+
+		this.btChrono.addActionListener(this);
+
+		this.mdRessources.addItemListener(this);
+		this.mdRessources.setSelectedIndex(0);
+
+		this.panelQuestionnaire.setVisible(true);
 	}
 
 	// Methode

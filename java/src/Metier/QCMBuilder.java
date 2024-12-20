@@ -179,15 +179,26 @@ QCMBuilder
      */
     public boolean ecrireImage(){
         String[] tabImg = {"TF.png", "F.png", "M.png", "D.png"};
+        String[] tabBtn = {"CheckVide.png", "CheckPlein.png", "RadVide.png", "RadPlein.png"};
 
         try{
             Path folderPath = Path.of(path + this.questionnaire.getNom() + "/data/imgDif/");
             Files.createDirectories(folderPath);
 
-            for(String img : tabImg){
+            folderPath = Path.of(path + this.questionnaire.getNom() + "/data/imgBtn/");
+            Files.createDirectories(folderPath);
 
+            for(String img : tabImg){
                 String newPath = System.getProperty("user.dir") + "/out/production/SAE-31/data/Images/imgDif/" + img;
                 String newPath2 = path + this.questionnaire.getNom() + "/data/imgDif/" + img;
+
+                Files.copy(Path.of(newPath), Path.of(newPath2), StandardCopyOption.REPLACE_EXISTING);
+
+            }
+
+            for(String btn : tabBtn){
+                String newPath = System.getProperty("user.dir") + "/out/production/SAE-31/data/Images/imgBtn/" + btn;
+                String newPath2 = path + this.questionnaire.getNom() + "/data/imgBtn/" + btn;
 
                 Files.copy(Path.of(newPath), Path.of(newPath2), StandardCopyOption.REPLACE_EXISTING);
 
@@ -573,84 +584,91 @@ QCMBuilder
                         "}\n" +
                         "\n" +
                         "\n" +
-                        "function clicRep(index, typeQuestion) \n" +
-                        "{\n" +
-                        "    switch(typeQuestion)\n" +
-                        "    {\n" +
-                        "        case \"QCM\" : \n" +
-                        "        {\n" +
-                        "            if(!tabCompletion[questionActuelle])\n" +
-                        "            {\n" +
-                        "                tabSelections[questionActuelle][index] = !tabSelections[questionActuelle][index];\n" +
-                        "        \n" +
-                        "                document.getElementById(\"rep\" + (index+1)).classList.toggle('selected');\n" +
-                        "            }\n" +
-                        "            break;\n" +
-                        "        }\n" +
-                        "\n" +
-                        "        case \"vrai-faux\" :\n" +
-                        "        {\n" +
-                        "            if(!tabCompletion[questionActuelle])\n" +
-                        "            {\n" +
-                        "                for(let i = 1 ; document.getElementById(\"rep\" + i) != null ; i++)\n" +
-                        "                {\n" +
-                        "                    if(document.getElementById(\"rep\" + i).classList.contains('selected'))\n" +
-                        "                    {\n" +
-                        "                        document.getElementById(\"rep\" + i).classList.remove('selected');\n" +
-                        "                    }\n" +
-                        "                }\n" +
-                        "\n" +
-"                       \t\t\t\tfor(let i = 0 ; i < tabSelections[questionActuelle].length ; i++)\n" +
-                        "\t\t\t\t{\n" +
-                        "\t\t\t\t\tif(i != index)\n" +
-                        "\t\t\t\t\t{\n" +
-                        "\t\t\t\t\t\ttabSelections[questionActuelle][i] = false;\n" +
-                        "\t\t\t\t\t}else{\n" +
-                        "\t\t\t\t\t\ttabSelections[questionActuelle][i] = true;\n" +
-                        "\t\t\t\t\t}\n" +
-                        "\t\t\t\t}" +
-                        "\n" +
-                        "                document.getElementById(\"rep\" + (index+1)).classList.add('selected');\n" +
-                        "            }\n" +
-                        "            break;\n" +
-                        "        }" +
-                        "\n" +
-                        "        case \"elimination\" :\n" +
-                        "        {\n" +
-                        "            if(!tabCompletion[questionActuelle])\n" +
-                        "            {\n" +
-                        "                const elementsDiv = document.querySelectorAll(\".reponseBox\");\n" +
-                        "\n" +
-                        "                elementsDiv.forEach(element => {\n" +
-                        "\n" +
-                        "                    if(element.classList.contains('selected') && !element.classList.contains('eliminer'))\n" +
-                        "                    {\n" +
-                        "                        element.classList.remove('selected'); // Retire explicitement la classe\n" +
-                        "                    }\n" +
-                        "                });\n" +
-                        "\n" +
-                        "                let tmp = document.getElementById(\"rep\" + (index+1));\n" +
-                        "\n" +
-                        "                if(!tmp.classList.contains('eliminer'))\n" +
-                        "                {\n" +
-                        "                    for(let i = 0 ; i < tabSelections[questionActuelle].length ; i++)\n" +
-                        "                    {\n" +
-                        "                        if(tabSelections[questionActuelle][i] == true)\n" +
-                        "                        {\n" +
-                        "                            tabSelections[questionActuelle][i] = false;\n" +
-                        "                        }\n" +
-                        "                    }\n" +
-                        "    \n" +
-                        "                    tabSelections[questionActuelle][index] = true;\n" +
-                        "                    tmp.classList.toggle('selected');\n" +
-                        "                }\n" +
-                        "                break;\n" +
-                        "            }\n" +
-                        "        }\n" +
-                        "    }\n" +
-                        "\n" +
-                        "}\n" +
-                        "\n" +
+                        "function clicRep(index, typeQuestion)\n"+
+                        "{\n"+
+                        "switch(typeQuestion)\n"+
+                        "{\n"+
+                        "    case \"QCM\" :\n"+
+                        "    {\n"+
+                        "        if(!tabCompletion[questionActuelle])\n"+
+                        "        {\n"+
+                        "            tabSelections[questionActuelle][index] = !tabSelections[questionActuelle][index];\n"+
+                        "\n"+
+                        "            document.getElementById(\"rep\" + (index+1)).classList.toggle('selected');\n"+
+                        "\n"+
+                        "            if(tabSelections[questionActuelle][index]){\n"+
+                        "                document.getElementById(\"img\" + (index+1)).src = \"./data/imgBtn/CheckPlein.png\"\n"+
+                        "            }\n"+
+                        "            else{\n"+
+                        "                document.getElementById(\"img\" + (index+1)).src = \"./data/imgBtn/CheckVide.png\"\n"+
+                        "            }\n"+
+                        "        }\n"+
+                        "        break;\n"+
+                        "    }\n"+
+                        "\n"+
+                        "    case \"vrai-faux\" :\n"+
+                        "    {\n"+
+                        "        if(!tabCompletion[questionActuelle])\n"+
+                        "        {\n"+
+                        "            for(let i = 1 ; document.getElementById(\"rep\" + i) != null ; i++)\n"+
+                        "            {\n"+
+                        "                if(document.getElementById(\"rep\" + i).classList.contains('selected'))\n"+
+                        "                {\n"+
+                        "                    document.getElementById(\"rep\" + i).classList.remove('selected');\n"+
+                        "                }\n"+
+                        "            }\n"+
+                        "\n"+
+                        "            for(let i = 0 ; i < tabSelections[questionActuelle].length ; i++)\n"+
+                        "            {\n"+
+                        "                if(i != index)\n"+
+                        "                {\n"+
+                        "                    tabSelections[questionActuelle][i] = false;\n"+
+                        "                    document.getElementById(\"img\" + (i+1)).src = \"./data/imgBtn/RadVide.png\"\n"+
+                        "                }else{\n"+
+                        "                    tabSelections[questionActuelle][i] = true;\n"+
+                        "                    document.getElementById(\"img\" + (i+1)).src = \"./data/imgBtn/RadPlein.png\"\n"+
+                        "                }\n"+
+                        "            }\n"+
+                        "            document.getElementById(\"rep\" + (index+1)).classList.add('selected');\n"+
+                        "        }\n"+
+                        "        break;\n"+
+                        "    }\n"+
+                        "    case \"elimination\" :\n"+
+                        "    {\n"+
+                        "        if(!tabCompletion[questionActuelle])\n"+
+                        "        {\n"+
+                        "    const elementsDiv = document.querySelectorAll(\".reponseBox\");\n"+
+                        "\n"+
+                        "            elementsDiv.forEach(element => {\n"+
+                        "\n"+
+                        "            if(element.classList.contains('selected') && !element.classList.contains('eliminer'))\n"+
+                        "            {\n"+
+                        "                element.classList.remove('selected'); // Retire explicitement la classe\n"+
+                        "            }\n"+
+                        "    });\n"+
+                        "\n"+
+                        "            let tmp = document.getElementById(\"rep\" + (index+1));\n"+
+                        "\n"+
+                        "           if(!tmp.classList.contains('eliminer'))\n"+
+                        "            {\n"+
+                        "                for(let i = 0 ; i < tabSelections[questionActuelle].length ; i++)\n"+
+                        "                {"+
+                        "                    if(tabSelections[questionActuelle][i] == true)\n"+
+                        "                    {\n"+
+                        "                        tabSelections[questionActuelle][i] = false;\n"+
+                        "                            document.getElementById(\"img\" + (i+1)).src = \"./data/imgBtn/RadVide.png\";\n"+
+                        "                        }\n"+
+                        "                    }\n"+
+                        "\n"+
+                        "                    tabSelections[questionActuelle][index] = true;\n"+
+                        "                    tmp.classList.toggle('selected');\n"+
+                        "                    document.getElementById(\"img\" + (index+1)).src = \"./data/imgBtn/RadPlein.png\";\n"+
+                        "                }\n"+
+                        "            }\n"+
+                        "            break;\n"+
+                        "        }\n"+
+                        "    }\n"+
+                        "}\n"+
                         "function finQuestionnaire()\n" +
                         "{\n" +
                         "    if (completion == nbQuestion || confirm(\"Vous n'avez pas répondu à toutes les questions, êtes-vous sûr de vouloir terminer le questionnaire ?\")) \n" +
@@ -867,12 +885,13 @@ QCMBuilder
                         } else {
                             bonnesRep = bonnesRep + "false,";
                         }
-                        reponses = reponses + "<div class=\"reponseBox\" id=\"rep" + i + "\" >'" + reponse + "'</div>\n";
-                        if(!((QCM)q).estVraiouFaux())
+                        if(!((QCM)q).estVraiouFaux()) {
+                            reponses = reponses + "<div class=\"reponseBox\" id=\"rep" + i + "\" ><img id=\"img" + i + "\" class=\"imgBtn\" src=\"./data/imgBtn/CheckVide.png\">'" + reponse + "'</div>\n";
                             onClicFonctions = onClicFonctions + "document.getElementById(\"rep" + i + "\").onclick = function() { clicRep(" + (i - 1) + ", \"QCM\") };\n";
-                        else
+                        }else{
+                            reponses = reponses + "<div class=\"reponseBox\" id=\"rep" + i + "\" ><img id=\"img" + i + "\" class=\"imgBtn\" src=\"./data/imgBtn/RadVide.png\">'" + reponse + "'</div>\n";
                             onClicFonctions = onClicFonctions + "document.getElementById(\"rep" + i + "\").onclick = function() { clicRep(" + (i - 1) + ", \"vrai-faux\") };\n";
-
+                        }
                         i++;
                     }
 
@@ -1548,7 +1567,7 @@ QCMBuilder
                         } else {
                             bonnesRep = bonnesRep + "false,";
                         }
-                        reponses = reponses + "<div class=\"reponseBox\" id=\"rep" + i + "\" >'" + reponse + "'</div>\n";
+                        reponses = reponses + "<div class=\"reponseBox\" id=\"rep" + i + "\" ><img id=\"img"+ i +"\" class=\"imgBtn\" src=\"./data/imgBtn/CheckVide.png\">'" + reponse + "'</div>\n";
                         onClicFonctions = onClicFonctions + "document.getElementById(\"rep" + i + "\").onclick = function() { clicRep(" + (i - 1) + ", \"elimination\") };\n";
                         i++;
                     }

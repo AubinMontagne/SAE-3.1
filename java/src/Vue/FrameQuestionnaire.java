@@ -11,6 +11,7 @@ public class FrameQuestionnaire extends JFrame implements WindowListener{
     private static int nbFrame = 0;
     private Controleur ctrl;
 
+    private PanelQuestionnaireTab questionnaireTab;
     // Constructeur
     /**
      * Constructeur de la class FrameQuestionnaire
@@ -18,21 +19,25 @@ public class FrameQuestionnaire extends JFrame implements WindowListener{
      */
     public FrameQuestionnaire( Controleur ctrl ){
         this.ctrl = ctrl;
+        this.questionnaireTab = null;
 
         this.setTitle             ("Nouveaux Questionnaire");
-        this.setSize              (590,400);
+        this.setSize              (790,300);
         this.setMinimumSize       (this.getSize());
+        this.setLayout            (new GridLayout(2,1));
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelQuestionnaire(ctrl, this), BorderLayout.NORTH );
+        this.add(new PanelQuestionnaire(ctrl, this));
 
         setVisible(true);
     }
     public void majTab(Controleur ctrl, Ressource r, String titre, Boolean estChrono){
-        this.setSize(590,450);
-        this.add(new PanelQuestionnaireTab(ctrl,r,titre,estChrono), BorderLayout.SOUTH);
+        if (this.questionnaireTab != null){ this.remove(this.questionnaireTab); }
+        this.questionnaireTab = new PanelQuestionnaireTab(ctrl,r,titre,estChrono);
+        this.add(questionnaireTab);
+        this.revalidate();
     }
 
     public static FrameQuestionnaire creerFrameQuestionnaire(Controleur ctrl){
