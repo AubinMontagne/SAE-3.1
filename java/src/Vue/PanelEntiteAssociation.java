@@ -1,10 +1,12 @@
 package src.Vue;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;  
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import src.Controleur;
@@ -17,6 +19,8 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 	private JTextField champQuestion;
 	private JButton boutonAjoutAssociation;
 	private JButton boutonEnregistrer;
+
+	private PanelBanque panelBanque;
 
 	int 	difficulte;
 	String 	notion;
@@ -31,10 +35,10 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 	 * Constructeur de la class PanelEntiteAssociation
 	 * @param ctrl	Le contrôleur
 	 */
-	public PanelEntiteAssociation(Controleur ctrl,int difficulte,String notion,int points,int temps)
+	public PanelEntiteAssociation(Controleur ctrl,int difficulte,String notion,int points,int temps,PanelBanque panelBanque)
 	{
 		this.ctrl = ctrl;
-
+		this.panelBanque = panelBanque;
 		this.difficulte=difficulte;
 		this.notion=notion;
 		this.points=points;
@@ -46,6 +50,7 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 		setMinimumSize(this.getSize());
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new BorderLayout());
+		this.setIconImage(new ImageIcon("java/data/Images/icon.png").getImage());
 
 		// Panel pour la question
 		JPanel panelQuestion = new JPanel(new BorderLayout());
@@ -145,6 +150,20 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 			resultats.append(association).append("\n");
 		}
 
+
+
+		HashMap<String, String> entiteAssociation = new HashMap<>();
+
+		for (String association : associations)
+		{
+			String[] entiteAssociationSplit = association.split(" -> ");
+			entiteAssociation.put(entiteAssociationSplit[0], entiteAssociationSplit[1]);
+		}
+
+		this.ctrl.creerQuestionEntiteAssociation(question, difficulte, notion, temps, points, entiteAssociation);
+
+		if(this.panelBanque != null) {this.panelBanque.maj();}
+
 		JOptionPane.showMessageDialog(this, resultats.toString(), "Résumé", JOptionPane.INFORMATION_MESSAGE);
 	}
 
@@ -163,9 +182,6 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 				break;
 			case "enregistrer":
 				enregistrerAssociations();
-				break;
-			default:
-				break;
 		}
 	}
 }

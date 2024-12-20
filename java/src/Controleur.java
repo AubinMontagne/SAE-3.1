@@ -72,6 +72,31 @@ public class Controleur{
 		);
 	}
 
+	public void creerQuestionEntiteAssociation(String intitule, int difficulte, String notion, int temps, int points, HashMap<String, String> associations)
+	{
+		this.metier.ajouterQuestionEntiteAssociation(
+				intitule,
+				metier.getDifficulteByIndice(difficulte),
+				metier.getNotionByNom(notion),
+				temps,
+				points,
+				associations
+		);
+	}
+
+	public void creerQuestionElimination(String intitule, int difficulte, String notion, int temps, int points, HashMap<String,Double[]> reponses, String reponseCorrecte)
+	{
+		this.metier.ajouterQuestionElimination(
+				intitule,
+				metier.getDifficulteByIndice(difficulte),
+				metier.getNotionByNom(notion),
+				temps,
+				points,
+				reponses,
+				reponseCorrecte
+		);
+	}
+
 	// Main
 	public static void main(String[] args){
 		Controleur controleur = new Controleur();

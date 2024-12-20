@@ -1,6 +1,7 @@
 package src.Vue;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
@@ -10,37 +11,38 @@ import src.Controleur;
 
 public class PanelQCM extends JFrame implements ActionListener {
 
-	private Controleur ctrl;
-	private JPanel panelReponses; // Panel pour les réponses
-	private int nombreReponses = 0; // Nombre de réponses
-	private JTextField champQuestion;
-	private JButton boutonAjoutReponse;
-	private JButton boutonEnregistrer;
-	private boolean modeReponseUnique; // Checkbox pour activer/désactiver le mode réponse unique
+	private Controleur  ctrl;
+	private JPanel      panelReponses; // Panel pour les réponses
+	private int         nombreReponses = 0; // Nombre de réponses
+	private JTextField  champQuestion;
+	private JButton     boutonAjoutReponse;
+	private JButton     boutonEnregistrer;
+	private boolean     modeReponseUnique; // Checkbox pour activer/désactiver le mode réponse unique
 
-	private boolean estModeUnique = false; // Par défaut, mode "plusieurs réponses correctes"
+	private boolean     estModeUnique = false; // Par défaut, mode "plusieurs réponses correctes"
 	private ButtonGroup groupReponses; // Utilisé pour le mode "réponse unique"
 
-	int difficulte;
+	int    difficulte;
 	String notion;
-	int points;
-	int temps;
+	int    points;
+	int    temps;
 
 	PanelBanque panelBanque;
 
 	public PanelQCM(Controleur ctrl, int difficulte, String notion, int points, int temps, PanelBanque panelBanque, boolean estModeUnique) {
-		this.ctrl = ctrl;
-		this.panelBanque = panelBanque;
+		this.ctrl          = ctrl;
+		this.panelBanque   = panelBanque;
 		this.estModeUnique = estModeUnique;
-		this.difficulte = difficulte;
-		this.notion = notion;
-		this.points = points;
-		this.temps = temps;
+		this.difficulte    = difficulte;
+		this.notion        = notion;
+		this.points        = points;
+		this.temps         = temps;
 
 		setTitle("QCM Builder - Créateur de QCM");
 		setSize(600, 400);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new BorderLayout());
+		this.setIconImage(new ImageIcon("java/data/Images/icon.png").getImage());
 
 		JPanel panelQuestion = new JPanel(new BorderLayout());
 		JLabel etiquetteQuestion = new JLabel("Question :");
@@ -68,12 +70,12 @@ public class PanelQCM extends JFrame implements ActionListener {
 
 		// Ajout des composants à la fenêtre
 		add(panelQuestion, BorderLayout.NORTH);
-		add(defilement, BorderLayout.CENTER);
-		add(panelBoutons, BorderLayout.SOUTH);
+		add(defilement   , BorderLayout.CENTER);
+		add(panelBoutons , BorderLayout.SOUTH);
 
 		// Activation des listeners
 		boutonAjoutReponse.addActionListener(this);
-		boutonEnregistrer.addActionListener(this);
+		boutonEnregistrer .addActionListener(this);
 	}
 
 	private void ajouterReponse() {
@@ -235,7 +237,7 @@ public class PanelQCM extends JFrame implements ActionListener {
 				reponses
 		);
 
-		this.panelBanque.maj();
+		if(this.panelBanque != null) {this.panelBanque.maj();}
 
 		JOptionPane.showMessageDialog(this, "Question enregistrée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
 

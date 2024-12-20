@@ -373,7 +373,14 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
             // Affichage des données dans le JOptionPane
             JOptionPane.showMessageDialog(this, sb.toString(), "Résumé du questionnaire", JOptionPane.INFORMATION_MESSAGE);
 
-            this.ctrl.getMetier().initQuestionnaire(questionnaire,null);
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            int returnValue = fileChooser.showOpenDialog(null);
+
+            if(returnValue == JFileChooser.APPROVE_OPTION){
+                String path = fileChooser.getSelectedFile().getAbsolutePath();
+                this.ctrl.getMetier().initQuestionnaire(questionnaire,path);
+            }
         }
     }
 }

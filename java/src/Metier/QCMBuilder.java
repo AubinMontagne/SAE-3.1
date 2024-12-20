@@ -35,8 +35,7 @@ QCMBuilder
         }
 
         try{
-            this.fileWriter = new FileWriter(path + questionnaire.getNom() + "/index.html");
-            this.fileWriter = new FileWriter(path + questionnaire.getNom() + "/index.html");
+            this.fileWriter = new FileWriter(path + "/" +questionnaire.getNom() + "/index.html");
 
             ecrireHTML();
             ecrireStyle();
@@ -57,11 +56,14 @@ QCMBuilder
      * @return      Vrai si le fichier a pu être créé, sinon faux
      */
     public boolean creerDossier(String path){
-        File file = new File(path + this.questionnaire.getNom() );
+        File file = new File(path + "/" + this.questionnaire.getNom() );
 
-        if(file.exists()){
+
+        if(file.exists())
+        {
             return false;
-        }else {
+        }else
+        {
             file.mkdir();
         }
         return true;
@@ -136,7 +138,7 @@ QCMBuilder
                             "</body>\n" +
                             "</html>";
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter(path + this.questionnaire.getNom() + "/index.html"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/" + this.questionnaire.getNom() + "/index.html"));
             writer.write(html);
 
             writer.close();
@@ -162,7 +164,7 @@ QCMBuilder
                 css = css + scanner.nextLine()+"\n";
             }
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter(path + this.questionnaire.getNom() + "/style.css"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/" + this.questionnaire.getNom() + "/style.css"));
             writer.write(css);
 
             writer.close();
@@ -182,15 +184,15 @@ QCMBuilder
         String[] tabBtn = {"CheckVide.png", "CheckPlein.png", "RadVide.png", "RadPlein.png"};
 
         try{
-            Path folderPath = Path.of(path + this.questionnaire.getNom() + "/data/imgDif/");
+            Path folderPath = Path.of(path + "/"  + this.questionnaire.getNom() + "/data/imgDif/");
             Files.createDirectories(folderPath);
 
-            folderPath = Path.of(path + this.questionnaire.getNom() + "/data/imgBtn/");
+            folderPath = Path.of(path  + "/" +  this.questionnaire.getNom() + "/data/imgBtn/");
             Files.createDirectories(folderPath);
 
             for(String img : tabImg){
                 String newPath = System.getProperty("user.dir") + "/out/production/SAE-31/data/Images/imgDif/" + img;
-                String newPath2 = path + this.questionnaire.getNom() + "/data/imgDif/" + img;
+                String newPath2 = path  + "/" +  this.questionnaire.getNom() + "/data/imgDif/" + img;
 
                 Files.copy(Path.of(newPath), Path.of(newPath2), StandardCopyOption.REPLACE_EXISTING);
 
@@ -198,7 +200,7 @@ QCMBuilder
 
             for(String btn : tabBtn){
                 String newPath = System.getProperty("user.dir") + "/out/production/SAE-31/data/Images/imgBtn/" + btn;
-                String newPath2 = path + this.questionnaire.getNom() + "/data/imgBtn/" + btn;
+                String newPath2 = path + "/" + this.questionnaire.getNom() + "/data/imgBtn/" + btn;
 
                 Files.copy(Path.of(newPath), Path.of(newPath2), StandardCopyOption.REPLACE_EXISTING);
 
@@ -218,7 +220,7 @@ QCMBuilder
     public void ecrireJS()
     {
         try{
-            BufferedWriter writer = new BufferedWriter(new FileWriter(path + this.questionnaire.getNom() + "/script.js"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/"+ this.questionnaire.getNom() + "/script.js"));
 
             String delimiteur = "\n";
 
@@ -351,6 +353,11 @@ QCMBuilder
             indice++;
         }
 
+        String tabEliminationsInit = "";
+
+        if(tabEliminations.length() > 0 )
+            tabEliminationsInit = "let " + tabEliminations;
+
 
 
         int nbTresFacile = 0;
@@ -406,7 +413,7 @@ QCMBuilder
                         lignes +
                         "\n" +
                         "\n" +
-                        "let " + tabEliminations +
+                        tabEliminationsInit +
                         "\n" +
                         "function resetVariables()\n" +
                         "{\n" +
@@ -899,11 +906,10 @@ QCMBuilder
 
                     if (!((QCM)q).estVraiouFaux())
                     {
-                        txtChoixRep = "QCM ( Il y a plusieurs réponses possibles )";
+                        txtChoixRep = "QCM";
                     }else{
-                        txtChoixRep = "QCM à choix unique ( Il n'y a qu'une seule bonne réponse )";
+                        txtChoixRep = "Question à choix unique";
                     }
-
 
                     res += "\n\nfunction question" + (questionnaire.getLstQuestion().indexOf(q) + 1) + "()\n" +
                             "{\n" +
@@ -938,8 +944,6 @@ QCMBuilder
                             "                        <div class=\"compteurs\">\n" +
                             "                            <div class=\"timer, compteurs-div\" id=\"chrono\">00:00</div>\n" +
                             "                            <div class=\"compteurs-div\">Questions traitées : <span id=\"questionsDone\">0</span>/`+ nbQuestion +`</div>\n" +
-                            "                            <div class=\"compteurs-div\">Question sur `+points+` points</div>\n" +
-                            "                            <div class=\"compteurs-div\" id=\"note\">Total des points : `+ totalPoints+` / `+ noteMax +`</div>\n" +
                             "                        </div>\n" +
                             "                        <div class=\"progress-container\">\n" +
                             "                            <div class=\"progress-bar\" id=\"progressBar\">0%</div>\n" +
@@ -947,10 +951,10 @@ QCMBuilder
                             "                   </header>\n"+
                             "\n" +
                             "                        <script src=\"./script.js\"></script>\n" +
-                            "\n" +
+                            "                   <div class=\"pageQuestion\">\n" +
                             "                        <h1> Question `+ questionActuelle +` : </h1>\n" +
-                            "                        <h2> Notion : `+ notion +` <!-- Avoir la notion de la question avec JS--> </h2>\n" +
-                            "                        <h2> Difficulté : `+ difficulte +` <!-- Avoir la difficulté de la question avec JS--> </h2>\n" +
+                            "                        <h2> Notion : `+ notion +`  </h2>\n" +
+                            "                        <h2> Difficulté : `+ difficulte +`  </h2>\n" +
                             "\n" +
                             "                        <br>\n" +
                             "                        <!-- Pour un QCM -->\n" +
@@ -960,6 +964,7 @@ QCMBuilder
                             "                        <div id=\"zoneRep\">\n" +
                             "                             " + reponses + "\n" +
                             "                        </div>\n" +
+                            "                   </div>\n" +
                             "                        <footer>\n" +
                             "                            <nav>\n" +
                             "                                <div class=\"styleBut\" id=\"btnPreced\">Précédent</div>\n" +
@@ -1189,18 +1194,16 @@ QCMBuilder
                             "                        <div class=\"compteurs\">\n" +
                             "                            <div class=\"timer, compteurs-div\" id=\"chrono\">00:00</div>\n" +
                             "                            <div class=\"compteurs-div\">Questions traitées : <span id=\"questionsDone\">0</span>/`+ nbQuestion +`</div>\n" +
-                            "                            <div class=\"compteurs-div\">Question sur `+points+` points</div>\n" +
-                            "                            <div class=\"compteurs-div\" id=\"note\">Total des points : `+ totalPoints+` / `+ noteMax +`</div>\n" +
                             "                        </div>\n" +
                             "                        <div class=\"progress-container\">\n" +
                             "                            <div class=\"progress-bar\" id=\"progressBar\">0%</div>\n" +
                             "                        </div>\n" +
                             "                   </header>\n"+
                             "                        <script src=\"./script.js\"></script>\n" +
-                            "\n" +
+                            "                   <div class=\"pageQuestion\">\n" +
                             "                        <h1> Question `+ questionActuelle +` : </h1>\n" +
-                            "                        <h2> Notion : `+ notion +` <!-- Avoir la notion de la question avec JS--> </h2>\n" +
-                            "                        <h2> Difficulté : `+ difficulte +` <!-- Avoir la difficulté de la question avec JS--> </h2>\n" +
+                            "                        <h2> Notion : `+ notion +` </h2>\n" +
+                            "                        <h2> Difficulté : `+ difficulte +`  </h2>\n" +
                             "\n" +
                             "                        <br>\n" +
                             "                        <!-- Pour un QCM -->\n" +
@@ -1236,7 +1239,8 @@ QCMBuilder
                             "                        </div>\n" +
                             "\n" +
                             "\n" +
-                            "                        </div>\n" +
+                            "                        </div>\n"+
+                            "                   </div>\n" +
                             "                        <footer>\n" +
                             "                            <nav>\n" +
                             "                                <div class=\"styleBut\" id=\"btnPreced\">Précédent</div>\n" +
@@ -1567,7 +1571,7 @@ QCMBuilder
                         } else {
                             bonnesRep = bonnesRep + "false,";
                         }
-                        reponses = reponses + "<div class=\"reponseBox\" id=\"rep" + i + "\" ><img id=\"img"+ i +"\" class=\"imgBtn\" src=\"./data/imgBtn/CheckVide.png\">'" + reponse + "'</div>\n";
+                        reponses = reponses + "<div class=\"reponseBox\" id=\"rep" + i + "\" ><img id=\"img"+ i +"\" class=\"imgBtn\" src=\"./data/imgBtn/RadVide.png\">'" + reponse + "'</div>\n";
                         onClicFonctions = onClicFonctions + "document.getElementById(\"rep" + i + "\").onclick = function() { clicRep(" + (i - 1) + ", \"elimination\") };\n";
                         i++;
                     }
@@ -1636,8 +1640,6 @@ QCMBuilder
                             "                        <div class=\"compteurs\">\n" +
                             "                            <div class=\"timer, compteurs-div\" id=\"chrono\">00:00</div>\n" +
                             "                            <div class=\"compteurs-div\">Questions traitées : <span id=\"questionsDone\">0</span>/`+ nbQuestion +`</div>\n" +
-                            "                            <div class=\"compteurs-div\">Question sur `+points+` points</div>\n" +
-                            "                            <div class=\"compteurs-div\" id=\"note\">Total des points : `+ totalPoints+` / `+ noteMax +`</div>\n" +
                             "                        </div>\n" +
                             "                        <div class=\"progress-container\">\n" +
                             "                            <div class=\"progress-bar\" id=\"progressBar\">0%</div>\n" +
@@ -1645,19 +1647,20 @@ QCMBuilder
                             "                   </header>\n"+
                             "\n" +
                             "                        <script src=\"./script.js\"></script>\n" +
-                            "\n" +
+                            "                   <div class=\"pageQuestion\">\n" +
                             "                        <h1> Question `+ questionActuelle +` : </h1>\n" +
                             "                        <h2> Difficulté : `+ difficulte +` <!-- Avoir la difficulté de la question avec JS--> </h2>\n" +
                             "\n" +
                             "                        <br>\n" +
                             "                        <!-- Pour un Elimination -->\n" +
-                            "                        <h2> Type : Elimination de réponses ( Cliquer sur supprimer enlèvera une mauvaise réponse mais vous enlèvera des points en contre partie ) </h2>" +
+                            "                        <h2> Type : Elimination de réponses </h2>" +
                             "\n" +
                             "                        <h3> \"" + q.getEnonceFich() + "\" </h3>\n" +
                             "                        <div id=\"zoneRep\">\n" +
                             "                        "  + reponses +
                             "                        </div>\n" +
                             "                        <div class=\"styleBut\" id=btnSup>Eliminer une réponse</div>\n" +
+                            "                   </div>\n" +
                             "                        <footer>\n" +
                             "                            <nav>\n" +
                             "                                <div class=\"styleBut\" id=\"btnPreced\">Précédent</div>\n" +

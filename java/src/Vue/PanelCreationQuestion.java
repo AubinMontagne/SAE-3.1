@@ -1,6 +1,10 @@
 package src.Vue;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -48,8 +52,9 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			new ImageIcon("java/data/Images/imgDif/D.png")
 	};
 
-	public PanelCreationQuestion(Controleur ctrl ){
+	public PanelCreationQuestion(Controleur ctrl ,PanelBanque panelBanque){
 		this.ctrl             = ctrl;
+		this.panelBanque      = panelBanque;
 		this.ressources       = this.ctrl.getRessources();
 		this.notions          = this.ctrl.getNotions();
 		Ressource placeHolder = new Ressource("PlaceHolder","PlaceHolder");
@@ -331,13 +336,13 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			} else if("EntiteAssociation".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);
 
-				//PanelEntiteAssociation panelEntiteAssociation = new PanelEntiteAssociation(this.ctrl,this.difficulté,this.notion,this.points,this.temps,this.panelBanque);
-				//panelEntiteAssociation.setVisible(true);
+				PanelEntiteAssociation panelEntiteAssociation = new PanelEntiteAssociation(this.ctrl,this.difficulte,this.notion,this.points,this.temps,this.panelBanque);
+				panelEntiteAssociation.setVisible(true);
 			} else if ("Elimination".equals(typeSelectionne)){
 				System.out.println(typeSelectionne);
 
-				//PanelElimination panelElimination = new PanelElimination(this.ctrl,this.difficulté,this.notion,this.points,this.temps,this.panelBanque);
-				//panelElimination.setVisible(true);
+				PanelElimination panelElimination = new PanelElimination(this.ctrl,this.difficulte,this.notion,this.points,this.temps,this.panelBanque);
+				panelElimination.setVisible(true);
 			}
 		}
 	}

@@ -35,6 +35,8 @@ public class FrameParametrage extends JFrame implements WindowListener {
         this.add(this.panelRessource, BorderLayout.WEST );
         this.add(this.panelNotion   , BorderLayout.EAST );
 
+        this.addWindowListener(this);
+
         setVisible(true);
     }
     public void majPanelNotion(){

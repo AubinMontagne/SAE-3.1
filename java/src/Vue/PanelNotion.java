@@ -9,7 +9,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 
 public class PanelNotion extends JPanel implements ActionListener , ListSelectionListener
@@ -92,9 +92,7 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
         this.list.setModel(listModel);
         this.labTitre.setText(this.ressource.toString());
     }
-    public void setRessourceSelectionnee(Ressource r){
-        this.ressource = r;
-    }
+    public void setRessourceSelectionnee(Ressource r){this.ressource = r;}
 
     /**
      * Methode valueChanged

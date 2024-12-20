@@ -1,8 +1,10 @@
 package src.Vue;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import javax.swing.*;
 import src.Controleur;
 
@@ -16,17 +18,33 @@ public class PanelElimination extends JFrame implements ActionListener {
 	private JButton    boutonEnregistrer;
 	private Controleur ctrl;
 
+	private PanelBanque panelBanque;
+
+	private int difficulte;
+	private String notion;
+	private int points;
+	private int temps;
+
+
 	// Constructeur
 	/**
 	 * Constructeur de la class PanelElimination
 	 * @param ctrl	Le contrôleur
 	 */
-	public PanelElimination(Controleur ctrl){
+	public PanelElimination(Controleur ctrl,int difficulté,String notion,int points, int temps,PanelBanque panelBanque){
 		this.ctrl = ctrl;
+
+		this.panelBanque = panelBanque;
+		this.difficulte  = difficulté;
+		this.notion      = notion;
+		this.points      = points;
+		this.temps       = temps;
+
 		setTitle("QCM Builder - Créateur de Question élimination");
 		setSize(600, 400);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new BorderLayout());
+		this.setIconImage(new ImageIcon("java/data/Images/icon.png").getImage());
 
 		JPanel panelQuestion     = new JPanel(new BorderLayout());
 		JLabel etiquetteQuestion = new JLabel("Question :");
@@ -117,6 +135,29 @@ public class PanelElimination extends JFrame implements ActionListener {
 						.append(estCorrecte.isSelected() ? " (correcte)\n" : " (incorrecte)\n");
 			}
 		}
+
+		HashMap<String, Double[]> reponses = new HashMap<>();
+		String reponseCorrecte = "";
+		for (Component composant : composants){
+			if (composant instanceof JPanel){
+				JPanel reponse = (JPanel) composant;
+				JTextField champReponse = (JTextField) reponse.getComponent(0);
+				JTextField txtOrdreElim = (JTextField) reponse.getComponent(1);
+				JTextField txtPointNegatif = (JTextField) reponse.getComponent(2);
+				JCheckBox estCorrecte = (JCheckBox) reponse.getComponent(3);
+
+				reponses.put(champReponse.getText(), new Double[]{Double.parseDouble(txtPointNegatif.getText()), Double.parseDouble(txtOrdreElim.getText())});
+				if (estCorrecte.isSelected()){
+					reponseCorrecte = champReponse.getText();
+				}
+			}
+		}
+
+		// Création de la question
+		this.ctrl.creerQuestionElimination(question, difficulte, notion, temps, points, reponses, reponseCorrecte);
+
+		if(this.panelBanque != null) {this.panelBanque.maj();}
+
 		JOptionPane.showMessageDialog(this, resultats.toString(), "Résumé", JOptionPane.INFORMATION_MESSAGE);
 	}
 

@@ -15,7 +15,19 @@
 .styleBut:hover {
     background-color: #0056b3; /* Changer la couleur lors du survol */
 }
-   
+
+header {
+    background-color: #a8a8a8;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed; /* Fixer le footer */
+    left: 0;
+    top: 0; /* Toujours collé au bas de la page */
+    width: 100%;
+    z-index: 1000; /* Mettre le footer au premier plan */
+}
+
 footer {
     background-color: #a8a8a8;
     color: white;
@@ -31,6 +43,10 @@ footer {
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+}
+
+.pageQuestion {
+    padding-top: 100px;
     padding-bottom: 50px;
 }
 
@@ -146,6 +162,7 @@ body {
 .imgBtn{
     max-width: 20px;
     max-height: 20px;
+    vertical-align: text-bottom;
 }
 
 #zoneRepAssos {

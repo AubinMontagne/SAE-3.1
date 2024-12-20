@@ -219,6 +219,35 @@ public class Metier{
 		return true;
 	}
 
+	public boolean ajouterQuestionEntiteAssociation(String intitule, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String, String> associations) {
+		AssociationElement questionAE = new AssociationElement(intitule, difficulte, notion, temps, points);
+
+		// Ajout des associations
+		for (String gauche : associations.keySet()) {
+			questionAE.ajouterAssociation(gauche, associations.get(gauche));
+		}
+		this.lstQuestions.add(questionAE);
+		this.saveQuestions("java/data/");
+		System.out.println(this.lstQuestions);
+
+		return true;
+	}
+
+	public boolean ajouterQuestionElimination(String intitule, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String,Double[]> reponses, String reponseCorrecte) {
+		EliminationReponse questionER = new EliminationReponse(intitule, difficulte, notion, temps, points);
+
+		// Ajout des réponses
+		for (String reponse : reponses.keySet()) {
+			questionER.ajouterReponse(reponse, reponses.get(reponse)[0], reponses.get(reponse)[1]);
+		}
+		questionER.setReponseCorrecte(reponseCorrecte);
+		this.lstQuestions.add(questionER);
+		this.saveQuestions("java/data/");
+		System.out.println(this.lstQuestions);
+
+		return true;
+	}
+
 	public Difficulte getDifficulteByIndice(int indice)
 	{
 		return Difficulte.getDifficulteByIndice(indice);
@@ -359,6 +388,7 @@ public class Metier{
 			path = "./";
 		}
 		q.initLstQuestions(this);
+		System.out.println(path);
 		new QCMBuilder(q, path);
 	}
 }

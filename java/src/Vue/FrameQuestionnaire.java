@@ -3,8 +3,7 @@ package src.Vue;
 import javax.swing.*;
 import src.*;
 import src.Metier.Ressource;
-
-import java.awt.*;
+import java.awt.GridLayout;
 import java.awt.event.WindowListener;
 
 public class FrameQuestionnaire extends JFrame implements WindowListener{
@@ -21,15 +20,18 @@ public class FrameQuestionnaire extends JFrame implements WindowListener{
         this.ctrl = ctrl;
         this.questionnaireTab = null;
 
-        this.setTitle             ("Nouveaux Questionnaire");
-        this.setSize              (790,300);
+        this.setTitle             ("QCM Builder - Nouveaux Questionnaire");
+        this.setSize              (850,400);
         this.setMinimumSize       (this.getSize());
         this.setLayout            (new GridLayout(2,1));
+        this.setIconImage(new ImageIcon("java/data/Images/icon.png").getImage());
         this.setLocationRelativeTo(null);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         this.add(new PanelQuestionnaire(ctrl, this));
+
+        this.addWindowListener(this);
 
         setVisible(true);
     }

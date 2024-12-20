@@ -1,10 +1,14 @@
 package src.Vue;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -21,10 +25,12 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 	private Notion               notion;
 	private JButton              btnCreaQuest;
 	private JButton              btnSupp;
+	private JButton              btnModif;
     private JPanel               panelBanque;
     private JTable               tbQuestion;
 	private JComboBox<Notion>    mdNotions;
 	private JComboBox<Ressource> mdRessources;
+	private ArrayList<Question>  listQ;
 
 	// Constructeur
 
@@ -38,16 +44,17 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 		this.setLayout (new BorderLayout());
 		this.setVisible(true);
 
-        String[] tabEntetes = {"Question", "Ressource", "Notion", "Point"};
+        String[] tabEntetes = {"Question", "Difficulté", "Ressource", "Notion", "Point"};
 
-		ArrayList<Question> questList = this.ctrl.getQuestions();
-        String[][] data = new String[questList.size()][4];
+		this.listQ = this.ctrl.getQuestions();
+        String[][] data = new String[this.listQ.size()][5];
 
-		for(int i = 0; i < questList.size();i++){
-			data[i][0] = questList.get(i).getEnonceFich();
-			data[i][1] = questList.get(i).getNotion().getRessourceAssociee().getNom();
-			data[i][2] = questList.get(i).getNotion().getNom();
-			data[i][3] = "" + questList.get(i).getPoint();
+		for(int i = 0; i < this.listQ.size();i++){
+			data[i][0] = this.listQ.get(i).getEnonceFich();
+			data[i][1] = this.listQ.get(i).getDifficulte().getNom();
+			data[i][2] = this.listQ.get(i).getNotion().getRessourceAssociee().getNom();
+			data[i][3] = this.listQ.get(i).getNotion().getNom();
+			data[i][4] = "" + this.listQ.get(i).getPoint();
 		}
         DefaultTableModel model = new DefaultTableModel(data, tabEntetes);
         this.tbQuestion = new JTable(model);
@@ -71,10 +78,14 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 		JScrollPane scrollPane = new JScrollPane(this.tbQuestion);
 		this.btnSupp           = new JButton("Supprimer Question");
 		this.btnCreaQuest      = new JButton("Nouvelle Question");
-		this.btnSupp.setBackground		    (new Color(163,206,250));
-		this.btnSupp.setFont			    (new Font("Arial", Font.PLAIN, 22));
-		this.btnCreaQuest.setBackground		(new Color(163,206,250));
-		this.btnCreaQuest.setFont			(new Font("Arial", Font.PLAIN, 22));
+		this.btnModif          = new JButton("Modifier Question");
+
+		this.btnSupp.setBackground		(new Color(163,206,250));
+		this.btnSupp.setFont			(new Font("Arial", Font.PLAIN, 22));
+		this.btnCreaQuest.setBackground (new Color(163,206,250));
+		this.btnCreaQuest.setFont	    (new Font("Arial", Font.PLAIN, 22));
+		this.btnModif.setBackground		(new Color(163,206,250));
+		this.btnModif.setFont			(new Font("Arial", Font.PLAIN, 22));
 
 
 		panelParametre.add(this.mdRessources);
@@ -84,15 +95,18 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 		this.panelBanque.add(scrollPane       , BorderLayout.CENTER);
 		this.panelBanque.add(this.btnSupp     , BorderLayout.SOUTH );
 		this.panelBanque.add(this.btnCreaQuest, BorderLayout.SOUTH );
+		this.panelBanque.add(this.btnModif    , BorderLayout.SOUTH );
 
         this.add(panelBanque);
 
 		this.btnSupp     .addActionListener(this);
 		this.btnCreaQuest.addActionListener(this);
+		this.btnModif    .addActionListener(this);
 
 		this.mdRessources.addItemListener(this);
 		this.mdNotions   .addItemListener(this);
     }
+
 
 	// Methode
 	/**
@@ -101,20 +115,28 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 	 */
 	public void actionPerformed(ActionEvent e){
         if ( this.btnCreaQuest == e.getSource())
-            FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl);
+            FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl, this);
+
 		if (this.btnSupp == e.getSource()) {
 			int row = this.tbQuestion.getSelectedRow();
-			//this.tbQuestion.getValueAt();
-			this.maj();
-			this.ctrl.miseAJourFichiers();
-			/*
-			//Question q = this.list.getSelectedValue();
-			if (q != null) {
-				this.ctrl.supprimerRessource(ressource);
-				this.maj();
-				this.ctrl.miseAJourFichiers();
-			}*/
+			for( Question q : this.ctrl.getQuestions() ){
+				if( this.listQ.get(row) == q){
+					this.ctrl.supprimerQuestion(q);
+					this.maj();
+					this.ctrl.miseAJourFichiers();
+				}
+			}
 		}
+
+		if(this.btnModif == e.getSource()){
+			int row = this.tbQuestion.getSelectedRow();
+			for( Question q : this.ctrl.getQuestions() ){
+				if( this.listQ.get(row) == q){
+					FrameModifQuestion.creerFrameModifQuestion(this.ctrl, q);
+				}
+			}
+		}
+
 	}
 
 	public void maj(){
