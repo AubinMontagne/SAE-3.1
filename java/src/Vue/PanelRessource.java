@@ -8,7 +8,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 public class PanelRessource extends JPanel implements ActionListener, ListSelectionListener {
     private Controleur       ctrl;

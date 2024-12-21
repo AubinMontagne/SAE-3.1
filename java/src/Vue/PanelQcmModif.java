@@ -1,6 +1,7 @@
 package src.Vue;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
@@ -9,6 +10,7 @@ import javax.swing.*;
 import src.Controleur;
 import src.Metier.Question;
 
+// dans 5 minute peut e rerzthrzehuIHNGVUJREIhgioreJBVURIFHEuobvrnfqeujdolhvrufeqighjvuriehvnbreufjibrhfvburiqhgrqiogrefijqbvulfydsvgdsGYFEUfeuyigbvyrvhrtujfqvbhtq
 public class PanelQcmModif extends JFrame implements ActionListener {
 
     private Controleur  ctrl;
