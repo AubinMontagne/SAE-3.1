@@ -4,9 +4,13 @@ import src.Controleur;
 import src.Metier.Question;
 import javax.swing.*;
 import java.awt.event.WindowListener;
+import java.util.HashMap;
 
 public class FrameModifQuestion extends JFrame implements WindowListener {
     private static int nbFrame = 0;
+    private static HashMap<String, Boolean>  hmReponsesQCM     = null;
+    private static HashMap<String, Double[]> hmReponsesElimRep = null;
+    private static HashMap<String, String>   hmReponsesAssoElt = null;
 
     private PanelBanque panelBanque;
 
@@ -26,14 +30,36 @@ public class FrameModifQuestion extends JFrame implements WindowListener {
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+        if(hmReponsesQCM != null){
+
+        } else if { hmReponsesElimRep != null }
         this.add(new PanelModifQuestion(ctrl, q) );
         this.addWindowListener(this);
 
         setVisible(true);
     }
 
-    public static FrameModifQuestion creerFrameModifQuestion(Controleur ctrl, Question q){
+    public static FrameModifQuestion creerFrameModifQCM(Controleur ctrl, Question q, HashMap<String, Boolean> hmReponses){
         if(FrameModifQuestion.nbFrame == 0){
+            FrameModifQuestion.hmReponsesQCM = hmReponses;
+            FrameModifQuestion.nbFrame++;
+            return new FrameModifQuestion(ctrl, q);
+        }
+        return null;
+    }
+
+    public static FrameModifQuestion creerFrameModifElimRep(Controleur ctrl, Question q, HashMap<String, Double[]> hmReponses){
+        if(FrameModifQuestion.nbFrame == 0){
+            FrameModifQuestion.hmReponsesElimRep = hmReponses;
+            FrameModifQuestion.nbFrame++;
+            return new FrameModifQuestion(ctrl, q);
+        }
+        return null;
+    }
+
+    public static FrameModifQuestion creerFrameModifAssoElt(Controleur ctrl, Question q, HashMap<String, String> hmReponses){
+        if(FrameModifQuestion.nbFrame == 0){
+            FrameModifQuestion.hmReponsesAssoElt = hmReponses;
             FrameModifQuestion.nbFrame++;
             return new FrameModifQuestion(ctrl, q);
         }

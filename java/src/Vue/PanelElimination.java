@@ -8,7 +8,8 @@ import java.util.HashMap;
 import javax.swing.*;
 import src.Controleur;
 
-public class PanelElimination extends JFrame implements ActionListener {
+public class PanelElimination extends JFrame implements ActionListener
+{
 
 	// FONCTION EXPLICATION A RAJOUTER
 	private JPanel 	   panelReponses; // Panel pour les réponses

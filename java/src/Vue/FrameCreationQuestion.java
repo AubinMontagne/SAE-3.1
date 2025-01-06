@@ -8,6 +8,7 @@ import java.awt.event.WindowListener;
 public class FrameCreationQuestion extends JFrame implements WindowListener {
     private static int nbFrame = 0;
 
+
     private PanelBanque panelBanque;
 
     private Controleur ctrl;

@@ -5,19 +5,67 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" name="Changes" comment="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
+      <change afterPath="$PROJECT_DIR$/TestJSQuestionnaire/data/imgBtn/CheckPlein.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestJSQuestionnaire/data/imgBtn/CheckVide.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestJSQuestionnaire/data/imgBtn/RadPlein.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestJSQuestionnaire/data/imgBtn/RadVide.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestJSQuestionnaire/data/imgDif/D.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestJSQuestionnaire/data/imgDif/F.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestJSQuestionnaire/data/imgDif/M.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestJSQuestionnaire/data/imgDif/TF.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestJSQuestionnaire/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestJSQuestionnaire/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TestJSQuestionnaire/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQcmModif.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQcmModif.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/notions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/notions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Controleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCM.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelNotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelNotion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/notions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SAE-31/data/notions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uho/data/imgBtn/CheckPlein.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uho/data/imgBtn/CheckVide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uho/data/imgBtn/RadPlein.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uho/data/imgBtn/RadVide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uho/data/imgDif/D.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uho/data/imgDif/F.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uho/data/imgDif/M.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uho/data/imgDif/TF.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uho/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uho/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uho/style.css" beforeDir="false" />
     </list>
     <list id="e0a5d575-1463-46f4-82d3-b2b4d97dd127" name="Changes by Aubin" comment="" />
-    <list id="3481dd5b-087a-4692-8343-90ddec2f5494" name="Changes by ma231364" comment="">
+    <list id="53e633ac-acbe-4c56-92a0-ac55bdaa2f18" name="Changes by ma231364" comment="" />
+    <list id="0724011c-9ad5-4c19-9ae2-ae8bde2e56f3" name="Changes by pt232770" comment="" />
+    <list id="274a450f-3742-4dd9-85b3-f47d3162ca41" name="Changes by sandr" comment="">
+      <change afterPath="$PROJECT_DIR$/java/src/Vue/PanelAssociationModif.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/src/Vue/PanelEliminationModif.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifAssociationReponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifEliminationReponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifQCMReponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Controleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/Metier.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Metier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCM.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifQuestion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQcmModif.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQcmModif.java" afterDir="false" />
     </list>
-    <list id="64e012bb-f699-4714-81a6-be40b3199a82" name="Changes by pt232770" comment="">
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaireTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaireTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelRessource.java" afterDir="false" />
+    <list id="022b3a9c-cb35-4603-841a-1b8cbfac5d54" name="Changes by timot" comment="">
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/Metier.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Metier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCM.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameModifQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameModifQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQcmModif.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQcmModif.java" afterDir="false" />
     </list>
-    <list id="274a450f-3742-4dd9-85b3-f47d3162ca41" name="Changes by sandr" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,8 +100,99 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/java/src/Vue/PanelQcmModif.java">
       <ranges>
-        <range start1="2" end1="3" start2="2" end2="4" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="11" end1="11" start2="12" end2="13" changelist="3481dd5b-087a-4692-8343-90ddec2f5494" />
+        <range start1="11" end1="11" start2="11" end2="12" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+        <range start1="12" end1="13" start2="13" end2="14" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+        <range start1="15" end1="23" start2="16" end2="25" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+        <range start1="43" end1="43" start2="45" end2="46" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+        <range start1="44" end1="45" start2="47" end2="48" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+        <range start1="119" end1="183" start2="122" end2="122" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="185" end1="185" start2="124" end2="125" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="186" end1="186" start2="126" end2="127" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="231" end1="231" start2="172" end2="173" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/java/src/Metier/QCM.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="3" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="3" end1="3" start2="4" end2="5" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="4" end1="4" start2="6" end2="7" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="19" end1="21" start2="22" end2="24" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="35" end1="37" start2="38" end2="40" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+        <range start1="76" end1="78" start2="79" end2="80" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+        <range start1="94" end1="96" start2="96" end2="98" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="98" end1="98" start2="100" end2="117" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="104" end1="105" start2="123" end2="125" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="107" end1="108" start2="127" end2="128" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="123" end1="123" start2="143" end2="150" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java">
+      <ranges>
+        <range start1="22" end1="22" start2="22" end2="23" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="38" end1="38" start2="39" end2="40" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="40" end1="44" start2="42" end2="47" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="45" end1="45" start2="48" end2="50" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="59" end1="59" start2="64" end2="67" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="71" end1="80" start2="79" end2="79" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="119" end1="120" start2="118" end2="119" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="122" end1="124" start2="121" end2="135" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="176" end1="182" start2="187" end2="198" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="183" end1="184" start2="199" end2="206" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="204" end1="204" start2="226" end2="233" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/java/src/Controleur.java">
+      <ranges>
+        <range start1="12" end1="13" start2="12" end2="12" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="20" end1="21" start2="19" end2="20" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="49" end1="50" start2="48" end2="50" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/java/src/Vue/PanelBanque.java">
+      <ranges>
+        <range start1="12" end1="12" start2="12" end2="13" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+        <range start1="16" end1="16" start2="17" end2="20" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="46" end1="47" start2="50" end2="51" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="49" end1="50" start2="53" end2="58" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="51" end1="52" start2="59" end2="71" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="57" end1="57" start2="76" end2="77" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="132" end1="135" start2="152" end2="166" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+        <range start1="142" end1="143" start2="173" end2="174" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="151" end1="152" start2="182" end2="187" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="153" end1="154" start2="188" end2="200" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="155" end1="158" start2="201" end2="206" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/java/src/Vue/PanelModifQuestion.java">
+      <ranges>
+        <range start1="53" end1="56" start2="53" end2="56" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+        <range start1="237" end1="240" start2="237" end2="237" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="256" end1="256" start2="253" end2="254" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+        <range start1="302" end1="303" start2="300" end2="300" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+        <range start1="316" end1="320" start2="313" end2="318" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+        <range start1="326" end1="326" start2="324" end2="328" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+        <range start1="327" end1="329" start2="329" end2="329" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/java/src/Metier/Question.java">
+      <ranges>
+        <range start1="1" end1="1" start2="1" end2="5" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="3" end1="10" start2="7" end2="16" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="13" end1="14" start2="19" end2="20" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="19" end1="21" start2="25" end2="28" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="25" end1="26" start2="32" end2="35" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="27" end1="46" start2="36" end2="36" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="48" end1="50" start2="38" end2="41" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="54" end1="56" start2="45" end2="49" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="58" end1="59" start2="51" end2="56" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="62" end1="63" start2="59" end2="60" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="67" end1="68" start2="64" end2="68" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/java/src/Metier/Metier.java">
+      <ranges>
+        <range start1="5" end1="5" start2="5" end2="6" changelist="274a450f-3742-4dd9-85b3-f47d3162ca41" />
+        <range start1="207" end1="208" start2="208" end2="211" changelist="022b3a9c-cb35-4603-841a-1b8cbfac5d54" />
       </ranges>
     </file>
   </component>
@@ -301,6 +440,8 @@
       <workItem from="1734535046261" duration="2361000" />
       <workItem from="1734594668898" duration="16279000" />
       <workItem from="1734616870312" duration="21207000" />
+      <workItem from="1736116607361" duration="644000" />
+      <workItem from="1736148923766" duration="10220000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <option name="closed" value="true" />

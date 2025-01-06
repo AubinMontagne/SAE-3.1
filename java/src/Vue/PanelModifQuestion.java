@@ -51,9 +51,9 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 
     private static final ImageIcon[] IMAGES_DIFFICULTE = {
             new ImageIcon("java/data/Images/imgDif/TF.png"),
-            new ImageIcon("java/data/Images/imgDif/F.png"),
-            new ImageIcon("java/data/Images/imgDif/M.png"),
-            new ImageIcon("java/data/Images/imgDif/D.png")
+            new ImageIcon("java/data/Images/imgDif/F.png" ),
+            new ImageIcon("java/data/Images/imgDif/M.png" ),
+            new ImageIcon("java/data/Images/imgDif/D.png" )
     };
 
     public PanelModifQuestion(Controleur ctrl ,Question q) {
@@ -235,9 +235,6 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
                 );
 
             }
-
-
-
         }
     }
 
@@ -254,6 +251,7 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
                 this.listeNotions.addItem(notion);
             }
             listeNotions.setEnabled(true);
+
         } else if (e.getSource() == this.listeNotions && e.getStateChange() == ItemEvent.SELECTED) {
             int indexRessource  = this.listeRessources.getSelectedIndex();
             int indexNotion     = this.listeNotions.getSelectedIndex();
@@ -300,7 +298,6 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
             {
                 JOptionPane.showMessageDialog(this, "Choisissez une difficulté");
                 return;
-
             }
             String typeSelectionne = (String) this.listeTypes.getSelectedItem();
 
@@ -314,19 +311,22 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
                 );
                 this.points = Integer.parseInt(this.champPoints.getText());
 
-                //PanelQCM panelQCM = new PanelQCM(
-                //        this.ctrl,this.difficulte,this.notion,this.points,this.temps,this.panelBanque,true
-               // );
-                //panelQCM.setVisible(true);
+                PanelQcmModif panelQcmModif = new PanelQcmModif(
+                        this.ctrl,this.difficulte,this.notion,this.points,this.temps,true,this.q
+                );
+                panelQcmModif.setVisible(true);
+
             } else if ("QCM REP. MULTIPLE".equals(typeSelectionne)) {
                 System.out.println(typeSelectionne);
                 Notion n = (Notion)(this.listeNotions.getSelectedItem());
                 this.notion = n.getNom();
                 this.temps  = Integer.parseInt(this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60 + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1));
                 this.points = Integer.parseInt(this.champPoints.getText());
+                PanelQcmModif panelQcmModif = new PanelQcmModif(
+                              this.ctrl,this.difficulte,this.notion,this.points,this.temps,false,this.q
+                );
+                panelQcmModif.setVisible(true);
 
-                //PanelQCM panelQCM = new PanelQCM(this.ctrl,this.difficulte,this.notion,this.points,this.temps,this.panelBanque,false);
-                //panelQCM.setVisible(true);
             } else if("EntiteAssociation".equals(typeSelectionne)) {
                 System.out.println(typeSelectionne);
 

@@ -10,10 +10,14 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import src.Metier.Question;
+import src.Metier.QCM;
+import src.Metier.EliminationReponse;
+import src.Metier.AssociationElement;
 import src.Metier.Notion;
 import src.Controleur;
 import src.Metier.Ressource;
@@ -44,17 +48,33 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 		this.setLayout (new BorderLayout());
 		this.setVisible(true);
 
-        String[] tabEntetes = {"Question", "Difficulté", "Ressource", "Notion", "Point"};
+        String[] tabEntetes = {"Question", "Difficulté", "Ressource", "Notion", "Points", "Type de question"};
 
 		this.listQ = this.ctrl.getQuestions();
-        String[][] data = new String[this.listQ.size()][5];
+        String[][] data = new String[this.listQ.size()][6];
 
-		for(int i = 0; i < this.listQ.size();i++){
+		for(int i = 0; i < this.listQ.size();i++)
+		{
+			String typeQuestion = "";
+
+			if(this.listQ.get(i) instanceof QCM)
+			{
+				if(((QCM) this.listQ.get(i)).estVraiouFaux())
+					typeQuestion = "Réponse unique";
+				else
+					typeQuestion = "QCM";
+			}else if(this.listQ.get(i) instanceof EliminationReponse){
+				typeQuestion = "Elimination Réponse";
+			} else {
+				typeQuestion = "Association d'éléments";
+			}
+
 			data[i][0] = this.listQ.get(i).getEnonceFich();
 			data[i][1] = this.listQ.get(i).getDifficulte().getNom();
 			data[i][2] = this.listQ.get(i).getNotion().getRessourceAssociee().getNom();
 			data[i][3] = this.listQ.get(i).getNotion().getNom();
 			data[i][4] = "" + this.listQ.get(i).getPoint();
+			data[i][5] = typeQuestion;
 		}
         DefaultTableModel model = new DefaultTableModel(data, tabEntetes);
         this.tbQuestion = new JTable(model);
@@ -130,9 +150,20 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 
 		if(this.btnModif == e.getSource()){
 			int row = this.tbQuestion.getSelectedRow();
-			for( Question q : this.ctrl.getQuestions() ){
-				if( this.listQ.get(row) == q){
-					FrameModifQuestion.creerFrameModifQuestion(this.ctrl, q);
+			for(int i = 0; i < this.ctrl.getQuestions().size();i++) {
+				if( this.listQ.get(row) == this.listQ.get(i)) {
+					if (this.listQ.get(i) instanceof QCM) {
+						HashMap<String, Boolean> hmReponses = ((QCM) this.listQ.get(i)).getReponses();
+						FrameModifQuestion.creerFrameModifQCM(this.ctrl, this.listQ.get(i), hmReponses); // Question type questionnaire
+
+					} else if (this.listQ.get(i) instanceof EliminationReponse) {
+						HashMap<String, Double[]> hmReponses = ((EliminationReponse) this.listQ.get(i)).getHmReponses();
+						FrameModifQuestion.creerFrameModifElimRep(this.ctrl, this.listQ.get(i), hmReponses); // Question type EliminationReponse
+
+					} else {
+						HashMap<String, String> hmReponses =  ((AssociationElement) this.listQ.get(i)).getAssociations();
+						FrameModifQuestion.creerFrameModifAssoElt(this.ctrl, this.listQ.get(i), hmReponses); // Question type Association
+					}
 				}
 			}
 		}
@@ -140,7 +171,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 	}
 
 	public void maj(){
-		String[] tabEntetes = {"Question", "Ressource", "Notion", "Point"};
+		String[] tabEntetes = {"Question", "Difficulté", "Ressource", "Notion", "Points", "Type de question"};
 		ArrayList<Question> questList;
 
 		if (this.notion != null) {
@@ -149,13 +180,30 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 			questList = new ArrayList<>();
 		}
 
-		String[][] data = new String[questList.size()][4];
+		String[][] data = new String[questList.size()][6];
 
-		for(int i = 0; i < questList.size();i++){
+		for(int i = 0; i < questList.size();i++)
+		{
+			String typeQuestion = "";
+
+			if(this.listQ.get(i) instanceof QCM)
+			{
+				if(((QCM) this.listQ.get(i)).estVraiouFaux())
+					typeQuestion = "Réponse unique";
+				else
+					typeQuestion = "QCM";
+			}else if(this.listQ.get(i) instanceof EliminationReponse){
+				typeQuestion = "Elimination Réponse";
+			} else {
+				typeQuestion = "Association d'éléments";
+			}
+
 			data[i][0] =      questList.get(i).getEnonceFich();
-			data[i][1] =      questList.get(i).getNotion().getRessourceAssociee().getNom();
-			data[i][2] =      questList.get(i).getNotion().getNom();
-			data[i][3] = "" + questList.get(i).getPoint();
+			data[i][1] = this.listQ.get(i).getDifficulte().getNom();
+			data[i][2] =      questList.get(i).getNotion().getRessourceAssociee().getNom();
+			data[i][3] =      questList.get(i).getNotion().getNom();
+			data[i][4] = "" + questList.get(i).getPoint();
+			data[i][5] = 	typeQuestion;
 		}
 
 

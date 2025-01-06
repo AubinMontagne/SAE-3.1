@@ -20,6 +20,7 @@ import javax.swing.text.NumberFormatter;
 import src.Controleur;
 import src.Metier.Notion;
 import src.Metier.Ressource;
+import java.util.List;
 
 public class PanelCreationQuestion extends JPanel implements ActionListener, ItemListener {
 	private Controleur           ctrl;
@@ -36,12 +37,16 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	private JTextField champTemps;
 
 	private JTextArea txtaQuestion;
+	private JTextArea txtexQuestion;
 	// A envoyer aux 3 autres panels
 
-	private int    difficulte;
-	private String notion;
-	private int    temps;
-	private int    points;
+	private int    		 difficulte;
+	private String 		 notion;
+	private int    		 temps;
+	private int    		 points;
+	private List<String> lstLiens;
+
+
 
 	PanelBanque panelBanque;
 
@@ -57,6 +62,9 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		this.panelBanque      = panelBanque;
 		this.ressources       = this.ctrl.getRessources();
 		this.notions          = this.ctrl.getNotions();
+
+		this.lstLiens = new ArrayList<>(5);
+
 		Ressource placeHolder = new Ressource("PlaceHolder","PlaceHolder");
 
 		this.ressources.add(0,placeHolder);
@@ -69,15 +77,6 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		// Section supérieure
 		JPanel panelConfiguration = new JPanel(new GridLayout(2, 2, 5, 5));
 		panelConfiguration.setBorder(BorderFactory.createTitledBorder("Configuration"));
-
-
-		// BAZAR Aubin
-		JLabel lblIntituleQuestion = new JLabel("Question : ");
-		this.txtaQuestion = new JTextArea();
-
-		panelConfiguration.add(lblIntituleQuestion);
-		panelConfiguration.add(txtaQuestion);
-		// Relier donnée
 
 		JLabel labelPoints = new JLabel("Nombre de points :");
 
@@ -117,11 +116,23 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		panelConfiguration.add(labelTemps);
 		panelConfiguration.add(this.champTemps);
 
-		add(panelConfiguration, BorderLayout.NORTH);
+		this.add(panelConfiguration, BorderLayout.NORTH);
 
 		// Section centrale
-		JPanel panelSelection = new JPanel(new GridLayout(3, 2, 5, 5));
-		panelSelection.setBorder(BorderFactory.createTitledBorder("Sélection"));
+		JPanel panelText = new JPanel(new GridLayout(4,1));
+
+		JLabel lblIntituleQuestion = new JLabel("Question : ");
+		this.txtaQuestion = new JTextArea();
+		JLabel lblExpliquationQuestion = new JLabel("Expliquation : ");
+		this.txtexQuestion = new JTextArea();
+
+
+		JPanel panelCentrale = new JPanel(new GridLayout(2, 1, 5, 5));
+		panelCentrale.setBorder(BorderFactory.createTitledBorder("Sélection"));
+
+		JPanel panelSelection = new JPanel(new BorderLayout());
+		JPanel panelLabels    = new JPanel(new GridLayout(3, 1, 5, 5));
+		JPanel panelDonnées  = new JPanel(new GridLayout(3, 1, 5, 5));
 
 		JLabel labelRessource = new JLabel("Ressource :");
 		this.listeRessources  = new JComboBox<Ressource>();
@@ -174,14 +185,25 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		panelNiveau.add(this.btnMoyen);
 		panelNiveau.add(this.btnDifficile);
 
-		panelSelection.add(labelRessource);
-		panelSelection.add(this.listeRessources);
-		panelSelection.add(labelNotion);
-		panelSelection.add(this.listeNotions);
-		panelSelection.add(labelNiveau);
-		panelSelection.add(panelNiveau);
+		panelText.add(lblIntituleQuestion);
+		panelText.add(txtaQuestion);
+		panelText.add(lblExpliquationQuestion);
+		panelText.add(txtexQuestion);
 
-		add(panelSelection, BorderLayout.CENTER);
+		panelLabels.add(labelRessource);
+		panelDonnées.add(this.listeRessources);
+		panelLabels.add(labelNotion);
+		panelDonnées.add(this.listeNotions);
+		panelLabels.add(labelNiveau);
+		panelDonnées.add(panelNiveau);
+
+		panelSelection.add(panelLabels, BorderLayout.WEST);
+		panelSelection.add(panelDonnées, BorderLayout.CENTER);
+
+		panelCentrale.add(panelSelection);
+		panelCentrale.add(panelText);
+
+		add(panelCentrale, BorderLayout.CENTER);
 
 		// Section inférieure
 		JPanel panelType = new JPanel(new GridLayout(1, 3, 5, 5));
@@ -202,6 +224,13 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		add(panelType, BorderLayout.SOUTH);
 		setVisible(true);
 
+
+		JFileChooser fileChooser = new JFileChooser();
+		int returnValue = fileChooser.showOpenDialog(null);
+
+		if(returnValue == JFileChooser.APPROVE_OPTION){
+			this.lstLiens.add(fileChooser.getSelectedFile().getAbsolutePath());
+		}
 	}
 
 	// Methode

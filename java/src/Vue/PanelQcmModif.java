@@ -9,18 +9,20 @@ import java.util.HashMap;
 import javax.swing.*;
 import src.Controleur;
 import src.Metier.Question;
+import src.Metier.QCM;
 
-// dans 5 minute peut e rerzthrzehuIHNGVUJREIhgioreJBVURIFHEuobvrnfqeujdolhvrufeqighjvuriehvnbreufjibrhfvburiqhgrqiogrefijqbvulfydsvgdsGYFEUfeuyigbvyrvhrtujfqvbhtq
+
 public class PanelQcmModif extends JFrame implements ActionListener {
 
-    private Controleur  ctrl;
-    private JPanel      panelReponses; // Panel pour les réponses
-    private int         nombreReponses = 0; // Nombre de réponses
-    private JTextField  champQuestion;
-    private JButton     boutonAjoutReponse;
-    private JButton     boutonEnregistrer;
-    private boolean     modeReponseUnique; // Checkbox pour activer/désactiver le mode réponse unique
-    private Question    q;
+    private Controleur               ctrl;
+    private JPanel                   panelReponses; // Panel pour les réponses
+    private int                      nombreReponses = 0; // Nombre de réponses
+    private JTextField               champQuestion;
+    private JButton                  boutonAjoutReponse;
+    private JButton                  boutonEnregistrer;
+    private boolean                  modeReponseUnique; // Checkbox pour activer/désactiver le mode réponse unique
+    private Question                 q;
+    private HashMap<String, Boolean> reponses;
 
     private boolean     estModeUnique = false; // Par défaut, mode "plusieurs réponses correctes"
     private ButtonGroup groupReponses; // Utilisé pour le mode "réponse unique"
@@ -41,8 +43,9 @@ public class PanelQcmModif extends JFrame implements ActionListener {
         this.points        = points;
         this.temps         = temps;
         this.q             = q;
+        //this.reponses = q.getReponses();
 
-        setTitle("QCM Builder - Créateur de QCM");
+        setTitle("QCM Builder - Modificateur de QCM");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -117,73 +120,11 @@ public class PanelQcmModif extends JFrame implements ActionListener {
         panelReponses.repaint();
     }
 
-    private void setModeUnique() {
-
-        if (this.estModeUnique) {
-            // Activer le mode "réponse unique" avec des boutons radio
-            groupReponses = new ButtonGroup();
-        } else {
-            // Désactiver le groupe de boutons radio
-            groupReponses = null;
-        }
-
-        // Reconfigurer chaque réponse
-        for (Component composant : panelReponses.getComponents()) {
-            if (composant instanceof JPanel) {
-                JPanel panelReponse = (JPanel) composant;
-
-                // Récupérer les composants actuels
-                JTextField champReponse = (JTextField) panelReponse.getComponent(0);
-                JComponent ancienneCase = (JComponent) panelReponse.getComponent(1);
-
-                // Sauvegarder l'état de sélection
-                boolean estCorrecte = ancienneCase instanceof JCheckBox
-                        ? ((JCheckBox) ancienneCase).isSelected()
-                        : ((JRadioButton) ancienneCase).isSelected();
-
-                // Supprimer l'ancienne case
-                panelReponse.remove(ancienneCase);
-
-                // Ajouter une nouvelle case selon le mode
-                JComponent nouvelleCase;
-                if (this.estModeUnique) {
-                    JRadioButton boutonRadio = new JRadioButton();
-                    boutonRadio.setSelected(estCorrecte);
-                    groupReponses.add(boutonRadio);
-                    nouvelleCase = boutonRadio;
-                } else {
-                    JCheckBox caseCheckBox = new JCheckBox("Correcte");
-                    caseCheckBox.setSelected(estCorrecte);
-                    nouvelleCase = caseCheckBox;
-                }
-
-                panelReponse.add(nouvelleCase, 1); // Ajouter la nouvelle case
-                panelReponse.revalidate();
-                panelReponse.repaint();
-            }
-        }
-
-        // Si on revient au mode unique, garantir qu'une seule réponse est sélectionnée
-        if (this.estModeUnique && groupReponses != null) {
-            boolean uneReponseSelectionnee = false;
-            for (Enumeration<AbstractButton> boutons = groupReponses.getElements(); boutons.hasMoreElements();) {
-                AbstractButton bouton = boutons.nextElement();
-                if (bouton.isSelected()) {
-                    uneReponseSelectionnee = true;
-                    break;
-                }
-            }
-
-            if (!uneReponseSelectionnee && panelReponses.getComponentCount() > 0) {
-                JPanel panelReponse = (JPanel) panelReponses.getComponent(0);
-                JRadioButton boutonRadio = (JRadioButton) panelReponse.getComponent(1);
-                boutonRadio.setSelected(true);
-            }
-        }
-    }
 
     private void enregistrerQCMAvecHashMap() {
+
         String question = champQuestion.getText().trim();
+
         if (question.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Veuillez entrer une question.", "Erreur", JOptionPane.ERROR_MESSAGE);
             return;
@@ -229,6 +170,7 @@ public class PanelQcmModif extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "Veuillez sélectionner au moins une réponse correcte.", "Erreur", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        this.ctrl.supprimerQuestion(q);
 
         this.ctrl.creerQuestionQCM(
                 question,

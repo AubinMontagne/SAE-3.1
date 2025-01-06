@@ -17,7 +17,6 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
     private JPanel            panelNotion;
     private JButton           btnNouvNotion;
     private JButton           btnSupprNotion;
-    private JLabel            labTitre;
     private JList<Notion>     list;
     private Ressource         ressource;
     private ArrayList<Notion> notions;
@@ -49,7 +48,6 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
         }
 
         // Création des composants
-        this.labTitre = new JLabel (this.ressource.toString());
 
         this.btnNouvNotion  = new JButton("Nouvelle Notion");
         this.btnSupprNotion = new JButton("Supprimer Notion");
@@ -71,8 +69,6 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
         panelBouton.add(this.btnNouvNotion );
         panelBouton.add(this.btnSupprNotion);
 
-        this.panelNotion.add(labTitre, BorderLayout.NORTH);
-
         // Ajout du panel à la fenêtre
         this.setVisible(true);
         this.add(this.panelNotion);
@@ -90,7 +86,6 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
             listModel.addElement(notion);
         }
         this.list.setModel(listModel);
-        this.labTitre.setText(this.ressource.toString());
     }
     public void setRessourceSelectionnee(Ressource r){this.ressource = r;}
 

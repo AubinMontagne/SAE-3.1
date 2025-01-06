@@ -3,6 +3,7 @@ package src.Metier;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Metier{
     private ArrayList<Notion>    lstNotions;
@@ -205,7 +206,9 @@ public class Metier{
 	public ArrayList<Ressource> getRessources(){return this.lstRessources; }
 	public ArrayList<Question>  getQuestions() {return this.lstQuestions; }
 
-	public boolean ajouterQuestionQCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses) {
+	public boolean ajouterQuestionQCM(String intitule, Difficulte difficulte, Notion notion,
+									  int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses) {
+
 		QCM questionQCM = new QCM(intitule, difficulte, notion, temps, points, vraiOuFaux);
 
 		// Ajout des réponses avec leurs booléens

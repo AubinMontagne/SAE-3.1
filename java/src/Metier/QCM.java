@@ -1,7 +1,10 @@
 package src.Metier;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
+import java.io.File;
 
 public class QCM extends Question {
 	private HashMap<String, Boolean> hmReponses;
@@ -17,8 +20,8 @@ public class QCM extends Question {
 	 * @param points        Le nombre de points que rapporte la question.
 	 * @param vraiOuFaux   	Si le QCM est un vrai ou faux
 	 */
-	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux){
-		super(intitule, difficulte, notion, temps, points);
+	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, String imageChemin, List<String> listeFichiers, int id){
+		super(intitule, difficulte, notion, temps, points, imageChemin, listeFichiers, id);
 		this.hmReponses = new HashMap<String, Boolean>();
 		this.vraiOuFaux = vraiOuFaux;
 	}
@@ -33,8 +36,8 @@ public class QCM extends Question {
 	 * @param vraiOuFaux   	Si le QCM est un vrai ou faux
 	 * @param explication   Les explications de la réponse à la question
 	 */
-	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points,String explication, boolean vraiOuFaux){
-		super(intitule, difficulte, notion, temps, points, explication);
+	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, String explication, boolean vraiOuFaux, List<String> listeLiens, int id){
+		super(intitule, difficulte, notion, temps, points, explication, listeLiens, id);
 		this.hmReponses = new HashMap<String, Boolean>();
 		this.vraiOuFaux = vraiOuFaux;
 	}
@@ -74,8 +77,7 @@ public class QCM extends Question {
 	 * @param reponse	La réponse à supprimer
 	 */
 	public void supprimerReponse(String reponse){this.hmReponses.remove(reponse); }
-
-	// Get
+	// Get/
 	public HashMap<String, Boolean> getReponses  (){return this.hmReponses; }
 	public int                      getNbReponses(){return this.hmReponses.size(); }
 
@@ -92,9 +94,26 @@ public class QCM extends Question {
 		Scanner scanner = new Scanner(ligne);
 		scanner.useDelimiter(";");
 
-		String[] parts = new String[9];
-		for (int i = 0; i < 9; i++) {
+		String[] parts = new String[11];
+		for (int i = 0; i < 11; i++) {
 			parts[i] = scanner.next();
+		}
+
+		List<String> lstLiens = new ArrayList<String>(5);
+
+		File dossierQuestion = new File("java/data/" + parts[8]);
+
+		File[] sousDossiers = dossierQuestion.listFiles();
+
+		if (sousDossiers != null) {
+			for (File file : sousDossiers)
+			{
+				// Vérifier si c'est un dossier
+				if (!file.isDirectory())
+				{
+					lstLiens.add(file.getAbsolutePath());
+				}
+			}
 		}
 
 		QCM qcm = new QCM(
@@ -102,10 +121,11 @@ public class QCM extends Question {
 				metier.getNotionByNom(parts[3]),
 				Integer.parseInt(parts[4]),
 				Integer.parseInt(parts[5]),
-				parts[6], Boolean.parseBoolean(parts[7])
+				parts[6], Boolean.parseBoolean(parts[7]), lstLiens,
+				Integer.parseInt(parts[9])
 		);
 
-		Scanner reponseScanner = new Scanner(parts[8]);
+		Scanner reponseScanner = new Scanner(parts[10]);
 		reponseScanner.useDelimiter("\\|");
 		while (reponseScanner.hasNext()) {
 			String reponse = reponseScanner.next();
@@ -119,6 +139,13 @@ public class QCM extends Question {
 
 			qcm.ajouterReponse(reponseParts[0], Boolean.parseBoolean(reponseParts[1]));
 			qcmScanner.close();
+		}
+
+		reponseScanner = new Scanner(parts[8]);
+		reponseScanner.useDelimiter(",");
+		while (reponseScanner.hasNext()) {
+			String fichier = reponseScanner.next();
+			qcm.ajouterfichier(fichier);
 		}
 
 		return qcm;

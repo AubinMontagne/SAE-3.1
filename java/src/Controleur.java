@@ -10,7 +10,6 @@ import src.Metier.Ressource;
 
 public class Controleur{
 	private Metier metier;
-    private FrameAccueil frameAccueil;
 
 	/**
 	 * Constructeur de la class Controleur
@@ -18,7 +17,7 @@ public class Controleur{
     public Controleur(){
         this.metier = new Metier();
 		this.miseAJour();
-		this.frameAccueil = new FrameAccueil(this);
+		new FrameAccueil(this);
     }
 
     // Getter
@@ -47,7 +46,8 @@ public class Controleur{
 	public void supprimerQuestion (Question question)  {this.metier.supprimerQuestion(question);}
 	public void supprimerRessource(Ressource ressource){this.metier.supprimerRessource(ressource);}
 
-	public void miseAJour(){
+	public void miseAJour()
+	{
 		this.metier.getRessourcesFromData("java/data/");
 		this.metier.getNotionsFromData   ("java/data/");
 		this.metier.getQuestionFromData  ("java/data/");
