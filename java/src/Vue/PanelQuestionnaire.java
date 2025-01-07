@@ -103,6 +103,7 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 
 		this.mdRessources.addItemListener(this);
 		this.mdRessources.setSelectedIndex(0);
+		this.mdRessources.setEnabled(false);
 
 		this.panelQuestionnaire.setVisible(true);
 	}
@@ -119,8 +120,14 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 		this.videTitre = texteTitre.trim().isEmpty();
 		if (!this.videTitre && !this.videRessource) {
 			this.btConfirmer.setEnabled(true);
+			System.out.println("Vrai");
 		} else {
 			this.btConfirmer.setEnabled(false);
+		}
+		if(!this.videTitre){
+			this.mdRessources.setEnabled(true);
+		} else {
+			this.mdRessources.setEnabled(false);
 		}
 	}
 
@@ -140,7 +147,6 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
             if (selectedRessource != null) 
 			{
 				this.r = selectedRessource;
-				System.out.println("Ressource sélectionnée : " + this.r);
 				this.videRessource = false;
 				if( !this.videTitre )
 					this.frame.majTab(this.ctrl, selectedRessource,this.champTitre.getText(),this.chrono);
