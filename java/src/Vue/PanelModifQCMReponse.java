@@ -22,7 +22,7 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
     private JButton                  boutonEnregistrer;
     private boolean                  modeReponseUnique; // Checkbox pour activer/désactiver le mode réponse unique
     private Question                 q;
-    private HashMap<String, Boolean> reponses;
+    private HashMap<String, Boolean> hmReponses;
 
     private boolean     estModeUnique = false; // Par défaut, mode "plusieurs réponses correctes"
     private ButtonGroup groupReponses; // Utilisé pour le mode "réponse unique"
@@ -34,14 +34,14 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
 
     PanelBanque panelBanque;
 
-    public PanelModifQCMReponse(Controleur ctrl, Question q, HashMap<String, Boolean> hmReponses) {
+    public PanelModifQCMReponse(Controleur ctrl, Question q, HashMap<String, Boolean> hmReponses, boolean estModeUnique) {
         this.ctrl          = ctrl;
-        this.panelBanque   = panelBanque;
+        this.hmReponses    = hmReponses;
         this.estModeUnique = estModeUnique;
-        this.difficulte    = difficulte;
-        this.notion        = notion;
-        this.points        = points;
-        this.temps         = temps;
+        this.difficulte    = q.getDifficulte().getIndice();
+        this.notion        = q.getNotion().getNom();
+        this.points        = q.getPoint();
+        this.temps         = q.getTemps();
         this.q             = q;
         //this.reponses = q.getReponses();
 
@@ -82,6 +82,14 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
         // Activation des listeners
         boutonAjoutReponse.addActionListener(this);
         boutonEnregistrer .addActionListener(this);
+
+        // Initialisation des réponse déjà écrite
+        for (HashMap.Entry<String, Boolean> entry : this.hmReponses.entrySet()) {
+            String  key   = entry.getKey();
+            boolean value = entry.getValue();
+
+            initReponse(key, value);
+        }
     }
 
     private void ajouterReponse() {
@@ -120,6 +128,44 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
         panelReponses.repaint();
     }
 
+    private void initReponse(String rep, boolean vrai) {
+        JPanel panelAjoutReponse = new JPanel();
+        panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
+        JTextField champReponse = new JTextField( rep + (++nombreReponses));
+
+        JComponent caseCorrecte;
+        if (estModeUnique) {
+            JRadioButton boutonRadio = new JRadioButton();
+            if (groupReponses == null) {
+                groupReponses = new ButtonGroup();
+            }
+            boutonRadio.setSelected(vrai);
+
+            groupReponses.add(boutonRadio);
+            caseCorrecte = boutonRadio;
+        } else {
+            caseCorrecte = new JCheckBox("Correcte", vrai);
+        }
+
+
+        JButton boutonSupprimer = new JButton("Supprimer");
+        boutonSupprimer.addActionListener(e -> {
+            if (caseCorrecte instanceof JRadioButton && groupReponses != null) {
+                groupReponses.remove((JRadioButton) caseCorrecte);
+            }
+            panelReponses.remove(panelAjoutReponse);
+            panelReponses.revalidate();
+            panelReponses.repaint();
+        });
+
+        panelAjoutReponse.add(champReponse);
+        panelAjoutReponse.add(caseCorrecte);
+        panelAjoutReponse.add(boutonSupprimer);
+
+        panelReponses.add(panelAjoutReponse);
+        panelReponses.revalidate();
+        panelReponses.repaint();
+    }
 
     private void enregistrerQCMAvecHashMap() {
 
@@ -182,7 +228,7 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
             }
         }
 
-        this.ctrl.creerQuestionQCM(
+       /* this.ctrl.creerQuestionQCM(
                 question,
                 difficulte,
                 notion,
@@ -190,8 +236,9 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
                 points,
                 false,
                 reponses,
+                this.imgChemin,
                 idMax
-        );
+        );*/
 
         if(this.panelBanque != null) {this.panelBanque.maj();}
 

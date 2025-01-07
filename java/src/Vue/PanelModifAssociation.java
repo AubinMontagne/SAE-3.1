@@ -203,10 +203,10 @@ public class PanelModifAssociation extends JPanel implements ActionListener, jav
 
         JLabel labelType = new JLabel("Type :");
         this.listeTypes  = new JComboBox<>(new String[]
-                { "QCM REP. UNIQUE","QCM REP. MULTIPLE", "EntiteAssociation","Elimination" }
+                {"EntiteAssociation" }
         );
 
-        this.listeTypes.setSelectedItem("QCM REP. UNIQUE");
+        this.listeTypes.setSelectedItem("EntiteAssociation");
 
         this.btnConfirmer = new JButton("Confirmer");
         this.btnConfirmer.addActionListener(this);
@@ -314,62 +314,20 @@ public class PanelModifAssociation extends JPanel implements ActionListener, jav
             }
             String typeSelectionne = (String) this.listeTypes.getSelectedItem();
 
-            if ("QCM REP. UNIQUE".equals(typeSelectionne)) {
+
+            if("EntiteAssociation".equals(typeSelectionne)) {
                 System.out.println(typeSelectionne);
-                Notion n = (Notion)(this.listeNotions.getSelectedItem());
+                Notion n = (Notion) (this.listeNotions.getSelectedItem());
                 this.q.setNotion(n);
-                this.temps  = Integer.parseInt(
-                        this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60
-                        + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1)
+                this.temps = Integer.parseInt(
+                        this.champTemps.getText().substring(0, this.champTemps.getText().indexOf(":"))) * 60
+                        + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":") + 1)
                 );
                 this.q.setTemps(this.temps);
                 this.q.setPoint(Integer.parseInt(this.champPoints.getText()));
 
-                //PanelModifQCMReponse panelModifQCM = new PanelModifQCMReponse( this.ctrl,this.q );
-                //panelModifQCM.setVisible(true);
-
-            } else if ("QCM REP. MULTIPLE".equals(typeSelectionne)) {
-                System.out.println(typeSelectionne);
-                Notion n = (Notion)(this.listeNotions.getSelectedItem());
-                this.q.setNotion(n);
-                this.temps  = Integer.parseInt(
-                        this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60
-                        + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1)
-                );
-                this.q.setTemps(this.temps);
-                this.q.setPoint(Integer.parseInt(this.champPoints.getText()));
-                //PanelModifQCMReponse panelModifQCM = new PanelModifQCMReponse ( this.ctrl, this.q );
-                //panelModifQCM.setVisible(true);
-
-            } else if("EntiteAssociation".equals(typeSelectionne)) {
-                System.out.println(typeSelectionne);
-                Notion n = (Notion)(this.listeNotions.getSelectedItem());
-                this.q.setNotion(n);
-                this.temps  = Integer.parseInt(
-                        this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60
-                        + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1)
-                );
-                this.q.setTemps(this.temps);
-                this.q.setPoint(Integer.parseInt(this.champPoints.getText()));
-
-                PanelModifAssociationReponse panelAssociationRep = new PanelModifAssociationReponse(this.ctrl,this.q, this.hmReponses);
+                PanelModifAssociationReponse panelAssociationRep = new PanelModifAssociationReponse(this.ctrl, this.q, this.hmReponses);
                 panelAssociationRep.setVisible(true);
-
-            } else if ("Elimination".equals(typeSelectionne)){
-                System.out.println(typeSelectionne);
-                Notion n = (Notion)(this.listeNotions.getSelectedItem());
-                this.q.setNotion(n);
-                this.temps  = Integer.parseInt(
-                        this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60
-                        + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1)
-                );
-                this.q.setTemps(this.temps);
-                this.q.setPoint(Integer.parseInt(this.champPoints.getText()));
-
-                PanelModifEliminationReponse panelEliminationRep = new PanelModifEliminationReponse(
-                        this.ctrl,this.q
-                );
-                panelEliminationRep.setVisible(true);
             }
         }
     }

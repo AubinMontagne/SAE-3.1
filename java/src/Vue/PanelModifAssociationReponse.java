@@ -1,70 +1,75 @@
 package src.Vue;
 
+import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Enumeration;
+import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.*;
-import src.Controleur;
-import src.Metier.Question;
-import src.Metier.QCM;
+import java.util.List;
 
+import src.Controleur;
+import src.Metier.*;
 
 public class PanelModifAssociationReponse extends JFrame implements ActionListener {
 
-    private Controleur               ctrl;
-    private JPanel                   panelReponses; // Panel pour les réponses
-    private int                      nombreReponses = 0; // Nombre de réponses
-    private JTextField               champQuestion;
-    private JButton                  boutonAjoutReponse;
-    private JButton                  boutonEnregistrer;
-    private boolean                  modeReponseUnique; // Checkbox pour activer/désactiver le mode réponse unique
-    private Question                 q;
+    private JPanel panelAssociations; // Panel pour les associations
+    private int nombreAssociations = 0; // Nombre d'associations
+    private JTextField champQuestion;
+    private JButton boutonAjoutAssociation;
+    private JButton boutonEnregistrer;
+    private Question q ;
     private HashMap<String, String> hmReponses;
 
-    private boolean     estModeUnique = false; // Par défaut, mode "plusieurs réponses correctes"
-    private ButtonGroup groupReponses; // Utilisé pour le mode "réponse unique"
+    private PanelBanque panelBanque;
 
-    int    difficulte;
-    String notion;
-    int    points;
-    int    temps;
+    int 	difficulte;
+    String 	notion;
+    int 	points;
+    int 	temps;
 
-    PanelBanque panelBanque;
+    private Controleur ctrl;
 
-    public PanelModifAssociationReponse(Controleur ctrl, Question q, HashMap<String, String> hmReponses) {
-        this.ctrl          = ctrl;
-        this.hmReponses = hmReponses;
-        this.panelBanque   = panelBanque;
-        this.estModeUnique = estModeUnique;
-        this.difficulte    = difficulte;
-        this.notion        = notion;
-        this.points        = points;
-        this.temps         = temps;
-        this.q             = q;
-        //this.reponses = q.getReponses();
+    // Constructeur
 
-        setTitle("QCM Builder - Modificateur de QCM");
-        setSize(600, 400);
+    /**
+     * Constructeur de la class PanelEntiteAssociation
+     * @param ctrl	Le contrôleur
+     */
+    public PanelModifAssociationReponse(Controleur ctrl,Question q, HashMap<String, String> hmResponses)
+    {
+        this.ctrl       = ctrl;
+        this.hmReponses = hmResponses;
+
+        this.difficulte = q.getDifficulte().getIndice();
+        this.notion     = q.getNotion().getNom();
+        this.points     = q.getPoint();
+        this.temps      = q.getTemps();
+        this.q          = q ;
+
+        setTitle("Créateur de Questions Entité-Association");
+        setSize(600,400);
+        setMinimumSize(this.getSize());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
+        this.setIconImage(new ImageIcon("java/data/Images/icon.png").getImage());
 
+        // Panel pour la question
         JPanel panelQuestion = new JPanel(new BorderLayout());
         JLabel etiquetteQuestion = new JLabel("Question :");
         champQuestion = new JTextField();
         panelQuestion.add(etiquetteQuestion, BorderLayout.NORTH);
         panelQuestion.add(champQuestion, BorderLayout.CENTER);
 
-        // Panel pour ajouter les réponses
-        panelReponses = new JPanel();
-        panelReponses.setLayout(new BoxLayout(panelReponses, BoxLayout.Y_AXIS));
-        JScrollPane defilement = new JScrollPane(panelReponses);
+        // Panel pour les associations
+        panelAssociations = new JPanel();
+        panelAssociations.setLayout(new BoxLayout(panelAssociations, BoxLayout.Y_AXIS));
+        JScrollPane defilement = new JScrollPane(panelAssociations);
 
-        // Bouton pour ajouter une réponse
-        boutonAjoutReponse = new JButton("Ajouter une réponse");
-        boutonAjoutReponse.setActionCommand("ajouterReponse");
+        // Bouton pour ajouter une association
+        boutonAjoutAssociation = new JButton("Ajouter une association");
+        boutonAjoutAssociation.setActionCommand("ajouterAssociation");
 
         // Bouton pour enregistrer
         boutonEnregistrer = new JButton("Enregistrer");
@@ -72,106 +77,130 @@ public class PanelModifAssociationReponse extends JFrame implements ActionListen
 
         // Panel des boutons
         JPanel panelBoutons = new JPanel();
-        panelBoutons.add(boutonAjoutReponse);
+        panelBoutons.add(boutonAjoutAssociation);
         panelBoutons.add(boutonEnregistrer);
 
         // Ajout des composants à la fenêtre
         add(panelQuestion, BorderLayout.NORTH);
-        add(defilement   , BorderLayout.CENTER);
-        add(panelBoutons , BorderLayout.SOUTH);
+        add(defilement, BorderLayout.CENTER);
+        add(panelBoutons, BorderLayout.SOUTH);
 
         // Activation des listeners
-        boutonAjoutReponse.addActionListener(this);
-        boutonEnregistrer .addActionListener(this);
+        boutonAjoutAssociation.addActionListener(this);
+        boutonEnregistrer.addActionListener(this);
+
+        //Ajout de deux réponses pour rendre plus beau
+        this.ajouterAssociation();
+        this.ajouterAssociation();
+
+        // Initialisation des réponse déjà écrite
+        for (HashMap.Entry<String, String> entry : this.hmReponses.entrySet()) {
+            String  key   = entry.getKey();
+            String value = entry.getValue();
+
+            initAssociation(key, value);
+        }
     }
 
-    private void ajouterReponse() {
-        JPanel panelAjoutReponse = new JPanel();
-        panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
-        JTextField champReponse = new JTextField("Réponse " + (++nombreReponses));
+    // Methode
+    /**
+     * Methode ajouterAssociation
+     */
+    private void ajouterAssociation()
+    {
+        JPanel panelAjoutAssociation = new JPanel();
+        panelAjoutAssociation.setLayout(new BoxLayout(panelAjoutAssociation, BoxLayout.X_AXIS));
 
-        JComponent caseCorrecte;
-        if (estModeUnique) {
-            JRadioButton boutonRadio = new JRadioButton();
-            if (groupReponses == null) {
-                groupReponses = new ButtonGroup();
-            }
-            groupReponses.add(boutonRadio);
-            caseCorrecte = boutonRadio;
-        } else {
-            caseCorrecte = new JCheckBox("Correcte");
-        }
-
+        // Champs pour les entités et les associations
+        JTextField champEntite = new JTextField("Entité " + (++nombreAssociations), 10);
+        JTextField champAssociation = new JTextField("Association " + nombreAssociations, 10);
         JButton boutonSupprimer = new JButton("Supprimer");
+
+        // Listener pour supprimer une association
         boutonSupprimer.addActionListener(e -> {
-            if (caseCorrecte instanceof JRadioButton && groupReponses != null) {
-                groupReponses.remove((JRadioButton) caseCorrecte);
-            }
-            panelReponses.remove(panelAjoutReponse);
-            panelReponses.revalidate();
-            panelReponses.repaint();
+            panelAssociations.remove(panelAjoutAssociation);
+            panelAssociations.revalidate();
+            panelAssociations.repaint();
         });
 
-        panelAjoutReponse.add(champReponse);
-        panelAjoutReponse.add(caseCorrecte);
-        panelAjoutReponse.add(boutonSupprimer);
+        panelAjoutAssociation.add(champEntite);
+        panelAjoutAssociation.add(new JLabel(" -> "));
+        panelAjoutAssociation.add(champAssociation);
+        panelAjoutAssociation.add(boutonSupprimer);
 
-        panelReponses.add(panelAjoutReponse);
-        panelReponses.revalidate();
-        panelReponses.repaint();
+        panelAssociations.add(panelAjoutAssociation);
+        panelAssociations.revalidate();
+        panelAssociations.repaint();
     }
 
+    private void initAssociation(String entite, String asso)
+    {
+        JPanel panelAjoutAssociation = new JPanel();
+        panelAjoutAssociation.setLayout(new BoxLayout(panelAjoutAssociation, BoxLayout.X_AXIS));
 
-    private void enregistrerQCMAvecHashMap() {
+        // Champs pour les entités et les associations
+        JTextField champEntite      = new JTextField( entite + (++nombreAssociations), 10);
+        JTextField champAssociation = new JTextField( asso   + nombreAssociations, 10);
+        JButton boutonSupprimer     = new JButton   ("Supprimer");
 
-        String question = champQuestion.getText().trim();
+        // Listener pour supprimer une association
+        boutonSupprimer.addActionListener(e -> {
+            panelAssociations.remove(panelAjoutAssociation);
+            panelAssociations.revalidate();
+            panelAssociations.repaint();
+        });
 
+        panelAjoutAssociation.add(champEntite);
+        panelAjoutAssociation.add(new JLabel(" -> "));
+        panelAjoutAssociation.add(champAssociation);
+        panelAjoutAssociation.add(boutonSupprimer);
+
+        panelAssociations.add(panelAjoutAssociation);
+        panelAssociations.revalidate();
+        panelAssociations.repaint();
+    }
+
+    /**
+     * Methode enregistrerAssociations
+     */
+    private void enregistrerAssociations()
+    {
+        String question = champQuestion.getText();
         if (question.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Veuillez entrer une question.", "Erreur", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        if (panelReponses.getComponentCount() == 0) {
-            JOptionPane.showMessageDialog(this, "Veuillez ajouter au moins une réponse.", "Erreur", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        HashMap<String, Boolean> reponses = new HashMap<>();
-        boolean auMoinsUneReponseCorrecte = false;
-
-        for (Component composant : panelReponses.getComponents()) {
-            if (composant instanceof JPanel) {
-                JPanel panelReponse = (JPanel) composant;
-                JTextField champReponse = (JTextField) panelReponse.getComponent(0);
-                JComponent caseCorrecte = (JComponent) panelReponse.getComponent(1);
-
-                String texteReponse = champReponse.getText().trim();
-                boolean estCorrecte = caseCorrecte instanceof JCheckBox
-                        ? ((JCheckBox) caseCorrecte).isSelected()
-                        : ((JRadioButton) caseCorrecte).isSelected();
-
-                if (texteReponse.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Une réponse ne peut pas être vide.", "Erreur", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                if (reponses.containsKey(texteReponse)) {
-                    JOptionPane.showMessageDialog(this, "Une réponse dupliquée a été détectée : " + texteReponse, "Erreur", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                reponses.put(texteReponse, estCorrecte);
-                if (estCorrecte) {
-                    auMoinsUneReponseCorrecte = true;
-                }
+        // Récupérer les entités et associations
+        List<String> associations = new ArrayList<>();
+        Component[] composants = panelAssociations.getComponents();
+        for (Component composant : composants)
+        {
+            if (composant instanceof JPanel)
+            {
+                JPanel associationPanel = (JPanel) composant;
+                JTextField champEntite = (JTextField) associationPanel.getComponent(0);
+                JTextField champAssociation = (JTextField) associationPanel.getComponent(2);
+                associations.add(champEntite.getText() + " -> " + champAssociation.getText());
             }
         }
 
-        if (!auMoinsUneReponseCorrecte) {
-            JOptionPane.showMessageDialog(this, "Veuillez sélectionner au moins une réponse correcte.", "Erreur", JOptionPane.ERROR_MESSAGE);
-            return;
+        // Résumé des données
+        StringBuilder resultats = new StringBuilder("Question : " + question + "\nAssociations :\n");
+        for (String association : associations)
+        {
+            resultats.append(association).append("\n");
         }
-        this.ctrl.supprimerQuestion(q);
+
+
+
+        HashMap<String, String> entiteAssociation = new HashMap<>();
+
+        for (String association : associations)
+        {
+            String[] entiteAssociationSplit = association.split(" -> ");
+            entiteAssociation.put(entiteAssociationSplit[0], entiteAssociationSplit[1]);
+        }
 
         int idMax = 0;
 
@@ -183,40 +212,29 @@ public class PanelModifAssociationReponse extends JFrame implements ActionListen
             }
         }
 
-        this.ctrl.creerQuestionQCM(
-                question,
-                difficulte,
-                notion,
-                temps,
-                points,
-                false,
-                reponses,
-                idMax
-        );
+
+        this.ctrl.creerQuestionEntiteAssociation(question, difficulte, notion, temps, points, entiteAssociation, idMax);
 
         if(this.panelBanque != null) {this.panelBanque.maj();}
 
-        JOptionPane.showMessageDialog(this, "Question enregistrée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
-
-        dispose();
+        JOptionPane.showMessageDialog(this, resultats.toString(), "Résumé", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * Methode actionPerformed
+     * @param e L'évènement à traiter
+     */
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
         String commande = e.getActionCommand();
-        switch (commande) {
-            case "ajouterReponse":
-                ajouterReponse();
+        switch (commande)
+        {
+            case "ajouterAssociation":
+                ajouterAssociation();
                 break;
-
             case "enregistrer":
-                enregistrerQCMAvecHashMap();
-                break;
-
-            default:
-                System.out.println("Commande inconnue : " + commande);
-                break;
+                enregistrerAssociations();
         }
     }
 }
-

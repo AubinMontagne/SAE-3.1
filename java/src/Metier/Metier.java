@@ -1,8 +1,13 @@
 package src.Metier;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class Metier{
@@ -98,6 +103,7 @@ public class Metier{
 	 */
 	public boolean supprimerQuestion(Question question){
 		if (question != null){
+			question.supprimerQuestionDossier();
 			return this.lstQuestions.remove(question);
 		}
 		return false;
@@ -206,13 +212,47 @@ public class Metier{
 	public ArrayList<Ressource> getRessources(){return this.lstRessources; }
 	public ArrayList<Question>  getQuestions() {return this.lstQuestions; }
 
-	public boolean ajouterQuestionQCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses, String imageChemin, int id) {
+	public boolean ajouterQuestionQCM(String dossierChemin, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses, String imageChemin, List<String> lstLiens, int id) {
 
-		QCM questionQCM = new QCM(intitule, difficulte, notion, temps, points, vraiOuFaux,imageChemin ,id);
+		QCM questionQCM = new QCM(dossierChemin, difficulte, notion, temps, points, vraiOuFaux,"fic00000"+imageChemin.substring(imageChemin.lastIndexOf(".")) ,id);
 
 		// Ajout des réponses avec leurs booléens
 		for (HashMap.Entry<String, Boolean> entry : reponses.entrySet()) {
 			questionQCM.ajouterReponse(entry.getKey(), entry.getValue());
+		}
+
+		if(!( imageChemin == null || imageChemin.isEmpty())) {
+			String nomFichier = "fic00000" + imageChemin.substring(imageChemin.lastIndexOf("."));
+
+			try {
+				Path fileSource = Paths.get(imageChemin);
+				Path fileDest = Paths.get(dossierChemin + "/Compléments/" + nomFichier);
+
+				Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
+			} catch (Exception ex) {
+				System.err.println("Erreur : " + ex.getMessage());
+				return false;
+			}
+		}
+
+		int numero = 1;
+		for (String fichierChemin: lstLiens)
+		{
+			String nomFichier = "fic"+String.format("%05d", numero)+fichierChemin.substring(fichierChemin.lastIndexOf("."));
+
+			try {
+				Path fileSource = Paths.get(fichierChemin);
+				Path fileDest = Paths.get( dossierChemin + "/Compléments/" + nomFichier);
+
+				Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
+			} catch (Exception ex)
+			{
+				ex.printStackTrace();
+				System.err.println("Erreur : " + ex.getMessage());
+				return false;
+			}
+			questionQCM.ajouterfichier(nomFichier);
+			numero++;
 		}
 		this.lstQuestions.add(questionQCM);
 		this.saveQuestions("java/data/");

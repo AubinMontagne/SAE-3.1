@@ -2,6 +2,8 @@ package src;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import src.Vue.FrameAccueil;
 import src.Metier.Metier;
 import src.Metier.Notion;
@@ -33,7 +35,7 @@ public class Controleur{
 
 	public ArrayList<Question> getQuestionsParNotion (Notion notion)      {return this.metier.getQuestionsParNotion(notion);}
 	public ArrayList<Notion>   getNotionsParRessource(Ressource ressource){return this.metier.getNotionsParRessource(ressource);}
-
+	public Notion			   getNotionByNom(String notion){return this.metier.getNotionByNom(notion);}
 
     // Setter
     public void setMetier(Metier metier){this.metier = metier;}
@@ -59,23 +61,28 @@ public class Controleur{
 		this.metier.saveQuestions("java/data/");
 	}
 
-	public void creerQuestionQCM(String intitule, int difficulte, String notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses, String imageChemin, int id)
+	public void creerQuestionQCM(
+			String dossierChemin, int difficulte, String notion, int temps,
+			int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses,
+			String imageChemin, List<String> lstLiens, int id)
 	{
 		this.metier.ajouterQuestionQCM(
-				intitule,
+				dossierChemin,
 				metier.getDifficulteByIndice(difficulte),
 				metier.getNotionByNom(notion),
 				temps,
 				points,
 				vraiOuFaux,
 				reponses,
-				null,
 				imageChemin,
+				lstLiens,
 				id
 		);
 	}
 
-	public void creerQuestionEntiteAssociation(String intitule, int difficulte, String notion, int temps, int points, HashMap<String, String> associations, int id)
+	public void creerQuestionEntiteAssociation(
+			String intitule, int difficulte, String notion, int temps,
+			int points, HashMap<String, String> associations, int id)
 	{
 		this.metier.ajouterQuestionEntiteAssociation(
 				intitule,
@@ -88,7 +95,9 @@ public class Controleur{
 		);
 	}
 
-	public void creerQuestionElimination(String intitule, int difficulte, String notion, int temps, int points, HashMap<String,Double[]> reponses, String reponseCorrecte, int id)
+	public void creerQuestionElimination(
+			String intitule, int difficulte, String notion, int temps,
+			int points, HashMap<String,Double[]> reponses, String reponseCorrecte, int id)
 	{
 		this.metier.ajouterQuestionElimination(
 				intitule,

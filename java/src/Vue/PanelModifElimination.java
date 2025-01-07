@@ -203,10 +203,10 @@ public class PanelModifElimination extends JPanel implements ActionListener, jav
 
         JLabel labelType = new JLabel("Type :");
         this.listeTypes  = new JComboBox<>(new String[]
-                { "QCM REP. UNIQUE","QCM REP. MULTIPLE", "EntiteAssociation","Elimination" }
+                { "Elimination" }
         );
 
-        this.listeTypes.setSelectedItem("QCM REP. UNIQUE");
+        this.listeTypes.setSelectedItem("Elimination");
 
         this.btnConfirmer = new JButton("Confirmer");
         this.btnConfirmer.addActionListener(this);
@@ -314,47 +314,6 @@ public class PanelModifElimination extends JPanel implements ActionListener, jav
             }
             String typeSelectionne = (String) this.listeTypes.getSelectedItem();
 
-            /*if ("QCM REP. UNIQUE".equals(typeSelectionne)) {
-                System.out.println(typeSelectionne);
-                Notion n = (Notion)(this.listeNotions.getSelectedItem());
-                this.q.setNotion(n);
-                this.temps  = Integer.parseInt(
-                        this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60
-                        + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1)
-                );
-                this.q.setTemps(this.temps);
-                this.q.setPoint(Integer.parseInt(this.champPoints.getText()));
-
-                //PanelModifQCM panelModifQCM = new PanelModifQCM( this.ctrl,this.q,  );
-                //panelModifQCM.setVisible(true);
-
-            } else if ("QCM REP. MULTIPLE".equals(typeSelectionne)) {
-                System.out.println(typeSelectionne);
-                Notion n = (Notion)(this.listeNotions.getSelectedItem());
-                this.q.setNotion(n);
-                this.temps  = Integer.parseInt(
-                        this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60
-                        + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1)
-                );
-                this.q.setTemps(this.temps);
-                this.q.setPoint(Integer.parseInt(this.champPoints.getText()));
-                //PanelModifQCM panelModifQCM = new PanelModifQCM ( this.ctrl, this.q, this.hmReponses );
-                //panelModifQCM.setVisible(true);
-
-            } else if("EntiteAssociation".equals(typeSelectionne)) {
-                System.out.println(typeSelectionne);
-                Notion n = (Notion)(this.listeNotions.getSelectedItem());
-                this.q.setNotion(n);
-                this.temps  = Integer.parseInt(
-                        this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60
-                        + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1)
-                );
-                this.q.setTemps(this.temps);
-                this.q.setPoint(Integer.parseInt(this.champPoints.getText()));0
-
-                PanelModifAssociationReponse panelAssociationRep = new PanelModifAssociationReponse(this.ctrl,this.q);
-                panelAssociationRep.setVisible(true);*/
-
             if ("Elimination".equals(typeSelectionne)){
                 System.out.println(typeSelectionne);
                 Notion n = (Notion)(this.listeNotions.getSelectedItem());
@@ -367,8 +326,7 @@ public class PanelModifElimination extends JPanel implements ActionListener, jav
                 this.q.setPoint(Integer.parseInt(this.champPoints.getText()));
 
                 PanelModifEliminationReponse panelEliminationRep = new PanelModifEliminationReponse(
-                        this.ctrl,this.q
-                );
+                        this.ctrl,this.q, this.hmReponses);
                 panelEliminationRep.setVisible(true);
             }
         }

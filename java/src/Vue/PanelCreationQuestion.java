@@ -23,6 +23,7 @@ import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 import src.Controleur;
 import src.Metier.Notion;
+import src.Metier.Question;
 import src.Metier.Ressource;
 import java.util.List;
 
@@ -129,7 +130,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 		JLabel lblIntituleQuestion = new JLabel("Question : ");
 		this.txtaQuestion = new JEditorPane();
-		JLabel lblExpliquationQuestion = new JLabel("Expliquation : ");
+		JLabel lblExpliquationQuestion = new JLabel("Explication : ");
 		this.txtexQuestion = new JEditorPane();
 
 
@@ -175,14 +176,16 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		this.btnAjouterImage 	= new JButton("Ajouter image au texte");
 		this.btnAjouterRessComp = new JButton("Ajouter des fichiers complémentaires");
 
-		this.btnTresFacile		.setPreferredSize(new Dimension(100, 100));
-		this.btnFacile    		.setPreferredSize(new Dimension(100, 100));
-		this.btnMoyen     		.setPreferredSize(new Dimension(100, 100));
-		this.btnDifficile 		.setPreferredSize(new Dimension(100, 100));
-		this.btnGras	  		.setPreferredSize(new Dimension(100, 100));
-		this.btnSouligner 		.setPreferredSize(new Dimension(100, 100));
-		this.btnAjouterImage	.setPreferredSize(new Dimension(100, 100));
-		this.btnAjouterRessComp .setPreferredSize(new Dimension(100, 100));
+		Dimension d1 = new Dimension( 75,  75);
+		Dimension d2 = new Dimension(100, 100);
+		this.btnTresFacile		.setPreferredSize(d1);
+		this.btnFacile    		.setPreferredSize(d1);
+		this.btnMoyen     		.setPreferredSize(d1);
+		this.btnDifficile 		.setPreferredSize(d1);
+		this.btnGras	  		.setPreferredSize(d2);
+		this.btnSouligner 		.setPreferredSize(d2);
+		this.btnAjouterImage	.setPreferredSize(d2);
+		this.btnAjouterRessComp .setPreferredSize(d2);
 
 		this.btnTresFacile.setEnabled(false);
 		this.btnFacile    .setEnabled(false);
@@ -202,8 +205,8 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		panelNiveau.add(this.btnFacile);
 		panelNiveau.add(this.btnMoyen);
 		panelNiveau.add(this.btnDifficile);
-		panelText.add(this.btnGras);
-		panelText.add(this.btnSouligner);
+		panelText.add  (this.btnGras);
+		panelText.add  (this.btnSouligner);
 
 		panelText.add(lblIntituleQuestion);
 		panelText.add(txtaQuestion);
@@ -213,11 +216,11 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		panelText.add(this.btnAjouterImage);
 		panelText.add(this.btnAjouterRessComp);
 
-		panelLabels.add(labelRessource);
+		panelLabels.add (labelRessource);
 		panelDonnées.add(this.listeRessources);
-		panelLabels.add(labelNotion);
+		panelLabels.add (labelNotion);
 		panelDonnées.add(this.listeNotions);
-		panelLabels.add(labelNiveau);
+		panelLabels.add (labelNiveau);
 		panelDonnées.add(panelNiveau);
 
 		panelSelection.add(panelLabels, BorderLayout.WEST);
@@ -276,9 +279,6 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 				);
 
 			}
-
-
-
 		}
 	}
 
@@ -304,6 +304,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		} else if (e.getSource() == this.listeNotions && e.getStateChange() == ItemEvent.SELECTED) {
 			int indexRessource  = this.listeRessources.getSelectedIndex();
 			int indexNotion     = this.listeNotions.getSelectedIndex();
+			this.notion = ( (Notion)(this.listeNotions.getSelectedItem() )).getNom();
 			if (indexRessource >= 0 && indexNotion >= 0) {
 
 				this.btnTresFacile.setIcon(IMAGES_DIFFICULTE[0]);
@@ -340,10 +341,26 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		}
 
 		if (e.getSource() == this.btnConfirmer) {
+			int idMax = 0;
+
+			for(Question q : ctrl.getQuestions())
+			{
+				if(q.getId() > idMax)
+				{
+					idMax = q.getId();
+				}
+			}
+
+			System.out.println(this.notion);
+			String cheminDossier = "java/data/" + this.ctrl.getNotionByNom(this.notion).getRessourceAssociee().getNom() + "/" + this.ctrl.getNotionByNom(notion).getNom() + "/Question " + idMax;
 
 			if (this.champPoints.getText().equals(""))
 			{
 				JOptionPane.showMessageDialog(this, "Attribuez des points à la question");
+				return;
+			}
+			if (this.txtaQuestion.getText() == null){
+				JOptionPane.showMessageDialog(this,"Veuillez entrer un énoncer");
 				return;
 			}
 			if (this.difficulte == 0)
@@ -364,9 +381,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 				);
 				this.points = Integer.parseInt(this.champPoints.getText());
 
-				PanelQCM panelQCM = new PanelQCM(
-						this.ctrl,this.difficulte,this.notion,this.points,this.temps,this.panelBanque,true
-				);
+				PanelQCM panelQCM = new PanelQCM(this.ctrl,cheminDossier, this.imageFond, this.lstLiens, this.difficulte,this.notion,this.points,this.temps,this.panelBanque,true, this.txtaQuestion, this.txtexQuestion);
 				panelQCM.setVisible(true);
 			} else if ("QCM REP. MULTIPLE".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);
@@ -375,7 +390,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 				this.temps  = Integer.parseInt(this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60 + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1));
 				this.points = Integer.parseInt(this.champPoints.getText());
 
-				PanelQCM panelQCM = new PanelQCM(this.ctrl,this.difficulte,this.notion,this.points,this.temps,this.panelBanque,false);
+				PanelQCM panelQCM = new PanelQCM(this.ctrl,cheminDossier, this.imageFond, this.lstLiens, this.difficulte,this.notion,this.points,this.temps,this.panelBanque,false, this.txtaQuestion, this.txtexQuestion);
 				panelQCM.setVisible(true);
 			} else if("EntiteAssociation".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);
@@ -397,8 +412,16 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			JFileChooser fileChooser = new JFileChooser();
 			int returnValue = fileChooser.showOpenDialog(null);
 
-			if(returnValue == JFileChooser.APPROVE_OPTION){
-				this.imageFond = fileChooser.getSelectedFile().getAbsolutePath();
+			if(returnValue == JFileChooser.APPROVE_OPTION)
+			{
+				String tmpVerif = fileChooser.getSelectedFile().getAbsolutePath();
+
+				if(tmpVerif.endsWith(".png") || tmpVerif.endsWith(".jpg") || tmpVerif.endsWith(".jpeg"))
+				{
+					this.imageFond = fileChooser.getSelectedFile().getAbsolutePath();
+				}else{
+					JOptionPane.showMessageDialog(null, "Vous ne devez choisir que des images en .jpg, .png ou .jpeg", "Information", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 
@@ -407,17 +430,9 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			JFileChooser fileChooser = new JFileChooser();
 			int returnValue = fileChooser.showOpenDialog(null);
 
-			if(returnValue == JFileChooser.APPROVE_OPTION){
+			if(returnValue == JFileChooser.APPROVE_OPTION)
+			{
 				this.lstLiens.add(fileChooser.getSelectedFile().getAbsolutePath());
-
-				Path sourcePath = Paths.get(fileChooser.getSelectedFile().getAbsolutePath()); // Path of the source file
-				Path destinationPath = Paths.get("java/data/"+  +"destinationFile.txt"); // Path of the destination file
-
-				try {
-					Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-				} catch (Exception ex) {
-					System.err.println("Error occurred: " + ex.getMessage());
-				}
 			}
 		}
 	}

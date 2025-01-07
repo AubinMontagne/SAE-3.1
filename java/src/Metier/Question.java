@@ -2,13 +2,11 @@ package src.Metier;
 
 import javax.swing.JEditorPane;
 import javax.swing.text.EditorKit;
-import java.io.File;
-import java.io.FileReader;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,11 +39,49 @@ public abstract class Question{
         this.imageChemin     = imageChemin;
         this.listeFichiers   = new ArrayList<>();
         this.id              = id;
+
+        this.sauvegarderQuestion();
+    }
+
+    private  void sauvegarderQuestion()
+    {
+        File fileComplement = new File("java/data/"+ this.notion.getRessourceAssociee().getNom() + "/" + this.notion + "/Question " + this.id  + "/Compléments");
+
+        fileComplement.mkdirs();
+    }
+
+    public boolean supprimerQuestionDossier()
+    {
+        File dossier = new File("java/data/"+ this.notion.getRessourceAssociee().getNom() + "/" + this.notion + "/Question " + this.id);
+
+        if(dossier.exists())
+            if(dossier.delete())
+                return true;
+        return false;
+    }
+
+    public static boolean sauvegarderFichier(String chemin, JEditorPane editeur)
+    {
+        try{
+            File fichier = new File(chemin);
+
+            FileWriter writer = new FileWriter(fichier);
+
+            if(editeur != null && editeur.getText() != null)
+                writer.write(editeur.getText());
+
+            writer.close();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
 	// Get
     public String   getDossierChemin()       {return dossierChemin;}
-    public String   getEnonceText() {
+    public String   getEnonce(){
         File file = new File(this.dossierChemin + "/enonce.rtf");
 
         try {
@@ -54,13 +90,38 @@ public abstract class Question{
 
             EditorKit kitRtf = p.getEditorKitForContentType("text/rtf");
             kitRtf.read(new FileReader(file), p.getDocument(), 0);
-            kitRtf = null;
+
+            EditorKit kitHtml = p.getEditorKitForContentType("text/txt");
+            Writer writer = new StringWriter();
+            kitHtml.write(writer, p.getDocument(), 0, p.getDocument().getLength());
+
+            return writer.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public String getEnonceText() {
+        File file = new File(this.dossierChemin + "/enonce.rtf");
+
+        try {
+            JEditorPane p = new JEditorPane();
+            p.setContentType("text/rtf");
+
+            EditorKit kitRtf = p.getEditorKitForContentType("text/rtf");
+            kitRtf.read(new FileReader(file), p.getDocument(), 0);
 
             EditorKit kitHtml = p.getEditorKitForContentType("text/html");
             Writer writer = new StringWriter();
             kitHtml.write(writer, p.getDocument(), 0, p.getDocument().getLength());
 
-            return writer.toString();
+            String res = writer.toString();
+
+            System.out.println("Bouigo : !!!"+res);
+            res = res.substring(res.indexOf("<style>"), res.indexOf("</style>")) + res.substring(res.indexOf("<p"), res.indexOf("</p>"));
+            res = res.replace("\n", "");
+
+            return res;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,6 +138,8 @@ public abstract class Question{
         }
         return content;
     }
+
+
     public String getExplicationText(){
         File file = new File(this.dossierChemin + "/explication.rtf");
 
@@ -92,7 +155,13 @@ public abstract class Question{
             Writer writer = new StringWriter();
             kitHtml.write(writer, p.getDocument(), 0, p.getDocument().getLength());
 
-            return writer.toString();
+            String res = writer.toString();
+
+            System.out.println(res);
+            res = res.substring(res.indexOf("<style>"), res.indexOf("</style>")) + res.substring(res.indexOf("<p"), res.indexOf("</p>"));
+            res = res.replace("\n", "");
+
+            return res;
         } catch (Exception e) {
             e.printStackTrace();
         }

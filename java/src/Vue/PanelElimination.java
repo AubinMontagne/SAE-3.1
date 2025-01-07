@@ -80,6 +80,10 @@ public class PanelElimination extends JFrame implements ActionListener
 		// Activation des listeners
 		boutonAjoutReponse.addActionListener(this);
 		boutonEnregistrer.addActionListener(this);
+
+		//Ajout de deux réponses pour rendre plus beau
+		this.ajouterReponse();
+		this.ajouterReponse();
 	}
 
 	// Methode

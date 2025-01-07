@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.util.Iterator;
 
 import src.Metier.Question;
 import src.Metier.QCM;
@@ -48,7 +49,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 		this.setLayout (new BorderLayout());
 		this.setVisible(true);
 
-        String[] tabEntetes = {"Question", "Difficulté", "Ressource", "Notion", "Points", "Type de question"};
+        String[] tabEntetes = {"Enoncé", "Difficulté", "Ressource", "Notion", "Points", "Type de question"};
 
 		this.listQ = this.ctrl.getQuestions();
         String[][] data = new String[this.listQ.size()][6];
@@ -69,7 +70,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 				typeQuestion = "Association d'éléments";
 			}
 
-			data[i][0] = this.listQ.get(i).getEnonceText();
+			data[i][0] = this.listQ.get(i).getEnonce();
 			data[i][1] = this.listQ.get(i).getDifficulte().getNom();
 			data[i][2] = this.listQ.get(i).getNotion().getRessourceAssociee().getNom();
 			data[i][3] = this.listQ.get(i).getNotion().getNom();
@@ -139,11 +140,15 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 
 		if (this.btnSupp == e.getSource()) {
 			int row = this.tbQuestion.getSelectedRow();
-			for( Question q : this.ctrl.getQuestions() ){
-				if( this.listQ.get(row) == q){
+			Iterator<Question> iterator = this.ctrl.getQuestions().iterator();
+			while (iterator.hasNext()) {
+				Question q = iterator.next();
+				if (this.listQ.get(row) == q) {
+					iterator.remove();
 					this.ctrl.supprimerQuestion(q);
 					this.maj();
 					this.ctrl.miseAJourFichiers();
+					break;
 				}
 			}
 		}
@@ -171,7 +176,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 	}
 
 	public void maj(){
-		String[] tabEntetes = {"Question", "Difficulté", "Ressource", "Notion", "Points", "Type de question"};
+		String[] tabEntetes = {"Enoncé", "Difficulté", "Ressource", "Notion", "Points", "Type de question"};
 		ArrayList<Question> questList;
 
 		if (this.notion != null) {
@@ -198,7 +203,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 				typeQuestion = "Association d'éléments";
 			}
 
-			data[i][0] =      questList.get(i).getEnonceText();
+			data[i][0] =      questList.get(i).getEnonce();
 			data[i][1] = this.listQ.get(i).getDifficulte().getNom();
 			data[i][2] =      questList.get(i).getNotion().getRessourceAssociee().getNom();
 			data[i][3] =      questList.get(i).getNotion().getNom();

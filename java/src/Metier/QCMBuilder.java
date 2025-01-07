@@ -1223,7 +1223,7 @@ public class QCMBuilder
                         "                        <!-- Pour un QCM -->\n" +
                         "                        <h2> Type : Association d'éléments ( Un seul élément à gauche pour un seul à droite ) </h2>" +
                         "\n" +
-                        "                        <h3> \"" + q.getEnonceText() + "\" </h3>\n" +
+                        "                        <h3> " + q.getEnonceText() + " </h3>\n" +
                         "                        <!--<img class=\"imgQuestion\" src=\"./src/14.jpg\" id=\"imgTxt\" draggable=\"false\">!-->\n" + //Si on veut mettre une image c'est ici
                         "\n" +
                         "                        <div id=\"zoneRepAssos\">\n" +

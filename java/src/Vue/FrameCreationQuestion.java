@@ -12,7 +12,6 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
     private PanelBanque panelBanque;
 
     private Controleur ctrl;
-
     // Constructeur
     /**
      * Constructeur de la class FrameCreationQuestion
@@ -22,7 +21,7 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
         this.ctrl = ctrl;
 
         this.setTitle             ("QCM Builder - Création de la question");
-        this.setSize              (900,500);
+        this.setSize              (1100,500);
         this.setMinimumSize       (this.getSize());
         this.setLocationRelativeTo(null);
         this.setIconImage(new ImageIcon("java/data/Images/icon.png").getImage());
