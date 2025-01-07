@@ -61,7 +61,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			new ImageIcon("java/data/Images/imgDif/D.png")
 	};
 
-	public PanelCreationQuestion(FrameCreationQuestion frameCreationQuestion, Controleur ctrl ,PanelBanque panelBanque){
+	public PanelCreationQuestion(FrameCreationQuestion frameCreationQuestion, Controleur ctrl ,PanelBanque panelBanque, Ressource resChoisie, Notion notionChoisie) {
 		this.ctrl             = ctrl;
 		this.panelBanque      = panelBanque;
 		this.frameCreationQuestion = frameCreationQuestion;
@@ -71,10 +71,10 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 		this.lstLiens = new ArrayList<>(5);
 
-		Ressource placeHolder = new Ressource("PlaceHolder","PlaceHolder");
+		Ressource placeHolder = new Ressource(" "," ");
 
 		this.ressources.add(0,placeHolder);
-		this.notions   .add(0,new Notion("PlaceHolder",placeHolder));
+		this.notions   .add(0,new Notion(" ",placeHolder));
 
 		setLayout(new BorderLayout());
 
@@ -254,6 +254,20 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 		add(panelType, BorderLayout.SOUTH);
 		setVisible(true);
+
+		if (resChoisie != null){
+			this.listeRessources.removeItemAt(0);
+			this.ressources     .remove(0);
+			
+			this.listeRessources.setSelectedItem(resChoisie);
+			
+			this.listeNotions.removeAllItems();
+			for (Notion notion : this.ctrl.getNotionsParRessource(resChoisie)) {
+				this.listeNotions.addItem(notion);
+			}
+			this.listeNotions.setSelectedItem(notionChoisie);
+			this.listeNotions.setEnabled(true);
+		}
 	}
 
 	// Methode
@@ -294,7 +308,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		if (e.getSource() == this.listeRessources && e.getStateChange() == ItemEvent.SELECTED) {
-			if (this.listeRessources.getItemAt(0).getNom().equals("PlaceHolder")){
+			if (this.listeRessources.getItemAt(0).getNom().equals(" ")){
 				this.listeRessources.removeItemAt(0);
 				this.ressources     .remove(0);
 				this.notions        .remove(0);
@@ -327,7 +341,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 	public void actualiser(){
 		if(this.panelBanque != null) {this.panelBanque.maj();}
-		new FrameCreationQuestion(this.ctrl, this.panelBanque);
+		new FrameCreationQuestion(this.ctrl, this.panelBanque, this.ressources.get(this.listeRessources.getSelectedIndex()), this.notions.get(this.listeNotions.getSelectedIndex()));
 		this.frameCreationQuestion.dispose();
 	}
 

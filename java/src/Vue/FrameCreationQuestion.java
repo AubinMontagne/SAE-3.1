@@ -1,6 +1,8 @@
 package src.Vue;
 
 import src.Controleur;
+import src.Metier.Notion;
+import src.Metier.Ressource;
 
 import javax.swing.*;
 import java.awt.event.WindowListener;
@@ -29,7 +31,7 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelCreationQuestion(this, ctrl, null) );
+        this.add(new PanelCreationQuestion(this, ctrl, null, null, null) );
         this.addWindowListener(this);
 
         setVisible(true);
@@ -43,7 +45,7 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
         return null;
     }
 
-    public FrameCreationQuestion( Controleur ctrl, PanelBanque panelBanque){
+    public FrameCreationQuestion( Controleur ctrl, PanelBanque panelBanque, Ressource ressource, Notion notion){
         this.ctrl = ctrl;
         this.panelBanque = panelBanque;
 
@@ -56,16 +58,16 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelCreationQuestion(this, ctrl,this.panelBanque) );
+        this.add(new PanelCreationQuestion(this, ctrl,this.panelBanque, ressource, notion) );
         this.addWindowListener(this);
 
         setVisible(true);
     }
 
-    public static FrameCreationQuestion creerFrameCreationQuestion(Controleur ctrl, PanelBanque panelBanque){
+    public static FrameCreationQuestion creerFrameCreationQuestion(Controleur ctrl, PanelBanque panelBanque, Ressource ressource, Notion notion){
         if(FrameCreationQuestion.nbFrame == 0){
             FrameCreationQuestion.nbFrame++;
-            return new FrameCreationQuestion( ctrl, panelBanque);
+            return new FrameCreationQuestion( ctrl, panelBanque, ressource, notion);
         }
         return null;
     }

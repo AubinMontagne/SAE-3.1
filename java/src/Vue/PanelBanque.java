@@ -80,6 +80,9 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
         this.tbQuestion = new JTable(model);
 
 		this.mdRessources   = new JComboBox<>(ctrl.getRessources().toArray(new Ressource[0]));
+		Ressource placeHolder = new Ressource(" "," ");
+		this.mdRessources.insertItemAt(placeHolder, 0);
+		this.mdRessources.setSelectedItem(placeHolder);
 		this.mdNotions		= new JComboBox<>();
 
 		JPanel panelParametre = new JPanel();
@@ -135,8 +138,11 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 	 */
 	public void actionPerformed(ActionEvent e){
         if ( this.btnCreaQuest == e.getSource())
-            FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl, this);
-
+			if (!((Ressource)(this.mdRessources.getSelectedItem())).getId().equals(" ")) {
+            	FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl, this, (Ressource)(this.mdRessources.getSelectedItem()), (Notion)(this.mdNotions.getSelectedItem()));
+			} else {
+				FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl, this, null, null);
+			}
 		if (this.btnSupp == e.getSource()) {
 			int row = this.tbQuestion.getSelectedRow();
 			Iterator<Question> iterator = this.ctrl.getQuestions().iterator();
@@ -226,7 +232,10 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 		this.ignorerEvents = true;
 
 		if (e.getSource() == this.mdRessources){
-			System.out.println("Ressource");
+			if (this.mdRessources.getSelectedIndex() == 0 && ((Ressource)(this.mdRessources.getSelectedItem())).getId().equals(" ")) {
+				this.mdRessources.removeItemAt(0);
+			}
+
 			Ressource ressource = (Ressource) this.mdRessources.getSelectedItem();
 			this.notion = (Notion) this.mdNotions.getSelectedItem();
 
