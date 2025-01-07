@@ -43,9 +43,6 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 		this.videTitre          = true;
 		this.videRessource      = true;                             
 
-
-
-
     	UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
 
 		this.listRessources   = ctrl.getRessources();
