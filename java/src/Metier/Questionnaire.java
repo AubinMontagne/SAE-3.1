@@ -95,14 +95,13 @@ public class Questionnaire{
     public void setChronoBool(boolean chronoBool) {this.chronoBool = chronoBool; }
     public void addQuestion  (Question question)  {this.lstQuestion.add(question); }
 
-   	public void initLstQuestions(Metier metier){
-      	for (Notion n : this.lstNotions) {
+   public void initLstQuestions(Metier metier){
+     	for (Notion n : this.lstNotions) {
 			for (ArrayList<Integer> lstIntegerNotion : this.lstNbQuestionsParDifficulte) {
 				if (lstIntegerNotion.get(0) == this.lstNotions.indexOf(n)) {
 					for (int i = 0; i < lstIntegerNotion.get(2); i++) {
-						this.addQuestion(metier.getQuestionAleatoire(
-                                n, Difficulte.getDifficulteByIndice(lstIntegerNotion.get(1) ) )
-                        );
+                  Question questionTemp = metier.getQuestionAleatoire(n, Difficulte.getDifficulteByIndice(lstIntegerNotion.get(1) ) );
+						if (questionTemp != null) {this.addQuestion(questionTemp);}
 					}
 				}
 			}
