@@ -49,7 +49,7 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
     	UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
 
 		this.listRessources   = ctrl.getRessources();
-		Ressource placeHolder = new Ressource("PlaceHolder","PlaceHolder");
+		Ressource placeHolder = new Ressource(" "," ");
 		this.listRessources.add(0,placeHolder);
 
     	// ------ Section supérieure ------
@@ -131,7 +131,7 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getSource() == this.mdRessources && e.getStateChange() == ItemEvent.SELECTED) {
-			if (this.mdRessources.getSelectedIndex() == 0 && this.listRessources.get(0).getId().equals("PlaceHolder")) {
+			if (this.mdRessources.getSelectedIndex() == 0 && this.listRessources.get(0).getId().equals(" ")) {
 				this.mdRessources.removeItemAt(0);
 				this.listRessources.remove(0);
 			}

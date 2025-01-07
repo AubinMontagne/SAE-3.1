@@ -10,8 +10,8 @@ java/src/TestJS.java
 # Java Metier files
 
 
-java/src/Metier/Notion.java
 java/src/Metier/Ressource.java
+java/src/Metier/Notion.java
 java/src/Metier/Question.java
 java/src/Metier/Difficulte.java
 java/src/Metier/AssociationElement.java
@@ -43,6 +43,12 @@ java/src/Vue/PanelCreationRessource.java
 java/src/Vue/PanelElimination.java
 java/src/Vue/PanelEntiteAssociation.java
 java/src/Vue/PanelModifQuestion.java
+java/src/Vue/PanelModifAssociation.java
+java/src/Vue/PanelModifAssociationReponse.java
+java/src/Vue/PanelModifElementation.java
+java/src/Vue/PanelModifElementationReponse.java
+java/src/Vue/PanelModifQCM.java
+java/src/Vue/PanelModifQCMReponse.java
 java/src/Vue/PanelNotion.java
 java/src/Vue/PanelQCM.java
 java/src/Vue/PanelQuestionnaire.java
