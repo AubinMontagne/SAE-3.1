@@ -32,7 +32,7 @@ public class FrameModifQuestion extends JFrame implements WindowListener {
 
         if(hmReponsesQCM != null){
             HashMap<String, Boolean> hmReponses = hmReponsesQCM;
-            this.add(new PanelModifQCM(ctrl, q, hmReponses) );
+            this.add(new  PanelModifQCM(ctrl, q, hmReponses) );
         } else if ( hmReponsesElimRep != null ){
             HashMap<String, Double[]> hmReponses = hmReponsesElimRep;
             this.add(new PanelModifElimination(ctrl, q, hmReponses) );

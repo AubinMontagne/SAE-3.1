@@ -32,11 +32,14 @@ public class PanelQCM extends JFrame implements ActionListener {
 	private List<String> lstLiens;
 	private JEditorPane enonce;
 	private JEditorPane explication;
+	private int 		idMax;
 
 	private PanelBanque panelBanque;
+	private PanelCreationQuestion panelCreationQuestion;
 
-	public PanelQCM(Controleur ctrl, String cheminDossier, String cheminImg, List<String> lstLiens, int difficulte, String notion, int points, int temps, PanelBanque panelBanque, boolean estModeUnique, JEditorPane enonce, JEditorPane explication) {
+	public PanelQCM(PanelCreationQuestion panelCreationQuestion, Controleur ctrl, String cheminDossier, String cheminImg, List<String> lstLiens, int difficulte, String notion, int points, int temps, PanelBanque panelBanque, boolean estModeUnique, JEditorPane enonce, JEditorPane explication, int idMax) {
 		this.ctrl          = ctrl;
+		this.panelCreationQuestion = panelCreationQuestion;
 
 		this.cheminDossier = cheminDossier;
 		this.cheminImg	   = cheminImg;
@@ -47,6 +50,7 @@ public class PanelQCM extends JFrame implements ActionListener {
 		this.points        = points;
 		this.temps         = temps;
 		this.lstLiens	   = lstLiens;
+		this.idMax   	   = idMax;
 
 		this.enonce = enonce;
 		this.explication = explication;
@@ -165,26 +169,17 @@ public class PanelQCM extends JFrame implements ActionListener {
 			return;
 		}
 
-		int idMax = 0;
-		for(Question q : ctrl.getQuestions())
-		{
-			if(q.getId() > idMax)
-			{
-				idMax = q.getId();
-			}
-		}
-
 		this.ctrl.creerQuestionQCM(
 				this.cheminDossier,
 				this.difficulte,
 				this.notion,
 				this.temps,
 				this.points,
-				false,
+				this.estModeUnique,
 				reponses,
 				this.cheminImg,
 				this.lstLiens,
-				idMax
+				this.idMax
 		);
 
 		Question.sauvegarderFichier(this.cheminDossier+"/enonce.rtf", this.enonce);
@@ -194,6 +189,7 @@ public class PanelQCM extends JFrame implements ActionListener {
 
 		JOptionPane.showMessageDialog(this, "Question enregistrée avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
 
+		this.panelCreationQuestion.actualiser();
 		dispose();
 	}
 

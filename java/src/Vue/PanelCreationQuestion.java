@@ -11,16 +11,13 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.text.MaskFormatter;
-import javax.swing.text.NumberFormatter;
+import javax.swing.text.*;
+import javax.swing.text.rtf.RTFEditorKit;
+
 import src.Controleur;
 import src.Metier.Notion;
 import src.Metier.Question;
@@ -54,8 +51,8 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	private List<String> lstLiens;
 
 
-
-	PanelBanque panelBanque;
+	private FrameCreationQuestion frameCreationQuestion;
+	private PanelBanque panelBanque;
 
 	private static final ImageIcon[] IMAGES_DIFFICULTE = {
 			new ImageIcon("java/data/Images/imgDif/TF.png"),
@@ -64,9 +61,11 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			new ImageIcon("java/data/Images/imgDif/D.png")
 	};
 
-	public PanelCreationQuestion(Controleur ctrl ,PanelBanque panelBanque){
+	public PanelCreationQuestion(FrameCreationQuestion frameCreationQuestion, Controleur ctrl ,PanelBanque panelBanque){
 		this.ctrl             = ctrl;
 		this.panelBanque      = panelBanque;
+		this.frameCreationQuestion = frameCreationQuestion;
+
 		this.ressources       = this.ctrl.getRessources();
 		this.notions          = this.ctrl.getNotions();
 
@@ -130,8 +129,14 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 		JLabel lblIntituleQuestion = new JLabel("Question : ");
 		this.txtaQuestion = new JEditorPane();
+		this.txtaQuestion.setEditorKit(new StyledEditorKit()); // Permet la gestion des styles
+		this.txtaQuestion.setEditable(true); // Rendre éditable
 		JLabel lblExpliquationQuestion = new JLabel("Explication : ");
 		this.txtexQuestion = new JEditorPane();
+		this.txtexQuestion.setEditorKit(new StyledEditorKit()); // Permet la gestion des styles
+		this.txtexQuestion.setEditable(true); // Rendre éditable
+
+
 
 
 		JPanel panelCentrale = new JPanel(new GridLayout(1, 2, 5, 5));
@@ -139,7 +144,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 		JPanel panelSelection = new JPanel(new BorderLayout());
 		JPanel panelLabels    = new JPanel(new GridLayout(3, 1, 5, 5));
-		JPanel panelDonnées  = new JPanel(new GridLayout(3, 1, 5, 5));
+		JPanel panelDonnées   = new JPanel(new GridLayout(3, 1, 5, 5));
 
 		JLabel labelRessource = new JLabel("Ressource :");
 		this.listeRessources  = new JComboBox<Ressource>();
@@ -320,6 +325,12 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		}
 	}
 
+	public void actualiser(){
+		if(this.panelBanque != null) {this.panelBanque.maj();}
+		new FrameCreationQuestion(this.ctrl, this.panelBanque);
+		this.frameCreationQuestion.dispose();
+	}
+
 	/**
 	 * Methode actionPerformed
 	 * @param e L'évènement à traiter
@@ -350,6 +361,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 					idMax = q.getId();
 				}
 			}
+			idMax++;
 
 			System.out.println(this.notion);
 			String cheminDossier = "java/data/" + this.ctrl.getNotionByNom(this.notion).getRessourceAssociee().getNom() + "/" + this.ctrl.getNotionByNom(notion).getNom() + "/Question " + idMax;
@@ -371,6 +383,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			}
 			String typeSelectionne = (String) this.listeTypes.getSelectedItem();
 
+
 			if ("QCM REP. UNIQUE".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);
 				Notion n = (Notion)(this.listeNotions.getSelectedItem());
@@ -381,7 +394,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 				);
 				this.points = Integer.parseInt(this.champPoints.getText());
 
-				PanelQCM panelQCM = new PanelQCM(this.ctrl,cheminDossier, this.imageFond, this.lstLiens, this.difficulte,this.notion,this.points,this.temps,this.panelBanque,true, this.txtaQuestion, this.txtexQuestion);
+				PanelQCM panelQCM = new PanelQCM(this, this.ctrl,cheminDossier, this.imageFond, this.lstLiens, this.difficulte,this.notion,this.points,this.temps,this.panelBanque,true, this.txtaQuestion, this.txtexQuestion,idMax);
 				panelQCM.setVisible(true);
 			} else if ("QCM REP. MULTIPLE".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);
@@ -390,7 +403,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 				this.temps  = Integer.parseInt(this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60 + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1));
 				this.points = Integer.parseInt(this.champPoints.getText());
 
-				PanelQCM panelQCM = new PanelQCM(this.ctrl,cheminDossier, this.imageFond, this.lstLiens, this.difficulte,this.notion,this.points,this.temps,this.panelBanque,false, this.txtaQuestion, this.txtexQuestion);
+				PanelQCM panelQCM = new PanelQCM(this, this.ctrl,cheminDossier, this.imageFond, this.lstLiens, this.difficulte,this.notion,this.points,this.temps,this.panelBanque,false, this.txtaQuestion, this.txtexQuestion,idMax);
 				panelQCM.setVisible(true);
 			} else if("EntiteAssociation".equals(typeSelectionne)) {
 				System.out.println(typeSelectionne);
@@ -405,6 +418,48 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			}
 		}
 
+
+		if(e.getSource() == null)
+		{
+			String tmp = "";
+			String tmpMid = "\\b" +  this.txtaQuestion.getSelectedText() + "\\b0";
+			String tmpDeb = this.txtaQuestion.getText().substring(0, this.txtaQuestion.getSelectionStart());
+			String tmpFin = this.txtaQuestion.getText().substring(this.txtaQuestion.getSelectionEnd());
+			tmp = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang1033{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}\\viewkind4\\uc1\\pard\\sa200\\sl276\\slmult1\\f0\\fs22" +
+					tmpDeb + tmpMid + tmpFin + "\\par}";
+			this.txtaQuestion.setText(tmp);
+		}
+
+		if(e.getSource() == this.btnSouligner)
+		{
+			String tmp = "";
+			String tmpMid = "\\ul" +  this.txtaQuestion.getSelectedText() + "\\ul0";
+			String tmpDeb = this.txtaQuestion.getText().substring(0, this.txtaQuestion.getSelectionStart());
+			String tmpFin = this.txtaQuestion.getText().substring(this.txtaQuestion.getSelectionEnd());
+			tmp = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang1033{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}\\viewkind4\\uc1\\pard\\sa200\\sl276\\slmult1\\f0\\fs22" +
+					tmpDeb + tmpMid + tmpFin + "\\par}";
+			this.txtaQuestion.setText(tmp);
+		}
+
+
+		if(e.getSource() == this.btnGras)
+		{
+			StyledDocument doc = (StyledDocument) this.txtaQuestion.getDocument();
+			int start = this.txtaQuestion.getSelectionStart();
+			int end = this.txtaQuestion.getSelectionEnd();
+
+			if (start != end) { // Vérifier si une sélection existe
+				// Créer un style pour le gras
+				StyleContext context = new StyleContext();
+				Style boldStyle = context.addStyle("Bold", null);
+				StyleConstants.setBold(boldStyle, true);
+
+				// Appliquer le style au texte sélectionné
+				doc.setCharacterAttributes(start, end - start, boldStyle, false);
+			} else {
+				JOptionPane.showMessageDialog(null, "Sélectionnez un texte pour le mettre en gras.");
+			}
+		}
 
 
 		if(e.getSource() == this.btnAjouterImage)

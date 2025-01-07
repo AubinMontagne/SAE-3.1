@@ -57,7 +57,7 @@ public class Metier{
 
 	/**
 	 * Méthode ajouterQuestion
-	 * Cette méthode ajoute, si la question est pas nul, une question a la List de questions
+	 * Cette méthode ajouteQuestion, si la question est pas nul, une question a la List de questions
 	 * @param question La question à ajouter
 	 * @return		   Vrai si l'ajout a réussi, sinon faux
 	 */
@@ -213,8 +213,13 @@ public class Metier{
 	public ArrayList<Question>  getQuestions() {return this.lstQuestions; }
 
 	public boolean ajouterQuestionQCM(String dossierChemin, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses, String imageChemin, List<String> lstLiens, int id) {
-
-		QCM questionQCM = new QCM(dossierChemin, difficulte, notion, temps, points, vraiOuFaux,"fic00000"+imageChemin.substring(imageChemin.lastIndexOf(".")) ,id);
+		String imageChemin2;
+		if (dossierChemin == null || dossierChemin.isEmpty()) {
+			imageChemin2 = null;
+		} else {
+			imageChemin2 = "fic00000"+dossierChemin.substring(dossierChemin.lastIndexOf("."));
+		}
+		QCM questionQCM = new QCM(dossierChemin, difficulte, notion, temps, points, vraiOuFaux,imageChemin2 ,id);
 
 		// Ajout des réponses avec leurs booléens
 		for (HashMap.Entry<String, Boolean> entry : reponses.entrySet()) {
@@ -230,6 +235,7 @@ public class Metier{
 
 				Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
 			} catch (Exception ex) {
+				ex.printStackTrace();
 				System.err.println("Erreur : " + ex.getMessage());
 				return false;
 			}

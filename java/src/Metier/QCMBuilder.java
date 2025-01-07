@@ -3,6 +3,7 @@ package src.Metier;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,6 +66,42 @@ public class QCMBuilder
         {
             file.mkdir();
         }
+
+        for(Question q : this.questionnaire.getLstQuestion())
+        {
+            System.out.println(q.getId() + " Identifiant !");
+            File dossierTemp = new File(path + "/" + this.questionnaire.getNom() + "/data/Question " + q.getId() + "/Compléments" );
+
+            dossierTemp.mkdirs();
+        }
+
+
+        try {
+
+            for(Question q : this.questionnaire.getLstQuestion())
+            {
+                for(String s : q.getListeFichiers())
+                {
+                    Path fileSource = Paths.get("java/data/" + q.getNotion().getRessourceAssociee().getNom() + "/" + q.getNotion().getNom() + "/Question " + q.getId() + "/Compléments/" + s);
+                    Path fileDest   = Paths.get(path + "/" + this.questionnaire.getNom() + "/data/Question " + q.getId() + "/Compléments/"+s);
+                    Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
+                }
+
+                Path fileSource = Paths.get("java/data/" + q.getNotion().getRessourceAssociee().getNom() + "/" + q.getNotion().getNom() + "/Question " + q.getId() + "/Compléments/" + q.getImageChemin());
+                Path fileDest = Paths.get(path + "/" + this.questionnaire.getNom() + "/data/Question " + q.getId() + "/Compléments/" + q.getImageChemin());
+                Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
+
+            }
+
+        } catch (Exception ex)
+        {
+            ex.printStackTrace();
+            System.err.println("Erreur : " + ex.getMessage());
+            return false;
+        }
+
+
+
         return true;
     }
 
@@ -207,6 +244,7 @@ public class QCMBuilder
         }catch (Exception e){
             e.printStackTrace();
         }
+
 
         return true;
     }
@@ -889,7 +927,7 @@ public class QCMBuilder
                     {
                         fichierComplementaires = fichierComplementaires + "<img class=\"imgQuestion\" src=\"java/data/" + q.getNotion().getRessourceAssociee().getNom() + "/" + q.getNotion().getNom() + "/" + q.getId() + "/" + liens + "\" draggable=\"false\">\n";
                     }else{
-                        fichierComplementaires = fichierComplementaires + "<a href=\"java/data/" + q.getNotion().getRessourceAssociee().getNom() + "/" + q.getNotion().getNom() + "/" + q.getId() + "/" + liens + "\" download=\"" + liens + "\" target=\"_blank\"> Télécharger le fichier complémentaire numéro " + numFichierComp +"</a>\n";
+                        fichierComplementaires = fichierComplementaires + "<a href=\"./data/Question " + q.getId() + "/Compléments/" + liens + "\" download=\"" + liens + "\" target=\"_blank\"> Télécharger le fichier complémentaire numéro " + numFichierComp +"</a>\n";
                     }
                     numFichierComp++;
                 }
@@ -924,6 +962,13 @@ public class QCMBuilder
                     txtChoixRep = "Question à choix unique";
                 }
 
+                String imageEnonce = "";
+
+                if(q.getImageChemin() != null)
+                {
+                    imageEnonce = "<img class=\"imgQuestion\" src=\"./data/Question " + q.getId() + "/Compléments/" + q.getImageChemin() +"\" alt=\""  + q.getImageChemin() + "\">\n";
+                }
+
                 res += "\n\nfunction question" + (questionnaire.getLstQuestion().indexOf(q) + 1) + "()\n" +
                         "{\n" +
                         "    //Variables\n" +
@@ -931,7 +976,7 @@ public class QCMBuilder
                         "    const difficulte = \"" + q.getDifficulte().getNom() + "\";\n" +
                         "    const tempsDeReponse = " + q.getTemps() + ";\n" +
                         "    let points = " + q.getPoint() + ";\n" +
-                        "    let texteExplications = \"" + q.getExplicationText() + "\";\n" +
+                        "    let texteExplications = '" + q.getExplicationText() + "';\n" +
                         "    let notion = '" + q.getNotion() + "';\n" +
                         "\n" +
                         "\n" +
@@ -973,7 +1018,8 @@ public class QCMBuilder
                         "                        <!-- Pour un QCM -->\n" +
                         "\n" +
                         "                        <h2> Type : " + txtChoixRep + "</h2>" +
-                        "                        <h3> \"" + q.getEnonceText() + "\" </h3>\n" +
+                                                imageEnonce +
+                        "                        <h3> " + q.getEnonceText() + " </h3>\n" +
                         "                        " + fichierComplementaires                          +
                         "                        <div id=\"zoneRep\">\n" +
                         "                             " + reponses + "\n" +
@@ -1171,6 +1217,14 @@ public class QCMBuilder
                 }
                 bonnesRep += "]";
 
+                String imageEnonce = "";
+
+                if(q.getImageChemin() != null)
+                {
+                    imageEnonce = "<img class=\"imgQuestion\" src=\"./data/Question " + q.getId() + "/Compléments/" + q.getImageChemin() +"\" alt=\""  + q.getImageChemin() + "\">\n";
+                }
+
+
 
                 res += "\n\nasync function question" + (questionnaire.getLstQuestion().indexOf(q) + 1) + "()\n" +
                         "{\n" +
@@ -1181,7 +1235,7 @@ public class QCMBuilder
                         "    const difficulte = '"+ q.getDifficulte().getNom() +"';\n" +
                         "    const tempsDeReponse = "+ q.getTemps() +";\n" +
                         "    let points = " + q.getPoint() +";\n" +
-                        "    let texteExplications = " + "'" + q.getExplicationText() +"'" + ";\n" +
+                        "    let texteExplications = '" + q.getExplicationText() + "';\n" +
                         "    let notion = '" + q.getNotion().getNom() + "';\n" +
                         "\n" +
                         "    \n" +
@@ -1221,10 +1275,9 @@ public class QCMBuilder
                         "\n" +
                         "                        <br>\n" +
                         "                        <!-- Pour un QCM -->\n" +
-                        "                        <h2> Type : Association d'éléments ( Un seul élément à gauche pour un seul à droite ) </h2>" +
-                        "\n" +
+                        "                        <h2> Type : Association d'éléments ( Un seul élément à gauche pour un seul à droite ) </h2>\n" +
+                        imageEnonce + "\n" +
                         "                        <h3> " + q.getEnonceText() + " </h3>\n" +
-                        "                        <!--<img class=\"imgQuestion\" src=\"./src/14.jpg\" id=\"imgTxt\" draggable=\"false\">!-->\n" + //Si on veut mettre une image c'est ici
                         "\n" +
                         "                        <div id=\"zoneRepAssos\">\n" +
                         "                            <div class=\"casesInternes\" id=\"repGauche\">\n";
@@ -1612,6 +1665,14 @@ public class QCMBuilder
 
                 eliminations += "];";
 
+                String imageEnonce = "";
+
+                if(q.getImageChemin() != null)
+                {
+                    imageEnonce = "<img class=\"imgQuestion\" src=\"./data/Question " + q.getId() + "/Compléments/" + q.getImageChemin() +"\" alt=\""  + q.getImageChemin() + "\">\n";
+                }
+
+
 
 
                 res += "function question" + (questionnaire.getLstQuestion().indexOf(q) + 1) + "()\n" +
@@ -1622,7 +1683,7 @@ public class QCMBuilder
                         "    let nbEliminations = 0;\n" +
                         "    let points = " + q.getPoint() + ";\n" +
                         "    let coutElimination = " + coutElimination + " ;\n" +
-                        "    let texteExplications = " + "'Temp A remplacer'" + ";\n" +
+                        "    let texteExplications = '" + q.getExplicationText() + "';\n" +
                         "\n" +
                         "\n" +
                         "\n" +
@@ -1665,9 +1726,9 @@ public class QCMBuilder
                         "\n" +
                         "                        <br>\n" +
                         "                        <!-- Pour un Elimination -->\n" +
-                        "                        <h2> Type : Elimination de réponses </h2>" +
-                        "\n" +
-                        "                        <h3> \"" + q.getEnonceText() + "\" </h3>\n" +
+                        "                        <h2> Type : Elimination de réponses </h2>\n" +
+                        imageEnonce + "\n" +
+                        "                        <h3> " + q.getEnonceText() + " </h3>\n" +
                         "                        <div id=\"zoneRep\">\n" +
                         "                        "  + reponses +
                         "                        </div>\n" +

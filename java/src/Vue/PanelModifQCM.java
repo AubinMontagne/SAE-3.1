@@ -10,45 +10,43 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 import src.Controleur;
 import src.Metier.Notion;
-import src.Metier.Ressource;
 import src.Metier.Question;
+import src.Metier.Ressource;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class PanelModifQCM extends JPanel implements ActionListener, java.awt.event.ItemListener {
     private Controleur           ctrl;
     private JComboBox<Ressource> listeRessources;
     private JComboBox<Notion>    listeNotions;
+    private JComboBox<String>    listeTypes;
     private JButton              btnTresFacile, btnFacile, btnMoyen, btnDifficile;
     private JButton              btnConfirmer;
-    private JComboBox<String>    listeTypes;
+    private JButton				 btnGras, btnSouligner, btnAjouterImage, btnAjouterRessComp;
     private JLabel               labelMessage, labelResultat;
-    private ArrayList<Ressource> ressources;
-    private ArrayList<Notion>    notions;
+    private JTextField           champPoints;
+    private JTextField           champTemps;
 
-    private JTextField champPoints;
-    private JTextField champTemps;
-
-    private PanelBanque panelBanque;
-
-    private JTextArea txtaQuestion;
-    // A envoyer aux 3 autres panels
-
-    private int    difficulte;
-    private String notion;
-    private int    temps;
-    private int    points;
+    private JEditorPane txtaQuestion;
+    private JEditorPane txtexQuestion;
 
     private HashMap<String, Boolean> hmReponses;
+    private ArrayList<Ressource>     ressources;
+    private ArrayList<Notion>        notions;
+    private int                      difficulte;
+    private String                   notion;
+    private int                      temps;
+    private int                      points;
+    private List<String>             lstLiens;
 
     private Question q;
 
@@ -60,14 +58,14 @@ public class PanelModifQCM extends JPanel implements ActionListener, java.awt.ev
     };
 
     public PanelModifQCM(Controleur ctrl ,Question q, HashMap<String, Boolean> hmReponses) {
-        this.panelBanque      = panelBanque;
         this.ctrl             = ctrl;
         this.q                = q;
         this.difficulte       = this.q.getDifficulte().getIndice();
         this.ressources       = this.ctrl.getRessources();
         this.notions          = this.ctrl.getNotions();
         Ressource placeHolder = this.q.getNotion().getRessourceAssociee();
-        this.hmReponses = hmReponses;
+        this.hmReponses       = hmReponses;
+        this.lstLiens         = new ArrayList<>(5);
 
         this.ressources.add(0,placeHolder);
         this.notions   .add(0,this.q.getNotion());
@@ -80,13 +78,6 @@ public class PanelModifQCM extends JPanel implements ActionListener, java.awt.ev
         JPanel panelConfiguration = new JPanel(new GridLayout(2, 2, 5, 5));
         panelConfiguration.setBorder(BorderFactory.createTitledBorder("Configuration"));
 
-
-        // BAZAR Aubin
-        JLabel lblIntituleQuestion = new JLabel("Question : ");
-        this.txtaQuestion = new JTextArea(this.q.getEnonceText());
-
-        panelConfiguration.add(lblIntituleQuestion);
-        panelConfiguration.add(txtaQuestion);
 
         // Relier donnée
         JLabel labelPoints = new JLabel("Nombre de points :");
@@ -128,11 +119,24 @@ public class PanelModifQCM extends JPanel implements ActionListener, java.awt.ev
         panelConfiguration.add(labelTemps);
         panelConfiguration.add(this.champTemps);
 
-        add(panelConfiguration, BorderLayout.NORTH);
+        this.add(panelConfiguration, BorderLayout.NORTH);
 
         // Section centrale
-        JPanel panelSelection = new JPanel(new GridLayout(3, 2, 5, 5));
-        panelSelection.setBorder(BorderFactory.createTitledBorder("Sélection"));
+        JPanel panelText = new JPanel(new GridLayout(4,1));
+
+        JLabel lblIntituleQuestion = new JLabel("Question : ");
+        this.txtaQuestion = new JEditorPane();
+        this.txtaQuestion.setText( this.q.getEnonce());
+        JLabel lblExpliquationQuestion = new JLabel("Explication : ");
+        this.txtexQuestion = new JEditorPane();
+        this.txtexQuestion.setText( this.q.getExplicationRTF() );
+
+        JPanel panelCentrale = new JPanel(new GridLayout(3, 2, 5, 5));
+        panelCentrale.setBorder(BorderFactory.createTitledBorder("Sélection"));
+
+        JPanel panelSelection = new JPanel(new BorderLayout());
+        JPanel panelLabels    = new JPanel(new GridLayout(3, 1, 5, 5));
+        JPanel panelDonnées   = new JPanel(new GridLayout(3, 1, 5, 5));
 
         // ComboBox de Ressource
         JLabel labelRessource = new JLabel("Ressource :");
@@ -169,34 +173,64 @@ public class PanelModifQCM extends JPanel implements ActionListener, java.awt.ev
         JLabel labelNiveau = new JLabel("Difficulté :");
         JPanel panelNiveau = new JPanel(new FlowLayout());
 
-        this.btnTresFacile = new JButton(IMAGES_DIFFICULTE[0]);
-        this.btnFacile     = new JButton(IMAGES_DIFFICULTE[1]);
-        this.btnMoyen      = new JButton(IMAGES_DIFFICULTE[2]);
-        this.btnDifficile  = new JButton(IMAGES_DIFFICULTE[3]);
+        this.btnTresFacile		= new JButton(IMAGES_DIFFICULTE[0]);
+        this.btnFacile     		= new JButton(IMAGES_DIFFICULTE[1]);
+        this.btnMoyen      		= new JButton(IMAGES_DIFFICULTE[2]);
+        this.btnDifficile  		= new JButton(IMAGES_DIFFICULTE[3]);
+        this.btnGras	   		= new JButton("Gras");
+        this.btnSouligner  		= new JButton("Souligner");
+        this.btnAjouterImage 	= new JButton("Ajouter image au texte");
+        this.btnAjouterRessComp = new JButton("Ajouter des fichiers complémentaires");
 
-        this.btnTresFacile.setPreferredSize(new Dimension(100, 100));
-        this.btnFacile    .setPreferredSize(new Dimension(100, 100));
-        this.btnMoyen     .setPreferredSize(new Dimension(100, 100));
-        this.btnDifficile .setPreferredSize(new Dimension(100, 100));
+        Dimension d1 = new Dimension( 75,  75);
+        Dimension d2 = new Dimension(100, 100);
+        this.btnTresFacile		.setPreferredSize(d1);
+        this.btnFacile    		.setPreferredSize(d1);
+        this.btnMoyen     		.setPreferredSize(d1);
+        this.btnDifficile 		.setPreferredSize(d1);
+        this.btnGras	  		.setPreferredSize(d2);
+        this.btnSouligner 		.setPreferredSize(d2);
+        this.btnAjouterImage	.setPreferredSize(d2);
+        this.btnAjouterRessComp .setPreferredSize(d2);
 
-        this.btnTresFacile.addActionListener(this);
-        this.btnFacile    .addActionListener(this);
-        this.btnMoyen     .addActionListener(this);
-        this.btnDifficile .addActionListener(this);
+        this.btnTresFacile		.addActionListener(this);
+        this.btnFacile    		.addActionListener(this);
+        this.btnMoyen     		.addActionListener(this);
+        this.btnDifficile 		.addActionListener(this);
+        this.btnGras	  		.addActionListener(this);
+        this.btnSouligner 		.addActionListener(this);
+        this.btnAjouterImage	.addActionListener(this);
+        this.btnAjouterRessComp .addActionListener(this);
 
         panelNiveau.add(this.btnTresFacile);
         panelNiveau.add(this.btnFacile);
         panelNiveau.add(this.btnMoyen);
         panelNiveau.add(this.btnDifficile);
+        panelText.add  (this.btnGras);
+        panelText.add  (this.btnSouligner);
 
-        panelSelection.add(labelRessource);
-        panelSelection.add(this.listeRessources);
-        panelSelection.add(labelNotion);
-        panelSelection.add(this.listeNotions);
-        panelSelection.add(labelNiveau);
-        panelSelection.add(panelNiveau);
+        panelText.add(lblIntituleQuestion);
+        panelText.add(txtaQuestion);
+        panelText.add(lblExpliquationQuestion);
+        panelText.add(txtexQuestion);
 
-        add(panelSelection, BorderLayout.CENTER);
+        panelText.add(this.btnAjouterImage);
+        panelText.add(this.btnAjouterRessComp);
+
+        panelLabels.add (labelRessource);
+        panelDonnées.add(this.listeRessources);
+        panelLabels.add (labelNotion);
+        panelDonnées.add(this.listeNotions);
+        panelLabels.add (labelNiveau);
+        panelDonnées.add(panelNiveau);
+
+        panelSelection.add(panelLabels, BorderLayout.WEST);
+        panelSelection.add(panelDonnées, BorderLayout.CENTER);
+
+        panelCentrale.add(panelSelection);
+        panelCentrale.add(panelText);
+
+        add(panelCentrale, BorderLayout.CENTER);
 
         // Section inférieure
         JPanel panelType = new JPanel(new GridLayout(1, 3, 5, 5));
@@ -204,13 +238,8 @@ public class PanelModifQCM extends JPanel implements ActionListener, java.awt.ev
 
         JLabel labelType = new JLabel("Type :");
         this.listeTypes  = new JComboBox<>(new String[]
-                { "QCM REP. UNIQUE","QCM REP. MULTIPLE", "EntiteAssociation","Elimination" }
+                { "QCM REP. UNIQUE","QCM REP. MULTIPLE" }
         );
-        if( this.hmReponses.size() == 2 ){
-            this.listeTypes.setSelectedItem("QCM REP. UNIQUE");
-        } else {
-            this.listeTypes.setSelectedItem("QCM REP. MULTIPLE");
-        }
 
         this.btnConfirmer = new JButton("Confirmer");
         this.btnConfirmer.addActionListener(this);
@@ -262,16 +291,22 @@ public class PanelModifQCM extends JPanel implements ActionListener, java.awt.ev
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getSource() == this.listeRessources && e.getStateChange() == ItemEvent.SELECTED) {
+            if (this.listeRessources.getItemAt(0).getNom().equals("PlaceHolder")){
+                this.listeRessources.removeItemAt(0);
+                this.ressources     .remove(0);
+                this.notions        .remove(0);
+            }
+
             int index = listeRessources.getSelectedIndex();
             this.listeNotions.removeAllItems();
             for (Notion notion : this.ctrl.getNotionsParRessource(this.ressources.get(index))) {
                 this.listeNotions.addItem(notion);
             }
             listeNotions.setEnabled(true);
-
         } else if (e.getSource() == this.listeNotions && e.getStateChange() == ItemEvent.SELECTED) {
             int indexRessource  = this.listeRessources.getSelectedIndex();
             int indexNotion     = this.listeNotions.getSelectedIndex();
+            this.notion = ( (Notion)(this.listeNotions.getSelectedItem() )).getNom();
             if (indexRessource >= 0 && indexNotion >= 0) {
 
                 this.btnTresFacile.setIcon(IMAGES_DIFFICULTE[0]);
@@ -279,7 +314,10 @@ public class PanelModifQCM extends JPanel implements ActionListener, java.awt.ev
                 this.btnMoyen     .setIcon(IMAGES_DIFFICULTE[2]);
                 this.btnDifficile .setIcon(IMAGES_DIFFICULTE[3]);
 
-
+                this.btnTresFacile.setEnabled(true);
+                this.btnFacile    .setEnabled(true);
+                this.btnMoyen     .setEnabled(true);
+                this.btnDifficile .setEnabled(true);
             }
         }
     }
@@ -305,10 +343,27 @@ public class PanelModifQCM extends JPanel implements ActionListener, java.awt.ev
         }
 
         if (e.getSource() == this.btnConfirmer) {
+            int idMax = 0;
+
+            for(Question q : ctrl.getQuestions())
+            {
+                if(q.getId() > idMax)
+                {
+                    idMax = q.getId();
+                }
+            }
+            idMax++;
+
+            System.out.println(this.notion);
+            String cheminDossier = "java/data/" + this.ctrl.getNotionByNom(this.notion).getRessourceAssociee().getNom() + "/" + this.ctrl.getNotionByNom(notion).getNom() + "/Question " + idMax;
 
             if (this.champPoints.getText().equals(""))
             {
                 JOptionPane.showMessageDialog(this, "Attribuez des points à la question");
+                return;
+            }
+            if (this.txtaQuestion.getText() == null){
+                JOptionPane.showMessageDialog(this,"Veuillez entrer un énoncer");
                 return;
             }
             if (this.difficulte == 0)

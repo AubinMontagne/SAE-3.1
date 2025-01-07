@@ -56,7 +56,10 @@ public abstract class Question{
 
         if(dossier.exists())
             if(dossier.delete())
+            {
+                System.out.println("Test");
                 return true;
+            }
         return false;
     }
 
@@ -68,7 +71,13 @@ public abstract class Question{
             FileWriter writer = new FileWriter(fichier);
 
             if(editeur != null && editeur.getText() != null)
-                writer.write(editeur.getText());
+            {
+                String txtVersRtf = "{\\rtf1\\ansi\\ansicpg1252\\deff0\\nouicompat\\deflang1033{\\fonttbl{\\f0\\fnil\\fcharset0 Arial;}}\\viewkind4\\uc1\\pard\\sa200\\sl276\\slmult1\\f0\\fs22" +
+                        editeur.getText() + "\\par}";
+
+                writer.write(txtVersRtf);
+            }
+
 
             writer.close();
         }catch (Exception e)
@@ -117,9 +126,7 @@ public abstract class Question{
 
             String res = writer.toString();
 
-            System.out.println("Bouigo : !!!"+res);
-            res = res.substring(res.indexOf("<style>"), res.indexOf("</style>")) + res.substring(res.indexOf("<p"), res.indexOf("</p>"));
-            res = res.replace("\n", "");
+            res = res.substring(res.indexOf("<style>"), res.indexOf("</style>")+8) + res.substring(res.indexOf("<p"), res.indexOf("</p>") + 4);
 
             return res;
         } catch (Exception e) {
@@ -127,6 +134,8 @@ public abstract class Question{
         }
         return null;
     }
+
+    
     public String getEnonceRTF(){
         String filePath = this.dossierChemin + "/enonce.rtf";
         String content = "";
@@ -157,9 +166,8 @@ public abstract class Question{
 
             String res = writer.toString();
 
-            System.out.println(res);
-            res = res.substring(res.indexOf("<style>"), res.indexOf("</style>")) + res.substring(res.indexOf("<p"), res.indexOf("</p>"));
-            res = res.replace("\n", "");
+            res = res.substring(res.indexOf("<style>"), res.indexOf("</style>")+8) + res.substring(res.indexOf("<p"), res.indexOf("</p>") + 4);
+            res = res.replaceAll("\\r?\\n", " ");
 
             return res;
         } catch (Exception e) {

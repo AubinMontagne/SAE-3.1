@@ -29,7 +29,7 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelCreationQuestion(ctrl,null) );
+        this.add(new PanelCreationQuestion(this, ctrl, null) );
         this.addWindowListener(this);
 
         setVisible(true);
@@ -38,7 +38,7 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
     public static FrameCreationQuestion creerFrameCreationQuestion(Controleur ctrl){
         if(FrameCreationQuestion.nbFrame == 0){
             FrameCreationQuestion.nbFrame++;
-            return new FrameCreationQuestion(ctrl);
+            return new FrameCreationQuestion( ctrl);
         }
         return null;
     }
@@ -56,7 +56,7 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelCreationQuestion(ctrl,this.panelBanque) );
+        this.add(new PanelCreationQuestion(this, ctrl,this.panelBanque) );
         this.addWindowListener(this);
 
         setVisible(true);
@@ -65,7 +65,7 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
     public static FrameCreationQuestion creerFrameCreationQuestion(Controleur ctrl, PanelBanque panelBanque){
         if(FrameCreationQuestion.nbFrame == 0){
             FrameCreationQuestion.nbFrame++;
-            return new FrameCreationQuestion(ctrl,panelBanque);
+            return new FrameCreationQuestion( ctrl, panelBanque);
         }
         return null;
     }
