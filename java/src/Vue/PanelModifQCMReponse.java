@@ -14,15 +14,15 @@ import src.Metier.QCM;
 
 public class PanelModifQCMReponse extends JFrame implements ActionListener {
 
-    private Controleur ctrl;
+    private Controleur               ctrl;
     private JPanel                   panelReponses; // Panel pour les réponses
     private int                      nombreReponses = 0; // Nombre de réponses
     private JTextField               champQuestion;
     private JButton                  boutonAjoutReponse;
     private JButton                  boutonEnregistrer;
     private boolean                  modeReponseUnique; // Checkbox pour activer/désactiver le mode réponse unique
-    private Question q;
-    private java.util.HashMap<String, Boolean> reponses;
+    private Question                 q;
+    private HashMap<String, Boolean> reponses;
 
     private boolean     estModeUnique = false; // Par défaut, mode "plusieurs réponses correctes"
     private ButtonGroup groupReponses; // Utilisé pour le mode "réponse unique"
@@ -34,7 +34,7 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
 
     PanelBanque panelBanque;
 
-    public PanelModifQCMReponse(Controleur ctrl, int difficulte, String notion, int points, int temps, boolean estModeUnique, Question q) {
+    public PanelModifQCMReponse(Controleur ctrl, Question q, HashMap<String, Boolean> hmReponses) {
         this.ctrl          = ctrl;
         this.panelBanque   = panelBanque;
         this.estModeUnique = estModeUnique;
@@ -172,6 +172,16 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
         }
         this.ctrl.supprimerQuestion(q);
 
+        int idMax = 0;
+
+        for(Question q : ctrl.getQuestions())
+        {
+            if(q.getId() > idMax)
+            {
+                idMax = q.getId();
+            }
+        }
+
         this.ctrl.creerQuestionQCM(
                 question,
                 difficulte,
@@ -179,7 +189,8 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
                 temps,
                 points,
                 false,
-                reponses
+                reponses,
+                idMax
         );
 
         if(this.panelBanque != null) {this.panelBanque.maj();}

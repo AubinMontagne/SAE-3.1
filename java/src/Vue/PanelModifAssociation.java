@@ -14,6 +14,7 @@ import java.awt.event.ItemListener;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
@@ -23,8 +24,8 @@ import src.Metier.Ressource;
 import src.Metier.Question;
 
 
-public class PanelAssociationModif extends JPanel implements ActionListener, java.awt.event.ItemListener {
-    private Controleur ctrl;
+public class PanelModifAssociation extends JPanel implements ActionListener, java.awt.event.ItemListener {
+    private Controleur           ctrl;
     private JComboBox<Ressource> listeRessources;
     private JComboBox<Notion>    listeNotions;
     private JButton              btnTresFacile, btnFacile, btnMoyen, btnDifficile;
@@ -40,6 +41,7 @@ public class PanelAssociationModif extends JPanel implements ActionListener, jav
     private PanelBanque panelBanque;
 
     private JTextArea txtaQuestion;
+    private HashMap<String, String> hmReponses;
     // A envoyer aux 3 autres panels
 
     private int    difficulte;
@@ -56,8 +58,9 @@ public class PanelAssociationModif extends JPanel implements ActionListener, jav
             new ImageIcon("java/data/Images/imgDif/D.png" )
     };
 
-    public PanelAssociationModif(Controleur ctrl ,Question q) {
+    public PanelModifAssociation(Controleur ctrl ,Question q, HashMap<String, String> hmReponses) {
         this.panelBanque      = panelBanque;
+        this.hmReponses       = hmReponses;
         this.ctrl             = ctrl;
         this.q                = q;
         this.difficulte       = this.q.getDifficulte().getIndice();
@@ -79,7 +82,7 @@ public class PanelAssociationModif extends JPanel implements ActionListener, jav
 
         // BAZAR Aubin
         JLabel lblIntituleQuestion = new JLabel("Question : ");
-        this.txtaQuestion = new JTextArea(this.q.getEnonceFich());
+        this.txtaQuestion = new JTextArea(this.q.getEnonceText());
 
         panelConfiguration.add(lblIntituleQuestion);
         panelConfiguration.add(txtaQuestion);
@@ -130,16 +133,22 @@ public class PanelAssociationModif extends JPanel implements ActionListener, jav
         JPanel panelSelection = new JPanel(new GridLayout(3, 2, 5, 5));
         panelSelection.setBorder(BorderFactory.createTitledBorder("Sélection"));
 
+        // ComboBox de Ressource
         JLabel labelRessource = new JLabel("Ressource :");
         this.listeRessources  = new JComboBox<Ressource>();
         for(Ressource ressource : this.ressources)
         {
             this.listeRessources.addItem(ressource);
         }
-        this.listeRessources.setSelectedIndex(0);
+        for(int i =0; i < this.ressources.size(); i++) {
+            if(this.ressources.get(i) == this.q.getNotion().getRessourceAssociee() ){
+                this.listeRessources.setSelectedIndex(i);
+            }
+        }
 
         this.listeRessources.addItemListener(this);
 
+        // ComboBox de Notion
         JLabel labelNotion = new JLabel("Notion :");
         this.listeNotions  = new JComboBox<>();
 
@@ -148,7 +157,11 @@ public class PanelAssociationModif extends JPanel implements ActionListener, jav
         {
             this.listeNotions.addItem(notion);
         }
-        this.listeNotions.setSelectedIndex(0);
+        for(int i =0; i < this.notions.size(); i++) {
+            if(this.notions.get(i) == this.q.getNotion() ){
+                this.listeNotions.setSelectedIndex(i);
+            }
+        }
 
         this.listeNotions.addItemListener(this);
 
@@ -193,7 +206,7 @@ public class PanelAssociationModif extends JPanel implements ActionListener, jav
                 { "QCM REP. UNIQUE","QCM REP. MULTIPLE", "EntiteAssociation","Elimination" }
         );
 
-        this.listeTypes.setSelectedItem("");
+        this.listeTypes.setSelectedItem("QCM REP. UNIQUE");
 
         this.btnConfirmer = new JButton("Confirmer");
         this.btnConfirmer.addActionListener(this);
@@ -304,41 +317,60 @@ public class PanelAssociationModif extends JPanel implements ActionListener, jav
             if ("QCM REP. UNIQUE".equals(typeSelectionne)) {
                 System.out.println(typeSelectionne);
                 Notion n = (Notion)(this.listeNotions.getSelectedItem());
-                this.notion = n.getNom();
+                this.q.setNotion(n);
                 this.temps  = Integer.parseInt(
                         this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60
                         + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1)
                 );
-                this.points = Integer.parseInt(this.champPoints.getText());
+                this.q.setTemps(this.temps);
+                this.q.setPoint(Integer.parseInt(this.champPoints.getText()));
 
-                PanelQcmModif panelQcmModif = new PanelQcmModif(
-                        this.ctrl,this.difficulte,this.notion,this.points,this.temps,true,this.q
-                );
-                panelQcmModif.setVisible(true);
+                //PanelModifQCMReponse panelModifQCM = new PanelModifQCMReponse( this.ctrl,this.q );
+                //panelModifQCM.setVisible(true);
 
             } else if ("QCM REP. MULTIPLE".equals(typeSelectionne)) {
                 System.out.println(typeSelectionne);
                 Notion n = (Notion)(this.listeNotions.getSelectedItem());
-                this.notion = n.getNom();
-                this.temps  = Integer.parseInt(this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60 + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1));
-                this.points = Integer.parseInt(this.champPoints.getText());
-                PanelQcmModif panelQcmModif = new PanelQcmModif(
-                        this.ctrl,this.difficulte,this.notion,this.points,this.temps,false,this.q
+                this.q.setNotion(n);
+                this.temps  = Integer.parseInt(
+                        this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60
+                        + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1)
                 );
-                panelQcmModif.setVisible(true);
+                this.q.setTemps(this.temps);
+                this.q.setPoint(Integer.parseInt(this.champPoints.getText()));
+                //PanelModifQCMReponse panelModifQCM = new PanelModifQCMReponse ( this.ctrl, this.q );
+                //panelModifQCM.setVisible(true);
 
             } else if("EntiteAssociation".equals(typeSelectionne)) {
                 System.out.println(typeSelectionne);
+                Notion n = (Notion)(this.listeNotions.getSelectedItem());
+                this.q.setNotion(n);
+                this.temps  = Integer.parseInt(
+                        this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60
+                        + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1)
+                );
+                this.q.setTemps(this.temps);
+                this.q.setPoint(Integer.parseInt(this.champPoints.getText()));
 
-                PanelEntiteAssociation panelEntiteAssociation = new PanelEntiteAssociation(this.ctrl,this.difficulte,this.notion,this.points,this.temps,this.panelBanque);
-                panelEntiteAssociation.setVisible(true);
+                PanelModifAssociationReponse panelAssociationRep = new PanelModifAssociationReponse(this.ctrl,this.q, this.hmReponses);
+                panelAssociationRep.setVisible(true);
+
             } else if ("Elimination".equals(typeSelectionne)){
                 System.out.println(typeSelectionne);
+                Notion n = (Notion)(this.listeNotions.getSelectedItem());
+                this.q.setNotion(n);
+                this.temps  = Integer.parseInt(
+                        this.champTemps.getText().substring(0,this.champTemps.getText().indexOf(":")))*60
+                        + Integer.parseInt(this.champTemps.getText().substring(this.champTemps.getText().indexOf(":")+1)
+                );
+                this.q.setTemps(this.temps);
+                this.q.setPoint(Integer.parseInt(this.champPoints.getText()));
 
-                //PanelElimination panelElimination = new PanelElimination(this.ctrl,this.difficulté,this.notion,this.points,this.temps,this.panelBanque);
-                //panelElimination.setVisible(true);
+                PanelModifEliminationReponse panelEliminationRep = new PanelModifEliminationReponse(
+                        this.ctrl,this.q
+                );
+                panelEliminationRep.setVisible(true);
             }
         }
     }
 }
-

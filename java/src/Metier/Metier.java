@@ -206,10 +206,9 @@ public class Metier{
 	public ArrayList<Ressource> getRessources(){return this.lstRessources; }
 	public ArrayList<Question>  getQuestions() {return this.lstQuestions; }
 
-	public boolean ajouterQuestionQCM(String intitule, Difficulte difficulte, Notion notion,
-									  int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses) {
+	public boolean ajouterQuestionQCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses, String imageChemin, int id) {
 
-		QCM questionQCM = new QCM(intitule, difficulte, notion, temps, points, vraiOuFaux);
+		QCM questionQCM = new QCM(intitule, difficulte, notion, temps, points, vraiOuFaux,imageChemin ,id);
 
 		// Ajout des réponses avec leurs booléens
 		for (HashMap.Entry<String, Boolean> entry : reponses.entrySet()) {
@@ -222,8 +221,8 @@ public class Metier{
 		return true;
 	}
 
-	public boolean ajouterQuestionEntiteAssociation(String intitule, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String, String> associations) {
-		AssociationElement questionAE = new AssociationElement(intitule, difficulte, notion, temps, points);
+	public boolean ajouterQuestionEntiteAssociation(String intitule, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String, String> associations, int id) {
+		AssociationElement questionAE = new AssociationElement(intitule, difficulte, notion, temps, points,null, id );
 
 		// Ajout des associations
 		for (String gauche : associations.keySet()) {
@@ -236,8 +235,8 @@ public class Metier{
 		return true;
 	}
 
-	public boolean ajouterQuestionElimination(String intitule, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String,Double[]> reponses, String reponseCorrecte) {
-		EliminationReponse questionER = new EliminationReponse(intitule, difficulte, notion, temps, points);
+	public boolean ajouterQuestionElimination(String intitule, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String,Double[]> reponses, String reponseCorrecte, int id) {
+		EliminationReponse questionER = new EliminationReponse(intitule, difficulte, notion, temps, points, null, id);
 
 		// Ajout des réponses
 		for (String reponse : reponses.keySet()) {

@@ -160,7 +160,18 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 			entiteAssociation.put(entiteAssociationSplit[0], entiteAssociationSplit[1]);
 		}
 
-		this.ctrl.creerQuestionEntiteAssociation(question, difficulte, notion, temps, points, entiteAssociation);
+		int idMax = 0;
+
+		for(Question q : ctrl.getQuestions())
+		{
+			if(q.getId() > idMax)
+			{
+				idMax = q.getId();
+			}
+		}
+
+
+		this.ctrl.creerQuestionEntiteAssociation(question, difficulte, notion, temps, points, entiteAssociation, idMax);
 
 		if(this.panelBanque != null) {this.panelBanque.maj();}
 

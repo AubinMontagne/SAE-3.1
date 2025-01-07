@@ -20,29 +20,11 @@ public class QCM extends Question {
 	 * @param points        Le nombre de points que rapporte la question.
 	 * @param vraiOuFaux   	Si le QCM est un vrai ou faux
 	 */
-	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, String imageChemin, List<String> listeFichiers, int id){
-		super(intitule, difficulte, notion, temps, points, imageChemin, listeFichiers, id);
+	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, String imageChemin, int id){
+		super(intitule, difficulte, notion, temps, points, imageChemin, id);
 		this.hmReponses = new HashMap<String, Boolean>();
 		this.vraiOuFaux = vraiOuFaux;
 	}
-
-	/**
-	 * Constructeur de la class QCM
-	 * @param intitule		L'intituler de la question type QCM
-	 * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
-	 * @param notion        La notion concernée par la question.
-	 * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
-	 * @param points        Le nombre de points que rapporte la question.
-	 * @param vraiOuFaux   	Si le QCM est un vrai ou faux
-	 * @param explication   Les explications de la réponse à la question
-	 */
-	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, String explication, boolean vraiOuFaux, List<String> listeLiens, int id){
-		super(intitule, difficulte, notion, temps, points, explication, listeLiens, id);
-		this.hmReponses = new HashMap<String, Boolean>();
-		this.vraiOuFaux = vraiOuFaux;
-	}
-
-	// Méthode
 
 	/**
 	 * Methode ajouterReponse
@@ -95,25 +77,10 @@ public class QCM extends Question {
 		scanner.useDelimiter(";");
 
 		String[] parts = new String[11];
-		for (int i = 0; i < 11; i++) {
+		for (int i = 0; i < 11; i++)
+		{
 			parts[i] = scanner.next();
-		}
-
-		List<String> lstLiens = new ArrayList<String>(5);
-
-		File dossierQuestion = new File("java/data/" + parts[8]);
-
-		File[] sousDossiers = dossierQuestion.listFiles();
-
-		if (sousDossiers != null) {
-			for (File file : sousDossiers)
-			{
-				// Vérifier si c'est un dossier
-				if (!file.isDirectory())
-				{
-					lstLiens.add(file.getAbsolutePath());
-				}
-			}
+			System.out.println(parts[i]);
 		}
 
 		QCM qcm = new QCM(
@@ -121,8 +88,8 @@ public class QCM extends Question {
 				metier.getNotionByNom(parts[3]),
 				Integer.parseInt(parts[4]),
 				Integer.parseInt(parts[5]),
-				parts[6], Boolean.parseBoolean(parts[7]), lstLiens,
-				Integer.parseInt(parts[9])
+                Boolean.parseBoolean(parts[9]), parts[7],
+				Integer.parseInt(parts[6])
 		);
 
 		Scanner reponseScanner = new Scanner(parts[10]);

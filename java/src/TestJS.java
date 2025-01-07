@@ -1,4 +1,4 @@
-package src;
+/*package src;
 
 import src.Metier.*;
 
@@ -62,4 +62,4 @@ public class TestJS{
 
 		new QCMBuilder(questionnaire, "./");
 	}
-}
+}*/

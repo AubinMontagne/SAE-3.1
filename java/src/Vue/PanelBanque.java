@@ -69,7 +69,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 				typeQuestion = "Association d'éléments";
 			}
 
-			data[i][0] = this.listQ.get(i).getEnonceFich();
+			data[i][0] = this.listQ.get(i).getEnonceText();
 			data[i][1] = this.listQ.get(i).getDifficulte().getNom();
 			data[i][2] = this.listQ.get(i).getNotion().getRessourceAssociee().getNom();
 			data[i][3] = this.listQ.get(i).getNotion().getNom();
@@ -198,7 +198,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 				typeQuestion = "Association d'éléments";
 			}
 
-			data[i][0] =      questList.get(i).getEnonceFich();
+			data[i][0] =      questList.get(i).getEnonceText();
 			data[i][1] = this.listQ.get(i).getDifficulte().getNom();
 			data[i][2] =      questList.get(i).getNotion().getRessourceAssociee().getNom();
 			data[i][3] =      questList.get(i).getNotion().getNom();

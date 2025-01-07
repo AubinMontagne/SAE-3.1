@@ -31,9 +31,15 @@ public class FrameModifQuestion extends JFrame implements WindowListener {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         if(hmReponsesQCM != null){
-
-        } else if { hmReponsesElimRep != null }
-        this.add(new PanelModifQuestion(ctrl, q) );
+            HashMap<String, Boolean> hmReponses = hmReponsesQCM;
+            this.add(new PanelModifQCM(ctrl, q, hmReponses) );
+        } else if ( hmReponsesElimRep != null ){
+            HashMap<String, Double[]> hmReponses = hmReponsesElimRep;
+            this.add(new PanelModifElimination(ctrl, q, hmReponses) );
+        } else {
+            HashMap<String, String> hmReponses = hmReponsesAssoElt;
+            this.add(new PanelModifAssociation(ctrl, q, hmReponses) );
+        }
         this.addWindowListener(this);
 
         setVisible(true);

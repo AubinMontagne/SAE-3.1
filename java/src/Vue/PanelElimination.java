@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import javax.swing.*;
 import src.Controleur;
+import src.Metier.Question;
 
 public class PanelElimination extends JFrame implements ActionListener
 {
@@ -154,8 +155,18 @@ public class PanelElimination extends JFrame implements ActionListener
 			}
 		}
 
+		int idMax = 0;
+
+		for(Question q : ctrl.getQuestions())
+		{
+			if(q.getId() > idMax)
+			{
+				idMax = q.getId();
+			}
+		}
+
 		// Création de la question
-		this.ctrl.creerQuestionElimination(question, difficulte, notion, temps, points, reponses, reponseCorrecte);
+		this.ctrl.creerQuestionElimination(question, difficulte, notion, temps, points, reponses, reponseCorrecte, idMax);
 
 		if(this.panelBanque != null) {this.panelBanque.maj();}
 

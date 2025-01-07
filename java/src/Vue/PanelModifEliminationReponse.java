@@ -34,7 +34,7 @@ public class PanelModifEliminationReponse extends JFrame implements ActionListen
 
     PanelBanque panelBanque;
 
-    public PanelModifEliminationReponse(Controleur ctrl, int difficulte, String notion, int points, int temps, boolean estModeUnique, Question q) {
+    public PanelModifEliminationReponse(Controleur ctrl, Question q) {
         this.ctrl          = ctrl;
         this.panelBanque   = panelBanque;
         this.estModeUnique = estModeUnique;
@@ -172,6 +172,16 @@ public class PanelModifEliminationReponse extends JFrame implements ActionListen
         }
         this.ctrl.supprimerQuestion(q);
 
+        int idMax = 0;
+
+        for(Question q : ctrl.getQuestions())
+        {
+            if(q.getId() > idMax)
+            {
+                idMax = q.getId();
+            }
+        }
+
         this.ctrl.creerQuestionQCM(
                 question,
                 difficulte,
@@ -179,7 +189,8 @@ public class PanelModifEliminationReponse extends JFrame implements ActionListen
                 temps,
                 points,
                 false,
-                reponses
+                reponses,
+                idMax
         );
 
         if(this.panelBanque != null) {this.panelBanque.maj();}

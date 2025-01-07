@@ -1,7 +1,15 @@
 package src.Metier;
 
-
+import javax.swing.JEditorPane;
+import javax.swing.text.EditorKit;
 import java.io.File;
+import java.io.FileReader;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Question{
@@ -23,7 +31,7 @@ public abstract class Question{
      * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
      * @param point         Le nombre de points que rapporte la question.
      */
-    public Question(String dossierChemin, Difficulte difficulte,Notion notion,int temps, int point, String imageChemin, List<String> listeFichiers, int id)
+    public Question(String dossierChemin, Difficulte difficulte,Notion notion,int temps, int point, String imageChemin, int id)
     {
         this.dossierChemin   = dossierChemin;
         this.difficulte      = difficulte;
@@ -31,22 +39,83 @@ public abstract class Question{
         this.temps           = temps;
         this.point           = point;
         this.imageChemin     = imageChemin;
-        this.listeFichiers   = listeFichiers;
+        this.listeFichiers   = new ArrayList<>();
         this.id              = id;
     }
 
 	// Get
-    public String     getEnonceFich()        {return dossierChemin;}
-    public String     getDossierChemin()       {return dossierChemin;}
-    //public String   getEnonceText()    {return RtfFileReader.getRtfFileAsText(enonceFich);}
+    public String   getDossierChemin()       {return dossierChemin;}
+    public String   getEnonceText() {
+        File file = new File(this.dossierChemin + "/enonce.rtf");
+
+        try {
+            JEditorPane p = new JEditorPane();
+            p.setContentType("text/rtf");
+
+            EditorKit kitRtf = p.getEditorKitForContentType("text/rtf");
+            kitRtf.read(new FileReader(file), p.getDocument(), 0);
+            kitRtf = null;
+
+            EditorKit kitHtml = p.getEditorKitForContentType("text/html");
+            Writer writer = new StringWriter();
+            kitHtml.write(writer, p.getDocument(), 0, p.getDocument().getLength());
+
+            return writer.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public String getEnonceRTF(){
+        String filePath = this.dossierChemin + "/enonce.rtf";
+        String content = "";
+        try {
+            content = new String(Files.readAllBytes(Paths.get(filePath)));
+            System.out.println(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return content;
+    }
+    public String getExplicationText(){
+        File file = new File(this.dossierChemin + "/explication.rtf");
+
+        try {
+            JEditorPane p = new JEditorPane();
+            p.setContentType("text/rtf");
+
+            EditorKit kitRtf = p.getEditorKitForContentType("text/rtf");
+            kitRtf.read(new FileReader(file), p.getDocument(), 0);
+            kitRtf = null;
+
+            EditorKit kitHtml = p.getEditorKitForContentType("text/html");
+            Writer writer = new StringWriter();
+            kitHtml.write(writer, p.getDocument(), 0, p.getDocument().getLength());
+
+            return writer.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public String getExplicationRTF(){
+        String filePath = this.dossierChemin + "/explication.txt";
+        String content = "";
+        try {
+            content = new String(Files.readAllBytes(Paths.get(filePath)));
+            System.out.println(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return content;
+    }
     public Difficulte getDifficulte()         {return this.difficulte;}
     public Notion     getNotion()             {return this.notion;}
     public int        getTemps()              {return this.temps;}
     public int        getPoint()              {return this.point;}
-    public List<String> getListeFichiers()       {return this.listeFichiers;}
+    public List<String> getListeFichiers()    {return this.listeFichiers;}
     public String     getImageChemin()        {return this.imageChemin;}
     public int        getId()                 {return this.id;}
-    //public String     getExplicationText(){return RtfFileReader.getRtfFileAsText(explicationFich);}
 
     public String     getAsData(){
         String res = this.dossierChemin + ";" + this.difficulte.getIndice() + ";" + getNotion().getNom() + ";" + this.temps + ";" + this.point + ";" + this.id + ";" + this.imageChemin + ";";

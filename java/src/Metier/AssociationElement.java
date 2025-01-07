@@ -1,6 +1,7 @@
 package src.Metier;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class AssociationElement extends Question
@@ -15,23 +16,9 @@ public class AssociationElement extends Question
      * @param notion        La notion concernée par la question.
      * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
      * @param points        Le nombre de points que rapporte la question.
-	 * @param explication   Les explications de la réponse à la question
 	 */
-    public AssociationElement(String intitule, Difficulte difficulte,Notion notion,int temps,int points,String explication){
-        super(intitule, difficulte, notion, temps, points, explication);
-        this.hmAssociations = new HashMap<>();
-    }
-
-    /**
-     * Constructeur de la class AssociationElement
-     * @param intitule		L'intituler de la question type Entité-Association
-     * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
-     * @param notion        La notion concernée par la question.
-     * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
-     * @param points        Le nombre de points que rapporte la question.
-     */
-    public AssociationElement(String intitule, Difficulte difficulte, Notion notion, int temps,int points){
-        super(intitule, difficulte, notion, temps, points);
+    public AssociationElement(String intitule, Difficulte difficulte, Notion notion, int temps, int points, String imageChemin, int id){
+        super(intitule, difficulte, notion, temps, points, imageChemin, id);
         this.hmAssociations = new HashMap<>();
     }
 
@@ -82,14 +69,14 @@ public class AssociationElement extends Question
         Scanner scanner = new Scanner(ligne);
         scanner.useDelimiter(";");
 
-        String[] parts = new String[8];
-        for (int i = 0; i < 8; i++) {
+        String[] parts = new String[10];
+        for (int i = 0; i < 10; i++) {
             scanner.next();
         }
 
-        AssociationElement associationElement = new AssociationElement(parts[1], Difficulte.getDifficulteByIndice(Integer.parseInt(parts[2])), metier.getNotionByNom(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]), parts[6]);
+        AssociationElement associationElement = new AssociationElement(parts[1], Difficulte.getDifficulteByIndice(Integer.parseInt(parts[2])), metier.getNotionByNom(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]), parts[7], Integer.parseInt(parts[6]));
 
-        Scanner associationScanner = new Scanner(parts[7]);
+        Scanner associationScanner = new Scanner(parts[9]);
         associationScanner.useDelimiter("\\|");
         while (associationScanner.hasNext()) {
             String association = associationScanner.next();
@@ -102,6 +89,14 @@ public class AssociationElement extends Question
             associationElement.ajouterAssociation(associationParts[0], associationParts[1]);
             associationPartsScanner.close();
         }
+
+        associationScanner = new Scanner(parts[8]);
+        associationScanner.useDelimiter(",");
+        while (associationScanner.hasNext()) {
+            String fichier = associationScanner.next();
+            associationElement.ajouterfichier(fichier);
+        }
+
         return associationElement;
     }
 }

@@ -9,8 +9,7 @@ import java.util.HashMap;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class
-QCMBuilder
+public class QCMBuilder
 {
     private Questionnaire questionnaire;
     private Scanner scanner;
@@ -176,7 +175,7 @@ QCMBuilder
 
     /**
      * Metode ecrireImage
-     * Cette métode permet la création des images néssésaire au questionnaire
+     * Cette métode permet la création des images nécéssaires au questionnaire
      * @return  Vrai si les fichiers ont pu être écrits, sinon faux
      */
     public boolean ecrireImage(){
@@ -881,6 +880,20 @@ QCMBuilder
                     questionSuivante = "question" + ((questionnaire.getLstQuestion().indexOf(q)) + 2) + "()";
                 }
 
+                String fichierComplementaires = "";
+                int numFichierComp = 1;
+
+                for(String liens : q.getListeFichiers())
+                {
+                    if(liens.substring(liens.length()-3) == "png" || liens.substring(liens.length()-3) == "jpg" || liens.substring(liens.length()-4) == "jpeg")
+                    {
+                        fichierComplementaires = fichierComplementaires + "<img class=\"imgQuestion\" src=\"java/data/" + q.getNotion().getRessourceAssociee().getNom() + "/" + q.getNotion().getNom() + "/" + q.getId() + "/" + liens + "\" draggable=\"false\">\n";
+                    }else{
+                        fichierComplementaires = fichierComplementaires + "<a href=\"java/data/" + q.getNotion().getRessourceAssociee().getNom() + "/" + q.getNotion().getNom() + "/" + q.getId() + "/" + liens + "\" download=\"" + liens + "\" target=\"_blank\"> Télécharger le fichier complémentaire numéro " + numFichierComp +"</a>\n";
+                    }
+                    numFichierComp++;
+                }
+
 
                 int i = 1;
 
@@ -918,7 +931,7 @@ QCMBuilder
                         "    const difficulte = \"" + q.getDifficulte().getNom() + "\";\n" +
                         "    const tempsDeReponse = " + q.getTemps() + ";\n" +
                         "    let points = " + q.getPoint() + ";\n" +
-                        "    let texteExplications = \"" + q.getExplicationFich() + "\";\n" +
+                        "    let texteExplications = \"" + q.getExplicationText() + "\";\n" +
                         "    let notion = '" + q.getNotion() + "';\n" +
                         "\n" +
                         "\n" +
@@ -960,7 +973,8 @@ QCMBuilder
                         "                        <!-- Pour un QCM -->\n" +
                         "\n" +
                         "                        <h2> Type : " + txtChoixRep + "</h2>" +
-                        "                        <h3> \"" + q.getEnonceFich() + "\" </h3>\n" +
+                        "                        <h3> \"" + q.getEnonceText() + "\" </h3>\n" +
+                        "                        " + fichierComplementaires                          +
                         "                        <div id=\"zoneRep\">\n" +
                         "                             " + reponses + "\n" +
                         "                        </div>\n" +
@@ -1167,7 +1181,7 @@ QCMBuilder
                         "    const difficulte = '"+ q.getDifficulte().getNom() +"';\n" +
                         "    const tempsDeReponse = "+ q.getTemps() +";\n" +
                         "    let points = " + q.getPoint() +";\n" +
-                        "    let texteExplications = " + "'Explications'" + ";\n" +
+                        "    let texteExplications = " + "'" + q.getExplicationText() +"'" + ";\n" +
                         "    let notion = '" + q.getNotion().getNom() + "';\n" +
                         "\n" +
                         "    \n" +
@@ -1209,7 +1223,7 @@ QCMBuilder
                         "                        <!-- Pour un QCM -->\n" +
                         "                        <h2> Type : Association d'éléments ( Un seul élément à gauche pour un seul à droite ) </h2>" +
                         "\n" +
-                        "                        <h3> \"" + q.getEnonceFich() + "\" </h3>\n" +
+                        "                        <h3> \"" + q.getEnonceText() + "\" </h3>\n" +
                         "                        <!--<img class=\"imgQuestion\" src=\"./src/14.jpg\" id=\"imgTxt\" draggable=\"false\">!-->\n" + //Si on veut mettre une image c'est ici
                         "\n" +
                         "                        <div id=\"zoneRepAssos\">\n" +
@@ -1653,7 +1667,7 @@ QCMBuilder
                         "                        <!-- Pour un Elimination -->\n" +
                         "                        <h2> Type : Elimination de réponses </h2>" +
                         "\n" +
-                        "                        <h3> \"" + q.getEnonceFich() + "\" </h3>\n" +
+                        "                        <h3> \"" + q.getEnonceText() + "\" </h3>\n" +
                         "                        <div id=\"zoneRep\">\n" +
                         "                        "  + reponses +
                         "                        </div>\n" +

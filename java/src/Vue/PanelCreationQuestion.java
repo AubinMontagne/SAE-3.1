@@ -11,6 +11,10 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -28,16 +32,18 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	private JComboBox<Notion>    listeNotions;
 	private JButton              btnTresFacile, btnFacile, btnMoyen, btnDifficile;
 	private JButton              btnConfirmer;
+	private JButton				 btnGras, btnSouligner, btnAjouterImage, btnAjouterRessComp;
 	private JComboBox<String>    listeTypes;
 	private JLabel               labelMessage, labelResultat;
 	private ArrayList<Ressource> ressources;
 	private ArrayList<Notion>    notions;
+	private String				 imageFond;
 
 	private JTextField champPoints;
 	private JTextField champTemps;
 
-	private JTextArea txtaQuestion;
-	private JTextArea txtexQuestion;
+	private JEditorPane txtaQuestion;
+	private JEditorPane txtexQuestion;
 	// A envoyer aux 3 autres panels
 
 	private int    		 difficulte;
@@ -122,12 +128,12 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		JPanel panelText = new JPanel(new GridLayout(4,1));
 
 		JLabel lblIntituleQuestion = new JLabel("Question : ");
-		this.txtaQuestion = new JTextArea();
+		this.txtaQuestion = new JEditorPane();
 		JLabel lblExpliquationQuestion = new JLabel("Expliquation : ");
-		this.txtexQuestion = new JTextArea();
+		this.txtexQuestion = new JEditorPane();
 
 
-		JPanel panelCentrale = new JPanel(new GridLayout(2, 1, 5, 5));
+		JPanel panelCentrale = new JPanel(new GridLayout(1, 2, 5, 5));
 		panelCentrale.setBorder(BorderFactory.createTitledBorder("Sélection"));
 
 		JPanel panelSelection = new JPanel(new BorderLayout());
@@ -160,35 +166,52 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		JLabel labelNiveau = new JLabel("Difficulté :");
 		JPanel panelNiveau = new JPanel(new FlowLayout());
 
-		this.btnTresFacile = new JButton(IMAGES_DIFFICULTE[0]);
-		this.btnFacile     = new JButton(IMAGES_DIFFICULTE[1]);
-		this.btnMoyen      = new JButton(IMAGES_DIFFICULTE[2]);
-		this.btnDifficile  = new JButton(IMAGES_DIFFICULTE[3]);
+		this.btnTresFacile		= new JButton(IMAGES_DIFFICULTE[0]);
+		this.btnFacile     		= new JButton(IMAGES_DIFFICULTE[1]);
+		this.btnMoyen      		= new JButton(IMAGES_DIFFICULTE[2]);
+		this.btnDifficile  		= new JButton(IMAGES_DIFFICULTE[3]);
+		this.btnGras	   		= new JButton("Gras");
+		this.btnSouligner  		= new JButton("Souligner");
+		this.btnAjouterImage 	= new JButton("Ajouter image au texte");
+		this.btnAjouterRessComp = new JButton("Ajouter des fichiers complémentaires");
 
-		this.btnTresFacile.setPreferredSize(new Dimension(100, 100));
-		this.btnFacile    .setPreferredSize(new Dimension(100, 100));
-		this.btnMoyen     .setPreferredSize(new Dimension(100, 100));
-		this.btnDifficile .setPreferredSize(new Dimension(100, 100));
+		this.btnTresFacile		.setPreferredSize(new Dimension(100, 100));
+		this.btnFacile    		.setPreferredSize(new Dimension(100, 100));
+		this.btnMoyen     		.setPreferredSize(new Dimension(100, 100));
+		this.btnDifficile 		.setPreferredSize(new Dimension(100, 100));
+		this.btnGras	  		.setPreferredSize(new Dimension(100, 100));
+		this.btnSouligner 		.setPreferredSize(new Dimension(100, 100));
+		this.btnAjouterImage	.setPreferredSize(new Dimension(100, 100));
+		this.btnAjouterRessComp .setPreferredSize(new Dimension(100, 100));
 
 		this.btnTresFacile.setEnabled(false);
 		this.btnFacile    .setEnabled(false);
 		this.btnMoyen     .setEnabled(false);
 		this.btnDifficile .setEnabled(false);
 
-		this.btnTresFacile.addActionListener(this);
-		this.btnFacile    .addActionListener(this);
-		this.btnMoyen     .addActionListener(this);
-		this.btnDifficile .addActionListener(this);
+		this.btnTresFacile		.addActionListener(this);
+		this.btnFacile    		.addActionListener(this);
+		this.btnMoyen     		.addActionListener(this);
+		this.btnDifficile 		.addActionListener(this);
+		this.btnGras	  		.addActionListener(this);
+		this.btnSouligner 		.addActionListener(this);
+		this.btnAjouterImage	.addActionListener(this);
+		this.btnAjouterRessComp .addActionListener(this);
 
 		panelNiveau.add(this.btnTresFacile);
 		panelNiveau.add(this.btnFacile);
 		panelNiveau.add(this.btnMoyen);
 		panelNiveau.add(this.btnDifficile);
+		panelText.add(this.btnGras);
+		panelText.add(this.btnSouligner);
 
 		panelText.add(lblIntituleQuestion);
 		panelText.add(txtaQuestion);
 		panelText.add(lblExpliquationQuestion);
 		panelText.add(txtexQuestion);
+
+		panelText.add(this.btnAjouterImage);
+		panelText.add(this.btnAjouterRessComp);
 
 		panelLabels.add(labelRessource);
 		panelDonnées.add(this.listeRessources);
@@ -223,14 +246,6 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 		add(panelType, BorderLayout.SOUTH);
 		setVisible(true);
-
-
-		JFileChooser fileChooser = new JFileChooser();
-		int returnValue = fileChooser.showOpenDialog(null);
-
-		if(returnValue == JFileChooser.APPROVE_OPTION){
-			this.lstLiens.add(fileChooser.getSelectedFile().getAbsolutePath());
-		}
 	}
 
 	// Methode
@@ -372,6 +387,37 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 				PanelElimination panelElimination = new PanelElimination(this.ctrl,this.difficulte,this.notion,this.points,this.temps,this.panelBanque);
 				panelElimination.setVisible(true);
+			}
+		}
+
+
+
+		if(e.getSource() == this.btnAjouterImage)
+		{
+			JFileChooser fileChooser = new JFileChooser();
+			int returnValue = fileChooser.showOpenDialog(null);
+
+			if(returnValue == JFileChooser.APPROVE_OPTION){
+				this.imageFond = fileChooser.getSelectedFile().getAbsolutePath();
+			}
+		}
+
+		if(e.getSource() == this.btnAjouterRessComp)
+		{
+			JFileChooser fileChooser = new JFileChooser();
+			int returnValue = fileChooser.showOpenDialog(null);
+
+			if(returnValue == JFileChooser.APPROVE_OPTION){
+				this.lstLiens.add(fileChooser.getSelectedFile().getAbsolutePath());
+
+				Path sourcePath = Paths.get(fileChooser.getSelectedFile().getAbsolutePath()); // Path of the source file
+				Path destinationPath = Paths.get("java/data/"+  +"destinationFile.txt"); // Path of the destination file
+
+				try {
+					Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+				} catch (Exception ex) {
+					System.err.println("Error occurred: " + ex.getMessage());
+				}
 			}
 		}
 	}

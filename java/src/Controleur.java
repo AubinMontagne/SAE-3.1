@@ -59,7 +59,7 @@ public class Controleur{
 		this.metier.saveQuestions("java/data/");
 	}
 
-	public void creerQuestionQCM(String intitule, int difficulte, String notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses)
+	public void creerQuestionQCM(String intitule, int difficulte, String notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses, String imageChemin, int id)
 	{
 		this.metier.ajouterQuestionQCM(
 				intitule,
@@ -68,11 +68,14 @@ public class Controleur{
 				temps,
 				points,
 				vraiOuFaux,
-				reponses
+				reponses,
+				null,
+				imageChemin,
+				id
 		);
 	}
 
-	public void creerQuestionEntiteAssociation(String intitule, int difficulte, String notion, int temps, int points, HashMap<String, String> associations)
+	public void creerQuestionEntiteAssociation(String intitule, int difficulte, String notion, int temps, int points, HashMap<String, String> associations, int id)
 	{
 		this.metier.ajouterQuestionEntiteAssociation(
 				intitule,
@@ -80,11 +83,12 @@ public class Controleur{
 				metier.getNotionByNom(notion),
 				temps,
 				points,
-				associations
+				associations,
+				id
 		);
 	}
 
-	public void creerQuestionElimination(String intitule, int difficulte, String notion, int temps, int points, HashMap<String,Double[]> reponses, String reponseCorrecte)
+	public void creerQuestionElimination(String intitule, int difficulte, String notion, int temps, int points, HashMap<String,Double[]> reponses, String reponseCorrecte, int id)
 	{
 		this.metier.ajouterQuestionElimination(
 				intitule,
@@ -93,7 +97,8 @@ public class Controleur{
 				temps,
 				points,
 				reponses,
-				reponseCorrecte
+				reponseCorrecte,
+				id
 		);
 	}
 

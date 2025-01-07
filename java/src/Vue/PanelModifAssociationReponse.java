@@ -22,7 +22,7 @@ public class PanelModifAssociationReponse extends JFrame implements ActionListen
     private JButton                  boutonEnregistrer;
     private boolean                  modeReponseUnique; // Checkbox pour activer/désactiver le mode réponse unique
     private Question                 q;
-    private HashMap<String, Boolean> reponses;
+    private HashMap<String, String> hmReponses;
 
     private boolean     estModeUnique = false; // Par défaut, mode "plusieurs réponses correctes"
     private ButtonGroup groupReponses; // Utilisé pour le mode "réponse unique"
@@ -34,8 +34,9 @@ public class PanelModifAssociationReponse extends JFrame implements ActionListen
 
     PanelBanque panelBanque;
 
-    public PanelModifAssociationReponse(Controleur ctrl, int difficulte, String notion, int points, int temps, boolean estModeUnique, Question q) {
+    public PanelModifAssociationReponse(Controleur ctrl, Question q, HashMap<String, String> hmReponses) {
         this.ctrl          = ctrl;
+        this.hmReponses = hmReponses;
         this.panelBanque   = panelBanque;
         this.estModeUnique = estModeUnique;
         this.difficulte    = difficulte;
@@ -172,6 +173,16 @@ public class PanelModifAssociationReponse extends JFrame implements ActionListen
         }
         this.ctrl.supprimerQuestion(q);
 
+        int idMax = 0;
+
+        for(Question q : ctrl.getQuestions())
+        {
+            if(q.getId() > idMax)
+            {
+                idMax = q.getId();
+            }
+        }
+
         this.ctrl.creerQuestionQCM(
                 question,
                 difficulte,
@@ -179,7 +190,8 @@ public class PanelModifAssociationReponse extends JFrame implements ActionListen
                 temps,
                 points,
                 false,
-                reponses
+                reponses,
+                idMax
         );
 
         if(this.panelBanque != null) {this.panelBanque.maj();}

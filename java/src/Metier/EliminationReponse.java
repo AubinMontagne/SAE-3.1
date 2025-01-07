@@ -2,7 +2,7 @@ package src.Metier;
 
 import java.util.HashMap;
 import java.util.Scanner;
-// Au moins deux
+
 public class EliminationReponse extends Question {
 	private String                   reponseCorrecte;
 	private HashMap<String,Double[]> hmReponses;
@@ -15,29 +15,13 @@ public class EliminationReponse extends Question {
 	 * @param notion        La notion concernée par la question.
 	 * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
 	 * @param points        Le nombre de points que rapporte la question.
-	 * @param explication   Les explications de la réponse à la question
 	 */
-	public EliminationReponse(String intitule, Difficulte difficulte, Notion notion, int temps, int points, String explication) {
-		super(intitule, difficulte, notion, temps, points, explication);
+	public EliminationReponse(String intitule, Difficulte difficulte, Notion notion, int temps, int points, String imageChemin, int id) {
+		super(intitule, difficulte, notion, temps, points, imageChemin, id);
 		this.reponseCorrecte = "";
 		this.hmReponses      = new HashMap<>();
 	}
 
-	/**
-	 * Constructeur de la class EliminationReponse
-	 * @param intitule		L'intituler de la question type Entité-Association
-	 * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
-	 * @param notion        La notion concernée par la question.
-	 * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
-	 * @param points        Le nombre de points que rapporte la question.
-	 */
-	public EliminationReponse(String intitule, Difficulte difficulte, Notion notion, int temps, int points) {
-		super(intitule, difficulte, notion, temps, points);
-		this.reponseCorrecte = "";
-		this.hmReponses      = new HashMap<>();
-	}
-
-	// Methode
 	/**
 	 * Méthode ajouterReponse
 	 * Cette métode sert a ajouter une réponse a la HashMap des réponses
@@ -91,16 +75,16 @@ public class EliminationReponse extends Question {
 		Scanner scanner = new Scanner(ligne);
 		scanner.useDelimiter(";");
 
-		String[] parts = new String[9];
-		for (int i = 0; i < 9; i++) {
+		String[] parts = new String[11];
+		for (int i = 0; i < 11; i++) {
 			parts[i] = scanner.next();
 		}
 
-		EliminationReponse er = new EliminationReponse(parts[1], Difficulte.getDifficulteByIndice(Integer.parseInt(parts[2])), metier.getNotionByNom(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]), parts[6]);
+		EliminationReponse er = new EliminationReponse(parts[1], Difficulte.getDifficulteByIndice(Integer.parseInt(parts[2])), metier.getNotionByNom(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]), parts[7], Integer.parseInt(parts[6]));
 
-		er.setReponseCorrecte(parts[7]);
+		er.setReponseCorrecte(parts[9]);
 
-		Scanner reponseScanner = new Scanner(parts[8]);
+		Scanner reponseScanner = new Scanner(parts[10]);
 		reponseScanner.useDelimiter("\\|");
 		while (scanner.hasNext()) {
 			String reponse = scanner.next();
@@ -114,6 +98,13 @@ public class EliminationReponse extends Question {
 
 			er.ajouterReponse(reponseParts[0], Double.parseDouble(reponseParts[1]), Double.parseDouble(reponseParts[2]));
 			eliminationScanner.close();
+		}
+
+		reponseScanner = new Scanner(parts[8]);
+		reponseScanner.useDelimiter(",");
+		while (reponseScanner.hasNext()) {
+			String fichier = reponseScanner.next();
+			er.ajouterfichier(fichier);
 		}
 
 		reponseScanner.close();
