@@ -55,19 +55,19 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 	};
 
 	public PanelModifQuestion(FrameModifQuestion frameModifQuestion, Controleur ctrl , PanelBanque panelBanque, Question q) {
-		this.ctrl                  = ctrl;
-		this.panelBanque           = panelBanque;
+		this.ctrl               = ctrl;
+		this.panelBanque        = panelBanque;
 
 		this.frameModifQuestion = frameModifQuestion;
-		this.lstRessources            = this.ctrl.getRessources();
-		this.lstNotions               = this.ctrl.getNotions();
-		this.lstLiens              = new ArrayList<>(5);
+		this.lstRessources      = this.ctrl.getRessources();
+		this.lstNotions         = this.ctrl.getNotions();
+		this.lstLiens           = new ArrayList<>(5);
 
-		this.q = q;
-		this.notion = q.getNotion().getNom();
+		this.q          = q;
+		this.notion     = q.getNotion().getNom();
 		this.difficulte = q.getDifficulte().getIndice();
-		this.temps = q.getTemps();
-		this.points= q.getPoint();
+		this.temps      = q.getTemps();
+		this.points     = q.getPoint();
 
 		this.bordureDefaut = BorderFactory.createLineBorder(Color.BLACK, 5);
 		this.bordureSelect = BorderFactory.createLineBorder(Color.RED  , 5);
@@ -162,7 +162,6 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 			this.ddlstNotions.addItem(notion);
 		}
 		this.ddlstNotions.setSelectedItem(q.getNotion());
-		this.ddlstNotions.setEnabled(false);
 		this.ddlstNotions.addItemListener(this);
 
 		JLabel labelNiveau = new JLabel("Difficulté :");
@@ -193,15 +192,28 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 		this.btnMoyen     .setBorder(this.bordureDefaut);
 		this.btnDifficile .setBorder(this.bordureDefaut);
 
-		this.btnTresFacile.setEnabled(false);
-		this.btnFacile    .setEnabled(false);
-		this.btnMoyen     .setEnabled(false);
-		this.btnDifficile .setEnabled(false);
+		switch (this.difficulte) {
+			case 1:
+				this.btnTresFacile.setBorder(this.bordureSelect);
+				break;
+			case 2:
+				this.btnFacile    .setBorder(this.bordureSelect);
+				break;
+			case 3:
+				this.btnMoyen     .setBorder(this.bordureSelect);
+				break;
+			case 4:
+				this.btnDifficile .setBorder(this.bordureSelect);
+				break;
+			default:
+				break;
+		}
 
 		this.btnTresFacile		.addActionListener(this);
 		this.btnFacile    		.addActionListener(this);
 		this.btnMoyen     		.addActionListener(this);
 		this.btnDifficile 		.addActionListener(this);
+
 		this.btnGras	  		.addActionListener(this);
 		this.btnItalique 		.addActionListener(this);
 		this.btnAjouterImage	.addActionListener(this);

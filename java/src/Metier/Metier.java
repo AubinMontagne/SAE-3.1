@@ -211,25 +211,25 @@ public class  Metier{
 	public ArrayList<Ressource> getRessources(){return this.lstRessources; }
 	public ArrayList<Question>  getQuestions() {return this.lstQuestions; }
 
-	public boolean ajouterQuestionQCM(String dossierChemin, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses, String imageChemin, List<String> lstLiens, int id) {
-		String imageChemin2;
-		if (imageChemin == null || imageChemin.isEmpty()) {
-			imageChemin2 = null;
+	public boolean ajouterQuestionQCM(String dossierChemin, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses, String cheminImg, List<String> lstLiens, int id) {
+		String cheminImg2;
+		if (cheminImg == null || cheminImg.isEmpty()) {
+			cheminImg2 = null;
 		} else {
-			imageChemin2 = "fic00000"+imageChemin.substring(imageChemin.lastIndexOf("."));
+			cheminImg2 = "fic00000"+cheminImg.substring(cheminImg.lastIndexOf("."));
 		}
-		QCM questionQCM = new QCM(dossierChemin, difficulte, notion, temps, points, vraiOuFaux,imageChemin2 ,id);
+		QCM questionQCM = new QCM(dossierChemin, difficulte, notion, temps, points, vraiOuFaux,cheminImg2 ,id);
 
 		// Ajout des réponses avec leurs booléens
 		for (HashMap.Entry<String, Boolean> entry : reponses.entrySet()) {
 			questionQCM.ajouterReponse(entry.getKey(), entry.getValue());
 		}
 
-		if(!( imageChemin == null || imageChemin.isEmpty())) {
-			String nomFichier = "fic00000" + imageChemin.substring(imageChemin.lastIndexOf("."));
+		if(!( cheminImg == null || cheminImg.isEmpty())) {
+			String nomFichier = "fic00000" + cheminImg.substring(cheminImg.lastIndexOf("."));
 
 			try {
-				Path fileSource = Paths.get(imageChemin);
+				Path fileSource = Paths.get(cheminImg);
 				Path fileDest = Paths.get(dossierChemin + "/Compléments/" + nomFichier);
 
 				Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
@@ -266,14 +266,14 @@ public class  Metier{
 	}
 
 	public boolean ajouterQuestionEntiteAssociation(String cheminDossier, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String, String> associations, String cheminImg, List<String> lstLiens, int id) {
-        String imageChemin2;
+        String cheminImg2;
         if (cheminImg == null || cheminImg.isEmpty()) {
-            imageChemin2 = null;
+            cheminImg2 = null;
         } else {
-            imageChemin2 = "fic00000"+cheminImg.substring(cheminImg.lastIndexOf("."));
+            cheminImg2 = "fic00000"+cheminImg.substring(cheminImg.lastIndexOf("."));
         }
 
-        AssociationElement questionAE = new AssociationElement(cheminDossier, difficulte, notion, temps, points,imageChemin2, id );
+        AssociationElement questionAE = new AssociationElement(cheminDossier, difficulte, notion, temps, points,cheminImg2, id );
 
 		// Ajout des associations
 		for (String gauche : associations.keySet()) {
@@ -322,14 +322,14 @@ public class  Metier{
 	}
 
 	public boolean ajouterQuestionElimination(String cheminDossier, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String,Double[]> reponses, String reponseCorrecte, String cheminImg, List<String> lstLiens, int id) {
-		String imageChemin2;
+		String cheminImg2;
 		if (cheminImg == null || cheminImg.isEmpty()) {
-			imageChemin2 = null;
+			cheminImg2 = null;
 		} else {
-			imageChemin2 = "fic00000"+cheminImg.substring(cheminImg.lastIndexOf("."));
+			cheminImg2 = "fic00000"+cheminImg.substring(cheminImg.lastIndexOf("."));
 		}
 
-		EliminationReponse questionER = new EliminationReponse(cheminDossier, difficulte, notion, temps, points, imageChemin2, id);
+		EliminationReponse questionER = new EliminationReponse(cheminDossier, difficulte, notion, temps, points, cheminImg2, id);
 
 		// Ajout des réponses
 		for (String reponse : reponses.keySet()) {
@@ -372,6 +372,173 @@ public class  Metier{
 			numero++;
 		}
 		this.lstQuestions.add(questionER);
+		this.saveQuestions("java/data/");
+
+		return true;
+	}
+
+	public Boolean modifQuestionQCM(boolean estModeUnique, HashMap<String, Boolean> reponses, String cheminImg, List<String> lstLiens, Question q){
+		String cheminImg2;
+		if (cheminImg == null || cheminImg.isEmpty()) {
+			cheminImg2 = null;
+		} else {
+			cheminImg2 = "fic00000"+cheminImg.substring(cheminImg.lastIndexOf("."));
+		}
+		QCM questionQCM = new QCM(q.getDossierChemin(), q.getDifficulte(), q.getNotion(), q.getTemps(), q.getPoint(), estModeUnique,cheminImg2 ,q.getId());
+
+		// Ajout des réponses avec leurs booléens
+		for (HashMap.Entry<String, Boolean> entry : reponses.entrySet()) {
+			questionQCM.ajouterReponse(entry.getKey(), entry.getValue());
+		}
+
+		if(!( cheminImg == null || cheminImg.isEmpty())) {
+			String nomFichier = "fic00000" + cheminImg.substring(cheminImg.lastIndexOf("."));
+
+			try {
+				Path fileSource = Paths.get(cheminImg);
+				Path fileDest = Paths.get(q.getDossierChemin() + "/Compléments/" + nomFichier);
+
+				Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				System.err.println("Erreur : " + ex.getMessage());
+				return false;
+			}
+		}
+
+		int numero = 1;
+		for (String fichierChemin: lstLiens)
+		{
+			String nomFichier = "fic"+String.format("%05d", numero)+fichierChemin.substring(fichierChemin.lastIndexOf("."));
+
+			try {
+				Path fileSource = Paths.get(fichierChemin);
+				Path fileDest = Paths.get( q.getDossierChemin() + "/Compléments/" + nomFichier);
+
+				Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
+			} catch (Exception ex)
+			{
+				ex.printStackTrace();
+				System.err.println("Erreur : " + ex.getMessage());
+				return false;
+			}
+			questionQCM.ajouterFichier(nomFichier);
+			numero++;
+		}
+		this.lstQuestions.set(this.lstQuestions.indexOf(q),questionQCM);
+		this.saveQuestions("java/data/");
+
+		return true;
+	}
+	public Boolean modifQuestionEntiteAssociation( HashMap<String, String> hmEntiteAssociation, String cheminImg, List<String> lstLiens, Question q){
+		String cheminImg2;
+		if (cheminImg == null || cheminImg.isEmpty()) {
+			cheminImg2 = null;
+		} else {
+			cheminImg2 = "fic00000"+cheminImg.substring(cheminImg.lastIndexOf("."));
+		}
+
+		AssociationElement questionAE = new AssociationElement(q.getDossierChemin(), q.getDifficulte(), q.getNotion(), q.getTemps(), q.getPoint(),cheminImg2, q.getId() );
+
+		// Ajout des associations
+		for (String gauche : hmEntiteAssociation.keySet()) {
+			questionAE.ajouterAssociation(gauche, hmEntiteAssociation.get(gauche));
+		}
+
+		if(!( cheminImg == null || cheminImg.isEmpty())) {
+			String nomFichier = "fic00000" + cheminImg.substring(cheminImg.lastIndexOf("."));
+
+			try {
+				Path fileSource = Paths.get(cheminImg);
+				Path fileDest = Paths.get(q.getDossierChemin() + "/Compléments/" + nomFichier);
+
+				Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				System.err.println("Erreur : " + ex.getMessage());
+				return false;
+			}
+		}
+
+		int numero = 1;
+		for (String fichierChemin: lstLiens)
+		{
+			String nomFichier = "fic"+String.format("%05d", numero)+fichierChemin.substring(fichierChemin.lastIndexOf("."));
+
+			try {
+				Path fileSource = Paths.get(fichierChemin);
+				Path fileDest = Paths.get( q.getDossierChemin() + "/Compléments/" + nomFichier);
+
+				Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
+			} catch (Exception ex)
+			{
+				ex.printStackTrace();
+				System.err.println("Erreur : " + ex.getMessage());
+				return false;
+			}
+			questionAE.ajouterFichier(nomFichier);
+			numero++;
+		}
+
+		this.lstQuestions.set(this.lstQuestions.indexOf(q),questionAE);
+		this.saveQuestions("java/data/");
+
+		return true;
+	}
+	public Boolean modifQuestionElimination(HashMap<String, Double[]> hmReponses, String reponseCorrecte, String cheminImg, List<String> lstLiens, Question q){
+		String cheminImg2;
+		if (cheminImg == null || cheminImg.isEmpty()) {
+			cheminImg2 = null;
+		} else {
+			cheminImg2 = "fic00000"+cheminImg.substring(cheminImg.lastIndexOf("."));
+		}
+
+		EliminationReponse questionER = new EliminationReponse(
+				q.getDossierChemin(),
+				q.getDifficulte(),
+				q.getNotion(),
+				q.getTemps(),
+				q.getPoint(),
+				cheminImg2,
+				q.getId()
+		);
+
+		if(!( cheminImg == null || cheminImg.isEmpty())) {
+			String nomFichier = "fic00000" + cheminImg.substring(cheminImg.lastIndexOf("."));
+
+			try {
+				Path fileSource = Paths.get(cheminImg);
+				Path fileDest = Paths.get(q.getDossierChemin() + "/Compléments/" + nomFichier);
+
+				Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				System.err.println("Erreur : " + ex.getMessage());
+				return false;
+			}
+		}
+
+		int numero = 1;
+		for (String fichierChemin: lstLiens)
+		{
+			String nomFichier = "fic"+String.format("%05d", numero)+fichierChemin.substring(fichierChemin.lastIndexOf("."));
+
+			try {
+				Path fileSource = Paths.get(fichierChemin);
+				Path fileDest = Paths.get( q.getDossierChemin() + "/Compléments/" + nomFichier);
+
+				Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
+			} catch (Exception ex)
+			{
+				ex.printStackTrace();
+				System.err.println("Erreur : " + ex.getMessage());
+				return false;
+			}
+			questionER.ajouterFichier(nomFichier);
+			numero++;
+		}
+
+		this.lstQuestions.set(this.lstQuestions.indexOf(q),questionER);
 		this.saveQuestions("java/data/");
 
 		return true;

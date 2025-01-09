@@ -54,8 +54,6 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	private FrameCreationQuestion frameCreationQuestion;
 	private PanelBanque           panelBanque;
 
-	private String texteRtfEnonce;
-	private String texteRtfExplication;
 	private String texteTxtEnonce;
 	private String texteTxtExplication;
 
@@ -77,14 +75,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		this.bordureDefaut = BorderFactory.createLineBorder(Color.BLACK, 5);
 		this.bordureSelect = BorderFactory.createLineBorder(Color.RED  , 5);
 
-		Ressource placeHolder = new Ressource(" "," ");
-
-		this.lstRessources.add(0,placeHolder);
-		this.lstNotions   .add(0,new Notion(" ",placeHolder));
-
-		this.texteRtfEnonce      = "";
 		this.texteTxtEnonce 	 = "";
-        this.texteRtfExplication = "";
         this.texteTxtExplication = "";
 
 		setLayout(new BorderLayout());
@@ -159,12 +150,15 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		JPanel panelDonnees   = new JPanel(new GridLayout(3, 1, 5, 5));
 
 		// ComboBox de Ressource
+		Ressource placeHolder = new Ressource(" "," ");
+
 		JLabel labelRessource = new JLabel("Ressource :");
 		this.ddlstRessources  = new JComboBox<Ressource>();
 		for(Ressource ressource : this.lstRessources)
 		{
 			this.ddlstRessources.addItem(ressource);
 		}
+		this.ddlstRessources.insertItemAt(placeHolder, 0);
 		this.ddlstRessources.setSelectedIndex(0);
 		this.ddlstRessources.addItemListener(this);
 
@@ -176,6 +170,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		{
 			this.ddlstNotions.addItem(notion);
 		}
+		this.ddlstNotions.insertItemAt(new Notion(" ",placeHolder), 0);
 		this.ddlstNotions.setSelectedIndex(0);
 		this.ddlstNotions.setEnabled(false);
 		this.ddlstNotions.addItemListener(this);
@@ -476,6 +471,15 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 			}
 
+			if(this.epEnonce.getText().contains(";"))
+			{
+				JOptionPane.showMessageDialog(
+						this,
+						"Les ; ne sont pas autorisés."
+				);
+				return;
+			}
+
 			String typeSelectionne = (String) this.ddlstTypes.getSelectedItem();
 
 
@@ -729,39 +733,19 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		return this.texteTxtEnonce;
 	}
 
-	public String getTexteRtfEnonce()
-	{
-		return this.texteRtfEnonce;
-	}
-
 	public String getTexteTxtExplication()
 	{
 		return this.texteTxtEnonce;
-	}
-
-	public String getTexteRtfExplication()
-	{
-		return this.texteRtfEnonce;
 	}
 
 	public void setTexteTxtEnonce(String s)
 	{
 		this.texteTxtEnonce = s;
 	}
-	
-	public void setTexteRtfEnonce(String s)
-	{
-		this.texteRtfEnonce = s;
-	}
 
 	public void setTexteTxtExplication(String s)
 	{
 		this.texteTxtExplication = s;
-	}
-
-	public void setTexteRtfExplication(String s)
-	{
-		this.texteRtfExplication = s;
 	}
 
 	public JEditorPane getEditeurEnonce()
@@ -790,27 +774,5 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			e.printStackTrace();
 			return null;
 		}
-	}
-
-	public String passageText(JEditorPane editeur)
-	{
-		EditorKit kitRtf = editeur.getEditorKitForContentType("text/rtf");
-		try (InputStream inputStream = new ByteArrayInputStream(editeur.getText().getBytes());
-			 InputStreamReader reader = new InputStreamReader(inputStream)) {
-
-			kitRtf.read(reader, editeur.getDocument(), 0);
-
-			// Convertir le contenu du document en texte brut
-			EditorKit kitPlain = editeur.getEditorKitForContentType("text/plain");
-			Writer writer = new StringWriter();
-			kitPlain.write(writer, editeur.getDocument(), 0, editeur.getDocument().getLength());
-
-			return writer.toString();
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-
-		return null;
 	}
 }

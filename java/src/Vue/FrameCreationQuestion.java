@@ -88,13 +88,15 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
 
     public void windowActivated  (java.awt.event.WindowEvent e)
     {
-        this.pnlCreationQuestion.setTexteRtfEnonce();
-        this.pnlCreationQuestion.getEditeurEnonce().setText(this.pnlCreationQuestion.passageText(this.pnlCreationQuestion.getEditeurEnonce()));
-        this.pnlCreationQuestion.getEditeurExplication().setText(this.pnlCreationQuestion.passageText(this.pnlCreationQuestion.getEditeurExplication()));
+        this.pnlCreationQuestion.getEditeurEnonce().setText(this.pnlCreationQuestion.getTexteTxtEnonce());
+        this.pnlCreationQuestion.getEditeurExplication().setText(this.pnlCreationQuestion.getTexteTxtExplication());
     }
 
     public void windowDeactivated(java.awt.event.WindowEvent e)
     {
+        this.pnlCreationQuestion.setTexteTxtEnonce(this.pnlCreationQuestion.getEditeurEnonce().getText());
+        this.pnlCreationQuestion.setTexteTxtExplication(this.pnlCreationQuestion.getEditeurExplication().getText());
+
         this.pnlCreationQuestion.getEditeurEnonce().setText(this.pnlCreationQuestion.passageRtf(this.pnlCreationQuestion.getEditeurEnonce()));
         this.pnlCreationQuestion.getEditeurExplication().setText(this.pnlCreationQuestion.passageRtf(this.pnlCreationQuestion.getEditeurExplication()));
     }

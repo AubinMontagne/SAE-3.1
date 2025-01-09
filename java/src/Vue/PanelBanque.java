@@ -78,7 +78,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
         DefaultTableModel model = new DefaultTableModel(data, tabEntetes);
         this.tbQuestion = new JTable(model);
 
-		this.ddlstRessources   = new JComboBox<>(ctrl.getRessources().toArray(new Ressource[0]));
+		this.ddlstRessources  = new JComboBox<>(ctrl.getRessources().toArray(new Ressource[0]));
 		Ressource placeHolder = new Ressource(" "," ");
 		this.ddlstRessources.insertItemAt(placeHolder, 0);
 		this.ddlstRessources.setSelectedItem(placeHolder);
@@ -135,18 +135,19 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 	 * @param e L'évènement à traiter
 	 */
 	public void actionPerformed(ActionEvent e){
-        if ( this.btnCreaQuest == e.getSource())
-			if (!((Ressource)(this.ddlstRessources.getSelectedItem())).getId().equals(" ") &&
-				!((Notion)(this.ddlstNotions.getSelectedItem())).getNom().equals(" ")) {
-            	FrameCreationQuestion.creerFrameCreationQuestion(
+        if ( this.btnCreaQuest == e.getSource()) {
+			if (!((Ressource) (this.ddlstRessources.getSelectedItem())).getId().equals(" ") &&
+					!((Notion) (this.ddlstNotions.getSelectedItem())).getNom().equals(" ")) {
+				FrameCreationQuestion.creerFrameCreationQuestion(
 						this.ctrl,
 						this,
-						(Ressource)(this.ddlstRessources.getSelectedItem()),
-						(Notion)(this.ddlstNotions.getSelectedItem())
+						(Ressource) (this.ddlstRessources.getSelectedItem()),
+						(Notion) (this.ddlstNotions.getSelectedItem())
 				);
 			} else {
 				FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl, this, null, null);
 			}
+		}
 		if (this.btnSupp == e.getSource()) {
 			int row = this.tbQuestion.getSelectedRow();
 			Iterator<Question> iterator = this.ctrl.getQuestions().iterator();
@@ -166,7 +167,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 			int row = this.tbQuestion.getSelectedRow();
 			for(int i = 0; i < this.ctrl.getQuestions().size();i++) {
 				if( this.listQ.get(row) == this.listQ.get(i)) {
-					FrameModifQuestion.creerFrameCreationQuestion(this.ctrl,this, this.listQ.get(i));
+					FrameModifQuestion.creerFrameModifQuestion(this.ctrl,this, this.listQ.get(i));
 				}
 			}
 		}

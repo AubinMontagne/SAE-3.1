@@ -52,7 +52,8 @@ public class QCMBuilder
      * @param path  Le chemin ou créer le dossier
      * @return      Vrai si le fichier a pu être créé, sinon faux
      */
-    public void creerDossier(String path){
+    public void creerDossier(String path)
+    {
         File file = new File(path + "/" + this.questionnaire.getNom() );
 
 

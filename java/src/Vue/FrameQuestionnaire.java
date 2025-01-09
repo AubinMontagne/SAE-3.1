@@ -36,6 +36,7 @@ public class FrameQuestionnaire extends JFrame implements WindowListener{
     }
     public void majTab(Controleur ctrl, Ressource r, String titre, Boolean estChrono){
         if (this.questionnaireTab != null){ this.remove(this.questionnaireTab); }
+        if (r != null && r.getId().equals(" ")){ r = null; }
         this.questionnaireTab = new PanelQuestionnaireTab(ctrl,r,titre,estChrono);
         this.add(questionnaireTab);
         this.revalidate();

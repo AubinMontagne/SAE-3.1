@@ -182,7 +182,8 @@ public class PanelElimination extends JFrame implements ActionListener
 				}
 			}
 		}
-		if(cptRepCorecte == 0 ) {
+		if(cptRepCorecte == 0 || cptRepCorecte > 1) {
+			JOptionPane.showMessageDialog(this, "Nombre incorect de reponse bonne");
 			return;
 		}
 

@@ -96,9 +96,8 @@ public class  Controleur{
 		);
 	}
 
-	public void creerQuestionElimination(
-			String cheminDossier, int difficulte, String notion, int temps,
-			int points, HashMap<String,Double[]> reponses, String reponseCorrecte, String cheminImg, List<String> lstLiens, int id)
+	public void creerQuestionElimination(String cheminDossier, int difficulte, String notion, int temps,
+	int points, HashMap<String,Double[]> reponses, String reponseCorrecte, String cheminImg, List<String> lstLiens, int id)
 	{
 		this.metier.ajouterQuestionElimination(
 				cheminDossier,
@@ -114,16 +113,16 @@ public class  Controleur{
 		);
 	}
 
-	public void modifQuestionQCM(boolean estModeUnique, HashMap<String, Boolean> reponses, String cheminImg, List<String> lstLiens, Question q){
-
+	public void modifQuestionQCM(boolean estModeUnique, HashMap<String, Boolean> hmReponses, String cheminImg, List<String> lstLiens, Question q){
+		this.metier.modifQuestionQCM(estModeUnique, hmReponses, cheminImg, lstLiens, q);
 	}
 
-	public void modifQuestionEntiteAssociation(HashMap<String, String> entiteAssociation, String cheminImg, List<String> lstLiens, Question q){
-
+	public void modifQuestionEntiteAssociation(HashMap<String, String> hmEntiteAssociation, String cheminImg, List<String> lstLiens, Question q){
+		this.metier.modifQuestionEntiteAssociation(hmEntiteAssociation, cheminImg, lstLiens, q);
 	}
 
-	public void modifQuestionElimination(HashMap<String, Double[]> reponses, String reponseCorrecte, String cheminImg, List<String> lstLiens, Question q){
-		//this.metier;
+	public void modifQuestionElimination(HashMap<String, Double[]> hmReponses, String reponseCorrecte, String cheminImg, List<String> lstLiens, Question q){
+		this.metier.modifQuestionElimination(hmReponses, reponseCorrecte, cheminImg, lstLiens, q);
 	}
 	// Main
 	public static void main(String[] args){

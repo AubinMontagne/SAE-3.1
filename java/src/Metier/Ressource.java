@@ -35,5 +35,10 @@ public class Ressource{
     public void setNom(String nom){this.nom = nom; }
 
     @Override
-	public String toString(){return this.id + " : " + this.nom + "\n"; }
+	public String toString(){
+        if (this.id.equals(" ")){
+            return "";
+        }
+        return this.id + " : " + this.nom + "\n";
+    }
 }

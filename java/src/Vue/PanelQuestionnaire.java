@@ -45,8 +45,6 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
     	UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
 
 		this.lstRessources   = ctrl.getRessources();
-		Ressource placeHolder = new Ressource(" "," ");
-		this.lstRessources.add(0,placeHolder);
 
     	// ------ Section supérieure ------
 		JPanel panelInfo = new JPanel(new GridLayout(2, 2, 5, 5));
@@ -65,7 +63,7 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 
 
     	JLabel labelRessource = new JLabel("Ressource :");
-		this.ddlstRessources 	  = new JComboBox<>(this.lstRessources.toArray(new Ressource[0]));
+		this.ddlstRessources  = new JComboBox<>(this.lstRessources.toArray(new Ressource[0]));
 
     	panelInfo.add(labelTitre);
     	panelInfo.add(labelRessource);

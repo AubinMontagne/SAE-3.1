@@ -15,14 +15,6 @@ public class FrameModifQuestion extends JFrame implements WindowListener {
 
     private Controleur ctrl;
 
-    public static FrameModifQuestion creerFrameCreationQuestion(Controleur ctrl, PanelBanque panelBanque, Question q){
-        if(FrameModifQuestion.nbFrame == 0){
-            FrameModifQuestion.nbFrame++;
-            return new FrameModifQuestion( ctrl, panelBanque, q);
-        }
-        return null;
-    }
-
     public FrameModifQuestion(Controleur ctrl, PanelBanque panelBanque, Question q){
         this.ctrl = ctrl;
         this.panelBanque = panelBanque;
