@@ -1,16 +1,26 @@
 package src.Vue;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JEditorPane;
+import javax.swing.ImageIcon;
+
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import src.Controleur;
-import src.Metier.*;
+import src.Metier.Question;
 
 public class PanelEntiteAssociation extends JFrame implements ActionListener {
 	private Controleur ctrl;

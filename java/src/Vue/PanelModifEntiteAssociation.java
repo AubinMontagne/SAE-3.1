@@ -4,8 +4,19 @@ import src.Controleur;
 import src.Metier.AssociationElement;
 import src.Metier.Question;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JEditorPane;
+import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;

@@ -2,7 +2,9 @@ package src.Vue;
 
 import src.Controleur;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
 import java.awt.event.WindowListener;
 
 public class FrameCreationRessource extends JFrame implements WindowListener {

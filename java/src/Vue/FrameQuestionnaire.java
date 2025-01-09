@@ -1,8 +1,11 @@
 package src.Vue;
 
-import javax.swing.*;
-import src.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
+import src.Controleur;
 import src.Metier.Ressource;
+
 import java.awt.GridLayout;
 import java.awt.event.WindowListener;
 

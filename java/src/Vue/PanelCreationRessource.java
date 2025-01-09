@@ -3,7 +3,14 @@ package src.Vue;
 import src.Controleur;
 import src.Metier.Ressource;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Dimension;

@@ -1,11 +1,11 @@
 package src.Vue;
 
 import src.Controleur;
-import src.Metier.Notion;
 import src.Metier.Question;
-import src.Metier.Ressource;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
 import java.awt.event.WindowListener;
 
 public class FrameModifQuestion extends JFrame implements WindowListener {

@@ -1,9 +1,11 @@
 package src.Vue;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
 import src.Controleur;
 
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.awt.event.WindowListener;
 
 public class  FrameParametrage extends JFrame implements WindowListener {
