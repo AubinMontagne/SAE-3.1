@@ -11,14 +11,14 @@ public class AssociationElement extends Question
     // Constructeur
 	/**
 	 * Constructeur de la class AssociationElement
-	 * @param intitule		L'intituler de la question type Association-Element
+	 * @param dossierChemin	L'intituler de la question type Association-Element
 	 * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
      * @param notion        La notion concernée par la question.
      * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
      * @param points        Le nombre de points que rapporte la question.
 	 */
-    public AssociationElement(String intitule, Difficulte difficulte, Notion notion, int temps, int points, String imageChemin, int id){
-        super(intitule, difficulte, notion, temps, points, imageChemin, id);
+    public AssociationElement(String dossierChemin, Difficulte difficulte, Notion notion, int temps, int points, String imageChemin, int id){
+        super(dossierChemin, difficulte, notion, temps, points, imageChemin, id);
         this.hmAssociations = new HashMap<>();
     }
 
@@ -71,7 +71,7 @@ public class AssociationElement extends Question
 
         String[] parts = new String[10];
         for (int i = 0; i < 10; i++) {
-            scanner.next();
+            parts[i] = scanner.next();
         }
 
         AssociationElement associationElement = new AssociationElement(parts[1], Difficulte.getDifficulteByIndice(Integer.parseInt(parts[2])), metier.getNotionByNom(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]), parts[7], Integer.parseInt(parts[6]));
@@ -94,7 +94,7 @@ public class AssociationElement extends Question
         associationScanner.useDelimiter(",");
         while (associationScanner.hasNext()) {
             String fichier = associationScanner.next();
-            associationElement.ajouterfichier(fichier);
+            associationElement.ajouterFichier(fichier);
         }
 
         return associationElement;

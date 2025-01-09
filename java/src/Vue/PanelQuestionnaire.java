@@ -18,18 +18,17 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 	private boolean 			 videTitre;
 	private boolean 			 videRessource;
 	private JPanel 				 panelQuestionnaire;
-	private JComboBox<Ressource> mdRessources;
-	private JButton 			 btConfirmer;
-	private JButton 			 btChrono;
+	private JComboBox<Ressource> ddlstRessources;
+	private JButton 			 btnConfirmer;
+	private JButton 			 btnChrono;
 	private boolean 			 chrono;
-	private JTextField 			 champTitre;
-    private List<Ressource>      listRessources;
+	private JTextField 			 txtTitre;
+    private List<Ressource>      lstRessources;
 	private Ressource            r;
 	private Notion 	             n;
 	private Controleur           ctrl;
 	private FrameQuestionnaire   frame ;
 
-	// Constructeur
 
 	/**
 	 * Constructeur de la class PanelQuestionnaire
@@ -45,9 +44,9 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 
     	UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
 
-		this.listRessources   = ctrl.getRessources();
+		this.lstRessources   = ctrl.getRessources();
 		Ressource placeHolder = new Ressource(" "," ");
-		this.listRessources.add(0,placeHolder);
+		this.lstRessources.add(0,placeHolder);
 
     	// ------ Section supérieure ------
 		JPanel panelInfo = new JPanel(new GridLayout(2, 2, 5, 5));
@@ -57,50 +56,50 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 
 
     	JLabel labelTitre = new JLabel("Titre du questionnaire :");
-    	this.champTitre   = new JTextField();
+    	this.txtTitre   = new JTextField();
 
     	JLabel labelChrono = new JLabel("Chronomètre :");
-    	this.btChrono 	   = new JButton("NON");
-		this.btChrono.setBackground(new Color(163,206,250));
-		this.btChrono.setFont(new Font("Arial", Font.PLAIN, 22));
+    	this.btnChrono 	   = new JButton("NON");
+		this.btnChrono.setBackground(new Color(163,206,250));
+		this.btnChrono.setFont(new Font("Arial", Font.PLAIN, 22));
 
 
     	JLabel labelRessource = new JLabel("Ressource :");
-		this.mdRessources 	  = new JComboBox<>(this.listRessources.toArray(new Ressource[0]));
+		this.ddlstRessources 	  = new JComboBox<>(this.lstRessources.toArray(new Ressource[0]));
 
     	panelInfo.add(labelTitre);
     	panelInfo.add(labelRessource);
     	panelInfo.add(labelChrono);
 
-    	panelInfo.add(this.champTitre);
-    	panelInfo.add(this.mdRessources);
-    	panelInfo.add(this.btChrono);
+    	panelInfo.add(this.txtTitre);
+    	panelInfo.add(this.ddlstRessources);
+    	panelInfo.add(this.btnChrono);
 
     	this.add(panelInfo, BorderLayout.NORTH);
 
-		this.btConfirmer = new JButton("Confirmer");
-		btConfirmer.setBackground(new Color(163,206,250));
-		btConfirmer.setFont(new Font("Arial", Font.PLAIN, 22));
-		this.btConfirmer.setEnabled(false);
-		this.btConfirmer.addActionListener(this);
+		this.btnConfirmer = new JButton("Confirmer");
+		btnConfirmer.setBackground(new Color(163,206,250));
+		btnConfirmer.setFont(new Font("Arial", Font.PLAIN, 22));
+		this.btnConfirmer.setEnabled(false);
+		this.btnConfirmer.addActionListener(this);
 
     	this.add(this.panelQuestionnaire);
 
-    // ------ Ajouter le DocumentListener au champTitre ------
-		this.champTitre.getDocument().addDocumentListener(new DocumentListener() {
+    // ------ Ajouter le DocumentListener au txtTitre ------
+		this.txtTitre.getDocument().addDocumentListener(new DocumentListener() {
 			@Override
-			public void insertUpdate(DocumentEvent e)  {verifierChamps(champTitre.getText()); }
+			public void insertUpdate(DocumentEvent e)  {verifierChamps(txtTitre.getText()); }
 			@Override
-			public void removeUpdate(DocumentEvent e)  {verifierChamps(champTitre.getText()); }
+			public void removeUpdate(DocumentEvent e)  {verifierChamps(txtTitre.getText()); }
 			@Override
-			public void changedUpdate(DocumentEvent e) {verifierChamps(champTitre.getText()); }
+			public void changedUpdate(DocumentEvent e) {verifierChamps(txtTitre.getText()); }
 		});
 
-		this.btChrono.addActionListener(this);
+		this.btnChrono.addActionListener(this);
 
-		this.mdRessources.addItemListener(this);
-		this.mdRessources.setSelectedIndex(0);
-		this.mdRessources.setEnabled(false);
+		this.ddlstRessources.addItemListener(this);
+		this.ddlstRessources.setSelectedIndex(0);
+		this.ddlstRessources.setEnabled(false);
 
 		this.panelQuestionnaire.setVisible(true);
 	}
@@ -116,15 +115,15 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 	private void verifierChamps(String texteTitre) {
 		this.videTitre = texteTitre.trim().isEmpty();
 		if (!this.videTitre && !this.videRessource) {
-			this.btConfirmer.setEnabled(true);
+			this.btnConfirmer.setEnabled(true);
 			System.out.println("Vrai");
 		} else {
-			this.btConfirmer.setEnabled(false);
+			this.btnConfirmer.setEnabled(false);
 		}
 		if(!this.videTitre){
-			this.mdRessources.setEnabled(true);
+			this.ddlstRessources.setEnabled(true);
 		} else {
-			this.mdRessources.setEnabled(false);
+			this.ddlstRessources.setEnabled(false);
 		}
 	}
 
@@ -134,19 +133,19 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 	 */
     @Override
     public void itemStateChanged(ItemEvent e) {
-        if (e.getSource() == this.mdRessources && e.getStateChange() == ItemEvent.SELECTED) {
-			if (this.mdRessources.getSelectedIndex() == 0 && this.listRessources.get(0).getId().equals(" ")) {
-				this.mdRessources.removeItemAt(0);
-				this.listRessources.remove(0);
+        if (e.getSource() == this.ddlstRessources && e.getStateChange() == ItemEvent.SELECTED) {
+			if (this.ddlstRessources.getSelectedIndex() == 0 && this.lstRessources.get(0).getId().equals(" ")) {
+				this.ddlstRessources.removeItemAt(0);
+				this.lstRessources.remove(0);
 			}
-            Ressource selectedRessource = (Ressource) this.mdRessources.getSelectedItem();
+            Ressource selectedRessource = (Ressource) this.ddlstRessources.getSelectedItem();
 
             if (selectedRessource != null) 
 			{
 				this.r = selectedRessource;
 				this.videRessource = false;
 				if( !this.videTitre )
-					this.frame.majTab(this.ctrl, selectedRessource,this.champTitre.getText(),this.chrono);
+					this.frame.majTab(this.ctrl, selectedRessource,this.txtTitre.getText(),this.chrono);
             }
         }
     }
@@ -157,22 +156,22 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 	 */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.btConfirmer) {
-            Ressource selectedRessource = (Ressource) this.mdRessources.getSelectedItem();
-			String titre = this.champTitre.getText();
+        if (e.getSource() == this.btnConfirmer) {
+            Ressource selectedRessource = (Ressource) this.ddlstRessources.getSelectedItem();
+			String titre = this.txtTitre.getText();
             if (selectedRessource != null) {
 				this.frame.majTab(this.ctrl, selectedRessource,titre,this.chrono);
             }
         }
 
-		if(e.getSource() == this.btChrono)
+		if(e.getSource() == this.btnChrono)
 		{
-			if(this.btChrono.getText() == "OUI"){
-				this.btChrono.setText("NON");
+			if(this.btnChrono.getText() == "OUI"){
+				this.btnChrono.setText("NON");
 				this.chrono = false;
 			}
-			else if(this.btChrono.getText() == "NON"){
-				this.btChrono.setText("OUI");	
+			else if(this.btnChrono.getText() == "NON"){
+				this.btnChrono.setText("OUI");	
 				this.chrono = false;
 			}
 		}

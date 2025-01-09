@@ -7,7 +7,6 @@ import javax.swing.*;
 public class FrameAccueil extends JFrame{
     private Controleur ctrl;
 
-    // Contructeur
     /**
      * Constructeur de la class FrameAccueil
      * @param ctrl  Le contrôleur

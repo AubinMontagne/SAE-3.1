@@ -11,7 +11,6 @@ public class FrameParametrage extends JFrame implements WindowListener {
 	private Controleur     ctrl;
     private PanelNotion    panelNotion;
     private PanelRessource panelRessource;
-    // Constructeur
 
     /**
      * Contructeur de la class FrameRessource

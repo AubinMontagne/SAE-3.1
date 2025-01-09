@@ -15,14 +15,11 @@ import java.util.ArrayList;
 public class PanelNotion extends JPanel implements ActionListener , ListSelectionListener
 {	
     private JPanel            panelNotion;
-    private JButton           btnNouvNotion;
-    private JButton           btnSupprNotion;
-    private JList<Notion>     list;
+    private JButton           btnNouvNotion, btnSupprNotion;
+    private JList<Notion>     lstNotions;
     private Ressource         ressource;
     private ArrayList<Notion> notions;
     private Controleur        ctrl;
-
-    // Constructeur
 
     /**
      * Constructeur de la class PanelNotion
@@ -52,16 +49,16 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
         this.btnNouvNotion  = new JButton("Nouvelle Notion");
         this.btnSupprNotion = new JButton("Supprimer Notion");
 
-        this.list = new JList<>(listModel);
-        this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.lstNotions = new JList<>(listModel);
+        this.lstNotions.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         // Ajout des écouteurs
-        this.list          .addListSelectionListener (this);
+        this.lstNotions          .addListSelectionListener (this);
         this.btnNouvNotion .addActionListener        (this);
         this.btnSupprNotion.addActionListener        (this);
 
         // Ajout de la liste dans un JScrollPane
-        JScrollPane scrollPane = new JScrollPane(this.list);
+        JScrollPane scrollPane = new JScrollPane(this.lstNotions);
         this.panelNotion.add(scrollPane, BorderLayout.CENTER);
 
         JPanel panelBouton = new JPanel();
@@ -85,7 +82,7 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
         for (Notion notion : this.notions) {
             listModel.addElement(notion);
         }
-        this.list.setModel(listModel);
+        this.lstNotions.setModel(listModel);
     }
     public void setRessourceSelectionnee(Ressource r){this.ressource = r;}
 
@@ -95,7 +92,7 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
      */
     public void valueChanged(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
-            Notion selectedNotion = this.list.getSelectedValue();
+            Notion selectedNotion = this.lstNotions.getSelectedValue();
         }
     }
 
@@ -108,7 +105,7 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
             FrameCreationNotion.creerFrameCreationNotion(this.ctrl, this.ressource, this);
         }
         if (btnSupprNotion == e.getSource()) {
-            Notion notion = this.list.getSelectedValue();
+            Notion notion = this.lstNotions.getSelectedValue();
             if (notion != null) {
                 this.ctrl.supprimerNotion(notion);
                 this.maj();

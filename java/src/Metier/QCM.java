@@ -112,7 +112,7 @@ public class QCM extends Question {
 		reponseScanner.useDelimiter(",");
 		while (reponseScanner.hasNext()) {
 			String fichier = reponseScanner.next();
-			qcm.ajouterfichier(fichier);
+			qcm.ajouterFichier(fichier);
 		}
 
 		return qcm;

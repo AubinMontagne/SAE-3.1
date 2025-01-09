@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import src.Metier.*;
 import src.Vue.FrameAccueil;
-import src.Metier.Metier;
-import src.Metier.Notion;
-import src.Metier.Question;
-import src.Metier.Ressource;
 
-public class Controleur{
+public class  Controleur{
 	private Metier metier;
 
 	/**
@@ -34,10 +31,12 @@ public class Controleur{
     public ArrayList<Question>  getQuestions(){return this.metier.getQuestions(); }
 
 	public ArrayList<Question> getQuestionsParNotion (Notion notion)      {return this.metier.getQuestionsParNotion(notion);}
+	public ArrayList<Question> getQuestionsParNotionEtDifficulte (Notion notion, Difficulte difficulte){return this.metier.getQuestionsParNotionEtDifficulte(notion, difficulte);}
+	public ArrayList<Question> getQuestionsParRessource (Ressource ressource){return this.metier.getQuestionsParRessource(ressource);}
 	public ArrayList<Notion>   getNotionsParRessource(Ressource ressource){return this.metier.getNotionsParRessource(ressource);}
 	public Notion			   getNotionByNom(String notion){return this.metier.getNotionByNom(notion);}
 
-    // Setter
+	// Setter
     public void setMetier(Metier metier){this.metier = metier;}
 
 	public void ajouterNotion   (Notion notion)       {this.metier.ajouterNotion(notion);}
@@ -64,8 +63,8 @@ public class Controleur{
 	public void creerQuestionQCM(
 			String dossierChemin, int difficulte, String notion, int temps,
 			int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses,
-			String imageChemin, List<String> lstLiens, int id)
-	{
+			String imageChemin, List<String> lstLiens, int id){
+
 		this.metier.ajouterQuestionQCM(
 				dossierChemin,
 				metier.getDifficulteByIndice(difficulte),
@@ -96,17 +95,19 @@ public class Controleur{
 	}
 
 	public void creerQuestionElimination(
-			String intitule, int difficulte, String notion, int temps,
-			int points, HashMap<String,Double[]> reponses, String reponseCorrecte, int id)
+			String cheminDossier, int difficulte, String notion, int temps,
+			int points, HashMap<String,Double[]> reponses, String reponseCorrecte, String cheminImg, List<String> lstLiens, int id)
 	{
 		this.metier.ajouterQuestionElimination(
-				intitule,
+				cheminDossier,
 				metier.getDifficulteByIndice(difficulte),
 				metier.getNotionByNom(notion),
 				temps,
 				points,
 				reponses,
 				reponseCorrecte,
+				cheminImg,
+				lstLiens,
 				id
 		);
 	}

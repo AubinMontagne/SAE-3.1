@@ -16,9 +16,9 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
     private JPanel           panelRessource;
     private JButton          btnNouvRess;
     private JButton          btnSupprRess;
-    private JList<Ressource> list;
+    private JList<Ressource> lstRessources;
     private FrameParametrage frameParametrage;
-    // Constructeur
+
     /**
      * Constructeur de la class PanelRessource
      * @param ctrl Le contrôleur
@@ -26,6 +26,7 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
     public PanelRessource(Controleur ctrl, FrameParametrage frameParametrage) {
         this.ctrl             = ctrl;
         this.frameParametrage = frameParametrage;
+
         // Initialisation du panel principal
         this.panelRessource = new JPanel();
         this.panelRessource.setLayout(new BorderLayout());
@@ -37,18 +38,18 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
         }
 
         // Création des composants
-        this.btnNouvRess  = new JButton("Nouvelle Ressource");
-        this.btnSupprRess = new JButton("Supprimer Ressource");
-        this.list         = new JList<>(listModel);
-        this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.btnNouvRess   = new JButton("Nouvelle Ressource");
+        this.btnSupprRess  = new JButton("Supprimer Ressource");
+        this.lstRessources = new JList<>(listModel);
+        this.lstRessources.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         // Ajout des écouteurs
-        this.list        .addListSelectionListener(this);
-        this.btnNouvRess .addActionListener(this);
-        this.btnSupprRess.addActionListener(this);
+        this.lstRessources.addListSelectionListener(this);
+        this.btnNouvRess  .addActionListener(this);
+        this.btnSupprRess .addActionListener(this);
 
         // Ajout de la liste dans un JScrollPane
-        JScrollPane scrollPane = new JScrollPane(this.list);
+        JScrollPane scrollPane = new JScrollPane(this.lstRessources);
         this.panelRessource.add(scrollPane, BorderLayout.CENTER);
 
         JPanel panelBouton = new JPanel(new GridLayout(1, 2));
@@ -58,7 +59,6 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
 
         this.panelRessource.add(panelBouton, BorderLayout.SOUTH);
 
-        // Ajout du panel à la fenêtre
         this.add(this.panelRessource);
     }
 
@@ -69,7 +69,7 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
      */
     public void valueChanged(ListSelectionEvent e) {
         if (!e.getValueIsAdjusting()) {
-            Ressource selectedRessource = this.list.getSelectedValue();
+            Ressource selectedRessource = this.lstRessources.getSelectedValue();
             if (selectedRessource != null) {
                 this.frameParametrage.majPanelNotion();
             }
@@ -86,7 +86,7 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
             this.maj();
         }
         if (this.btnSupprRess == e.getSource()) {
-            Ressource ressource = this.list.getSelectedValue();
+            Ressource ressource = this.lstRessources.getSelectedValue();
             if (ressource != null) {
                 this.ctrl.supprimerRessource(ressource);
                 this.maj();
@@ -103,9 +103,9 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
         for (Ressource ressource : this.ctrl.getRessources()){
             listModel.addElement(ressource);
         }
-        this.list.setModel(listModel);
+        this.lstRessources.setModel(listModel);
     }
     public Ressource getRessourceSelectionnee(){
-        return this.list.getSelectedValue();
+        return this.lstRessources.getSelectedValue();
     }
 }

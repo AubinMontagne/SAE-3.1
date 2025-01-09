@@ -10,7 +10,6 @@ public class FrameCreationRessource extends JFrame implements WindowListener {
 
     private Controleur ctrl;
 
-    // Constructeur
     /**
      * Constructeur de la class FrameCreationRessource
      * @param ctrl              Le contrôleur

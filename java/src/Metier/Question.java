@@ -110,6 +110,26 @@ public abstract class Question{
         }
         return null;
     }
+    public String getExplication(){
+        File file = new File(this.dossierChemin + "/explication.rtf");
+
+        try {
+            JEditorPane p = new JEditorPane();
+            p.setContentType("text/rtf");
+
+            EditorKit kitRtf = p.getEditorKitForContentType("text/rtf");
+            kitRtf.read(new FileReader(file), p.getDocument(), 0);
+
+            EditorKit kitHtml = p.getEditorKitForContentType("text/txt");
+            Writer writer = new StringWriter();
+            kitHtml.write(writer, p.getDocument(), 0, p.getDocument().getLength());
+
+            return writer.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public String getEnonceText() {
         File file = new File(this.dossierChemin + "/enonce.rtf");
 
@@ -210,7 +230,7 @@ public abstract class Question{
     public void setPoint          (int point)              {this.point           =  point;}
     public void setImageChemin    (String imageChemin)     {this.imageChemin     = imageChemin;}
     public void setListeFichiers  (List<String> listeFichiers){this.listeFichiers   = listeFichiers;}
-    public void ajouterfichier    (String fichier){this.listeFichiers.add(fichier);}
+    public void ajouterFichier    (String fichier){this.listeFichiers.add(fichier);}
     public int  setId             (int id)                 {return this.id       = id;}
 
 	public String toString(){

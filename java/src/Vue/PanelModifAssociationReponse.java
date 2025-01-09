@@ -14,24 +14,18 @@ import src.Metier.*;
 
 public class PanelModifAssociationReponse extends JFrame implements ActionListener {
 
-    private JPanel panelAssociations; // Panel pour les associations
-    private int nombreAssociations = 0; // Nombre d'associations
-    private JTextField champQuestion;
-    private JButton boutonAjoutAssociation;
-    private JButton boutonEnregistrer;
-    private Question q ;
+    private Controleur ctrl;
+    private JPanel                  panelAssociations;
+    private JTextField              txtQuestion;
+    private JButton                 btnAjoutAssociation;
+    private JButton                 btnEnregistrer;
+    private Question                q ;
     private HashMap<String, String> hmReponses;
 
-    private PanelBanque panelBanque;
+    private String 	notion;
+    private int     nombreAssociations = 0;
+    private int     difficulte, points, temps;
 
-    int 	difficulte;
-    String 	notion;
-    int 	points;
-    int 	temps;
-
-    private Controleur ctrl;
-
-    // Constructeur
 
     /**
      * Constructeur de la class PanelEntiteAssociation
@@ -58,36 +52,36 @@ public class PanelModifAssociationReponse extends JFrame implements ActionListen
         // Panel pour la question
         JPanel panelQuestion = new JPanel(new BorderLayout());
         JLabel etiquetteQuestion = new JLabel("Question :");
-        champQuestion = new JTextField();
-        panelQuestion.add(etiquetteQuestion, BorderLayout.NORTH);
-        panelQuestion.add(champQuestion, BorderLayout.CENTER);
+        this.txtQuestion = new JTextField();
+        panelQuestion.add( etiquetteQuestion, BorderLayout.NORTH);
+        panelQuestion.add(this.txtQuestion, BorderLayout.CENTER);
 
         // Panel pour les associations
-        panelAssociations = new JPanel();
-        panelAssociations.setLayout(new BoxLayout(panelAssociations, BoxLayout.Y_AXIS));
-        JScrollPane defilement = new JScrollPane(panelAssociations);
+        this.panelAssociations = new JPanel();
+        this.panelAssociations.setLayout(new BoxLayout(this.panelAssociations, BoxLayout.Y_AXIS));
+        JScrollPane defilement = new JScrollPane(this.panelAssociations);
 
         // Bouton pour ajouter une association
-        boutonAjoutAssociation = new JButton("Ajouter une association");
-        boutonAjoutAssociation.setActionCommand("ajouterAssociation");
+        this.btnAjoutAssociation = new JButton("Ajouter une association");
+        this.btnAjoutAssociation.setActionCommand("ajouterAssociation");
 
         // Bouton pour enregistrer
-        boutonEnregistrer = new JButton("Enregistrer");
-        boutonEnregistrer.setActionCommand("enregistrer");
+        this.btnEnregistrer = new JButton("Enregistrer");
+        this.btnEnregistrer.setActionCommand("enregistrer");
 
         // Panel des boutons
         JPanel panelBoutons = new JPanel();
-        panelBoutons.add(boutonAjoutAssociation);
-        panelBoutons.add(boutonEnregistrer);
+        panelBoutons.add(this.btnAjoutAssociation);
+        panelBoutons.add(this.btnEnregistrer);
 
         // Ajout des composants à la fenêtre
         add(panelQuestion, BorderLayout.NORTH);
-        add(defilement, BorderLayout.CENTER);
-        add(panelBoutons, BorderLayout.SOUTH);
+        add(   defilement, BorderLayout.CENTER);
+        add( panelBoutons, BorderLayout.SOUTH);
 
         // Activation des listeners
-        boutonAjoutAssociation.addActionListener(this);
-        boutonEnregistrer.addActionListener(this);
+        this.btnAjoutAssociation.addActionListener(this);
+        this.btnEnregistrer.addActionListener(this);
 
         //Ajout de deux réponses pour rendre plus beau
         this.ajouterAssociation();
@@ -112,15 +106,15 @@ public class PanelModifAssociationReponse extends JFrame implements ActionListen
         panelAjoutAssociation.setLayout(new BoxLayout(panelAjoutAssociation, BoxLayout.X_AXIS));
 
         // Champs pour les entités et les associations
-        JTextField champEntite = new JTextField("Entité " + (++nombreAssociations), 10);
-        JTextField champAssociation = new JTextField("Association " + nombreAssociations, 10);
+        JTextField champEntite = new JTextField("Entité " + (++this.nombreAssociations), 10);
+        JTextField champAssociation = new JTextField("Association " + this.nombreAssociations, 10);
         JButton boutonSupprimer = new JButton("Supprimer");
 
         // Listener pour supprimer une association
         boutonSupprimer.addActionListener(e -> {
-            panelAssociations.remove(panelAjoutAssociation);
-            panelAssociations.revalidate();
-            panelAssociations.repaint();
+            this.panelAssociations.remove(panelAjoutAssociation);
+            this.panelAssociations.revalidate();
+            this.panelAssociations.repaint();
         });
 
         panelAjoutAssociation.add(champEntite);
@@ -128,9 +122,9 @@ public class PanelModifAssociationReponse extends JFrame implements ActionListen
         panelAjoutAssociation.add(champAssociation);
         panelAjoutAssociation.add(boutonSupprimer);
 
-        panelAssociations.add(panelAjoutAssociation);
-        panelAssociations.revalidate();
-        panelAssociations.repaint();
+        this.panelAssociations.add(panelAjoutAssociation);
+        this.panelAssociations.revalidate();
+        this.panelAssociations.repaint();
     }
 
     private void initAssociation(String entite, String asso)
@@ -139,15 +133,15 @@ public class PanelModifAssociationReponse extends JFrame implements ActionListen
         panelAjoutAssociation.setLayout(new BoxLayout(panelAjoutAssociation, BoxLayout.X_AXIS));
 
         // Champs pour les entités et les associations
-        JTextField champEntite      = new JTextField( entite + (++nombreAssociations), 10);
-        JTextField champAssociation = new JTextField( asso   + nombreAssociations, 10);
+        JTextField champEntite      = new JTextField( entite + (++this.nombreAssociations), 10);
+        JTextField champAssociation = new JTextField( asso   + this.nombreAssociations, 10);
         JButton boutonSupprimer     = new JButton   ("Supprimer");
 
         // Listener pour supprimer une association
         boutonSupprimer.addActionListener(e -> {
-            panelAssociations.remove(panelAjoutAssociation);
-            panelAssociations.revalidate();
-            panelAssociations.repaint();
+            this.panelAssociations.remove(panelAjoutAssociation);
+            this.panelAssociations.revalidate();
+            this.panelAssociations.repaint();
         });
 
         panelAjoutAssociation.add(champEntite);
@@ -155,9 +149,9 @@ public class PanelModifAssociationReponse extends JFrame implements ActionListen
         panelAjoutAssociation.add(champAssociation);
         panelAjoutAssociation.add(boutonSupprimer);
 
-        panelAssociations.add(panelAjoutAssociation);
-        panelAssociations.revalidate();
-        panelAssociations.repaint();
+        this.panelAssociations.add(panelAjoutAssociation);
+        this.panelAssociations.revalidate();
+        this.panelAssociations.repaint();
     }
 
     /**
@@ -165,7 +159,7 @@ public class PanelModifAssociationReponse extends JFrame implements ActionListen
      */
     private void enregistrerAssociations()
     {
-        String question = champQuestion.getText();
+        String question = this.txtQuestion.getText();
         if (question.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Veuillez entrer une question.", "Erreur", JOptionPane.ERROR_MESSAGE);
             return;
@@ -173,7 +167,7 @@ public class PanelModifAssociationReponse extends JFrame implements ActionListen
 
         // Récupérer les entités et associations
         List<String> associations = new ArrayList<>();
-        Component[] composants = panelAssociations.getComponents();
+        Component[] composants = this.panelAssociations.getComponents();
         for (Component composant : composants)
         {
             if (composant instanceof JPanel)
@@ -204,7 +198,7 @@ public class PanelModifAssociationReponse extends JFrame implements ActionListen
 
         int idMax = 0;
 
-        for(Question q : ctrl.getQuestions())
+        for(Question q : this.ctrl.getQuestions())
         {
             if(q.getId() > idMax)
             {
@@ -213,9 +207,15 @@ public class PanelModifAssociationReponse extends JFrame implements ActionListen
         }
 
 
-        this.ctrl.creerQuestionEntiteAssociation(question, difficulte, notion, temps, points, entiteAssociation, idMax);
-
-        if(this.panelBanque != null) {this.panelBanque.maj();}
+        this.ctrl.creerQuestionEntiteAssociation(
+                question,
+                this.difficulte,
+                this.notion,
+                this.temps,
+                this.points,
+                entiteAssociation,
+                idMax
+        );
 
         JOptionPane.showMessageDialog(this, resultats.toString(), "Résumé", JOptionPane.INFORMATION_MESSAGE);
     }

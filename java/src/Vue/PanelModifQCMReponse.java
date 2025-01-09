@@ -43,7 +43,6 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
         this.points        = q.getPoint();
         this.temps         = q.getTemps();
         this.q             = q;
-        //this.reponses = q.getReponses();
 
         setTitle("QCM Builder - Modificateur de QCM");
         setSize(600, 400);
@@ -52,27 +51,27 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
 
         JPanel panelQuestion = new JPanel(new BorderLayout());
         JLabel etiquetteQuestion = new JLabel("Question :");
-        champQuestion = new JTextField();
+        this.champQuestion = new JTextField();
         panelQuestion.add(etiquetteQuestion, BorderLayout.NORTH);
-        panelQuestion.add(champQuestion, BorderLayout.CENTER);
+        panelQuestion.add(this.champQuestion, BorderLayout.CENTER);
 
         // Panel pour ajouter les réponses
-        panelReponses = new JPanel();
-        panelReponses.setLayout(new BoxLayout(panelReponses, BoxLayout.Y_AXIS));
+        this.panelReponses = new JPanel();
+        this.panelReponses.setLayout(new BoxLayout(panelReponses, BoxLayout.Y_AXIS));
         JScrollPane defilement = new JScrollPane(panelReponses);
 
         // Bouton pour ajouter une réponse
-        boutonAjoutReponse = new JButton("Ajouter une réponse");
-        boutonAjoutReponse.setActionCommand("ajouterReponse");
+        this.boutonAjoutReponse = new JButton("Ajouter une réponse");
+        this.boutonAjoutReponse.setActionCommand("ajouterReponse");
 
         // Bouton pour enregistrer
-        boutonEnregistrer = new JButton("Enregistrer");
-        boutonEnregistrer.setActionCommand("enregistrer");
+        this.boutonEnregistrer = new JButton("Enregistrer");
+        this.boutonEnregistrer.setActionCommand("enregistrer");
 
         // Panel des boutons
         JPanel panelBoutons = new JPanel();
-        panelBoutons.add(boutonAjoutReponse);
-        panelBoutons.add(boutonEnregistrer);
+        panelBoutons.add(this.boutonAjoutReponse);
+        panelBoutons.add(this.boutonEnregistrer);
 
         // Ajout des composants à la fenêtre
         add(panelQuestion, BorderLayout.NORTH);
@@ -92,56 +91,20 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
         }
     }
 
-    private void ajouterReponse() {
-        JPanel panelAjoutReponse = new JPanel();
-        panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
-        JTextField champReponse = new JTextField("Réponse " + (++nombreReponses));
-
-        JComponent caseCorrecte;
-        if (estModeUnique) {
-            JRadioButton boutonRadio = new JRadioButton();
-            if (groupReponses == null) {
-                groupReponses = new ButtonGroup();
-            }
-            groupReponses.add(boutonRadio);
-            caseCorrecte = boutonRadio;
-        } else {
-            caseCorrecte = new JCheckBox("Correcte");
-        }
-
-        JButton boutonSupprimer = new JButton("Supprimer");
-        boutonSupprimer.addActionListener(e -> {
-            if (caseCorrecte instanceof JRadioButton && groupReponses != null) {
-                groupReponses.remove((JRadioButton) caseCorrecte);
-            }
-            panelReponses.remove(panelAjoutReponse);
-            panelReponses.revalidate();
-            panelReponses.repaint();
-        });
-
-        panelAjoutReponse.add(champReponse);
-        panelAjoutReponse.add(caseCorrecte);
-        panelAjoutReponse.add(boutonSupprimer);
-
-        panelReponses.add(panelAjoutReponse);
-        panelReponses.revalidate();
-        panelReponses.repaint();
-    }
-
     private void initReponse(String rep, boolean vrai) {
         JPanel panelAjoutReponse = new JPanel();
         panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
-        JTextField champReponse = new JTextField( rep + (++nombreReponses));
+        JTextField champReponse = new JTextField( rep + (++this.nombreReponses));
 
         JComponent caseCorrecte;
-        if (estModeUnique) {
+        if (this.estModeUnique) {
             JRadioButton boutonRadio = new JRadioButton();
-            if (groupReponses == null) {
-                groupReponses = new ButtonGroup();
+            if (this.groupReponses == null) {
+                this.groupReponses = new ButtonGroup();
             }
             boutonRadio.setSelected(vrai);
 
-            groupReponses.add(boutonRadio);
+            this.groupReponses.add(boutonRadio);
             caseCorrecte = boutonRadio;
         } else {
             caseCorrecte = new JCheckBox("Correcte", vrai);
@@ -150,33 +113,71 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
 
         JButton boutonSupprimer = new JButton("Supprimer");
         boutonSupprimer.addActionListener(e -> {
-            if (caseCorrecte instanceof JRadioButton && groupReponses != null) {
+            if (caseCorrecte instanceof JRadioButton && this.groupReponses != null) {
                 groupReponses.remove((JRadioButton) caseCorrecte);
             }
-            panelReponses.remove(panelAjoutReponse);
-            panelReponses.revalidate();
-            panelReponses.repaint();
+            this.panelReponses.remove(panelAjoutReponse);
+            this.panelReponses.revalidate();
+            this.panelReponses.repaint();
         });
 
         panelAjoutReponse.add(champReponse);
         panelAjoutReponse.add(caseCorrecte);
         panelAjoutReponse.add(boutonSupprimer);
 
-        panelReponses.add(panelAjoutReponse);
-        panelReponses.revalidate();
-        panelReponses.repaint();
+        this.panelReponses.add(panelAjoutReponse);
+        this.panelReponses.revalidate();
+        this.panelReponses.repaint();
     }
+
+    private void ajouterReponse() {
+        JPanel panelAjoutReponse = new JPanel();
+        panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
+        JTextField champReponse = new JTextField("Réponse " + (++this.nombreReponses));
+
+        JComponent caseCorrecte;
+        if (this.estModeUnique) {
+            JRadioButton boutonRadio = new JRadioButton();
+            if (this.groupReponses == null) {
+                this.groupReponses = new ButtonGroup();
+            }
+            this.groupReponses.add(boutonRadio);
+            caseCorrecte = boutonRadio;
+        } else {
+            caseCorrecte = new JCheckBox("Correcte");
+        }
+
+        JButton boutonSupprimer = new JButton("Supprimer");
+        boutonSupprimer.addActionListener(e -> {
+            if (caseCorrecte instanceof JRadioButton && this.groupReponses != null) {
+                this.groupReponses.remove((JRadioButton) caseCorrecte);
+            }
+            this.panelReponses.remove(panelAjoutReponse);
+            this.panelReponses.revalidate();
+            this.panelReponses.repaint();
+        });
+
+        panelAjoutReponse.add(champReponse);
+        panelAjoutReponse.add(caseCorrecte);
+        panelAjoutReponse.add(boutonSupprimer);
+
+        this.panelReponses.add(panelAjoutReponse);
+        this.panelReponses.revalidate();
+        this.panelReponses.repaint();
+    }
+
+
 
     private void enregistrerQCMAvecHashMap() {
 
-        String question = champQuestion.getText().trim();
+        String question = this.champQuestion.getText().trim();
 
         if (question.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Veuillez entrer une question.", "Erreur", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        if (panelReponses.getComponentCount() == 0) {
+        if (this.panelReponses.getComponentCount() == 0) {
             JOptionPane.showMessageDialog(this, "Veuillez ajouter au moins une réponse.", "Erreur", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -184,7 +185,7 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
         HashMap<String, Boolean> reponses = new HashMap<>();
         boolean auMoinsUneReponseCorrecte = false;
 
-        for (Component composant : panelReponses.getComponents()) {
+        for (Component composant : this.panelReponses.getComponents()) {
             if (composant instanceof JPanel) {
                 JPanel panelReponse = (JPanel) composant;
                 JTextField champReponse = (JTextField) panelReponse.getComponent(0);
@@ -220,7 +221,7 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
 
         int idMax = 0;
 
-        for(Question q : ctrl.getQuestions())
+        for(Question q : this.ctrl.getQuestions())
         {
             if(q.getId() > idMax)
             {
@@ -228,7 +229,7 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
             }
         }
 
-       /* this.ctrl.creerQuestionQCM(
+        this.ctrl.creerQuestionQCM(
                 question,
                 difficulte,
                 notion,
@@ -236,9 +237,10 @@ public class PanelModifQCMReponse extends JFrame implements ActionListener {
                 points,
                 false,
                 reponses,
-                this.imgChemin,
+                q.getImageChemin(),
+                q.getListeFichiers(),
                 idMax
-        );*/
+        );
 
         if(this.panelBanque != null) {this.panelBanque.maj();}
 

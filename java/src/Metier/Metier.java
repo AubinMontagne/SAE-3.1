@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
-public class Metier{
+public class  Metier{
     private ArrayList<Notion>    lstNotions;
     private ArrayList<Ressource> lstRessources;
     private ArrayList<Question>  lstQuestions;
@@ -214,10 +214,10 @@ public class Metier{
 
 	public boolean ajouterQuestionQCM(String dossierChemin, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses, String imageChemin, List<String> lstLiens, int id) {
 		String imageChemin2;
-		if (dossierChemin == null || dossierChemin.isEmpty()) {
+		if (imageChemin == null || imageChemin.isEmpty()) {
 			imageChemin2 = null;
 		} else {
-			imageChemin2 = "fic00000"+dossierChemin.substring(dossierChemin.lastIndexOf("."));
+			imageChemin2 = "fic00000"+imageChemin.substring(imageChemin.lastIndexOf("."));
 		}
 		QCM questionQCM = new QCM(dossierChemin, difficulte, notion, temps, points, vraiOuFaux,imageChemin2 ,id);
 
@@ -257,7 +257,7 @@ public class Metier{
 				System.err.println("Erreur : " + ex.getMessage());
 				return false;
 			}
-			questionQCM.ajouterfichier(nomFichier);
+			questionQCM.ajouterFichier(nomFichier);
 			numero++;
 		}
 		this.lstQuestions.add(questionQCM);
@@ -281,14 +281,56 @@ public class Metier{
 		return true;
 	}
 
-	public boolean ajouterQuestionElimination(String intitule, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String,Double[]> reponses, String reponseCorrecte, int id) {
-		EliminationReponse questionER = new EliminationReponse(intitule, difficulte, notion, temps, points, null, id);
+	public boolean ajouterQuestionElimination(String cheminDossier, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String,Double[]> reponses, String reponseCorrecte, String cheminImg, List<String> lstLiens, int id) {
+		String imageChemin2;
+		if (cheminImg == null || cheminImg.isEmpty()) {
+			imageChemin2 = null;
+		} else {
+			imageChemin2 = "fic00000"+cheminImg.substring(cheminImg.lastIndexOf("."));
+		}
+
+		EliminationReponse questionER = new EliminationReponse(cheminDossier, difficulte, notion, temps, points, imageChemin2, id);
 
 		// Ajout des réponses
 		for (String reponse : reponses.keySet()) {
 			questionER.ajouterReponse(reponse, reponses.get(reponse)[0], reponses.get(reponse)[1]);
 		}
 		questionER.setReponseCorrecte(reponseCorrecte);
+
+		if(!( cheminImg == null || cheminImg.isEmpty())) {
+			String nomFichier = "fic00000" + cheminImg.substring(cheminImg.lastIndexOf("."));
+
+			try {
+				Path fileSource = Paths.get(cheminImg);
+				Path fileDest = Paths.get(cheminDossier + "/Compléments/" + nomFichier);
+
+				Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				System.err.println("Erreur : " + ex.getMessage());
+				return false;
+			}
+		}
+
+		int numero = 1;
+		for (String fichierChemin: lstLiens)
+		{
+			String nomFichier = "fic"+String.format("%05d", numero)+fichierChemin.substring(fichierChemin.lastIndexOf("."));
+
+			try {
+				Path fileSource = Paths.get(fichierChemin);
+				Path fileDest = Paths.get( cheminDossier + "/Compléments/" + nomFichier);
+
+				Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
+			} catch (Exception ex)
+			{
+				ex.printStackTrace();
+				System.err.println("Erreur : " + ex.getMessage());
+				return false;
+			}
+			questionER.ajouterFichier(nomFichier);
+			numero++;
+		}
 		this.lstQuestions.add(questionER);
 		this.saveQuestions("java/data/");
 		System.out.println(this.lstQuestions);
@@ -346,17 +388,19 @@ public class Metier{
 		return null;
 	}
 
-	public Question getQuestionAleatoire(Notion n, Difficulte d){
-		ArrayList<Question> qs = new ArrayList<>();
-		for (Question question : this.lstQuestions){
-			if (question.getNotion().equals(n) && question.getDifficulte().equals(d)){
-				qs.add(question);
-			}
-		}
-		if (!qs.isEmpty()){
-			return qs.get((int)(Math.random()*qs.size()));
+	public static Question getQuestionAleatoire(Notion n, Difficulte d, ArrayList<Question> lstQuestion){
+		if (!lstQuestion.isEmpty()){
+			return lstQuestion.get((int)(Math.random()*lstQuestion.size()));
 		}
 		return null;
+	}
+
+	public ArrayList<Question> getQuestionsParRessource(Ressource ressource){
+		ArrayList<Question> lstQuestion = new ArrayList<Question>();
+		for(Question question : this.getQuestions()){
+			if(question.getNotion().getRessourceAssociee().equals(ressource)){lstQuestion.add(question);}
+		}
+		return lstQuestion;
 	}
 
 	public Question getFromDataQuestion(String line){
@@ -415,6 +459,16 @@ public class Metier{
 			if (question.getNotion().equals(notion)) {
 				questionsAssociees.add(question);
 				System.out.println(question);
+			}
+		}
+		return questionsAssociees;
+	}
+	public ArrayList<Question> getQuestionsParNotionEtDifficulte(Notion notion, Difficulte difficulte){
+		ArrayList<Question> questionsAssociees = new ArrayList<>();
+
+		for (Question question : this.lstQuestions) {
+			if (question.getNotion().equals(notion) && question.getDifficulte().equals(difficulte)) {
+				questionsAssociees.add(question);
 			}
 		}
 		return questionsAssociees;

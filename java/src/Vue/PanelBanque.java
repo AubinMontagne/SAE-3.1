@@ -25,18 +25,17 @@ import src.Metier.Ressource;
 public class PanelBanque extends JPanel implements  ActionListener, ItemListener {
 	private boolean ignorerEvents = false;
 
-    private Controleur           ctrl;
-	private Notion               notion;
 	private JButton              btnCreaQuest;
 	private JButton              btnSupp;
 	private JButton              btnModif;
-    private JPanel               panelBanque;
-    private JTable               tbQuestion;
-	private JComboBox<Notion>    mdNotions;
-	private JComboBox<Ressource> mdRessources;
-	private ArrayList<Question>  listQ;
+	private JPanel               panelBanque;
+	private JTable               tbQuestion;
+	private JComboBox<Notion>    ddlstNotions;
+	private JComboBox<Ressource> ddlstRessources;
 
-	// Constructeur
+    private Controleur           ctrl;
+	private ArrayList<Question>  listQ;
+	private Notion               notion;
 
 	/**
 	 * Constructeur de la class PanelBanque
@@ -79,11 +78,11 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
         DefaultTableModel model = new DefaultTableModel(data, tabEntetes);
         this.tbQuestion = new JTable(model);
 
-		this.mdRessources   = new JComboBox<>(ctrl.getRessources().toArray(new Ressource[0]));
+		this.ddlstRessources   = new JComboBox<>(ctrl.getRessources().toArray(new Ressource[0]));
 		Ressource placeHolder = new Ressource(" "," ");
-		this.mdRessources.insertItemAt(placeHolder, 0);
-		this.mdRessources.setSelectedItem(placeHolder);
-		this.mdNotions		= new JComboBox<>();
+		this.ddlstRessources.insertItemAt(placeHolder, 0);
+		this.ddlstRessources.setSelectedItem(placeHolder);
+		this.ddlstNotions		= new JComboBox<>();
 
 		JPanel panelParametre = new JPanel();
 
@@ -111,8 +110,8 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 		this.btnModif.setFont			(new Font("Arial", Font.PLAIN, 22));
 
 
-		panelParametre.add(this.mdRessources);
-		panelParametre.add(this.mdNotions);
+		panelParametre.add(this.ddlstRessources);
+		panelParametre.add(this.ddlstNotions);
 
 		this.panelBanque.add(panelParametre   , BorderLayout.NORTH );
 		this.panelBanque.add(scrollPane       , BorderLayout.CENTER);
@@ -126,20 +125,25 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 		this.btnCreaQuest.addActionListener(this);
 		this.btnModif    .addActionListener(this);
 
-		this.mdRessources.addItemListener(this);
-		this.mdNotions   .addItemListener(this);
+		this.ddlstRessources.addItemListener(this);
+		this.ddlstNotions   .addItemListener(this);
     }
 
 
-	// Methode
 	/**
 	 * Methode actionPerformed
 	 * @param e L'évènement à traiter
 	 */
 	public void actionPerformed(ActionEvent e){
         if ( this.btnCreaQuest == e.getSource())
-			if (!((Ressource)(this.mdRessources.getSelectedItem())).getId().equals(" ")) {
-            	FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl, this, (Ressource)(this.mdRessources.getSelectedItem()), (Notion)(this.mdNotions.getSelectedItem()));
+			if (!((Ressource)(this.ddlstRessources.getSelectedItem())).getId().equals(" ") &&
+				!((Notion)(this.ddlstNotions.getSelectedItem())).getNom().equals(" ")) {
+            	FrameCreationQuestion.creerFrameCreationQuestion(
+						this.ctrl,
+						this,
+						(Ressource)(this.ddlstRessources.getSelectedItem()),
+						(Notion)(this.ddlstNotions.getSelectedItem())
+				);
 			} else {
 				FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl, this, null, null);
 			}
@@ -164,15 +168,27 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 				if( this.listQ.get(row) == this.listQ.get(i)) {
 					if (this.listQ.get(i) instanceof QCM) {
 						HashMap<String, Boolean> hmReponses = ((QCM) this.listQ.get(i)).getReponses();
-						FrameModifQuestion.creerFrameModifQCM(this.ctrl, this.listQ.get(i), hmReponses); // Question type questionnaire
+						FrameModifQuestion.creerFrameModifQCM(
+								this.ctrl,
+								this.listQ.get(i),
+								hmReponses
+						); // Question type questionnaire
 
 					} else if (this.listQ.get(i) instanceof EliminationReponse) {
 						HashMap<String, Double[]> hmReponses = ((EliminationReponse) this.listQ.get(i)).getHmReponses();
-						FrameModifQuestion.creerFrameModifElimRep(this.ctrl, this.listQ.get(i), hmReponses); // Question type EliminationReponse
+						FrameModifQuestion.creerFrameModifElimRep(
+								this.ctrl,
+								this.listQ.get(i),
+								hmReponses
+						); // Question type EliminationReponse
 
 					} else {
 						HashMap<String, String> hmReponses =  ((AssociationElement) this.listQ.get(i)).getAssociations();
-						FrameModifQuestion.creerFrameModifAssoElt(this.ctrl, this.listQ.get(i), hmReponses); // Question type Association
+						FrameModifQuestion.creerFrameModifAssoElt(
+								this.ctrl,
+								this.listQ.get(i),
+								hmReponses
+						); // Question type Association
 					}
 				}
 			}
@@ -213,7 +229,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 			data[i][2] =      questList.get(i).getNotion().getRessourceAssociee().getNom();
 			data[i][3] =      questList.get(i).getNotion().getNom();
 			data[i][4] = "" + questList.get(i).getPoint();
-			data[i][5] = 	typeQuestion;
+			data[i][5] = typeQuestion;
 		}
 
 
@@ -231,27 +247,37 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 
 		this.ignorerEvents = true;
 
-		if (e.getSource() == this.mdRessources){
-			if (this.mdRessources.getSelectedIndex() == 0 && ((Ressource)(this.mdRessources.getSelectedItem())).getId().equals(" ")) {
-				this.mdRessources.removeItemAt(0);
+		if (e.getSource() == this.ddlstRessources){
+			if (this.ddlstRessources.getSelectedIndex() == 0 &&
+					((Ressource)(this.ddlstRessources.getSelectedItem())).getId().equals(" ")) {
+				this.ddlstRessources.removeItemAt(0);
 			}
 
-			Ressource ressource = (Ressource) this.mdRessources.getSelectedItem();
-			this.notion = (Notion) this.mdNotions.getSelectedItem();
+			Ressource ressource = (Ressource) this.ddlstRessources.getSelectedItem();
+			this.notion = (Notion) this.ddlstNotions.getSelectedItem();
 
-			this.mdRessources.setModel(new DefaultComboBoxModel<>(ctrl.getRessources().toArray(new Ressource[0])));
-			this.mdNotions   .setModel(new DefaultComboBoxModel<>(ctrl.getNotionsParRessource(ressource).toArray(new Notion[0])));
+			this.ddlstRessources.setModel(
+					new DefaultComboBoxModel<>(
+							ctrl.getRessources().toArray(new Ressource[0])
+					)
+			);
+			this.ddlstNotions   .setModel(
+					new DefaultComboBoxModel<>(
+							ctrl.getNotionsParRessource(ressource).toArray(new Notion[0])
+					)
+			);
 
-			this.mdRessources.setSelectedItem(ressource);
-			if(this.notion != null && ressource != null && this.notion.getRessourceAssociee().equals(ressource)){
-				this.mdNotions.setSelectedItem(this.notion);
+			this.ddlstRessources.setSelectedItem(ressource);
+			if(this.notion != null && ressource != null &&
+					this.notion.getRessourceAssociee().equals(ressource)){
+				this.ddlstNotions.setSelectedItem(this.notion);
 			} else {
 				this.notion	= null;
 			}
 		} else
-			if (e.getSource() == this.mdNotions){
+			if (e.getSource() == this.ddlstNotions){
 				System.out.println("Notion");
-				this.notion = (Notion) this.mdNotions.getSelectedItem();
+				this.notion = (Notion) this.ddlstNotions.getSelectedItem();
 		}
 
 		this.ignorerEvents = false;

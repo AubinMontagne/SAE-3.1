@@ -104,7 +104,7 @@ public class EliminationReponse extends Question {
 		reponseScanner.useDelimiter(",");
 		while (reponseScanner.hasNext()) {
 			String fichier = reponseScanner.next();
-			er.ajouterfichier(fichier);
+			er.ajouterFichier(fichier);
 		}
 
 		reponseScanner.close();

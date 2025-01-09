@@ -16,8 +16,8 @@ public class PanelQCM extends JFrame implements ActionListener {
 	private Controleur  ctrl;
 	private JPanel      panelReponses; // Panel pour les réponses
 	private int         nombreReponses = 0; // Nombre de réponses
-	private JButton     boutonAjoutReponse;
-	private JButton     boutonEnregistrer;
+	private JButton     btnAjoutReponse;
+	private JButton     btnEnregistrer;
 	private boolean     modeReponseUnique; // Checkbox pour activer/désactiver le mode réponse unique
 
 	private boolean     estModeUnique = false; // Par défaut, mode "plusieurs réponses correctes"
@@ -30,14 +30,20 @@ public class PanelQCM extends JFrame implements ActionListener {
 	private int    points;
 	private int    temps;
 	private List<String> lstLiens;
-	private JEditorPane enonce;
-	private JEditorPane explication;
+	private JEditorPane epEnonce;
+	private JEditorPane epExplication;
 	private int 		idMax;
 
 	private PanelBanque panelBanque;
 	private PanelCreationQuestion panelCreationQuestion;
 
-	public PanelQCM(PanelCreationQuestion panelCreationQuestion, Controleur ctrl, String cheminDossier, String cheminImg, List<String> lstLiens, int difficulte, String notion, int points, int temps, PanelBanque panelBanque, boolean estModeUnique, JEditorPane enonce, JEditorPane explication, int idMax) {
+	public PanelQCM(
+			PanelCreationQuestion panelCreationQuestion   , Controleur ctrl,
+			String cheminDossier   , String cheminImg     , List<String> lstLiens,
+			int difficulte         , String notion        , int points, int temps,
+			PanelBanque panelBanque, boolean estModeUnique, JEditorPane epEnonce,
+			JEditorPane epExplication, int idMax ) {
+
 		this.ctrl          = ctrl;
 		this.panelCreationQuestion = panelCreationQuestion;
 
@@ -52,8 +58,8 @@ public class PanelQCM extends JFrame implements ActionListener {
 		this.lstLiens	   = lstLiens;
 		this.idMax   	   = idMax;
 
-		this.enonce = enonce;
-		this.explication = explication;
+		this.epEnonce = epEnonce;
+		this.epExplication = epExplication;
 
 		setTitle("QCM Builder - Créateur de QCM");
 		setSize(600, 400);
@@ -67,25 +73,25 @@ public class PanelQCM extends JFrame implements ActionListener {
 		JScrollPane defilement = new JScrollPane(this.panelReponses);
 
 		// Bouton pour ajouter une réponse
-		this.boutonAjoutReponse = new JButton("Ajouter une réponse");
-		this.boutonAjoutReponse.setActionCommand("ajouterReponse");
+		this.btnAjoutReponse = new JButton("Ajouter une réponse");
+		this.btnAjoutReponse.setActionCommand("ajouterReponse");
 
 		// Bouton pour enregistrer
-		this.boutonEnregistrer = new JButton("Enregistrer");
-		this.boutonEnregistrer.setActionCommand("enregistrer");
+		this.btnEnregistrer = new JButton("Enregistrer");
+		this.btnEnregistrer.setActionCommand("enregistrer");
 
 		// Panel des boutons
 		JPanel panelBoutons = new JPanel();
-		panelBoutons.add(this.boutonAjoutReponse);
-		panelBoutons.add(this.boutonEnregistrer);
+		panelBoutons.add(this.btnAjoutReponse);
+		panelBoutons.add(this.btnEnregistrer);
 
 		// Ajout des composants à la fenêtre
 		add(defilement   , BorderLayout.CENTER);
 		add(panelBoutons , BorderLayout.SOUTH);
 
 		// Activation des listeners
-		this.boutonAjoutReponse.addActionListener(this);
-		this.boutonEnregistrer .addActionListener(this);
+		this.btnAjoutReponse.addActionListener(this);
+		this.btnEnregistrer .addActionListener(this);
 
 		//Ajout de deux réponses pour rendre plus beau
 		this.ajouterReponse();
@@ -182,8 +188,8 @@ public class PanelQCM extends JFrame implements ActionListener {
 				this.idMax
 		);
 
-		Question.sauvegarderFichier(this.cheminDossier+"/enonce.rtf", this.enonce);
-		Question.sauvegarderFichier(this.cheminDossier+"/explication.rtf", this.explication);
+		Question.sauvegarderFichier(this.cheminDossier+"/epEnonce.rtf", this.epEnonce);
+		Question.sauvegarderFichier(this.cheminDossier+"/epExplication.rtf", this.epExplication);
 
 		if(this.panelBanque != null) {this.panelBanque.maj();}
 

@@ -3,7 +3,7 @@ package src.Metier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Questionnaire{
+public class  Questionnaire{
    private String                        nom;
    private Ressource                     ressource;
    private boolean                       chronoBool;
@@ -100,8 +100,10 @@ public class Questionnaire{
 			for (ArrayList<Integer> lstIntegerNotion : this.lstNbQuestionsParDifficulte) {
 				if (lstIntegerNotion.get(0) == this.lstNotions.indexOf(n)) {
 					for (int i = 0; i < lstIntegerNotion.get(2); i++) {
-                  Question questionTemp = metier.getQuestionAleatoire(n, Difficulte.getDifficulteByIndice(lstIntegerNotion.get(1) ) );
-						if (questionTemp != null) {this.addQuestion(questionTemp);}
+                        ArrayList<Question> lstQuestionsNotion = new ArrayList<>(metier.getQuestionsParNotion(n));
+                        Question questionTemp = Metier.getQuestionAleatoire(n, Difficulte.getDifficulteByIndice(lstIntegerNotion.get(1) ), lstQuestionsNotion );
+                        lstQuestionsNotion.remove(questionTemp);
+                        if (questionTemp != null || !this.getLstQuestion().contains(questionTemp)) {this.addQuestion(questionTemp);}
 					}
 				}
 			}

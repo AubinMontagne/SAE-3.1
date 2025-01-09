@@ -9,9 +9,8 @@ import java.awt.event.WindowListener;
 public class FrameQuestionnaire extends JFrame implements WindowListener{
     private static int nbFrame = 0;
     private Controleur ctrl;
-
     private PanelQuestionnaireTab questionnaireTab;
-    // Constructeur
+
     /**
      * Constructeur de la class FrameQuestionnaire
      * @param ctrl          Le contrôleur

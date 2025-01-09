@@ -9,25 +9,19 @@ import javax.swing.*;
 import src.Controleur;
 import src.Metier.Question;
 
-public class PanelModifEliminationReponse extends JFrame implements ActionListener
-{
+public class PanelModifEliminationReponse extends JFrame implements ActionListener {
 
-    // FONCTION EXPLICATION A RAJOUTER
-    private JPanel 	   panelReponses; // Panel pour les réponses
-    private int 	   nombreReponses = 0; // Nombre de réponses
-    private JTextField champQuestion;
-    private JButton    boutonAjoutReponse;
-    private JButton    boutonEnregistrer;
-    private Controleur ctrl;
-    private HashMap<String, Double[]> hmReponses;
-
+    private Controleur  ctrl;
+    private JPanel 	    panelReponses; // Panel pour les répons
     private PanelBanque panelBanque;
+    private JTextField  txtQuestion;
+    private JButton     btnAjoutReponse, btnEnregistrer;
 
-    private Question q;
-    private int difficulte;
-    private String notion;
-    private int points;
-    private int temps;
+    private Question                  q;
+    private HashMap<String, Double[]> hmReponses;
+    private String                    notion;
+    private int                       difficulte, points, temps;
+    private int 	                  nombreReponses = 0;
 
 
     // Constructeur
@@ -53,36 +47,36 @@ public class PanelModifEliminationReponse extends JFrame implements ActionListen
 
         JPanel panelQuestion     = new JPanel(new BorderLayout());
         JLabel etiquetteQuestion = new JLabel("Question :");
-        champQuestion            = new JTextField();
+        this.txtQuestion            = new JTextField();
         panelQuestion.add(etiquetteQuestion, BorderLayout.NORTH);
-        panelQuestion.add(champQuestion, BorderLayout.CENTER);
+        panelQuestion.add(txtQuestion    , BorderLayout.CENTER);
 
         // Panel pour ajouter les réponses
-        panelReponses 		   = new JPanel();
-        panelReponses.setLayout(new BoxLayout(panelReponses, BoxLayout.Y_AXIS));
+        this.panelReponses 		   = new JPanel();
+        this.panelReponses.setLayout(new BoxLayout(panelReponses, BoxLayout.Y_AXIS));
         JScrollPane defilement = new JScrollPane(panelReponses);
 
         // Bouton pour ajouter une réponse
-        boutonAjoutReponse = new JButton("Ajouter une réponse");
-        boutonAjoutReponse.setActionCommand("ajouterReponse");
+        this.btnAjoutReponse = new JButton("Ajouter une réponse");
+        this.btnAjoutReponse.setActionCommand("ajouterReponse");
 
         // Bouton pour enregistrer
-        boutonEnregistrer = new JButton("Enregistrer");
-        boutonEnregistrer.setActionCommand("enregistrer");
+        this.btnEnregistrer = new JButton("Enregistrer");
+        this.btnEnregistrer.setActionCommand("enregistrer");
 
         // Panel des boutons
         JPanel panelBoutons = new JPanel();
-        panelBoutons.add(boutonAjoutReponse);
-        panelBoutons.add(boutonEnregistrer);
+        panelBoutons.add(this.btnAjoutReponse);
+        panelBoutons.add(this.btnEnregistrer);
 
         // Ajout des composants à la fenêtre
-        add(panelQuestion, BorderLayout.NORTH);
-        add(defilement, BorderLayout.CENTER);
-        add(panelBoutons, BorderLayout.SOUTH);
+        this.add(panelQuestion, BorderLayout.NORTH);
+        this.add(defilement   , BorderLayout.CENTER);
+        this.add(panelBoutons , BorderLayout.SOUTH);
 
         // Activation des listeners
-        boutonAjoutReponse.addActionListener(this);
-        boutonEnregistrer.addActionListener(this);
+        this.btnAjoutReponse.addActionListener(this);
+        this.btnEnregistrer .addActionListener(this);
 
         // Initialisation des réponse déjà écrite
         for (HashMap.Entry<String, Double[]> entry : this.hmReponses.entrySet()) {
@@ -101,14 +95,14 @@ public class PanelModifEliminationReponse extends JFrame implements ActionListen
     private void ajouterReponse(){
         JPanel panelAjoutReponse   = new JPanel();
         panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
-        JTextField champReponse    = new JTextField("Réponse " + (++nombreReponses));
+        JTextField champReponse    = new JTextField("Réponse " + (++this.nombreReponses));
         JCheckBox caseBonneReponse = new JCheckBox("Correcte");
         JButton boutonSupprimer    = new JButton("Supprimer");
 
         boutonSupprimer.addActionListener(e -> {
-            panelReponses.remove(panelAjoutReponse);
-            panelReponses.revalidate();
-            panelReponses.repaint();
+            this.panelReponses.remove(panelAjoutReponse);
+            this.panelReponses.revalidate();
+            this.panelReponses.repaint();
         });
 
         JTextField txtOrdreElim    = new JTextField("ordre elim");
@@ -121,22 +115,22 @@ public class PanelModifEliminationReponse extends JFrame implements ActionListen
         panelAjoutReponse.add(caseBonneReponse);
         panelAjoutReponse.add(boutonSupprimer);
 
-        panelReponses.add(panelAjoutReponse);
-        panelReponses.revalidate();
-        panelReponses.repaint();
+        this.panelReponses.add(panelAjoutReponse);
+        this.panelReponses.revalidate();
+        this.panelReponses.repaint();
     }
 
     private void initReponse(String rep, Double[] tabD){
         JPanel panelAjoutReponse   = new JPanel();
         panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
-        JTextField champReponse    = new JTextField( rep + (++nombreReponses));
+        JTextField champReponse    = new JTextField( rep + (++this.nombreReponses));
         JCheckBox caseBonneReponse = new JCheckBox("Correcte");
         JButton boutonSupprimer    = new JButton  ("Supprimer");
 
         boutonSupprimer.addActionListener(e -> {
-            panelReponses.remove(panelAjoutReponse);
-            panelReponses.revalidate();
-            panelReponses.repaint();
+            this.panelReponses.remove(panelAjoutReponse);
+            this.panelReponses.revalidate();
+            this.panelReponses.repaint();
         });
 
         JTextField txtOrdreElim    = new JTextField("" + tabD[0]);
@@ -149,9 +143,9 @@ public class PanelModifEliminationReponse extends JFrame implements ActionListen
         panelAjoutReponse.add(caseBonneReponse);
         panelAjoutReponse.add(boutonSupprimer);
 
-        panelReponses.add(panelAjoutReponse);
-        panelReponses.revalidate();
-        panelReponses.repaint();
+        this.panelReponses.add(panelAjoutReponse);
+        this.panelReponses.revalidate();
+        this.panelReponses.repaint();
     }
 
 
@@ -159,7 +153,7 @@ public class PanelModifEliminationReponse extends JFrame implements ActionListen
      * Methode enregistrerElimination
      */
     private void enregistrerElimination(){
-        String question = champQuestion.getText();
+        String question = this.txtQuestion.getText();
         if (question.isEmpty()){
             JOptionPane.showMessageDialog(this, "Veuillez entrer une question.", "Erreur", JOptionPane.ERROR_MESSAGE);
             return;
@@ -197,7 +191,7 @@ public class PanelModifEliminationReponse extends JFrame implements ActionListen
 
         int idMax = 0;
 
-        for(Question q : ctrl.getQuestions())
+        for(Question q : this.ctrl.getQuestions())
         {
             if(q.getId() > idMax)
             {
@@ -206,7 +200,16 @@ public class PanelModifEliminationReponse extends JFrame implements ActionListen
         }
 
         // Création de la question
-        this.ctrl.creerQuestionElimination(question, difficulte, notion, temps, points, reponses, reponseCorrecte, idMax);
+        this.ctrl.creerQuestionElimination(
+                question,
+                this.difficulte,
+                this.notion,
+                this.temps,
+                this.points,
+                reponses,
+                reponseCorrecte,
+                idMax
+        );
 
         if(this.panelBanque != null) {this.panelBanque.maj();}
 

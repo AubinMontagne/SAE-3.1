@@ -18,18 +18,17 @@ import src.Metier.Difficulte;
 import src.Metier.*;
 
 public class PanelQuestionnaireTab extends JPanel implements ActionListener {
-    private JTable            tbQuestion;
-    private JTable            tbResult;
+    private JTable            tblQuestion;
+    private JTable            tblResult;
     private JPanel            panelQuestionnaireTab;
-    private ArrayList<Notion> notions;
+    private ArrayList<Notion> lstNotions;
     private Controleur        ctrl;
-    private JButton           btGenerer;
-    private JLabel            lbTotal;
+    private JButton           btnGenerer;
+    private JLabel            lblTotal;
     private String            titreQuestionnaire;
     private Ressource         r;
     private boolean           estChrono;
 
-    // Constructeur
 
     /**
      * Constructeur de la class PanelQuestionnaireTab
@@ -40,23 +39,22 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
      */
     public PanelQuestionnaireTab(Controleur ctrl, Ressource r, String titre, Boolean estChrono) {
         this.panelQuestionnaireTab = new JPanel(new BorderLayout());
-        this.panelQuestionnaireTab.setVisible(true);
         this.ctrl                  = ctrl;
         this.titreQuestionnaire    = titre;
         this.r                     = r;
         this.estChrono             = estChrono;
-        this.notions               = ctrl.getNotionsParRessource(this.r);
+        this.lstNotions            = ctrl.getNotionsParRessource(this.r);
 
         // Instanciation des data des table
         String[] columnNames = {"Notion", "", "TF", "F", "M", "D", ""};
-        Object[][] data = new Object[this.notions.size()][7];
+        Object[][] data = new Object[this.lstNotions.size()][7];
 
         int alInd = 0;
-        for (int i = 0; i < this.notions.size(); i++) {
+        for (int i = 0; i < this.lstNotions.size(); i++) {
             boolean verif = false;
-            while (!verif && alInd < this.notions.size()) {
-                if (this.notions.get(alInd).getRessourceAssociee() == r) {
-                    data[i][0] = this.notions.get(alInd).getNom();
+            while (!verif && alInd < this.lstNotions.size()) {
+                if (this.lstNotions.get(alInd).getRessourceAssociee() == r) {
+                    data[i][0] = this.lstNotions.get(alInd).getNom();
                     data[i][1] = false;
                     verif      = true;
                 }
@@ -117,26 +115,27 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
         });
 
         // Configuration de la table
-        this.tbQuestion = new JTable(model);
-        this.tbQuestion.setPreferredScrollableViewportSize(new Dimension(
-                this.tbQuestion.getPreferredScrollableViewportSize().width,
-                this.tbQuestion.getRowHeight() * 6
+        this.tblQuestion = new JTable(model);
+        this.tblQuestion.setPreferredScrollableViewportSize(new Dimension(
+                this.tblQuestion.getPreferredScrollableViewportSize().width,
+                this.tblQuestion.getRowHeight() * 6
             ));
 
         for (int col = 2; col <= 5; col++) {
-            this.tbQuestion.getColumnModel().getColumn(col).setCellRenderer(new CustomCellRenderer(model));
-            this.tbQuestion.getColumnModel().getColumn(col).setCellEditor  (new CustomCellEditor  (model));
+            this.tblQuestion.getColumnModel().getColumn(col).setCellRenderer(new CustomCellRenderer(model));
+            this.tblQuestion.getColumnModel().getColumn(col).setCellEditor  (new CustomCellEditor  (model));
         }
 
-        this.lbTotal = new JLabel("Totaux : TF = 0, F = 0, M = 0, D = 0");
+        this.lblTotal = new JLabel("Totaux : TF = 0, F = 0, M = 0, D = 0");
 
-        this.btGenerer = new JButton("Générer Questionnaire");
-		this.btGenerer.addActionListener(this);
+        this.btnGenerer = new JButton("Générer Questionnaire");
+		this.btnGenerer.addActionListener(this);
 
-        JScrollPane scrollPane = new JScrollPane(this.tbQuestion);
+        JScrollPane scrollPane = new JScrollPane(this.tblQuestion);
         this.panelQuestionnaireTab.add(scrollPane    , BorderLayout.NORTH );
-        this.panelQuestionnaireTab.add(this.lbTotal  , BorderLayout.CENTER);
-        this.panelQuestionnaireTab.add(this.btGenerer, BorderLayout.SOUTH );
+        this.panelQuestionnaireTab.add(this.lblTotal  , BorderLayout.CENTER);
+        this.panelQuestionnaireTab.add(this.btnGenerer, BorderLayout.SOUTH );
+        this.panelQuestionnaireTab.setVisible(true);
 
         this.add(this.panelQuestionnaireTab);
         updateTotals(model);
@@ -237,7 +236,7 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
 
         total += totalD + totalF + totalM + totalTF;
         // Mettre à jour l'affichage des totaux
-        this.lbTotal.setText(String.format(
+        this.lblTotal.setText(String.format(
                 "Totaux : TF = %d, F = %d, M = %d, D = %d     Σ = %d", totalTF, totalF, totalM, totalD, total)
         );
     }
@@ -266,14 +265,14 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
 
 
     /**
-     * Méthode pour récupérer les données des notions sélectionnées.
+     * Méthode pour récupérer les données des lstNotions sélectionnées.
      *
-     * @return Liste des données pour les notions sélectionnées.
+     * @return Liste des données pour les lstNotions sélectionnées.
      */
     private ArrayList<QuestionnaireData> getSelectedData() {
         ArrayList<QuestionnaireData> selectedData = new ArrayList<>();
 
-        DefaultTableModel model = (DefaultTableModel) this.tbQuestion.getModel();
+        DefaultTableModel model = (DefaultTableModel) this.tblQuestion.getModel();
 
         for (int i = 0; i < model.getRowCount(); i++) {
             Boolean isSelected = (Boolean) model.getValueAt(i, 1);
@@ -313,6 +312,11 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
         public int getF()         {return f;     }
         public int getM()         {return m;     }
         public int getD()         {return d;     }
+
+        public void setTf(int tf) {this.tf = tf;}
+        public void setF(int f)   {this.f = f;  }
+        public void setM(int m)   {this.m = m;  }
+        public void setD(int d)   {this.d = d;  }
     }
 
     /**
@@ -320,8 +324,8 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
      * @param e L'évènement à traiter
      */
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.btGenerer) {
-            // Récupération des données pour les notions sélectionnées
+        if (e.getSource() == this.btnGenerer) {
+            // Récupération des données pour les lstNotions sélectionnées
             ArrayList<QuestionnaireData> selectedData = getSelectedData();
 
             if (selectedData.isEmpty()) {
@@ -340,29 +344,41 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
             int totalTF = 0, totalF = 0, totalM = 0, totalD = 0;
 
             for (QuestionnaireData data : selectedData) {
-                sb.append(String.format("Notion: %s\n"              , data.getNotion()));
-                sb.append(String.format("  - Très facile (TF): %d\n", data.getTf())    );
-                sb.append(String.format("  - Facile (F): %d\n"      , data.getF() )    );
-                sb.append(String.format("  - Moyen (M): %d\n"       , data.getM() )    );
-                sb.append(String.format("  - Difficile (D): %d\n"   , data.getD() )    );
+
+                int nbElt = ctrl.getQuestionsParNotionEtDifficulte(this.ctrl.getMetier().getNotionByNom(data.getNotion()),tf).size();
+                if( nbElt < data.getTf()){
+                    data.setTf(nbElt);
+                }
+                questionnaire.defNbQuestion(this.ctrl.getMetier().getNotionByNom(data.getNotion()), tf, data.getTf());
+
+                nbElt = ctrl.getQuestionsParNotionEtDifficulte(this.ctrl.getMetier().getNotionByNom(data.getNotion()),f).size();
+                if( nbElt < data.getTf()){
+                    data.setF(nbElt);
+                }
+                questionnaire.defNbQuestion(this.ctrl.getMetier().getNotionByNom(data.getNotion()), f, data.getF());
+
+                nbElt = ctrl.getQuestionsParNotionEtDifficulte(this.ctrl.getMetier().getNotionByNom(data.getNotion()),m).size();
+                if( nbElt < data.getM()){
+                    data.setM(nbElt);
+                }
+                questionnaire.defNbQuestion(this.ctrl.getMetier().getNotionByNom(data.getNotion()), m, data.getM());
+
+                nbElt = ctrl.getQuestionsParNotionEtDifficulte(this.ctrl.getMetier().getNotionByNom(data.getNotion()),d).size();
+                if( nbElt < data.getTf()){
+                    data.setD(nbElt);
+                }
+                questionnaire.defNbQuestion(this.ctrl.getMetier().getNotionByNom(data.getNotion()), d, data.getD());
 
                 totalTF += data.getTf();
                 totalF  += data.getF();
                 totalM  += data.getM();
                 totalD  += data.getD();
 
-                questionnaire.defNbQuestion(
-                        this.ctrl.getMetier().getNotionByNom(data.getNotion()), tf, data.getTf()
-                );
-                questionnaire.defNbQuestion(
-                        this.ctrl.getMetier().getNotionByNom(data.getNotion()), f, data.getF()
-                );
-                questionnaire.defNbQuestion(
-                        this.ctrl.getMetier().getNotionByNom(data.getNotion()), m, data.getM()
-                );
-                questionnaire.defNbQuestion(
-                        this.ctrl.getMetier().getNotionByNom(data.getNotion()), d, data.getD()
-                );
+                sb.append(String.format("Notion: %s\n"              , data.getNotion()));
+                sb.append(String.format("  - Très facile (TF): %d\n", data.getTf())    );
+                sb.append(String.format("  - Facile (F): %d\n"      , data.getF() )    );
+                sb.append(String.format("  - Moyen (M): %d\n"       , data.getM() )    );
+                sb.append(String.format("  - Difficile (D): %d\n"   , data.getD() )    );
             }
 
             // Ajout du total

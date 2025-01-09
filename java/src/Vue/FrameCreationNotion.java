@@ -11,7 +11,6 @@ import java.awt.event.WindowListener;
 public class FrameCreationNotion extends JFrame implements WindowListener {
     private static int nbFrame = 0;
 
-    // Contructeur
     /**
      * Constructeur de la class FrameCreationNotion
      * @param ctrl          Le contrôleur

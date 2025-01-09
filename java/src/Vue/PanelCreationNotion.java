@@ -17,15 +17,14 @@ import src.Metier.Ressource;
 
 public class PanelCreationNotion extends JPanel implements ActionListener {
 
-    private JTextField          champNom;
-    private JPanel              panelCreaRess;
-    private JButton             boutonConfirmer;
     private Controleur          ctrl;
-    private Ressource           r;
+    private JTextField          txtNom;
+    private JPanel              panelCreaRess;
+    private JButton             btnConfirmer;
     private FrameCreationNotion frameCreationNotion;
     private PanelNotion         panelNotion;
+    private Ressource           r;
 
-    // Constructeur
 
     /**
      * Contructeur de la class PanelCreationNotion
@@ -50,23 +49,23 @@ public class PanelCreationNotion extends JPanel implements ActionListener {
         panelConfiguration.setBorder(BorderFactory.createTitledBorder("Notion"));
 
         JLabel labelTemps = new JLabel("Nom (Ex: Le Chiffrement):");
-        this.champNom     = new JTextField();
+        this.txtNom     = new JTextField();
 
-        this.boutonConfirmer = new JButton("Confirmer");
-        this.boutonConfirmer.setEnabled(false);
-        boutonConfirmer.setBackground(new Color(163,206,250));
-        boutonConfirmer.setFont(new Font("Arial", Font.PLAIN, 22));
+        this.btnConfirmer = new JButton("Confirmer");
+        this.btnConfirmer.setEnabled(false);
+        btnConfirmer.setBackground(new Color(163,206,250));
+        btnConfirmer.setFont(new Font("Arial", Font.PLAIN, 22));
         panelConfiguration.add(labelTemps);
-        panelConfiguration.add(champNom);
+        panelConfiguration.add(txtNom);
 
         add(panelConfiguration  , BorderLayout.CENTER );
-        add(this.boutonConfirmer, BorderLayout.SOUTH  );
+        add(this.btnConfirmer, BorderLayout.SOUTH  );
 
         // Ajout des écouteurs sur les champs de texte
-        this.champNom.getDocument ().addDocumentListener (new InputListener());
+        this.txtNom.getDocument ().addDocumentListener (new InputListener());
 
         // Ajouter un ActionListener au bouton Confirmer
-        this.boutonConfirmer.addActionListener(this);
+        this.btnConfirmer.addActionListener(this);
 
         setVisible(true);
     }
@@ -77,8 +76,8 @@ public class PanelCreationNotion extends JPanel implements ActionListener {
      * Methode verifierChamps
      */
     private void verifierChamps() {
-        String texteChampNom = this.champNom.getText().trim();
-        this.boutonConfirmer.setEnabled(!texteChampNom.isEmpty() );
+        String texteChampNom = this.txtNom.getText().trim();
+        this.btnConfirmer.setEnabled(!texteChampNom.isEmpty() );
     }
 
     /**
@@ -86,8 +85,8 @@ public class PanelCreationNotion extends JPanel implements ActionListener {
      * @param e L'évènement à traiter
      */
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.boutonConfirmer) {
-            String nom = this.champNom.getText().trim();
+        if (e.getSource() == this.btnConfirmer) {
+            String nom = this.txtNom.getText().trim();
 
             // Créez l'objet Ressource (assurez-vous que la classe Ressource existe déjà)
             Notion notion = new Notion(nom, this.r);

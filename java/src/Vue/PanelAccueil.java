@@ -20,7 +20,6 @@ public class PanelAccueil extends JPanel implements  ActionListener{
     private JButton    btnRessources;
     private JButton    btnCreationQuestion;
 
-    // Constructeur
 
     /**
      * Constructeur de la class PanelAccueil
@@ -43,19 +42,19 @@ public class PanelAccueil extends JPanel implements  ActionListener{
 
 
         //Début génération des boutons
-        this.btnBanque        = new JButton("Banque de Questions");
-        this.btnQuestionnaire = new JButton("Génération Questionnaire");
-        this.btnRessources    = new JButton("Ressources"              );
-        this.btnCreationQuestion= new JButton("Création de question");
+        this.btnBanque           = new JButton("Banque de Questions");
+        this.btnQuestionnaire    = new JButton("Génération Questionnaire");
+        this.btnRessources       = new JButton("Ressources"              );
+        this.btnCreationQuestion = new JButton("Création de question");
 
-        this.btnBanque.setBackground(new Color(163,206,250));
-        this.btnQuestionnaire.setBackground(new Color(163,206,250));
-        this.btnRessources.setBackground(new Color(163,206,250));
+        this.btnBanque          .setBackground(new Color(163,206,250));
+        this.btnQuestionnaire   .setBackground(new Color(163,206,250));
+        this.btnRessources      .setBackground(new Color(163,206,250));
         this.btnCreationQuestion.setBackground(new Color(163,206,250));
 
-        this.btnBanque.setFont(new Font("Arial", Font.PLAIN, 22));
-        this.btnQuestionnaire.setFont(new Font("Arial", Font.PLAIN, 22));
-        this.btnRessources.setFont(new Font("Arial", Font.PLAIN, 22));
+        this.btnBanque          .setFont(new Font("Arial", Font.PLAIN, 22));
+        this.btnQuestionnaire   .setFont(new Font("Arial", Font.PLAIN, 22));
+        this.btnRessources      .setFont(new Font("Arial", Font.PLAIN, 22));
         this.btnCreationQuestion.setFont(new Font("Arial", Font.PLAIN, 22));
 
 
@@ -75,9 +74,9 @@ public class PanelAccueil extends JPanel implements  ActionListener{
 
 
         //Ajout des listeners
-        this.btnBanque       .addActionListener(this) ;
-        this.btnQuestionnaire.addActionListener(this) ;
-        this.btnRessources   .addActionListener(this) ;
+        this.btnBanque          .addActionListener(this) ;
+        this.btnQuestionnaire   .addActionListener(this) ;
+        this.btnRessources      .addActionListener(this) ;
         this.btnCreationQuestion.addActionListener(this);
 
     }
@@ -88,13 +87,17 @@ public class PanelAccueil extends JPanel implements  ActionListener{
      * @param e L'évènement à traiter
      */
     public void actionPerformed(ActionEvent e){
-        if ( btnBanque == e.getSource())
+        if ( btnBanque == e.getSource()) {
             FrameBanque.creerFrameBanque(this.ctrl);
-        if( btnQuestionnaire == e.getSource())
+        }
+        if( btnQuestionnaire == e.getSource()) {
             FrameQuestionnaire.creerFrameQuestionnaire(this.ctrl);
-        if(btnRessources == e.getSource())
+        }
+        if(btnRessources == e.getSource()) {
             FrameParametrage.creerFrameFrameParametrage(this.ctrl);
-        if(btnCreationQuestion == e.getSource())
+        }
+        if(btnCreationQuestion == e.getSource()) {
             new FrameCreationQuestion(this.ctrl);
+        }
     }
 }

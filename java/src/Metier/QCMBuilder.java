@@ -78,19 +78,19 @@ public class QCMBuilder
 
         try {
 
-            for(Question q : this.questionnaire.getLstQuestion())
-            {
-                for(String s : q.getListeFichiers())
-                {
-                    Path fileSource = Paths.get("java/data/" + q.getNotion().getRessourceAssociee().getNom() + "/" + q.getNotion().getNom() + "/Question " + q.getId() + "/Compléments/" + s);
-                    Path fileDest   = Paths.get(path + "/" + this.questionnaire.getNom() + "/data/Question " + q.getId() + "/Compléments/"+s);
+            for(Question q : this.questionnaire.getLstQuestion()) {
+                for (String s : q.getListeFichiers()) {
+                    if (s != null) {
+                        Path fileSource = Paths.get("java/data/" + q.getNotion().getRessourceAssociee().getNom() + "/" + q.getNotion().getNom() + "/Question " + q.getId() + "/Compléments/" + s);
+                        Path fileDest = Paths.get(path + "/" + this.questionnaire.getNom() + "/data/Question " + q.getId() + "/Compléments/" + s);
+                        Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
+                    }
+                }
+                if (q.getImageChemin() != null && ! q.getImageChemin().isEmpty() && !q.getImageChemin().equals("null")) {
+                    Path fileSource = Paths.get("java/data/" + q.getNotion().getRessourceAssociee().getNom() + "/" + q.getNotion().getNom() + "/Question " + q.getId() + "/Compléments/" + q.getImageChemin());
+                    Path fileDest = Paths.get(path + "/" + this.questionnaire.getNom() + "/data/Question " + q.getId() + "/Compléments/" + q.getImageChemin());
                     Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
                 }
-
-                Path fileSource = Paths.get("java/data/" + q.getNotion().getRessourceAssociee().getNom() + "/" + q.getNotion().getNom() + "/Question " + q.getId() + "/Compléments/" + q.getImageChemin());
-                Path fileDest = Paths.get(path + "/" + this.questionnaire.getNom() + "/data/Question " + q.getId() + "/Compléments/" + q.getImageChemin());
-                Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
-
             }
 
         } catch (Exception ex)
@@ -99,8 +99,6 @@ public class QCMBuilder
             System.err.println("Erreur : " + ex.getMessage());
             return false;
         }
-
-
 
         return true;
     }

@@ -13,10 +13,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.TitledBorder;
 public class PanelCreationRessource extends JPanel implements ActionListener {
+
 	private Controleur 			   ctrl;
-	private JButton 			   boutonConfirmer;
-	private JTextField 			   champID;
-	private JTextField 			   champNom;
+	private JButton 			   btnConfirmer;
+	private JTextField 			   txtID, txtNom;
 	private FrameCreationRessource frameCreationRessource;
 
 	/**
@@ -31,7 +31,6 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 
 		UIManager.put("Label.font", new Font("Arial", Font.BOLD, 11));
 
-
 		// Section supérieure
 		JPanel panelConfiguration = new JPanel(new GridLayout(2, 2, 5, 5));
 		TitledBorder titledBorder = BorderFactory.createTitledBorder("Configuration");
@@ -40,18 +39,18 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 
 		JLabel labelID = new JLabel("Identifiant de la ressource :");
 		labelID.setFont(new Font("Arial", Font.PLAIN, 20));
-		this.champID   = new JTextField();
-		this.champID.setPreferredSize(new Dimension(10, 10));
+		this.txtID   = new JTextField();
+		this.txtID.setPreferredSize(new Dimension(10, 10));
 
 		JLabel labelNom = new JLabel("Nom de la ressource :");
 		labelNom.setFont(new Font("Arial", Font.PLAIN, 20));
-		this.champNom   = new JTextField();
-		this.champNom.setPreferredSize(new Dimension(10, 10));
+		this.txtNom   = new JTextField();
+		this.txtNom.setPreferredSize(new Dimension(10, 10));
 
 		panelConfiguration.add(labelID);
-		panelConfiguration.add(this.champID);
+		panelConfiguration.add(this.txtID);
 		panelConfiguration.add(labelNom);
-		panelConfiguration.add(this.champNom);
+		panelConfiguration.add(this.txtNom);
 
 		add(panelConfiguration, BorderLayout.CENTER);
 
@@ -62,12 +61,12 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 		// Section inférieure
 		JPanel panelType = new JPanel(new GridLayout(1, 1, 5, 5));
 
-		this.boutonConfirmer = new JButton("Confirmer");
-		boutonConfirmer.setBackground(new Color(163,206,250));
-		boutonConfirmer.setFont(new Font("Arial", Font.PLAIN, 22));
-		this.boutonConfirmer.addActionListener(this);
+		this.btnConfirmer = new JButton("Confirmer");
+		btnConfirmer.setBackground(new Color(163,206,250));
+		btnConfirmer.setFont      (new Font("Arial", Font.PLAIN, 22));
+		this.btnConfirmer.addActionListener(this);
 
-		panelType.add(this.boutonConfirmer);
+		panelType.add(this.btnConfirmer);
 
 		add(panelType, BorderLayout.SOUTH);
 		setVisible(true);
@@ -80,12 +79,17 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == this.boutonConfirmer) {
-			String id  = this.champID.getText().trim();
-			String nom = this.champNom.getText().trim();
+		if (e.getSource() == this.btnConfirmer) {
+			String id  = this.txtID.getText().trim();
+			String nom = this.txtNom.getText().trim();
 
 			if (id.isEmpty() || nom.isEmpty()) {
-				JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs", "Erreur", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(
+						this,
+						"Veuillez remplir tous les champs",
+						"Erreur",
+						JOptionPane.ERROR_MESSAGE
+				);
 				return;
 			}
 
@@ -93,7 +97,12 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 			this.ctrl.ajouterRessource(r);
 			this.ctrl.miseAJourFichiers();
 
-			JOptionPane.showMessageDialog(this, "Ressource ajoutée", "Succès", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(
+					this,
+					"Ressource ajoutée",
+					"Succès",
+					JOptionPane.INFORMATION_MESSAGE
+			);
 
 			this.frameCreationRessource.dispose();
 		}

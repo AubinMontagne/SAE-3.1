@@ -14,7 +14,7 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
     private PanelBanque panelBanque;
 
     private Controleur ctrl;
-    // Constructeur
+
     /**
      * Constructeur de la class FrameCreationQuestion
      * @param ctrl          Le contrôleur
