@@ -2,7 +2,7 @@
 const nbQuestion = 4;
 const estChronometrer = false;
 const dureeTotal = 120; //Secondes
-const noteMax = 5157;
+const noteMax = 6;
 
 
 //Init variables
@@ -318,7 +318,7 @@ function index()
                         </head>
                         <body>
                             <h1>Bienvenue dans un Questionnaire !</h1>
-                            <h2>test<!-- Avoir la matiere avec JS --></h2>
+                            <h2>Test<!-- Avoir la matiere avec JS --></h2>
                             <h2>Temps pour finir : 120 Secondes<!-- Avoir la durér avec JS --></h2>
                             <h2>Sur la matière : Init dev <!-- Avoir la matiere avec JS --></h2>
                             <h2>Sur les notions suivante :</h2>
@@ -466,6 +466,186 @@ function verifierReponses(tabBonnesRep, nbPoints)
 
 
 function question1()
+{
+    //Variables
+    let bonnesRep = [false,true,];
+    const difficulte = "Tres facile";
+    const tempsDeReponse = 30;
+    let points = 1;
+    let texteExplications = '<style>       <!--       -->     </style><p class=default>       <span style="color: #000000; font-family: Monospaced">         cfg tgyui h       </span>       <span style="color: #000000; font-family: Monospaced">         <i><b>gc</b></i>       </span>       <span style="color: #000000; font-family: Monospaced">         d       </span>       <span style="color: #000000; font-family: Monospaced">         <i>fhcf</i>       </span>       <span style="color: #000000; font-family: Monospaced">         <i><b>u</b></i>       </span>       <span style="color: #000000; font-family: Monospaced">         <b>huy</b>       </span>       <span style="color: #000000; font-family: Monospaced">         rdtyf hgugghjj       </span>     </p>';
+    let notion = 'Les sous-classe';
+
+
+
+    let contenuPage =`<!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <title>QCMBuilder</title>
+                        <link href="style.css" rel="stylesheet">
+                    </head>
+                    <body>
+                        <div id="popup" class="hiddenP">
+                            <div id="popupI" class="hidden">
+                                <span id="closePopupBtn" class="close">&times;</span>
+                                <h2 id="estReponseBonne"></h2>
+                                <p id="textFeedBack"></p>
+                            </div>
+                        </div>
+
+
+                   <header>
+                        <div class="compteurs">
+                            <div class="timer, compteurs-div" id="chrono">00:00</div>
+                            <div class="compteurs-div">Questions traitées : <span id="questionsDone">0</span>/`+ nbQuestion +`</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="progressBar">0%</div>
+                        </div>
+                   </header>
+
+                        <script src="./script.js"></script>
+                   <div class="pageQuestion">
+                        <h1> Question `+ questionActuelle +` : </h1>
+                        <h2> Notion : `+ notion +`  </h2>
+                        <h2> Difficulté : `+ difficulte +`  </h2>
+
+                        <br>
+                        <!-- Pour un QCM -->
+
+                        <h2> Type : Question à choix unique</h2><img class="imgQuestion" src="./data/Question 3/Compléments/fic00000.png" alt="fic00000.png">
+                        <h3> <style>
+      <!--
+      -->
+    </style><p class=default>
+      <span style="color: #000000; font-family: Monospaced">
+        <i>zsrxdfcghj </i>
+      </span>
+      <span style="color: #000000; font-family: Monospaced">
+        ojpk
+      </span>
+    </p> </h3>
+                                                <div id="zoneRep">
+                             <div class="reponseBox" id="rep1" ><img id="img1" class="imgBtn" src="./data/imgBtn/RadVide.png">'Réponse 2'</div>
+<div class="reponseBox" id="rep2" ><img id="img2" class="imgBtn" src="./data/imgBtn/RadVide.png">'Réponse 1'</div>
+
+                        </div>
+                   </div>
+                        <footer>
+                            <nav>
+                                <div class="styleBut" id="btnPreced">Précédent</div>
+                                <div class="styleBut" id="valider">Valider</div>
+                                <div class="styleBut" id="feedBack">Feedback</div>
+                                <div class="styleBut" id="btnSuiv">Suivant</div>
+                            </nav>
+                        </footer>
+                    </body>
+                    </html>`;
+
+    creerHtml(contenuPage);
+
+    updateProgress();
+
+    changerSelections();
+
+    //Génération du popup
+    const popup = document.getElementById('popup');
+    const closePopupBtn = document.getElementById('closePopupBtn');
+    const popupI = document.getElementById('popupI');
+    const feedBackBtn = document.getElementById('feedBack');
+
+
+    feedBackBtn.addEventListener('click', () => {
+        showFeedBack(questionActuelleEstBon,points,texteExplications);
+    });
+    
+    // Cacher le popup
+    closePopupBtn.addEventListener('click', () => {
+        cacheFeedBack();
+    });
+    
+    // Optionnel : Fermer le popup en cliquant en dehors
+    popup.addEventListener('click', (event) => 
+    {
+        if (event.target === popup) {
+            cacheFeedBack();
+        }
+    });
+
+
+
+    //Gestion du timer
+    if(estChronometrer)
+    {
+        startTimerQuestion(tempsDeReponse);
+    }else{
+        document.getElementById('chrono').textContent = "Temps estimé : " + tempsDeReponse;
+    }
+
+
+
+    //Timer pour les questions
+    function startTimerQuestion(tempsDeReponse) 
+    {
+        if(estChronometrer)
+        {
+            isRunning = true;
+            let tps = tempsDeReponse;
+            timer = setInterval(() => {
+                tps--;
+                if(document.getElementById('chrono') != null)
+                    document.getElementById('chrono').textContent = "Compte à rebours : " + formatTime(tps) + " secondes";
+                if(tps <= 0)
+                {
+                    stopTimerQuestion();
+                    verifierReponses(bonnesRep, points)
+                    validerQuestion(bonnesRep, 'QCM');
+                    showFeedBack(questionActuelleEstBon, points, texteExplications);
+                }
+            }, 1000);
+        }
+    }
+
+
+    // Fonction pour arrêter le chronomètre
+    function stopTimerQuestion() 
+    {
+        if(estChronometrer)
+        {
+            isRunning = false;
+            clearInterval(timer);
+        }
+    }
+
+
+    if(tabCompletion[questionActuelle])
+    {
+        		document.getElementById("valider").classList.add("griser");
+        afficherReponse(bonnesRep, 'QCM');
+    }
+
+    // Mettre à jour les événements de clic
+
+document.getElementById("rep1").onclick = function() { clicRep(0, "vrai-faux") };
+document.getElementById("rep2").onclick = function() { clicRep(1, "vrai-faux") };
+
+    
+    document.getElementById("btnPreced").onclick = function() {if(!estChronometrer){questionPrecedante(), question1()}};
+    document.getElementById("btnSuiv").onclick = function() {if(estChronometrer){if(tabCompletion[questionActuelle]){questionSuivante(), question2()}}else{questionSuivante(), question2()}};
+
+    document.getElementById("valider").onclick = function() 
+    {
+        if(!tabCompletion[questionActuelle])
+        {
+            verifierReponses(bonnesRep, points)
+            validerQuestion(bonnesRep, 'QCM');
+            showFeedBack(questionActuelleEstBon ,points, texteExplications);
+            stopTimerQuestion();
+        }
+    };
+}
+
+function question2()
 {
     //Variables
     let bonnesRep = [false,true,];
@@ -646,6 +826,186 @@ document.getElementById("rep2").onclick = function() { clicRep(1, "vrai-faux") }
 
     
     document.getElementById("btnPreced").onclick = function() {if(!estChronometrer){questionPrecedante(), question1()}};
+    document.getElementById("btnSuiv").onclick = function() {if(estChronometrer){if(tabCompletion[questionActuelle]){questionSuivante(), question3()}}else{questionSuivante(), question3()}};
+
+    document.getElementById("valider").onclick = function() 
+    {
+        if(!tabCompletion[questionActuelle])
+        {
+            verifierReponses(bonnesRep, points)
+            validerQuestion(bonnesRep, 'QCM');
+            showFeedBack(questionActuelleEstBon ,points, texteExplications);
+            stopTimerQuestion();
+        }
+    };
+}
+
+function question1()
+{
+    //Variables
+    let bonnesRep = [false,true,];
+    const difficulte = "Tres facile";
+    const tempsDeReponse = 30;
+    let points = 1;
+    let texteExplications = '<style>       <!--       -->     </style><p class=default>       <span style="color: #000000; font-family: Monospaced">         cfg tgyui h       </span>       <span style="color: #000000; font-family: Monospaced">         <i><b>gc</b></i>       </span>       <span style="color: #000000; font-family: Monospaced">         d       </span>       <span style="color: #000000; font-family: Monospaced">         <i>fhcf</i>       </span>       <span style="color: #000000; font-family: Monospaced">         <i><b>u</b></i>       </span>       <span style="color: #000000; font-family: Monospaced">         <b>huy</b>       </span>       <span style="color: #000000; font-family: Monospaced">         rdtyf hgugghjj       </span>     </p>';
+    let notion = 'Les sous-classe';
+
+
+
+    let contenuPage =`<!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <title>QCMBuilder</title>
+                        <link href="style.css" rel="stylesheet">
+                    </head>
+                    <body>
+                        <div id="popup" class="hiddenP">
+                            <div id="popupI" class="hidden">
+                                <span id="closePopupBtn" class="close">&times;</span>
+                                <h2 id="estReponseBonne"></h2>
+                                <p id="textFeedBack"></p>
+                            </div>
+                        </div>
+
+
+                   <header>
+                        <div class="compteurs">
+                            <div class="timer, compteurs-div" id="chrono">00:00</div>
+                            <div class="compteurs-div">Questions traitées : <span id="questionsDone">0</span>/`+ nbQuestion +`</div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="progressBar">0%</div>
+                        </div>
+                   </header>
+
+                        <script src="./script.js"></script>
+                   <div class="pageQuestion">
+                        <h1> Question `+ questionActuelle +` : </h1>
+                        <h2> Notion : `+ notion +`  </h2>
+                        <h2> Difficulté : `+ difficulte +`  </h2>
+
+                        <br>
+                        <!-- Pour un QCM -->
+
+                        <h2> Type : Question à choix unique</h2><img class="imgQuestion" src="./data/Question 3/Compléments/fic00000.png" alt="fic00000.png">
+                        <h3> <style>
+      <!--
+      -->
+    </style><p class=default>
+      <span style="color: #000000; font-family: Monospaced">
+        <i>zsrxdfcghj </i>
+      </span>
+      <span style="color: #000000; font-family: Monospaced">
+        ojpk
+      </span>
+    </p> </h3>
+                                                <div id="zoneRep">
+                             <div class="reponseBox" id="rep1" ><img id="img1" class="imgBtn" src="./data/imgBtn/RadVide.png">'Réponse 2'</div>
+<div class="reponseBox" id="rep2" ><img id="img2" class="imgBtn" src="./data/imgBtn/RadVide.png">'Réponse 1'</div>
+
+                        </div>
+                   </div>
+                        <footer>
+                            <nav>
+                                <div class="styleBut" id="btnPreced">Précédent</div>
+                                <div class="styleBut" id="valider">Valider</div>
+                                <div class="styleBut" id="feedBack">Feedback</div>
+                                <div class="styleBut" id="btnSuiv">Suivant</div>
+                            </nav>
+                        </footer>
+                    </body>
+                    </html>`;
+
+    creerHtml(contenuPage);
+
+    updateProgress();
+
+    changerSelections();
+
+    //Génération du popup
+    const popup = document.getElementById('popup');
+    const closePopupBtn = document.getElementById('closePopupBtn');
+    const popupI = document.getElementById('popupI');
+    const feedBackBtn = document.getElementById('feedBack');
+
+
+    feedBackBtn.addEventListener('click', () => {
+        showFeedBack(questionActuelleEstBon,points,texteExplications);
+    });
+    
+    // Cacher le popup
+    closePopupBtn.addEventListener('click', () => {
+        cacheFeedBack();
+    });
+    
+    // Optionnel : Fermer le popup en cliquant en dehors
+    popup.addEventListener('click', (event) => 
+    {
+        if (event.target === popup) {
+            cacheFeedBack();
+        }
+    });
+
+
+
+    //Gestion du timer
+    if(estChronometrer)
+    {
+        startTimerQuestion(tempsDeReponse);
+    }else{
+        document.getElementById('chrono').textContent = "Temps estimé : " + tempsDeReponse;
+    }
+
+
+
+    //Timer pour les questions
+    function startTimerQuestion(tempsDeReponse) 
+    {
+        if(estChronometrer)
+        {
+            isRunning = true;
+            let tps = tempsDeReponse;
+            timer = setInterval(() => {
+                tps--;
+                if(document.getElementById('chrono') != null)
+                    document.getElementById('chrono').textContent = "Compte à rebours : " + formatTime(tps) + " secondes";
+                if(tps <= 0)
+                {
+                    stopTimerQuestion();
+                    verifierReponses(bonnesRep, points)
+                    validerQuestion(bonnesRep, 'QCM');
+                    showFeedBack(questionActuelleEstBon, points, texteExplications);
+                }
+            }, 1000);
+        }
+    }
+
+
+    // Fonction pour arrêter le chronomètre
+    function stopTimerQuestion() 
+    {
+        if(estChronometrer)
+        {
+            isRunning = false;
+            clearInterval(timer);
+        }
+    }
+
+
+    if(tabCompletion[questionActuelle])
+    {
+        		document.getElementById("valider").classList.add("griser");
+        afficherReponse(bonnesRep, 'QCM');
+    }
+
+    // Mettre à jour les événements de clic
+
+document.getElementById("rep1").onclick = function() { clicRep(0, "vrai-faux") };
+document.getElementById("rep2").onclick = function() { clicRep(1, "vrai-faux") };
+
+    
+    document.getElementById("btnPreced").onclick = function() {if(!estChronometrer){questionPrecedante(), question1()}};
     document.getElementById("btnSuiv").onclick = function() {if(estChronometrer){if(tabCompletion[questionActuelle]){questionSuivante(), question2()}}else{questionSuivante(), question2()}};
 
     document.getElementById("valider").onclick = function() 
@@ -663,11 +1023,11 @@ document.getElementById("rep2").onclick = function() { clicRep(1, "vrai-faux") }
 function question2()
 {
     //Variables
-    let bonnesRep = [true,false,];
+    let bonnesRep = [false,true,];
     const difficulte = "Tres facile";
     const tempsDeReponse = 30;
     let points = 2;
-    let texteExplications = '<style>       <!--       -->     </style><p class=default>       <span style="color: #000000; font-family: Monospaced">                </span>     </p>';
+    let texteExplications = '<style>       <!--       -->     </style><p class=default>       <span style="color: #000000; font-family: Monospaced">         jikll       </span>     </p>';
     let notion = 'Les sous-classe';
 
 
@@ -708,20 +1068,34 @@ function question2()
                         <br>
                         <!-- Pour un QCM -->
 
-                        <h2> Type : Question à choix unique</h2><img class="imgQuestion" src="./data/Question 5/Compléments/fic00000.png" alt="fic00000.png">
+                        <h2> Type : Question à choix unique</h2><img class="imgQuestion" src="./data/Question 4/Compléments/null" alt="null">
                         <h3> <style>
       <!--
       -->
     </style><p class=default>
       <span style="color: #000000; font-family: Monospaced">
-        <b>hugi</b>
+        jnk,l, k
       </span>
       <span style="color: #000000; font-family: Monospaced">
-        hioj
+        <b>,l</b>
+      </span>
+      <span style="color: #000000; font-family: Monospaced">
+        ,l
+      </span>
+      <span style="color: #000000; font-family: Monospaced">
+        <b>,ll</b>
+      </span>
+      <span style="color: #000000; font-family: Monospaced">
+        <i><b>hb</b></i>
+      </span>
+      <span style="color: #000000; font-family: Monospaced">
+        <i>hbjnj</i>
+      </span>
+      <span style="color: #000000; font-family: Monospaced">
+        
       </span>
     </p> </h3>
-                        <a href="./data/Question 5/Compléments/fic00001.mp3" download="fic00001.mp3" target="_blank"> Télécharger le fichier complémentaire numéro 1</a>
-                        <div id="zoneRep">
+                                                <div id="zoneRep">
                              <div class="reponseBox" id="rep1" ><img id="img1" class="imgBtn" src="./data/imgBtn/RadVide.png">'Réponse 2'</div>
 <div class="reponseBox" id="rep2" ><img id="img2" class="imgBtn" src="./data/imgBtn/RadVide.png">'Réponse 1'</div>
 
@@ -828,365 +1202,6 @@ document.getElementById("rep2").onclick = function() { clicRep(1, "vrai-faux") }
     
     document.getElementById("btnPreced").onclick = function() {if(!estChronometrer){questionPrecedante(), question1()}};
     document.getElementById("btnSuiv").onclick = function() {if(estChronometrer){if(tabCompletion[questionActuelle]){questionSuivante(), question3()}}else{questionSuivante(), question3()}};
-
-    document.getElementById("valider").onclick = function() 
-    {
-        if(!tabCompletion[questionActuelle])
-        {
-            verifierReponses(bonnesRep, points)
-            validerQuestion(bonnesRep, 'QCM');
-            showFeedBack(questionActuelleEstBon ,points, texteExplications);
-            stopTimerQuestion();
-        }
-    };
-}
-
-function question2()
-{
-    //Variables
-    let bonnesRep = [true,false,];
-    const difficulte = "Tres facile";
-    const tempsDeReponse = 30;
-    let points = 2;
-    let texteExplications = '<style>       <!--       -->     </style><p class=default>       <span style="color: #000000; font-family: Monospaced">                </span>     </p>';
-    let notion = 'Les sous-classe';
-
-
-
-    let contenuPage =`<!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <meta charset="UTF-8">
-                        <title>QCMBuilder</title>
-                        <link href="style.css" rel="stylesheet">
-                    </head>
-                    <body>
-                        <div id="popup" class="hiddenP">
-                            <div id="popupI" class="hidden">
-                                <span id="closePopupBtn" class="close">&times;</span>
-                                <h2 id="estReponseBonne"></h2>
-                                <p id="textFeedBack"></p>
-                            </div>
-                        </div>
-
-
-                   <header>
-                        <div class="compteurs">
-                            <div class="timer, compteurs-div" id="chrono">00:00</div>
-                            <div class="compteurs-div">Questions traitées : <span id="questionsDone">0</span>/`+ nbQuestion +`</div>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" id="progressBar">0%</div>
-                        </div>
-                   </header>
-
-                        <script src="./script.js"></script>
-                   <div class="pageQuestion">
-                        <h1> Question `+ questionActuelle +` : </h1>
-                        <h2> Notion : `+ notion +`  </h2>
-                        <h2> Difficulté : `+ difficulte +`  </h2>
-
-                        <br>
-                        <!-- Pour un QCM -->
-
-                        <h2> Type : Question à choix unique</h2><img class="imgQuestion" src="./data/Question 5/Compléments/fic00000.png" alt="fic00000.png">
-                        <h3> <style>
-      <!--
-      -->
-    </style><p class=default>
-      <span style="color: #000000; font-family: Monospaced">
-        <b>hugi</b>
-      </span>
-      <span style="color: #000000; font-family: Monospaced">
-        hioj
-      </span>
-    </p> </h3>
-                        <a href="./data/Question 5/Compléments/fic00001.mp3" download="fic00001.mp3" target="_blank"> Télécharger le fichier complémentaire numéro 1</a>
-                        <div id="zoneRep">
-                             <div class="reponseBox" id="rep1" ><img id="img1" class="imgBtn" src="./data/imgBtn/RadVide.png">'Réponse 2'</div>
-<div class="reponseBox" id="rep2" ><img id="img2" class="imgBtn" src="./data/imgBtn/RadVide.png">'Réponse 1'</div>
-
-                        </div>
-                   </div>
-                        <footer>
-                            <nav>
-                                <div class="styleBut" id="btnPreced">Précédent</div>
-                                <div class="styleBut" id="valider">Valider</div>
-                                <div class="styleBut" id="feedBack">Feedback</div>
-                                <div class="styleBut" id="btnSuiv">Suivant</div>
-                            </nav>
-                        </footer>
-                    </body>
-                    </html>`;
-
-    creerHtml(contenuPage);
-
-    updateProgress();
-
-    changerSelections();
-
-    //Génération du popup
-    const popup = document.getElementById('popup');
-    const closePopupBtn = document.getElementById('closePopupBtn');
-    const popupI = document.getElementById('popupI');
-    const feedBackBtn = document.getElementById('feedBack');
-
-
-    feedBackBtn.addEventListener('click', () => {
-        showFeedBack(questionActuelleEstBon,points,texteExplications);
-    });
-    
-    // Cacher le popup
-    closePopupBtn.addEventListener('click', () => {
-        cacheFeedBack();
-    });
-    
-    // Optionnel : Fermer le popup en cliquant en dehors
-    popup.addEventListener('click', (event) => 
-    {
-        if (event.target === popup) {
-            cacheFeedBack();
-        }
-    });
-
-
-
-    //Gestion du timer
-    if(estChronometrer)
-    {
-        startTimerQuestion(tempsDeReponse);
-    }else{
-        document.getElementById('chrono').textContent = "Temps estimé : " + tempsDeReponse;
-    }
-
-
-
-    //Timer pour les questions
-    function startTimerQuestion(tempsDeReponse) 
-    {
-        if(estChronometrer)
-        {
-            isRunning = true;
-            let tps = tempsDeReponse;
-            timer = setInterval(() => {
-                tps--;
-                if(document.getElementById('chrono') != null)
-                    document.getElementById('chrono').textContent = "Compte à rebours : " + formatTime(tps) + " secondes";
-                if(tps <= 0)
-                {
-                    stopTimerQuestion();
-                    verifierReponses(bonnesRep, points)
-                    validerQuestion(bonnesRep, 'QCM');
-                    showFeedBack(questionActuelleEstBon, points, texteExplications);
-                }
-            }, 1000);
-        }
-    }
-
-
-    // Fonction pour arrêter le chronomètre
-    function stopTimerQuestion() 
-    {
-        if(estChronometrer)
-        {
-            isRunning = false;
-            clearInterval(timer);
-        }
-    }
-
-
-    if(tabCompletion[questionActuelle])
-    {
-        		document.getElementById("valider").classList.add("griser");
-        afficherReponse(bonnesRep, 'QCM');
-    }
-
-    // Mettre à jour les événements de clic
-
-document.getElementById("rep1").onclick = function() { clicRep(0, "vrai-faux") };
-document.getElementById("rep2").onclick = function() { clicRep(1, "vrai-faux") };
-
-    
-    document.getElementById("btnPreced").onclick = function() {if(!estChronometrer){questionPrecedante(), question1()}};
-    document.getElementById("btnSuiv").onclick = function() {if(estChronometrer){if(tabCompletion[questionActuelle]){questionSuivante(), question3()}}else{questionSuivante(), question3()}};
-
-    document.getElementById("valider").onclick = function() 
-    {
-        if(!tabCompletion[questionActuelle])
-        {
-            verifierReponses(bonnesRep, points)
-            validerQuestion(bonnesRep, 'QCM');
-            showFeedBack(questionActuelleEstBon ,points, texteExplications);
-            stopTimerQuestion();
-        }
-    };
-}
-
-function question4()
-{
-    //Variables
-    let bonnesRep = [true,false,];
-    const difficulte = "Tres facile";
-    const tempsDeReponse = 30;
-    let points = 5151;
-    let texteExplications = '<style>       <!--       -->     </style><p class=default>       <span style="color: #000000; font-size: 11pt; font-family: Arial">                </span>     </p>';
-    let notion = 'Les sous-classe';
-
-
-
-    let contenuPage =`<!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <meta charset="UTF-8">
-                        <title>QCMBuilder</title>
-                        <link href="style.css" rel="stylesheet">
-                    </head>
-                    <body>
-                        <div id="popup" class="hiddenP">
-                            <div id="popupI" class="hidden">
-                                <span id="closePopupBtn" class="close">&times;</span>
-                                <h2 id="estReponseBonne"></h2>
-                                <p id="textFeedBack"></p>
-                            </div>
-                        </div>
-
-
-                   <header>
-                        <div class="compteurs">
-                            <div class="timer, compteurs-div" id="chrono">00:00</div>
-                            <div class="compteurs-div">Questions traitées : <span id="questionsDone">0</span>/`+ nbQuestion +`</div>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" id="progressBar">0%</div>
-                        </div>
-                   </header>
-
-                        <script src="./script.js"></script>
-                   <div class="pageQuestion">
-                        <h1> Question `+ questionActuelle +` : </h1>
-                        <h2> Notion : `+ notion +`  </h2>
-                        <h2> Difficulté : `+ difficulte +`  </h2>
-
-                        <br>
-                        <!-- Pour un QCM -->
-
-                        <h2> Type : Question à choix unique</h2><img class="imgQuestion" src="./data/Question 2/Compléments/fic00000.jpg" alt="fic00000.jpg">
-                        <h3> <style>
-      <!--
-      -->
-    </style><p class=default>
-      <span style="color: #000000; font-size: 11pt; font-family: Arial">
-        dxxgfchkjlkl
-      </span>
-    </p> </h3>
-                        <a href="./data/Question 2/Compléments/fic00001.pdf" download="fic00001.pdf" target="_blank"> Télécharger le fichier complémentaire numéro 1</a>
-                        <div id="zoneRep">
-                             <div class="reponseBox" id="rep1" ><img id="img1" class="imgBtn" src="./data/imgBtn/RadVide.png">'Réponse 2'</div>
-<div class="reponseBox" id="rep2" ><img id="img2" class="imgBtn" src="./data/imgBtn/RadVide.png">'Réponse 1'</div>
-
-                        </div>
-                   </div>
-                        <footer>
-                            <nav>
-                                <div class="styleBut" id="btnPreced">Précédent</div>
-                                <div class="styleBut" id="valider">Valider</div>
-                                <div class="styleBut" id="feedBack">Feedback</div>
-                                <div class="styleBut" id="btnSuiv">Suivant</div>
-                            </nav>
-                        </footer>
-                    </body>
-                    </html>`;
-
-    creerHtml(contenuPage);
-
-    updateProgress();
-
-    changerSelections();
-
-    //Génération du popup
-    const popup = document.getElementById('popup');
-    const closePopupBtn = document.getElementById('closePopupBtn');
-    const popupI = document.getElementById('popupI');
-    const feedBackBtn = document.getElementById('feedBack');
-
-
-    feedBackBtn.addEventListener('click', () => {
-        showFeedBack(questionActuelleEstBon,points,texteExplications);
-    });
-    
-    // Cacher le popup
-    closePopupBtn.addEventListener('click', () => {
-        cacheFeedBack();
-    });
-    
-    // Optionnel : Fermer le popup en cliquant en dehors
-    popup.addEventListener('click', (event) => 
-    {
-        if (event.target === popup) {
-            cacheFeedBack();
-        }
-    });
-
-
-
-    //Gestion du timer
-    if(estChronometrer)
-    {
-        startTimerQuestion(tempsDeReponse);
-    }else{
-        document.getElementById('chrono').textContent = "Temps estimé : " + tempsDeReponse;
-    }
-
-
-
-    //Timer pour les questions
-    function startTimerQuestion(tempsDeReponse) 
-    {
-        if(estChronometrer)
-        {
-            isRunning = true;
-            let tps = tempsDeReponse;
-            timer = setInterval(() => {
-                tps--;
-                if(document.getElementById('chrono') != null)
-                    document.getElementById('chrono').textContent = "Compte à rebours : " + formatTime(tps) + " secondes";
-                if(tps <= 0)
-                {
-                    stopTimerQuestion();
-                    verifierReponses(bonnesRep, points)
-                    validerQuestion(bonnesRep, 'QCM');
-                    showFeedBack(questionActuelleEstBon, points, texteExplications);
-                }
-            }, 1000);
-        }
-    }
-
-
-    // Fonction pour arrêter le chronomètre
-    function stopTimerQuestion() 
-    {
-        if(estChronometrer)
-        {
-            isRunning = false;
-            clearInterval(timer);
-        }
-    }
-
-
-    if(tabCompletion[questionActuelle])
-    {
-        		document.getElementById("valider").classList.add("griser");
-        afficherReponse(bonnesRep, 'QCM');
-    }
-
-    // Mettre à jour les événements de clic
-
-document.getElementById("rep1").onclick = function() { clicRep(0, "vrai-faux") };
-document.getElementById("rep2").onclick = function() { clicRep(1, "vrai-faux") };
-
-    
-    document.getElementById("btnPreced").onclick = function() {if(!estChronometrer){questionPrecedante(), question3()}};
-    document.getElementById("btnSuiv").onclick = function() {if(estChronometrer){if(tabCompletion[questionActuelle]){questionSuivante(), finQuestionnaire()}}else{questionSuivante(), finQuestionnaire()}};
 
     document.getElementById("valider").onclick = function() 
     {
