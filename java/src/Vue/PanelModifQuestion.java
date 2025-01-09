@@ -23,7 +23,7 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 	private JComboBox<String>    ddlstTypes;
 	private JButton              btnTresFacile, btnFacile, btnMoyen, btnDifficile;
 	private JButton              btnConfirmer;
-	private JButton				 btnGras, btnItalique, btnAjouterImage, btnAjouterRessComp;
+	private JButton				 btnGras, btnItalique, btnAjouterImage, btnAjouterRessComp, btnSupprimerFichierComp;
 	private JTextField           txtPoints, txtTemps;
 
 	private JEditorPane epEnonce;
@@ -122,19 +122,19 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 		this.add(panelConfiguration, BorderLayout.NORTH);
 
 		// Section centrale
-		JPanel panelText = new JPanel(new GridLayout(4,1));
+		JPanel panelText = new JPanel(new GridLayout(5,1));
 
 		JLabel lblIntituleQuestion = new JLabel("Question : ");
 		this.epEnonce = new JEditorPane();
 		this.epEnonce.setEditorKit(new StyledEditorKit()); // Permet la gestion des styles
 		this.epEnonce.setEditable(true); // Rendre éditable
-		this.epEnonce.setText(this.q.getEnonceRTF());
+		this.epEnonce.setText(this.q.getEnonce());
 
 		JLabel lblExpliquationQuestion = new JLabel("Explication : ");
 		this.epExplication = new JEditorPane();
 		this.epExplication.setEditorKit(new StyledEditorKit()); // Permet la gestion des styles
 		this.epExplication.setEditable(true); // Rendre éditable
-		this.epExplication.setText(this.q.getExplicationRTF());
+		this.epExplication.setText(this.q.getExplication());
 
 		JPanel panelCentrale = new JPanel(new GridLayout(1, 2, 5, 5));
 		panelCentrale.setBorder(BorderFactory.createTitledBorder("Sélection"));
@@ -175,6 +175,8 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 		this.btnItalique  		= new JButton("Italic");
 		this.btnAjouterImage 	= new JButton("Ajouter une image");
 		this.btnAjouterRessComp = new JButton("Ajouter des fichiers complémentaires");
+		this.btnSupprimerFichierComp = new JButton("Supprimer les fichiers complémentaires");
+
 
 		Dimension d1 = new Dimension( 75,  75);
 		Dimension d2 = new Dimension(100, 100);
@@ -186,6 +188,7 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 		this.btnItalique 		.setPreferredSize(d2);
 		this.btnAjouterImage	.setPreferredSize(d2);
 		this.btnAjouterRessComp .setPreferredSize(d2);
+		this.btnSupprimerFichierComp.setPreferredSize(d2);
 
 		this.btnTresFacile.setBorder(this.bordureDefaut);
 		this.btnFacile    .setBorder(this.bordureDefaut);
@@ -218,21 +221,48 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 		this.btnItalique 		.addActionListener(this);
 		this.btnAjouterImage	.addActionListener(this);
 		this.btnAjouterRessComp .addActionListener(this);
+		this.btnSupprimerFichierComp.addActionListener(this);
+
+		this.btnGras				.setBackground(new Color(163,206,250));
+		this.btnItalique			.setBackground(new Color(163,206,250));
+		this.btnAjouterImage		.setBackground(new Color(163,206,250));
+		this.btnAjouterRessComp		.setBackground(new Color(163,206,250));
+		this.btnSupprimerFichierComp.setBackground(new Color(163,206,250));
+
+
+		this.btnGras				.setFont(new Font("Arial", Font.PLAIN, 22));
+		this.btnItalique			.setFont(new Font("Arial", Font.PLAIN, 22));
+		this.btnAjouterImage		.setFont(new Font("Arial", Font.PLAIN, 22));
+		this.btnAjouterRessComp		.setFont(new Font("Arial", Font.PLAIN, 22));
+		this.btnSupprimerFichierComp.setFont(new Font("Arial", Font.PLAIN, 22));
 
 		panelNiveau.add(this.btnTresFacile);
 		panelNiveau.add(this.btnFacile);
 		panelNiveau.add(this.btnMoyen);
 		panelNiveau.add(this.btnDifficile);
-		panelText.add  (this.btnGras);
-		panelText.add  (this.btnItalique);
+		
+		JPanel panelStyle = new JPanel(new GridLayout(1,2));
+		panelStyle.add  (this.btnGras);
+		panelStyle.add  (this.btnItalique);
 
-		panelText.add(lblIntituleQuestion);
-		panelText.add(epEnonce);
-		panelText.add(lblExpliquationQuestion);
-		panelText.add(epExplication);
+		JPanel panelEnonce = new JPanel(new GridLayout(1,2));
+		panelEnonce.add(lblIntituleQuestion);
+		panelEnonce.add(this.epEnonce);
 
-		panelText.add(this.btnAjouterImage);
-		panelText.add(this.btnAjouterRessComp);
+		JPanel panelExplication = new JPanel(new GridLayout(1,2));
+		panelExplication.add(lblExpliquationQuestion);
+		panelExplication.add(this.epExplication);
+
+		JPanel panelBoutons = new JPanel(new GridLayout(1,3));
+		panelBoutons.add(this.btnAjouterImage);
+		panelBoutons.add(this.btnAjouterRessComp);
+		panelBoutons.add(this.btnSupprimerFichierComp);
+
+		panelText.add(panelStyle);
+		panelText.add(panelEnonce);
+		panelText.add(new JSeparator());
+		panelText.add(panelExplication);
+		panelText.add(panelBoutons);
 
 		panelLabels.add (labelRessource);
 		panelDonnées.add(this.ddlstRessources);
@@ -661,6 +691,15 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 				String nomFichier = tmpChemin.substring(tmpChemin.lastIndexOf("/") + 1);
 				this.btnAjouterImage.setText("Ajouter des fichiers complémentaires\n" + nomFichier);
 			}
+		}
+
+		if(e.getSource() == this.btnSupprimerFichierComp)
+		{
+			this.imageFond  = "";
+			this.lstLiens = new ArrayList<String>();
+
+			this.btnAjouterImage   .setText("Ajouter une image");
+			this.btnAjouterRessComp.setText("Ajouter des fichiers complémentaires");
 		}
 	}
 
