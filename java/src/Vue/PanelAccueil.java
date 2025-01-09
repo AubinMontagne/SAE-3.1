@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import src.Controleur;
 
-public class PanelAccueil extends JPanel implements  ActionListener{
+public class   PanelAccueil extends JPanel implements  ActionListener{
     private Controleur ctrl;
     private JPanel     panelAccueil;
 

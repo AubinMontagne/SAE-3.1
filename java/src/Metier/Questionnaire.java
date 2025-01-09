@@ -97,14 +97,15 @@ public class  Questionnaire{
 
    public void initLstQuestions(Metier metier){
      	for (Notion n : this.lstNotions) {
+            ArrayList<Question> lstQuestionsNotion = new ArrayList<>(metier.getQuestionsParNotion(n));
 			for (ArrayList<Integer> lstIntegerNotion : this.lstNbQuestionsParDifficulte) {
 				if (lstIntegerNotion.get(0) == this.lstNotions.indexOf(n)) {
 					for (int i = 0; i < lstIntegerNotion.get(2); i++) {
-                        ArrayList<Question> lstQuestionsNotion = new ArrayList<>(metier.getQuestionsParNotion(n));
                         Question questionTemp = Metier.getQuestionAleatoire(n, Difficulte.getDifficulteByIndice(lstIntegerNotion.get(1) ), lstQuestionsNotion );
                         lstQuestionsNotion.remove(questionTemp);
                         if (questionTemp != null || !this.getLstQuestion().contains(questionTemp)) {this.addQuestion(questionTemp);}
 					}
+                    break;
 				}
 			}
 		}

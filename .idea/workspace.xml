@@ -5,65 +5,132 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" name="Changes" comment="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
-      <change afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 3/Compléments/fic00000.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 3/enonce.rtf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 3/explication.rtf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/data/Question 2/Compléments/fic00000.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/data/Question 2/Compléments/fic00001.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/data/Intro Dev/Les sous-classe/Question 1/Enonce.rtf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/data/Intro Dev/Les sous-classe/Question 1/Explication.rtf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifEntiteAssociation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifQuestion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 2/Compléments/fic00000.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 2/Compléments/fic00001.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 2/enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 2/explication.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 3/Compléments/fic00000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 3/enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 3/explication.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 4/enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 4/explication.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 5/Compléments/fic00000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 5/Compléments/fic00001.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 5/enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 5/explication.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Intro BD/Fonction/Question 1/Compléments/fic00000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Intro BD/Fonction/Question 1/Compléments/fic00001.wde" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Intro BD/Fonction/Question 1/enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Intro BD/Fonction/Question 1/explication.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/notions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/notions.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/data/questions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/questions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/ressources.csv" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/ressources.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Controleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/AssociationElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/AssociationElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/EliminationReponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/EliminationReponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Metier/Metier.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Metier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCM.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Metier/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Question.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameQuestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameQuestionnaire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/RtfFileReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameAccueil.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameAccueil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameModifQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameModifQuestion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelEntiteAssociation.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelEntiteAssociation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaireTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaireTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifAssociationReponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifEliminationReponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifQCMReponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQCM.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQCM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Web/partie JS-HTML/Index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Web/partie JS-HTML/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Web/partie JS-HTML/src/14.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Web/partie JS-HTML/src/65.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Web/partie JS-HTML/src/86.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Web/partie JS-HTML/src/imgDif/Dvide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Web/partie JS-HTML/src/imgDif/Fvide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Web/partie JS-HTML/src/imgDif/Mvide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Web/partie JS-HTML/src/imgDif/TFvide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Web/partie JS-HTML/src/secu.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 2/Compléments/fic00000.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 2/Compléments/fic00001.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 2/enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 2/explication.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 3/Compléments/fic00000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 3/enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 3/explication.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 4/enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 4/explication.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 5/Compléments/fic00000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 5/Compléments/fic00001.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 5/enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 5/explication.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Intro BD/Fonction/Question 1/Compléments/fic00000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Intro BD/Fonction/Question 1/Compléments/fic00001.wde" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Intro BD/Fonction/Question 1/enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Intro BD/Fonction/Question 1/explication.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/notions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SAE-31/data/notions.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/questions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SAE-31/data/questions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/docs/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SAE-31/docs/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/ressources.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SAE-31/data/ressources.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/src/Web/partie JS-HTML/Index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/src/Web/partie JS-HTML/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/src/Web/partie JS-HTML/src/14.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/src/Web/partie JS-HTML/src/65.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/src/Web/partie JS-HTML/src/86.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/src/Web/partie JS-HTML/src/imgDif/Dvide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/src/Web/partie JS-HTML/src/imgDif/Fvide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/src/Web/partie JS-HTML/src/imgDif/Mvide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/src/Web/partie JS-HTML/src/imgDif/TFvide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/src/Web/partie JS-HTML/src/secu.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/Question 2/Compléments/fic00000.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/Question 2/Compléments/fic00001.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/Question 5/Compléments/fic00000.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/Question 5/Compléments/fic00001.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgBtn/CheckPlein.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgBtn/CheckVide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgBtn/RadPlein.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgBtn/RadVide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgDif/D.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgDif/F.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgDif/M.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgDif/TF.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/style.css" beforeDir="false" />
     </list>
     <list id="e0a5d575-1463-46f4-82d3-b2b4d97dd127" name="Changes by Aubin" comment="" />
     <list id="3481dd5b-087a-4692-8343-90ddec2f5494" name="Changes by ma231364" comment="" />
     <list id="654cba39-fa4c-4f3f-a512-14de95c91a78" name="Changes by pt232770" comment="">
-      <change beforePath="$PROJECT_DIR$/java/src/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Controleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" afterDir="false" />
-    </list>
-    <list id="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" name="Changes by sandr" comment="">
-      <change beforePath="$PROJECT_DIR$/java/docs/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/java/docs/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" afterDir="false" />
-    </list>
-    <list id="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" name="Changes by timot" comment="">
-      <change beforePath="$PROJECT_DIR$/java/src/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Controleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Metier.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Metier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameAccueil.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameAccueil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationNotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationNotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationRessource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameParametrage.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameParametrage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationNotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationNotion.java" afterDir="false" />
+    </list>
+    <list id="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" name="Changes by sandr" comment="">
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationQuestion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" afterDir="false" />
+    </list>
+    <list id="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" name="Changes by timot" comment="">
+      <change beforePath="$PROJECT_DIR$/java/data/notions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/notions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/ressources.csv" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/ressources.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/Metier.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Metier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCM.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelEntiteAssociation.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelEntiteAssociation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifAssociation.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifAssociation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifAssociationReponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifAssociationReponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifAssociation.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifElimination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifEliminationReponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifEliminationReponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifQCM.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifQCM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifQCMReponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifQCMReponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelNotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelNotion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQCM.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQCM.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaire.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaireTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaireTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelRessource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,200 +164,153 @@
     <setting file="jar://$USER_HOME$/.jdks/openjdk-23.0.1/lib/src.zip!/java.desktop/javax/swing/JPanel.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/java/src/Vue/PanelModifQCM.java" root0="SKIP_INSPECTION" />
   </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaireTab.java">
+    <file path="$PROJECT_DIR$/java/src/Vue/PanelQCM.java">
       <ranges>
-        <range start1="20" end1="22" start2="20" end2="22" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="23" end1="24" start2="23" end2="24" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="25" end1="27" start2="25" end2="27" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="31" end1="32" start2="31" end2="31" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="42" end1="43" start2="41" end2="41" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="47" end1="48" start2="45" end2="46" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="51" end1="52" start2="49" end2="50" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="54" end1="55" start2="52" end2="53" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="56" end1="59" start2="54" end2="57" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="119" end1="123" start2="117" end2="121" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="126" end1="128" start2="124" end2="126" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="130" end1="131" start2="128" end2="129" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="132" end1="134" start2="130" end2="132" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="135" end1="136" start2="133" end2="134" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="137" end1="139" start2="135" end2="138" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="239" end1="240" start2="238" end2="239" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="268" end1="269" start2="267" end2="268" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="270" end1="271" start2="269" end2="270" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="275" end1="276" start2="274" end2="275" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="315" end1="315" start2="314" end2="319" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="322" end1="324" start2="326" end2="328" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="342" end1="342" start2="346" end2="376" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="347" end1="365" start2="381" end2="381" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="103" end1="104" start2="103" end2="104" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="107" end1="108" start2="107" end2="108" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="111" end1="113" start2="111" end2="113" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="117" end1="119" start2="117" end2="119" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="127" end1="128" start2="127" end2="128" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="129" end1="130" start2="129" end2="130" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="149" end1="150" start2="149" end2="150" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="152" end1="153" start2="152" end2="153" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="190" end1="192" start2="190" end2="192" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="214" end1="215" start2="214" end2="214" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/java/src/Metier/Question.java">
+      <ranges>
+        <range start1="56" end1="60" start2="56" end2="58" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="62" end1="62" start2="60" end2="61" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="91" end1="92" start2="90" end2="90" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="95" end1="95" start2="93" end2="95" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="112" end1="112" start2="112" end2="113" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="163" end1="164" start2="164" end2="164" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="198" end1="199" start2="198" end2="199" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="202" end1="203" start2="202" end2="202" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="214" end1="214" start2="213" end2="214" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
       </ranges>
     </file>
     <file path="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java">
       <ranges>
-        <range start1="13" end1="13" start2="13" end2="14" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="17" end1="17" start2="18" end2="19" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="19" end1="19" start2="21" end2="22" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="28" end1="30" start2="31" end2="35" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="32" end1="37" start2="37" end2="45" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="38" end1="46" start2="46" end2="47" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="47" end1="48" start2="48" end2="48" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="50" end1="52" start2="50" end2="52" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="54" end1="55" start2="54" end2="55" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="64" end1="66" start2="64" end2="66" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="67" end1="72" start2="67" end2="70" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="73" end1="73" start2="71" end2="74" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="75" end1="77" start2="76" end2="78" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="96" end1="98" start2="97" end2="100" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="99" end1="100" start2="101" end2="101" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="103" end1="105" start2="104" end2="106" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="106" end1="107" start2="107" end2="108" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="111" end1="112" start2="112" end2="113" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="120" end1="121" start2="121" end2="122" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="122" end1="123" start2="123" end2="124" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="130" end1="133" start2="131" end2="135" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="134" end1="140" start2="136" end2="139" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="148" end1="148" start2="147" end2="148" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="149" end1="151" start2="149" end2="151" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="152" end1="153" start2="152" end2="153" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="154" end1="155" start2="154" end2="156" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="156" end1="158" start2="157" end2="158" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="159" end1="163" start2="159" end2="162" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="164" end1="165" start2="163" end2="164" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="166" end1="170" start2="165" end2="168" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="179" end1="181" start2="177" end2="179" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="190" end1="191" start2="188" end2="189" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="194" end1="194" start2="192" end2="197" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="204" end1="205" start2="207" end2="208" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="213" end1="214" start2="216" end2="217" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="216" end1="217" start2="219" end2="220" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="218" end1="219" start2="221" end2="222" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="224" end1="225" start2="227" end2="228" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="226" end1="227" start2="229" end2="230" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="243" end1="244" start2="246" end2="247" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="251" end1="252" start2="254" end2="255" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="258" end1="260" start2="261" end2="263" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="261" end1="262" start2="264" end2="265" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="263" end1="264" start2="266" end2="267" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="265" end1="266" start2="268" end2="269" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="267" end1="269" start2="270" end2="272" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="274" end1="275" start2="277" end2="278" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="283" end1="284" start2="286" end2="287" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="294" end1="295" start2="297" end2="298" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="309" end1="314" start2="312" end2="317" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="316" end1="320" start2="319" end2="323" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="321" end1="326" start2="324" end2="329" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="342" end1="344" start2="345" end2="357" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="356" end1="356" start2="369" end2="375" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="359" end1="359" start2="378" end2="383" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="362" end1="362" start2="386" end2="391" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="365" end1="365" start2="394" end2="398" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="370" end1="371" start2="403" end2="404" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="379" end1="381" start2="412" end2="412" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="382" end1="383" start2="413" end2="417" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="384" end1="385" start2="418" end2="422" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="387" end1="389" start2="424" end2="429" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="393" end1="394" start2="433" end2="437" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="397" end1="398" start2="440" end2="446" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="402" end1="403" start2="450" end2="451" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="405" end1="407" start2="453" end2="460" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="408" end1="409" start2="461" end2="462" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="410" end1="411" start2="463" end2="480" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="414" end1="415" start2="483" end2="484" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="416" end1="418" start2="485" end2="494" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="419" end1="420" start2="495" end2="512" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="424" end1="425" start2="516" end2="532" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="429" end1="430" start2="536" end2="551" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="435" end1="445" start2="556" end2="580" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="446" end1="455" start2="581" end2="601" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="460" end1="463" start2="606" end2="630" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="464" end1="466" start2="631" end2="635" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="467" end1="469" start2="636" end2="638" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="470" end1="472" start2="639" end2="640" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="473" end1="474" start2="641" end2="644" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="475" end1="475" start2="645" end2="649" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="478" end1="480" start2="652" end2="653" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="483" end1="485" start2="656" end2="657" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="487" end1="489" start2="659" end2="663" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="490" end1="491" start2="664" end2="666" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="507" end1="507" start2="682" end2="699" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="13" end1="14" start2="13" end2="14" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="37" end1="38" start2="37" end2="38" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="46" end1="50" start2="46" end2="50" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="56" end1="56" start2="56" end2="61" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="67" end1="69" start2="72" end2="74" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="78" end1="78" start2="83" end2="88" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="128" end1="129" start2="138" end2="139" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="134" end1="134" start2="144" end2="145" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="139" end1="139" start2="150" end2="152" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="145" end1="146" start2="158" end2="159" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="172" end1="180" start2="185" end2="194" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="183" end1="191" start2="197" end2="206" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="202" end1="210" start2="217" end2="239" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="215" end1="217" start2="244" end2="248" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="218" end1="222" start2="249" end2="252" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="223" end1="225" start2="253" end2="267" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="227" end1="228" start2="269" end2="270" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="229" end1="230" start2="271" end2="272" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="231" end1="232" start2="273" end2="274" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="234" end1="235" start2="276" end2="277" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="367" end1="368" start2="409" end2="409" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="369" end1="370" start2="410" end2="410" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="376" end1="377" start2="416" end2="416" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="384" end1="385" start2="423" end2="423" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="392" end1="393" start2="430" end2="430" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="442" end1="446" start2="479" end2="479" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="449" end1="450" start2="482" end2="482" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="482" end1="483" start2="514" end2="514" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="514" end1="515" start2="545" end2="545" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="534" end1="535" start2="564" end2="564" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="664" end1="665" start2="693" end2="695" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="679" end1="679" start2="709" end2="712" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="681" end1="681" start2="714" end2="724" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="683" end1="683" start2="726" end2="750" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="684" end1="685" start2="751" end2="758" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="694" end1="695" start2="767" end2="769" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="699" end1="699" start2="773" end2="795" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
       </ranges>
     </file>
-    <file path="$PROJECT_DIR$/java/src/Metier/Metier.java">
+    <file path="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaire.java">
       <ranges>
-        <range start1="12" end1="13" start2="12" end2="13" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="216" end1="217" start2="216" end2="217" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="219" end1="220" start2="219" end2="220" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="259" end1="260" start2="259" end2="260" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="283" end1="285" start2="283" end2="292" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="291" end1="291" start2="298" end2="333" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="348" end1="357" start2="390" end2="393" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="360" end1="360" start2="396" end2="404" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="421" end1="421" start2="465" end2="475" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="118" end1="119" start2="118" end2="118" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="164" end1="164" start2="163" end2="164" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
       </ranges>
     </file>
-    <file path="$PROJECT_DIR$/java/src/Metier/Questionnaire.java">
+    <file path="$PROJECT_DIR$/java/data/ressources.csv">
       <ranges>
-        <range start1="5" end1="6" start2="5" end2="6" changelist="654cba39-fa4c-4f3f-a512-14de95c91a78" />
-        <range start1="102" end1="104" start2="102" end2="106" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="0" end1="1" start2="0" end2="1" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="2" end1="5" start2="2" end2="6" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="6" end1="7" start2="7" end2="35" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
       </ranges>
     </file>
-    <file path="$PROJECT_DIR$/java/src/Controleur.java">
+    <file path="$PROJECT_DIR$/java/src/Vue/PanelElimination.java">
       <ranges>
-        <range start1="6" end1="6" start2="6" end2="7" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="7" end1="11" start2="8" end2="8" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="12" end1="13" start2="9" end2="10" changelist="654cba39-fa4c-4f3f-a512-14de95c91a78" />
-        <range start1="36" end1="36" start2="33" end2="35" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="39" end1="40" start2="38" end2="39" changelist="654cba39-fa4c-4f3f-a512-14de95c91a78" />
-        <range start1="66" end1="68" start2="65" end2="67" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="98" end1="100" start2="97" end2="99" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="102" end1="103" start2="101" end2="102" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="109" end1="109" start2="108" end2="110" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="2" end1="2" start2="2" end2="3" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="18" end1="18" start2="19" end2="20" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="59" end1="60" start2="61" end2="62" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="68" end1="72" start2="70" end2="70" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="85" end1="85" start2="83" end2="94" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="90" end1="94" start2="99" end2="102" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="112" end1="113" start2="120" end2="121" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="122" end1="124" start2="130" end2="132" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="145" end1="145" start2="153" end2="154" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="152" end1="152" start2="161" end2="177" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="159" end1="159" start2="184" end2="187" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="175" end1="175" start2="203" end2="209" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
       </ranges>
     </file>
-    <file path="$PROJECT_DIR$/java/src/Vue/PanelBanque.java">
+    <file path="$PROJECT_DIR$/java/data/notions.csv">
       <ranges>
-        <range start1="26" end1="26" start2="26" end2="34" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="28" end1="36" start2="36" end2="36" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="37" end1="39" start2="37" end2="38" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="81" end1="82" start2="80" end2="81" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="83" end1="86" start2="82" end2="85" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="113" end1="115" start2="112" end2="114" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="128" end1="130" start2="127" end2="129" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="133" end1="134" start2="132" end2="132" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="140" end1="142" start2="138" end2="146" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="166" end1="167" start2="170" end2="175" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="170" end1="171" start2="178" end2="183" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="174" end1="175" start2="186" end2="191" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="215" end1="216" start2="231" end2="232" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="233" end1="236" start2="249" end2="253" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="238" end1="240" start2="255" end2="257" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="241" end1="243" start2="258" end2="268" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="244" end1="247" start2="269" end2="273" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="251" end1="252" start2="277" end2="278" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="253" end1="254" start2="279" end2="280" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="0" end1="0" start2="0" end2="5" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="1" end1="3" start2="6" end2="19" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="4" end1="9" start2="20" end2="57" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="10" end1="17" start2="58" end2="109" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
       </ranges>
     </file>
     <file path="$PROJECT_DIR$/java/src/Vue/PanelEntiteAssociation.java">
       <ranges>
-        <range start1="15" end1="15" start2="15" end2="16" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="17" end1="21" start2="18" end2="33" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="23" end1="32" start2="35" end2="36" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="37" end1="45" start2="41" end2="57" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="57" end1="58" start2="69" end2="70" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="59" end1="60" start2="71" end2="72" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="62" end1="65" start2="74" end2="77" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="67" end1="69" start2="79" end2="81" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="71" end1="73" start2="83" end2="85" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="76" end1="78" start2="88" end2="90" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="81" end1="83" start2="93" end2="95" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="85" end1="87" start2="97" end2="99" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="103" end1="105" start2="115" end2="120" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="109" end1="112" start2="124" end2="127" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="119" end1="122" start2="134" end2="137" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="129" end1="130" start2="144" end2="145" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="137" end1="138" start2="152" end2="153" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="166" end1="178" start2="181" end2="192" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="181" end1="182" start2="195" end2="201" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="19" end1="20" start2="19" end2="19" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="65" end1="72" start2="64" end2="64" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="92" end1="93" start2="84" end2="84" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="115" end1="117" start2="106" end2="108" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="120" end1="121" start2="111" end2="112" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="123" end1="124" start2="114" end2="115" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="129" end1="130" start2="120" end2="121" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="131" end1="133" start2="122" end2="124" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="144" end1="150" start2="135" end2="135" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="158" end1="161" start2="143" end2="146" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="163" end1="172" start2="148" end2="148" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="195" end1="201" start2="171" end2="176" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/java/src/Vue/PanelBanque.java">
+      <ranges>
+        <range start1="105" end1="106" start2="105" end2="106" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="107" end1="108" start2="107" end2="108" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="109" end1="110" start2="109" end2="110" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="168" end1="192" start2="168" end2="169" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="278" end1="279" start2="255" end2="255" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/java/src/Metier/Metier.java">
+      <ranges>
+        <range start1="10" end1="11" start2="10" end2="10" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="36" end1="37" start2="35" end2="36" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="50" end1="51" start2="49" end2="50" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="264" end1="265" start2="263" end2="263" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="269" end1="271" start2="267" end2="276" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="276" end1="276" start2="281" end2="317" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
+        <range start1="278" end1="279" start2="319" end2="319" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="335" end1="336" start2="375" end2="375" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="460" end1="461" start2="499" end2="499" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="492" end1="493" start2="530" end2="530" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
       </ranges>
     </file>
   </component>
@@ -544,6 +564,9 @@
       <workItem from="1736321704388" duration="3664000" />
       <workItem from="1736326361765" duration="5663000" />
       <workItem from="1736338202863" duration="12385000" />
+      <workItem from="1736408284753" duration="10218000" />
+      <workItem from="1736421693171" duration="8790000" />
+      <workItem from="1736431291037" duration="1307000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <option name="closed" value="true" />
@@ -588,5 +611,10 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="((java.util.ArrayList)((Metier)this).lstNotions).get(45)" custom="src.Metier.Metier,java.util.ArrayList" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

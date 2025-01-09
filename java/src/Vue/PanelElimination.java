@@ -1,5 +1,6 @@
 package src.Vue;
 
+import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ public class PanelElimination extends JFrame implements ActionListener
 	private JPanel 	   panelReponses;
 	private JButton    btnAjoutReponse;
 	private JButton    btnEnregistrer;
+	private JLabel     lblRep, lblOrdre, lblPoint;
 
 	private int    nombreReponses = 0;
 
@@ -57,7 +59,7 @@ public class PanelElimination extends JFrame implements ActionListener
 		this.lstLiens	   = lstLiens;
 		this.idMax   	   = idMax;
 
-		this.epEnonce = epEnonce;
+		this.epEnonce      = epEnonce;
 		this.epExplication = epExplication;
 
 		setTitle("QCM Builder - Créateur de Question élimination");
@@ -65,10 +67,6 @@ public class PanelElimination extends JFrame implements ActionListener
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(new BorderLayout());
 		this.setIconImage(new ImageIcon("java/data/Images/icon.png").getImage());
-
-		JPanel panelQuestion     = new JPanel(new BorderLayout());
-		JLabel etiquetteQuestion = new JLabel("Question :");
-		panelQuestion.add(etiquetteQuestion, BorderLayout.NORTH);
 
 		// Panel pour ajouter les réponses
 		this.panelReponses 		   = new JPanel();
@@ -83,15 +81,25 @@ public class PanelElimination extends JFrame implements ActionListener
 		this.btnEnregistrer = new JButton("Enregistrer");
 		this.btnEnregistrer.setActionCommand("enregistrer");
 
+		// Label pour les colonnes
+		this.lblOrdre = new JLabel("Ordre d'éliminations");
+		this.lblRep   = new JLabel("Réponse");
+		this.lblPoint = new JLabel("Nombre de points");
+
+		JPanel panelLabel = new JPanel(new GridLayout(1, 3, 5, 5 ) );
+		panelLabel.add(this.lblRep);
+		panelLabel.add(this.lblPoint);
+		panelLabel.add(this.lblOrdre);
+		panelLabel.add(new JLabel(""));
+
 		// Panel des boutons
 		JPanel panelBoutons = new JPanel();
 		panelBoutons.add(this.btnAjoutReponse);
 		panelBoutons.add(this.btnEnregistrer);
 
-		// Ajout des composants à la fenêtre
-		add(panelQuestion, BorderLayout.NORTH);
-		add(defilement   , BorderLayout.CENTER);
-		add(panelBoutons , BorderLayout.SOUTH);
+		this.add(panelLabel   , BorderLayout.NORTH);
+		this.add(defilement   , BorderLayout.CENTER);
+		this.add(panelBoutons , BorderLayout.SOUTH);
 
 		// Activation des listeners
 		this.btnAjoutReponse.addActionListener(this);
@@ -110,7 +118,7 @@ public class PanelElimination extends JFrame implements ActionListener
 	private void ajouterReponse(){
 		JPanel panelAjoutReponse   = new JPanel();
 		panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
-		JTextField txtReponse      = new JTextField("Réponse " + (++this.nombreReponses));
+		JTextField txtReponse      = new JTextField();
 		JCheckBox  cbBonneReponse  = new JCheckBox ("Correcte");
 		JButton    btnSupprimer    = new JButton   ("Supprimer");
 
@@ -120,8 +128,8 @@ public class PanelElimination extends JFrame implements ActionListener
 			this.panelReponses.repaint();
 		});
 
-		JTextField txtOrdreElim    = new JTextField("ordre elim");
-		JTextField txtPointNegatif = new JTextField("pnt-");
+		JTextField txtOrdreElim    = new JTextField();
+		JTextField txtPointNegatif = new JTextField();
 
 		panelAjoutReponse.add(txtReponse);
 		panelAjoutReponse.add(txtOrdreElim);
@@ -143,6 +151,7 @@ public class PanelElimination extends JFrame implements ActionListener
 
 		HashMap<String, Double[]> reponses = new HashMap<>();
 		String reponseCorrecte = "";
+		int cptRepCorecte = 0;
 		for (Component composant : composants){
 			if (composant instanceof JPanel){
 				JPanel reponse = (JPanel) composant;
@@ -151,11 +160,30 @@ public class PanelElimination extends JFrame implements ActionListener
 				JTextField txtPointNegatif = (JTextField) reponse.getComponent(2);
 				JCheckBox  cbCorrecte      = (JCheckBox)  reponse.getComponent(3);
 
+				if( cbCorrecte.isSelected() ){
+					cptRepCorecte ++;
+				}
+
+				try{
+					Double.parseDouble(txtOrdreElim.getText());
+					Double.parseDouble(txtPointNegatif.getText());
+				}catch (NumberFormatException e)
+				{
+					JOptionPane.showMessageDialog(
+							this, "L'ordre ainsi que les points doivent être des entiers ou des double."
+					);
+					return;
+				}
+
+
 				reponses.put(txtReponse.getText(), new Double[]{Double.parseDouble(txtPointNegatif.getText()), Double.parseDouble(txtOrdreElim.getText())});
 				if (cbCorrecte.isSelected()){
 					reponseCorrecte = txtReponse.getText();
 				}
 			}
+		}
+		if(cptRepCorecte == 0 ) {
+			return;
 		}
 
 		// Création de la question
@@ -173,6 +201,12 @@ public class PanelElimination extends JFrame implements ActionListener
 		);
 
 		if(this.panelBanque != null) {this.panelBanque.maj();}
+
+		Question.sauvegarderFichier(this.cheminDossier+"/Enonce.rtf", this.epEnonce);
+		Question.sauvegarderFichier(this.cheminDossier+"/Explication.rtf", this.epExplication);
+
+		this.panelCreationQuestion.actualiser();
+		dispose();
 	}
 
 	/**

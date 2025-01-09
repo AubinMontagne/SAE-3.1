@@ -1,7 +1,38 @@
 R1.01;Init dev
+R1.02;Dev Web
+R1.03;Intro Archi
+R1.04;Intro Systeme
 R1.05;Intro BD
-R3.02;Developpement efficace
-R3.11;Droits des contrats et du numérique
-R3.13;Comunication Pro
+R1.06;Math Discrete
+R1.07;Outils fonda
+R1.08;GPO
+R1.12;PPP
 R2.01;Dev Objet
-R3.12;MSI
+R2.02;IHM
+R2.04;Comm et fonct bas niveaux
+R2.05;Intro Reseaux
+R2.06;BD
+R2.07;Graphe
+R2.08;Statistique
+R2.09;Methode Numerique
+R2.14;PPP
+R3.01;Dev Web
+R3.02;Dev efficace
+R3.05;Prog systeme
+R3.06;Architecture réseaux
+R3.07;SQL langage de programmation
+R3.08;Proba
+R3.09;Crypto
+R3.13;Comm
+R4.03;Qualité aux delà du relationel
+R4.04;Méthode opti
+R4.08;Virtualisation
+R4.12;Automates
+R5.04;Qualité algo
+R5.05;Prog avancé
+R5.06;Prog multimedia
+R5.07;Auto de chaine de prod
+R5.09;Virtualisation Avance
+R5.10;Nouveau paradigme de base de donne
+R5.11;Methodes d'optimisation pour l'aide à la décision
+R5.13;Économie durable

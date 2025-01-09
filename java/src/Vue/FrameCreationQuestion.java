@@ -13,13 +13,16 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
 
     private PanelBanque panelBanque;
 
+    private PanelCreationQuestion pnlCreationQuestion;
+
     private Controleur ctrl;
 
     /**
      * Constructeur de la class FrameCreationQuestion
      * @param ctrl          Le contrôleur
      */
-    public FrameCreationQuestion( Controleur ctrl){
+    public FrameCreationQuestion( Controleur ctrl)
+    {
         this.ctrl = ctrl;
 
         this.setTitle             ("QCM Builder - Création de la question");
@@ -31,7 +34,9 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelCreationQuestion(this, ctrl, null, null, null) );
+        this.pnlCreationQuestion = new PanelCreationQuestion(this, ctrl, null, null, null);
+
+        this.add(this.pnlCreationQuestion);
         this.addWindowListener(this);
 
         setVisible(true);
@@ -58,7 +63,10 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelCreationQuestion(this, ctrl,this.panelBanque, ressource, notion) );
+        this.pnlCreationQuestion = new PanelCreationQuestion(this, ctrl,this.panelBanque, ressource, notion);
+
+        this.add(this.pnlCreationQuestion);
+
         this.addWindowListener(this);
 
         setVisible(true);
@@ -77,6 +85,17 @@ public class FrameCreationQuestion extends JFrame implements WindowListener {
     public void windowClosed     (java.awt.event.WindowEvent e) {}
     public void windowIconified  (java.awt.event.WindowEvent e) {}
     public void windowDeiconified(java.awt.event.WindowEvent e) {}
-    public void windowActivated  (java.awt.event.WindowEvent e) {}
-    public void windowDeactivated(java.awt.event.WindowEvent e) {}
+
+    public void windowActivated  (java.awt.event.WindowEvent e)
+    {
+        this.pnlCreationQuestion.setTexteRtfEnonce();
+        this.pnlCreationQuestion.getEditeurEnonce().setText(this.pnlCreationQuestion.passageText(this.pnlCreationQuestion.getEditeurEnonce()));
+        this.pnlCreationQuestion.getEditeurExplication().setText(this.pnlCreationQuestion.passageText(this.pnlCreationQuestion.getEditeurExplication()));
+    }
+
+    public void windowDeactivated(java.awt.event.WindowEvent e)
+    {
+        this.pnlCreationQuestion.getEditeurEnonce().setText(this.pnlCreationQuestion.passageRtf(this.pnlCreationQuestion.getEditeurEnonce()));
+        this.pnlCreationQuestion.getEditeurExplication().setText(this.pnlCreationQuestion.passageRtf(this.pnlCreationQuestion.getEditeurExplication()));
+    }
 }

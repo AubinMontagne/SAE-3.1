@@ -1,17 +1,104 @@
 Les sous-classe;R1.01
-Les types de base;R1.01
-Tableau a deux dimension;R1.01
+Fonction;R1.01
+Conventions d’écriture;R1.01
+Classe;R1.01
+Tableaux;R1.01
+Structure;R1.02
+CSS;R1.02
+Tableau;R1.02
+Entier non signée;R1.03
+Les caractères;R1.03
+Les entier signés;R1.03
+Commande de base;R1.04
+Concept du shell;R1.04
+Signaux;R1.04
 Jointure;R1.05
-Fonction;R1.05
-Operateur;R1.05
-Recursivite;R3.02
-Tries recursifs;R3.02
-Iteration;R3.02
+Les fonctions;R1.05
+Opérateur de combinaison de résultat;R1.05
+Logique;R1.06
+Graphes de fonctions;R1.07
+Fonction usuelle;R1.07
+Aire sous le graphe;R1.07
+Tableur;R1.08
+Recette du gateaux aux chocolat;R1.12
+Les paquetages;R2.01
+Heritage;R2.01
+Type Enumeres;R2.01
+Les interfaces;R2.01
+Boxing/Unboxing;R2.01
+Base IHM;R2.02
+Barre de défilement;R2.02
+Gestion souris;R2.02
+BIOSS;R2.04
+Pointeur et Transtypage;R2.04
+Script réseaux;R2.05
+Les socket;R2.05
+Vue PostgreSQL;R2.06
+SGBD;R2.06
+Visualisation;R2.06
+Graphe Orienté;R2.07
+Parcours;R2.07
+Coloration;R2.07
+Intro Stat simple;R2.08
+Stat double à caractère qualitatif;R2.08
+Suite Numérique;R2.09
+Suite Récurrente;R2.09
+Suite et Approximation;R2.09
+Rencontre Pro;R2.14
+Les formulaires;R3.01
+Le MVC;R3.01
+Intro aux PHP;R3.01
+Récursivité;R3.02
+Itération;R3.02
 Rangement;R3.02
-Le RGPD;R3.11
-Les brevets;R3.11
-Les droits d'auteur;R3.11
-Les discours;R3.13
-Compte Rendue;R3.13
-Cahier des charges;R3.13
-Comptabilité;R3.12
+Pointeur;R3.05
+Creation de processus;R3.05
+Les tubes;R3.05
+Adressage IPV4;R3.06
+Thread en java;R3.06
+Le routage;R3.06
+Fonction simple;R3.07
+Trigger;R3.07
+Transaction;R3.07
+Ensemble;R3.08
+Proba;R3.08
+Convergence;R3.08
+Les codes correcteurs;R3.09
+Le chiffrement;R3.09
+L’arithmétique modulaire;R3.09
+Les schémas;R3.13
+CV;R3.13
+Compte rendue;R3.13
+Normalisation;R4.03
+Mongo DB;R4.03
+Prog linéaire;R4.04
+Plus court chemin;R4.04
+Problème d'affectation;R4.04
+SSH;R4.08
+Initiation docker;R4.08
+Master;R4.08
+Langage rationnels;R4.12
+AFD;R4.12
+Simplification;R4.12
+la complexité des algo;R5.04
+Les tris;R5.04
+Mesurer la complexité;R5.04
+Modele;R5.05
+Envoi de mail;R5.05
+Authentification;R5.05
+Manip de pixel;R5.06
+Decomp;R5.06
+Rotation;R5.06
+GitHub workflow;R5.07
+GitHub action;R5.07
+Wokflow comparés;R5.07
+Noeud;R5.09
+Service;R5.09
+Synthèse;R5.09
+Heritage;R5.10
+Mise a jour MongoDB;R5.10
+Prog en Prolog;R5.10
+Branch et Bound;R5.11
+Les heuristiques;R5.11
+Métaheuristiques;R5.11
+BlockChain;R5.13

@@ -1,33 +1,21 @@
 package src.Vue;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.io.ByteArrayOutputStream;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.util.ArrayList;
+import src.Controleur;
+import src.Metier.*;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.text.*;
 import javax.swing.text.rtf.RTFEditorKit;
-import java.awt.Color;
-
-import src.Controleur;
-import src.Metier.Notion;
-import src.Metier.Question;
-import src.Metier.Ressource;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.ByteArrayOutputStream;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class PanelCreationQuestion extends JPanel implements ActionListener, ItemListener {
+public class PanelModifQuestion extends JPanel implements ActionListener, ItemListener {
 	private Controleur           ctrl;
 
 	private JComboBox<Ressource> ddlstRessources;
@@ -37,22 +25,27 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	private JButton              btnConfirmer;
 	private JButton				 btnGras, btnItalique, btnAjouterImage, btnAjouterRessComp;
 	private JTextField           txtPoints, txtTemps;
+
 	private JEditorPane epEnonce;
 	private JEditorPane epExplication;
 
 	private ArrayList<Ressource> lstRessources;
 	private ArrayList<Notion>    lstNotions;
+
 	private List<String>         lstLiens;
 	private String				 imageFond;
-	private String 		 notion;
-	private int    		 difficulte;
-	private int    		 temps;
-	private int    		 points;
+	private Question  			 q;
+	private String				 notion;
+	private int     			 difficulte;
+	private int					 temps;
+	private int					 points;
+
 	private Border               bordureDefaut;
 	private Border               bordureSelect;
 
-	private FrameCreationQuestion frameCreationQuestion;
-	private PanelBanque           panelBanque;
+	private FrameModifQuestion frameModifQuestion;
+	private PanelBanque        panelBanque;
+
 
 	private static final ImageIcon[] IMAGES_DIFFICULTE = {
 			new ImageIcon("java/data/Images/imgDif/TF.png"),
@@ -61,21 +54,23 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			new ImageIcon("java/data/Images/imgDif/D.png")
 	};
 
-	public PanelCreationQuestion(FrameCreationQuestion frameCreationQuestion, Controleur ctrl ,PanelBanque panelBanque, Ressource resChoisie, Notion notionChoisie) {
+	public PanelModifQuestion(FrameModifQuestion frameModifQuestion, Controleur ctrl , PanelBanque panelBanque, Question q) {
 		this.ctrl                  = ctrl;
 		this.panelBanque           = panelBanque;
-		this.frameCreationQuestion = frameCreationQuestion;
+
+		this.frameModifQuestion = frameModifQuestion;
 		this.lstRessources            = this.ctrl.getRessources();
 		this.lstNotions               = this.ctrl.getNotions();
 		this.lstLiens              = new ArrayList<>(5);
 
+		this.q = q;
+		this.notion = q.getNotion().getNom();
+		this.difficulte = q.getDifficulte().getIndice();
+		this.temps = q.getTemps();
+		this.points= q.getPoint();
+
 		this.bordureDefaut = BorderFactory.createLineBorder(Color.BLACK, 5);
 		this.bordureSelect = BorderFactory.createLineBorder(Color.RED  , 5);
-
-		Ressource placeHolder = new Ressource(" "," ");
-
-		this.lstRessources.add(0,placeHolder);
-		this.lstNotions   .add(0,new Notion(" ",placeHolder));
 
 		setLayout(new BorderLayout());
 
@@ -97,13 +92,14 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 		this.txtPoints  = new JFormattedTextField(numberFormatter);
 		this.txtPoints.setColumns(10);
+		this.txtPoints.setText(q.getPoint()+"");
 
 		JLabel labelTemps = new JLabel("Temps de réponse (min:sec) :");
 		try {
 			MaskFormatter timeFormatter = new MaskFormatter("##:##");
 			timeFormatter.setPlaceholderCharacter('0');
 			this.txtTemps = new JFormattedTextField(timeFormatter);
-			this.txtTemps.setText("00:30"); // Valeur initiale
+			this.txtTemps.setText((q.getTemps()/60)+":"+(q.getTemps()%60)); // Valeur initiale
 
 			this.txtTemps.addPropertyChangeListener("value", evt -> secondeValide());
 		} catch (ParseException e) {
@@ -132,11 +128,13 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		this.epEnonce = new JEditorPane();
 		this.epEnonce.setEditorKit(new StyledEditorKit()); // Permet la gestion des styles
 		this.epEnonce.setEditable(true); // Rendre éditable
+		this.epEnonce.setText(this.q.getEnonceRTF());
 
 		JLabel lblExpliquationQuestion = new JLabel("Explication : ");
 		this.epExplication = new JEditorPane();
 		this.epExplication.setEditorKit(new StyledEditorKit()); // Permet la gestion des styles
 		this.epExplication.setEditable(true); // Rendre éditable
+		this.epExplication.setText(this.q.getExplicationRTF());
 
 		JPanel panelCentrale = new JPanel(new GridLayout(1, 2, 5, 5));
 		panelCentrale.setBorder(BorderFactory.createTitledBorder("Sélection"));
@@ -152,18 +150,18 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		{
 			this.ddlstRessources.addItem(ressource);
 		}
-		this.ddlstRessources.setSelectedIndex(0);
+		this.ddlstRessources.setSelectedItem(q.getNotion().getRessourceAssociee());
 		this.ddlstRessources.addItemListener(this);
 
 		// ComboBox de Notion
 		JLabel labelNotion = new JLabel("Notion :");
 		this.ddlstNotions  = new JComboBox<>();
-		this.lstNotions = this.ctrl.getNotionsParRessource(this.lstRessources.getFirst());
+		this.lstNotions = this.ctrl.getNotionsParRessource(q.getNotion().getRessourceAssociee());
 		for(Notion notion : this.lstNotions)
 		{
 			this.ddlstNotions.addItem(notion);
 		}
-		this.ddlstNotions.setSelectedIndex(0);
+		this.ddlstNotions.setSelectedItem(q.getNotion());
 		this.ddlstNotions.setEnabled(false);
 		this.ddlstNotions.addItemListener(this);
 
@@ -247,6 +245,19 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		this.ddlstTypes  = new JComboBox<>(new String[]
 				{ "QCM REP. UNIQUE","QCM REP. MULTIPLE", "EntiteAssociation","Elimination" }
 		);
+		if (q instanceof QCM){
+			if (((QCM)(q)).estVraiouFaux()){
+				this.ddlstTypes.setSelectedIndex(0);
+			} else {
+				this.ddlstTypes.setSelectedIndex(1);
+			}
+		} else {
+			if ( q instanceof AssociationElement) {
+				this.ddlstTypes.setSelectedIndex(2);
+			} else {
+				this.ddlstTypes.setSelectedIndex(3);
+			}
+		}
 
 		this.btnConfirmer = new JButton("Confirmer");
 		this.btnConfirmer.addActionListener(this);
@@ -257,20 +268,6 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 		add(panelType, BorderLayout.SOUTH);
 		setVisible(true);
-
-		if (resChoisie != null){
-			this.ddlstRessources.removeItemAt(0);
-			this.lstRessources  .removeFirst();
-			
-			this.ddlstRessources.setSelectedItem(resChoisie);
-			
-			this.ddlstNotions.removeAllItems();
-			for (Notion notion : this.ctrl.getNotionsParRessource(resChoisie)) {
-				this.ddlstNotions.addItem(notion);
-			}
-			this.ddlstNotions.setSelectedItem(notionChoisie);
-			this.ddlstNotions.setEnabled(true);
-		}
 	}
 
 	// Methode
@@ -326,7 +323,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		} else if (e.getSource() == this.ddlstNotions && e.getStateChange() == ItemEvent.SELECTED) {
 			int indexRessource  = this.ddlstRessources.getSelectedIndex();
 			int indexNotion     = this.ddlstNotions.getSelectedIndex();
-			this.notion = ( (Notion)(this.ddlstNotions.getSelectedItem() )).getNom();
+			this.notion = ((Notion)(this.ddlstNotions.getSelectedItem() )).getNom();
 			if (indexRessource >= 0 && indexNotion >= 0) {
 
 				this.btnTresFacile.setIcon(IMAGES_DIFFICULTE[0]);
@@ -342,20 +339,11 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		}
 	}
 
-	public void actualiser(){
+	public void fermer(){
 		if(this.panelBanque != null) {
 			this.panelBanque.maj();
-			new FrameCreationQuestion(
-					this.ctrl,
-					this.panelBanque,
-					(Ressource) (this.ddlstRessources.getSelectedItem()),
-					(Notion) (this.ddlstNotions.getSelectedItem() )
-			);
-		} else {
-			new FrameCreationQuestion(this.ctrl, null, null, null);
 		}
-
-		this.frameCreationQuestion.dispose();
+		this.frameModifQuestion.dispose();
 	}
 
 	/**
@@ -445,9 +433,13 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			this.epEnonce. setText( this.passageRtf(this.epEnonce) );
 			this.epExplication.setText( this.passageRtf(this.epExplication) );
 
+			this.q.setPoint(this.points);
+			this.q.setNotion(this.ctrl.getNotionByNom(this.notion));
+			this.q.setTemps(this.temps);
+			this.q.setDifficulte(Difficulte.getDifficulteByIndice(this.difficulte));
+			this.q.setDossierChemin(cheminDossier);
 
 			if ("QCM REP. UNIQUE".equals(typeSelectionne)) {
-				System.out.println(typeSelectionne);
 				Notion n = (Notion)(this.ddlstNotions.getSelectedItem());
 				this.notion = n.getNom();
 				this.temps  = Integer.parseInt(
@@ -461,26 +453,20 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 				);
 				this.points = Integer.parseInt(this.txtPoints.getText());
 
-				PanelQCM panelQCM = new PanelQCM(
+				PanelModifQCM panelModifQCM = new PanelModifQCM(
 						this,
 						this.ctrl,
-						cheminDossier,
 						this.imageFond,
 						this.lstLiens,
-						this.difficulte,
-						this.notion,
-						this.points,
-						this.temps,
 						this.panelBanque,
-						true,
 						this.epEnonce,
 						this.epExplication,
-						idMax
+						this.q,
+						true
 
 				);
-				panelQCM.setVisible(true);
+				panelModifQCM.setVisible(true);
 			} else if ("QCM REP. MULTIPLE".equals(typeSelectionne)) {
-				System.out.println(typeSelectionne);
 				Notion n = (Notion)(this.ddlstNotions.getSelectedItem());
 				this.notion = n.getNom();
 				this.temps  = Integer.parseInt(
@@ -493,63 +479,44 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 				);
 				this.points = Integer.parseInt(this.txtPoints.getText());
 
-				PanelQCM panelQCM = new PanelQCM(
+				PanelModifQCM panelModifQCM = new PanelModifQCM(
 						this,
 						this.ctrl,
-						cheminDossier,
 						this.imageFond,
 						this.lstLiens,
-						this.difficulte,
-						this.notion,
-						this.points,
-						this.temps,
 						this.panelBanque,
-						false,
 						this.epEnonce,
 						this.epExplication,
-						idMax
+						this.q,
+						false
 				);
 
-				panelQCM.setVisible(true);
+				panelModifQCM.setVisible(true);
 			} else if("EntiteAssociation".equals(typeSelectionne)) {
-				System.out.println(typeSelectionne);
-
-				PanelEntiteAssociation panelEntiteAssociation = new PanelEntiteAssociation(
+				PanelModifEntiteAssociation panelModifEntiteAssociation = new PanelModifEntiteAssociation(
 						this,
 						this.ctrl,
-						cheminDossier,
 						this.imageFond,
 						this.lstLiens,
-						this.difficulte,
-						this.notion,
-						this.points,
-						this.temps,
 						this.panelBanque,
 						this.epEnonce,
 						this.epExplication,
-						idMax
+						this.q
 				);
 
-				panelEntiteAssociation.setVisible(true);
+				panelModifEntiteAssociation.setVisible(true);
 			} else if ("Elimination".equals(typeSelectionne)){
-				System.out.println(typeSelectionne);
-
-				PanelElimination panelElimination = new PanelElimination(
+				PanelModifElimination panelModifElimination = new PanelModifElimination(
 						this,
 						this.ctrl,
-						cheminDossier,
 						this.imageFond,
 						this.lstLiens,
-						this.difficulte,
-						this.notion,
-						this.points,
-						this.temps,
 						this.panelBanque,
 						this.epEnonce,
 						this.epExplication,
-						idMax
+						this.q
 				);
-				panelElimination.setVisible(true);
+				panelModifElimination.setVisible(true);
 			}
 		}
 

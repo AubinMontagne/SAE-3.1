@@ -11,7 +11,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.ByteArrayOutputStream;
+import java.io.*;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	private JComboBox<String>    ddlstTypes;
 	private JButton              btnTresFacile, btnFacile, btnMoyen, btnDifficile;
 	private JButton              btnConfirmer;
-	private JButton				 btnGras, btnItalique, btnAjouterImage, btnAjouterRessComp;
+	private JButton				 btnGras, btnItalique, btnAjouterImage, btnAjouterRessComp, btnSupprimerFichierComp;
 	private JTextField           txtPoints, txtTemps;
 	private JEditorPane epEnonce;
 	private JEditorPane epExplication;
@@ -44,15 +44,20 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	private ArrayList<Notion>    lstNotions;
 	private List<String>         lstLiens;
 	private String				 imageFond;
-	private String 		 notion;
-	private int    		 difficulte;
-	private int    		 temps;
-	private int    		 points;
+	private String 		 		 notion;
+	private int    		 		 difficulte;
+	private int    		 		 temps;
+	private int    		 		 points;
 	private Border               bordureDefaut;
 	private Border               bordureSelect;
 
 	private FrameCreationQuestion frameCreationQuestion;
 	private PanelBanque           panelBanque;
+
+	private String texteRtfEnonce;
+	private String texteRtfExplication;
+	private String texteTxtEnonce;
+	private String texteTxtExplication;
 
 	private static final ImageIcon[] IMAGES_DIFFICULTE = {
 			new ImageIcon("java/data/Images/imgDif/TF.png"),
@@ -65,8 +70,8 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		this.ctrl                  = ctrl;
 		this.panelBanque           = panelBanque;
 		this.frameCreationQuestion = frameCreationQuestion;
-		this.lstRessources            = this.ctrl.getRessources();
-		this.lstNotions               = this.ctrl.getNotions();
+		this.lstRessources         = this.ctrl.getRessources();
+		this.lstNotions            = this.ctrl.getNotions();
 		this.lstLiens              = new ArrayList<>(5);
 
 		this.bordureDefaut = BorderFactory.createLineBorder(Color.BLACK, 5);
@@ -76,6 +81,11 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 		this.lstRessources.add(0,placeHolder);
 		this.lstNotions   .add(0,new Notion(" ",placeHolder));
+
+		this.texteRtfEnonce      = "";
+		this.texteTxtEnonce 	 = "";
+        this.texteRtfExplication = "";
+        this.texteTxtExplication = "";
 
 		setLayout(new BorderLayout());
 
@@ -126,24 +136,27 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		this.add(panelConfiguration, BorderLayout.NORTH);
 
 		// Section centrale
-		JPanel panelText = new JPanel(new GridLayout(4,1));
+		JPanel panelText = new JPanel(new GridLayout(5,1));
 
 		JLabel lblIntituleQuestion = new JLabel("Question : ");
 		this.epEnonce = new JEditorPane();
 		this.epEnonce.setEditorKit(new StyledEditorKit()); // Permet la gestion des styles
 		this.epEnonce.setEditable(true); // Rendre éditable
+		this.epEnonce.setFont(new Font("Arial", Font.PLAIN, 12));
 
 		JLabel lblExpliquationQuestion = new JLabel("Explication : ");
 		this.epExplication = new JEditorPane();
 		this.epExplication.setEditorKit(new StyledEditorKit()); // Permet la gestion des styles
 		this.epExplication.setEditable(true); // Rendre éditable
+		this.epExplication.setFont(new Font("Arial", Font.PLAIN, 12));
+
 
 		JPanel panelCentrale = new JPanel(new GridLayout(1, 2, 5, 5));
 		panelCentrale.setBorder(BorderFactory.createTitledBorder("Sélection"));
 
 		JPanel panelSelection = new JPanel(new BorderLayout());
 		JPanel panelLabels    = new JPanel(new GridLayout(3, 1, 5, 5));
-		JPanel panelDonnées   = new JPanel(new GridLayout(3, 1, 5, 5));
+		JPanel panelDonnees   = new JPanel(new GridLayout(3, 1, 5, 5));
 
 		// ComboBox de Ressource
 		JLabel labelRessource = new JLabel("Ressource :");
@@ -170,25 +183,27 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		JLabel labelNiveau = new JLabel("Difficulté :");
 		JPanel panelNiveau = new JPanel(new FlowLayout());
 
-		this.btnTresFacile		= new JButton(IMAGES_DIFFICULTE[0]);
-		this.btnFacile     		= new JButton(IMAGES_DIFFICULTE[1]);
-		this.btnMoyen      		= new JButton(IMAGES_DIFFICULTE[2]);
-		this.btnDifficile  		= new JButton(IMAGES_DIFFICULTE[3]);
-		this.btnGras	   		= new JButton("Gras");
-		this.btnItalique  		= new JButton("Italic");
-		this.btnAjouterImage 	= new JButton("Ajouter une image");
-		this.btnAjouterRessComp = new JButton("Ajouter des fichiers complémentaires");
+		this.btnTresFacile			 = new JButton(IMAGES_DIFFICULTE[0]);
+		this.btnFacile     			 = new JButton(IMAGES_DIFFICULTE[1]);
+		this.btnMoyen      			 = new JButton(IMAGES_DIFFICULTE[2]);
+		this.btnDifficile  			 = new JButton(IMAGES_DIFFICULTE[3]);
+		this.btnGras	   			 = new JButton("Gras");
+		this.btnItalique  			 = new JButton("Italique");
+		this.btnAjouterImage 		 = new JButton("Ajouter une image");
+		this.btnAjouterRessComp 	 = new JButton("Ajouter des fichiers complémentaires");
+		this.btnSupprimerFichierComp = new JButton("Supprimer les fichiers complémentaires");
 
 		Dimension d1 = new Dimension( 75,  75);
 		Dimension d2 = new Dimension(100, 100);
-		this.btnTresFacile		.setPreferredSize(d1);
-		this.btnFacile    		.setPreferredSize(d1);
-		this.btnMoyen     		.setPreferredSize(d1);
-		this.btnDifficile 		.setPreferredSize(d1);
-		this.btnGras	  		.setPreferredSize(d2);
-		this.btnItalique 		.setPreferredSize(d2);
-		this.btnAjouterImage	.setPreferredSize(d2);
-		this.btnAjouterRessComp .setPreferredSize(d2);
+		this.btnTresFacile			.setPreferredSize(d1);
+		this.btnFacile    			.setPreferredSize(d1);
+		this.btnMoyen     			.setPreferredSize(d1);
+		this.btnDifficile 			.setPreferredSize(d1);
+		this.btnGras	  			.setPreferredSize(d2);
+		this.btnItalique 			.setPreferredSize(d2);
+		this.btnAjouterImage		.setPreferredSize(d2);
+		this.btnAjouterRessComp 	.setPreferredSize(d2);
+		this.btnSupprimerFichierComp.setPreferredSize(d2);
 
 		this.btnTresFacile.setBorder(this.bordureDefaut);
 		this.btnFacile    .setBorder(this.bordureDefaut);
@@ -200,39 +215,66 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		this.btnMoyen     .setEnabled(false);
 		this.btnDifficile .setEnabled(false);
 
-		this.btnTresFacile		.addActionListener(this);
-		this.btnFacile    		.addActionListener(this);
-		this.btnMoyen     		.addActionListener(this);
-		this.btnDifficile 		.addActionListener(this);
-		this.btnGras	  		.addActionListener(this);
-		this.btnItalique 		.addActionListener(this);
-		this.btnAjouterImage	.addActionListener(this);
-		this.btnAjouterRessComp .addActionListener(this);
+		this.btnTresFacile			.addActionListener(this);
+		this.btnFacile    			.addActionListener(this);
+		this.btnMoyen     			.addActionListener(this);
+		this.btnDifficile 			.addActionListener(this);
+		this.btnGras	  			.addActionListener(this);
+		this.btnItalique 			.addActionListener(this);
+		this.btnAjouterImage		.addActionListener(this);
+		this.btnAjouterRessComp 	.addActionListener(this);
+		this.btnSupprimerFichierComp.addActionListener(this);
+
+		this.btnGras				.setBackground(new Color(163,206,250));
+		this.btnItalique			.setBackground(new Color(163,206,250));
+		this.btnAjouterImage		.setBackground(new Color(163,206,250));
+		this.btnAjouterRessComp		.setBackground(new Color(163,206,250));
+		this.btnSupprimerFichierComp.setBackground(new Color(163,206,250));
+
+
+		this.btnGras				.setFont(new Font("Arial", Font.PLAIN, 22));
+		this.btnItalique			.setFont(new Font("Arial", Font.PLAIN, 22));
+		this.btnAjouterImage		.setFont(new Font("Arial", Font.PLAIN, 22));
+		this.btnAjouterRessComp		.setFont(new Font("Arial", Font.PLAIN, 22));
+		this.btnSupprimerFichierComp.setFont(new Font("Arial", Font.PLAIN, 22));
 
 		panelNiveau.add(this.btnTresFacile);
 		panelNiveau.add(this.btnFacile);
 		panelNiveau.add(this.btnMoyen);
 		panelNiveau.add(this.btnDifficile);
-		panelText.add  (this.btnGras);
-		panelText.add  (this.btnItalique);
 
-		panelText.add(lblIntituleQuestion);
-		panelText.add(epEnonce);
-		panelText.add(lblExpliquationQuestion);
-		panelText.add(epExplication);
+		JPanel panelStyle = new JPanel(new GridLayout(1,2));
+		panelStyle.add  (this.btnGras);
+		panelStyle.add  (this.btnItalique);
 
-		panelText.add(this.btnAjouterImage);
-		panelText.add(this.btnAjouterRessComp);
+		JPanel panelEnonce = new JPanel(new GridLayout(1,2));
+		panelEnonce.add(lblIntituleQuestion);
+		panelEnonce.add(this.epEnonce);
+
+		JPanel panelExplication = new JPanel(new GridLayout(1,2));
+		panelExplication.add(lblExpliquationQuestion);
+		panelExplication.add(this.epExplication);
+
+		JPanel panelBoutons = new JPanel(new GridLayout(1,3));
+		panelBoutons.add(this.btnAjouterImage);
+		panelBoutons.add(this.btnAjouterRessComp);
+		panelBoutons.add(this.btnSupprimerFichierComp);
+
+		panelText.add(panelStyle);
+		panelText.add(panelEnonce);
+		panelText.add(new JSeparator());
+		panelText.add(panelExplication);
+		panelText.add(panelBoutons);
 
 		panelLabels.add (labelRessource);
-		panelDonnées.add(this.ddlstRessources);
+		panelDonnees.add(this.ddlstRessources);
 		panelLabels.add (labelNotion);
-		panelDonnées.add(this.ddlstNotions);
+		panelDonnees.add(this.ddlstNotions);
 		panelLabels.add (labelNiveau);
-		panelDonnées.add(panelNiveau);
+		panelDonnees.add(panelNiveau);
 
 		panelSelection.add(panelLabels, BorderLayout.WEST);
-		panelSelection.add(panelDonnées, BorderLayout.CENTER);
+		panelSelection.add(panelDonnees, BorderLayout.CENTER);
 
 		panelCentrale.add(panelSelection);
 		panelCentrale.add(panelText);
@@ -365,16 +407,13 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.btnTresFacile) {
-			JOptionPane.showMessageDialog(this, "Difficulté : Très Facile");
 			this.difficulte = 1;
-
 			this.btnTresFacile.setBorder(this.bordureSelect);
 			this.btnFacile    .setBorder(this.bordureDefaut);
 			this.btnMoyen     .setBorder(this.bordureDefaut);
 			this.btnDifficile .setBorder(this.bordureDefaut);
 
 		} else if (e.getSource() == this.btnFacile) {
-			JOptionPane.showMessageDialog(this, "Difficulté : Facile");
 			this.difficulte = 2;
 			this.btnTresFacile.setBorder(this.bordureDefaut);
 			this.btnFacile    .setBorder(this.bordureSelect);
@@ -382,7 +421,6 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			this.btnDifficile .setBorder(this.bordureDefaut);
 
 		} else if (e.getSource() == this.btnMoyen) {
-			JOptionPane.showMessageDialog(this, "Difficulté : Moyen");
 			this.difficulte = 3;
 			this.btnTresFacile.setBorder(this.bordureDefaut);
 			this.btnFacile    .setBorder(this.bordureDefaut);
@@ -390,7 +428,6 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			this.btnDifficile .setBorder(this.bordureDefaut);
 
 		} else if (e.getSource() == this.btnDifficile) {
-			JOptionPane.showMessageDialog(this, "Difficulté : Difficile");
 			this.difficulte = 4;
 			this.btnTresFacile.setBorder(this.bordureDefaut);
 			this.btnFacile    .setBorder(this.bordureDefaut);
@@ -442,12 +479,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			String typeSelectionne = (String) this.ddlstTypes.getSelectedItem();
 
 
-			this.epEnonce. setText( this.passageRtf(this.epEnonce) );
-			this.epExplication.setText( this.passageRtf(this.epExplication) );
-
-
 			if ("QCM REP. UNIQUE".equals(typeSelectionne)) {
-				System.out.println(typeSelectionne);
 				Notion n = (Notion)(this.ddlstNotions.getSelectedItem());
 				this.notion = n.getNom();
 				this.temps  = Integer.parseInt(
@@ -480,7 +512,6 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 				);
 				panelQCM.setVisible(true);
 			} else if ("QCM REP. MULTIPLE".equals(typeSelectionne)) {
-				System.out.println(typeSelectionne);
 				Notion n = (Notion)(this.ddlstNotions.getSelectedItem());
 				this.notion = n.getNom();
 				this.temps  = Integer.parseInt(
@@ -512,7 +543,6 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 				panelQCM.setVisible(true);
 			} else if("EntiteAssociation".equals(typeSelectionne)) {
-				System.out.println(typeSelectionne);
 
 				PanelEntiteAssociation panelEntiteAssociation = new PanelEntiteAssociation(
 						this,
@@ -532,7 +562,6 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 				panelEntiteAssociation.setVisible(true);
 			} else if ("Elimination".equals(typeSelectionne)){
-				System.out.println(typeSelectionne);
 
 				PanelElimination panelElimination = new PanelElimination(
 						this,
@@ -662,7 +691,8 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 						tmpVerif.endsWith(".jpeg") ) {
 
 					this.imageFond = fileChooser.getSelectedFile().getAbsolutePath();
-					this.btnAjouterImage.setText("Ajoutez une image \n" + tmpVerif);
+					String nomFichier = tmpVerif.substring(tmpVerif.lastIndexOf("\\") + 1);
+					this.btnAjouterImage.setText("Ajoutez une image : \n" + nomFichier);
 				} else {
 					JOptionPane.showMessageDialog(null, "Vous ne devez choisir que des images en .jpg, .png ou .jpeg", "Information", JOptionPane.ERROR_MESSAGE);
 				}
@@ -677,12 +707,75 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			if(returnValue == JFileChooser.APPROVE_OPTION)
 			{
 				this.lstLiens.add(fileChooser.getSelectedFile().getAbsolutePath());
+				String tmpChemin  = fileChooser.getSelectedFile().getAbsolutePath();
+				String nomFichier = tmpChemin.substring(tmpChemin.lastIndexOf("/") + 1);
+				this.btnAjouterImage.setText("Ajouter des fichiers complémentaires\n" + nomFichier);
 			}
+		}
+
+
+		if(e.getSource() == this.btnSupprimerFichierComp)
+		{
+			this.imageFond  = "";
+			this.lstLiens = new ArrayList<String>();
+
+			this.btnAjouterImage   .setText("Ajouter une image");
+			this.btnAjouterRessComp.setText("Ajouter des fichiers complémentaires");
 		}
 	}
 
+	public String getTexteTxtEnonce()
+	{
+		return this.texteTxtEnonce;
+	}
 
-	private String passageRtf(JEditorPane editeur)
+	public String getTexteRtfEnonce()
+	{
+		return this.texteRtfEnonce;
+	}
+
+	public String getTexteTxtExplication()
+	{
+		return this.texteTxtEnonce;
+	}
+
+	public String getTexteRtfExplication()
+	{
+		return this.texteRtfEnonce;
+	}
+
+	public void setTexteTxtEnonce(String s)
+	{
+		this.texteTxtEnonce = s;
+	}
+	
+	public void setTexteRtfEnonce(String s)
+	{
+		this.texteRtfEnonce = s;
+	}
+
+	public void setTexteTxtExplication(String s)
+	{
+		this.texteTxtExplication = s;
+	}
+
+	public void setTexteRtfExplication(String s)
+	{
+		this.texteRtfExplication = s;
+	}
+
+	public JEditorPane getEditeurEnonce()
+	{
+		return this.epEnonce;
+	}
+
+	public JEditorPane getEditeurExplication()
+	{
+		return this.epExplication;
+	}
+
+
+	public String passageRtf(JEditorPane editeur)
 	{
 		//Mise en place du Rtf
 		RTFEditorKit rtfKit = new RTFEditorKit();
@@ -692,9 +785,32 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		{
 			rtfKit.write(outputStream, doc, 0, doc.getLength());
 			return outputStream.toString();
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	public String passageText(JEditorPane editeur)
+	{
+		EditorKit kitRtf = editeur.getEditorKitForContentType("text/rtf");
+		try (InputStream inputStream = new ByteArrayInputStream(editeur.getText().getBytes());
+			 InputStreamReader reader = new InputStreamReader(inputStream)) {
+
+			kitRtf.read(reader, editeur.getDocument(), 0);
+
+			// Convertir le contenu du document en texte brut
+			EditorKit kitPlain = editeur.getEditorKitForContentType("text/plain");
+			Writer writer = new StringWriter();
+			kitPlain.write(writer, editeur.getDocument(), 0, editeur.getDocument().getLength());
+
+			return writer.toString();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 }

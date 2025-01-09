@@ -103,11 +103,11 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 		this.btnModif          = new JButton("Modifier Question");
 
 		this.btnSupp.setBackground		(new Color(163,206,250));
-		this.btnSupp.setFont			(new Font("Arial", Font.PLAIN, 22));
+		this.btnSupp.setFont			(new Font("Arial", Font.PLAIN, 16));
 		this.btnCreaQuest.setBackground (new Color(163,206,250));
-		this.btnCreaQuest.setFont	    (new Font("Arial", Font.PLAIN, 22));
+		this.btnCreaQuest.setFont	    (new Font("Arial", Font.PLAIN, 16));
 		this.btnModif.setBackground		(new Color(163,206,250));
-		this.btnModif.setFont			(new Font("Arial", Font.PLAIN, 22));
+		this.btnModif.setFont			(new Font("Arial", Font.PLAIN, 16));
 
 
 		panelParametre.add(this.ddlstRessources);
@@ -166,30 +166,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 			int row = this.tbQuestion.getSelectedRow();
 			for(int i = 0; i < this.ctrl.getQuestions().size();i++) {
 				if( this.listQ.get(row) == this.listQ.get(i)) {
-					if (this.listQ.get(i) instanceof QCM) {
-						HashMap<String, Boolean> hmReponses = ((QCM) this.listQ.get(i)).getReponses();
-						FrameModifQuestion.creerFrameModifQCM(
-								this.ctrl,
-								this.listQ.get(i),
-								hmReponses
-						); // Question type questionnaire
-
-					} else if (this.listQ.get(i) instanceof EliminationReponse) {
-						HashMap<String, Double[]> hmReponses = ((EliminationReponse) this.listQ.get(i)).getHmReponses();
-						FrameModifQuestion.creerFrameModifElimRep(
-								this.ctrl,
-								this.listQ.get(i),
-								hmReponses
-						); // Question type EliminationReponse
-
-					} else {
-						HashMap<String, String> hmReponses =  ((AssociationElement) this.listQ.get(i)).getAssociations();
-						FrameModifQuestion.creerFrameModifAssoElt(
-								this.ctrl,
-								this.listQ.get(i),
-								hmReponses
-						); // Question type Association
-					}
+					FrameModifQuestion.creerFrameCreationQuestion(this.ctrl,this, this.listQ.get(i));
 				}
 			}
 		}
@@ -276,7 +253,6 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 			}
 		} else
 			if (e.getSource() == this.ddlstNotions){
-				System.out.println("Notion");
 				this.notion = (Notion) this.ddlstNotions.getSelectedItem();
 		}
 

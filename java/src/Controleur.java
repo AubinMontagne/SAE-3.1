@@ -80,16 +80,18 @@ public class  Controleur{
 	}
 
 	public void creerQuestionEntiteAssociation(
-			String intitule, int difficulte, String notion, int temps,
-			int points, HashMap<String, String> associations, int id)
+			String cheminDossier, int difficulte, String notion, int temps,
+			int points, HashMap<String, String> associations, String cheminImg,List<String> lstLiens, int id)
 	{
 		this.metier.ajouterQuestionEntiteAssociation(
-				intitule,
+                cheminDossier,
 				metier.getDifficulteByIndice(difficulte),
 				metier.getNotionByNom(notion),
 				temps,
 				points,
 				associations,
+                cheminImg,
+				lstLiens,
 				id
 		);
 	}
@@ -112,6 +114,17 @@ public class  Controleur{
 		);
 	}
 
+	public void modifQuestionQCM(boolean estModeUnique, HashMap<String, Boolean> reponses, String cheminImg, List<String> lstLiens, Question q){
+
+	}
+
+	public void modifQuestionEntiteAssociation(HashMap<String, String> entiteAssociation, String cheminImg, List<String> lstLiens, Question q){
+
+	}
+
+	public void modifQuestionElimination(HashMap<String, Double[]> reponses, String reponseCorrecte, String cheminImg, List<String> lstLiens, Question q){
+		//this.metier;
+	}
 	// Main
 	public static void main(String[] args){
 		Controleur controleur = new Controleur();

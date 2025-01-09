@@ -54,12 +54,11 @@ public abstract class Question{
     {
         File dossier = new File("java/data/"+ this.notion.getRessourceAssociee().getNom() + "/" + this.notion + "/Question " + this.id);
 
-        if(dossier.exists())
-            if(dossier.delete())
-            {
-                System.out.println("Test");
+        if(dossier.exists()) {
+            if (dossier.delete()) {
                 return true;
             }
+        }
         return false;
     }
 
@@ -89,10 +88,11 @@ public abstract class Question{
     }
 
 	// Get
-    public String   getDossierChemin()       {return dossierChemin;}
     public String   getEnonce(){
         File file = new File(this.dossierChemin + "/enonce.rtf");
 
+        if(!file.exists())
+            return null;
         try {
             JEditorPane p = new JEditorPane();
             p.setContentType("text/rtf");
@@ -110,6 +110,7 @@ public abstract class Question{
         }
         return null;
     }
+
     public String getExplication(){
         File file = new File(this.dossierChemin + "/explication.rtf");
 
@@ -161,7 +162,6 @@ public abstract class Question{
         String content = "";
         try {
             content = new String(Files.readAllBytes(Paths.get(filePath)));
-            System.out.println(content);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -196,11 +196,10 @@ public abstract class Question{
         return null;
     }
     public String getExplicationRTF(){
-        String filePath = this.dossierChemin + "/explication.txt";
+        String filePath = this.dossierChemin + "/explication.rtf";
         String content = "";
         try {
             content = new String(Files.readAllBytes(Paths.get(filePath)));
-            System.out.println(content);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -212,6 +211,7 @@ public abstract class Question{
     public int        getPoint()              {return this.point;}
     public List<String> getListeFichiers()    {return this.listeFichiers;}
     public String     getImageChemin()        {return this.imageChemin;}
+    public String     getDossierChemin()       {return dossierChemin;}
     public int        getId()                 {return this.id;}
 
     public String     getAsData(){

@@ -17,7 +17,6 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 
 	private JPanel panelAssociations; // Panel pour les associations
 
-	private JTextField   txtQuestion;
 	private JButton      btnAjoutAssociation, btnEnregistrer;
 	private int          nombreAssociations = 0; // Nombre d'associations
 
@@ -64,13 +63,6 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 		setLayout(new BorderLayout());
 		this.setIconImage(new ImageIcon("java/data/Images/icon.png").getImage());
 
-		// Panel pour la question
-		JPanel panelQuestion = new JPanel(new BorderLayout());
-		JLabel etiquetteQuestion = new JLabel("Question :");
-		this.txtQuestion = new JTextField();
-		panelQuestion.add(etiquetteQuestion, BorderLayout.NORTH);
-		panelQuestion.add(this.txtQuestion, BorderLayout.CENTER);
-
 		// Panel pour les associations
 		this.panelAssociations = new JPanel();
 		this.panelAssociations.setLayout(new BoxLayout(this.panelAssociations, BoxLayout.Y_AXIS));
@@ -90,7 +82,6 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 		panelBoutons.add(this.btnEnregistrer);
 
 		// Ajout des composants à la fenêtre
-		add(panelQuestion, BorderLayout.NORTH);
 		add(defilement   , BorderLayout.CENTER);
 		add(panelBoutons , BorderLayout.SOUTH);
 
@@ -113,24 +104,24 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 		panelAjoutAssociation.setLayout(new BoxLayout(panelAjoutAssociation, BoxLayout.X_AXIS));
 
 		// Champs pour les entités et les associations
-		JTextField champEntite = new JTextField("Entité " + (++this.nombreAssociations), 10);
-		JTextField champAssociation = new JTextField(
+		JTextField txtEntite = new JTextField("Entité " + (++this.nombreAssociations), 10);
+		JTextField txtAssociation = new JTextField(
 				"Association " +this.nombreAssociations,
 				10
 		);
-		JButton boutonSupprimer = new JButton("Supprimer");
+		JButton btnSupprimer = new JButton("Supprimer");
 
 		// Listener pour supprimer une association
-		boutonSupprimer.addActionListener(e -> {
+		btnSupprimer.addActionListener(e -> {
 			this.panelAssociations.remove(panelAjoutAssociation);
 			this.panelAssociations.revalidate();
 			this.panelAssociations.repaint();
 		});
 
-		panelAjoutAssociation.add(champEntite);
+		panelAjoutAssociation.add(txtEntite);
 		panelAjoutAssociation.add(new JLabel(" -> "));
-		panelAjoutAssociation.add(champAssociation);
-		panelAjoutAssociation.add(boutonSupprimer);
+		panelAjoutAssociation.add(txtAssociation);
+		panelAjoutAssociation.add(btnSupprimer);
 
 		this.panelAssociations.add(panelAjoutAssociation);
 		this.panelAssociations.revalidate();
@@ -142,12 +133,6 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 	 */
 	private void enregistrerAssociations() 
 	{
-		String question = this.txtQuestion.getText();
-		if (question.isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Veuillez entrer une question.", "Erreur", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-
 		// Récupérer les entités et associations
 		List<String> associations = new ArrayList<>();
 		Component[] composants = this.panelAssociations.getComponents();
@@ -156,20 +141,11 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 			if (composant instanceof JPanel) 
 			{
 				JPanel associationPanel = (JPanel) composant;
-				JTextField champEntite = (JTextField) associationPanel.getComponent(0);
-				JTextField champAssociation = (JTextField) associationPanel.getComponent(2);
-				associations.add(champEntite.getText() + " -> " + champAssociation.getText());
+				JTextField txtEntite = (JTextField) associationPanel.getComponent(0);
+				JTextField txtAssociation = (JTextField) associationPanel.getComponent(2);
+				associations.add(txtEntite.getText() + " -> " + txtAssociation.getText());
 			}
 		}
-
-		// Résumé des données
-		StringBuilder resultats = new StringBuilder("Question : " + question + "\nAssociations :\n");
-		for (String association : associations) 
-		{
-			resultats.append(association).append("\n");
-		}
-
-
 
 		HashMap<String, String> entiteAssociation = new HashMap<>();
 
@@ -193,12 +169,11 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 
 		if(this.panelBanque != null) {this.panelBanque.maj();}
 
-		JOptionPane.showMessageDialog(
-				this,
-				resultats.toString(),
-				"Résumé",
-				JOptionPane.INFORMATION_MESSAGE
-		);
+		Question.sauvegarderFichier(this.cheminDossier+"/Enonce.rtf", this.epEnonce);
+		Question.sauvegarderFichier(this.cheminDossier+"/Explication.rtf", this.epExplication);
+
+        this.panelCreationQuestion.actualiser();
+        dispose();
 	}
 
 	/**

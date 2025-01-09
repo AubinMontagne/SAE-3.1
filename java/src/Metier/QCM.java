@@ -77,10 +77,8 @@ public class QCM extends Question {
 		scanner.useDelimiter(";");
 
 		String[] parts = new String[11];
-		for (int i = 0; i < 11; i++)
-		{
+		for (int i = 0; i < 11; i++) {
 			parts[i] = scanner.next();
-			System.out.println(parts[i]);
 		}
 
 		QCM qcm = new QCM(

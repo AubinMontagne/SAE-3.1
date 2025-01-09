@@ -101,22 +101,22 @@ public class PanelQCM extends JFrame implements ActionListener {
 	private void ajouterReponse() {
 		JPanel panelAjoutReponse = new JPanel();
 		panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
-		JTextField champReponse = new JTextField("Réponse " + (++nombreReponses));
+		JTextField txtReponse = new JTextField("Réponse " + (++nombreReponses));
 
 		JComponent caseCorrecte;
 		if (this.estModeUnique) {
-			JRadioButton boutonRadio = new JRadioButton();
+			JRadioButton rb = new JRadioButton();
 			if (this.groupReponses == null) {
 				this.groupReponses = new ButtonGroup();
 			}
-			groupReponses.add(boutonRadio);
-			caseCorrecte = boutonRadio;
+			groupReponses.add(rb);
+			caseCorrecte = rb;
 		} else {
 			caseCorrecte = new JCheckBox("Correcte");
 		}
 
-		JButton boutonSupprimer = new JButton("Supprimer");
-		boutonSupprimer.addActionListener(e -> {
+		JButton btnSupprimer = new JButton("Supprimer");
+		btnSupprimer.addActionListener(e -> {
 			if (caseCorrecte instanceof JRadioButton && this.groupReponses != null) {
 				this.groupReponses.remove((JRadioButton) caseCorrecte);
 			}
@@ -125,9 +125,9 @@ public class PanelQCM extends JFrame implements ActionListener {
 			this.panelReponses.repaint();
 		});
 
-		panelAjoutReponse.add(champReponse);
+		panelAjoutReponse.add(txtReponse);
 		panelAjoutReponse.add(caseCorrecte);
-		panelAjoutReponse.add(boutonSupprimer);
+		panelAjoutReponse.add(btnSupprimer);
 
 		this.panelReponses.add(panelAjoutReponse);
 		this.panelReponses.revalidate();
@@ -147,10 +147,10 @@ public class PanelQCM extends JFrame implements ActionListener {
 		for (Component composant : this.panelReponses.getComponents()) {
 			if (composant instanceof JPanel) {
 				JPanel panelReponse = (JPanel) composant;
-				JTextField champReponse = (JTextField) panelReponse.getComponent(0);
+				JTextField txtReponse = (JTextField) panelReponse.getComponent(0);
 				JComponent caseCorrecte = (JComponent) panelReponse.getComponent(1);
 
-				String texteReponse = champReponse.getText().trim();
+				String texteReponse = txtReponse.getText().trim();
 				boolean estCorrecte = caseCorrecte instanceof JCheckBox
 						? ((JCheckBox) caseCorrecte).isSelected()
 						: ((JRadioButton) caseCorrecte).isSelected();
@@ -188,8 +188,8 @@ public class PanelQCM extends JFrame implements ActionListener {
 				this.idMax
 		);
 
-		Question.sauvegarderFichier(this.cheminDossier+"/epEnonce.rtf", this.epEnonce);
-		Question.sauvegarderFichier(this.cheminDossier+"/epExplication.rtf", this.epExplication);
+		Question.sauvegarderFichier(this.cheminDossier+"/Enonce.rtf", this.epEnonce);
+		Question.sauvegarderFichier(this.cheminDossier+"/Explication.rtf", this.epExplication);
 
 		if(this.panelBanque != null) {this.panelBanque.maj();}
 
@@ -212,7 +212,6 @@ public class PanelQCM extends JFrame implements ActionListener {
 				break;
 
 			default:
-				System.out.println("Commande inconnue : " + commande);
 				break;
 		}
 	}

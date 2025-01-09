@@ -29,10 +29,7 @@ public class QCMBuilder
         this.questionnaire = questionnaire;
         this.path = path;
 
-        if(!this.creerDossier(path)){
-            System.out.println("Erreur, ce questionnaire existe déjà !");
-            return;
-        }
+        this.creerDossier(path);
 
         try{
             this.fileWriter = new FileWriter(path + "/" +questionnaire.getNom() + "/index.html");
@@ -55,13 +52,20 @@ public class QCMBuilder
      * @param path  Le chemin ou créer le dossier
      * @return      Vrai si le fichier a pu être créé, sinon faux
      */
-    public boolean creerDossier(String path){
+    public void creerDossier(String path){
         File file = new File(path + "/" + this.questionnaire.getNom() );
 
 
         if(file.exists())
         {
-            return false;
+            int i = 0;
+            while(file.exists())
+            {
+                file = new File(file.getPath() + i);
+                i++;
+            }
+
+            file.mkdir();
         }else
         {
             file.mkdir();
@@ -69,7 +73,6 @@ public class QCMBuilder
 
         for(Question q : this.questionnaire.getLstQuestion())
         {
-            System.out.println(q.getId() + " Identifiant !");
             File dossierTemp = new File(path + "/" + this.questionnaire.getNom() + "/data/Question " + q.getId() + "/Compléments" );
 
             dossierTemp.mkdirs();
@@ -97,10 +100,7 @@ public class QCMBuilder
         {
             ex.printStackTrace();
             System.err.println("Erreur : " + ex.getMessage());
-            return false;
         }
-
-        return true;
     }
 
     /**
@@ -885,6 +885,8 @@ public class QCMBuilder
 
         return commun;
     }
+
+
 
     /**
      * Methode questionsJS

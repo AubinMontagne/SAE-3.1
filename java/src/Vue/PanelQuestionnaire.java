@@ -116,7 +116,6 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 		this.videTitre = texteTitre.trim().isEmpty();
 		if (!this.videTitre && !this.videRessource) {
 			this.btnConfirmer.setEnabled(true);
-			System.out.println("Vrai");
 		} else {
 			this.btnConfirmer.setEnabled(false);
 		}
@@ -162,6 +161,7 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
             if (selectedRessource != null) {
 				this.frame.majTab(this.ctrl, selectedRessource,titre,this.chrono);
             }
+			this.frame.dispose();
         }
 
 		if(e.getSource() == this.btnChrono)

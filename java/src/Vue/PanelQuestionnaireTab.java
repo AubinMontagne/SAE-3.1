@@ -370,9 +370,9 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
                 questionnaire.defNbQuestion(this.ctrl.getMetier().getNotionByNom(data.getNotion()), d, data.getD());
 
                 totalTF += data.getTf();
-                totalF  += data.getF();
-                totalM  += data.getM();
-                totalD  += data.getD();
+                totalF  += data.getF ();
+                totalM  += data.getM ();
+                totalD  += data.getD ();
 
                 sb.append(String.format("Notion: %s\n"              , data.getNotion()));
                 sb.append(String.format("  - Très facile (TF): %d\n", data.getTf())    );
@@ -390,7 +390,7 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
             sb.append(String.format("  - Total Questions: %d\n"       , (totalTF + totalF + totalM + totalD)));
 
             // Affichage des données dans le JOptionPane
-            JOptionPane.showMessageDialog(this, sb.toString(), "Résumé du questionnaire", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Génération du questionnaire reussis","", JOptionPane.INFORMATION_MESSAGE);
 
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);

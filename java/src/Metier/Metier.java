@@ -8,7 +8,6 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 public class  Metier{
     private ArrayList<Notion>    lstNotions;
@@ -34,7 +33,7 @@ public class  Metier{
 	 * @return		 Vrai si l'ajout a réussi, sinon faux
 	 */
     public boolean ajouterNotion(Notion notion){
-        if (notion != null){
+        if (notion != null && (!notion.getNom().equals(" "))){
             this.lstNotions.add(notion);
             return true;
         }
@@ -48,7 +47,7 @@ public class  Metier{
 	 * @return		 	Vrai si l'ajout a réussi, sinon faux
 	 */
     public boolean ajouterRessource(Ressource ressource){
-        if (ressource != null){
+        if (ressource != null && (!ressource.getId().equals(" "))){
             this.lstRessources.add(ressource);
             return true;
         }
@@ -262,21 +261,62 @@ public class  Metier{
 		}
 		this.lstQuestions.add(questionQCM);
 		this.saveQuestions("java/data/");
-		System.out.println(this.lstQuestions);
 
 		return true;
 	}
 
-	public boolean ajouterQuestionEntiteAssociation(String intitule, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String, String> associations, int id) {
-		AssociationElement questionAE = new AssociationElement(intitule, difficulte, notion, temps, points,null, id );
+	public boolean ajouterQuestionEntiteAssociation(String cheminDossier, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String, String> associations, String cheminImg, List<String> lstLiens, int id) {
+        String imageChemin2;
+        if (cheminImg == null || cheminImg.isEmpty()) {
+            imageChemin2 = null;
+        } else {
+            imageChemin2 = "fic00000"+cheminImg.substring(cheminImg.lastIndexOf("."));
+        }
+
+        AssociationElement questionAE = new AssociationElement(cheminDossier, difficulte, notion, temps, points,imageChemin2, id );
 
 		// Ajout des associations
 		for (String gauche : associations.keySet()) {
 			questionAE.ajouterAssociation(gauche, associations.get(gauche));
 		}
+
+        if(!( cheminImg == null || cheminImg.isEmpty())) {
+            String nomFichier = "fic00000" + cheminImg.substring(cheminImg.lastIndexOf("."));
+
+            try {
+                Path fileSource = Paths.get(cheminImg);
+                Path fileDest = Paths.get(cheminDossier + "/Compléments/" + nomFichier);
+
+                Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                System.err.println("Erreur : " + ex.getMessage());
+                return false;
+            }
+        }
+
+        int numero = 1;
+        for (String fichierChemin: lstLiens)
+        {
+            String nomFichier = "fic"+String.format("%05d", numero)+fichierChemin.substring(fichierChemin.lastIndexOf("."));
+
+            try {
+                Path fileSource = Paths.get(fichierChemin);
+                Path fileDest = Paths.get( cheminDossier + "/Compléments/" + nomFichier);
+
+                Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
+            } catch (Exception ex)
+            {
+                ex.printStackTrace();
+                System.err.println("Erreur : " + ex.getMessage());
+                return false;
+            }
+			questionAE.ajouterFichier(nomFichier);
+            numero++;
+        }
+
 		this.lstQuestions.add(questionAE);
 		this.saveQuestions("java/data/");
-		System.out.println(this.lstQuestions);
 
 		return true;
 	}
@@ -333,7 +373,6 @@ public class  Metier{
 		}
 		this.lstQuestions.add(questionER);
 		this.saveQuestions("java/data/");
-		System.out.println(this.lstQuestions);
 
 		return true;
 	}
@@ -458,7 +497,6 @@ public class  Metier{
 		for (Question question : this.lstQuestions) {
 			if (question.getNotion().equals(notion)) {
 				questionsAssociees.add(question);
-				System.out.println(question);
 			}
 		}
 		return questionsAssociees;
@@ -490,7 +528,6 @@ public class  Metier{
 			path = "./";
 		}
 		q.initLstQuestions(this);
-		System.out.println(path);
 		new QCMBuilder(q, path);
 	}
 }

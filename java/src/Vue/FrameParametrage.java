@@ -6,7 +6,7 @@ import src.Controleur;
 import java.awt.*;
 import java.awt.event.WindowListener;
 
-public class FrameParametrage extends JFrame implements WindowListener {
+public class  FrameParametrage extends JFrame implements WindowListener {
     private static int nbFrame = 0;
 	private Controleur     ctrl;
     private PanelNotion    panelNotion;

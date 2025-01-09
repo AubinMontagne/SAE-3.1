@@ -15,8 +15,6 @@ public class FrameAccueil extends JFrame{
     {
         this.ctrl = ctrl;
 
-        System.out.println("Création de la frame Accueil");
-
         this.setTitle("QCM Builder - Page d'accueil");
         this.setSize(550,420);
         this.setMinimumSize(this.getSize());
