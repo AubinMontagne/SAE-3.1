@@ -8,21 +8,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
-import java.util.HashMap;
-import javax.swing.*;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
+
 import java.util.Iterator;
+import java.util.ArrayList;
 
 import src.Metier.Question;
 import src.Metier.QCM;
 import src.Metier.EliminationReponse;
-import src.Metier.AssociationElement;
 import src.Metier.Notion;
 import src.Controleur;
 import src.Metier.Ressource;
 
-public class PanelBanque extends JPanel implements  ActionListener, ItemListener {
+public class PanelBanque extends JPanel implements  ActionListener, ItemListener 
+{
 	private boolean ignorerEvents = false;
 
 	private JButton              btnCreaQuest;
@@ -41,7 +47,8 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 	 * Constructeur de la class PanelBanque
 	 * @param ctrl	Le contrôleur
 	 */
-    public PanelBanque(Controleur ctrl){
+    public PanelBanque(Controleur ctrl)
+	{
         this.ctrl         = ctrl;
         this.panelBanque  = new JPanel();
 		this.setLayout (new BorderLayout());
@@ -49,7 +56,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 
         String[] tabEntetes = {"Enoncé", "Difficulté", "Ressource", "Notion", "Points", "Type de question"};
 
-		this.listQ = this.ctrl.getQuestions();
+		this.listQ = new ArrayList<>(this.ctrl.getQuestions());
         String[][] data = new String[this.listQ.size()][6];
 
 		for(int i = 0; i < this.listQ.size();i++)
@@ -58,16 +65,15 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 
 			if(this.listQ.get(i) instanceof QCM)
 			{
-				if(((QCM) this.listQ.get(i)).estVraiouFaux())
-					typeQuestion = "Réponse unique";
-				else
-					typeQuestion = "QCM";
-			}else if(this.listQ.get(i) instanceof EliminationReponse){
-				typeQuestion = "Elimination Réponse";
-			} else {
-				typeQuestion = "Association d'éléments";
+				if(((QCM) this.listQ.get(i)).estVraiouFaux()) {typeQuestion = "Réponse unique";}
+				else {typeQuestion = "QCM";}
 			}
-
+			else 
+			{
+				if(this.listQ.get(i) instanceof EliminationReponse){typeQuestion = "Elimination Réponse";} 
+				else {typeQuestion = "Association d'éléments";}
+			}
+			
 			data[i][0] = this.listQ.get(i).getEnonce();
 			data[i][1] = this.listQ.get(i).getDifficulte().getNom();
 			data[i][2] = this.listQ.get(i).getNotion().getRessourceAssociee().getNom();
@@ -134,26 +140,31 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 	 * Methode actionPerformed
 	 * @param e L'évènement à traiter
 	 */
-	public void actionPerformed(ActionEvent e){
-        if ( this.btnCreaQuest == e.getSource()) {
+	public void actionPerformed(ActionEvent e)
+	{
+        if ( this.btnCreaQuest == e.getSource()) 
+		{
 			if (!((Ressource) (this.ddlstRessources.getSelectedItem())).getId().equals(" ") &&
-					!((Notion) (this.ddlstNotions.getSelectedItem())).getNom().equals(" ")) {
+					!((Notion) (this.ddlstNotions.getSelectedItem())).getNom().equals(" ")) 
+			{
 				FrameCreationQuestion.creerFrameCreationQuestion(
 						this.ctrl,
 						this,
 						(Ressource) (this.ddlstRessources.getSelectedItem()),
 						(Notion) (this.ddlstNotions.getSelectedItem())
 				);
-			} else {
-				FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl, this, null, null);
-			}
+			} 
+			else {FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl, this, null, null);}
 		}
-		if (this.btnSupp == e.getSource()) {
+		if (this.btnSupp == e.getSource()) 
+		{
 			int row = this.tbQuestion.getSelectedRow();
 			Iterator<Question> iterator = this.ctrl.getQuestions().iterator();
-			while (iterator.hasNext()) {
+			while (iterator.hasNext()) 
+			{
 				Question q = iterator.next();
-				if (this.listQ.get(row) == q) {
+				if (this.listQ.get(row) == q) 
+				{
 					iterator.remove();
 					this.ctrl.supprimerQuestion(q);
 					this.maj();
@@ -163,26 +174,23 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 			}
 		}
 
-		if(this.btnModif == e.getSource()){
+		if(this.btnModif == e.getSource())
+		{
 			int row = this.tbQuestion.getSelectedRow();
-			for(int i = 0; i < this.ctrl.getQuestions().size();i++) {
-				if( this.listQ.get(row) == this.listQ.get(i)) {
-					FrameModifQuestion.creerFrameModifQuestion(this.ctrl,this, this.listQ.get(i));
-				}
+			for(int i = 0; i < this.ctrl.getQuestions().size();i++) 
+			{
+				if( this.listQ.get(row) == this.listQ.get(i)) {FrameModifQuestion.creerFrameModifQuestion(this.ctrl,this, this.listQ.get(i));}
 			}
 		}
-
 	}
 
-	public void maj(){
+	public void maj()
+	{
 		String[] tabEntetes = {"Enoncé", "Difficulté", "Ressource", "Notion", "Points", "Type de question"};
 		ArrayList<Question> questList;
 
-		if (this.notion != null) {
-			questList = this.ctrl.getQuestionsParNotion(notion);
-		}else {
-			questList = new ArrayList<>();
-		}
+		if (this.notion != null) {questList = this.ctrl.getQuestionsParNotion(notion);}
+		else {questList = new ArrayList<>();}
 
 		String[][] data = new String[questList.size()][6];
 
@@ -196,10 +204,10 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 					typeQuestion = "Réponse unique";
 				else
 					typeQuestion = "QCM";
-			}else if(this.listQ.get(i) instanceof EliminationReponse){
-				typeQuestion = "Elimination Réponse";
-			} else {
-				typeQuestion = "Association d'éléments";
+			} 
+			else {
+				if(this.listQ.get(i) instanceof EliminationReponse){typeQuestion = "Elimination Réponse";} 
+				else {typeQuestion = "Association d'éléments";}
 			}
 
 			data[i][0] =      questList.get(i).getEnonce();
@@ -218,44 +226,27 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 	}
 
 	@Override
-	public void itemStateChanged(ItemEvent e) {
-		if (this.ignorerEvents) {
-			return;
-		}
+	public void itemStateChanged(ItemEvent e) 
+	{
+		if (this.ignorerEvents) {return;}
 
 		this.ignorerEvents = true;
 
-		if (e.getSource() == this.ddlstRessources){
-			if (this.ddlstRessources.getSelectedIndex() == 0 &&
-					((Ressource)(this.ddlstRessources.getSelectedItem())).getId().equals(" ")) {
-				this.ddlstRessources.removeItemAt(0);
-			}
+		if (e.getSource() == this.ddlstRessources)
+		{
+			if (((Ressource)(this.ddlstRessources.getItemAt(0))).getId().equals(" ")) {this.ddlstRessources.removeItemAt(0);}
 
 			Ressource ressource = (Ressource) this.ddlstRessources.getSelectedItem();
 			this.notion = (Notion) this.ddlstNotions.getSelectedItem();
 
-			this.ddlstRessources.setModel(
-					new DefaultComboBoxModel<>(
-							ctrl.getRessources().toArray(new Ressource[0])
-					)
-			);
-			this.ddlstNotions   .setModel(
-					new DefaultComboBoxModel<>(
-							ctrl.getNotionsParRessource(ressource).toArray(new Notion[0])
-					)
-			);
+			this.ddlstRessources.setModel(new DefaultComboBoxModel<>(ctrl.getRessources().toArray(new Ressource[0])));
+			this.ddlstNotions   .setModel(new DefaultComboBoxModel<>(ctrl.getNotionsParRessource(ressource).toArray(new Notion[0])));
 
 			this.ddlstRessources.setSelectedItem(ressource);
-			if(this.notion != null && ressource != null &&
-					this.notion.getRessourceAssociee().equals(ressource)){
-				this.ddlstNotions.setSelectedItem(this.notion);
-			} else {
-				this.notion	= null;
-			}
-		} else
-			if (e.getSource() == this.ddlstNotions){
-				this.notion = (Notion) this.ddlstNotions.getSelectedItem();
-		}
+			if(this.notion != null && ressource != null &&this.notion.getRessourceAssociee().equals(ressource)){this.ddlstNotions.setSelectedItem(this.notion);} 
+			else {this.notion	= null;}
+		} 
+		else {if (e.getSource() == this.ddlstNotions){this.notion = (Notion) this.ddlstNotions.getSelectedItem();}}
 
 		this.ignorerEvents = false;
 		this.maj();

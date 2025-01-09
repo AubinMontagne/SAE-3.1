@@ -295,7 +295,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		add(panelType, BorderLayout.SOUTH);
 		setVisible(true);
 
-		if (resChoisie != null){
+		if (resChoisie != null && !resChoisie.getNom().equals(" ")) {
 			this.ddlstRessources.removeItemAt(0);
 			this.lstRessources  .removeFirst();
 			
