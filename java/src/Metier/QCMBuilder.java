@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -1016,7 +1015,7 @@ public class QCMBuilder
 
                 System.out.println(q.getImageChemin() + "Image chemin");
 
-                if(q.getImageChemin() != null && !q.getImageChemin().isEmpty())
+                if(!q.getImageChemin().equals("null") && !q.getImageChemin().isEmpty())
                 {
                     imageEnonce = "<img class=\"imgQuestion\" src=\"./data/Question " + q.getId() + "/Compléments/" + q.getImageChemin() +"\">\n";
                 }
@@ -1274,7 +1273,7 @@ public class QCMBuilder
 
                 String imageEnonce = null;
 
-                if(q.getImageChemin() != null && !q.getImageChemin().isEmpty())
+                if(!q.getImageChemin().equals(null) && !q.getImageChemin().isEmpty())
                 {
                     imageEnonce = "<img class=\"imgQuestion\" src=\"./data/Question " + q.getId() + "/Compléments/" + q.getImageChemin() +"\">\n";
                 }
@@ -1735,7 +1734,7 @@ public class QCMBuilder
 
                 String imageEnonce = null;
 
-                if(q.getImageChemin() != null && !q.getImageChemin().isEmpty())
+                if(!q.getImageChemin().equals(null) && !q.getImageChemin().isEmpty())
                 {
                     imageEnonce = "<img class=\"imgQuestion\" src=\"./data/Question " + q.getId() + "/Compléments/" + q.getImageChemin() +"\">\n";
                 }
