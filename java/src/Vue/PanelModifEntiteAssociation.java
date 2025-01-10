@@ -28,7 +28,9 @@ public class PanelModifEntiteAssociation extends JFrame implements ActionListene
 	private Controleur ctrl;
 
 	private JPanel panelAssociations; // Panel pour les associations
-
+	private PanelBanque panelBanque;
+	private PanelModifQuestion panelModifQuestion ;
+	private Question	q;
 	private JButton      btnAjoutAssociation, btnEnregistrer;
 	private int          nombreAssociations = 0; // Nombre d'associations
 
@@ -37,9 +39,7 @@ public class PanelModifEntiteAssociation extends JFrame implements ActionListene
 	private JEditorPane epEnonce;
 	private JEditorPane epExplication;
 
-	private PanelBanque panelBanque;
-	private PanelModifQuestion panelModifQuestion ;
-	private Question	q;
+
 	/**
 	 * Constructeur de la class PanelEntiteAssociation
 	 * @param ctrl	Le contrôleur

@@ -105,6 +105,7 @@ public class  Questionnaire
     public void setChronoBool(boolean chronoBool) {this.chronoBool = chronoBool; }
     public void addQuestion  (Question question)  {this.lstQuestion.add(question); }
 
+    // AUBIN C4EST DIFFICILE ICI
    public void initLstQuestions(Metier metier)
    {
      	for (Notion n : this.lstNotions)
@@ -116,15 +117,14 @@ public class  Questionnaire
                 {
 					for (int i = 0; i < lstIntegerNotion.get(2); i++)
                     {
-                        Question questionTemp = Metier.getQuestionAleatoire(n, Difficulte.getDifficulteByIndice(lstIntegerNotion.get(1) ), lstQuestionsNotion );
+                        Question questionTemp = Metier.getQuestionAleatoire(n, Difficulte.getDifficulteByIndice(lstIntegerNotion.get(1)), lstQuestionsNotion);
                         lstQuestionsNotion.remove(questionTemp);
+
                         if (questionTemp != null || !this.getLstQuestion().contains(questionTemp))
                         {
-                            System.out.println("Question : " + questionTemp);
                             this.addQuestion(questionTemp);
                         }
-					}
-                    break;
+                    }
 				}
 			}
 		}

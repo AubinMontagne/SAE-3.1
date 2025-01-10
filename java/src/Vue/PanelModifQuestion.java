@@ -26,16 +26,14 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 	private JButton              btnConfirmer;
 	private JButton				 btnGras, btnItalique, btnAjouterImage, btnAjouterRessComp, btnSupprimerFichierComp;
 	private JTextField           txtPoints, txtTemps;
-
-	private JEditorPane epEnonce;
-	private JEditorPane epExplication;
+	private JEditorPane          epEnonce;
+	private JEditorPane          epExplication;
 
 	private ArrayList<Ressource> lstRessources;
 	private ArrayList<Notion>    lstNotions;
-
 	private List<String>         lstLiens;
-	private String				 imageFond;
 	private Question  			 q;
+	private String				 imageFond;
 	private String				 notion;
 	private int     			 difficulte;
 	private int					 temps;
@@ -253,12 +251,12 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 		JPanel panelEnonce = new JPanel(new BorderLayout());
 		panelEnonce.setBorder(bordPanel);
 		panelEnonce.add(lblIntituleQuestion, BorderLayout.WEST);
-		panelEnonce.add(this.epEnonce, BorderLayout.NORTH);
+		panelEnonce.add(this.epEnonce, BorderLayout.CENTER);
 
 		JPanel panelExplication = new JPanel(new BorderLayout());
 		panelExplication.setBorder(bordPanel);
 		panelExplication.add(lblExpliquationQuestion, BorderLayout.WEST);
-		panelExplication.add(this.epExplication, BorderLayout.NORTH);
+		panelExplication.add(this.epExplication, BorderLayout.CENTER);
 
 		JPanel panelBoutons = new JPanel(new GridLayout(1,3));
 		panelBoutons.add(this.btnAjouterImage);

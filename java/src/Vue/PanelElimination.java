@@ -242,13 +242,8 @@ public class PanelElimination extends JFrame implements ActionListener
 	{
 		String commande = e.getActionCommand();
 		switch (commande) {
-			case "ajouterReponse":
-				ajouterReponse();
-				break;
-			case "enregistrer" ->
-				enregistrerElimination();
-			default:
-				break;
+			case "ajouterReponse" -> ajouterReponse();
+			case "enregistrer"    -> enregistrerElimination();
 		}
 	}
 }

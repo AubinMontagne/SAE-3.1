@@ -26,21 +26,22 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener
 {
 	private Controleur ctrl;
 
-	private JPanel panelAssociations; // Panel pour les associations
-
-	private JButton      btnAjoutAssociation, btnEnregistrer;
-	private int          nombreAssociations = 0; // Nombre d'associations
-
-	private String cheminDossier;
-	private String cheminImg;
-	private int    difficulte;
-	private String notion;
-	private int    points;
-	private int    temps;
-	private List<String> lstLiens;
+	private JPanel      panelAssociations; // Panel pour les associations
 	private JEditorPane epEnonce;
 	private JEditorPane epExplication;
-	private int 		idMax;
+	private JButton     btnAjoutAssociation, btnEnregistrer;
+
+	private List<String> lstLiens;
+	private String       cheminDossier;
+	private String       cheminImg;
+	private String       notion;
+	private int          difficulte;
+	private int          points;
+	private int          temps;
+	private int          idMax;
+	private int          nombreAssociations = 0;
+
+
 
 	private PanelBanque panelBanque;
 	private PanelCreationQuestion panelCreationQuestion;
@@ -64,8 +65,8 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener
 		this.lstLiens	   = lstLiens;
 		this.idMax   	   = idMax;
 
-		this.epEnonce = epEnonce;
-		this.epExplication = epExplication;
+		this.epEnonce = enonce;
+		this.epExplication = explication;
 
 
 		setTitle("Créateur de Questions Entité-Association");

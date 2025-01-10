@@ -30,6 +30,7 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener
     private Ressource         r;
     private boolean           estChrono;
 
+    private FrameQuestionnaire frame;
 
     /**
      * Constructeur de la class PanelQuestionnaireTab
@@ -38,8 +39,9 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener
      * @param titre     Le titre d'un questionnaire
      * @param estChrono Si un questionnaire est chronométré
      */
-    public PanelQuestionnaireTab(Controleur ctrl, Ressource r, String titre, Boolean estChrono)
+    public PanelQuestionnaireTab(FrameQuestionnaire frame,Controleur ctrl, Ressource r, String titre, Boolean estChrono)
     {
+        this.frame                 = frame;
         this.panelQuestionnaireTab = new JPanel(new BorderLayout());
         this.ctrl                  = ctrl;
         this.titreQuestionnaire    = titre;
@@ -406,12 +408,15 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener
                 }
                 questionnaire.defNbQuestion(this.ctrl.getMetier().getNotionByNom(data.getNotion()), tf, data.getTf());
 
+                System.out.println(data.getF());
+
                 nbElt = ctrl.getQuestionsParNotionEtDifficulte(this.ctrl.getMetier().getNotionByNom(data.getNotion()),f).size();
                 if( nbElt < data.getTf())
                 {
                     data.setF(nbElt);
                 }
                 questionnaire.defNbQuestion(this.ctrl.getMetier().getNotionByNom(data.getNotion()), f, data.getF());
+
 
                 nbElt = ctrl.getQuestionsParNotionEtDifficulte(this.ctrl.getMetier().getNotionByNom(data.getNotion()),m).size();
                 if( nbElt < data.getM())
@@ -420,12 +425,14 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener
                 }
                 questionnaire.defNbQuestion(this.ctrl.getMetier().getNotionByNom(data.getNotion()), m, data.getM());
 
+
                 nbElt = ctrl.getQuestionsParNotionEtDifficulte(this.ctrl.getMetier().getNotionByNom(data.getNotion()),d).size();
                 if( nbElt < data.getTf())
                 {
                     data.setD(nbElt);
                 }
                 questionnaire.defNbQuestion(this.ctrl.getMetier().getNotionByNom(data.getNotion()), d, data.getD());
+
 
                 totalTF += data.getTf();
                 totalF  += data.getF ();
@@ -458,6 +465,8 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener
             {
                 String path = fileChooser.getSelectedFile().getAbsolutePath();
                 this.ctrl.getMetier().initQuestionnaire(questionnaire,path);
+
+                this.frame.dispose();
             }
         }
     }

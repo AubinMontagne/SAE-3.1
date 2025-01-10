@@ -54,8 +54,8 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 	private JButton              btnConfirmer;
 	private JButton				 btnGras, btnItalique, btnAjouterImage, btnAjouterRessComp, btnSupprimerFichierComp;
 	private JTextField           txtPoints, txtTemps;
-	private JEditorPane epEnonce;
-	private JEditorPane epExplication;
+	private JEditorPane          epEnonce;
+	private JEditorPane          epExplication;
 
 	private ArrayList<Ressource> lstRessources;
 	private ArrayList<Notion>    lstNotions;
@@ -256,10 +256,10 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		panelEnonce.add(lblIntituleQuestion, BorderLayout.WEST);
 		panelEnonce.add(this.epEnonce, BorderLayout.CENTER);
 
-		JPanel panelExplication = new JPanel(new GridLayout(1,2));
+		JPanel panelExplication = new JPanel(new BorderLayout());
 		panelExplication.setBorder(bordPanel);
-		panelExplication.add(lblExpliquationQuestion);
-		panelExplication.add(this.epExplication);
+		panelExplication.add(lblExpliquationQuestion, BorderLayout.WEST);
+		panelExplication.add(this.epExplication, BorderLayout.CENTER);
 
 		JPanel panelBoutons = new JPanel(new GridLayout(1,3));
 		panelBoutons.add(this.btnAjouterImage);

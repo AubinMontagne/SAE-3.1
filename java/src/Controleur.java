@@ -50,12 +50,6 @@ public class  Controleur{
 		this.metier.getQuestionFromData  ("java/data/");
 	}
 
-	public void miseAJourFichiers(){
-		this.metier.saveRessources("java/data/");
-		this.metier.saveNotions("java/data/");
-		this.metier.saveQuestions("java/data/");
-	}
-
 	public void creerQuestionQCM(
 			String dossierChemin, int difficulte, String notion, int temps,
 			int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses,

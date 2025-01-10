@@ -25,7 +25,7 @@ public class FrameQuestionnaire extends JFrame implements WindowListener
         this.questionnaireTab = null;
 
         this.setTitle             ("QCM Builder - Nouveaux Questionnaire");
-        this.setSize              (1000,400);
+        this.setSize              (1200,400);
         this.setMinimumSize       (this.getSize());
         this.setLayout            (new GridLayout(2,1));
         this.setIconImage(new ImageIcon("java/data/Images/icon.png").getImage());
@@ -39,12 +39,13 @@ public class FrameQuestionnaire extends JFrame implements WindowListener
 
         setVisible(true);
     }
+
     public void majTab(Controleur ctrl, Ressource r, String titre, Boolean estChrono)
     {
         if (this.questionnaireTab != null)      { this.remove(this.questionnaireTab); }
         if (r != null && r.getId().equals(" ")) { r = null; }
 
-        this.questionnaireTab = new PanelQuestionnaireTab(ctrl,r,titre,estChrono);
+        this.questionnaireTab = new PanelQuestionnaireTab(this,ctrl,r,titre,estChrono);
         this.add(questionnaireTab);
         this.revalidate();
     }
