@@ -46,20 +46,10 @@ public class AssociationElement extends Question
      */
     public void supprimerAssociation(String gauche){this.hmAssociations.remove(gauche); }
 
-    public String toString()
-    {
-        String res = super.toString();
-        res += "Associations : \n";
-        for (String gauche : this.hmAssociations.keySet())
-        {
-            res += gauche + " -> " + this.hmAssociations.get(gauche) + "\n";
-        }
-        return res;
-    }
+
 
     // Getter
     public HashMap<String, String> getAssociations() {return this.hmAssociations; }
-
     public String getAsData()
     {
         String res = "AE;" + super.getAsData() + ";" ;
@@ -108,5 +98,16 @@ public class AssociationElement extends Question
         }
 
         return associationElement;
+    }
+
+    public String toString()
+    {
+        String res = super.toString();
+        res += "Associations : \n";
+        for (String gauche : this.hmAssociations.keySet())
+        {
+            res += gauche + " -> " + this.hmAssociations.get(gauche) + "\n";
+        }
+        return res;
     }
 }

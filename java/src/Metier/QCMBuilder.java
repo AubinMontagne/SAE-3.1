@@ -17,7 +17,7 @@ public class QCMBuilder
     private FileWriter fileWriter;
     private String path;
 
-    private int nbAssociations = 0;
+    private String nbOccurenceFichier;
 
     // Constructeur
     /**
@@ -29,12 +29,13 @@ public class QCMBuilder
     {
         this.questionnaire = questionnaire;
         this.path = path;
+        this.nbOccurenceFichier = "";
 
         this.creerDossier(path);
 
         try
         {
-            this.fileWriter = new FileWriter(path + "/" +questionnaire.getNom() + "/index.html");
+            this.fileWriter = new FileWriter(path + "/" +questionnaire.getNom() + this.nbOccurenceFichier + "/index.html");
 
             ecrireHTML();
             ecrireStyle();
@@ -69,6 +70,7 @@ public class QCMBuilder
                 file = new File(file.getPath() + i);
                 i++;
             }
+            this.nbOccurenceFichier = "" + i;
 
             file.mkdir();
         }
@@ -79,7 +81,7 @@ public class QCMBuilder
 
         for(Question q : this.questionnaire.getLstQuestion())
         {
-            File dossierTemp = new File(path + "/" + this.questionnaire.getNom() + "/data/Question " + q.getId() + "/Compléments" );
+            File dossierTemp = new File(path + "/" + this.questionnaire.getNom() + this.nbOccurenceFichier + "/data/Question " + q.getId() + "/Compléments" );
 
             dossierTemp.mkdirs();
         }
@@ -180,7 +182,7 @@ public class QCMBuilder
                     "</body>\n" +
                     "</html>";
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/" + this.questionnaire.getNom() + "/index.html"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/" + this.questionnaire.getNom() + this.nbOccurenceFichier +  "/index.html"));
             writer.write(html);
 
             writer.close();
@@ -211,7 +213,7 @@ public class QCMBuilder
                 css = css + scanner.nextLine()+"\n";
             }
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/" + this.questionnaire.getNom() + "/style.css"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/" + this.questionnaire.getNom() + this.nbOccurenceFichier + "/style.css"));
             writer.write(css);
 
             writer.close();
@@ -274,7 +276,7 @@ public class QCMBuilder
     {
         try
         {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/"+ this.questionnaire.getNom() + "/script.js"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/"+ this.questionnaire.getNom() + this.nbOccurenceFichier + "/script.js"));
 
             String delimiteur = "\n";
 

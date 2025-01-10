@@ -27,22 +27,17 @@ public class PanelModifEntiteAssociation extends JFrame implements ActionListene
 {
 	private Controleur ctrl;
 
-	private JPanel panelAssociations; // Panel pour les associations
-	private PanelBanque panelBanque;
+	private JPanel             panelAssociations; // Panel pour les associations
+	private PanelBanque        panelBanque;
 	private PanelModifQuestion panelModifQuestion ;
+	private JButton            btnAjoutAssociation, btnEnregistrer;
+	private JEditorPane        epEnonce;
+	private JEditorPane        epExplication;
 
-	
-	private JButton      btnAjoutAssociation, btnEnregistrer;
-	private JEditorPane epEnonce;
-	private JEditorPane epExplication;
-	private Question	q;
-	private int          nombreAssociations = 0; // Nombre d'associations
-
-	private String cheminImg;
+	private Question     q;
 	private List<String> lstLiens;
-
-
-
+	private String       cheminImg;
+	private int          nombreAssociations = 0;
 	/**
 	 * Constructeur de la class PanelEntiteAssociation
 	 * @param ctrl	Le contrôleur

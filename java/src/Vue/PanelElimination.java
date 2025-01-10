@@ -9,17 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.JEditorPane;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 import src.Controleur;
 import src.Metier.Question;
@@ -176,9 +166,9 @@ public class PanelElimination extends JFrame implements ActionListener
 				JTextField txtReponse      = (JTextField) reponse.getComponent(0);
 				JTextField txtOrdreElim    = (JTextField) reponse.getComponent(1);
 				JTextField txtPointNegatif = (JTextField) reponse.getComponent(2);
-				JCheckBox  cbCorrecte      = (JCheckBox)  reponse.getComponent(3);
+				JRadioButton rbCorrecte    = (JRadioButton)  reponse.getComponent(3);
 
-				if( cbCorrecte.isSelected() )
+				if( rbCorrecte.isSelected() )
 				{
 					cptRepCorecte ++;
 				}
@@ -198,7 +188,7 @@ public class PanelElimination extends JFrame implements ActionListener
 
 
 				reponses.put(txtReponse.getText(), new Double[]{Double.parseDouble(txtPointNegatif.getText()), Double.parseDouble(txtOrdreElim.getText())});
-				if (cbCorrecte.isSelected())
+				if (rbCorrecte.isSelected())
 				{
 					reponseCorrecte = txtReponse.getText();
 				}

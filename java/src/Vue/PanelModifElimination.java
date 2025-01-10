@@ -3,16 +3,7 @@ package src.Vue;
 import src.Controleur;
 import src.Metier.Question;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JCheckBox;
-import javax.swing.JTextField;
-import javax.swing.JEditorPane;
-import javax.swing.JScrollPane;
-import javax.swing.BoxLayout;
+import javax.swing.*;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -24,21 +15,19 @@ import java.util.List;
 
 public class PanelModifElimination extends JFrame implements ActionListener
 {
-	private Controleur ctrl;
-	private JPanel 	   panelReponses;
-	private JButton    btnAjoutReponse;
-	private JButton    btnEnregistrer;
+	private Controleur   ctrl;
+	private JPanel 	     panelReponses;
+	private JButton      btnAjoutReponse;
+	private JButton      btnEnregistrer;
+	private JEditorPane  epEnonce;
+	private JEditorPane  epExplication;
 
-	private int    nombreReponses = 0;
-
-	private String cheminImg;
+	private Question     q;
 	private List<String> lstLiens;
-	private Question q;
+	private String       cheminImg;
+	private int          nombreReponses = 0;
 
-	private JEditorPane epEnonce;
-	private JEditorPane epExplication;
-
-	private PanelBanque panelBanque;
+	private PanelBanque        panelBanque;
 	private PanelModifQuestion panelModifQuestion;
 
 
@@ -147,6 +136,7 @@ public class PanelModifElimination extends JFrame implements ActionListener
 
 		HashMap<String, Double[]> reponses = new HashMap<>();
 		String reponseCorrecte = "";
+		int cptRepCorecte = 0;
 		for (Component composant : composants)
 		{
 			if (composant instanceof JPanel)
@@ -155,14 +145,38 @@ public class PanelModifElimination extends JFrame implements ActionListener
 				JTextField txtReponse      = (JTextField) reponse.getComponent(0);
 				JTextField txtOrdreElim    = (JTextField) reponse.getComponent(1);
 				JTextField txtPointNegatif = (JTextField) reponse.getComponent(2);
-				JCheckBox  cbCorrecte      = (JCheckBox)  reponse.getComponent(3);
+				JRadioButton rbCorrecte    = (JRadioButton)  reponse.getComponent(3);
+
+				if( rbCorrecte.isSelected() )
+				{
+					cptRepCorecte ++;
+				}
+
+				try
+				{
+					Double.parseDouble(txtOrdreElim.getText());
+					Double.parseDouble(txtPointNegatif.getText());
+				}
+				catch (NumberFormatException e)
+				{
+					JOptionPane.showMessageDialog(
+							this, "L'ordre ainsi que les points doivent être des entiers ou des double."
+					);
+					return;
+				}
+
 
 				reponses.put(txtReponse.getText(), new Double[]{Double.parseDouble(txtPointNegatif.getText()), Double.parseDouble(txtOrdreElim.getText())});
-				if (cbCorrecte.isSelected())
+				if (rbCorrecte.isSelected())
 				{
 					reponseCorrecte = txtReponse.getText();
 				}
 			}
+		}
+		if(cptRepCorecte == 0 || cptRepCorecte > 1)
+		{
+			JOptionPane.showMessageDialog(this, "Nombre incorect de reponse bonne");
+			return;
 		}
 
 		// Création de la question

@@ -5,39 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" name="Changes" comment="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/SAE_31_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/data/imgBtn/CheckPlein.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/data/imgBtn/CheckVide.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/data/imgBtn/RadPlein.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/data/imgBtn/RadVide.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/data/imgDif/D.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/data/imgDif/F.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/data/imgDif/M.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/data/imgDif/TF.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 2/Compléments/fic00000.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 2/Compléments/fic00001.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 2/Enonce.rtf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 2/Explication.rtf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 3/Enonce.rtf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 3/Explication.rtf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 4/Enonce.rtf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 4/Explication.rtf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 4/epEnonce.rtf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 4/epExplication.rtf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameQuestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameQuestionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaireTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaireTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/questions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/questions.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/questions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SAE-31/data/questions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgBtn/CheckPlein.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgBtn/CheckVide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgBtn/RadPlein.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgBtn/RadVide.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgDif/D.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgDif/F.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgDif/M.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data/imgDif/TF.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/script.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/style.css" beforeDir="false" />
     </list>
     <list id="e0a5d575-1463-46f4-82d3-b2b4d97dd127" name="Changes by Aubin" comment="" />
     <list id="3481dd5b-087a-4692-8343-90ddec2f5494" name="Changes by ma231364" comment="" />
     <list id="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" name="Changes by sandr" comment="">
-      <change beforePath="$PROJECT_DIR$/java/src/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Controleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameModifQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameModifQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelEntiteAssociation.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelEntiteAssociation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" afterDir="false" />
     </list>
     <list id="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" name="Changes by timot" comment="">
+      <change beforePath="$PROJECT_DIR$/java/src/Metier/AssociationElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/AssociationElement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelEntiteAssociation.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelEntiteAssociation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifElimination.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifEntiteAssociation.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifEntiteAssociation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,24 +78,6 @@
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/java/src/Vue/PanelEntiteAssociation.java">
-      <ranges>
-        <range start1="28" end1="32" start2="28" end2="32" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="33" end1="43" start2="33" end2="44" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="66" end1="68" start2="67" end2="69" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/java/src/Metier/Questionnaire.java">
-      <ranges>
-        <range start1="107" end1="107" start2="107" end2="108" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="118" end1="119" start2="119" end2="120" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="120" end1="120" start2="121" end2="122" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="122" end1="123" start2="124" end2="124" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="125" end1="127" start2="126" end2="127" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-      </ranges>
-    </file>
-  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -347,7 +332,7 @@
       <workItem from="1736421693171" duration="8790000" />
       <workItem from="1736431291037" duration="8473000" />
       <workItem from="1736494867125" duration="13705000" />
-      <workItem from="1736509723676" duration="311000" />
+      <workItem from="1736509723676" duration="1213000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <option name="closed" value="true" />

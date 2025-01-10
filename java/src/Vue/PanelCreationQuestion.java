@@ -33,6 +33,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.*;
 import javax.swing.text.rtf.RTFEditorKit;
 import java.awt.Color;
@@ -730,6 +731,11 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 		if(e.getSource() == this.btnAjouterImage)
 		{
 			JFileChooser fileChooser = new JFileChooser();
+
+			FileNameExtensionFilter imageFilter = new FileNameExtensionFilter(
+					"Fichiers d'image (JPG, PNG, JPEG)", "jpg", "png", "jpeg");
+			fileChooser.setFileFilter(imageFilter);
+
 			int returnValue = fileChooser.showOpenDialog(null);
 
 			if(returnValue == JFileChooser.APPROVE_OPTION)
