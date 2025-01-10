@@ -4,147 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" name="Changes" comment="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEST0/data/Question 5/Compléments/fic00000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEST0/data/imgBtn/CheckPlein.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEST0/data/imgBtn/CheckVide.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEST0/data/imgBtn/RadPlein.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEST0/data/imgBtn/RadVide.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEST0/data/imgDif/D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEST0/data/imgDif/F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEST0/data/imgDif/M.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEST0/data/imgDif/TF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEST0/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEST0/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TEST0/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feeuuurr/data/Question 2/Compléments/fic00000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feeuuurr/data/Question 2/Compléments/fic00001.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feeuuurr/data/Question 5/Compléments/fic00000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feeuuurr/data/imgBtn/CheckPlein.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feeuuurr/data/imgBtn/CheckVide.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feeuuurr/data/imgBtn/RadPlein.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feeuuurr/data/imgBtn/RadVide.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feeuuurr/data/imgDif/D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feeuuurr/data/imgDif/F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feeuuurr/data/imgDif/M.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feeuuurr/data/imgDif/TF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feeuuurr/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feeuuurr/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/feeuuurr/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Fonction/Question 2/Compléments/fic00000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Fonction/Question 2/Compléments/fic00001.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Fonction/Question 2/Enonce.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Fonction/Question 2/Explication.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 1/Compléments/fic00000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 1/Compléments/fic00001.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 1/Enonce.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 1/Enonce.rtf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 1/Explication.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 1/Explication.rtf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 1/epEnonce.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 1/epExplication.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 2/Compléments/fic00000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 2/Compléments/fic00001.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 2/Enonce.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 2/Enonce.rtf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 2/Explication.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 3/Enonce.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 3/Enonce.rtf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 3/Explication.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 3/Explication.rtf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 4/Enonce.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 4/Explication.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 4/epEnonce.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 4/epExplication.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 5/Compléments/fic00000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 5/Enonce.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 5/Explication.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 6/Enonce.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 6/Explication.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 7/Enonce.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 7/Explication.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/data/questions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/questions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/EliminationReponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/EliminationReponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Questionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameBanque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationNotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationNotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationRessource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameModifQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameModifQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameParametrage.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameParametrage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameQuestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameQuestionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelAccueil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelBanque.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationNotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationNotion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationRessource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifQCM.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifQCM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelQuestionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelRessource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelRessource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Images/carrebleuaveclettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Images/carrebleusanslettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Images/carregrisaveclettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Images/carregrissanslettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Images/carrerougeaveclettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Images/carrerougesanslettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Images/carrevertaveclettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Images/carrevertsanslettre.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 1/Enonce.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 1/Enonce.rtf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 1/Explication.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 1/Explication.rtf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 2/Compléments/fic00000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 2/Compléments/fic00001.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 2/Enonce.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 2/Enonce.rtf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 2/Explication.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 3/Enonce.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 3/Enonce.rtf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 3/Explication.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 3/Explication.rtf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 4/Enonce.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 4/Explication.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 4/epEnonce.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 4/epExplication.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 5/Compléments/fic00000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 5/Enonce.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/Init dev/Les sous-classe/Question 5/Explication.rtf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SAE-31/data/questions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SAE-31/data/questions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/TEST0/data/imgBtn/CheckPlein.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/TEST0/data/imgBtn/CheckVide.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/TEST0/data/imgBtn/RadPlein.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/TEST0/data/imgBtn/RadVide.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/TEST0/data/imgDif/D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/TEST0/data/imgDif/F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/TEST0/data/imgDif/M.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/TEST0/data/imgDif/TF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/TEST0/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/TEST0/script.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/TEST0/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/data/Question 2/Compléments/fic00000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/data/Question 2/Compléments/fic00001.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/data/Question 5/Compléments/fic00000.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/test/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/script.js" afterDir="false" />
-    </list>
+    <list default="true" id="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" name="Changes" comment="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants." />
     <list id="e0a5d575-1463-46f4-82d3-b2b4d97dd127" name="Changes by Aubin" comment="" />
     <list id="3481dd5b-087a-4692-8343-90ddec2f5494" name="Changes by ma231364" comment="" />
     <list id="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" name="Changes by sandr" comment="">
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Metier.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Metier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/QCMBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameCreationQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifElimination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifEntiteAssociation.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifEntiteAssociation.java" afterDir="false" />
     </list>
-    <list id="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" name="Changes by timot" comment="">
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/AssociationElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/AssociationElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/EliminationReponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/EliminationReponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Metier.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Metier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Notion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Notion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Metier/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/FrameQuestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/FrameQuestionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelElimination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelEntiteAssociation.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelEntiteAssociation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifQCM.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifQCM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/Vue/PanelModifQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Vue/PanelModifQuestion.java" afterDir="false" />
-    </list>
+    <list id="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" name="Changes by timot" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -183,114 +49,6 @@
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/java/src/Vue/PanelElimination.java">
-      <ranges>
-        <range start1="18" end1="23" start2="18" end2="27" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="24" end1="25" start2="28" end2="28" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="26" end1="36" start2="29" end2="38" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="37" end1="38" start2="39" end2="40" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="39" end1="39" start2="41" end2="43" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="65" end1="67" start2="69" end2="73" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="86" end1="86" start2="92" end2="95" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="102" end1="102" start2="111" end2="112" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="110" end1="110" start2="120" end2="121" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="114" end1="114" start2="125" end2="127" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="123" end1="128" start2="136" end2="143" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="142" end1="143" start2="157" end2="158" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="201" end1="201" start2="216" end2="217" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="236" end1="236" start2="252" end2="253" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/java/src/Vue/PanelModifQCM.java">
-      <ranges>
-        <range start1="172" end1="173" start2="172" end2="176" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="175" end1="176" start2="178" end2="180" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/java/src/Vue/FrameQuestionnaire.java">
-      <ranges>
-        <range start1="26" end1="27" start2="26" end2="27" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="54" end1="56" start2="54" end2="58" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="62" end1="64" start2="64" end2="74" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/java/src/Vue/FrameCreationQuestion.java">
-      <ranges>
-        <range start1="51" end1="52" start2="51" end2="52" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="83" end1="84" start2="83" end2="85" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="90" end1="91" start2="91" end2="96" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="97" end1="98" start2="102" end2="103" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/java/src/Metier/Question.java">
-      <ranges>
-        <range start1="31" end1="31" start2="31" end2="33" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="55" end1="56" start2="57" end2="58" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="57" end1="61" start2="59" end2="63" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="63" end1="67" start2="65" end2="71" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="69" end1="69" start2="73" end2="95" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="264" end1="266" start2="290" end2="292" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/java/src/Vue/PanelCreationQuestion.java">
-      <ranges>
-        <range start1="313" end1="316" start2="313" end2="314" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="318" end1="318" start2="316" end2="321" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="506" end1="506" start2="509" end2="511" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="576" end1="577" start2="581" end2="590" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="597" end1="598" start2="610" end2="619" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="775" end1="776" start2="796" end2="797" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="786" end1="787" start2="807" end2="808" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/java/src/Vue/PanelModifQuestion.java">
-      <ranges>
-        <range start1="74" end1="74" start2="74" end2="75" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="109" end1="110" start2="110" end2="111" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="485" end1="486" start2="486" end2="486" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="489" end1="492" start2="489" end2="500" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-        <range start1="718" end1="719" start2="726" end2="727" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="722" end1="723" start2="730" end2="730" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="728" end1="729" start2="735" end2="736" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="732" end1="733" start2="739" end2="739" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="738" end1="739" start2="744" end2="745" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="742" end1="743" start2="748" end2="748" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/java/src/Metier/Metier.java">
-      <ranges>
-        <range start1="18" end1="19" start2="18" end2="19" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="294" end1="295" start2="294" end2="309" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="306" end1="307" start2="320" end2="321" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="317" end1="318" start2="331" end2="332" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="329" end1="330" start2="343" end2="344" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="349" end1="350" start2="363" end2="364" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="368" end1="369" start2="382" end2="396" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="380" end1="381" start2="407" end2="416" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="383" end1="384" start2="418" end2="419" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="385" end1="386" start2="420" end2="421" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="435" end1="436" start2="470" end2="484" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="438" end1="438" start2="486" end2="489" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="450" end1="451" start2="501" end2="502" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="452" end1="453" start2="503" end2="504" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="502" end1="503" start2="553" end2="563" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="516" end1="517" start2="576" end2="577" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="566" end1="566" start2="626" end2="635" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="632" end1="632" start2="701" end2="711" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="795" end1="795" start2="874" end2="880" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/java/src/Metier/EliminationReponse.java">
-      <ranges>
-        <range start1="13" end1="14" start2="13" end2="14" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="18" end1="18" start2="18" end2="20" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="19" end1="20" start2="21" end2="22" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="21" end1="22" start2="23" end2="24" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="129" end1="130" start2="131" end2="136" changelist="d058b3d9-a5f4-4c1b-97a2-9e2f46a2e79c" />
-      </ranges>
-    </file>
-  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -545,7 +303,7 @@
       <workItem from="1736421693171" duration="8790000" />
       <workItem from="1736431291037" duration="8473000" />
       <workItem from="1736494867125" duration="13705000" />
-      <workItem from="1736509723676" duration="11991000" />
+      <workItem from="1736509723676" duration="12245000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <option name="closed" value="true" />

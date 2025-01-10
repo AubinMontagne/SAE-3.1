@@ -249,6 +249,7 @@ public class QCMBuilder
             {
 
                 //String newPath = System.getProperty("user.dir") + "/out/production/SAE-31/data/Images/imgDif/" + img;
+                String newPath = "java/data/Images/imgDif/" + img;
                 String newPath2 = path  + "/" +  this.questionnaire.getNom() + this.nbOccurenceFichier + "/data/imgDif/" + img;
 
                 Files.copy(Path.of(newPath), Path.of(newPath2), StandardCopyOption.REPLACE_EXISTING);
@@ -257,7 +258,8 @@ public class QCMBuilder
 
             for(String btn : tabBtn)
             {
-                String newPath = System.getProperty("user.dir") + "/out/production/SAE-31/data/Images/imgBtn/" + btn;
+                //String newPath = System.getProperty("user.dir") + "/out/production/SAE-31/data/Images/imgBtn/" + btn;
+                String newPath = "java/data/Images/imgBtn/" + btn;
                 String newPath2 = path + "/" + this.questionnaire.getNom() + this.nbOccurenceFichier + "/data/imgBtn/" + btn;
 
                 Files.copy(Path.of(newPath), Path.of(newPath2), StandardCopyOption.REPLACE_EXISTING);
