@@ -159,7 +159,7 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 			else if(this.btnChrono.getText() == "NON")
 			{
 				this.btnChrono.setText("OUI");	
-				this.chrono = false;
+				this.chrono = true;
 			}
 		}
     }

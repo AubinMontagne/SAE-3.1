@@ -60,7 +60,6 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
         panelBouton.add(this.btnSupprRess);
 
         this.panelRessource.add(panelBouton, BorderLayout.SOUTH);
-
         this.add(this.panelRessource);
     }
 
@@ -89,7 +88,7 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
     {
         if (this.btnNouvRess == e.getSource())
         {
-            FrameCreationRessource.creerFrameCreationRessource(this.ctrl);
+            FrameCreationRessource.creerFrameCreationRessource(this.ctrl,this);
             this.maj();
         }
         if (this.btnSupprRess == e.getSource())

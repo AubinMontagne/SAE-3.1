@@ -52,8 +52,8 @@ public class PanelModifEntiteAssociation extends JFrame implements ActionListene
 		this.panelBanque   = panelBanque;
 		this.lstLiens	   = lstLiens;
 
-		this.epEnonce = epEnonce;
-		this.epExplication = epExplication;
+		this.epEnonce = enonce;
+		this.epExplication = explication;
 
 
 		setTitle("Créateur de Questions Entité-Association");

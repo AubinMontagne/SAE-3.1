@@ -72,6 +72,7 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 		this.difficulte = q.getDifficulte().getIndice();
 		this.temps      = q.getTemps();
 		this.points     = q.getPoint();
+		System.out.println(this.points);
 
 		this.bordureDefaut = BorderFactory.createLineBorder(Color.BLACK, 5);
 		this.bordureSelect = BorderFactory.createLineBorder(Color.RED  , 5);
@@ -107,7 +108,7 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 			MaskFormatter timeFormatter = new MaskFormatter("##:##");
 			timeFormatter.setPlaceholderCharacter('0');
 			this.txtTemps = new JFormattedTextField(timeFormatter);
-			this.txtTemps.setText((q.getTemps()/60)+":"+(q.getTemps()%60)); // Valeur initiale
+			this.txtTemps.setText((q.getTemps()/60)+""+(q.getTemps()%60));
 
 			this.txtTemps.addPropertyChangeListener("value", evt -> secondeValide());
 		}
@@ -483,13 +484,20 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 
 			String typeSelectionne = (String) this.ddlstTypes.getSelectedItem();
 
-
 			this.epEnonce. setText( this.passageRtf(this.epEnonce) );
 			this.epExplication.setText( this.passageRtf(this.epExplication) );
 
-			this.q.setPoint(this.points);
-			this.q.setNotion(this.ctrl.getNotionByNom(this.notion));
-			this.q.setTemps(this.temps);
+			this.q.setPoint(Integer.parseInt(this.txtPoints.getText()));
+			this.q.setTemps(Integer.parseInt(
+					this.txtTemps.getText().substring(0,this.txtTemps.getText().indexOf(":"))
+			)
+					*60 + Integer.parseInt(
+					this.txtTemps.getText().substring(
+							this.txtTemps.getText().indexOf(":")+1
+					)
+			));
+			this.points = Integer.parseInt(this.txtPoints.getText());
+
 			this.q.setDifficulte(Difficulte.getDifficulteByIndice(this.difficulte));
 			this.q.setDossierChemin(cheminDossier);
 
@@ -716,31 +724,28 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 	}
 
 
-	public String getTexteTxtEnonce()
+	public String getTexteTxtEnonce     ()
 	{
 		return this.texteTxtEnonce;
 	}
-
 	public String getTexteTxtExplication()
 	{
 		return this.texteTxtEnonce;
 	}
 
-	public void setTexteTxtEnonce(String s)
+	public void setTexteTxtEnonce     (String s)
 	{
 		this.texteTxtEnonce = s;
 	}
-
 	public void setTexteTxtExplication(String s)
 	{
 		this.texteTxtExplication = s;
 	}
 
-	public JEditorPane getEditeurEnonce()
+	public JEditorPane getEditeurEnonce     ()
 	{
 		return this.epEnonce;
 	}
-
 	public JEditorPane getEditeurExplication()
 	{
 		return this.epExplication;

@@ -24,7 +24,7 @@ public class FrameQuestionnaire extends JFrame implements WindowListener
         this.ctrl = ctrl;
         this.questionnaireTab = null;
 
-        this.setTitle             ("QCM Builder - Nouveaux Questionnaire");
+        this.setTitle             ("QCM Builder - Nouveau Questionnaire");
         this.setSize              (1200,400);
         this.setMinimumSize       (this.getSize());
         this.setLayout            (new GridLayout(2,1));
@@ -52,16 +52,26 @@ public class FrameQuestionnaire extends JFrame implements WindowListener
 
     public static FrameQuestionnaire creerFrameQuestionnaire(Controleur ctrl)
     {
-        if(FrameQuestionnaire.nbFrame == 0){
-            FrameQuestionnaire.nbFrame++;
+        System.out.print(FrameQuestionnaire.nbFrame+" : FrameQuestionnaire.nbFrame");
+        if(FrameQuestionnaire.nbFrame <= 0){
+            FrameQuestionnaire.nbFrame += 1;
+            System.out.print(FrameQuestionnaire.nbFrame+" : FrameQuestionnaire.nbFrame");
             return new FrameQuestionnaire(ctrl);
         }
         return null;
     }
 
     public void windowOpened     (java.awt.event.WindowEvent e) {}
-    public void windowClosing    (java.awt.event.WindowEvent e) {FrameQuestionnaire.nbFrame--;}
-    public void windowClosed     (java.awt.event.WindowEvent e) {}
+    public void windowClosing    (java.awt.event.WindowEvent e)
+    {
+        FrameQuestionnaire.nbFrame -= 1;
+        System.out.print(" ");
+    }
+    public void windowClosed     (java.awt.event.WindowEvent e)
+    {
+        FrameQuestionnaire.nbFrame -= 1;
+        System.out.print(" ");
+    }
     public void windowIconified  (java.awt.event.WindowEvent e) {}
     public void windowDeiconified(java.awt.event.WindowEvent e) {}
     public void windowActivated  (java.awt.event.WindowEvent e) {}

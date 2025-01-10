@@ -11,15 +11,17 @@ public class EliminationReponse extends Question
 	// Constructeur
 	/**
 	 * Constructeur de la class EliminationReponse
-	 * @param intitule		L'intituler de la question type Entité-Association
+	 * @param dossierChemin Le chemin vers le rtf de l'énoncé et de l'explication
 	 * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
 	 * @param notion        La notion concernée par la question.
 	 * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
 	 * @param points        Le nombre de points que rapporte la question.
+	 * @param imageChemin   Le chemin ver les images et fichier conplémentaire
+	 * @param id            L'id de la question
 	 */
-	public EliminationReponse(String intitule, Difficulte difficulte, Notion notion, int temps, int points, String imageChemin, int id)
+	public EliminationReponse(String dossierChemin, Difficulte difficulte, Notion notion, int temps, int points, String imageChemin, int id)
 	{
-		super(intitule, difficulte, notion, temps, points, imageChemin, id);
+		super(dossierChemin, difficulte, notion, temps, points, imageChemin, id);
 		this.reponseCorrecte = "";
 		this.hmReponses      = new HashMap<>();
 	}
@@ -127,7 +129,11 @@ public class EliminationReponse extends Question
 	}
 
 	// Setters
-	public void setReponseCorrecte(String reponseCorrecte)               {this.reponseCorrecte = reponseCorrecte; }
+	public void setReponseCorrecte(String reponseCorrecte)
+	{
+		this.reponseCorrecte = reponseCorrecte;
+		this.hmReponses.put(reponseCorrecte, new Double[]{0.0, -1.0});
+	}
 	public void setHmReponses     (HashMap<String,Double[]>  hmReponses) {this.hmReponses = hmReponses; }
 
 	// toString

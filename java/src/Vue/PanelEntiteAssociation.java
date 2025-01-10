@@ -199,11 +199,8 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener
 		String commande = e.getActionCommand();
 		switch (commande) 
 		{
-			case "ajouterAssociation":
-				ajouterAssociation();
-				break;
-			case "enregistrer":
-				enregistrerAssociations();
+			case "ajouterAssociation" -> ajouterAssociation();
+			case "enregistrer"        -> enregistrerAssociations();
 		}
 	}
 }

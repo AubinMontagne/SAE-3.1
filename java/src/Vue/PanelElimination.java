@@ -16,27 +16,31 @@ import src.Metier.Question;
 
 public class PanelElimination extends JFrame implements ActionListener
 {
-	private Controleur ctrl;
-	private JPanel 	   panelReponses;
-	private JButton    btnAjoutReponse;
-	private JButton    btnEnregistrer;
-	private JLabel     lblRep, lblOrdre, lblPoint;
-
-	private int    nombreReponses = 0;
-
-	private String cheminDossier;
-	private String cheminImg;
-	private int    difficulte;
-	private String notion;
-	private int    points;
-	private int    temps;
-	private List<String> lstLiens;
+	private Controleur  ctrl;
+	private JPanel 	    panelReponses;
+	private JButton     btnAjoutReponse;
+	private JButton     btnEnregistrer;
+	private JButton		btnExplications;
+	private ButtonGroup btgGrp;
+	private JLabel      lblRep, lblOrdre, lblPoint;
 	private JEditorPane epEnonce;
 	private JEditorPane epExplication;
-	private int 		idMax;
 
-	private PanelBanque panelBanque;
+
+	private List<String> lstLiens;
+	private String       cheminDossier;
+	private String       cheminImg;
+	private String       notion;
+	private int          difficulte;
+	private int          points;
+	private int          temps;
+	private int          nombreReponses = 0;
+	private int          idMax;
+
+	private PanelBanque           panelBanque;
 	private PanelCreationQuestion panelCreationQuestion;
+
+	
 
 
 	/**
@@ -63,8 +67,10 @@ public class PanelElimination extends JFrame implements ActionListener
 		this.lstLiens	   = lstLiens;
 		this.idMax   	   = idMax;
 
-		this.epEnonce      = epEnonce;
-		this.epExplication = epExplication;
+		this.epEnonce      = enonce;
+		this.epExplication = explication;
+
+		this.btgGrp = new ButtonGroup();
 
 		setTitle("QCM Builder - Créateur de Question élimination");
 		setSize(600, 400);
@@ -85,6 +91,9 @@ public class PanelElimination extends JFrame implements ActionListener
 		this.btnEnregistrer = new JButton("Enregistrer");
 		this.btnEnregistrer.setActionCommand("enregistrer");
 
+		this.btnExplications = new JButton("Explications ordre");
+		this.btnExplications.setActionCommand("explications");
+
 		// Label pour les colonnes
 		this.lblOrdre = new JLabel("Ordre d'éliminations");
 		this.lblRep   = new JLabel("Réponse");
@@ -100,6 +109,7 @@ public class PanelElimination extends JFrame implements ActionListener
 		JPanel panelBoutons = new JPanel();
 		panelBoutons.add(this.btnAjoutReponse);
 		panelBoutons.add(this.btnEnregistrer);
+		panelBoutons.add(this.btnExplications);
 
 		this.add(panelLabel   , BorderLayout.NORTH);
 		this.add(defilement   , BorderLayout.CENTER);
@@ -108,10 +118,13 @@ public class PanelElimination extends JFrame implements ActionListener
 		// Activation des listeners
 		this.btnAjoutReponse.addActionListener(this);
 		this.btnEnregistrer.addActionListener(this);
+		this.btnExplications.addActionListener(this);
 
 		//Ajout de deux réponses pour rendre plus beau
 		this.ajouterReponse();
 		this.ajouterReponse();
+
+		JOptionPane.showMessageDialog(this, "L'ordre d'élimination se fait en commençant à 1. 1 puis 2 puis 3... -1 pour ne pas être éliminée");
 	}
 
 	// Methode
@@ -121,11 +134,13 @@ public class PanelElimination extends JFrame implements ActionListener
 	 */
 	private void ajouterReponse()
 	{
-		JPanel panelAjoutReponse   = new JPanel();
-		panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
-		JTextField txtReponse      = new JTextField();
-		JCheckBox  cbBonneReponse  = new JCheckBox ("Correcte");
-		JButton    btnSupprimer    = new JButton   ("Supprimer");
+		JPanel panelAjoutReponse   		= new JPanel();
+		panelAjoutReponse.setLayout(	  new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
+		JTextField    txtReponse     	= new JTextField();
+		JRadioButton  rbBonneReponse  	= new JRadioButton ("Correcte");
+		JButton    btnSupprimer    		= new JButton   ("Supprimer");
+
+		this.btgGrp.add(rbBonneReponse);
 
 		btnSupprimer.addActionListener(e -> {
 			this.panelReponses.remove(panelAjoutReponse);
@@ -140,7 +155,7 @@ public class PanelElimination extends JFrame implements ActionListener
 		panelAjoutReponse.add(txtOrdreElim);
 		panelAjoutReponse.add(txtPointNegatif);
 
-		panelAjoutReponse.add(cbBonneReponse);
+		panelAjoutReponse.add(rbBonneReponse);
 		panelAjoutReponse.add(btnSupprimer);
 
 		this.panelReponses.add(panelAjoutReponse);
@@ -200,6 +215,7 @@ public class PanelElimination extends JFrame implements ActionListener
 			return;
 		}
 
+
 		// Création de la question
 		this.ctrl.creerQuestionElimination(
 				this.cheminDossier,
@@ -234,6 +250,7 @@ public class PanelElimination extends JFrame implements ActionListener
 		switch (commande) {
 			case "ajouterReponse" -> ajouterReponse();
 			case "enregistrer"    -> enregistrerElimination();
+			case "explications"   -> JOptionPane.showMessageDialog(this, "L'ordre d'élimination se fait en commençant à 1. 1 puis 2 puis 3... -1 pour ne pas être éliminée");
 		}
 	}
 }

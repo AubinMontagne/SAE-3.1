@@ -52,13 +52,18 @@ public class  FrameParametrage extends JFrame implements WindowListener
     {
         if(FrameParametrage.nbFrame == 0){
             FrameParametrage.nbFrame++;
+            System.out.print(" ");
             return new FrameParametrage(ctrl);
         }
         return null;
     }
 
     public void windowOpened     (java.awt.event.WindowEvent e) {}
-    public void windowClosing    (java.awt.event.WindowEvent e) {FrameParametrage.nbFrame--;}
+    public void windowClosing    (java.awt.event.WindowEvent e)
+    {
+        FrameParametrage.nbFrame--;
+        System.out.print(" ");
+    }
     public void windowClosed     (java.awt.event.WindowEvent e) {}
     public void windowIconified  (java.awt.event.WindowEvent e) {}
     public void windowDeiconified(java.awt.event.WindowEvent e) {}

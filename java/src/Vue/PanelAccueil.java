@@ -75,9 +75,7 @@ public class   PanelAccueil extends JPanel implements  ActionListener
 
         this.panelAccueil.add(panelConfiguration);
 
-
         this.add(panelAccueil);
-
 
         //Ajout des listeners
         this.btnBanque          .addActionListener(this) ;
@@ -108,7 +106,7 @@ public class   PanelAccueil extends JPanel implements  ActionListener
         }
         if(btnCreationQuestion == e.getSource())
         {
-            new FrameCreationQuestion(this.ctrl);
+            FrameCreationQuestion.creerFrameCreationQuestion(this.ctrl);
         }
     }
 }

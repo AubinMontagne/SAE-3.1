@@ -11,11 +11,13 @@ public class AssociationElement extends Question
     // Constructeur
 	/**
 	 * Constructeur de la class AssociationElement
-	 * @param dossierChemin	L'intituler de la question type Association-Element
+	 * @param dossierChemin	Le chemin vers le rtf de l'énoncé et de l'explication
 	 * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
      * @param notion        La notion concernée par la question.
      * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
      * @param points        Le nombre de points que rapporte la question.
+     * @param imageChemin   Le chemin ver les images et fichier conplémentaire
+     * @param id            L'id de la question
 	 */
     public AssociationElement(String dossierChemin, Difficulte difficulte, Notion notion, int temps, int points, String imageChemin, int id)
     {

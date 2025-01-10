@@ -17,7 +17,7 @@ public class FrameCreationRessource extends JFrame implements WindowListener
      * Constructeur de la class FrameCreationRessource
      * @param ctrl              Le contrôleur
      */
-    private FrameCreationRessource(Controleur ctrl)
+    private FrameCreationRessource(Controleur ctrl, PanelRessource panelRessource)
     {
         this.ctrl = ctrl;
 
@@ -30,23 +30,28 @@ public class FrameCreationRessource extends JFrame implements WindowListener
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        this.add(new PanelCreationRessource(ctrl, this) );
+        this.add(new PanelCreationRessource(ctrl, this, panelRessource) );
         this.addWindowListener(this);
 
         setVisible(true);
     }
 
-    public static FrameCreationRessource creerFrameCreationRessource(Controleur ctrl)
+    public static FrameCreationRessource creerFrameCreationRessource(Controleur ctrl, PanelRessource panelRessource)
     {
         if(FrameCreationRessource.nbFrame == 0){
             FrameCreationRessource.nbFrame++;
-            return new FrameCreationRessource(ctrl);
+            System.out.print(" ");
+            return new FrameCreationRessource(ctrl,panelRessource);
         }
         return null;
     }
 
     public void windowOpened     (java.awt.event.WindowEvent e) {}
-    public void windowClosing    (java.awt.event.WindowEvent e) {FrameCreationRessource.nbFrame--;}
+    public void windowClosing    (java.awt.event.WindowEvent e)
+    {
+        FrameCreationRessource.nbFrame--;
+        System.out.print(" ");
+    }
     public void windowClosed     (java.awt.event.WindowEvent e) {}
     public void windowIconified  (java.awt.event.WindowEvent e) {}
     public void windowDeiconified(java.awt.event.WindowEvent e) {}

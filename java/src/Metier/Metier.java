@@ -16,7 +16,7 @@ public class  Metier{
 
 	// Constructeur
 	/**
-	 * Constructeur de Métier
+	 * Constructeur de la class EliminationReponse
 	 */
     public Metier()
 	{
@@ -292,7 +292,21 @@ public class  Metier{
 		return false;
 	}
 
-	public boolean ajouterQuestionQCM(String dossierChemin, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> reponses, String cheminImg, List<String> lstLiens, int id)
+	/**
+	 * Méthode ajouterQuestionQCM
+	 * Cette méthode permet d'ajouter une question type QCM à l'ArrayList
+	 * @param cheminDossier Le chemin vers le rtf de l'énoncé et de l'explication
+	 * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
+	 * @param notion        La notion concernée par la question.
+	 * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
+	 * @param points        Le nombre de points que rapporte la question.
+	 * @param vraiOuFaux    Un booelan pour savoir si c'est un QCM à reponse unique ou multiple
+	 * @param hmReponses    Le HashMap de la classe QCM contenant les réponses
+	 * @param cheminImg     Le chemin vers les images et les dossiers complementaire
+	 * @param lstLiens		La liste des liens
+	 * @param id            L'id de la questionn
+	 */
+	public boolean ajouterQuestionQCM(String cheminDossier, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, HashMap<String, Boolean> hmReponses, String cheminImg, List<String> lstLiens, int id)
 	{
 		String cheminImg2;
 		if (cheminImg == null || cheminImg.isEmpty())
@@ -304,7 +318,7 @@ public class  Metier{
 			cheminImg2 = "fic00000"+cheminImg.substring(cheminImg.lastIndexOf("."));
 		}
 		QCM questionQCM = new QCM(
-				dossierChemin,
+				cheminDossier,
 				difficulte,
 				notion,
 				temps,
@@ -315,7 +329,7 @@ public class  Metier{
 		);
 
 		// Ajout des réponses avec leurs booléens
-		for (HashMap.Entry<String, Boolean> entry : reponses.entrySet())
+		for (HashMap.Entry<String, Boolean> entry : hmReponses.entrySet())
 		{
 			questionQCM.ajouterReponse(entry.getKey(), entry.getValue());
 		}
@@ -327,7 +341,7 @@ public class  Metier{
 			try
 			{
 				Path fileSource = Paths.get(cheminImg);
-				Path fileDest = Paths.get(dossierChemin + "/Compléments/" + nomFichier);
+				Path fileDest = Paths.get(cheminDossier + "/Compléments/" + nomFichier);
 
 				Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
 			}
@@ -347,7 +361,7 @@ public class  Metier{
 			try
 			{
 				Path fileSource = Paths.get(fichierChemin);
-				Path fileDest = Paths.get( dossierChemin + "/Compléments/" + nomFichier);
+				Path fileDest = Paths.get( cheminDossier + "/Compléments/" + nomFichier);
 
 				Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
 			}
@@ -366,7 +380,20 @@ public class  Metier{
 		return true;
 	}
 
-	public boolean ajouterQuestionEntiteAssociation(String cheminDossier, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String, String> associations, String cheminImg, List<String> lstLiens, int id)
+	/**
+	 * Méthode ajouterQuestionEntiteAssociation
+	 * Cette méthode permet d'ajouter une question type entite association à l'ArrayList
+	 * @param cheminDossier Le chemin vers le rtf de l'énoncé et de l'explication
+	 * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
+	 * @param notion        La notion concernée par la question.
+	 * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
+	 * @param points        Le nombre de points que rapporte la question.
+	 * @param hmAssociations  Le HashMap des associations de la question
+	 * @param cheminImg     Le chemin vers les images et les dossiers complementaire
+	 * @param lstLiens		La liste des liens
+	 * @param id            L'id de la questionn
+	 */
+	public boolean ajouterQuestionEntiteAssociation(String cheminDossier, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String, String> hmAssociations, String cheminImg, List<String> lstLiens, int id)
 	{
 		String cheminImg2;
 		if (cheminImg == null || cheminImg.isEmpty())
@@ -378,12 +405,20 @@ public class  Metier{
 			cheminImg2 = "fic00000"+cheminImg.substring(cheminImg.lastIndexOf("."));
 		}
 
-		AssociationElement questionAE = new AssociationElement(cheminDossier, difficulte, notion, temps, points,cheminImg2, id );
+		AssociationElement questionAE = new AssociationElement(
+				cheminDossier,
+				difficulte,
+				notion,
+				temps,
+				points,
+				cheminImg2,
+				id
+		);
 
 		// Ajout des associations
-		for (String gauche : associations.keySet())
+		for (String gauche : hmAssociations.keySet())
 		{
-			questionAE.ajouterAssociation(gauche, associations.get(gauche));
+			questionAE.ajouterAssociation(gauche, hmAssociations.get(gauche));
 		}
 
 		if(!( cheminImg == null || cheminImg.isEmpty()))
@@ -433,9 +468,25 @@ public class  Metier{
 		return true;
 	}
 
-	public boolean ajouterQuestionElimination(String cheminDossier, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String,Double[]> reponses, String reponseCorrecte, String cheminImg, List<String> lstLiens, int id)
+	/**
+	 * Méthode ajouterQuestionElimination
+	 * Cette méthode permet d'ajouter une question type Elimination à l'ArrayList
+	 * @param cheminDossier Le chemin vers le rtf de l'énoncé et de l'explication
+	 * @param difficulte    La difficulté de la question, qui peut être : très facile, facile, moyen, difficile.
+	 * @param notion        La notion concernée par la question.
+	 * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
+	 * @param points        Le nombre de points que rapporte la question.
+	 * @param hmReponses      Le HashMap des réponses de la question
+	 * @param cheminImg     Le chemin vers les images et les dossiers complementaire
+	 * @param lstLiens		La liste des liens
+	 * @param id            L'id de la questionn
+	 */
+	public boolean ajouterQuestionElimination(String cheminDossier, Difficulte difficulte, Notion notion, int temps, int points, HashMap<String,Double[]> hmReponses, String reponseCorrecte, String cheminImg, List<String> lstLiens, int id)
 	{
 		String cheminImg2;
+
+		System.out.println(points + " points elim");
+
 		if (cheminImg == null || cheminImg.isEmpty())
 		{
 			cheminImg2 = null;
@@ -448,9 +499,9 @@ public class  Metier{
 		EliminationReponse questionER = new EliminationReponse(cheminDossier, difficulte, notion, temps, points, cheminImg2, id);
 
 		// Ajout des réponses
-		for (String reponse : reponses.keySet())
+		for (String reponse : hmReponses.keySet())
 		{
-			questionER.ajouterReponse(reponse, reponses.get(reponse)[0], reponses.get(reponse)[1]);
+			questionER.ajouterReponse(reponse, hmReponses.get(reponse)[0], hmReponses.get(reponse)[1]);
 		}
 		questionER.setReponseCorrecte(reponseCorrecte);
 
@@ -500,7 +551,16 @@ public class  Metier{
 		return true;
 	}
 
-	public Boolean modifQuestionQCM(boolean estModeUnique, HashMap<String, Boolean> reponses, String cheminImg, List<String> lstLiens, Question q)
+	/**
+	 * Méthode modifQuestionQCM
+	 * Cette méthode permet de modifier une question donnée qui est de type QCM
+	 * @param estModeUnique Permet de savoir si on a une question à reponse unique ou multiple
+	 * @param hmReponses    La HashMap des reponse lié à la question
+	 * @param cheminImg     Le chemin ou se situe les images et les dossier complementaire
+	 * @param lstLiens      La liste des liens
+	 * @param q             La question à modifier
+	 */
+	public Boolean modifQuestionQCM(boolean estModeUnique, HashMap<String, Boolean> hmReponses, String cheminImg, List<String> lstLiens, Question q)
 	{
 		String cheminImg2;
 		if (cheminImg == null || cheminImg.isEmpty())
@@ -514,7 +574,7 @@ public class  Metier{
 		QCM questionQCM = new QCM(q.getDossierChemin(), q.getDifficulte(), q.getNotion(), q.getTemps(), q.getPoint(), estModeUnique,cheminImg2 ,q.getId());
 
 		// Ajout des réponses avec leurs booléens
-		for (HashMap.Entry<String, Boolean> entry : reponses.entrySet())
+		for (HashMap.Entry<String, Boolean> entry : hmReponses.entrySet())
 		{
 			questionQCM.ajouterReponse(entry.getKey(), entry.getValue());
 		}
@@ -564,6 +624,15 @@ public class  Metier{
 
 		return true;
 	}
+
+	/**
+	 * Méthode modifQuestionEntiteAssociation
+	 * Cette méthode permet de modifier une question donnée qui est de type Entite association
+	 * @param hmEntiteAssociation Permet de savoir si on a une question à reponse unique ou multiple
+	 * @param cheminImg           Le chemin ou se situe les images et les dossier complementaire
+	 * @param lstLiens            La liste des liens
+	 * @param q                   La question à modifier
+	 */
 	public Boolean modifQuestionEntiteAssociation( HashMap<String, String> hmEntiteAssociation, String cheminImg, List<String> lstLiens, Question q)
 	{
 		String cheminImg2;
@@ -630,6 +699,16 @@ public class  Metier{
 
 		return true;
 	}
+
+	/**
+	 * Méthode modifQuestionElimination
+	 * Cette méthode permet de modifier une question donnée qui est de type Eliminantion
+	 * @param hmReponses       La HashMap avec les différentes réponses
+	 * @param reponseCorrecte  Les réponses corectes
+	 * @param cheminImg        Le chemin ou se situe les images et les dossier complementaire
+	 * @param lstLiens         La liste des liens
+	 * @param q                La question à modifier
+	 */
 	public Boolean modifQuestionElimination(HashMap<String, Double[]> hmReponses, String reponseCorrecte, String cheminImg, List<String> lstLiens, Question q)
 	{
 		String cheminImg2;
@@ -793,6 +872,12 @@ public class  Metier{
 		}
 	}
 
+	/**
+	 * Methode initQuestionnaire
+	 * Cette méthode permet de creer le questionnaire en JS/html
+	 * @param q    Le questionnaire à transformer en JS et html
+	 * @param path Le chemin ou est creer le questionnaire
+	 */
 	public void initQuestionnaire( Questionnaire q, String path)
 	{
 		if ( path == null || path.isEmpty() )

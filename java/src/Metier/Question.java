@@ -29,6 +29,8 @@ public abstract class Question
      * @param notion        La notion concernée par la question.
      * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
      * @param point         Le nombre de points que rapporte la question.
+     * @param imageChemin   Le chemin vers les images et les dossier complementaire
+     * @param id            L'indice de la question
      */
     public Question(String dossierChemin, Difficulte difficulte,Notion notion,int temps, int point, String imageChemin, int id)
     {
@@ -53,19 +55,43 @@ public abstract class Question
 
     public boolean supprimerQuestionDossier()
     {
-        File dossier = new File("java/data/"+ this.notion.getRessourceAssociee().getNom() + "/" + this.notion + "/Question " + this.id);
+        File dossier = new File("java/data/" + this.notion.getRessourceAssociee().getNom() + "/" + this.notion + "/Question " + this.id);
 
-        if(dossier.exists())
-        {
-            if (dossier.delete())
-            {
+        if (dossier.exists()) {
+            viderDossier(dossier);
+
+            if (dossier.delete()) {
                 System.out.print("Suppression");
                 return true;
+            } else {
+                System.out.print("Erreur delete");
             }
-            System.out.print("Erreur delete");
+        } else {
+            System.out.print("Existe pas");
         }
-        System.out.print("Existe pas");
         return false;
+    }
+
+
+    private void viderDossier(File dossier)
+    {
+        File[] fichiers = dossier.listFiles();
+
+        if (fichiers != null) {
+            for (File fichier : fichiers)
+            {
+                if (fichier.isDirectory())
+                {
+                    viderDossier(fichier);
+                }
+                if (fichier.delete())
+                {
+                    System.out.println(fichier.getName() + " supprimé.");
+                } else {
+                    System.out.println("Impossible de supprimer : " + fichier.getName());
+                }
+            }
+        }
     }
 
     public static boolean sauvegarderFichier(String chemin, JEditorPane editeur)
@@ -262,8 +288,8 @@ public abstract class Question
         return res;
     }
 
-	// Set
-    public void setDossierChemin  (String dossierChemin)       {this.dossierChemin      = dossierChemin;}
+	// Setter
+    public void setDossierChemin  (String dossierChemin)       {this.dossierChemin   = dossierChemin;}
     public void setDifficulte     (Difficulte difficulte)      {this.difficulte      = difficulte;}
     public void setNotion         (Notion notion)              {this.notion          = notion;}
     public void setTemps          (int temps)                  {this.temps           = temps;}

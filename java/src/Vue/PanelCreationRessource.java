@@ -26,15 +26,17 @@ public class PanelCreationRessource extends JPanel implements ActionListener
 	private JButton 			   btnConfirmer;
 	private JTextField 			   txtID, txtNom;
 	private FrameCreationRessource frameCreationRessource;
+	private PanelRessource 		   panelRessource;
 
 	/**
 	 * Constructeur de la class PanelCreationRessource
 	 * @param ctrl					 Le contôleur
 	 */
-	public PanelCreationRessource(Controleur ctrl ,FrameCreationRessource frameCreationRessource)
+	public PanelCreationRessource(Controleur ctrl ,FrameCreationRessource frameCreationRessource, PanelRessource panel)
 	{
 		this.ctrl 					= ctrl;
 		this.frameCreationRessource = frameCreationRessource;
+		this.panelRessource 		= panel;
 
 		setLayout(new BorderLayout());
 
@@ -115,6 +117,7 @@ public class PanelCreationRessource extends JPanel implements ActionListener
 					JOptionPane.INFORMATION_MESSAGE
 			);
 
+			this.panelRessource.maj();
 			this.frameCreationRessource.dispose();
 		}
 	}

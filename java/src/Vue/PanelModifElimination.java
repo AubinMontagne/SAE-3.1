@@ -48,8 +48,8 @@ public class PanelModifElimination extends JFrame implements ActionListener
 		this.panelBanque   = panelBanque;
 		this.lstLiens	   = lstLiens;
 
-		this.epEnonce = epEnonce;
-		this.epExplication = epExplication;
+		this.epEnonce = enonce;
+		this.epExplication = explication;
 
 		setTitle("QCM Builder - Créateur de Question élimination");
 		setSize(600, 400);

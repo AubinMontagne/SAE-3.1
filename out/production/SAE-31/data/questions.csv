@@ -1,5 +1,2 @@
-QCM;java/data/Init dev/Les sous-classe/Question 1;2;Les sous-classe;30;1;1;null;;true;Réponse 2,true|Réponse 1,false|
-QCM;java/data/Init dev/Les sous-classe/Question 2;2;Les sous-classe;660;3;2;fic00000.png;fic00001.pdf,;true;Réponse 2,false|Réponse 1,true|
-QCM;java/data/Init dev/Les sous-classe/Question 3;3;Les sous-classe;30;11;3;null;;true;Réponse 2,true|Réponse 1,false|
-AE;java/data/Init dev/Les sous-classe/Question 4;2;Les sous-classe;0;0;4;null;;Entité 1,Association 1|Entité 2,Association 2|
-ER;java/data/Init dev/Les sous-classe/Question 5;1;Les sous-classe;0;0;5;fic00000.png;;REP2;REP1,1.0,1.0|REP2,0.0,1.0|
+QCM;java/data/Init dev/Les sous-classe/Question 1;2;Les sous-classe;30;22;1;null;;true;Réponse 2,false|Réponse 1,true|
+ER;java/data/Init dev/Les sous-classe/Question 3;1;Les sous-classe;30;524;3;null;;Z3TYREU;55RUR5,-1.0,2.0|Z3TYREU,0.0,-1.0|URR5UR,2.0,1.0|E4TYRTU,1.0,2.0|

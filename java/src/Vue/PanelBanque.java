@@ -177,6 +177,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 		if(this.btnModif == e.getSource())
 		{
 			int row = this.tbQuestion.getSelectedRow();
+			if(row == -1) {return;}
 			for(int i = 0; i < this.ctrl.getQuestions().size();i++)
 			{
 				if( this.listQ.get(row) == this.listQ.get(i)) {

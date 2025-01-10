@@ -43,9 +43,10 @@ public class FrameModifQuestion extends JFrame implements WindowListener
 
     public static FrameModifQuestion creerFrameModifQuestion(Controleur ctrl, PanelBanque panelBanque, Question q)
     {
-        if(FrameModifQuestion.nbFrame == 0)
+        if(FrameModifQuestion.nbFrame <= 0)
         {
             FrameModifQuestion.nbFrame++;
+            System.out.print(" ");
             return new FrameModifQuestion( ctrl, panelBanque, q);
         }
         return null;
@@ -60,14 +61,17 @@ public class FrameModifQuestion extends JFrame implements WindowListener
 
     }
 
-    public void windowClosing    (java.awt.event.WindowEvent e) {FrameModifQuestion.nbFrame--;}
+    public void windowClosing    (java.awt.event.WindowEvent e)
+    {
+        FrameModifQuestion.nbFrame--;
+        System.out.print(" ");
+    }
     public void windowClosed     (java.awt.event.WindowEvent e) {}
     public void windowIconified  (java.awt.event.WindowEvent e) {}
     public void windowDeiconified(java.awt.event.WindowEvent e) {}
 
     public void windowActivated  (java.awt.event.WindowEvent e)
     {
-        System.out.println(this.pnlModifQuestion.getEditeurEnonce() +" AAAAAAAAAAAAAAAA");
         this.pnlModifQuestion.getEditeurEnonce()     .setText(this.pnlModifQuestion.getTexteTxtEnonce());
         this.pnlModifQuestion.getEditeurExplication().setText(this.pnlModifQuestion.getTexteTxtExplication());
     }

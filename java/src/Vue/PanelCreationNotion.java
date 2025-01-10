@@ -102,7 +102,12 @@ public class PanelCreationNotion extends JPanel implements ActionListener
             // Créez l'objet Ressource (assurez-vous que la classe Ressource existe déjà)
             Notion notion = new Notion(nom, this.r);
 
-            this.ctrl.ajouterNotion(notion);
+            if(this.ctrl.getRessources().contains(this.r)){this.ctrl.ajouterNotion(notion);}
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Veulliez selectionner une ressource.", "Échec", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
 
             // Afficher une po-pup avec les informations de la Notion
             JOptionPane.showMessageDialog(this, "Notion ajoutée", "Succès", JOptionPane.INFORMATION_MESSAGE);

@@ -49,7 +49,7 @@ public class FrameCreationQuestion extends JFrame implements WindowListener
     {
         if(FrameCreationQuestion.nbFrame == 0){
             FrameCreationQuestion.nbFrame++;
-            return new FrameCreationQuestion( ctrl);
+            return new FrameCreationQuestion( ctrl );
         }
         return null;
     }
@@ -81,21 +81,26 @@ public class FrameCreationQuestion extends JFrame implements WindowListener
     {
         if(FrameCreationQuestion.nbFrame == 0)
         {
-            FrameCreationQuestion.nbFrame++;
+            FrameCreationQuestion.nbFrame += 1;
+            System.out.print(" ");
             return new FrameCreationQuestion( ctrl, panelBanque, ressource, notion);
         }
         return null;
     }
 
     public void windowOpened     (java.awt.event.WindowEvent e) {}
-    public void windowClosing    (java.awt.event.WindowEvent e) {FrameCreationQuestion.nbFrame--;}
+    public void windowClosing    (java.awt.event.WindowEvent e)
+    {
+        FrameCreationQuestion.nbFrame -= 1;
+        System.out.print(" ");
+    }
     public void windowClosed     (java.awt.event.WindowEvent e) {}
     public void windowIconified  (java.awt.event.WindowEvent e) {}
     public void windowDeiconified(java.awt.event.WindowEvent e) {}
 
     public void windowActivated  (java.awt.event.WindowEvent e)
     {
-        this.pnlCreationQuestion.getEditeurEnonce().setText(this.pnlCreationQuestion.getTexteTxtEnonce());
+        this.pnlCreationQuestion.getEditeurEnonce()     .setText(this.pnlCreationQuestion.getTexteTxtEnonce());
         this.pnlCreationQuestion.getEditeurExplication().setText(this.pnlCreationQuestion.getTexteTxtExplication());
     }
     public void windowDeactivated(java.awt.event.WindowEvent e)

@@ -311,10 +311,13 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			this.ddlstRessources.setSelectedItem(resChoisie);
 			
 			this.ddlstNotions.removeAllItems();
-			for (Notion notion : this.ctrl.getNotionsParRessource(resChoisie)) {
-				this.ddlstNotions.addItem(notion);
-			}
+			for (Notion notion : this.ctrl.getNotionsParRessource(resChoisie)) {this.ddlstNotions.addItem(notion);}
 			this.ddlstNotions.setSelectedItem(notionChoisie);
+		}
+		else
+		{
+			this.ddlstRessources.setSelectedIndex(0);
+			this.ddlstNotions.setSelectedIndex(0);
 		}
 	}
 
@@ -504,6 +507,8 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 
 			String typeSelectionne = (String) this.ddlstTypes.getSelectedItem();
 
+			this.epEnonce.setText(this.epEnonce.getText().replaceAll("'"," "));
+			this.epExplication.setText(this.epExplication.getText().replaceAll("'"," "));
 
 			if ("QCM REP. UNIQUE".equals(typeSelectionne))
 			{
@@ -574,7 +579,15 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			}
 			else if("EntiteAssociation".equals(typeSelectionne))
 			{
-
+				this.points = Integer.parseInt(this.txtPoints.getText());
+				this.temps  = Integer.parseInt(
+						this.txtTemps.getText().substring(0,this.txtTemps.getText().indexOf(":"))
+				)
+						*60 + Integer.parseInt(
+						this.txtTemps.getText().substring(
+								this.txtTemps.getText().indexOf(":")+1
+						)
+				);
 				PanelEntiteAssociation panelEntiteAssociation = new PanelEntiteAssociation(
 						this,
 						this.ctrl,
@@ -595,7 +608,15 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			}
 			else if ("Elimination".equals(typeSelectionne))
 			{
-
+				this.points = Integer.parseInt(this.txtPoints.getText());
+				this.temps  = Integer.parseInt(
+						this.txtTemps.getText().substring(0,this.txtTemps.getText().indexOf(":"))
+				)
+						*60 + Integer.parseInt(
+						this.txtTemps.getText().substring(
+								this.txtTemps.getText().indexOf(":")+1
+						)
+				);
 				PanelElimination panelElimination = new PanelElimination(
 						this,
 						this.ctrl,
@@ -773,7 +794,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 				this.lstLiens.add(fileChooser.getSelectedFile().getAbsolutePath());
 				String tmpChemin  = fileChooser.getSelectedFile().getAbsolutePath();
 				String nomFichier = tmpChemin.substring(tmpChemin.lastIndexOf("/") + 1);
-				this.btnAjouterImage.setText("Ajouter des fichiers complémentaires\n" + nomFichier);
+				this.btnAjouterImage.setText("Ajouter des Fichiers :\n" + nomFichier);
 			}
 		}
 
@@ -784,7 +805,7 @@ public class PanelCreationQuestion extends JPanel implements ActionListener, Ite
 			this.lstLiens = new ArrayList<String>();
 
 			this.btnAjouterImage   .setText("Ajouter une image");
-			this.btnAjouterRessComp.setText("Ajouter des fichiers complémentaires");
+			this.btnAjouterRessComp.setText("Ajouter des fichiers");
 		}
 	}
 

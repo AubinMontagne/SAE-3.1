@@ -40,15 +40,19 @@ public class FrameCreationNotion extends JFrame implements WindowListener
     {
         if (FrameCreationNotion.nbFrame == 0)
         {
-            FrameCreationNotion.nbFrame++;
+            FrameCreationNotion.nbFrame += 1;
+            System.out.print(" ");
+            System.out.println("FrameCreationNotion.nbFrame = " + FrameCreationNotion.nbFrame);
             return new FrameCreationNotion(ctrl, r, panelNotion);
         }
         return null;
     }
 
     public void windowOpened     (java.awt.event.WindowEvent e) {}
-    public void windowClosing    (java.awt.event.WindowEvent e) {
-        FrameCreationNotion.nbFrame--;
+    public void windowClosing    (java.awt.event.WindowEvent e)
+    {
+        FrameCreationNotion.nbFrame -= 1;
+        System.out.print(" ");
     }
     public void windowClosed     (java.awt.event.WindowEvent e) {}
     public void windowIconified  (java.awt.event.WindowEvent e) {}

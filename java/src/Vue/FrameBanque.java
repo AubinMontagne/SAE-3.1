@@ -35,14 +35,17 @@ public class FrameBanque extends JFrame implements WindowListener
         if (FrameBanque.nbFrame <= 0)
         {
             FrameBanque.nbFrame++;
+            System.out.print(" ");
             return new FrameBanque(ctrl);
         }
         return null;
     }
 
     public void windowOpened     (java.awt.event.WindowEvent e) {}
-    public void windowClosing    (java.awt.event.WindowEvent e) {
+    public void windowClosing    (java.awt.event.WindowEvent e)
+    {
         FrameBanque.nbFrame--;
+        System.out.print(" ");
     }
     public void windowClosed     (java.awt.event.WindowEvent e) {}
     public void windowIconified  (java.awt.event.WindowEvent e) {}

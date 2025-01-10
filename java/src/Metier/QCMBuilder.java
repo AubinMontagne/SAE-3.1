@@ -60,19 +60,21 @@ public class QCMBuilder
     public void creerDossier(String path)
     {
         File file = new File(path + "/" + this.questionnaire.getNom() );
-
+        File fileT;
 
         if(file.exists())
         {
             int i = 0;
-            while(file.exists())
+            do
             {
-                file = new File(file.getPath() + i);
+                fileT = new File(file.getPath() + i);
                 i++;
-            }
-            this.nbOccurenceFichier = "" + i;
+            }while(fileT.exists());
 
-            file.mkdir();
+            this.nbOccurenceFichier = "" + (i-1);
+
+            fileT.mkdir();
+            file = fileT;
         }
         else
         {
@@ -96,14 +98,14 @@ public class QCMBuilder
                     if (s != null)
                     {
                         Path fileSource = Paths.get("java/data/" + q.getNotion().getRessourceAssociee().getNom() + "/" + q.getNotion().getNom() + "/Question " + q.getId() + "/Compléments/" + s);
-                        Path fileDest = Paths.get(path + "/" + this.questionnaire.getNom() + "/data/Question " + q.getId() + "/Compléments/" + s);
+                        Path fileDest = Paths.get(path + "/" + this.questionnaire.getNom() + this.nbOccurenceFichier +  "/data/Question " + q.getId() + "/Compléments/" + s);
                         Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
                     }
                 }
                 if (q.getImageChemin() != null && ! q.getImageChemin().isEmpty() && !q.getImageChemin().equals("null"))
                 {
                     Path fileSource = Paths.get("java/data/" + q.getNotion().getRessourceAssociee().getNom() + "/" + q.getNotion().getNom() + "/Question " + q.getId() + "/Compléments/" + q.getImageChemin());
-                    Path fileDest = Paths.get(path + "/" + this.questionnaire.getNom() + "/data/Question " + q.getId() + "/Compléments/" + q.getImageChemin());
+                    Path fileDest = Paths.get(path + "/" + this.questionnaire.getNom() + this.nbOccurenceFichier +  "/data/Question " + q.getId() + "/Compléments/" + q.getImageChemin());
                     Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
                 }
             }
@@ -237,16 +239,17 @@ public class QCMBuilder
 
         try
         {
-            Path folderPath = Path.of(path + "/"  + this.questionnaire.getNom() + "/data/imgDif/");
+            Path folderPath = Path.of(path + "/"  + this.questionnaire.getNom() + this.nbOccurenceFichier + "/data/imgDif/");
             Files.createDirectories(folderPath);
 
-            folderPath = Path.of(path  + "/" +  this.questionnaire.getNom() + "/data/imgBtn/");
+            folderPath = Path.of(path  + "/" +  this.questionnaire.getNom() + this.nbOccurenceFichier + "/data/imgBtn/");
             Files.createDirectories(folderPath);
 
             for(String img : tabImg)
             {
-                String newPath = System.getProperty("user.dir") + "/out/production/SAE-31/data/Images/imgDif/" + img;
-                String newPath2 = path  + "/" +  this.questionnaire.getNom() + "/data/imgDif/" + img;
+
+                //String newPath = System.getProperty("user.dir") + "/out/production/SAE-31/data/Images/imgDif/" + img;
+                String newPath2 = path  + "/" +  this.questionnaire.getNom() + this.nbOccurenceFichier + "/data/imgDif/" + img;
 
                 Files.copy(Path.of(newPath), Path.of(newPath2), StandardCopyOption.REPLACE_EXISTING);
 
@@ -255,7 +258,7 @@ public class QCMBuilder
             for(String btn : tabBtn)
             {
                 String newPath = System.getProperty("user.dir") + "/out/production/SAE-31/data/Images/imgBtn/" + btn;
-                String newPath2 = path + "/" + this.questionnaire.getNom() + "/data/imgBtn/" + btn;
+                String newPath2 = path + "/" + this.questionnaire.getNom() + this.nbOccurenceFichier + "/data/imgBtn/" + btn;
 
                 Files.copy(Path.of(newPath), Path.of(newPath2), StandardCopyOption.REPLACE_EXISTING);
             }
@@ -451,7 +454,7 @@ public class QCMBuilder
 
         String commun = "//Constantes et var communes\n" +
                 "const nbQuestion = " + this.questionnaire.getLstQuestion().size() + ";\n" +
-                "const estChronometrer = " + questionnaire.getChronoBool() + ";\n" +
+                "const estChronometrer = " + this.questionnaire.getChronoBool() + ";\n" +
                 "const dureeTotal = " + questionnaire.getTempsEstimee() + "; //Secondes\n" +
                 "const noteMax = " + noteMax + ";\n" +
                 "\n" +
@@ -1007,11 +1010,13 @@ public class QCMBuilder
                     txtChoixRep = "Question à choix unique";
                 }
 
-                String imageEnonce = "";
+                String imageEnonce = null;
 
-                if(q.getImageChemin() != null)
+                System.out.println(q.getImageChemin() + "Image chemin");
+
+                if(q.getImageChemin() != null && !q.getImageChemin().isEmpty())
                 {
-                    imageEnonce = "<img class=\"imgQuestion\" src=\"./data/Question " + q.getId() + "/Compléments/" + q.getImageChemin() +"\" alt=\""  + q.getImageChemin() + "\">\n";
+                    imageEnonce = "<img class=\"imgQuestion\" src=\"./data/Question " + q.getId() + "/Compléments/" + q.getImageChemin() +"\">\n";
                 }
 
                 res += "\n\nfunction question" + (questionnaire.getLstQuestion().indexOf(q) + 1) + "()\n" +
@@ -1265,11 +1270,11 @@ public class QCMBuilder
                 }
                 bonnesRep += "]";
 
-                String imageEnonce = "";
+                String imageEnonce = null;
 
-                if(q.getImageChemin() != null)
+                if(q.getImageChemin() != null && !q.getImageChemin().isEmpty())
                 {
-                    imageEnonce = "<img class=\"imgQuestion\" src=\"./data/Question " + q.getId() + "/Compléments/" + q.getImageChemin() +"\" alt=\""  + q.getImageChemin() + "\">\n";
+                    imageEnonce = "<img class=\"imgQuestion\" src=\"./data/Question " + q.getId() + "/Compléments/" + q.getImageChemin() +"\">\n";
                 }
 
 
@@ -1726,11 +1731,11 @@ public class QCMBuilder
 
                 eliminations += "];";
 
-                String imageEnonce = "";
+                String imageEnonce = null;
 
-                if(q.getImageChemin() != null)
+                if(q.getImageChemin() != null && !q.getImageChemin().isEmpty())
                 {
-                    imageEnonce = "<img class=\"imgQuestion\" src=\"./data/Question " + q.getId() + "/Compléments/" + q.getImageChemin() +"\" alt=\""  + q.getImageChemin() + "\">\n";
+                    imageEnonce = "<img class=\"imgQuestion\" src=\"./data/Question " + q.getId() + "/Compléments/" + q.getImageChemin() +"\">\n";
                 }
 
 

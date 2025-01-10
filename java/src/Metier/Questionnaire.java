@@ -105,7 +105,11 @@ public class  Questionnaire
     public void setChronoBool(boolean chronoBool) {this.chronoBool = chronoBool; }
     public void addQuestion  (Question question)  {this.lstQuestion.add(question); }
 
-    // AUBIN C4EST DIFFICILE ICI
+    /**
+     * Methode initLstQuestions
+     * Cette métode permet d'initialiser la lsite de question du questionnaire
+     * @param metier Le metier ou se trouve toute les ressources, notions et la liste de toute les questions
+     */
    public void initLstQuestions(Metier metier)
    {
      	for (Notion n : this.lstNotions)

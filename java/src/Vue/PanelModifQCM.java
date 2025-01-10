@@ -170,10 +170,14 @@ public class PanelModifQCM extends JFrame implements ActionListener
 				this.groupReponses = new ButtonGroup();
 			}
 			groupReponses.add(boutonRadio);
-			if ( estCorrect){caseCorrecte = boutonRadio;}
+			if ( estCorrect)
+			{
+				caseCorrecte = boutonRadio;
+			}
 			else
 			{
-				caseCorrecte = null;
+				boutonRadio.setSelected(true);
+				caseCorrecte = boutonRadio;
 			}
 		}
 		else

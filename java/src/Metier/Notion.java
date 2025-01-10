@@ -17,13 +17,13 @@ public class Notion
         this.ressourceAssociee = ressourceAssociee;
     }
 
-    // Getter
 	public boolean equals(Notion notion)
     {
 		return this.nom.equals(notion.getNom()) &&
 		this.ressourceAssociee.equals(notion.getRessourceAssociee());
 	}
 
+    //Getter
     public String    getNom()               {return this.nom; }
     public Ressource getRessourceAssociee() {return this.ressourceAssociee; }
     public String    getAsData()            {return (this.nom + ";" + this.ressourceAssociee.getId()); }
