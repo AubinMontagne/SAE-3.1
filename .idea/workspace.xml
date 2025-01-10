@@ -18,6 +18,18 @@
       <change beforePath="$PROJECT_DIR$/java/data/Init dev/Fonction/Question 1/Explication.rtf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 1/Enonce.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 1/Enonce.rtf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 1/Explication.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 1/Explication.rtf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 2/Enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 2/Explication.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 3/Enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 3/Explication.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 4/Enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 4/Explication.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 5/Enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 5/Explication.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 6/Enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 6/Explication.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 7/Enonce.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/data/Init dev/Les sous-classe/Question 7/Explication.rtf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/java/data/Intro Archi/Entier non signée/Question 1/Enonce.rtf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/java/data/Intro Archi/Entier non signée/Question 1/Explication.rtf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/java/data/Intro Dev/Conventions d’écriture/Question 2/Enonce.rtf" beforeDir="false" />
@@ -29,8 +41,6 @@
       <change beforePath="$PROJECT_DIR$/java/data/Intro Systeme/Commande de base/Question 2/Enonce.rtf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/java/data/Intro Systeme/Commande de base/Question 2/Explication.rtf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/java/data/questions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/java/data/questions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/TestRtf.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/docs/file.rtf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Controleur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Metier/Metier.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Metier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java/src/Metier/Ressource.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/Metier/Ressource.java" afterDir="false" />
@@ -188,13 +198,13 @@
       <ranges>
         <range start1="10" end1="11" start2="10" end2="12" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
         <range start1="14" end1="15" start2="15" end2="16" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="16" end1="16" start2="17" end2="18" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="17" end1="18" start2="19" end2="21" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="26" end1="26" start2="29" end2="31" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="30" end1="31" start2="35" end2="38" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
-        <range start1="36" end1="38" start2="43" end2="47" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="44" end1="47" start2="53" end2="59" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
-        <range start1="50" end1="52" start2="62" end2="76" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="16" end1="16" start2="17" end2="19" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="17" end1="18" start2="20" end2="22" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="26" end1="26" start2="30" end2="32" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="30" end1="31" start2="36" end2="39" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
+        <range start1="36" end1="38" start2="44" end2="48" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="44" end1="47" start2="54" end2="65" changelist="b570ae0e-2e64-4aa3-9d40-ec08cc65679a" />
+        <range start1="50" end1="52" start2="68" end2="82" changelist="d34e8fb9-f381-4f96-a31f-42a6f09f2c73" />
       </ranges>
     </file>
     <file path="$PROJECT_DIR$/java/src/Metier/Metier.java">
@@ -773,7 +783,7 @@
       <workItem from="1736408284753" duration="10218000" />
       <workItem from="1736421693171" duration="8790000" />
       <workItem from="1736431291037" duration="8473000" />
-      <workItem from="1736494867125" duration="9448000" />
+      <workItem from="1736494867125" duration="9484000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout de la gestion du contrôleur dans plusieurs classes de la vue pour améliorer l'interaction entre les composants.">
       <option name="closed" value="true" />

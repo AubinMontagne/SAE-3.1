@@ -245,9 +245,8 @@ public class PanelElimination extends JFrame implements ActionListener
 			case "ajouterReponse":
 				ajouterReponse();
 				break;
-			case "enregistrer":
+			case "enregistrer" ->
 				enregistrerElimination();
-				break;
 			default:
 				break;
 		}
