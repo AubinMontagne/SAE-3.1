@@ -8,7 +8,8 @@ import src.Controleur;
 import java.awt.BorderLayout;
 import java.awt.event.WindowListener;
 
-public class  FrameParametrage extends JFrame implements WindowListener {
+public class  FrameParametrage extends JFrame implements WindowListener
+{
     private static int nbFrame = 0;
 	private Controleur     ctrl;
     private PanelNotion    panelNotion;
@@ -18,7 +19,8 @@ public class  FrameParametrage extends JFrame implements WindowListener {
      * Contructeur de la class FrameRessource
      * @param ctrl  Le contrôleur
      */
-	public FrameParametrage(Controleur ctrl){
+	public FrameParametrage(Controleur ctrl)
+    {
         this.ctrl = ctrl;
 
         this.setTitle             ("Les Ressources");
@@ -40,12 +42,14 @@ public class  FrameParametrage extends JFrame implements WindowListener {
 
         setVisible(true);
     }
-    public void majPanelNotion(){
+    public void majPanelNotion()
+    {
         this.panelNotion.setRessourceSelectionnee(this.panelRessource.getRessourceSelectionnee());
         this.panelNotion.maj();
     }
 
-    public static FrameParametrage creerFrameFrameParametrage(Controleur ctrl){
+    public static FrameParametrage creerFrameFrameParametrage(Controleur ctrl)
+    {
         if(FrameParametrage.nbFrame == 0){
             FrameParametrage.nbFrame++;
             return new FrameParametrage(ctrl);

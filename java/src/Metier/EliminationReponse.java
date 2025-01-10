@@ -3,7 +3,8 @@ package src.Metier;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class EliminationReponse extends Question {
+public class EliminationReponse extends Question
+{
 	private String                   reponseCorrecte;
 	private HashMap<String,Double[]> hmReponses;
 
@@ -16,7 +17,8 @@ public class EliminationReponse extends Question {
 	 * @param temps         Le temps nécessaire pour répondre à la question en millisecondes.
 	 * @param points        Le nombre de points que rapporte la question.
 	 */
-	public EliminationReponse(String intitule, Difficulte difficulte, Notion notion, int temps, int points, String imageChemin, int id) {
+	public EliminationReponse(String intitule, Difficulte difficulte, Notion notion, int temps, int points, String imageChemin, int id)
+	{
 		super(intitule, difficulte, notion, temps, points, imageChemin, id);
 		this.reponseCorrecte = "";
 		this.hmReponses      = new HashMap<>();
@@ -29,8 +31,10 @@ public class EliminationReponse extends Question {
 	 * @param points	Le nombre de points
 	 * @param ordre		L'ordre dans le quelle éliminé la réponse, si elle peut l'ètre
 	 */
-	public void ajouterReponse(String reponse, Double points, Double ordre){
-		if (!this.hmReponses.containsKey(reponse) && ordre <= this.getLastIndex()+1) {
+	public void ajouterReponse(String reponse, Double points, Double ordre)
+	{
+		if (!this.hmReponses.containsKey(reponse) && ordre <= this.getLastIndex()+1)
+		{
 			this.hmReponses.put(reponse, new Double[]{points, ordre});
 		}
 	}
@@ -49,34 +53,41 @@ public class EliminationReponse extends Question {
 	public boolean estReponseCorrecte(String reponse) {return this.reponseCorrecte.equals(reponse); }
 
 	// Getters
-	public String getReponseCorrecte() {return this.reponseCorrecte; }
-	public HashMap<String,Double[]> getHmReponses() {return this.hmReponses; }
+	public String                   getReponseCorrecte() {return this.reponseCorrecte; }
+	public HashMap<String,Double[]> getHmReponses()      {return this.hmReponses; }
 
-	public Double getLastIndex() {
+	public Double getLastIndex()
+	{
 		Double indexMax = 0.0;
-		for (Double[] index : this.hmReponses.values()) {
-			if (index[1] > indexMax) {
+		for (Double[] index : this.hmReponses.values())
+		{
+			if (index[1] > indexMax)
+			{
 				indexMax = index[1];
 			}
 		}
 		return indexMax + 1;
 	}
 
-	public String getAsData(){
+	public String getAsData()
+	{
 		String res = "ER;" + super.getAsData() + ";" ;
 		res += this.reponseCorrecte + ";";
-		for(String reponse : this.hmReponses.keySet()) {
+		for(String reponse : this.hmReponses.keySet())
+		{
 			res += reponse + "," + this.hmReponses.get(reponse)[0] + "," + this.hmReponses.get(reponse)[1] + "|";
 		}
 		return res;
 	}
 
-	public static EliminationReponse getAsInstance(String ligne, Metier metier){
+	public static EliminationReponse getAsInstance(String ligne, Metier metier)
+	{
 		Scanner scanner = new Scanner(ligne);
 		scanner.useDelimiter(";");
 
 		String[] parts = new String[11];
-		for (int i = 0; i < 11; i++) {
+		for (int i = 0; i < 11; i++)
+		{
 			parts[i] = scanner.next();
 		}
 
@@ -86,13 +97,15 @@ public class EliminationReponse extends Question {
 
 		Scanner reponseScanner = new Scanner(parts[10]);
 		reponseScanner.useDelimiter("\\|");
-		while (scanner.hasNext()) {
+		while (scanner.hasNext())
+		{
 			String reponse = scanner.next();
 			Scanner eliminationScanner = new Scanner(reponse);
 			eliminationScanner.useDelimiter(",");
 
 			String[] reponseParts = new String[3];
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < 3; i++)
+			{
 				reponseParts[i] = eliminationScanner.next();
 			}
 
@@ -102,7 +115,8 @@ public class EliminationReponse extends Question {
 
 		reponseScanner = new Scanner(parts[8]);
 		reponseScanner.useDelimiter(",");
-		while (reponseScanner.hasNext()) {
+		while (reponseScanner.hasNext())
+		{
 			String fichier = reponseScanner.next();
 			er.ajouterFichier(fichier);
 		}
@@ -113,15 +127,17 @@ public class EliminationReponse extends Question {
 	}
 
 	// Setters
-	public void setReponseCorrecte(String reponseCorrecte) {this.reponseCorrecte = reponseCorrecte; }
-	public void setHmReponses(HashMap<String,Double[]>  hmReponses) {this.hmReponses = hmReponses; }
+	public void setReponseCorrecte(String reponseCorrecte)               {this.reponseCorrecte = reponseCorrecte; }
+	public void setHmReponses     (HashMap<String,Double[]>  hmReponses) {this.hmReponses = hmReponses; }
 
 	// toString
-	public String toString(){
+	public String toString()
+	{
 		String res = super.toString();
 		res += "Reponse correcte : " + this.reponseCorrecte + "\n";
 		res += "Reponses : \n";
-		for (String reponse : this.hmReponses.keySet()) {
+		for (String reponse : this.hmReponses.keySet())
+		{
 			res += reponse + " : " + this.hmReponses.get(reponse)[0] + " , " + this.hmReponses.get(reponse)[1] + "\n";
 		}
 		return res;

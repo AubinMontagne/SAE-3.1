@@ -25,7 +25,8 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.List;
 
-public class PanelModifQCM extends JFrame implements ActionListener {
+public class PanelModifQCM extends JFrame implements ActionListener
+{
 
 	private Controleur  ctrl;
 	private JPanel      panelReponses; // Panel pour les réponses
@@ -49,7 +50,8 @@ public class PanelModifQCM extends JFrame implements ActionListener {
 	public PanelModifQCM(
 			PanelModifQuestion panelModifQuestion   , Controleur ctrl, String cheminImg,
 			List<String> lstLiens, PanelBanque panelBanque, JEditorPane epEnonce,
-			JEditorPane epExplication, Question q, boolean estModeUnique ) {
+			JEditorPane epExplication, Question q, boolean estModeUnique )
+	{
 
 		this.ctrl          = ctrl;
 		this.panelModifQuestion = panelModifQuestion;
@@ -96,37 +98,47 @@ public class PanelModifQCM extends JFrame implements ActionListener {
 		this.btnEnregistrer .addActionListener(this);
 
 		//Ajout de deux réponses pour rendre plus beau
-		if(!(q instanceof QCM)) {
+		if(!(q instanceof QCM))
+		{
 			this.ajouterReponse();
 			this.ajouterReponse();
-		} else {
+		}
+		else
+		{
 			QCM qcm = (QCM) (q);
-			for(String proposition : qcm.getReponses().keySet()){
+			for(String proposition : qcm.getReponses().keySet())
+			{
 				this.ajouterReponse(proposition,qcm.getReponses().get(proposition),qcm.estVraiouFaux());
 			}
 		}
 	}
 
-	private void ajouterReponse() {
+	private void ajouterReponse()
+	{
 		JPanel panelAjoutReponse = new JPanel();
 		panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
 		JTextField txtReponse = new JTextField("Réponse " + (++nombreReponses));
 
 		JComponent caseCorrecte;
-		if (this.estModeUnique) {
+		if (this.estModeUnique)
+		{
 			JRadioButton boutonRadio = new JRadioButton();
-			if (this.groupReponses == null) {
+			if (this.groupReponses == null)
+			{
 				this.groupReponses = new ButtonGroup();
 			}
 			groupReponses.add(boutonRadio);
 			caseCorrecte = boutonRadio;
-		} else {
+		}
+		else
+		{
 			caseCorrecte = new JCheckBox("Correcte");
 		}
 
 		JButton boutonSupprimer = new JButton("Supprimer");
 		boutonSupprimer.addActionListener(e -> {
-			if (caseCorrecte instanceof JRadioButton && this.groupReponses != null) {
+			if (caseCorrecte instanceof JRadioButton && this.groupReponses != null)
+			{
 				this.groupReponses.remove((JRadioButton) caseCorrecte);
 			}
 			this.panelReponses.remove(panelAjoutReponse);
@@ -143,21 +155,29 @@ public class PanelModifQCM extends JFrame implements ActionListener {
 		this.panelReponses.repaint();
 	}
 
-	private void ajouterReponse(String enonceProposition, Boolean estCorrect, Boolean estUnique) {
+	private void ajouterReponse(String enonceProposition, Boolean estCorrect, Boolean estUnique)
+	{
 		JPanel panelAjoutReponse = new JPanel();
 		panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
 		JTextField txtReponse = new JTextField(enonceProposition);
 
 		JComponent caseCorrecte;
-		if (this.estModeUnique && estUnique) {
+		if (this.estModeUnique && estUnique)
+		{
 			JRadioButton boutonRadio = new JRadioButton();
-			if (this.groupReponses == null) {
+			if (this.groupReponses == null)
+			{
 				this.groupReponses = new ButtonGroup();
 			}
 			groupReponses.add(boutonRadio);
 			if ( estCorrect){caseCorrecte = boutonRadio;}
-			else {caseCorrecte = null;}
-		} else {
+			else
+			{
+				caseCorrecte = null;
+			}
+		}
+		else
+		{
 			caseCorrecte = new JCheckBox("Correcte");
 		}
 
@@ -180,9 +200,11 @@ public class PanelModifQCM extends JFrame implements ActionListener {
 		this.panelReponses.repaint();
 	}
 
-	private void enregistrerQCMAvecHashMap() {
+	private void enregistrerQCMAvecHashMap()
+	{
 
-		if (this.panelReponses.getComponentCount() == 0) {
+		if (this.panelReponses.getComponentCount() == 0)
+		{
 			JOptionPane.showMessageDialog(this, "Veuillez ajouter au moins une réponse.", "Erreur", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -190,8 +212,10 @@ public class PanelModifQCM extends JFrame implements ActionListener {
 		HashMap<String, Boolean> reponses = new HashMap<>();
 		boolean auMoinsUneReponseCorrecte = false;
 
-		for (Component composant : this.panelReponses.getComponents()) {
-			if (composant instanceof JPanel) {
+		for (Component composant : this.panelReponses.getComponents())
+		{
+			if (composant instanceof JPanel)
+			{
 				JPanel panelReponse = (JPanel) composant;
 				JTextField txtReponse = (JTextField) panelReponse.getComponent(0);
 				JComponent caseCorrecte = (JComponent) panelReponse.getComponent(1);
@@ -201,22 +225,26 @@ public class PanelModifQCM extends JFrame implements ActionListener {
 						? ((JCheckBox) caseCorrecte).isSelected()
 						: ((JRadioButton) caseCorrecte).isSelected();
 
-				if (texteReponse.isEmpty()) {
+				if (texteReponse.isEmpty())
+				{
 					JOptionPane.showMessageDialog(this, "Une réponse ne peut pas être vide.", "Erreur", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				if (reponses.containsKey(texteReponse)) {
+				if (reponses.containsKey(texteReponse))
+				{
 					JOptionPane.showMessageDialog(this, "Une réponse dupliquée a été détectée : " + texteReponse, "Erreur", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				reponses.put(texteReponse, estCorrecte);
-				if (estCorrecte) {
+				if (estCorrecte)
+				{
 					auMoinsUneReponseCorrecte = true;
 				}
 			}
 		}
 
-		if (!auMoinsUneReponseCorrecte) {
+		if (!auMoinsUneReponseCorrecte)
+		{
 			JOptionPane.showMessageDialog(this, "Veuillez sélectionner au moins une réponse correcte.", "Erreur", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -244,19 +272,12 @@ public class PanelModifQCM extends JFrame implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e)
+	{
 		String commande = e.getActionCommand();
 		switch (commande) {
-			case "ajouterReponse":
-				ajouterReponse();
-				break;
-
-			case "enregistrer":
-				enregistrerQCMAvecHashMap();
-				break;
-
-			default:
-				break;
+			case "ajouterReponse" -> ajouterReponse();
+			case "enregistrer"    -> enregistrerQCMAvecHashMap();
 		}
 	}
 }

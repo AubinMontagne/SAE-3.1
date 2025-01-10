@@ -15,7 +15,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PanelModifQuestion extends JPanel implements ActionListener, ItemListener {
+public class PanelModifQuestion extends JPanel implements ActionListener, ItemListener
+{
 	private Controleur           ctrl;
 
 	private JComboBox<Ressource> ddlstRessources;
@@ -46,15 +47,20 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 	private FrameModifQuestion frameModifQuestion;
 	private PanelBanque        panelBanque;
 
+	private String texteTxtEnonce;
+	private String texteTxtExplication;
 
-	private static final ImageIcon[] IMAGES_DIFFICULTE = {
+
+	private static final ImageIcon[] IMAGES_DIFFICULTE =
+			{
 			new ImageIcon("java/data/Images/imgDif/TF.png"),
 			new ImageIcon("java/data/Images/imgDif/F.png"),
 			new ImageIcon("java/data/Images/imgDif/M.png"),
 			new ImageIcon("java/data/Images/imgDif/D.png")
 	};
 
-	public PanelModifQuestion(FrameModifQuestion frameModifQuestion, Controleur ctrl , PanelBanque panelBanque, Question q) {
+	public PanelModifQuestion(FrameModifQuestion frameModifQuestion, Controleur ctrl , PanelBanque panelBanque, Question q)
+	{
 		this.ctrl               = ctrl;
 		this.panelBanque        = panelBanque;
 
@@ -71,6 +77,9 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 
 		this.bordureDefaut = BorderFactory.createLineBorder(Color.BLACK, 5);
 		this.bordureSelect = BorderFactory.createLineBorder(Color.RED  , 5);
+
+		this.texteTxtEnonce 	 = "";
+		this.texteTxtExplication = "";
 
 		setLayout(new BorderLayout());
 
@@ -95,14 +104,17 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 		this.txtPoints.setText(q.getPoint()+"");
 
 		JLabel labelTemps = new JLabel("Temps de réponse (min:sec) :");
-		try {
+		try
+		{
 			MaskFormatter timeFormatter = new MaskFormatter("##:##");
 			timeFormatter.setPlaceholderCharacter('0');
 			this.txtTemps = new JFormattedTextField(timeFormatter);
 			this.txtTemps.setText((q.getTemps()/60)+":"+(q.getTemps()%60)); // Valeur initiale
 
 			this.txtTemps.addPropertyChangeListener("value", evt -> secondeValide());
-		} catch (ParseException e) {
+		}
+		catch (ParseException e)
+		{
 			e.printStackTrace();
 		}
 
@@ -122,19 +134,17 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 		this.add(panelConfiguration, BorderLayout.NORTH);
 
 		// Section centrale
-		JPanel panelText = new JPanel(new GridLayout(5,1));
+		JPanel panelText = new JPanel(new GridLayout(4,1));
 
 		JLabel lblIntituleQuestion = new JLabel("Question : ");
 		this.epEnonce = new JEditorPane();
 		this.epEnonce.setEditorKit(new StyledEditorKit()); // Permet la gestion des styles
 		this.epEnonce.setEditable(true); // Rendre éditable
-		this.epEnonce.setText(this.q.getEnonce());
 
 		JLabel lblExpliquationQuestion = new JLabel("Explication : ");
 		this.epExplication = new JEditorPane();
 		this.epExplication.setEditorKit(new StyledEditorKit()); // Permet la gestion des styles
 		this.epExplication.setEditable(true); // Rendre éditable
-		this.epExplication.setText(this.q.getExplication());
 
 		JPanel panelCentrale = new JPanel(new GridLayout(1, 2, 5, 5));
 		panelCentrale.setBorder(BorderFactory.createTitledBorder("Sélection"));
@@ -167,15 +177,16 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 		JLabel labelNiveau = new JLabel("Difficulté :");
 		JPanel panelNiveau = new JPanel(new FlowLayout());
 
-		this.btnTresFacile		= new JButton(IMAGES_DIFFICULTE[0]);
-		this.btnFacile     		= new JButton(IMAGES_DIFFICULTE[1]);
-		this.btnMoyen      		= new JButton(IMAGES_DIFFICULTE[2]);
-		this.btnDifficile  		= new JButton(IMAGES_DIFFICULTE[3]);
-		this.btnGras	   		= new JButton("Gras");
-		this.btnItalique  		= new JButton("Italic");
-		this.btnAjouterImage 	= new JButton("Ajouter une image");
-		this.btnAjouterRessComp = new JButton("Ajouter des fichiers complémentaires");
-		this.btnSupprimerFichierComp = new JButton("Supprimer les fichiers complémentaires");
+		this.btnTresFacile		     = new JButton(IMAGES_DIFFICULTE[0]);
+		this.btnFacile     		     = new JButton(IMAGES_DIFFICULTE[1]);
+		this.btnMoyen      		     = new JButton(IMAGES_DIFFICULTE[2]);
+		this.btnDifficile  		     = new JButton(IMAGES_DIFFICULTE[3]);
+
+		this.btnGras	   		     = new JButton("Gras");
+		this.btnItalique  		     = new JButton("Italic");
+		this.btnAjouterImage 	     = new JButton("Ajouter une image");
+		this.btnAjouterRessComp      = new JButton("Ajouter des fichiers");
+		this.btnSupprimerFichierComp = new JButton("Supprimer les fichiers");
 
 
 		Dimension d1 = new Dimension( 75,  75);
@@ -184,10 +195,11 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 		this.btnFacile    		.setPreferredSize(d1);
 		this.btnMoyen     		.setPreferredSize(d1);
 		this.btnDifficile 		.setPreferredSize(d1);
-		this.btnGras	  		.setPreferredSize(d2);
-		this.btnItalique 		.setPreferredSize(d2);
-		this.btnAjouterImage	.setPreferredSize(d2);
-		this.btnAjouterRessComp .setPreferredSize(d2);
+
+		this.btnGras	  		    .setPreferredSize(d2);
+		this.btnItalique 		    .setPreferredSize(d2);
+		this.btnAjouterImage	    .setPreferredSize(d2);
+		this.btnAjouterRessComp     .setPreferredSize(d2);
 		this.btnSupprimerFichierComp.setPreferredSize(d2);
 
 		this.btnTresFacile.setBorder(this.bordureDefaut);
@@ -195,32 +207,23 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 		this.btnMoyen     .setBorder(this.bordureDefaut);
 		this.btnDifficile .setBorder(this.bordureDefaut);
 
-		switch (this.difficulte) {
-			case 1:
-				this.btnTresFacile.setBorder(this.bordureSelect);
-				break;
-			case 2:
-				this.btnFacile    .setBorder(this.bordureSelect);
-				break;
-			case 3:
-				this.btnMoyen     .setBorder(this.bordureSelect);
-				break;
-			case 4:
-				this.btnDifficile .setBorder(this.bordureSelect);
-				break;
-			default:
-				break;
+		switch (this.difficulte)
+		{
+			case 1 -> this.btnTresFacile.setBorder(this.bordureSelect);
+			case 2 -> this.btnFacile    .setBorder(this.bordureSelect);
+			case 3 -> this.btnMoyen     .setBorder(this.bordureSelect);
+			case 4 -> this.btnDifficile .setBorder(this.bordureSelect);
 		}
 
-		this.btnTresFacile		.addActionListener(this);
-		this.btnFacile    		.addActionListener(this);
-		this.btnMoyen     		.addActionListener(this);
-		this.btnDifficile 		.addActionListener(this);
+		this.btnTresFacile.addActionListener(this);
+		this.btnFacile    .addActionListener(this);
+		this.btnMoyen     .addActionListener(this);
+		this.btnDifficile .addActionListener(this);
 
-		this.btnGras	  		.addActionListener(this);
-		this.btnItalique 		.addActionListener(this);
-		this.btnAjouterImage	.addActionListener(this);
-		this.btnAjouterRessComp .addActionListener(this);
+		this.btnGras	  			.addActionListener(this);
+		this.btnItalique 			.addActionListener(this);
+		this.btnAjouterImage		.addActionListener(this);
+		this.btnAjouterRessComp 	.addActionListener(this);
 		this.btnSupprimerFichierComp.addActionListener(this);
 
 		this.btnGras				.setBackground(new Color(163,206,250));
@@ -232,9 +235,9 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 
 		this.btnGras				.setFont(new Font("Arial", Font.PLAIN, 22));
 		this.btnItalique			.setFont(new Font("Arial", Font.PLAIN, 22));
-		this.btnAjouterImage		.setFont(new Font("Arial", Font.PLAIN, 22));
-		this.btnAjouterRessComp		.setFont(new Font("Arial", Font.PLAIN, 22));
-		this.btnSupprimerFichierComp.setFont(new Font("Arial", Font.PLAIN, 22));
+		this.btnAjouterImage		.setFont(new Font("Arial", Font.PLAIN, 10));
+		this.btnAjouterRessComp		.setFont(new Font("Arial", Font.PLAIN, 10));
+		this.btnSupprimerFichierComp.setFont(new Font("Arial", Font.PLAIN, 10));
 
 		panelNiveau.add(this.btnTresFacile);
 		panelNiveau.add(this.btnFacile);
@@ -245,13 +248,17 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 		panelStyle.add  (this.btnGras);
 		panelStyle.add  (this.btnItalique);
 
-		JPanel panelEnonce = new JPanel(new GridLayout(1,2));
-		panelEnonce.add(lblIntituleQuestion);
-		panelEnonce.add(this.epEnonce);
+		Border bordPanel =  BorderFactory.createLineBorder(Color.GRAY, 1);
 
-		JPanel panelExplication = new JPanel(new GridLayout(1,2));
-		panelExplication.add(lblExpliquationQuestion);
-		panelExplication.add(this.epExplication);
+		JPanel panelEnonce = new JPanel(new BorderLayout());
+		panelEnonce.setBorder(bordPanel);
+		panelEnonce.add(lblIntituleQuestion, BorderLayout.WEST);
+		panelEnonce.add(this.epEnonce, BorderLayout.NORTH);
+
+		JPanel panelExplication = new JPanel(new BorderLayout());
+		panelExplication.setBorder(bordPanel);
+		panelExplication.add(lblExpliquationQuestion, BorderLayout.WEST);
+		panelExplication.add(this.epExplication, BorderLayout.NORTH);
 
 		JPanel panelBoutons = new JPanel(new GridLayout(1,3));
 		panelBoutons.add(this.btnAjouterImage);
@@ -260,7 +267,6 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 
 		panelText.add(panelStyle);
 		panelText.add(panelEnonce);
-		panelText.add(new JSeparator());
 		panelText.add(panelExplication);
 		panelText.add(panelBoutons);
 
@@ -271,7 +277,7 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 		panelLabels.add (labelNiveau);
 		panelDonnées.add(panelNiveau);
 
-		panelSelection.add(panelLabels, BorderLayout.WEST);
+		panelSelection.add(panelLabels , BorderLayout.WEST);
 		panelSelection.add(panelDonnées, BorderLayout.CENTER);
 
 		panelCentrale.add(panelSelection);
@@ -287,23 +293,32 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 		this.ddlstTypes  = new JComboBox<>(new String[]
 				{ "QCM REP. UNIQUE","QCM REP. MULTIPLE", "EntiteAssociation","Elimination" }
 		);
-		if (q instanceof QCM){
-			if (((QCM)(q)).estVraiouFaux()){
+		if (q instanceof QCM)
+		{
+			if (((QCM)(q)).estVraiouFaux())
+			{
 				this.ddlstTypes.setSelectedIndex(0);
-			} else {
+			}
+			else
+			{
 				this.ddlstTypes.setSelectedIndex(1);
 			}
-		} else {
-			if ( q instanceof AssociationElement) {
+		}
+		else
+		{
+			if ( q instanceof AssociationElement)
+			{
 				this.ddlstTypes.setSelectedIndex(2);
-			} else {
+			}
+			else
+			{
 				this.ddlstTypes.setSelectedIndex(3);
 			}
 		}
 
 		this.btnConfirmer = new JButton("Confirmer");
 		this.btnConfirmer.addActionListener(this);
-
+		
 		panelType.add(labelType);
 		panelType.add(this.ddlstTypes);
 		panelType.add(this.btnConfirmer);
@@ -313,15 +328,18 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 	}
 
 	// Methode
-	private void secondeValide() {
+	private void secondeValide()
+	{
 		String timeText = this.txtTemps.getText();
 
-		if (timeText.matches("\\d{2}:\\d{2}")) {
+		if (timeText.matches("\\d{2}:\\d{2}"))
+		{
 			int minutes  = Integer.parseInt(timeText.substring(0, 2));
 			int secondes = Integer.parseInt(timeText.substring(3, 5));
 
 			// Vérifie que les secondes ne dépassent pas 59
-			if (secondes >= 60) {
+			if (secondes >= 60)
+			{
 				secondes  = 59;
 				this.txtTemps.setText(String.format("%02d:%02d", minutes, secondes));
 				JOptionPane.showMessageDialog(
@@ -331,7 +349,8 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 			}
 
 			// (Optionnel) Vérifie que les minutes ne dépassent pas une certaine limite
-			if (minutes > 99) {
+			if (minutes > 99)
+			{
 				minutes = 99;
 
 				this.txtTemps.setText(String.format("%02d:%02d", minutes, secondes));
@@ -348,41 +367,38 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 	 * @param e L'évènement à traiter
 	 */
 	@Override
-	public void itemStateChanged(ItemEvent e) {
-		if (e.getSource() == this.ddlstRessources && e.getStateChange() == ItemEvent.SELECTED) {
-			if (this.ddlstRessources.getItemAt(0).getNom().equals(" ")){
-				this.ddlstRessources.removeItemAt(0);
-				this.lstRessources     .remove(0);
-				this.lstNotions        .remove(0);
-			}
+	public void itemStateChanged(ItemEvent e)
+	{
+		if (e.getSource() == this.ddlstRessources && e.getStateChange() == ItemEvent.SELECTED)
+		{
 
 			int index = ddlstRessources.getSelectedIndex();
 			this.ddlstNotions.removeAllItems();
-			for (Notion notion : this.ctrl.getNotionsParRessource(this.lstRessources.get(index))) {
+			for (Notion notion : this.ctrl.getNotionsParRessource(this.lstRessources.get(index)))
+			{
 				this.ddlstNotions.addItem(notion);
 			}
-			ddlstNotions.setEnabled(true);
-		} else if (e.getSource() == this.ddlstNotions && e.getStateChange() == ItemEvent.SELECTED) {
+
+		}
+		else if (e.getSource() == this.ddlstNotions && e.getStateChange() == ItemEvent.SELECTED)
+		{
 			int indexRessource  = this.ddlstRessources.getSelectedIndex();
 			int indexNotion     = this.ddlstNotions.getSelectedIndex();
 			this.notion = ((Notion)(this.ddlstNotions.getSelectedItem() )).getNom();
-			if (indexRessource >= 0 && indexNotion >= 0) {
-
+			if (indexRessource >= 0 && indexNotion >= 0)
+			{
 				this.btnTresFacile.setIcon(IMAGES_DIFFICULTE[0]);
 				this.btnFacile    .setIcon(IMAGES_DIFFICULTE[1]);
 				this.btnMoyen     .setIcon(IMAGES_DIFFICULTE[2]);
 				this.btnDifficile .setIcon(IMAGES_DIFFICULTE[3]);
-
-				this.btnTresFacile.setEnabled(true);
-				this.btnFacile    .setEnabled(true);
-				this.btnMoyen     .setEnabled(true);
-				this.btnDifficile .setEnabled(true);
 			}
 		}
 	}
 
-	public void fermer(){
-		if(this.panelBanque != null) {
+	public void fermer()
+	{
+		if(this.panelBanque != null)
+		{
 			this.panelBanque.maj();
 		}
 		this.frameModifQuestion.dispose();
@@ -393,8 +409,10 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 	 * @param e L'évènement à traiter
 	 */
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == this.btnTresFacile) {
+	public void actionPerformed(ActionEvent e)
+	{
+		if (e.getSource() == this.btnTresFacile)
+		{
 			JOptionPane.showMessageDialog(this, "Difficulté : Très Facile");
 			this.difficulte = 1;
 
@@ -403,7 +421,9 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 			this.btnMoyen     .setBorder(this.bordureDefaut);
 			this.btnDifficile .setBorder(this.bordureDefaut);
 
-		} else if (e.getSource() == this.btnFacile) {
+		}
+		else if (e.getSource() == this.btnFacile)
+		{
 			JOptionPane.showMessageDialog(this, "Difficulté : Facile");
 			this.difficulte = 2;
 			this.btnTresFacile.setBorder(this.bordureDefaut);
@@ -411,7 +431,9 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 			this.btnMoyen     .setBorder(this.bordureDefaut);
 			this.btnDifficile .setBorder(this.bordureDefaut);
 
-		} else if (e.getSource() == this.btnMoyen) {
+		}
+		else if (e.getSource() == this.btnMoyen)
+		{
 			JOptionPane.showMessageDialog(this, "Difficulté : Moyen");
 			this.difficulte = 3;
 			this.btnTresFacile.setBorder(this.bordureDefaut);
@@ -419,7 +441,9 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 			this.btnMoyen     .setBorder(this.bordureSelect);
 			this.btnDifficile .setBorder(this.bordureDefaut);
 
-		} else if (e.getSource() == this.btnDifficile) {
+		}
+		else if (e.getSource() == this.btnDifficile)
+		{
 			JOptionPane.showMessageDialog(this, "Difficulté : Difficile");
 			this.difficulte = 4;
 			this.btnTresFacile.setBorder(this.bordureDefaut);
@@ -428,21 +452,10 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 			this.btnDifficile .setBorder(this.bordureSelect);
 		}
 
-		if (e.getSource() == this.btnConfirmer) {
-			int idMax = 0;
-
-			for(Question q : ctrl.getQuestionsParRessource( (Ressource)(this.ddlstRessources.getSelectedItem()) ))
-			{
-				if(q.getId() > idMax)
-				{
-					idMax = q.getId();
-				}
-			}
-			idMax++;
-
-
+		if (e.getSource() == this.btnConfirmer)
+		{
 			String cheminDossier = "java/data/" + this.ctrl.getNotionByNom(this.notion).getRessourceAssociee().getNom()
-					+ "/" + this.ctrl.getNotionByNom(notion).getNom() + "/Question " + idMax;
+					+ "/" + this.ctrl.getNotionByNom(notion).getNom() + "/Question " + this.q.getId();
 
 			if (this.txtPoints.getText().equals(""))
 			{
@@ -452,7 +465,8 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 				);
 				return;
 			}
-			if (this.epEnonce.getText() == null){
+			if (this.epEnonce.getText() == null)
+			{
 				JOptionPane.showMessageDialog(
 						this,
 						"Veuillez entrer un énoncer"
@@ -704,7 +718,40 @@ public class PanelModifQuestion extends JPanel implements ActionListener, ItemLi
 	}
 
 
-	private String passageRtf(JEditorPane editeur)
+	public String getTexteTxtEnonce()
+	{
+		return this.texteTxtEnonce;
+	}
+
+	public String getTexteTxtExplication()
+	{
+		return this.texteTxtEnonce;
+	}
+
+	public void setTexteTxtEnonce(String s)
+	{
+		this.texteTxtEnonce = s;
+	}
+
+	public void setTexteTxtExplication(String s)
+	{
+		this.texteTxtExplication = s;
+	}
+
+	public JEditorPane getEditeurEnonce()
+	{
+		return this.epEnonce;
+	}
+
+	public JEditorPane getEditeurExplication()
+	{
+		return this.epExplication;
+	}
+
+
+	/*Methode*/
+
+	public String passageRtf(JEditorPane editeur)
 	{
 		//Mise en place du Rtf
 		RTFEditorKit rtfKit = new RTFEditorKit();

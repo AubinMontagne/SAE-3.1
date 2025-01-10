@@ -23,7 +23,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class PanelModifEntiteAssociation extends JFrame implements ActionListener {
+public class PanelModifEntiteAssociation extends JFrame implements ActionListener
+{
 	private Controleur ctrl;
 
 	private JPanel panelAssociations; // Panel pour les associations
@@ -43,7 +44,8 @@ public class PanelModifEntiteAssociation extends JFrame implements ActionListene
 	 * Constructeur de la class PanelEntiteAssociation
 	 * @param ctrl	Le contrôleur
 	 */
-	public PanelModifEntiteAssociation(PanelModifQuestion panelModifQuestion, Controleur ctrl, String cheminImg, List<String> lstLiens, PanelBanque panelBanque, JEditorPane enonce, JEditorPane explication, Question q) {
+	public PanelModifEntiteAssociation(PanelModifQuestion panelModifQuestion, Controleur ctrl, String cheminImg, List<String> lstLiens, PanelBanque panelBanque, JEditorPane enonce, JEditorPane explication, Question q)
+	{
 		this.ctrl          = ctrl;
 		this.panelModifQuestion = panelModifQuestion;
 
@@ -96,12 +98,16 @@ public class PanelModifEntiteAssociation extends JFrame implements ActionListene
 		this.btnEnregistrer.addActionListener(this);
 
 		//Ajout de deux réponses pour rendre plus beau
-		if (!(this.q instanceof AssociationElement)) {
+		if (!(this.q instanceof AssociationElement))
+		{
 			this.ajouterAssociation();
 			this.ajouterAssociation();
-		} else {
+		}
+		else
+		{
 			AssociationElement ae = (AssociationElement) (this.q);
-			for(String gauche : ae.getAssociations().keySet()){
+			for(String gauche : ae.getAssociations().keySet())
+			{
 				this.ajouterAssociation(new String[]{gauche,ae.getAssociations().get(gauche)});
 			}
 		}

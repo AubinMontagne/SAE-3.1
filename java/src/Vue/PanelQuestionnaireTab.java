@@ -17,7 +17,8 @@ import src.*;
 import src.Metier.Difficulte;
 import src.Metier.*;
 
-public class PanelQuestionnaireTab extends JPanel implements ActionListener {
+public class PanelQuestionnaireTab extends JPanel implements ActionListener
+{
     private JTable            tblQuestion;
     private JTable            tblResult;
     private JPanel            panelQuestionnaireTab;
@@ -37,7 +38,8 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
      * @param titre     Le titre d'un questionnaire
      * @param estChrono Si un questionnaire est chronométré
      */
-    public PanelQuestionnaireTab(Controleur ctrl, Ressource r, String titre, Boolean estChrono) {
+    public PanelQuestionnaireTab(Controleur ctrl, Ressource r, String titre, Boolean estChrono)
+    {
         this.panelQuestionnaireTab = new JPanel(new BorderLayout());
         this.ctrl                  = ctrl;
         this.titreQuestionnaire    = titre;
@@ -49,32 +51,39 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
         String[] columnNames = {"Notion", "", "TF", "F", "M", "D", ""};
         Object[][] data = new Object[this.lstNotions.size()][7];
 
-        int alInd = 0;
-        for (int i = 0; i < this.lstNotions.size(); i++) {
+        int i = 0;
+        for (int cpt = 0; cpt < this.lstNotions.size(); cpt++)
+        {
             boolean verif = false;
-            while (!verif && alInd < this.lstNotions.size()) {
-                if (this.lstNotions.get(alInd).getRessourceAssociee() == r) {
-                    data[i][0] = this.lstNotions.get(alInd).getNom();
-                    data[i][1] = false;
+            while (!verif && i < this.lstNotions.size())
+            {
+                if (this.lstNotions.get(i).getRessourceAssociee() == r)
+                {
+                    data[cpt][0] = this.lstNotions.get(i).getNom();
+                    data[cpt][1] = false;
                     verif      = true;
                 }
-                alInd++;
+                i++;
             }
         }
 
         // Définition du model des tables
-        DefaultTableModel model = new DefaultTableModel(data, columnNames) {
+        DefaultTableModel model = new DefaultTableModel(data, columnNames)
+        {
             @Override
-            public Class<?> getColumnClass(int columnIndex) {
-                if (columnIndex == 1)                     return Boolean.class;
-                if (columnIndex >= 2 && columnIndex <= 5) return Integer.class;
+            public Class<?> getColumnClass(int columnIndex)
+            {
+                if (columnIndex == 1)                     {return Boolean.class;}
+                if (columnIndex >= 2 && columnIndex <= 5) {return Integer.class;}
                 return String.class;
             }
 
             @Override
-            public boolean isCellEditable(int row, int column) {
-                if (column == 0 || column == 6) return false;
-                if (column >= 2 && column <= 5) {
+            public boolean isCellEditable(int row, int column)
+            {
+                if (column == 0 || column == 6) {return false;}
+                if (column >= 2 && column <= 5)
+                {
                     Boolean isSelected = (Boolean) getValueAt(row, 1);
                     return isSelected != null && isSelected;
                 }
@@ -104,24 +113,26 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
                 int row = e.getFirstRow();
                 Boolean isSelected = (Boolean) model.getValueAt(row, 1);
                 
-                // Si la case est désélectionnée (false), remettre les valeurs de la colonne 2 à 5 à 0
+                // Si la case est désélectionnée, remettre les valeurs de la colonne 2 à 5 à 0
                 if (isSelected != null && !isSelected) {
-                    model.setValueAt(0, row, 2); // Remettre à 0 la colonne 2 (TF)
-                    model.setValueAt(0, row, 3); // Remettre à 0 la colonne 3 (F)
-                    model.setValueAt(0, row, 4); // Remettre à 0 la colonne 4 (M)
-                    model.setValueAt(0, row, 5); // Remettre à 0 la colonne 5 (D)
+                    model.setValueAt(0, row, 2);
+                    model.setValueAt(0, row, 3);
+                    model.setValueAt(0, row, 4);
+                    model.setValueAt(0, row, 5);
                 }
             }
         });
 
         // Configuration de la table
         this.tblQuestion = new JTable(model);
-        this.tblQuestion.setPreferredScrollableViewportSize(new Dimension(
+        this.tblQuestion.setPreferredScrollableViewportSize( new Dimension(
                 this.tblQuestion.getPreferredScrollableViewportSize().width,
                 this.tblQuestion.getRowHeight() * 6
-            ));
+            )
+        );
 
-        for (int col = 2; col <= 5; col++) {
+        for (int col = 2; col <= 5; col++)
+        {
             this.tblQuestion.getColumnModel().getColumn(col).setCellRenderer(new CustomCellRenderer(model));
             this.tblQuestion.getColumnModel().getColumn(col).setCellEditor  (new CustomCellEditor  (model));
         }
@@ -132,7 +143,7 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
 		this.btnGenerer.addActionListener(this);
 
         JScrollPane scrollPane = new JScrollPane(this.tblQuestion);
-        this.panelQuestionnaireTab.add(scrollPane    , BorderLayout.NORTH );
+        this.panelQuestionnaireTab.add(scrollPane     , BorderLayout.NORTH );
         this.panelQuestionnaireTab.add(this.lblTotal  , BorderLayout.CENTER);
         this.panelQuestionnaireTab.add(this.btnGenerer, BorderLayout.SOUTH );
         this.panelQuestionnaireTab.setVisible(true);
@@ -143,7 +154,8 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
 
 
     // Class interne pour customisé les casses du tableau
-    private static class CustomCellRenderer extends DefaultTableCellRenderer {
+    private static class CustomCellRenderer extends DefaultTableCellRenderer
+    {
         private final DefaultTableModel model;
 
         public CustomCellRenderer(DefaultTableModel model) {
@@ -152,20 +164,24 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
 
         @Override
         public Component getTableCellRendererComponent(
-                JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column
-        ) {
+                JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column )
+        {
             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
             Boolean isRowSelected = (Boolean) model.getValueAt(row, 1);
-            if (isRowSelected != null && isRowSelected && column >= 2 && column <= 5) {
-                switch (column) {
+            if (isRowSelected != null && isRowSelected && column >= 2 && column <= 5)
+            {
+                switch (column)
+                {
                     case 2 -> setBackground(new Color(133, 222, 146));
                     case 3 -> setBackground(new Color(181, 165, 196));
                     case 4 -> setBackground(new Color(189, 40 , 47) );
                     case 5 -> setBackground(new Color(126, 128, 126));
                 }
                 setForeground(Color.BLACK);
-            } else {
+            }
+            else
+            {
                 setBackground(Color.WHITE);
                 setForeground(Color.BLACK);
             }
@@ -174,37 +190,46 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
     }
 
     // Class interne pour pouvoir éditer la customisation des cases du tableau
-    private static class CustomCellEditor extends DefaultCellEditor {
+    private static class CustomCellEditor extends DefaultCellEditor
+    {
         private final DefaultTableModel model;
 
-        public CustomCellEditor(DefaultTableModel model) {
+        public CustomCellEditor(DefaultTableModel model)
+        {
             super(new JTextField());
             this.model = model;
         }
 
         @Override
-        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column)
+        {
             JTextField textField = (JTextField) super.getTableCellEditorComponent(table, value, isSelected, row, column);
 
             textField.setDocument(new PlainDocument() {
                 @Override
-                public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
-                    if (str.matches("\\d*")) {
+                public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException
+                {
+                    if (str.matches("\\d*"))
+                    {
                         super.insertString(offset, str, attr);
                     }
                 }
             });
 
             Boolean isRowSelected = (Boolean) model.getValueAt(row, 1);
-            if (isRowSelected != null && isRowSelected && column >= 2 && column <= 5) {
-                switch (column) {
+            if (isRowSelected != null && isRowSelected && column >= 2 && column <= 5)
+            {
+                switch (column)
+                {
                     case 2 -> textField.setBackground(new Color(133, 222, 146));
                     case 3 -> textField.setBackground(new Color(181, 165, 196));
                     case 4 -> textField.setBackground(new Color(189,  40, 47) );
                     case 5 -> textField.setBackground(new Color(126, 128, 126));
                 }
                 textField.setForeground(Color.BLACK);
-            } else {
+            }
+            else
+            {
                 textField.setBackground(Color.WHITE);
                 textField.setForeground(Color.BLACK);
             }
@@ -219,14 +244,16 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
      * Methode updateTotals
      * @param model Model du tableau
      */
-    private void updateTotals(DefaultTableModel model) {
+    private void updateTotals(DefaultTableModel model)
+    {
         int totalTF = 0;
         int totalF  = 0;
         int totalM  = 0;
         int totalD  = 0;
         int total   = 0;
 
-        for (int i = 0; i < model.getRowCount(); i++) {
+        for (int i = 0; i < model.getRowCount(); i++)
+        {
             // S'assurer que la valeur récupérée est bien un entier
             totalTF += getIntValue(model.getValueAt(i, 2));
             totalF  += getIntValue(model.getValueAt(i, 3));
@@ -242,20 +269,28 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
     }
 
     // Fonction utilitaire pour obtenir un entier, ou 0 si la valeur est invalide
-    private int getIntValue(Object value) {
-        if (value == null) {
+    private int getIntValue(Object value)
+    {
+        if (value == null)
+        {
             return 0; // Retourner 0 si la valeur est nulle
         }
 
-        try {
-            if (value instanceof String) {
+        try
+        {
+            if (value instanceof String)
+            {
                 // Si la valeur est une chaîne, essayer de la convertir en entier
                 return Integer.parseInt((String) value);
-            } else if (value instanceof Integer) {
+            }
+            else if (value instanceof Integer)
+            {
                 // Si la valeur est déjà un entier, la retourner directement
                 return (Integer) value;
             }
-        } catch (NumberFormatException e) {
+        }
+        catch (NumberFormatException e)
+        {
             // Si la conversion échoue, retourner 0
             return 0;
         }
@@ -269,15 +304,18 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
      *
      * @return Liste des données pour les lstNotions sélectionnées.
      */
-    private ArrayList<QuestionnaireData> getSelectedData() {
+    private ArrayList<QuestionnaireData> getSelectedData()
+    {
         ArrayList<QuestionnaireData> selectedData = new ArrayList<>();
 
         DefaultTableModel model = (DefaultTableModel) this.tblQuestion.getModel();
 
-        for (int i = 0; i < model.getRowCount(); i++) {
+        for (int i = 0; i < model.getRowCount(); i++)
+        {
             Boolean isSelected = (Boolean) model.getValueAt(i, 1);
 
-            if (isSelected != null && isSelected) {
+            if (isSelected != null && isSelected)
+            {
                 String notion = (String) model.getValueAt(i, 0);
                 int tf = getIntValue(model.getValueAt(i, 2));
                 int f  = getIntValue(model.getValueAt(i, 3));
@@ -294,19 +332,23 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
     /**
      * Classe interne pour stocker les données d'une ligne sélectionnée.
      */
-    private static class QuestionnaireData {
+    private static class QuestionnaireData
+    {
         private String notion;
         private int    tf;
         private int    f;
         private int    m;
         private int    d;
-        public QuestionnaireData(String notion, int tf, int f, int m, int d) {
+
+        public QuestionnaireData(String notion, int tf, int f, int m, int d)
+        {
             this.notion = notion;
             this.tf     = tf;
             this.f      = f;
             this.m      = m;
             this.d      = d;
         }
+
         public String getNotion() {return notion;}
         public int getTf()        {return tf;    }
         public int getF()         {return f;     }
@@ -314,25 +356,37 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
         public int getD()         {return d;     }
 
         public void setTf(int tf) {this.tf = tf;}
-        public void setF(int f)   {this.f = f;  }
-        public void setM(int m)   {this.m = m;  }
-        public void setD(int d)   {this.d = d;  }
+        public void setF(int f)   {this.f  = f; }
+        public void setM(int m)   {this.m  = m; }
+        public void setD(int d)   {this.d  = d; }
     }
 
     /**
      * Methode actionPerformed
      * @param e L'évènement à traiter
      */
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.btnGenerer) {
+    public void actionPerformed(ActionEvent e)
+    {
+        if (e.getSource() == this.btnGenerer)
+        {
             // Récupération des données pour les lstNotions sélectionnées
             ArrayList<QuestionnaireData> selectedData = getSelectedData();
 
-            if (selectedData.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Aucune notion sélectionnée.", "Avertissement", JOptionPane.WARNING_MESSAGE);
+            if (selectedData.isEmpty())
+            {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Aucune notion sélectionnée.",
+                        "Avertissement",
+                        JOptionPane.WARNING_MESSAGE
+                );
                 return;
             }
-            Questionnaire questionnaire = new Questionnaire(this.titreQuestionnaire, this.r, this.estChrono);
+            Questionnaire questionnaire = new Questionnaire(
+                    this.titreQuestionnaire,
+                    this.r,
+                    this.estChrono
+            );
 
             // Préparation de l'affichage des données
             Difficulte tf = Difficulte.TRES_FACILE;
@@ -343,28 +397,32 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
             StringBuilder sb = new StringBuilder("Données du questionnaire:\n");
             int totalTF = 0, totalF = 0, totalM = 0, totalD = 0;
 
-            for (QuestionnaireData data : selectedData) {
-
+            for (QuestionnaireData data : selectedData)
+            {
                 int nbElt = ctrl.getQuestionsParNotionEtDifficulte(this.ctrl.getMetier().getNotionByNom(data.getNotion()),tf).size();
-                if( nbElt < data.getTf()){
+                if( nbElt < data.getTf())
+                {
                     data.setTf(nbElt);
                 }
                 questionnaire.defNbQuestion(this.ctrl.getMetier().getNotionByNom(data.getNotion()), tf, data.getTf());
 
                 nbElt = ctrl.getQuestionsParNotionEtDifficulte(this.ctrl.getMetier().getNotionByNom(data.getNotion()),f).size();
-                if( nbElt < data.getTf()){
+                if( nbElt < data.getTf())
+                {
                     data.setF(nbElt);
                 }
                 questionnaire.defNbQuestion(this.ctrl.getMetier().getNotionByNom(data.getNotion()), f, data.getF());
 
                 nbElt = ctrl.getQuestionsParNotionEtDifficulte(this.ctrl.getMetier().getNotionByNom(data.getNotion()),m).size();
-                if( nbElt < data.getM()){
+                if( nbElt < data.getM())
+                {
                     data.setM(nbElt);
                 }
                 questionnaire.defNbQuestion(this.ctrl.getMetier().getNotionByNom(data.getNotion()), m, data.getM());
 
                 nbElt = ctrl.getQuestionsParNotionEtDifficulte(this.ctrl.getMetier().getNotionByNom(data.getNotion()),d).size();
-                if( nbElt < data.getTf()){
+                if( nbElt < data.getTf())
+                {
                     data.setD(nbElt);
                 }
                 questionnaire.defNbQuestion(this.ctrl.getMetier().getNotionByNom(data.getNotion()), d, data.getD());
@@ -390,13 +448,14 @@ public class PanelQuestionnaireTab extends JPanel implements ActionListener {
             sb.append(String.format("  - Total Questions: %d\n"       , (totalTF + totalF + totalM + totalD)));
 
             // Affichage des données dans le JOptionPane
-            JOptionPane.showMessageDialog(this, "Génération du questionnaire reussis","", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, sb,"Resumé", JOptionPane.INFORMATION_MESSAGE);
 
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             int returnValue = fileChooser.showOpenDialog(null);
 
-            if(returnValue == JFileChooser.APPROVE_OPTION){
+            if(returnValue == JFileChooser.APPROVE_OPTION)
+            {
                 String path = fileChooser.getSelectedFile().getAbsolutePath();
                 this.ctrl.getMetier().initQuestionnaire(questionnaire,path);
             }

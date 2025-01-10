@@ -25,13 +25,15 @@ public class QCMBuilder
      * @param questionnaire Le questionnaire contenant des questions
      * @param path          Le chemin ou créér le dossier contenant les fichier du questionnaire en HTML/CSS/JS
      */
-    public QCMBuilder(Questionnaire questionnaire, String path){
+    public QCMBuilder(Questionnaire questionnaire, String path)
+    {
         this.questionnaire = questionnaire;
         this.path = path;
 
         this.creerDossier(path);
 
-        try{
+        try
+        {
             this.fileWriter = new FileWriter(path + "/" +questionnaire.getNom() + "/index.html");
 
             ecrireHTML();
@@ -39,7 +41,9 @@ public class QCMBuilder
             ecrireImage();
             ecrireJS();
 
-        }catch (Exception e){
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
@@ -67,7 +71,8 @@ public class QCMBuilder
             }
 
             file.mkdir();
-        }else
+        }
+        else
         {
             file.mkdir();
         }
@@ -80,24 +85,29 @@ public class QCMBuilder
         }
 
 
-        try {
+        try
+        {
 
             for(Question q : this.questionnaire.getLstQuestion()) {
-                for (String s : q.getListeFichiers()) {
-                    if (s != null) {
+                for (String s : q.getListeFichiers())
+                {
+                    if (s != null)
+                    {
                         Path fileSource = Paths.get("java/data/" + q.getNotion().getRessourceAssociee().getNom() + "/" + q.getNotion().getNom() + "/Question " + q.getId() + "/Compléments/" + s);
                         Path fileDest = Paths.get(path + "/" + this.questionnaire.getNom() + "/data/Question " + q.getId() + "/Compléments/" + s);
                         Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
                     }
                 }
-                if (q.getImageChemin() != null && ! q.getImageChemin().isEmpty() && !q.getImageChemin().equals("null")) {
+                if (q.getImageChemin() != null && ! q.getImageChemin().isEmpty() && !q.getImageChemin().equals("null"))
+                {
                     Path fileSource = Paths.get("java/data/" + q.getNotion().getRessourceAssociee().getNom() + "/" + q.getNotion().getNom() + "/Question " + q.getId() + "/Compléments/" + q.getImageChemin());
                     Path fileDest = Paths.get(path + "/" + this.questionnaire.getNom() + "/data/Question " + q.getId() + "/Compléments/" + q.getImageChemin());
                     Files.copy(fileSource, fileDest, StandardCopyOption.REPLACE_EXISTING);
                 }
             }
 
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             ex.printStackTrace();
             System.err.println("Erreur : " + ex.getMessage());
@@ -109,8 +119,10 @@ public class QCMBuilder
      * Cette métode permet l'écriture de index.html commun a tous les questionnaires
      * @return  Vrai si le fichier a pu être écrit, sinon faux
      */
-    public boolean ecrireHTML(){
-        try{
+    public boolean ecrireHTML()
+    {
+        try
+        {
             String listeNotions = "";
 
             int nbTresFacile = 0;
@@ -118,25 +130,20 @@ public class QCMBuilder
             int nbMoyen = 0;
             int nbDifficile = 0;
 
-            for(Question q : this.questionnaire.getLstQuestion()){
-                switch (q.getDifficulte().getIndice()){
-                    case 1:
-                        nbTresFacile++;
-                        break;
-                    case 2:
-                        nbFacile++;
-                        break;
-                    case 3:
-                        nbMoyen++;
-                        break;
-                    case 4:
-                        nbDifficile++;
-                        break;
+            for(Question q : this.questionnaire.getLstQuestion())
+            {
+                switch (q.getDifficulte().getIndice())
+                {
+                    case 1 -> nbTresFacile++;
+                    case 2 -> nbFacile++;
+                    case 3 -> nbMoyen++;
+                    case 4 -> nbDifficile++;
                 }
 
             }
 
-            for(Notion n : this.questionnaire.getLstNotions()){
+            for(Notion n : this.questionnaire.getLstNotions())
+            {
                 listeNotions = listeNotions + "<li> " + n.getNom() + " </li>\n";
             }
 
@@ -177,7 +184,9 @@ public class QCMBuilder
             writer.write(html);
 
             writer.close();
-        }catch (Exception e){
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
             return false;
         }
@@ -189,13 +198,16 @@ public class QCMBuilder
      * Cette métode permet l'écriture de style.css commun a tous les questionnaires
      * @return  Vrai si le fichier a pu être écrit, sinon faux
      */
-    public boolean ecrireStyle(){
-        try{
+    public boolean ecrireStyle()
+    {
+        try
+        {
             String css = "";
 
             this.scanner = new Scanner(new FileReader(System.getProperty("user.dir") + "/out/production/SAE-31/docs/style.css"));
 
-            while(scanner.hasNextLine()){
+            while(scanner.hasNextLine())
+            {
                 css = css + scanner.nextLine()+"\n";
             }
 
@@ -203,7 +215,9 @@ public class QCMBuilder
             writer.write(css);
 
             writer.close();
-        }catch (Exception e){
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return true;
@@ -214,18 +228,21 @@ public class QCMBuilder
      * Cette métode permet la création des images nécéssaires au questionnaire
      * @return  Vrai si les fichiers ont pu être écrits, sinon faux
      */
-    public boolean ecrireImage(){
+    public boolean ecrireImage()
+    {
         String[] tabImg = {"TF.png", "F.png", "M.png", "D.png"};
         String[] tabBtn = {"CheckVide.png", "CheckPlein.png", "RadVide.png", "RadPlein.png"};
 
-        try{
+        try
+        {
             Path folderPath = Path.of(path + "/"  + this.questionnaire.getNom() + "/data/imgDif/");
             Files.createDirectories(folderPath);
 
             folderPath = Path.of(path  + "/" +  this.questionnaire.getNom() + "/data/imgBtn/");
             Files.createDirectories(folderPath);
 
-            for(String img : tabImg){
+            for(String img : tabImg)
+            {
                 String newPath = System.getProperty("user.dir") + "/out/production/SAE-31/data/Images/imgDif/" + img;
                 String newPath2 = path  + "/" +  this.questionnaire.getNom() + "/data/imgDif/" + img;
 
@@ -233,18 +250,18 @@ public class QCMBuilder
 
             }
 
-            for(String btn : tabBtn){
+            for(String btn : tabBtn)
+            {
                 String newPath = System.getProperty("user.dir") + "/out/production/SAE-31/data/Images/imgBtn/" + btn;
                 String newPath2 = path + "/" + this.questionnaire.getNom() + "/data/imgBtn/" + btn;
 
                 Files.copy(Path.of(newPath), Path.of(newPath2), StandardCopyOption.REPLACE_EXISTING);
-
             }
-        }catch (Exception e){
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
-
-
         return true;
     }
 
@@ -255,7 +272,8 @@ public class QCMBuilder
      */
     public void ecrireJS()
     {
-        try{
+        try
+        {
             BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/"+ this.questionnaire.getNom() + "/script.js"));
 
             String delimiteur = "\n";
@@ -266,20 +284,20 @@ public class QCMBuilder
             scanner.useDelimiter(delimiteur);
 
             // Lire les parties une par une
-            while (scanner.hasNext()) {
+            while (scanner.hasNext())
+            {
                 String partie = scanner.next();
                 writer.write(partie);
                 writer.newLine();
                 writer.flush();
             }
 
-        }catch (Exception e)
-        {
-            e.printStackTrace();
         }
+        catch (Exception e) {e.printStackTrace();}
     }
 
-    public String communJS() {
+    public String communJS()
+    {
         int noteMax = 0;
 
         //Début tab completion
@@ -289,14 +307,16 @@ public class QCMBuilder
         String tabEliminations = "";
         int indice = 0;
 
-        for (int i = 0; i < this.questionnaire.getLstQuestion().size(); i++) {
+        for (int i = 0; i < this.questionnaire.getLstQuestion().size(); i++)
+        {
             tabCompletion = tabCompletion + "false,";
         }
 
         tabCompletion = tabCompletion.substring(0, tabCompletion.length() - 1);
         tabCompletion = tabCompletion + "]";
 
-        for (Question q : this.questionnaire.getLstQuestion()) {
+        for (Question q : this.questionnaire.getLstQuestion())
+        {
             noteMax += q.getPoint();
         }
 
@@ -306,18 +326,24 @@ public class QCMBuilder
 
         String tabSelection = "\n[\n[],\n[";
 
-        for (Question q : this.questionnaire.getLstQuestion()) {
-            if (q instanceof QCM || q instanceof EliminationReponse) {
-                if (q instanceof QCM) {
-                    for (int i = 0; i < ((QCM) q).getNbReponses(); i++) {
-                        tabSelection = tabSelection + "false,";
-                    }
-                } else {
-                    for (int i = 0; i < ((EliminationReponse) q).getHmReponses().size(); i++) {
+        for (Question q : this.questionnaire.getLstQuestion())
+        {
+            if (q instanceof QCM || q instanceof EliminationReponse)
+            {
+                if (q instanceof QCM)
+                {
+                    for (int i = 0; i < ((QCM) q).getNbReponses(); i++)
+                    {
                         tabSelection = tabSelection + "false,";
                     }
                 }
-
+                else
+                {
+                    for (int i = 0; i < ((EliminationReponse) q).getHmReponses().size(); i++)
+                    {
+                        tabSelection = tabSelection + "false,";
+                    }
+                }
             }
             tabSelection = tabSelection + "],\n[";
         }
@@ -340,7 +366,8 @@ public class QCMBuilder
                 lignes += "let lignesQ" + indiceLigne + " = [";
                 AssociationElement ae = (AssociationElement)(q);
 
-                for ( String gauche : ae.getAssociations().keySet()) {
+                for ( String gauche : ae.getAssociations().keySet())
+                {
                     lignes += "[[],[]],";
                 }
 
@@ -360,7 +387,8 @@ public class QCMBuilder
                 lignesReInit += "lignesQ" + indiceLigne + " = [";
                 AssociationElement ae = (AssociationElement)(q);
 
-                for ( String gauche : ae.getAssociations().keySet()) {
+                for ( String gauche : ae.getAssociations().keySet())
+                {
                     lignesReInit += "[[],[]],";
                 }
 
@@ -378,11 +406,12 @@ public class QCMBuilder
 
         for (Question q : this.questionnaire.getLstQuestion())
         {
-            if (q instanceof EliminationReponse) {
+            if (q instanceof EliminationReponse)
+            {
                 tabEliminations = tabEliminations + "nbEliminationQ" + (indice) + " = [";
-                for (int i = 0; i < ((EliminationReponse) q).getHmReponses().size(); i++) {
+                for (int i = 0; i < ((EliminationReponse) q).getHmReponses().size(); i++)
+                {
                     tabEliminations = tabEliminations + "false,";
-
                 }
                 tabEliminations = tabEliminations + "];\n";
             }
@@ -390,9 +419,10 @@ public class QCMBuilder
         }
 
         String tabEliminationsInit = "";
-
         if(tabEliminations.length() > 0 )
+        {
             tabEliminationsInit = "let " + tabEliminations;
+        }
 
 
 
@@ -401,25 +431,19 @@ public class QCMBuilder
         int nbMoyen = 0;
         int nbDifficile = 0;
 
-        for (Question q : this.questionnaire.getLstQuestion()) {
+        for (Question q : this.questionnaire.getLstQuestion())
+        {
             switch (q.getDifficulte().getIndice()) {
-                case 1:
-                    nbTresFacile++;
-                    break;
-                case 2:
-                    nbFacile++;
-                    break;
-                case 3:
-                    nbMoyen++;
-                    break;
-                case 4:
-                    nbDifficile++;
-                    break;
+                case 1 -> nbTresFacile++;
+                case 2 -> nbFacile++;
+                case 3 -> nbMoyen++;
+                case 4 -> nbDifficile++;
             }
         }
 
         String listeNotions = "";
-        for(Notion n : this.questionnaire.getLstNotions()){
+        for(Notion n : this.questionnaire.getLstNotions())
+        {
             listeNotions = listeNotions + "<li> " + n.getNom() + " </li>\n";
         }
 
@@ -898,8 +922,10 @@ public class QCMBuilder
     {
         String res = "";
 
-        for (Question q : questionnaire.getLstQuestion()) {
-            if (q instanceof QCM) {
+        for (Question q : questionnaire.getLstQuestion())
+        {
+            if (q instanceof QCM)
+            {
                 String reponses = "";
                 String bonnesRep = "[";
                 String onClicFonctions = "";
@@ -907,15 +933,21 @@ public class QCMBuilder
                 String questionPrecedente = "";
                 String txtChoixRep = "";
 
-                if ((questionnaire.getLstQuestion().indexOf(q) == 0)) {
+                if ((questionnaire.getLstQuestion().indexOf(q) == 0))
+                {
                     questionPrecedente = "question1()";
-                } else {
+                }
+                else
+                {
                     questionPrecedente = "question" + ((questionnaire.getLstQuestion().indexOf(q))) + "()";
                 }
 
-                if ((questionnaire.getLstQuestion().indexOf(q) == questionnaire.getLstQuestion().size() - 1)) {
+                if ((questionnaire.getLstQuestion().indexOf(q) == questionnaire.getLstQuestion().size() - 1))
+                {
                     questionSuivante = "finQuestionnaire()";
-                } else {
+                }
+                else
+                {
                     questionSuivante = "question" + ((questionnaire.getLstQuestion().indexOf(q)) + 2) + "()";
                 }
 
@@ -927,7 +959,9 @@ public class QCMBuilder
                     if(liens.substring(liens.length()-3) == "png" || liens.substring(liens.length()-3) == "jpg" || liens.substring(liens.length()-4) == "jpeg")
                     {
                         fichierComplementaires = fichierComplementaires + "<img class=\"imgQuestion\" src=\"java/data/" + q.getNotion().getRessourceAssociee().getNom() + "/" + q.getNotion().getNom() + "/" + q.getId() + "/" + liens + "\" draggable=\"false\">\n";
-                    }else{
+                    }
+                    else
+                    {
                         fichierComplementaires = fichierComplementaires + "<a href=\"./data/Question " + q.getId() + "/Compléments/" + liens + "\" download=\"" + liens + "\" target=\"_blank\"> Télécharger le fichier complémentaire numéro " + numFichierComp +"</a>\n";
                     }
                     numFichierComp++;
@@ -939,15 +973,21 @@ public class QCMBuilder
                 for (String reponse : ((QCM) q).getReponses().keySet())
                 {
 
-                    if (((QCM) q).getReponses().get(reponse)) {
+                    if (((QCM) q).getReponses().get(reponse))
+                    {
                         bonnesRep = bonnesRep + "true,";
-                    } else {
+                    }
+                    else
+                    {
                         bonnesRep = bonnesRep + "false,";
                     }
-                    if(!((QCM)q).estVraiouFaux()) {
+                    if(!((QCM)q).estVraiouFaux())
+                    {
                         reponses = reponses + "<div class=\"reponseBox\" id=\"rep" + i + "\" ><img id=\"img" + i + "\" class=\"imgBtn\" src=\"./data/imgBtn/CheckVide.png\">'" + reponse + "'</div>\n";
                         onClicFonctions = onClicFonctions + "document.getElementById(\"rep" + i + "\").onclick = function() { clicRep(" + (i - 1) + ", \"QCM\") };\n";
-                    }else{
+                    }
+                    else
+                    {
                         reponses = reponses + "<div class=\"reponseBox\" id=\"rep" + i + "\" ><img id=\"img" + i + "\" class=\"imgBtn\" src=\"./data/imgBtn/RadVide.png\">'" + reponse + "'</div>\n";
                         onClicFonctions = onClicFonctions + "document.getElementById(\"rep" + i + "\").onclick = function() { clicRep(" + (i - 1) + ", \"vrai-faux\") };\n";
                     }
@@ -959,7 +999,9 @@ public class QCMBuilder
                 if (!((QCM)q).estVraiouFaux())
                 {
                     txtChoixRep = "QCM";
-                }else{
+                }
+                else
+                {
                     txtChoixRep = "Question à choix unique";
                 }
 
@@ -1137,7 +1179,8 @@ public class QCMBuilder
                         "        }\n" +
                         "    };\n" +
                         "}";
-            } else if (q instanceof AssociationElement)
+            }
+            else if (q instanceof AssociationElement)
             {
                 AssociationElement ae = (AssociationElement)(q);
                 String clickDetection = "";
@@ -1145,13 +1188,17 @@ public class QCMBuilder
                 String questionSuivante = "";
                 String questionPrecedente = "";
 
-                if ((questionnaire.getLstQuestion().indexOf(q) == 0)) {
+                if ((questionnaire.getLstQuestion().indexOf(q) == 0))
+                {
                     questionPrecedente = "question1()";
-                } else {
+                }
+                else
+                {
                     questionPrecedente = "question" + ((questionnaire.getLstQuestion().indexOf(q))) + "()";
                 }
 
-                if ((questionnaire.getLstQuestion().indexOf(q) == questionnaire.getLstQuestion().size() - 1)) {
+                if ((questionnaire.getLstQuestion().indexOf(q) == questionnaire.getLstQuestion().size() - 1))
+                {
                     questionSuivante = "finQuestionnaire()";
                 } else {
                     questionSuivante = "question" + ((questionnaire.getLstQuestion().indexOf(q)) + 2) + "()";
@@ -1199,18 +1246,16 @@ public class QCMBuilder
                 {
                     bonnesRep += "[";
 
-                    if(!tabRep[i][0][0].equals(tabRep[i][1][0]) || !tabRep[i][0][1].equals(tabRep[i][1][1]))
-                    {
-                        for(int j = 0 ; j < tabRep.length ; j++)
-                        {
-                            if(tabRep[i][0][0].equals(tabRep[j][1][0]) && tabRep[i][0][1].equals(tabRep[j][1][1]))
-                            {
-                                bonnesRep += "[" + (i*2) + "," + (j*2+1) + "],[" + (i*2)  + "," + (j*2+1) + "]";
+                    if(!tabRep[i][0][0].equals(tabRep[i][1][0]) || !tabRep[i][0][1].equals(tabRep[i][1][1])) {
+                        for (int j = 0; j < tabRep.length; j++) {
+                            if (tabRep[i][0][0].equals(tabRep[j][1][0]) && tabRep[i][0][1].equals(tabRep[j][1][1])) {
+                                bonnesRep += "[" + (i * 2) + "," + (j * 2 + 1) + "],[" + (i * 2) + "," + (j * 2 + 1) + "]";
 
                             }
                         }
-
-                    }else{
+                    }
+                    else
+                    {
                         bonnesRep += "[" + (i*2+1) + "," + (i*2) + "],[" + (i*2+1)  + "," + (i*2) + "]";
                     }
                     bonnesRep += "],";
@@ -1609,7 +1654,8 @@ public class QCMBuilder
                         "    document.getElementById(\"btnSuiv\").onclick = function() {if(estChronometrer){if(tabCompletion[questionActuelle]){questionSuivante(), " + questionSuivante + "}}else{questionSuivante(), " + questionSuivante + "}};\n" +
                         "\n" +
                         "}";
-            } else if ((q instanceof EliminationReponse))
+            }
+            else if ((q instanceof EliminationReponse))
             {
                 String reponses = "";
                 String bonnesRep = "[";
@@ -1617,24 +1663,34 @@ public class QCMBuilder
                 String questionSuivante = "";
                 String questionPrecedente = "";
 
-                if ((questionnaire.getLstQuestion().indexOf(q) == 0)) {
+                if ((questionnaire.getLstQuestion().indexOf(q) == 0))
+                {
                     questionPrecedente = "question1()";
-                } else {
+                }
+                else
+                {
                     questionPrecedente = "question" + ((questionnaire.getLstQuestion().indexOf(q))) + "()";
                 }
 
-                if ((questionnaire.getLstQuestion().indexOf(q) == questionnaire.getLstQuestion().size() - 1)) {
+                if ((questionnaire.getLstQuestion().indexOf(q) == questionnaire.getLstQuestion().size() - 1))
+                {
                     questionSuivante = "finQuestionnaire()";
-                } else {
+                }
+                else
+                {
                     questionSuivante = "question" + ((questionnaire.getLstQuestion().indexOf(q)) + 2) + "()";
                 }
 
                 int i = 1;
 
-                for (String reponse : ((EliminationReponse) q).getHmReponses().keySet()) {
-                    if (((EliminationReponse) q).estReponseCorrecte(reponse)) {
+                for (String reponse : ((EliminationReponse) q).getHmReponses().keySet())
+                {
+                    if (((EliminationReponse) q).estReponseCorrecte(reponse))
+                    {
                         bonnesRep = bonnesRep + "true,";
-                    } else {
+                    }
+                    else
+                    {
                         bonnesRep = bonnesRep + "false,";
                     }
                     reponses = reponses + "<div class=\"reponseBox\" id=\"rep" + i + "\" ><img id=\"img"+ i +"\" class=\"imgBtn\" src=\"./data/imgBtn/RadVide.png\">'" + reponse + "'</div>\n";
@@ -1654,7 +1710,9 @@ public class QCMBuilder
                     if (((EliminationReponse) q).getHmReponses().get(reponse)[1] > 0)
                     {
                         eliminations += ((EliminationReponse) q).getHmReponses().get(reponse)[1].intValue() + ",";
-                    }else{
+                    }
+                    else
+                    {
                         eliminations += "-1,";
                     }
                     if(((EliminationReponse) q).getHmReponses().get(reponse)[0] > coutElimination)

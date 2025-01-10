@@ -10,7 +10,8 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Question{
+public abstract class Question
+{
     private String          dossierChemin;// intitulé + corps de la question
     private Difficulte      difficulte;
     private Notion          notion;
@@ -54,17 +55,23 @@ public abstract class Question{
     {
         File dossier = new File("java/data/"+ this.notion.getRessourceAssociee().getNom() + "/" + this.notion + "/Question " + this.id);
 
-        if(dossier.exists()) {
-            if (dossier.delete()) {
+        if(dossier.exists())
+        {
+            if (dossier.delete())
+            {
+                System.out.print("Suppression");
                 return true;
             }
+            System.out.print("Erreur delete");
         }
+        System.out.print("Existe pas");
         return false;
     }
 
     public static boolean sauvegarderFichier(String chemin, JEditorPane editeur)
     {
-        try{
+        try
+        {
             File fichier = new File(chemin);
 
             FileWriter writer = new FileWriter(fichier);
@@ -79,7 +86,8 @@ public abstract class Question{
 
 
             writer.close();
-        }catch (Exception e)
+        }
+        catch (Exception e)
         {
             e.printStackTrace();
             return false;
@@ -88,12 +96,17 @@ public abstract class Question{
     }
 
 	// Get
-    public String   getEnonce(){
+    public String   getEnonce()
+    {
         File file = new File(this.dossierChemin + "/enonce.rtf");
 
         if(!file.exists())
+        {
             return null;
-        try {
+        }
+
+        try
+        {
             JEditorPane p = new JEditorPane();
             p.setContentType("text/rtf");
 
@@ -105,16 +118,20 @@ public abstract class Question{
             kitHtml.write(writer, p.getDocument(), 0, p.getDocument().getLength());
 
             return writer.toString();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return null;
     }
 
-    public String getExplication(){
+    public String getExplication()
+    {
         File file = new File(this.dossierChemin + "/explication.rtf");
 
-        try {
+        try
+        {
             JEditorPane p = new JEditorPane();
             p.setContentType("text/rtf");
 
@@ -126,15 +143,20 @@ public abstract class Question{
             kitHtml.write(writer, p.getDocument(), 0, p.getDocument().getLength());
 
             return writer.toString();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return null;
     }
-    public String getEnonceText() {
+
+    public String getEnonceText()
+    {
         File file = new File(this.dossierChemin + "/enonce.rtf");
 
-        try {
+        try
+        {
             JEditorPane p = new JEditorPane();
             p.setContentType("text/rtf");
 
@@ -150,29 +172,37 @@ public abstract class Question{
             res = res.substring(res.indexOf("<style>"), res.indexOf("</style>")+8) + res.substring(res.indexOf("<p"), res.indexOf("</p>") + 4);
 
             return res;
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return null;
     }
 
     
-    public String getEnonceRTF(){
+    public String getEnonceRTF()
+    {
         String filePath = this.dossierChemin + "/enonce.rtf";
         String content = "";
-        try {
+        try
+        {
             content = new String(Files.readAllBytes(Paths.get(filePath)));
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
         return content;
     }
 
 
-    public String getExplicationText(){
+    public String getExplicationText()
+    {
         File file = new File(this.dossierChemin + "/explication.rtf");
 
-        try {
+        try
+        {
             JEditorPane p = new JEditorPane();
             p.setContentType("text/rtf");
 
@@ -190,50 +220,61 @@ public abstract class Question{
             res = res.replaceAll("\\r?\\n", " ");
 
             return res;
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return null;
     }
-    public String getExplicationRTF(){
+
+    public String getExplicationRTF()
+    {
         String filePath = this.dossierChemin + "/explication.rtf";
         String content = "";
-        try {
+        try
+        {
             content = new String(Files.readAllBytes(Paths.get(filePath)));
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
         return content;
     }
-    public Difficulte getDifficulte()         {return this.difficulte;}
-    public Notion     getNotion()             {return this.notion;}
-    public int        getTemps()              {return this.temps;}
-    public int        getPoint()              {return this.point;}
-    public List<String> getListeFichiers()    {return this.listeFichiers;}
-    public String     getImageChemin()        {return this.imageChemin;}
-    public String     getDossierChemin()       {return dossierChemin;}
-    public int        getId()                 {return this.id;}
 
-    public String     getAsData(){
+    public Difficulte   getDifficulte()    {return this.difficulte;}
+    public Notion       getNotion()        {return this.notion;}
+    public int          getTemps()         {return this.temps;}
+    public int          getPoint()         {return this.point;}
+    public List<String> getListeFichiers() {return this.listeFichiers;}
+    public String       getImageChemin()   {return this.imageChemin;}
+    public String       getDossierChemin() {return dossierChemin;}
+    public int          getId()            {return this.id;}
+
+    public String     getAsData()
+    {
         String res = this.dossierChemin + ";" + this.difficulte.getIndice() + ";" + getNotion().getNom() + ";" + this.temps + ";" + this.point + ";" + this.id + ";" + this.imageChemin + ";";
-        for(String fichier : this.listeFichiers){
+        for(String fichier : this.listeFichiers)
+        {
             res += fichier + ",";
         }
         return res;
     }
 
 	// Set
-    public void setDossierChemin  (String dossierChemin)   {this.dossierChemin      = dossierChemin;}
-    public void setDifficulte     (Difficulte difficulte)  {this.difficulte      = difficulte;}
-    public void setNotion         (Notion notion)          {this.notion          = notion;}
-    public void setTemps          (int temps)              {this.temps           = temps;}
-    public void setPoint          (int point)              {this.point           =  point;}
-    public void setImageChemin    (String imageChemin)     {this.imageChemin     = imageChemin;}
-    public void setListeFichiers  (List<String> listeFichiers){this.listeFichiers   = listeFichiers;}
-    public void ajouterFichier    (String fichier){this.listeFichiers.add(fichier);}
-    public int  setId             (int id)                 {return this.id       = id;}
+    public void setDossierChemin  (String dossierChemin)       {this.dossierChemin      = dossierChemin;}
+    public void setDifficulte     (Difficulte difficulte)      {this.difficulte      = difficulte;}
+    public void setNotion         (Notion notion)              {this.notion          = notion;}
+    public void setTemps          (int temps)                  {this.temps           = temps;}
+    public void setPoint          (int point)                  {this.point           =  point;}
+    public void setImageChemin    (String imageChemin)         {this.imageChemin     = imageChemin;}
+    public void setListeFichiers  (List<String> listeFichiers) {this.listeFichiers   = listeFichiers;}
+    public void ajouterFichier    (String fichier)             {this.listeFichiers.add(fichier);}
+    public int  setId             (int id)                     {return this.id       = id;}
 
-	public String toString(){
+	public String toString()
+    {
 		return "Difficulté: " + this.difficulte + "\n" +
 			   this.notion.toString() + "\n" +
 			   "Temps: " + this.temps + " secondes\n" +

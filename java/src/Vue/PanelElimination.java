@@ -58,7 +58,8 @@ public class PanelElimination extends JFrame implements ActionListener
 			String cheminDossier   , String cheminImg     , List<String> lstLiens,
 			int difficulte         , String notion        , int points, int temps,
 			PanelBanque panelBanque, JEditorPane enonce   , JEditorPane explication,
-			int idMax ){
+			int idMax )
+	{
 		this.ctrl          = ctrl;
 		this.panelCreationQuestion = panelCreationQuestion;
 
@@ -128,7 +129,8 @@ public class PanelElimination extends JFrame implements ActionListener
 	/**
 	 * Methode ajouterReponse
 	 */
-	private void ajouterReponse(){
+	private void ajouterReponse()
+	{
 		JPanel panelAjoutReponse   = new JPanel();
 		panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
 		JTextField txtReponse      = new JTextField();
@@ -159,28 +161,34 @@ public class PanelElimination extends JFrame implements ActionListener
 	/**
 	 * Methode enregistrerElimination
 	 */
-	private void enregistrerElimination(){
+	private void enregistrerElimination()
+	{
 		Component[] composants  = this.panelReponses.getComponents();
 
 		HashMap<String, Double[]> reponses = new HashMap<>();
 		String reponseCorrecte = "";
 		int cptRepCorecte = 0;
-		for (Component composant : composants){
-			if (composant instanceof JPanel){
+		for (Component composant : composants)
+		{
+			if (composant instanceof JPanel)
+			{
 				JPanel reponse = (JPanel) composant;
 				JTextField txtReponse      = (JTextField) reponse.getComponent(0);
 				JTextField txtOrdreElim    = (JTextField) reponse.getComponent(1);
 				JTextField txtPointNegatif = (JTextField) reponse.getComponent(2);
 				JCheckBox  cbCorrecte      = (JCheckBox)  reponse.getComponent(3);
 
-				if( cbCorrecte.isSelected() ){
+				if( cbCorrecte.isSelected() )
+				{
 					cptRepCorecte ++;
 				}
 
-				try{
+				try
+				{
 					Double.parseDouble(txtOrdreElim.getText());
 					Double.parseDouble(txtPointNegatif.getText());
-				}catch (NumberFormatException e)
+				}
+				catch (NumberFormatException e)
 				{
 					JOptionPane.showMessageDialog(
 							this, "L'ordre ainsi que les points doivent être des entiers ou des double."
@@ -190,12 +198,14 @@ public class PanelElimination extends JFrame implements ActionListener
 
 
 				reponses.put(txtReponse.getText(), new Double[]{Double.parseDouble(txtPointNegatif.getText()), Double.parseDouble(txtOrdreElim.getText())});
-				if (cbCorrecte.isSelected()){
+				if (cbCorrecte.isSelected())
+				{
 					reponseCorrecte = txtReponse.getText();
 				}
 			}
 		}
-		if(cptRepCorecte == 0 || cptRepCorecte > 1) {
+		if(cptRepCorecte == 0 || cptRepCorecte > 1)
+		{
 			JOptionPane.showMessageDialog(this, "Nombre incorect de reponse bonne");
 			return;
 		}
@@ -216,7 +226,7 @@ public class PanelElimination extends JFrame implements ActionListener
 
 		if(this.panelBanque != null) {this.panelBanque.maj();}
 
-		Question.sauvegarderFichier(this.cheminDossier+"/Enonce.rtf", this.epEnonce);
+		Question.sauvegarderFichier(this.cheminDossier+"/Enonce.rtf"     , this.epEnonce);
 		Question.sauvegarderFichier(this.cheminDossier+"/Explication.rtf", this.epExplication);
 
 		this.panelCreationQuestion.actualiser();
@@ -228,7 +238,8 @@ public class PanelElimination extends JFrame implements ActionListener
 	 * @param e L'évènement à traiter
 	 */
 	@Override
-	public void actionPerformed(ActionEvent e){
+	public void actionPerformed(ActionEvent e)
+	{
 		String commande = e.getActionCommand();
 		switch (commande) {
 			case "ajouterReponse":

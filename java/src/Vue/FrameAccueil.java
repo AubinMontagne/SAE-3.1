@@ -5,7 +5,8 @@ import src.Controleur;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-public class FrameAccueil extends JFrame {
+public class FrameAccueil extends JFrame
+{
     private Controleur ctrl;
 
     /**
@@ -13,7 +14,8 @@ public class FrameAccueil extends JFrame {
      * 
      * @param ctrl Le contrôleur
      */
-    public FrameAccueil(Controleur ctrl) {
+    public FrameAccueil(Controleur ctrl)
+    {
         this.ctrl = ctrl;
 
         this.setTitle("QCM Builder - Page d'accueil");

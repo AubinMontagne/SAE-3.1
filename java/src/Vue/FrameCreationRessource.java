@@ -7,7 +7,8 @@ import javax.swing.JFrame;
 
 import java.awt.event.WindowListener;
 
-public class FrameCreationRessource extends JFrame implements WindowListener {
+public class FrameCreationRessource extends JFrame implements WindowListener
+{
     private static int nbFrame = 0;
 
     private Controleur ctrl;
@@ -16,7 +17,8 @@ public class FrameCreationRessource extends JFrame implements WindowListener {
      * Constructeur de la class FrameCreationRessource
      * @param ctrl              Le contrôleur
      */
-    private FrameCreationRessource(Controleur ctrl){
+    private FrameCreationRessource(Controleur ctrl)
+    {
         this.ctrl = ctrl;
 
         this.setTitle             ("QCM Builder - Création de la question");
@@ -34,7 +36,8 @@ public class FrameCreationRessource extends JFrame implements WindowListener {
         setVisible(true);
     }
 
-    public static FrameCreationRessource creerFrameCreationRessource(Controleur ctrl){
+    public static FrameCreationRessource creerFrameCreationRessource(Controleur ctrl)
+    {
         if(FrameCreationRessource.nbFrame == 0){
             FrameCreationRessource.nbFrame++;
             return new FrameCreationRessource(ctrl);

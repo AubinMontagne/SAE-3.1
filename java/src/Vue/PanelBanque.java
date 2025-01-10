@@ -29,6 +29,8 @@ import src.Metier.Ressource;
 
 public class PanelBanque extends JPanel implements  ActionListener, ItemListener 
 {
+	private static final int MAX_VISIBLE_ROWS = 5;
+
 	private boolean ignorerEvents = false;
 
 	private JButton              btnCreaQuest;
@@ -56,7 +58,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 
         String[] tabEntetes = {"Enoncé", "Difficulté", "Ressource", "Notion", "Points", "Type de question"};
 
-		this.listQ = new ArrayList<>(this.ctrl.getQuestions());
+		this.listQ = new ArrayList<>(this.ctrl.getQuestionsParNotion(this.ctrl.getNotionsParRessource(this.ctrl.getRessources().get(0)).get(0)));
         String[][] data = new String[this.listQ.size()][6];
 
 		for(int i = 0; i < this.listQ.size();i++)
@@ -85,10 +87,10 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
         this.tbQuestion = new JTable(model);
 
 		this.ddlstRessources  = new JComboBox<>(ctrl.getRessources().toArray(new Ressource[0]));
-		Ressource placeHolder = new Ressource(" "," ");
-		this.ddlstRessources.insertItemAt(placeHolder, 0);
-		this.ddlstRessources.setSelectedItem(placeHolder);
-		this.ddlstNotions		= new JComboBox<>();
+		this.ddlstRessources.setSelectedItem(ctrl.getRessources().getFirst());
+
+		this.ddlstNotions = new JComboBox<>(ctrl.getNotionsParRessource(ctrl.getRessources().getFirst()).toArray(new Notion[0]));
+		this.ddlstNotions.setSelectedItem(ctrl.getNotionsParRessource(ctrl.getRessources().getFirst()).getFirst());
 
 		JPanel panelParametre = new JPanel();
 
@@ -98,7 +100,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
         // Calcul dynamique de la hauteur
         int rowHeight     = this.tbQuestion.getRowHeight();
         int headerHeight  = this.tbQuestion.getTableHeader().getHeight();
-        int visibleHeight = rowHeight * Math.min(this.tbQuestion.getRowCount(), maxVisibleRows) + headerHeight;
+        int visibleHeight = rowHeight * Math.min(this.tbQuestion.getRowCount(),  PanelBanque.MAX_VISIBLE_ROWS) + headerHeight;
 
         // Ajuster la taille visible de la table
         this.tbQuestion.setPreferredScrollableViewportSize(new Dimension(800, visibleHeight));
@@ -144,8 +146,7 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 	{
         if ( this.btnCreaQuest == e.getSource()) 
 		{
-			if (!((Ressource) (this.ddlstRessources.getSelectedItem())).getId().equals(" ") &&
-					!((Notion) (this.ddlstNotions.getSelectedItem())).getNom().equals(" ")) 
+			if (((Ressource) (this.ddlstRessources.getSelectedItem())) != null )
 			{
 				FrameCreationQuestion.creerFrameCreationQuestion(
 						this.ctrl,
@@ -168,7 +169,6 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 					iterator.remove();
 					this.ctrl.supprimerQuestion(q);
 					this.maj();
-					this.ctrl.miseAJourFichiers();
 					break;
 				}
 			}
@@ -177,9 +177,12 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 		if(this.btnModif == e.getSource())
 		{
 			int row = this.tbQuestion.getSelectedRow();
-			for(int i = 0; i < this.ctrl.getQuestions().size();i++) 
+			for(int i = 0; i < this.ctrl.getQuestions().size();i++)
 			{
-				if( this.listQ.get(row) == this.listQ.get(i)) {FrameModifQuestion.creerFrameModifQuestion(this.ctrl,this, this.listQ.get(i));}
+				if( this.listQ.get(row) == this.listQ.get(i)) {
+					FrameModifQuestion.creerFrameModifQuestion(this.ctrl, this, this.listQ.get(i));
+					return;
+				}
 			}
 		}
 	}
@@ -187,34 +190,37 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 	public void maj()
 	{
 		String[] tabEntetes = {"Enoncé", "Difficulté", "Ressource", "Notion", "Points", "Type de question"};
-		ArrayList<Question> questList;
 
-		if (this.notion != null) {questList = this.ctrl.getQuestionsParNotion(notion);}
-		else {questList = new ArrayList<>();}
+		if (this.notion != null) {this.listQ = this.ctrl.getQuestionsParNotion(notion);}
+		else {this.listQ = new ArrayList<>();}
 
-		String[][] data = new String[questList.size()][6];
+		String[][] data = new String[this.listQ.size()][6];
 
-		for(int i = 0; i < questList.size();i++)
+		for(int i = 0; i < this.listQ.size();i++)
 		{
 			String typeQuestion = "";
 
 			if(this.listQ.get(i) instanceof QCM)
 			{
 				if(((QCM) this.listQ.get(i)).estVraiouFaux())
+				{
 					typeQuestion = "Réponse unique";
+				}
 				else
+				{
 					typeQuestion = "QCM";
+				}
 			} 
 			else {
 				if(this.listQ.get(i) instanceof EliminationReponse){typeQuestion = "Elimination Réponse";} 
 				else {typeQuestion = "Association d'éléments";}
 			}
 
-			data[i][0] =      questList.get(i).getEnonce();
-			data[i][1] = this.listQ.get(i).getDifficulte().getNom();
-			data[i][2] =      questList.get(i).getNotion().getRessourceAssociee().getNom();
-			data[i][3] =      questList.get(i).getNotion().getNom();
-			data[i][4] = "" + questList.get(i).getPoint();
+			data[i][0] =      this.listQ.get(i).getEnonce();
+			data[i][1] = 	  this.listQ.get(i).getDifficulte().getNom();
+			data[i][2] =      this.listQ.get(i).getNotion().getRessourceAssociee().getNom();
+			data[i][3] =      this.listQ.get(i).getNotion().getNom();
+			data[i][4] = "" + this.listQ.get(i).getPoint();
 			data[i][5] = typeQuestion;
 		}
 
@@ -222,7 +228,13 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 		DefaultTableModel model = new DefaultTableModel(data, tabEntetes);
 		this.tbQuestion.setModel(model);
 
-		this.ctrl.miseAJourFichiers();
+		// Calcul dynamique de la hauteur
+		int rowHeight     = this.tbQuestion.getRowHeight();
+		int headerHeight  = this.tbQuestion.getTableHeader().getHeight();
+		int visibleHeight = rowHeight * PanelBanque.MAX_VISIBLE_ROWS + headerHeight;
+
+		// Ajuster la taille visible de la table
+		this.tbQuestion.setPreferredScrollableViewportSize(new Dimension(800, visibleHeight));
 	}
 
 	@Override
@@ -234,19 +246,28 @@ public class PanelBanque extends JPanel implements  ActionListener, ItemListener
 
 		if (e.getSource() == this.ddlstRessources)
 		{
-			if (((Ressource)(this.ddlstRessources.getItemAt(0))).getId().equals(" ")) {this.ddlstRessources.removeItemAt(0);}
-
 			Ressource ressource = (Ressource) this.ddlstRessources.getSelectedItem();
 			this.notion = (Notion) this.ddlstNotions.getSelectedItem();
 
-			this.ddlstRessources.setModel(new DefaultComboBoxModel<>(ctrl.getRessources().toArray(new Ressource[0])));
-			this.ddlstNotions   .setModel(new DefaultComboBoxModel<>(ctrl.getNotionsParRessource(ressource).toArray(new Notion[0])));
+			this.ddlstRessources.setModel(
+					new DefaultComboBoxModel<>(
+							ctrl.getRessources().toArray(new Ressource[0])
+					)
+			);
+			this.ddlstNotions   .setModel(
+					new DefaultComboBoxModel<>(
+							ctrl.getNotionsParRessource(ressource).toArray(new Notion[0])
+					)
+			);
 
 			this.ddlstRessources.setSelectedItem(ressource);
-			if(this.notion != null && ressource != null &&this.notion.getRessourceAssociee().equals(ressource)){this.ddlstNotions.setSelectedItem(this.notion);} 
+			if(this.notion != null && ressource != null &&this.notion.getRessourceAssociee().equals(ressource)){
+				this.ddlstNotions.setSelectedItem(this.notion);
+			}
 			else {this.notion	= null;}
-		} 
-		else {if (e.getSource() == this.ddlstNotions){this.notion = (Notion) this.ddlstNotions.getSelectedItem();}}
+		} else if (e.getSource() == this.ddlstNotions){
+				this.notion = (Notion) this.ddlstNotions.getSelectedItem();
+		}
 
 		this.ignorerEvents = false;
 		this.maj();

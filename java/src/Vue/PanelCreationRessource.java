@@ -19,7 +19,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.border.TitledBorder;
-public class PanelCreationRessource extends JPanel implements ActionListener {
+public class PanelCreationRessource extends JPanel implements ActionListener
+{
 
 	private Controleur 			   ctrl;
 	private JButton 			   btnConfirmer;
@@ -30,7 +31,8 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 	 * Constructeur de la class PanelCreationRessource
 	 * @param ctrl					 Le contôleur
 	 */
-	public PanelCreationRessource(Controleur ctrl ,FrameCreationRessource frameCreationRessource){
+	public PanelCreationRessource(Controleur ctrl ,FrameCreationRessource frameCreationRessource)
+	{
 		this.ctrl 					= ctrl;
 		this.frameCreationRessource = frameCreationRessource;
 
@@ -85,12 +87,15 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 	 * @param e L'évènement à traiter
 	 */
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == this.btnConfirmer) {
+	public void actionPerformed(ActionEvent e)
+	{
+		if (e.getSource() == this.btnConfirmer)
+		{
 			String id  = this.txtID.getText().trim();
 			String nom = this.txtNom.getText().trim();
 
-			if (id.isEmpty() || nom.isEmpty()) {
+			if (id.isEmpty() || nom.isEmpty())
+			{
 				JOptionPane.showMessageDialog(
 						this,
 						"Veuillez remplir tous les champs",
@@ -102,7 +107,6 @@ public class PanelCreationRessource extends JPanel implements ActionListener {
 
 			Ressource r = new Ressource(id, nom);
 			this.ctrl.ajouterRessource(r);
-			this.ctrl.miseAJourFichiers();
 
 			JOptionPane.showMessageDialog(
 					this,

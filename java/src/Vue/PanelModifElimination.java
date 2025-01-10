@@ -49,7 +49,8 @@ public class PanelModifElimination extends JFrame implements ActionListener
 	public PanelModifElimination(
 			PanelModifQuestion panelModifQuestion   , Controleur ctrl,
 			String cheminImg, List<String> lstLiens, PanelBanque panelBanque,
-			JEditorPane enonce   , JEditorPane explication, Question q){
+			JEditorPane enonce   , JEditorPane explication, Question q)
+	{
 		this.ctrl          = ctrl;
 		this.panelModifQuestion = panelModifQuestion;
 
@@ -96,7 +97,7 @@ public class PanelModifElimination extends JFrame implements ActionListener
 
 		// Activation des listeners
 		this.btnAjoutReponse.addActionListener(this);
-		this.btnEnregistrer.addActionListener(this);
+		this.btnEnregistrer .addActionListener(this);
 
 		//Ajout de deux réponses pour rendre plus beau
 		this.ajouterReponse();
@@ -108,7 +109,8 @@ public class PanelModifElimination extends JFrame implements ActionListener
 	/**
 	 * Methode ajouterReponse
 	 */
-	private void ajouterReponse(){
+	private void ajouterReponse()
+	{
 		JPanel panelAjoutReponse   = new JPanel();
 		panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
 		JTextField txtReponse      = new JTextField("Réponse " + (++this.nombreReponses));
@@ -139,13 +141,16 @@ public class PanelModifElimination extends JFrame implements ActionListener
 	/**
 	 * Methode enregistrerElimination
 	 */
-	private void enregistrerElimination(){
+	private void enregistrerElimination()
+	{
 		Component[] composants  = this.panelReponses.getComponents();
 
 		HashMap<String, Double[]> reponses = new HashMap<>();
 		String reponseCorrecte = "";
-		for (Component composant : composants){
-			if (composant instanceof JPanel){
+		for (Component composant : composants)
+		{
+			if (composant instanceof JPanel)
+			{
 				JPanel reponse = (JPanel) composant;
 				JTextField txtReponse      = (JTextField) reponse.getComponent(0);
 				JTextField txtOrdreElim    = (JTextField) reponse.getComponent(1);
@@ -153,7 +158,8 @@ public class PanelModifElimination extends JFrame implements ActionListener
 				JCheckBox  cbCorrecte      = (JCheckBox)  reponse.getComponent(3);
 
 				reponses.put(txtReponse.getText(), new Double[]{Double.parseDouble(txtPointNegatif.getText()), Double.parseDouble(txtOrdreElim.getText())});
-				if (cbCorrecte.isSelected()){
+				if (cbCorrecte.isSelected())
+				{
 					reponseCorrecte = txtReponse.getText();
 				}
 			}
@@ -182,17 +188,13 @@ public class PanelModifElimination extends JFrame implements ActionListener
 	 * @param e L'évènement à traiter
 	 */
 	@Override
-	public void actionPerformed(ActionEvent e){
+	public void actionPerformed(ActionEvent e)
+	{
 		String commande = e.getActionCommand();
-		switch (commande) {
-			case "ajouterReponse":
-				ajouterReponse();
-				break;
-			case "enregistrer":
-				enregistrerElimination();
-				break;
-			default:
-				break;
+		switch (commande)
+		{
+			case "ajouterReponse" -> ajouterReponse();
+			case "enregistrer"    -> enregistrerElimination();
 		}
 	}
 }

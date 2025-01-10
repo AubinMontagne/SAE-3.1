@@ -26,7 +26,8 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
      * @param ctrl  Le controleur
      * @param r     La ressource
      */
-    public PanelNotion( Controleur ctrl,Ressource r){
+    public PanelNotion( Controleur ctrl,Ressource r)
+    {
         this.ctrl        = ctrl;
 
         this.ressource   = r;
@@ -36,7 +37,8 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
 
         // Création d'un modèle de liste
         DefaultListModel<Notion> listModel = new DefaultListModel<>();
-        for (Notion notion : this.notions) {
+        for (Notion notion : this.notions)
+        {
             if( notion.getRessourceAssociee() == this.ressource)
                 listModel.addElement(notion);
         }
@@ -50,7 +52,7 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
         this.lstNotions.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         // Ajout des écouteurs
-        this.lstNotions          .addListSelectionListener (this);
+        this.lstNotions    .addListSelectionListener (this);
         this.btnNouvNotion .addActionListener        (this);
         this.btnSupprNotion.addActionListener        (this);
 
@@ -73,10 +75,12 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
     /**
      * Methode maj
      */
-    public void maj(){
+    public void maj()
+    {
         DefaultListModel<Notion> listModel = new DefaultListModel<>();
         this.notions = ctrl.getNotionsParRessource(this.ressource);
-        for (Notion notion : this.notions) {
+        for (Notion notion : this.notions)
+        {
             listModel.addElement(notion);
         }
         this.lstNotions.setModel(listModel);
@@ -87,8 +91,10 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
      * Methode valueChanged
      * @param e L'évènement qui caractérise le changement
      */
-    public void valueChanged(ListSelectionEvent e) {
-        if (!e.getValueIsAdjusting()) {
+    public void valueChanged(ListSelectionEvent e)
+    {
+        if (!e.getValueIsAdjusting())
+        {
             Notion selectedNotion = this.lstNotions.getSelectedValue();
         }
     }
@@ -97,19 +103,21 @@ public class PanelNotion extends JPanel implements ActionListener , ListSelectio
      * Methode actionPerformed
      * @param e L'évènement à traiter
      */
-    public void actionPerformed(ActionEvent e) {
-        if (btnNouvNotion == e.getSource()) {
+    public void actionPerformed(ActionEvent e)
+    {
+        if (btnNouvNotion == e.getSource())
+        {
             FrameCreationNotion.creerFrameCreationNotion(this.ctrl, this.ressource, this);
         }
-        if (btnSupprNotion == e.getSource()) {
+        if (btnSupprNotion == e.getSource())
+        {
             Notion notion = this.lstNotions.getSelectedValue();
-            if (notion != null) {
+            if (notion != null)
+            {
                 this.ctrl.supprimerNotion(notion);
                 this.maj();
-                this.ctrl.miseAJourFichiers();
             }
         }
     }
-        
 }
     

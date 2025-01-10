@@ -7,15 +7,17 @@ import src.Controleur;
 
 import java.awt.event.WindowListener;
 
-public class FrameBanque extends JFrame implements WindowListener {
+public class FrameBanque extends JFrame implements WindowListener
+{
     private static int nbFrame = 0;
 
     /**
      * Constructeur de la class FrameBanque
      */
-    public FrameBanque(Controleur ctrl) {
+    public FrameBanque(Controleur ctrl)
+    {
         this.setTitle("QCM Builder - Banque de question ");
-        this.setSize(850, 200);
+        this.setSize(850, 300);
         this.setMinimumSize(this.getSize());
         this.setLocationRelativeTo(null);
         this.setIconImage(new ImageIcon("java/data/Images/icon.png").getImage());
@@ -28,33 +30,23 @@ public class FrameBanque extends JFrame implements WindowListener {
         setVisible(true);
     }
 
-    public static FrameBanque creerFrameBanque(Controleur ctrl) {
-        if (FrameBanque.nbFrame <= 0) {
+    public static FrameBanque creerFrameBanque(Controleur ctrl)
+    {
+        if (FrameBanque.nbFrame <= 0)
+        {
             FrameBanque.nbFrame++;
             return new FrameBanque(ctrl);
         }
         return null;
     }
 
-    public void windowOpened(java.awt.event.WindowEvent e) {
-    }
-
-    public void windowClosing(java.awt.event.WindowEvent e) {
+    public void windowOpened     (java.awt.event.WindowEvent e) {}
+    public void windowClosing    (java.awt.event.WindowEvent e) {
         FrameBanque.nbFrame--;
     }
-
-    public void windowClosed(java.awt.event.WindowEvent e) {
-    }
-
-    public void windowIconified(java.awt.event.WindowEvent e) {
-    }
-
-    public void windowDeiconified(java.awt.event.WindowEvent e) {
-    }
-
-    public void windowActivated(java.awt.event.WindowEvent e) {
-    }
-
-    public void windowDeactivated(java.awt.event.WindowEvent e) {
-    }
+    public void windowClosed     (java.awt.event.WindowEvent e) {}
+    public void windowIconified  (java.awt.event.WindowEvent e) {}
+    public void windowDeiconified(java.awt.event.WindowEvent e) {}
+    public void windowActivated  (java.awt.event.WindowEvent e) {}
+    public void windowDeactivated(java.awt.event.WindowEvent e) {}
 }

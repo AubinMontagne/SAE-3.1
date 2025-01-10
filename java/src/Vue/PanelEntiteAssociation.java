@@ -22,7 +22,8 @@ import java.util.List;
 import src.Controleur;
 import src.Metier.Question;
 
-public class PanelEntiteAssociation extends JFrame implements ActionListener {
+public class PanelEntiteAssociation extends JFrame implements ActionListener
+{
 	private Controleur ctrl;
 
 	private JPanel panelAssociations; // Panel pour les associations
@@ -48,7 +49,8 @@ public class PanelEntiteAssociation extends JFrame implements ActionListener {
 	 * Constructeur de la class PanelEntiteAssociation
 	 * @param ctrl	Le contrôleur
 	 */
-	public PanelEntiteAssociation(PanelCreationQuestion panelCreationQuestion, Controleur ctrl, String cheminDossier, String cheminImg, List<String> lstLiens, int difficulte, String notion, int points, int temps, PanelBanque panelBanque, JEditorPane enonce, JEditorPane explication, int idMax) {
+	public PanelEntiteAssociation(PanelCreationQuestion panelCreationQuestion, Controleur ctrl, String cheminDossier, String cheminImg, List<String> lstLiens, int difficulte, String notion, int points, int temps, PanelBanque panelBanque, JEditorPane enonce, JEditorPane explication, int idMax)
+	{
 		this.ctrl          = ctrl;
 		this.panelCreationQuestion = panelCreationQuestion;
 

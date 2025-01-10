@@ -11,7 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
-public class PanelRessource extends JPanel implements ActionListener, ListSelectionListener {
+public class PanelRessource extends JPanel implements ActionListener, ListSelectionListener
+{
     private Controleur       ctrl;
     private JPanel           panelRessource;
     private JButton          btnNouvRess;
@@ -23,7 +24,8 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
      * Constructeur de la class PanelRessource
      * @param ctrl Le contrôleur
      */
-    public PanelRessource(Controleur ctrl, FrameParametrage frameParametrage) {
+    public PanelRessource(Controleur ctrl, FrameParametrage frameParametrage)
+    {
         this.ctrl             = ctrl;
         this.frameParametrage = frameParametrage;
 
@@ -67,10 +69,13 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
      * Methode valueChanged
      * @param e L'évènement qui caractérise le changement
      */
-    public void valueChanged(ListSelectionEvent e) {
-        if (!e.getValueIsAdjusting()) {
+    public void valueChanged(ListSelectionEvent e)
+    {
+        if (!e.getValueIsAdjusting())
+        {
             Ressource selectedRessource = this.lstRessources.getSelectedValue();
-            if (selectedRessource != null) {
+            if (selectedRessource != null)
+            {
                 this.frameParametrage.majPanelNotion();
             }
         }
@@ -80,17 +85,20 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
      * Methode actionPerformed
      * @param e L'évènement à traiter
      */
-    public void actionPerformed(ActionEvent e) {
-        if (this.btnNouvRess == e.getSource()) {
+    public void actionPerformed(ActionEvent e)
+    {
+        if (this.btnNouvRess == e.getSource())
+        {
             FrameCreationRessource.creerFrameCreationRessource(this.ctrl);
             this.maj();
         }
-        if (this.btnSupprRess == e.getSource()) {
+        if (this.btnSupprRess == e.getSource())
+        {
             Ressource ressource = this.lstRessources.getSelectedValue();
-            if (ressource != null) {
+            if (ressource != null)
+            {
                 this.ctrl.supprimerRessource(ressource);
                 this.maj();
-                this.ctrl.miseAJourFichiers();
             }
         }
     }
@@ -98,9 +106,11 @@ public class PanelRessource extends JPanel implements ActionListener, ListSelect
     /**
      * Methode maj
      */
-    public void maj(){
+    public void maj()
+    {
         DefaultListModel<Ressource> listModel = new DefaultListModel<>();
-        for (Ressource ressource : this.ctrl.getRessources()){
+        for (Ressource ressource : this.ctrl.getRessources() )
+        {
             listModel.addElement(ressource);
         }
         this.lstRessources.setModel(listModel);

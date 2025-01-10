@@ -14,7 +14,8 @@ import javax.swing.event.DocumentListener;
 import src.Metier.*;
 import src.*;
 
-public class PanelQuestionnaire extends JPanel implements ActionListener, ItemListener {
+public class PanelQuestionnaire extends JPanel implements ActionListener, ItemListener
+{
 	private boolean 			 videTitre;
 	private boolean 			 videRessource;
 	private JPanel 				 panelQuestionnaire;
@@ -34,7 +35,8 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 	 * Constructeur de la class PanelQuestionnaire
 	 * @param ctrl	Le contrôleur
 	 */
-    public PanelQuestionnaire(Controleur ctrl, FrameQuestionnaire frame) {
+    public PanelQuestionnaire(Controleur ctrl, FrameQuestionnaire frame)
+	{
     	this.panelQuestionnaire = new JPanel(new BorderLayout());
 		this.frame              = frame;
 		this.ctrl               = ctrl;
@@ -84,7 +86,8 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
     	this.add(this.panelQuestionnaire);
 
     // ------ Ajouter le DocumentListener au txtTitre ------
-		this.txtTitre.getDocument().addDocumentListener(new DocumentListener() {
+		this.txtTitre.getDocument().addDocumentListener(new DocumentListener()
+		{
 			@Override
 			public void insertUpdate(DocumentEvent e)  {verifierChamps(txtTitre.getText()); }
 			@Override
@@ -94,6 +97,7 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 		});
 
 		this.btnChrono.addActionListener(this);
+		this.txtTitre.addActionListener(this);
 
 		this.ddlstRessources.addItemListener(this);
 		this.ddlstRessources.setSelectedIndex(0);
@@ -110,18 +114,15 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 	 * Methode verifierChamps
 	 * @param texteTitre Champs à verifier
 	 */
-	private void verifierChamps(String texteTitre) {
+	private void verifierChamps(String texteTitre)
+	{
 		this.videTitre = texteTitre.trim().isEmpty();
-		if (!this.videTitre && !this.videRessource) {
-			this.btnConfirmer.setEnabled(true);
-		} else {
-			this.btnConfirmer.setEnabled(false);
-		}
-		if(!this.videTitre){
-			this.ddlstRessources.setEnabled(true);
-		} else {
-			this.ddlstRessources.setEnabled(false);
-		}
+
+		if (!this.videTitre && !this.videRessource) {this.btnConfirmer.setEnabled(true);}
+		else {this.btnConfirmer.setEnabled(false);}
+
+		if(!this.videTitre){this.ddlstRessources.setEnabled(true);}
+		else {this.ddlstRessources.setEnabled(false);}
 	}
 
 	/**
@@ -129,12 +130,11 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 	 * @param e L'évènement à traiter
 	 */
     @Override
-    public void itemStateChanged(ItemEvent e) {
-        if (e.getSource() == this.ddlstRessources && e.getStateChange() == ItemEvent.SELECTED) {
-			if (this.ddlstRessources.getSelectedIndex() == 0 && this.lstRessources.get(0).getId().equals(" ")) {
-				this.ddlstRessources.removeItemAt(0);
-				this.lstRessources.remove(0);
-			}
+    public void itemStateChanged(ItemEvent e)
+	{
+        if (e.getSource() == this.ddlstRessources && e.getStateChange() == ItemEvent.SELECTED)
+		{
+			if (this.ddlstRessources.getSelectedIndex() == 0 && this.lstRessources.get(0).getId().equals(" ")) {this.ddlstRessources.removeItemAt(0);}
             Ressource selectedRessource = (Ressource) this.ddlstRessources.getSelectedItem();
 
             if (selectedRessource != null) 
@@ -152,11 +152,14 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 	 * @param e L'évènement à traiter
 	 */
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.btnConfirmer) {
+    public void actionPerformed(ActionEvent e)
+	{
+        if (e.getSource() == this.btnConfirmer)
+		{
             Ressource selectedRessource = (Ressource) this.ddlstRessources.getSelectedItem();
 			String titre = this.txtTitre.getText();
-            if (selectedRessource != null) {
+            if (selectedRessource != null)
+			{
 				this.frame.majTab(this.ctrl, selectedRessource,titre,this.chrono);
             }
 			this.frame.dispose();
@@ -164,14 +167,30 @@ public class PanelQuestionnaire extends JPanel implements ActionListener, ItemLi
 
 		if(e.getSource() == this.btnChrono)
 		{
-			if(this.btnChrono.getText() == "OUI"){
+			if(this.btnChrono.getText() == "OUI")
+			{
 				this.btnChrono.setText("NON");
 				this.chrono = false;
 			}
-			else if(this.btnChrono.getText() == "NON"){
+			else if(this.btnChrono.getText() == "NON")
+			{
 				this.btnChrono.setText("OUI");	
 				this.chrono = false;
 			}
+		}
+
+		if(e.getSource() == this.txtTitre)
+		{
+			if( !this.txtTitre.getText().equals("") )
+			{
+				this.ddlstRessources.setEnabled(true);
+
+				Ressource selectedRessource = (Ressource) this.ddlstRessources.getSelectedItem();
+				String titre = this.txtTitre.getText();
+				this.frame.majTab(this.ctrl, selectedRessource,titre,this.chrono);
+			}
+
+
 		}
     }
 }

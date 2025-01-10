@@ -11,7 +11,8 @@ import javax.swing.*;
 import src.Controleur;
 import src.Metier.Question;
 
-public class PanelQCM extends JFrame implements ActionListener {
+public class PanelQCM extends JFrame implements ActionListener
+{
 
 	private Controleur  ctrl;
 	private JPanel      panelReponses; // Panel pour les réponses
@@ -42,7 +43,8 @@ public class PanelQCM extends JFrame implements ActionListener {
 			String cheminDossier   , String cheminImg     , List<String> lstLiens,
 			int difficulte         , String notion        , int points, int temps,
 			PanelBanque panelBanque, boolean estModeUnique, JEditorPane epEnonce,
-			JEditorPane epExplication, int idMax ) {
+			JEditorPane epExplication, int idMax )
+	{
 
 		this.ctrl          = ctrl;
 		this.panelCreationQuestion = panelCreationQuestion;
@@ -98,26 +100,32 @@ public class PanelQCM extends JFrame implements ActionListener {
 		this.ajouterReponse();
 	}
 
-	private void ajouterReponse() {
+	private void ajouterReponse()
+	{
 		JPanel panelAjoutReponse = new JPanel();
 		panelAjoutReponse.setLayout(new BoxLayout(panelAjoutReponse, BoxLayout.X_AXIS));
 		JTextField txtReponse = new JTextField("Réponse " + (++nombreReponses));
 
 		JComponent caseCorrecte;
-		if (this.estModeUnique) {
+		if (this.estModeUnique)
+		{
 			JRadioButton rb = new JRadioButton();
-			if (this.groupReponses == null) {
+			if (this.groupReponses == null)
+			{
 				this.groupReponses = new ButtonGroup();
 			}
 			groupReponses.add(rb);
 			caseCorrecte = rb;
-		} else {
+		}
+		else
+		{
 			caseCorrecte = new JCheckBox("Correcte");
 		}
 
 		JButton btnSupprimer = new JButton("Supprimer");
 		btnSupprimer.addActionListener(e -> {
-			if (caseCorrecte instanceof JRadioButton && this.groupReponses != null) {
+			if (caseCorrecte instanceof JRadioButton && this.groupReponses != null)
+			{
 				this.groupReponses.remove((JRadioButton) caseCorrecte);
 			}
 			this.panelReponses.remove(panelAjoutReponse);
@@ -134,20 +142,29 @@ public class PanelQCM extends JFrame implements ActionListener {
 		this.panelReponses.repaint();
 	}
 
-	private void enregistrerQCMAvecHashMap() {
+	private void enregistrerQCMAvecHashMap()
+	{
 
-		if (this.panelReponses.getComponentCount() == 0) {
-			JOptionPane.showMessageDialog(this, "Veuillez ajouter au moins une réponse.", "Erreur", JOptionPane.ERROR_MESSAGE);
+		if (this.panelReponses.getComponentCount() == 0)
+		{
+			JOptionPane.showMessageDialog(
+					this,
+					"Veuillez ajouter au moins une réponse.",
+					"Erreur",
+					JOptionPane.ERROR_MESSAGE
+			);
 			return;
 		}
 
 		HashMap<String, Boolean> reponses = new HashMap<>();
 		boolean auMoinsUneReponseCorrecte = false;
 
-		for (Component composant : this.panelReponses.getComponents()) {
-			if (composant instanceof JPanel) {
-				JPanel panelReponse = (JPanel) composant;
-				JTextField txtReponse = (JTextField) panelReponse.getComponent(0);
+		for (Component composant : this.panelReponses.getComponents())
+		{
+			if (composant instanceof JPanel)
+			{
+				JPanel     panelReponse = (JPanel) composant;
+				JTextField txtReponse   = (JTextField) panelReponse.getComponent(0);
 				JComponent caseCorrecte = (JComponent) panelReponse.getComponent(1);
 
 				String texteReponse = txtReponse.getText().trim();
@@ -155,22 +172,26 @@ public class PanelQCM extends JFrame implements ActionListener {
 						? ((JCheckBox) caseCorrecte).isSelected()
 						: ((JRadioButton) caseCorrecte).isSelected();
 
-				if (texteReponse.isEmpty()) {
+				if (texteReponse.isEmpty())
+				{
 					JOptionPane.showMessageDialog(this, "Une réponse ne peut pas être vide.", "Erreur", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				if (reponses.containsKey(texteReponse)) {
+				if (reponses.containsKey(texteReponse))
+				{
 					JOptionPane.showMessageDialog(this, "Une réponse dupliquée a été détectée : " + texteReponse, "Erreur", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				reponses.put(texteReponse, estCorrecte);
-				if (estCorrecte) {
+				if (estCorrecte)
+				{
 					auMoinsUneReponseCorrecte = true;
 				}
 			}
 		}
 
-		if (!auMoinsUneReponseCorrecte) {
+		if (!auMoinsUneReponseCorrecte)
+		{
 			JOptionPane.showMessageDialog(this, "Veuillez sélectionner au moins une réponse correcte.", "Erreur", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -200,19 +221,13 @@ public class PanelQCM extends JFrame implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e)
+	{
 		String commande = e.getActionCommand();
-		switch (commande) {
-			case "ajouterReponse":
-				ajouterReponse();
-				break;
-
-			case "enregistrer":
-				enregistrerQCMAvecHashMap();
-				break;
-
-			default:
-				break;
+		switch (commande)
+		{
+			case "ajouterReponse" -> ajouterReponse();
+			case "enregistrer"    -> enregistrerQCMAvecHashMap();
 		}
 	}
 }

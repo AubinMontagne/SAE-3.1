@@ -22,10 +22,6 @@ public class  Controleur{
     // Getter
     public Metier getMetier(){return this.metier; }
 
-	public Question  getQuestion (Question question)  {return this.metier.getQuestion(question);}
-	public Notion    getNotion   (Notion notion)      {return this.metier.getNotion(notion);}
-	public Ressource getRessource(Ressource ressource){return this.metier.getRessource(ressource);}
-
 	public ArrayList<Notion>    getNotions(){return this.metier.getNotions(); }
     public ArrayList<Ressource> getRessources(){return this.metier.getRessources(); }
     public ArrayList<Question>  getQuestions(){return this.metier.getQuestions(); }

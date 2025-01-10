@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.io.File;
 
-public class QCM extends Question {
+public class QCM extends Question
+{
 	private HashMap<String, Boolean> hmReponses;
 	private Boolean vraiOuFaux;
 
@@ -20,7 +21,8 @@ public class QCM extends Question {
 	 * @param points        Le nombre de points que rapporte la question.
 	 * @param vraiOuFaux   	Si le QCM est un vrai ou faux
 	 */
-	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, String imageChemin, int id){
+	public QCM(String intitule, Difficulte difficulte, Notion notion, int temps, int points, boolean vraiOuFaux, String imageChemin, int id)
+	{
 		super(intitule, difficulte, notion, temps, points, imageChemin, id);
 		this.hmReponses = new HashMap<String, Boolean>();
 		this.vraiOuFaux = vraiOuFaux;
@@ -33,19 +35,25 @@ public class QCM extends Question {
 	 * @param correct	Si la reponse est corecte
 	 * @return			Vrai si l'ajout a réussi, sinon faux
 	 */
-	public boolean ajouterReponse(String reponse, Boolean correct) {
+	public boolean ajouterReponse(String reponse, Boolean correct)
+	{
 
-		if (this.vraiOuFaux && correct) {
-			for (Boolean value : this.hmReponses.values()) {
-				if (value) {
+		if (this.vraiOuFaux && correct)
+		{
+			for (Boolean value : this.hmReponses.values())
+			{
+				if (value)
+				{
 					return false;
 				}
 			}
 		}
-		if (this.hmReponses.containsKey(reponse)) {
+		if (this.hmReponses.containsKey(reponse))
+		{
 			this.hmReponses.replace(reponse, correct);
 		}
-		else {
+		else
+		{
 			this.hmReponses.put(reponse, correct);
 		}
 		return true;
@@ -64,20 +72,24 @@ public class QCM extends Question {
 	public int                      getNbReponses(){return this.hmReponses.size(); }
 
 	@Override
-	public String getAsData(){
+	public String getAsData()
+	{
 		String res = "QCM;" + super.getAsData() + ";" + this.vraiOuFaux + ";" ;
-		for (HashMap.Entry<String, Boolean> entry : this.hmReponses.entrySet()) {
+		for (HashMap.Entry<String, Boolean> entry : this.hmReponses.entrySet())
+        {
 			res += entry.getKey() + "," + entry.getValue() + "|";
 		}
 		return res;
 	}
 
-	public static QCM getAsInstance(String ligne, Metier metier) {
+	public static QCM getAsInstance(String ligne, Metier metier)
+	{
 		Scanner scanner = new Scanner(ligne);
 		scanner.useDelimiter(";");
 
 		String[] parts = new String[11];
-		for (int i = 0; i < 11; i++) {
+		for (int i = 0; i < 11; i++)
+		{
 			parts[i] = scanner.next();
 		}
 
@@ -92,13 +104,15 @@ public class QCM extends Question {
 
 		Scanner reponseScanner = new Scanner(parts[10]);
 		reponseScanner.useDelimiter("\\|");
-		while (reponseScanner.hasNext()) {
+		while (reponseScanner.hasNext())
+		{
 			String reponse = reponseScanner.next();
 			Scanner qcmScanner = new Scanner(reponse);
 
 			qcmScanner.useDelimiter(",");
 			String[] reponseParts = new String[2];
-			for (int i = 0; i < 2; i++) {
+			for (int i = 0; i < 2; i++)
+			{
 				reponseParts[i] = qcmScanner.next();
 			}
 
@@ -108,7 +122,8 @@ public class QCM extends Question {
 
 		reponseScanner = new Scanner(parts[8]);
 		reponseScanner.useDelimiter(",");
-		while (reponseScanner.hasNext()) {
+		while (reponseScanner.hasNext())
+		{
 			String fichier = reponseScanner.next();
 			qcm.ajouterFichier(fichier);
 		}
@@ -119,12 +134,14 @@ public class QCM extends Question {
 	// Set
 	public void setHmReponses(HashMap<String, Boolean> hmReponses) {this.hmReponses = hmReponses; }
 
-	public String toString() {
+	public String toString()
+	{
 		String res = super.toString();
 		res += "Une seule réponse : " + this.vraiOuFaux + "\n";
 		res += "Réponses : \n";
 
-		for (HashMap.Entry<String, Boolean> entry : this.hmReponses.entrySet()) {
+		for (HashMap.Entry<String, Boolean> entry : this.hmReponses.entrySet())
+		{
 			res += entry.getKey() + " -> " + entry.getValue() + "\n";
 		}
 		return res;

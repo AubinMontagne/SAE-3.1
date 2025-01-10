@@ -1,6 +1,7 @@
 package src.Metier;
 
-public class Ressource{
+public class Ressource
+{
     private String id;
     private String nom;
 
@@ -10,22 +11,21 @@ public class Ressource{
      * @param id        L'identifiant de la ressource.
      * @param nom       Le nom de la ressource.
      */
-    public Ressource(String id,String nom){
+    public Ressource(String id,String nom)
+    {
         this.id       = id;
         this.nom      = nom;
     }
 
     // Getter
-	public boolean equals(Ressource ressource){
-		return this.id.equals(ressource.getId()) &&
-		this.nom.equals(ressource.getNom());
-	}
+	public boolean equals(Ressource ressource) {return this.id.equals(ressource.getId()) && this.nom.equals(ressource.getNom());}
 
     public String getId    (){return this.id; }
     public String getNom   (){return this.nom; }
     public String getAsData(){return this.id + ";" + this.nom;}
 
-	public static Ressource getFromData(String data){
+	public static Ressource getFromData(String data)
+    {
         String[] parts = new String[]{data.substring(0, data.indexOf(";")), data.substring(data.indexOf(";") + 1)};
         return new Ressource(parts[0], parts[1]);
     }
@@ -35,10 +35,9 @@ public class Ressource{
     public void setNom(String nom){this.nom = nom; }
 
     @Override
-	public String toString(){
-        if (this.id.equals(" ")){
-            return "";
-        }
+	public String toString()
+    {
+        if (this.id.equals(" ")){return "";}
         return this.id + " : " + this.nom + "\n";
     }
 }

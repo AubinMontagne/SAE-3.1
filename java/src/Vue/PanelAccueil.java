@@ -14,7 +14,8 @@ import javax.swing.SwingConstants;
 
 import src.Controleur;
 
-public class   PanelAccueil extends JPanel implements  ActionListener{
+public class   PanelAccueil extends JPanel implements  ActionListener
+{
     private Controleur ctrl;
     private JPanel     panelAccueil;
 
@@ -91,17 +92,22 @@ public class   PanelAccueil extends JPanel implements  ActionListener{
      * Methode actionPerformed
      * @param e L'évènement à traiter
      */
-    public void actionPerformed(ActionEvent e){
-        if ( btnBanque == e.getSource()) {
+    public void actionPerformed(ActionEvent e)
+    {
+        if ( btnBanque == e.getSource())
+        {
             FrameBanque.creerFrameBanque(this.ctrl);
         }
-        if( btnQuestionnaire == e.getSource()) {
+        if( btnQuestionnaire == e.getSource())
+        {
             FrameQuestionnaire.creerFrameQuestionnaire(this.ctrl);
         }
-        if(btnRessources == e.getSource()) {
+        if(btnRessources == e.getSource())
+        {
             FrameParametrage.creerFrameFrameParametrage(this.ctrl);
         }
-        if(btnCreationQuestion == e.getSource()) {
+        if(btnCreationQuestion == e.getSource())
+        {
             new FrameCreationQuestion(this.ctrl);
         }
     }

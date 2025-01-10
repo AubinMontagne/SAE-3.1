@@ -11,13 +11,15 @@ public class Notion
      * @param nom               Le nom de la notion.
      * @param ressourceAssociee La ressource associée à la notion.
      */
-    public Notion(String nom, Ressource ressourceAssociee){
+    public Notion(String nom, Ressource ressourceAssociee)
+    {
         this.nom               = nom;
         this.ressourceAssociee = ressourceAssociee;
     }
 
     // Getter
-	public boolean equals(Notion notion){
+	public boolean equals(Notion notion)
+    {
 		return this.nom.equals(notion.getNom()) &&
 		this.ressourceAssociee.equals(notion.getRessourceAssociee());
 	}
@@ -26,7 +28,8 @@ public class Notion
     public Ressource getRessourceAssociee() {return this.ressourceAssociee; }
     public String    getAsData()            {return (this.nom + ";" + this.ressourceAssociee.getId()); }
 
-    public static Notion getFromData(String data, Metier metier){
+    public static Notion getFromData(String data, Metier metier)
+    {
           String[] parts = new String[]{data.substring(0, data.indexOf(";")), data.substring(data.indexOf(";") + 1)};
           return new Notion(parts[0], metier.getRessourceById(parts[1]));
     }
