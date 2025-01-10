@@ -1,0 +1,252 @@
+/* Style de la barre de navigation */
+/* Style pour les éléments de navigation (qui sont des divs maintenant) */
+.styleBut {
+    display: inline-block; /* Permet d'afficher les divs côte à côte */
+    background-color: #00a9c7; /* Couleur de fond pour les boutons */
+    color: white; /* Couleur du texte */
+    padding: 10px 20px; /* Espacement interne pour donner une forme de bouton */
+    text-align: center; /* Centrer le texte à l'intérieur */
+    border-radius: 5px; /* Arrondir les coins */
+    cursor: pointer; /* Changer le curseur pour signaler que c'est cliquable */
+    transition: background-color 0.3s ease; /* Effet de transition pour la couleur */
+} 
+
+/* Changer la couleur de fond au survol */
+.styleBut:hover {
+    background-color: #0056b3; /* Changer la couleur lors du survol */
+}
+   
+footer {
+    background-color: #a8a8a8;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed; /* Fixer le footer */
+    left: 0;
+    bottom: 0; /* Toujours collé au bas de la page */
+    width: 100%;
+    z-index: 1000; /* Mettre le footer au premier plan */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding-bottom: 50px;
+}
+
+.compteurs {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* Deux colonnes de largeur égale */
+    gap: 20px; /* Espacement entre les cases */
+}
+
+.compteurs-div {
+    text-align: center;
+}
+
+.progress-container {
+    width: 100%;
+    background-color: #d8d5d5;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+ 
+.progress-bar {
+    height: 30px;
+    width: 0%; /* Valeur initiale */
+    background-color: #00a9c7;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    transition: width 0.4s ease;
+}
+
+.progress-text {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+
+#zoneRep {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4; /* Fond clair */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Deux colonnes de largeur égale */
+    gap: 20px; /* Espacement entre les cases */
+    max-width: 800px; /* Largeur maximale du conteneur */
+}
+
+
+.reponseBox {
+    display: inline-block; /* Ajuste la taille de la boîte en fonction du contenu */
+    border: 2px solid black; /* Bordure noire */
+    padding: 10px 20px; /* Espacement intérieur */
+    margin: 10px 0; /* Espacement vertical entre les cases */
+    text-align: center; /* Centre le texte horizontalement */
+    font-size: 16px; /* Taille de texte */
+    font-family: Arial, sans-serif; /* Police par défaut */
+    max-width: 300px; /* Limite la largeur de la boîte (ajuste selon tes besoins) */
+    word-wrap: break-word; /* Permet de co*/
+}
+
+
+/* Classe appliquée lorsqu'une case est cliquée */
+.selected {
+    background-color: orange; /* Couleur de fond quand cliqué (par exemple, vert) */
+    color: white; /* Change la couleur du texte en blanc */
+}
+
+.unSelected {
+    background-color: white; /* Couleur de fond quand cliqué (par exemple, vert) */
+    color: black; /* Change la couleur du texte en blanc */
+}
+
+.eliminer {
+    background-color: black; /* Couleur de fond quand cliqué (par exemple, vert) */
+    color: white; /* Change la couleur du texte en blanc */
+}
+
+.faux {
+    background-color: red; /* Couleur de fond quand cliqué (par exemple, vert) */
+    color: white; /* Change la couleur du texte en blanc */
+}
+
+.vrai {
+    background-color: green; /* Couleur de fond quand cliqué (par exemple, vert) */
+    color: white; /* Change la couleur du texte en blanc */
+}
+
+.imgRep
+{
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.imgQuestion
+{
+    max-width: 400px;
+    max-height: 400px;
+}
+
+.imgDif {
+    max-width: 20px;
+    max-height: 20px;
+}
+
+.imgBtn {
+    max-width: 20px;
+    max-height: 20px;
+    vertical-align: text-top;
+}
+
+#zoneRepAssos {
+    display: grid;
+    grid-template-columns: auto auto auto; /* Deux colonnes pour les div + 1 pour le canvas */
+    align-items: start; /* Alignement en haut si nécessaire */
+    justify-content: start; /* Aligne sur la gauche */
+    gap: 0px; /* Espacement entre les colonnes */
+}
+
+#canvas {
+    width: 300px; /* Taille personnalisée selon vos besoins */
+}
+
+.reponseBoxAssos {
+    display: inline-block; /* Ajuste la taille de la boîte en fonction du contenu */
+    border: 2px solid black; /* Bordure noire */
+    padding: 10px 20px; /* Espacement intérieur */
+    margin: 10px 0; /* Espacement vertical entre les cases */
+    text-align: center; /* Centre le texte horizontalement */
+    font-size: 16px; /* Taille de texte */
+    font-family: Arial, sans-serif; /* Police par défaut */
+    max-width: 200px; /* Limite la largeur de la boîte (ajuste selon tes besoins) */
+    word-wrap: break-word; /* Permet de couper les mots si nécessaire */
+}
+
+.casesInternes {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr; /* Une colonne */
+    gap: 0px; /* Espacement entre les cases */
+    max-width: 800px; /* Largeur maximale du conteneur */
+    background-color: #f4f4f4; /* Fond clair */
+    justify-items: start; /* Aligne les éléments à gauche */
+}
+
+#repGauche {
+    display: flex;
+    flex-direction: column; /* Aligne verticalement */
+    align-items: flex-end; /* Colle les éléments à droite */
+    justify-content: center; /* Centre verticalement */
+    width: 100%; /* Taille du conteneur */
+    border: 2px solid #ccc; /* Bordure pour visualiser */
+}
+
+
+
+/* Style du popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style du contenu du popup */
+.show {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    width: 300px;
+}
+
+.hidden {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    width: 300px;
+    display: none;
+}
+
+/* Bouton de fermeture */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+
+}
+
+.hiddenP {
+	display: none;
+}
+
+.reponseBonne {
+    color: green;
+}
+
+.reponseFausse {
+    color : red;
+}
