@@ -1,3 +1,11 @@
+L'application est fortement améliorable, les contraintes de temps nous ont forcé à faire des choix.
+Répartition du travail ( Groupe de 5 ) :
+Julien : Back-end / Front-end
+Aubin : Back-end / Front-end
+Timothé : Front-end
+Antoine : Partie Web ( HTML CSS JS )
+Thibault :
+
 C'est une application génératrice de questionnaire qui est donc séparé en deux parties, 
 la génération des questionnaires ou on peut faire des questionnaires de question stocker 
 dans un fichier texte qui sont chaqu'une sur une notion qui font partie d'une ressource.
