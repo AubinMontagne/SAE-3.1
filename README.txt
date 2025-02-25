@@ -7,15 +7,16 @@ Antoine : Partie Web ( HTML CSS JS )
 Thibault :
 
 C'est une application génératrice de questionnaire qui est donc séparé en deux parties, 
-la génération des questionnaires ou on peut faire des questionnaires de question stocker 
-dans un fichier texte qui sont chaqu'une sur une notion qui font partie d'une ressource.
+la génération des questionnaires ou on peut faire des questionnaires de questions.
 
-Et la partie du questionnaire, qui est une page web donc en HTML/CSS gérer par du JS 
+Les questions étant dans un fichier texte qui sont chacune sur une notion qui font partie d'une ressource.
+
+Et la partie du questionnaire, qui est une page web donc en HTML/CSS géré par du JS 
 avec un chrono ou non, avec une page d'index qui explique de quel questionnaire 
 il s'agit avec un résumé des question qu'il contient et une page final qui résume 
 le score du questionnaire.
 
-// Comment compiler le programme
+// Comment compiler le programme 
 
 {download repository}/SAE3.01 : javac @compile.list
 
